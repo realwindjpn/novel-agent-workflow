@@ -7,7 +7,7 @@
 - 根路径：`/root/workspace/科武纪元/wiki/`
 - raw/ 为不可变快照；正文改动不在 raw 里直接修。
 - 每个页面必须有 YAML frontmatter。
-- 页面之间用 `[[wikilinks]]`。
+- 页面之间用 Obsidian 双链。
 - 每次更新同步 `index.md` 与 `log.md`。
 - 章节页按 `chapter-index/chapter-086.md` 命名。
 - 伏笔按 `plot-threads/<slug>.md` 命名。

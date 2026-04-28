@@ -1,0 +1,20 @@
+# Local backups and archives
+*.bak
+*.bak.*
+backup/
+备份/
+archive/
+归档跟踪表/
+
+# Python/runtime cache
+__pycache__/
+*.pyc
+
+# Local credentials/cookies
+*cookies*.txt
+bilibili_cookies.txt
+weibo_cookies.txt
+
+# Generated media/cache
+配图/
+rag_kb/

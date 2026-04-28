@@ -1,6 +1,6 @@
 # Wiki Index
 
-> Last updated: 2026-04-28 | Total pages: 28
+> Last updated: 2026-04-28 | Total pages: 32
 
 ## Entities
 
@@ -22,6 +22,7 @@
 - [[liuyun-algorithm]] — 流云算法
 - [[open-ecosystem-vs-closed-ecosystem]] — 开源生态 vs 封闭生态
 - [[science-martial-system]] — 科武融合体系
+- [[volume-boundary-book1]] — 第一卷卷界
 - [[writing-rules]] — 写作红线
 
 ## Plot Threads
@@ -31,6 +32,8 @@
 
 ## Chapter Index
 
+- [[chapter-053]] — 第53章 卷一回响
+- [[chapter-055]] — 第55章 觉醒之终
 - [[chapter-086]] — 第86章：铁幕反击
 - [[chapter-087]] — 第87章：算法对决
 - [[chapter-088]] — 第88章：算力崩溃
@@ -44,4 +47,5 @@
 
 ## Queries
 
+- [[chapter-053-title-alignment]] — 第53章标题对齐审查
 

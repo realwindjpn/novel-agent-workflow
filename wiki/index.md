@@ -1,6 +1,6 @@
 # Wiki Index
 
-> Last updated: 2026-04-28 | Total pages: 32
+> Last updated: 2026-04-28 | Total pages: 33
 
 ## Entities
 
@@ -22,6 +22,7 @@
 - [[liuyun-algorithm]] — 流云算法
 - [[open-ecosystem-vs-closed-ecosystem]] — 开源生态 vs 封闭生态
 - [[science-martial-system]] — 科武融合体系
+- [[tracking-table-policy]] — 跟踪表维护策略
 - [[volume-boundary-book1]] — 第一卷卷界
 - [[writing-rules]] — 写作红线
 

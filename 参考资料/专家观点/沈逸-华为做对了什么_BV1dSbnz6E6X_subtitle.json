@@ -1,0 +1,700 @@
+{
+  "font_size": 0.4,
+  "font_color": "#FFFFFF",
+  "background_alpha": 0.5,
+  "background_color": "#9C27B0",
+  "Stroke": "none",
+  "type": "AIsubtitle",
+  "lang": "zh",
+  "version": "v1.7.0.4",
+  "body": [
+    {
+      "from": 11.02,
+      "to": 14.92,
+      "sid": 1,
+      "location": 2,
+      "content": "而且他早期帮助维鲁斯打出对面这两个闪现",
+      "music": 0.0
+    },
+    {
+      "from": 14.92,
+      "to": 17.75,
+      "sid": 2,
+      "location": 2,
+      "content": "也让哎看看这里想瞄准凯莉啊",
+      "music": 0.0
+    },
+    {
+      "from": 17.75,
+      "to": 19.99,
+      "sid": 3,
+      "location": 2,
+      "content": "Faker贴脸亲",
+      "music": 0.0
+    },
+    {
+      "from": 19.99,
+      "to": 21.39,
+      "sid": 4,
+      "location": 2,
+      "content": "再撞到墙上",
+      "music": 0.0
+    },
+    {
+      "from": 21.39,
+      "to": 24.63,
+      "sid": 5,
+      "location": 2,
+      "content": "一个回收的Q技能秒杀豹女",
+      "music": 0.0
+    },
+    {
+      "from": 27.0,
+      "to": 29.0,
+      "sid": 6,
+      "location": 2,
+      "content": "杀ONER这边KERIA也复活了",
+      "music": 0.0
+    },
+    {
+      "from": 29.0,
+      "to": 31.5,
+      "sid": 7,
+      "location": 2,
+      "content": "但是king的目标就是赶走对面的打野",
+      "music": 0.0
+    },
+    {
+      "from": 31.5,
+      "to": 32.94,
+      "sid": 8,
+      "location": 2,
+      "content": "好像没有任何的机会",
+      "music": 0.0
+    },
+    {
+      "from": 32.94,
+      "to": 34.9,
+      "sid": 9,
+      "location": 2,
+      "content": "双射手太怕贾克斯了",
+      "music": 0.0
+    },
+    {
+      "from": 34.9,
+      "to": 36.32,
+      "sid": 10,
+      "location": 2,
+      "content": "Faker这位也要死",
+      "music": 0.0
+    },
+    {
+      "from": 36.32,
+      "to": 38.33,
+      "sid": 11,
+      "location": 2,
+      "content": "贾拿到唔又拉回来了",
+      "music": 0.0
+    },
+    {
+      "from": 38.33,
+      "to": 40.29,
+      "sid": 12,
+      "location": 2,
+      "content": "这波开启的大招拉到两只",
+      "music": 0.0
+    },
+    {
+      "from": 40.29,
+      "to": 44.33,
+      "sid": 13,
+      "location": 2,
+      "content": "而且小K没有闪现的布隆再次阵亡",
+      "music": 0.0
+    },
+    {
+      "from": 46.74,
+      "to": 47.88,
+      "sid": 14,
+      "location": 2,
+      "content": "被偷了个酒桶大招",
+      "music": 0.0
+    },
+    {
+      "from": 47.88,
+      "to": 50.02,
+      "sid": 15,
+      "location": 2,
+      "content": "随时准备从侧翼杀奔出来",
+      "music": 0.0
+    },
+    {
+      "from": 50.02,
+      "to": 51.26,
+      "sid": 16,
+      "location": 2,
+      "content": "龙将由T1给拿下",
+      "music": 0.0
+    },
+    {
+      "from": 51.26,
+      "to": 53.44,
+      "sid": 17,
+      "location": 2,
+      "content": "天亮看看能不能甩出这个好的千姿摆尾呢",
+      "music": 0.0
+    },
+    {
+      "from": 53.44,
+      "to": 54.24,
+      "sid": 18,
+      "location": 2,
+      "content": "甩的效果一般般",
+      "music": 0.0
+    },
+    {
+      "from": 54.24,
+      "to": 55.08,
+      "sid": 19,
+      "location": 2,
+      "content": "打到了后排",
+      "music": 0.0
+    },
+    {
+      "from": 55.08,
+      "to": 57.52,
+      "sid": 20,
+      "location": 2,
+      "content": "同时CHOVY偷过酒桶大招大住了凯瑞",
+      "music": 0.0
+    },
+    {
+      "from": 57.52,
+      "to": 58.84,
+      "sid": 21,
+      "location": 2,
+      "content": "凯瑞给自己手机时救难",
+      "music": 0.0
+    },
+    {
+      "from": 58.84,
+      "to": 59.6,
+      "sid": 22,
+      "location": 2,
+      "content": "成功的救了回来",
+      "music": 0.0
+    },
+    {
+      "from": 59.6,
+      "to": 60.96,
+      "sid": 23,
+      "location": 2,
+      "content": "没有直接被炸死了",
+      "music": 0.0
+    },
+    {
+      "from": 60.96,
+      "to": 62.7,
+      "sid": 24,
+      "location": 2,
+      "content": "同时宙斯也并不是很好走",
+      "music": 0.0
+    },
+    {
+      "from": 62.7,
+      "to": 64.6,
+      "sid": 25,
+      "location": 2,
+      "content": "蓝方阵型已经被完全的切割了",
+      "music": 0.0
+    },
+    {
+      "from": 64.6,
+      "to": 66.24,
+      "sid": 26,
+      "location": 2,
+      "content": "女坦死亡一指指了上去",
+      "music": 0.0
+    },
+    {
+      "from": 66.24,
+      "to": 68.68,
+      "sid": 27,
+      "location": 2,
+      "content": "但这时候ONER在屏幕的左侧拖到了两个人",
+      "music": 0.0
+    },
+    {
+      "from": 68.68,
+      "to": 69.88,
+      "sid": 28,
+      "location": 2,
+      "content": "蝎子冲锋上去",
+      "music": 0.0
+    },
+    {
+      "from": 69.88,
+      "to": 70.76,
+      "sid": 29,
+      "location": 2,
+      "content": "古巴一直在后面",
+      "music": 0.0
+    },
+    {
+      "from": 70.76,
+      "to": 71.84,
+      "sid": 30,
+      "location": 2,
+      "content": "火力全开",
+      "music": 0.0
+    },
+    {
+      "from": 71.84,
+      "to": 73.16,
+      "sid": 31,
+      "location": 2,
+      "content": "万箭齐发",
+      "music": 0.0
+    },
+    {
+      "from": 73.16,
+      "to": 75.44,
+      "sid": 32,
+      "location": 2,
+      "content": "拿到三杀",
+      "music": 0.0
+    },
+    {
+      "from": 77.299,
+      "to": 78.539,
+      "sid": 33,
+      "location": 2,
+      "content": "过了这波维鲁斯大招",
+      "music": 0.0
+    },
+    {
+      "from": 78.539,
+      "to": 79.399,
+      "sid": 34,
+      "location": 2,
+      "content": "打的小伙的一般般",
+      "music": 0.0
+    },
+    {
+      "from": 79.399,
+      "to": 80.919,
+      "sid": 35,
+      "location": 2,
+      "content": "波比先开启自己的坚定风采",
+      "music": 0.0
+    },
+    {
+      "from": 80.919,
+      "to": 81.939,
+      "sid": 36,
+      "location": 2,
+      "content": "跟ONER缠斗在一起",
+      "music": 0.0
+    },
+    {
+      "from": 81.939,
+      "to": 84.419,
+      "sid": 37,
+      "location": 2,
+      "content": "左边想先抢龙KERIA坐门过去",
+      "music": 0.0
+    },
+    {
+      "from": 84.419,
+      "to": 85.479,
+      "sid": 38,
+      "location": 2,
+      "content": "但这只是个派克",
+      "music": 0.0
+    },
+    {
+      "from": 85.479,
+      "to": 87.52,
+      "sid": 39,
+      "location": 2,
+      "content": "宙斯到后排全部挤在了一起",
+      "music": 0.0
+    },
+    {
+      "from": 87.52,
+      "to": 89.4,
+      "sid": 40,
+      "location": 2,
+      "content": "他先一棒锤锤走了",
+      "music": 0.0
+    },
+    {
+      "from": 89.4,
+      "to": 91.02,
+      "sid": 41,
+      "location": 2,
+      "content": "Faker de克的位置也并不是很好",
+      "music": 0.0
+    },
+    {
+      "from": 91.02,
+      "to": 92.06,
+      "sid": 42,
+      "location": 2,
+      "content": "恐怕直接卖掉自己",
+      "music": 0.0
+    },
+    {
+      "from": 92.06,
+      "to": 93.92,
+      "sid": 43,
+      "location": 2,
+      "content": "宙斯开了个第一个金身",
+      "music": 0.0
+    },
+    {
+      "from": 93.92,
+      "to": 95.06,
+      "sid": 44,
+      "location": 2,
+      "content": "派克瞬间被秒",
+      "music": 0.0
+    },
+    {
+      "from": 95.06,
+      "to": 96.3,
+      "sid": 45,
+      "location": 2,
+      "content": "这波男枪抱在一起",
+      "music": 0.0
+    },
+    {
+      "from": 96.3,
+      "to": 97.32,
+      "sid": 46,
+      "location": 2,
+      "content": "想瞄准的宙斯",
+      "music": 0.0
+    },
+    {
+      "from": 97.32,
+      "to": 98.62,
+      "sid": 47,
+      "location": 2,
+      "content": "宙斯第二个反击风暴又好",
+      "music": 0.0
+    },
+    {
+      "from": 98.62,
+      "to": 99.91,
+      "sid": 48,
+      "location": 2,
+      "content": "瞄准超美没死",
+      "music": 0.0
+    },
+    {
+      "from": 99.91,
+      "to": 100.63,
+      "sid": 49,
+      "location": 2,
+      "content": "说是什么",
+      "music": 0.0
+    },
+    {
+      "from": 100.63,
+      "to": 101.51,
+      "sid": 50,
+      "location": 2,
+      "content": "Faker呜",
+      "music": 0.0
+    },
+    {
+      "from": 101.51,
+      "to": 102.29,
+      "sid": 51,
+      "location": 2,
+      "content": "万箭齐发",
+      "music": 0.0
+    },
+    {
+      "from": 102.29,
+      "to": 103.53,
+      "sid": 52,
+      "location": 2,
+      "content": "激发了射手专注",
+      "music": 0.0
+    },
+    {
+      "from": 103.53,
+      "to": 104.95,
+      "sid": 53,
+      "location": 2,
+      "content": "翻了输出拉满",
+      "music": 0.0
+    },
+    {
+      "from": 104.95,
+      "to": 107.98,
+      "sid": 54,
+      "location": 2,
+      "content": "果然马倒地者得天下吗",
+      "music": 0.0
+    },
+    {
+      "from": 107.98,
+      "to": 108.72,
+      "sid": 55,
+      "location": 2,
+      "content": "我是Q",
+      "music": 0.0
+    },
+    {
+      "from": 108.72,
+      "to": 109.84,
+      "sid": 56,
+      "location": 2,
+      "content": "这锤太关键了",
+      "music": 0.0
+    },
+    {
+      "from": 109.84,
+      "to": 111.0,
+      "sid": 57,
+      "location": 2,
+      "content": "他把Faker传走",
+      "music": 0.0
+    },
+    {
+      "from": 111.0,
+      "to": 112.52,
+      "sid": 58,
+      "location": 2,
+      "content": "锤走了",
+      "music": 0.0
+    },
+    {
+      "from": 114.86,
+      "to": 116.62,
+      "sid": 59,
+      "location": 2,
+      "content": "布玛的大招命中泪汉子",
+      "music": 0.0
+    },
+    {
+      "from": 116.62,
+      "to": 118.819,
+      "sid": 60,
+      "location": 2,
+      "content": "但是还有一个金水银Faker被敲晕",
+      "music": 0.0
+    },
+    {
+      "from": 118.819,
+      "to": 119.299,
+      "sid": 61,
+      "location": 2,
+      "content": "喔呦",
+      "music": 0.0
+    },
+    {
+      "from": 119.299,
+      "to": 121.679,
+      "sid": 62,
+      "location": 2,
+      "content": "配合最后一发普攻跟到了狐狸的伤害",
+      "music": 0.0
+    },
+    {
+      "from": 121.679,
+      "to": 122.759,
+      "sid": 63,
+      "location": 2,
+      "content": "ONER前到两个人",
+      "music": 0.0
+    },
+    {
+      "from": 122.759,
+      "to": 123.559,
+      "sid": 64,
+      "location": 2,
+      "content": "贾斯进场",
+      "music": 0.0
+    },
+    {
+      "from": 123.559,
+      "to": 124.419,
+      "sid": 65,
+      "location": 2,
+      "content": "这波打的还不错",
+      "music": 0.0
+    },
+    {
+      "from": 124.419,
+      "to": 125.64,
+      "sid": 66,
+      "location": 2,
+      "content": "艾希倒地了",
+      "music": 0.0
+    },
+    {
+      "from": 125.64,
+      "to": 127.42,
+      "sid": 67,
+      "location": 2,
+      "content": "这波宙斯提出他的作用",
+      "music": 0.0
+    },
+    {
+      "from": 127.42,
+      "to": 128.88,
+      "sid": 68,
+      "location": 2,
+      "content": "ONER这边还没有死",
+      "music": 0.0
+    },
+    {
+      "from": 128.88,
+      "to": 130.1,
+      "sid": 69,
+      "location": 2,
+      "content": "又顶到一个",
+      "music": 0.0
+    },
+    {
+      "from": 130.1,
+      "to": 132.74,
+      "sid": 70,
+      "location": 2,
+      "content": "最后波比也被处理掉了",
+      "music": 0.0
+    },
+    {
+      "from": 132.74,
+      "to": 134.14,
+      "sid": 71,
+      "location": 2,
+      "content": "虽然说先手到了Faker",
+      "music": 0.0
+    },
+    {
+      "from": 134.14,
+      "to": 135.76,
+      "sid": 72,
+      "location": 2,
+      "content": "但最后贾克斯也接管这场比赛",
+      "music": 0.0
+    },
+    {
+      "from": 135.76,
+      "to": 136.86,
+      "sid": 73,
+      "location": 2,
+      "content": "又瞄准了另外一个射手",
+      "music": 0.0
+    },
+    {
+      "from": 136.86,
+      "to": 137.94,
+      "sid": 74,
+      "location": 2,
+      "content": "贾克斯交出闪现",
+      "music": 0.0
+    },
+    {
+      "from": 137.94,
+      "to": 139.36,
+      "sid": 75,
+      "location": 2,
+      "content": "勾到一波波又好反击",
+      "music": 0.0
+    },
+    {
+      "from": 139.36,
+      "to": 140.7,
+      "sid": 76,
+      "location": 2,
+      "content": "风暴晕住了小炮",
+      "music": 0.0
+    },
+    {
+      "from": 140.7,
+      "to": 144.8,
+      "sid": 77,
+      "location": 2,
+      "content": "这甚至是有可能替换一波掉这场比赛的节奏",
+      "music": 0.0
+    },
+    {
+      "from": 151.86,
+      "to": 153.34,
+      "sid": 78,
+      "location": 2,
+      "content": "但是这个位置应该想打",
+      "music": 0.0
+    },
+    {
+      "from": 154.78,
+      "to": 156.82,
+      "sid": 79,
+      "location": 2,
+      "content": "先走前面自己反正有W暂时不慌",
+      "music": 0.0
+    },
+    {
+      "from": 156.82,
+      "to": 157.58,
+      "sid": 80,
+      "location": 2,
+      "content": "K失误了",
+      "music": 0.0
+    },
+    {
+      "from": 157.58,
+      "to": 158.94,
+      "sid": 81,
+      "location": 2,
+      "content": "在塔下没有下来",
+      "music": 0.0
+    },
+    {
+      "from": 158.94,
+      "to": 159.84,
+      "sid": 82,
+      "location": 2,
+      "content": "相互排眼",
+      "music": 0.0
+    },
+    {
+      "from": 159.84,
+      "to": 162.2,
+      "sid": 83,
+      "location": 2,
+      "content": "而且这波线很快位置是要到六了",
+      "music": 0.0
+    },
+    {
+      "from": 162.2,
+      "to": 164.5,
+      "sid": 84,
+      "location": 2,
+      "content": "看这个透骨尖钉带过来了",
+      "music": 0.0
+    },
+    {
+      "from": 164.5,
+      "to": 166.54,
+      "sid": 85,
+      "location": 2,
+      "content": "他很懂雷汉子",
+      "music": 0.0
+    },
+    {
+      "from": 166.54,
+      "to": 169.8,
+      "sid": 86,
+      "location": 2,
+      "content": "KERIA把雷横死玩弄于股掌之间",
+      "music": 0.0
+    }
+  ]
+}

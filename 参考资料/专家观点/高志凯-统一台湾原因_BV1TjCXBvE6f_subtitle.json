@@ -1,0 +1,476 @@
+{
+  "font_size": 0.4,
+  "font_color": "#FFFFFF",
+  "background_alpha": 0.5,
+  "background_color": "#9C27B0",
+  "Stroke": "none",
+  "type": "AIsubtitle",
+  "lang": "zh",
+  "version": "v1.7.0.4",
+  "body": [
+    {
+      "from": 1.06,
+      "to": 3.26,
+      "sid": 1,
+      "location": 2,
+      "content": "什么你就是唐僧",
+      "music": 0.0
+    },
+    {
+      "from": 4.82,
+      "to": 13.19,
+      "sid": 2,
+      "location": 2,
+      "content": "正是我听说吃了唐僧一块肉就可以长生不老",
+      "music": 0.0
+    },
+    {
+      "from": 13.19,
+      "to": 16.98,
+      "sid": 3,
+      "location": 2,
+      "content": "大妈感觉也不如我家的砂糖橘嘛",
+      "music": 0.0
+    },
+    {
+      "from": 17.38,
+      "to": 19.3,
+      "sid": 4,
+      "location": 2,
+      "content": "我等了你7年了",
+      "music": 0.0
+    },
+    {
+      "from": 19.3,
+      "to": 23.08,
+      "sid": 5,
+      "location": 2,
+      "content": "我终于可以回兜帅宫了啊",
+      "music": 0.0
+    },
+    {
+      "from": 23.08,
+      "to": 25.54,
+      "sid": 6,
+      "location": 2,
+      "content": "大王只要你放了",
+      "music": 0.0
+    },
+    {
+      "from": 25.54,
+      "to": 27.41,
+      "sid": 7,
+      "location": 2,
+      "content": "我们去西天取经",
+      "music": 0.0
+    },
+    {
+      "from": 27.41,
+      "to": 29.69,
+      "sid": 8,
+      "location": 2,
+      "content": "现在就可以回天上啦",
+      "music": 0.0
+    },
+    {
+      "from": 29.69,
+      "to": 31.79,
+      "sid": 9,
+      "location": 2,
+      "content": "哎流程还是要走的",
+      "music": 0.0
+    },
+    {
+      "from": 31.79,
+      "to": 33.65,
+      "sid": 10,
+      "location": 2,
+      "content": "领导交代的任务嘛",
+      "music": 0.0
+    },
+    {
+      "from": 33.65,
+      "to": 35.57,
+      "sid": 11,
+      "location": 2,
+      "content": "小的们在放屁",
+      "music": 0.0
+    },
+    {
+      "from": 35.57,
+      "to": 37.89,
+      "sid": 12,
+      "location": 2,
+      "content": "禁言落墨折路",
+      "music": 0.74675319826278
+    },
+    {
+      "from": 37.89,
+      "to": 40.25,
+      "sid": 13,
+      "location": 2,
+      "content": "把这个唐僧给我请下去",
+      "music": 0.24651161644132089
+    },
+    {
+      "from": 40.25,
+      "to": 41.9,
+      "sid": 14,
+      "location": 2,
+      "content": "是对了",
+      "music": 0.0
+    },
+    {
+      "from": 41.9,
+      "to": 44.56,
+      "sid": 15,
+      "location": 2,
+      "content": "大王贫僧还有个大徒弟",
+      "music": 0.0
+    },
+    {
+      "from": 44.56,
+      "to": 46.8,
+      "sid": 16,
+      "location": 2,
+      "content": "这点小事我来办",
+      "music": 0.0
+    },
+    {
+      "from": 46.8,
+      "to": 49.65,
+      "sid": 17,
+      "location": 2,
+      "content": "请我小情郎",
+      "music": 0.0
+    },
+    {
+      "from": 49.65,
+      "to": 52.67,
+      "sid": 18,
+      "location": 2,
+      "content": "你莫愁思的心",
+      "music": 0.5840707447725024
+    },
+    {
+      "from": 52.67,
+      "to": 55.51,
+      "sid": 19,
+      "location": 2,
+      "content": "只为你挽红袖",
+      "music": 0.7178422938654647
+    },
+    {
+      "from": 55.51,
+      "to": 58.599,
+      "sid": 20,
+      "location": 2,
+      "content": "揽清酒火余生",
+      "music": 0.6791443487088583
+    },
+    {
+      "from": 58.599,
+      "to": 60.239,
+      "sid": 21,
+      "location": 2,
+      "content": "我是烧锅炉家的",
+      "music": 0.0
+    },
+    {
+      "from": 60.239,
+      "to": 61.659,
+      "sid": 22,
+      "location": 2,
+      "content": "要是搬不来救兵",
+      "music": 0.0
+    },
+    {
+      "from": 61.659,
+      "to": 63.299,
+      "sid": 23,
+      "location": 2,
+      "content": "唐僧就当我吃了",
+      "music": 0.0
+    },
+    {
+      "from": 65.799,
+      "to": 66.93,
+      "sid": 24,
+      "location": 2,
+      "content": "请将军",
+      "music": 0.0
+    },
+    {
+      "from": 66.93,
+      "to": 70.05,
+      "sid": 25,
+      "location": 2,
+      "content": "那我那两个徒弟呢啊",
+      "music": 0.0
+    },
+    {
+      "from": 70.05,
+      "to": 70.97,
+      "sid": 26,
+      "location": 2,
+      "content": "没事没事",
+      "music": 0.0
+    },
+    {
+      "from": 70.97,
+      "to": 72.7,
+      "sid": 27,
+      "location": 2,
+      "content": "他们都是老熟人",
+      "music": 0.0
+    },
+    {
+      "from": 72.7,
+      "to": 78.54,
+      "sid": 28,
+      "location": 2,
+      "content": "久负天长不负地久月难少",
+      "music": 0.4731182668516572
+    },
+    {
+      "from": 78.54,
+      "to": 80.18,
+      "sid": 29,
+      "location": 2,
+      "content": "花剑",
+      "music": 0.0
+    },
+    {
+      "from": 81.65,
+      "to": 84.65,
+      "sid": 30,
+      "location": 2,
+      "content": "八戒哦",
+      "music": 0.0
+    },
+    {
+      "from": 84.65,
+      "to": 85.61,
+      "sid": 31,
+      "location": 2,
+      "content": "真的要吃啊",
+      "music": 0.0
+    },
+    {
+      "from": 85.61,
+      "to": 88.62,
+      "sid": 32,
+      "location": 2,
+      "content": "闪开妖怪",
+      "music": 0.0
+    },
+    {
+      "from": 88.62,
+      "to": 89.44,
+      "sid": 33,
+      "location": 2,
+      "content": "你敢吃你",
+      "music": 0.0
+    },
+    {
+      "from": 89.44,
+      "to": 90.3,
+      "sid": 34,
+      "location": 2,
+      "content": "猪爷爷",
+      "music": 0.0
+    },
+    {
+      "from": 90.3,
+      "to": 92.28,
+      "sid": 35,
+      "location": 2,
+      "content": "你知道猪爷爷是谁吗",
+      "music": 0.0
+    },
+    {
+      "from": 92.28,
+      "to": 93.12,
+      "sid": 36,
+      "location": 2,
+      "content": "别喊了",
+      "music": 0.0
+    },
+    {
+      "from": 93.12,
+      "to": 94.24,
+      "sid": 37,
+      "location": 2,
+      "content": "我认得你",
+      "music": 0.0
+    },
+    {
+      "from": 94.24,
+      "to": 95.48,
+      "sid": 38,
+      "location": 2,
+      "content": "哎呀哎呀",
+      "music": 0.0
+    },
+    {
+      "from": 95.48,
+      "to": 97.6,
+      "sid": 39,
+      "location": 2,
+      "content": "你不就是天蓬元帅吗",
+      "music": 0.0
+    },
+    {
+      "from": 97.6,
+      "to": 98.6,
+      "sid": 40,
+      "location": 2,
+      "content": "你敢吃我",
+      "music": 0.0
+    },
+    {
+      "from": 98.6,
+      "to": 102.85,
+      "sid": 41,
+      "location": 2,
+      "content": "你敢吃我吗啊你呵呵哈哈哈哈",
+      "music": 0.04142011711774824
+    },
+    {
+      "from": 102.85,
+      "to": 103.41,
+      "sid": 42,
+      "location": 2,
+      "content": "辉子",
+      "music": 0.0
+    },
+    {
+      "from": 103.41,
+      "to": 106.68,
+      "sid": 43,
+      "location": 2,
+      "content": "你还好意思说我在天河边吃口草",
+      "music": 0.0
+    },
+    {
+      "from": 106.68,
+      "to": 108.0,
+      "sid": 44,
+      "location": 2,
+      "content": "你就要赶我走",
+      "music": 0.0
+    },
+    {
+      "from": 108.0,
+      "to": 109.72,
+      "sid": 45,
+      "location": 2,
+      "content": "今天活该有此下场",
+      "music": 0.0
+    },
+    {
+      "from": 109.72,
+      "to": 111.52,
+      "sid": 46,
+      "location": 2,
+      "content": "这都是过去的事了",
+      "music": 0.0
+    },
+    {
+      "from": 111.52,
+      "to": 112.92,
+      "sid": 47,
+      "location": 2,
+      "content": "现在提他干什么呢",
+      "music": 0.0
+    },
+    {
+      "from": 112.92,
+      "to": 115.72,
+      "sid": 48,
+      "location": 2,
+      "content": "还哼嗯哈哈哈哈行了",
+      "music": 0.0
+    },
+    {
+      "from": 115.72,
+      "to": 116.76,
+      "sid": 49,
+      "location": 2,
+      "content": "别再说了",
+      "music": 0.0
+    },
+    {
+      "from": 117.76,
+      "to": 119.56,
+      "sid": 50,
+      "location": 2,
+      "content": "♪ 我两人气不比 ♪",
+      "music": 0.9999999107142936
+    },
+    {
+      "from": 119.56,
+      "to": 119.96,
+      "sid": 51,
+      "location": 2,
+      "content": "你",
+      "music": 0.0
+    },
+    {
+      "from": 119.96,
+      "to": 122.49,
+      "sid": 52,
+      "location": 2,
+      "content": "别担心牛牛不吃肉的",
+      "music": 0.0
+    },
+    {
+      "from": 122.49,
+      "to": 124.37,
+      "sid": 53,
+      "location": 2,
+      "content": "我马上就要回天庭了",
+      "music": 0.0
+    },
+    {
+      "from": 124.37,
+      "to": 126.27,
+      "sid": 54,
+      "location": 2,
+      "content": "快落下几滴雨",
+      "music": 0.7472526651370761
+    },
+    {
+      "from": 126.27,
+      "to": 128.0,
+      "sid": 55,
+      "location": 2,
+      "content": "♪ 在弹奏着曲 ♪",
+      "music": 0.9999998863636493
+    },
+    {
+      "from": 128.0,
+      "to": 131.2,
+      "sid": 56,
+      "location": 2,
+      "content": "小乖徒儿还不回家",
+      "music": 0.317073157842554
+    },
+    {
+      "from": 132.24,
+      "to": 134.52,
+      "sid": 57,
+      "location": 2,
+      "content": "♪ 天上洒落飞 ♪",
+      "music": 0.9736840824100118
+    },
+    {
+      "from": 140.32,
+      "to": 145.98,
+      "sid": 58,
+      "location": 2,
+      "content": "♪ 谁是曲竹林情万千百 ♪",
+      "music": 0.9999999122807094
+    }
+  ]
+}

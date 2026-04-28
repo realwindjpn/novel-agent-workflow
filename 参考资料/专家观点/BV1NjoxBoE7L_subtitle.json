@@ -1,0 +1,5412 @@
+{
+  "font_size": 0.4,
+  "font_color": "#FFFFFF",
+  "background_alpha": 0.5,
+  "background_color": "#9C27B0",
+  "Stroke": "none",
+  "type": "AIsubtitle",
+  "lang": "zh",
+  "version": "v1.7.0.4",
+  "body": [
+    {
+      "from": 0.52,
+      "to": 2.0,
+      "sid": 1,
+      "location": 2,
+      "content": "苹果是因为被制裁了",
+      "music": 0.0
+    },
+    {
+      "from": 2.0,
+      "to": 4.84,
+      "sid": 2,
+      "location": 2,
+      "content": "才被迫用了20瓦极速闪充和低刷屏",
+      "music": 0.0
+    },
+    {
+      "from": 4.84,
+      "to": 8.47,
+      "sid": 3,
+      "location": 2,
+      "content": "并且忍痛砍掉了长焦很不容易的",
+      "music": 0.0
+    },
+    {
+      "from": 8.47,
+      "to": 11.21,
+      "sid": 4,
+      "location": 2,
+      "content": "有时就算IPHONE右上角显示的是5G",
+      "music": 0.0
+    },
+    {
+      "from": 11.21,
+      "to": 13.03,
+      "sid": 5,
+      "location": 2,
+      "content": "但网页还是刷不出来",
+      "music": 0.0
+    },
+    {
+      "from": 13.03,
+      "to": 15.279,
+      "sid": 6,
+      "location": 2,
+      "content": "咱就是说有没有一种可能啊",
+      "music": 0.0
+    },
+    {
+      "from": 15.279,
+      "to": 18.159,
+      "sid": 7,
+      "location": 2,
+      "content": "苹果那个5G是因为你的手机烧屏了",
+      "music": 0.0
+    },
+    {
+      "from": 18.159,
+      "to": 20.279,
+      "sid": 8,
+      "location": 2,
+      "content": "所以才一直显示",
+      "music": 0.0
+    },
+    {
+      "from": 21.409,
+      "to": 23.329,
+      "sid": 9,
+      "location": 2,
+      "content": "在果粉眼里我大概是个串子",
+      "music": 0.0
+    },
+    {
+      "from": 25.67,
+      "to": 27.23,
+      "sid": 10,
+      "location": 2,
+      "content": "回看这几年的主力机",
+      "music": 0.0
+    },
+    {
+      "from": 27.23,
+      "to": 28.87,
+      "sid": 11,
+      "location": 2,
+      "content": "果含量确实偏低呀",
+      "music": 0.0
+    },
+    {
+      "from": 28.87,
+      "to": 30.15,
+      "sid": 12,
+      "location": 2,
+      "content": "但这能怪我吗",
+      "music": 0.0
+    },
+    {
+      "from": 30.15,
+      "to": 34.08,
+      "sid": 13,
+      "location": 2,
+      "content": "看这13香以后的新IPHONE是真让人没啥动力换呐",
+      "music": 0.0
+    },
+    {
+      "from": 34.08,
+      "to": 36.48,
+      "sid": 14,
+      "location": 2,
+      "content": "即便是今年我本来也没有换机的想法",
+      "music": 0.0
+    },
+    {
+      "from": 36.48,
+      "to": 37.44,
+      "sid": 15,
+      "location": 2,
+      "content": "但是按照惯例",
+      "music": 0.0
+    },
+    {
+      "from": 37.44,
+      "to": 39.68,
+      "sid": 16,
+      "location": 2,
+      "content": "我把吃灰已久的13pro掏出来更新IOS",
+      "music": 0.0
+    },
+    {
+      "from": 39.68,
+      "to": 41.51,
+      "sid": 17,
+      "location": 2,
+      "content": "18以后哎",
+      "music": 0.0
+    },
+    {
+      "from": 41.51,
+      "to": 43.83,
+      "sid": 18,
+      "location": 2,
+      "content": "八十四的电池健康出门在外",
+      "music": 0.0
+    },
+    {
+      "from": 43.83,
+      "to": 45.92,
+      "sid": 19,
+      "location": 2,
+      "content": "一天三充256G存储",
+      "music": 0.0
+    },
+    {
+      "from": 45.92,
+      "to": 48.36,
+      "sid": 20,
+      "location": 2,
+      "content": "在江小龙和大伟哥的夹击下岌岌可危",
+      "music": 0.0
+    },
+    {
+      "from": 48.36,
+      "to": 52.239,
+      "sid": 21,
+      "location": 2,
+      "content": "原本引以为傲的高刷IOS18感觉也是负优物",
+      "music": 0.0
+    },
+    {
+      "from": 52.239,
+      "to": 55.379,
+      "sid": 22,
+      "location": 2,
+      "content": "战略性优质算法转移没那么满血了",
+      "music": 0.0
+    },
+    {
+      "from": 55.379,
+      "to": 56.799,
+      "sid": 23,
+      "location": 2,
+      "content": "那钉子户都这样了",
+      "music": 0.0
+    },
+    {
+      "from": 56.799,
+      "to": 60.0,
+      "sid": 24,
+      "location": 2,
+      "content": "想必十一十二的老用户应该比我更想换哪",
+      "music": 0.0
+    },
+    {
+      "from": 60.0,
+      "to": 60.96,
+      "sid": 25,
+      "location": 2,
+      "content": "每年都换",
+      "music": 0.0
+    },
+    {
+      "from": 60.96,
+      "to": 61.96,
+      "sid": 26,
+      "location": 2,
+      "content": "毕竟是少数",
+      "music": 0.0
+    },
+    {
+      "from": 61.96,
+      "to": 64.56,
+      "sid": 27,
+      "location": 2,
+      "content": "那么果子的老用户在错过15以后",
+      "music": 0.0
+    },
+    {
+      "from": 64.56,
+      "to": 66.1,
+      "sid": 28,
+      "location": 2,
+      "content": "16会是好选择吗",
+      "music": 0.0
+    },
+    {
+      "from": 66.1,
+      "to": 68.26,
+      "sid": 29,
+      "location": 2,
+      "content": "相信我作为常年的安卓用户",
+      "music": 0.0
+    },
+    {
+      "from": 68.26,
+      "to": 69.86,
+      "sid": 30,
+      "location": 2,
+      "content": "会有一些不同的见解",
+      "music": 0.0
+    },
+    {
+      "from": 69.86,
+      "to": 71.48,
+      "sid": 31,
+      "location": 2,
+      "content": "看看从13换到16",
+      "music": 0.0
+    },
+    {
+      "from": 71.48,
+      "to": 73.1,
+      "sid": 32,
+      "location": 2,
+      "content": "哪些是时尚雕花",
+      "music": 0.0
+    },
+    {
+      "from": 73.1,
+      "to": 74.69,
+      "sid": 33,
+      "location": 2,
+      "content": "哪些又是雪中送炭",
+      "music": 0.0
+    },
+    {
+      "from": 74.69,
+      "to": 76.97,
+      "sid": 34,
+      "location": 2,
+      "content": "至于你们最期待的全系列深测",
+      "music": 0.0
+    },
+    {
+      "from": 76.97,
+      "to": 78.23,
+      "sid": 35,
+      "location": 2,
+      "content": "我已经扔给员工了",
+      "music": 0.0
+    },
+    {
+      "from": 78.23,
+      "to": 78.97,
+      "sid": 36,
+      "location": 2,
+      "content": "大家点赞",
+      "music": 0.0
+    },
+    {
+      "from": 78.97,
+      "to": 79.77,
+      "sid": 37,
+      "location": 2,
+      "content": "投币越多",
+      "music": 0.0
+    },
+    {
+      "from": 79.77,
+      "to": 81.23,
+      "sid": 38,
+      "location": 2,
+      "content": "花生加班越久啊",
+      "music": 0.0
+    },
+    {
+      "from": 81.23,
+      "to": 81.85,
+      "sid": 39,
+      "location": 2,
+      "content": "大家好",
+      "music": 0.0
+    },
+    {
+      "from": 81.85,
+      "to": 82.85,
+      "sid": 40,
+      "location": 2,
+      "content": "我是怀宁夏",
+      "music": 0.0
+    },
+    {
+      "from": 82.85,
+      "to": 83.69,
+      "sid": 41,
+      "location": 2,
+      "content": "惊不惊喜",
+      "music": 0.0
+    },
+    {
+      "from": 83.69,
+      "to": 85.29,
+      "sid": 42,
+      "location": 2,
+      "content": "意不意外",
+      "music": 0.0
+    },
+    {
+      "from": 89.36,
+      "to": 92.62,
+      "sid": 43,
+      "location": 2,
+      "content": "作为IPHONE13pro首发加价800的老机主",
+      "music": 0.0
+    },
+    {
+      "from": 92.62,
+      "to": 94.92,
+      "sid": 44,
+      "location": 2,
+      "content": "这回不知道是没人买还是运气好",
+      "music": 0.0
+    },
+    {
+      "from": 94.92,
+      "to": 96.42,
+      "sid": 45,
+      "location": 2,
+      "content": "16pro还挺好抢的",
+      "music": 0.0
+    },
+    {
+      "from": 96.42,
+      "to": 98.98,
+      "sid": 46,
+      "location": 2,
+      "content": "部分地区开售那天京东当天买",
+      "music": 0.0
+    },
+    {
+      "from": 98.98,
+      "to": 101.689,
+      "sid": 47,
+      "location": 2,
+      "content": "隔天到当年我13pro买的是白色",
+      "music": 0.0
+    },
+    {
+      "from": 101.689,
+      "to": 102.689,
+      "sid": 48,
+      "location": 2,
+      "content": "除了黑白稳妥",
+      "music": 0.0
+    },
+    {
+      "from": 102.689,
+      "to": 104.829,
+      "sid": 49,
+      "location": 2,
+      "content": "也是为了在第2年不会一眼被认出来",
+      "music": 0.0
+    },
+    {
+      "from": 104.829,
+      "to": 105.94,
+      "sid": 50,
+      "location": 2,
+      "content": "是老手机嘛",
+      "music": 0.0
+    },
+    {
+      "from": 105.94,
+      "to": 106.94,
+      "sid": 51,
+      "location": 2,
+      "content": "万万没想到",
+      "music": 0.0
+    },
+    {
+      "from": 106.94,
+      "to": 108.64,
+      "sid": 52,
+      "location": 2,
+      "content": "14pro改成了灵动岛",
+      "music": 0.0
+    },
+    {
+      "from": 108.64,
+      "to": 111.09,
+      "sid": 53,
+      "location": 2,
+      "content": "13pro1看正面当场过时",
+      "music": 0.0
+    },
+    {
+      "from": 111.09,
+      "to": 113.73,
+      "sid": 54,
+      "location": 2,
+      "content": "今年我痛定思痛就买新配色",
+      "music": 0.0
+    },
+    {
+      "from": 113.73,
+      "to": 115.97,
+      "sid": 55,
+      "location": 2,
+      "content": "绝对不是因为后来想换白色还得加价800啊",
+      "music": 0.0
+    },
+    {
+      "from": 115.97,
+      "to": 119.24,
+      "sid": 56,
+      "location": 2,
+      "content": "绝对不是我们家祖祖辈辈主人动物穷",
+      "music": 0.0
+    },
+    {
+      "from": 119.24,
+      "to": 122.21,
+      "sid": 57,
+      "location": 2,
+      "content": "怕一分钱都不敢动",
+      "music": 0.0
+    },
+    {
+      "from": 122.57,
+      "to": 124.15,
+      "sid": 58,
+      "location": 2,
+      "content": "和爆料的古铜色不同",
+      "music": 0.0
+    },
+    {
+      "from": 124.15,
+      "to": 126.13,
+      "sid": 59,
+      "location": 2,
+      "content": "这次的沙漠泰其实是非常浅的金色",
+      "music": 0.0
+    },
+    {
+      "from": 126.13,
+      "to": 127.35,
+      "sid": 60,
+      "location": 2,
+      "content": "让我想到了一位故人",
+      "music": 0.0
+    },
+    {
+      "from": 127.35,
+      "to": 130.27,
+      "sid": 61,
+      "location": 2,
+      "content": "沙瑞金和我们米粉色的MONA特别搭",
+      "music": 0.0
+    },
+    {
+      "from": 130.27,
+      "to": 132.11,
+      "sid": 62,
+      "location": 2,
+      "content": "至于为什么不拍张合照呢",
+      "music": 0.0
+    },
+    {
+      "from": 132.11,
+      "to": 133.84,
+      "sid": 63,
+      "location": 2,
+      "content": "因为小鹏在",
+      "music": 0.0
+    },
+    {
+      "from": 136.9,
+      "to": 143.82,
+      "sid": 64,
+      "location": 2,
+      "content": "嗯嗯不提也罢",
+      "music": 0.6530612022768262
+    },
+    {
+      "from": 146.38,
+      "to": 148.32,
+      "sid": 65,
+      "location": 2,
+      "content": "16边框不再是拉丝工艺",
+      "music": 0.0
+    },
+    {
+      "from": 148.32,
+      "to": 150.22,
+      "sid": 66,
+      "location": 2,
+      "content": "但这个磨砂还挺沾指纹的",
+      "music": 0.0
+    },
+    {
+      "from": 150.22,
+      "to": 153.14,
+      "sid": 67,
+      "location": 2,
+      "content": "但至少不像我的13pro划痕这么多对吧",
+      "music": 0.0
+    },
+    {
+      "from": 153.14,
+      "to": 155.48,
+      "sid": 68,
+      "location": 2,
+      "content": "所以这个颜色你们能给几分呢",
+      "music": 0.0
+    },
+    {
+      "from": 155.82,
+      "to": 158.0,
+      "sid": 69,
+      "location": 2,
+      "content": "我觉得虽然没有远峰蓝那么出圈",
+      "music": 0.0
+    },
+    {
+      "from": 158.0,
+      "to": 160.62,
+      "sid": 70,
+      "location": 2,
+      "content": "但还是要比去年的泰蓝色更吸引我",
+      "music": 0.0
+    },
+    {
+      "from": 160.62,
+      "to": 162.43,
+      "sid": 71,
+      "location": 2,
+      "content": "下面有没有人反对我呢",
+      "music": 0.0
+    },
+    {
+      "from": 162.43,
+      "to": 164.79,
+      "sid": 72,
+      "location": 2,
+      "content": "选择pro并非因为我是小屏爱好者",
+      "music": 0.0
+    },
+    {
+      "from": 164.79,
+      "to": 168.01,
+      "sid": 73,
+      "location": 2,
+      "content": "但pro是我认为苹果这个科技企业走到今天",
+      "music": 0.0
+    },
+    {
+      "from": 168.01,
+      "to": 170.1,
+      "sid": 74,
+      "location": 2,
+      "content": "为数不多的黑科技之一了",
+      "music": 0.0
+    },
+    {
+      "from": 170.1,
+      "to": 171.86,
+      "sid": 75,
+      "location": 2,
+      "content": "16pro以安卓的标准",
+      "music": 0.0
+    },
+    {
+      "from": 171.86,
+      "to": 174.04,
+      "sid": 76,
+      "location": 2,
+      "content": "依旧称得上是小屏旗舰",
+      "music": 0.0
+    },
+    {
+      "from": 174.04,
+      "to": 177.17,
+      "sid": 77,
+      "location": 2,
+      "content": "并且今年是毫无阉割的满血版",
+      "music": 0.0
+    },
+    {
+      "from": 177.17,
+      "to": 179.649,
+      "sid": 78,
+      "location": 2,
+      "content": "都说苹果设计师太好混",
+      "music": 0.0
+    },
+    {
+      "from": 179.649,
+      "to": 181.069,
+      "sid": 79,
+      "location": 2,
+      "content": "14pro变灵动岛",
+      "music": 0.0
+    },
+    {
+      "from": 181.069,
+      "to": 183.069,
+      "sid": 80,
+      "location": 2,
+      "content": "15pro换钛金属和type c",
+      "music": 0.0
+    },
+    {
+      "from": 183.069,
+      "to": 184.429,
+      "sid": 81,
+      "location": 2,
+      "content": "新增自定义按键",
+      "music": 0.0
+    },
+    {
+      "from": 184.429,
+      "to": 186.009,
+      "sid": 82,
+      "location": 2,
+      "content": "16pro给了拍照键",
+      "music": 0.0
+    },
+    {
+      "from": 186.009,
+      "to": 188.26,
+      "sid": 83,
+      "location": 2,
+      "content": "并且每一代都在缩边框",
+      "music": 0.0
+    },
+    {
+      "from": 188.26,
+      "to": 190.74,
+      "sid": 84,
+      "location": 2,
+      "content": "所以今年苹果在原来6.1寸的宽度上",
+      "music": 0.0
+    },
+    {
+      "from": 190.74,
+      "to": 192.51,
+      "sid": 85,
+      "location": 2,
+      "content": "塞进了6.3寸的屏幕",
+      "music": 0.0
+    },
+    {
+      "from": 192.51,
+      "to": 194.23,
+      "sid": 86,
+      "location": 2,
+      "content": "那今年的直屏其实很多啊",
+      "music": 0.0
+    },
+    {
+      "from": 194.23,
+      "to": 194.87,
+      "sid": 87,
+      "location": 2,
+      "content": "小米四四",
+      "music": 0.0
+    },
+    {
+      "from": 194.87,
+      "to": 195.61,
+      "sid": 88,
+      "location": 2,
+      "content": "魅族二一",
+      "music": 0.0
+    },
+    {
+      "from": 195.61,
+      "to": 196.69,
+      "sid": 89,
+      "location": 2,
+      "content": "三星S24",
+      "music": 0.0
+    },
+    {
+      "from": 196.69,
+      "to": 198.37,
+      "sid": 90,
+      "location": 2,
+      "content": "他们正面都很优秀",
+      "music": 0.0
+    },
+    {
+      "from": 198.37,
+      "to": 201.23,
+      "sid": 91,
+      "location": 2,
+      "content": "我也从来都不觉得我的13pro边框粗",
+      "music": 0.0
+    },
+    {
+      "from": 201.23,
+      "to": 202.85,
+      "sid": 92,
+      "location": 2,
+      "content": "直到和16pro1对比",
+      "music": 0.0
+    },
+    {
+      "from": 202.85,
+      "to": 206.19,
+      "sid": 93,
+      "location": 2,
+      "content": "我瞬间感到这不是一个时代的呀",
+      "music": 0.0
+    },
+    {
+      "from": 206.19,
+      "to": 208.83,
+      "sid": 94,
+      "location": 2,
+      "content": "还有之前我大部分手机都是裸奔党",
+      "music": 0.0
+    },
+    {
+      "from": 208.83,
+      "to": 210.53,
+      "sid": 95,
+      "location": 2,
+      "content": "但13pro我是被迫带壳",
+      "music": 0.0
+    },
+    {
+      "from": 210.53,
+      "to": 211.31,
+      "sid": 96,
+      "location": 2,
+      "content": "宁愿厚一点",
+      "music": 0.0
+    },
+    {
+      "from": 211.31,
+      "to": 212.46,
+      "sid": 97,
+      "location": 2,
+      "content": "也不需要太割手",
+      "music": 0.0
+    },
+    {
+      "from": 212.46,
+      "to": 215.02,
+      "sid": 98,
+      "location": 2,
+      "content": "那16pro告别手术级不锈钢边框",
+      "music": 0.0
+    },
+    {
+      "from": 215.02,
+      "to": 216.76,
+      "sid": 99,
+      "location": 2,
+      "content": "过渡和棱角都变得更加圆润了",
+      "music": 0.0
+    },
+    {
+      "from": 216.76,
+      "to": 218.28,
+      "sid": 100,
+      "location": 2,
+      "content": "从13pro换到16pro",
+      "music": 0.0
+    },
+    {
+      "from": 218.28,
+      "to": 220.36,
+      "sid": 101,
+      "location": 2,
+      "content": "能明显感觉到手感变好",
+      "music": 0.0
+    },
+    {
+      "from": 220.36,
+      "to": 223.54,
+      "sid": 102,
+      "location": 2,
+      "content": "IPHONE16pro基于外观变化带来的新功能有好几个",
+      "music": 0.0
+    },
+    {
+      "from": 223.54,
+      "to": 225.86,
+      "sid": 103,
+      "location": 2,
+      "content": "这里面我最喜欢的就是灵动岛",
+      "music": 0.0
+    },
+    {
+      "from": 225.86,
+      "to": 227.72,
+      "sid": 104,
+      "location": 2,
+      "content": "曾经风评两极分化的功能",
+      "music": 0.0
+    },
+    {
+      "from": 227.72,
+      "to": 230.8,
+      "sid": 105,
+      "location": 2,
+      "content": "现在它不仅是区分新IPHONE和旧IPHONE的象征",
+      "music": 0.0
+    },
+    {
+      "from": 230.8,
+      "to": 233.19,
+      "sid": 106,
+      "location": 2,
+      "content": "也是苹果软硬结合的典范",
+      "music": 0.0
+    },
+    {
+      "from": 233.19,
+      "to": 235.03,
+      "sid": 107,
+      "location": 2,
+      "content": "3pro其实也有实时通知",
+      "music": 0.0
+    },
+    {
+      "from": 235.03,
+      "to": 237.35,
+      "sid": 108,
+      "location": 2,
+      "content": "每次亮屏或者下拉通知栏都能看到",
+      "music": 0.0
+    },
+    {
+      "from": 237.35,
+      "to": 238.41,
+      "sid": 109,
+      "location": 2,
+      "content": "但有了灵动岛",
+      "music": 0.0
+    },
+    {
+      "from": 238.41,
+      "to": 239.99,
+      "sid": 110,
+      "location": 2,
+      "content": "这才是一个完整的功能",
+      "music": 0.0
+    },
+    {
+      "from": 239.99,
+      "to": 241.47,
+      "sid": 111,
+      "location": 2,
+      "content": "不然永远得多一步",
+      "music": 0.0
+    },
+    {
+      "from": 241.47,
+      "to": 243.77,
+      "sid": 112,
+      "location": 2,
+      "content": "那从友商纷纷跟进的角度来看",
+      "music": 0.0
+    },
+    {
+      "from": 243.77,
+      "to": 246.76,
+      "sid": 113,
+      "location": 2,
+      "content": "灵动岛以及类似物都得到了认可",
+      "music": 0.0
+    },
+    {
+      "from": 246.76,
+      "to": 248.88,
+      "sid": 114,
+      "location": 2,
+      "content": "16pro相比13还多了两个按键",
+      "music": 0.0
+    },
+    {
+      "from": 248.88,
+      "to": 250.86,
+      "sid": 115,
+      "location": 2,
+      "content": "左上角的静音键已经是老朋友啦",
+      "music": 0.0
+    },
+    {
+      "from": 250.86,
+      "to": 253.65,
+      "sid": 116,
+      "location": 2,
+      "content": "但一年过去我还是不太适应啊",
+      "music": 0.0
+    },
+    {
+      "from": 253.65,
+      "to": 255.53,
+      "sid": 117,
+      "location": 2,
+      "content": "它的优点是可以自定义",
+      "music": 0.0
+    },
+    {
+      "from": 255.53,
+      "to": 256.65,
+      "sid": 118,
+      "location": 2,
+      "content": "但对于我来说",
+      "music": 0.0
+    },
+    {
+      "from": 256.65,
+      "to": 258.41,
+      "sid": 119,
+      "location": 2,
+      "content": "用来用去还是静音切换",
+      "music": 0.0
+    },
+    {
+      "from": 258.41,
+      "to": 259.09,
+      "sid": 120,
+      "location": 2,
+      "content": "最实用",
+      "music": 0.0
+    },
+    {
+      "from": 259.09,
+      "to": 260.13,
+      "sid": 121,
+      "location": 2,
+      "content": "反而是一个体验",
+      "music": 0.0
+    },
+    {
+      "from": 260.13,
+      "to": 262.039,
+      "sid": 122,
+      "location": 2,
+      "content": "降级没有那么直接了",
+      "music": 0.0
+    },
+    {
+      "from": 262.039,
+      "to": 264.14,
+      "sid": 123,
+      "location": 2,
+      "content": "至于全网群嘲的拍照界",
+      "music": 0.0
+    },
+    {
+      "from": 264.14,
+      "to": 266.06,
+      "sid": 124,
+      "location": 2,
+      "content": "看渲染图好像是凹进去的",
+      "music": 0.0
+    },
+    {
+      "from": 266.06,
+      "to": 268.04,
+      "sid": 125,
+      "location": 2,
+      "content": "实际上它比边框还要高一丢丢",
+      "music": 0.0
+    },
+    {
+      "from": 268.04,
+      "to": 269.38,
+      "sid": 126,
+      "location": 2,
+      "content": "并且为了防刮",
+      "music": 0.0
+    },
+    {
+      "from": 269.38,
+      "to": 272.89,
+      "sid": 127,
+      "location": 2,
+      "content": "苹果选择了蓝宝石材质和边框会有色差",
+      "music": 0.0
+    },
+    {
+      "from": 272.89,
+      "to": 275.05,
+      "sid": 128,
+      "location": 2,
+      "content": "拍照键在手机上并不新鲜",
+      "music": 0.0
+    },
+    {
+      "from": 275.05,
+      "to": 277.13,
+      "sid": 129,
+      "location": 2,
+      "content": "但苹果肯定有自己的理解",
+      "music": 0.0
+    },
+    {
+      "from": 277.13,
+      "to": 279.659,
+      "sid": 130,
+      "location": 2,
+      "content": "这是一颗支持触控的拍照键",
+      "music": 0.0
+    },
+    {
+      "from": 279.659,
+      "to": 280.719,
+      "sid": 131,
+      "location": 2,
+      "content": "单击打开相机",
+      "music": 0.0
+    },
+    {
+      "from": 280.719,
+      "to": 281.339,
+      "sid": 132,
+      "location": 2,
+      "content": "轻按两下",
+      "music": 0.0
+    },
+    {
+      "from": 281.339,
+      "to": 282.119,
+      "sid": 133,
+      "location": 2,
+      "content": "调出选项",
+      "music": 0.0
+    },
+    {
+      "from": 282.119,
+      "to": 284.38,
+      "sid": 134,
+      "location": 2,
+      "content": "左右滑动可以切换不同选项",
+      "music": 0.0
+    },
+    {
+      "from": 284.38,
+      "to": 285.5,
+      "sid": 135,
+      "location": 2,
+      "content": "再轻按一下",
+      "music": 0.0
+    },
+    {
+      "from": 285.5,
+      "to": 286.84,
+      "sid": 136,
+      "location": 2,
+      "content": "就是进到了里面调整",
+      "music": 0.0
+    },
+    {
+      "from": 286.84,
+      "to": 289.52,
+      "sid": 137,
+      "location": 2,
+      "content": "在这个界面可以继续通过按键滑动调节",
+      "music": 0.0
+    },
+    {
+      "from": 289.52,
+      "to": 291.24,
+      "sid": 138,
+      "location": 2,
+      "content": "也可以直接用屏幕",
+      "music": 0.0
+    },
+    {
+      "from": 291.24,
+      "to": 292.46,
+      "sid": 139,
+      "location": 2,
+      "content": "听不懂没关系",
+      "music": 0.0
+    },
+    {
+      "from": 292.46,
+      "to": 293.66,
+      "sid": 140,
+      "location": 2,
+      "content": "记不住也很正常",
+      "music": 0.0
+    },
+    {
+      "from": 293.66,
+      "to": 296.75,
+      "sid": 141,
+      "location": 2,
+      "content": "因为苹果就是在把简单的操作复杂化",
+      "music": 0.0
+    },
+    {
+      "from": 296.75,
+      "to": 298.83,
+      "sid": 142,
+      "location": 2,
+      "content": "这次不管是设计还是操作",
+      "music": 0.0
+    },
+    {
+      "from": 298.83,
+      "to": 301.29,
+      "sid": 143,
+      "location": 2,
+      "content": "都和苹果一直以来的极简理念相违背",
+      "music": 0.0
+    },
+    {
+      "from": 301.29,
+      "to": 303.41,
+      "sid": 144,
+      "location": 2,
+      "content": "一想到明年还会有很多安卓照搬",
+      "music": 0.0
+    },
+    {
+      "from": 303.41,
+      "to": 305.26,
+      "sid": 145,
+      "location": 2,
+      "content": "我就浑身难受",
+      "music": 0.0
+    },
+    {
+      "from": 305.26,
+      "to": 306.52,
+      "sid": 146,
+      "location": 2,
+      "content": "虽然它支持自定义",
+      "music": 0.0
+    },
+    {
+      "from": 306.52,
+      "to": 307.52,
+      "sid": 147,
+      "location": 2,
+      "content": "但限制很大",
+      "music": 0.0
+    },
+    {
+      "from": 307.52,
+      "to": 309.94,
+      "sid": 148,
+      "location": 2,
+      "content": "可以绑定的功能必须都和拍照相关",
+      "music": 0.0
+    },
+    {
+      "from": 309.94,
+      "to": 311.78,
+      "sid": 149,
+      "location": 2,
+      "content": "那还不如相机常用呢",
+      "music": 0.0
+    },
+    {
+      "from": 311.78,
+      "to": 314.03,
+      "sid": 150,
+      "location": 2,
+      "content": "那把它做成返回也行啊",
+      "music": 0.0
+    },
+    {
+      "from": 314.03,
+      "to": 316.23,
+      "sid": 151,
+      "location": 2,
+      "content": "即便抛开这些软件上的问题",
+      "music": 0.0
+    },
+    {
+      "from": 316.23,
+      "to": 318.75,
+      "sid": 152,
+      "location": 2,
+      "content": "这个拍照键的位置也过于靠上",
+      "music": 0.0
+    },
+    {
+      "from": 318.75,
+      "to": 320.39,
+      "sid": 153,
+      "location": 2,
+      "content": "我的手已经算长的了",
+      "music": 0.0
+    },
+    {
+      "from": 320.39,
+      "to": 322.69,
+      "sid": 154,
+      "location": 2,
+      "content": "但只要抵着下边还是够不到它",
+      "music": 0.0
+    },
+    {
+      "from": 322.69,
+      "to": 324.55,
+      "sid": 155,
+      "location": 2,
+      "content": "可能苹果是为了避免误触",
+      "music": 0.0
+    },
+    {
+      "from": 324.55,
+      "to": 325.669,
+      "sid": 156,
+      "location": 2,
+      "content": "那说到误触",
+      "music": 0.0
+    },
+    {
+      "from": 325.669,
+      "to": 327.669,
+      "sid": 157,
+      "location": 2,
+      "content": "我建议在设置里改成双击打开",
+      "music": 0.0
+    },
+    {
+      "from": 327.669,
+      "to": 329.89,
+      "sid": 158,
+      "location": 2,
+      "content": "可以极大程度改善这个问题",
+      "music": 0.0
+    },
+    {
+      "from": 329.89,
+      "to": 332.43,
+      "sid": 159,
+      "location": 2,
+      "content": "目前我认为它最大的作用有两个",
+      "music": 0.0
+    },
+    {
+      "from": 332.43,
+      "to": 333.17,
+      "sid": 160,
+      "location": 2,
+      "content": "对苹果来说",
+      "music": 0.0
+    },
+    {
+      "from": 333.17,
+      "to": 334.41,
+      "sid": 161,
+      "location": 2,
+      "content": "它可以多收几个认证的钱",
+      "music": 0.0
+    },
+    {
+      "from": 334.41,
+      "to": 336.97,
+      "sid": 162,
+      "location": 2,
+      "content": "因为只有苹果授权的手机壳套上以后",
+      "music": 0.0
+    },
+    {
+      "from": 336.97,
+      "to": 338.65,
+      "sid": 163,
+      "location": 2,
+      "content": "才可以正常使用这个拍照键",
+      "music": 0.0
+    },
+    {
+      "from": 338.65,
+      "to": 340.09,
+      "sid": 164,
+      "location": 2,
+      "content": "但结合实际体验",
+      "music": 0.0
+    },
+    {
+      "from": 340.09,
+      "to": 343.09,
+      "sid": 165,
+      "location": 2,
+      "content": "我认为没有必要为了这个而去买那么贵的壳啊",
+      "music": 0.0
+    },
+    {
+      "from": 343.09,
+      "to": 344.87,
+      "sid": 166,
+      "location": 2,
+      "content": "我们只需要用它打开相机",
+      "music": 0.0
+    },
+    {
+      "from": 344.87,
+      "to": 346.29,
+      "sid": 167,
+      "location": 2,
+      "content": "剩下的交给屏幕",
+      "music": 0.0
+    },
+    {
+      "from": 346.29,
+      "to": 347.35,
+      "sid": 168,
+      "location": 2,
+      "content": "那不如这样",
+      "music": 0.0
+    },
+    {
+      "from": 347.35,
+      "to": 350.43,
+      "sid": 169,
+      "location": 2,
+      "content": "我建议苹果明年在上面再加一个对称以后",
+      "music": 0.0
+    },
+    {
+      "from": 350.43,
+      "to": 351.61,
+      "sid": 170,
+      "location": 2,
+      "content": "就变成游戏间介了",
+      "music": 0.0
+    },
+    {
+      "from": 351.61,
+      "to": 352.89,
+      "sid": 171,
+      "location": 2,
+      "content": "那样我带头吹爆",
+      "music": 0.0
+    },
+    {
+      "from": 352.89,
+      "to": 354.81,
+      "sid": 172,
+      "location": 2,
+      "content": "就让大家帮我艾特一下酷总啊",
+      "music": 0.0
+    },
+    {
+      "from": 354.81,
+      "to": 356.87,
+      "sid": 173,
+      "location": 2,
+      "content": "哇哦哦对",
+      "music": 0.0
+    },
+    {
+      "from": 356.87,
+      "to": 358.15,
+      "sid": 174,
+      "location": 2,
+      "content": "换到新苹果以后",
+      "music": 0.0
+    },
+    {
+      "from": 358.15,
+      "to": 360.13,
+      "sid": 175,
+      "location": 2,
+      "content": "我终于也可以摆脱lightning接口了",
+      "music": 0.0
+    },
+    {
+      "from": 360.13,
+      "to": 363.14,
+      "sid": 176,
+      "location": 2,
+      "content": "但我剩下的airpods pro怎么办呢",
+      "music": 0.0
+    },
+    {
+      "from": 363.14,
+      "to": 364.58,
+      "sid": 177,
+      "location": 2,
+      "content": "要么跟着一起换",
+      "music": 0.0
+    },
+    {
+      "from": 364.58,
+      "to": 367.04,
+      "sid": 178,
+      "location": 2,
+      "content": "要么出门还是得多带一根lightning啊",
+      "music": 0.0
+    },
+    {
+      "from": 367.04,
+      "to": 369.71,
+      "sid": 179,
+      "location": 2,
+      "content": "库克这也在你的计算当中吗",
+      "music": 0.0
+    },
+    {
+      "from": 369.71,
+      "to": 371.13,
+      "sid": 180,
+      "location": 2,
+      "content": "别看我一直在吐槽",
+      "music": 0.0
+    },
+    {
+      "from": 371.13,
+      "to": 373.84,
+      "sid": 181,
+      "location": 2,
+      "content": "但IPHONE毕竟是3年没用的老朋友",
+      "music": 0.0
+    },
+    {
+      "from": 373.84,
+      "to": 376.08,
+      "sid": 182,
+      "location": 2,
+      "content": "从拿到手到现在两个星期啦",
+      "music": 0.0
+    },
+    {
+      "from": 376.08,
+      "to": 377.54,
+      "sid": 183,
+      "location": 2,
+      "content": "一直都很有新鲜感",
+      "music": 0.0
+    },
+    {
+      "from": 377.54,
+      "to": 381.2,
+      "sid": 184,
+      "location": 2,
+      "content": "我彻底告别了不锈钢刘海屏和lightning手机",
+      "music": 0.0
+    },
+    {
+      "from": 381.2,
+      "to": 381.72,
+      "sid": 185,
+      "location": 2,
+      "content": "轻一点",
+      "music": 0.0
+    },
+    {
+      "from": 381.72,
+      "to": 382.52,
+      "sid": 186,
+      "location": 2,
+      "content": "屏幕大一点",
+      "music": 0.0
+    },
+    {
+      "from": 382.52,
+      "to": 383.44,
+      "sid": 187,
+      "location": 2,
+      "content": "手感好一点",
+      "music": 0.0
+    },
+    {
+      "from": 383.44,
+      "to": 386.88,
+      "sid": 188,
+      "location": 2,
+      "content": "积少成多也算是不小的升级",
+      "music": 0.0
+    },
+    {
+      "from": 387.49,
+      "to": 389.51,
+      "sid": 189,
+      "location": 2,
+      "content": "都说A15是一代神U",
+      "music": 0.0
+    },
+    {
+      "from": 389.51,
+      "to": 390.05,
+      "sid": 190,
+      "location": 2,
+      "content": "那的确",
+      "music": 0.0
+    },
+    {
+      "from": 390.05,
+      "to": 392.74,
+      "sid": 191,
+      "location": 2,
+      "content": "这台3年前的13pro尽管只有6G内存",
+      "music": 0.0
+    },
+    {
+      "from": 392.74,
+      "to": 394.02,
+      "sid": 192,
+      "location": 2,
+      "content": "但在最新的系统下",
+      "music": 0.0
+    },
+    {
+      "from": 396.3,
+      "to": 397.17,
+      "sid": 193,
+      "location": 2,
+      "content": "某咔差",
+      "music": 0.0
+    },
+    {
+      "from": 397.17,
+      "to": 398.41,
+      "sid": 194,
+      "location": 2,
+      "content": "那咱就不点名了",
+      "music": 0.0
+    },
+    {
+      "from": 398.41,
+      "to": 399.69,
+      "sid": 195,
+      "location": 2,
+      "content": "我现在把它给父母用",
+      "music": 0.0
+    },
+    {
+      "from": 399.69,
+      "to": 400.79,
+      "sid": 196,
+      "location": 2,
+      "content": "依旧是绰绰有余",
+      "music": 0.0
+    },
+    {
+      "from": 400.79,
+      "to": 402.65,
+      "sid": 197,
+      "location": 2,
+      "content": "这是苹果最核心的优点",
+      "music": 0.0
+    },
+    {
+      "from": 402.65,
+      "to": 404.37,
+      "sid": 198,
+      "location": 2,
+      "content": "新机的流畅度不明显",
+      "music": 0.0
+    },
+    {
+      "from": 404.37,
+      "to": 407.03,
+      "sid": 199,
+      "location": 2,
+      "content": "但过几年后它就是最好的旧旗舰",
+      "music": 0.0
+    },
+    {
+      "from": 407.03,
+      "to": 409.13,
+      "sid": 200,
+      "location": 2,
+      "content": "所以换到16pro以后呢",
+      "music": 0.0
+    },
+    {
+      "from": 409.13,
+      "to": 410.89,
+      "sid": 201,
+      "location": 2,
+      "content": "日常使用提升反而不大",
+      "music": 0.0
+    },
+    {
+      "from": 410.89,
+      "to": 413.83,
+      "sid": 202,
+      "location": 2,
+      "content": "只是8G内存杀后台确实没那么频繁了",
+      "music": 0.0
+    },
+    {
+      "from": 413.83,
+      "to": 416.93,
+      "sid": 203,
+      "location": 2,
+      "content": "不过我13pro更新到IOS18以后",
+      "music": 0.0
+    },
+    {
+      "from": 416.93,
+      "to": 418.17,
+      "sid": 204,
+      "location": 2,
+      "content": "滑动信息流啊",
+      "music": 0.0
+    },
+    {
+      "from": 418.17,
+      "to": 419.65,
+      "sid": 205,
+      "location": 2,
+      "content": "经常会一顿一顿的",
+      "music": 0.0
+    },
+    {
+      "from": 419.65,
+      "to": 421.95,
+      "sid": 206,
+      "location": 2,
+      "content": "就像是动能回收开高了的感觉",
+      "music": 0.0
+    },
+    {
+      "from": 421.95,
+      "to": 424.85,
+      "sid": 207,
+      "location": 2,
+      "content": "那高刷屏硬生生给我干成了风琴脚",
+      "music": 0.0
+    },
+    {
+      "from": 424.85,
+      "to": 426.659,
+      "sid": 208,
+      "location": 2,
+      "content": "我都有点晕机啦",
+      "music": 0.0
+    },
+    {
+      "from": 426.659,
+      "to": 428.219,
+      "sid": 209,
+      "location": 2,
+      "content": "本以为是苹果负优化",
+      "music": 0.0
+    },
+    {
+      "from": 428.219,
+      "to": 430.279,
+      "sid": 210,
+      "location": 2,
+      "content": "没想到16pro也这样",
+      "music": 0.0
+    },
+    {
+      "from": 430.279,
+      "to": 433.78,
+      "sid": 211,
+      "location": 2,
+      "content": "那可能就是现在苹果LTPU的调度变了吧",
+      "music": 0.0
+    },
+    {
+      "from": 433.78,
+      "to": 437.04,
+      "sid": 212,
+      "location": 2,
+      "content": "今年的A18pro本来我没抱太大期望",
+      "music": 0.0
+    },
+    {
+      "from": 437.04,
+      "to": 438.24,
+      "sid": 213,
+      "location": 2,
+      "content": "结果让人意外",
+      "music": 0.0
+    },
+    {
+      "from": 438.24,
+      "to": 440.08,
+      "sid": 214,
+      "location": 2,
+      "content": "毕竟也是挤了3年的牙膏",
+      "music": 0.0
+    },
+    {
+      "from": 440.08,
+      "to": 442.64,
+      "sid": 215,
+      "location": 2,
+      "content": "相比A15CPU进步了40%",
+      "music": 0.0
+    },
+    {
+      "from": 442.64,
+      "to": 444.38,
+      "sid": 216,
+      "location": 2,
+      "content": "GPU也进步了50%",
+      "music": 0.0
+    },
+    {
+      "from": 444.38,
+      "to": 447.64,
+      "sid": 217,
+      "location": 2,
+      "content": "终于赶上之前A11到A12的幅度了",
+      "music": 0.0
+    },
+    {
+      "from": 447.64,
+      "to": 450.08,
+      "sid": 218,
+      "location": 2,
+      "content": "那A15平时用起来老当益壮",
+      "music": 0.0
+    },
+    {
+      "from": 450.08,
+      "to": 451.82,
+      "sid": 219,
+      "location": 2,
+      "content": "但打游戏就原形毕露",
+      "music": 0.0
+    },
+    {
+      "from": 451.82,
+      "to": 453.36,
+      "sid": 220,
+      "location": 2,
+      "content": "今年苹果的护航大作",
+      "music": 0.0
+    },
+    {
+      "from": 453.36,
+      "to": 456.6,
+      "sid": 221,
+      "location": 2,
+      "content": "已经从原神变成了明朝和王者荣耀世界",
+      "music": 0.0
+    },
+    {
+      "from": 456.6,
+      "to": 459.789,
+      "sid": 222,
+      "location": 2,
+      "content": "所以这次咱们就改测星铁",
+      "music": 0.0
+    },
+    {
+      "from": 459.789,
+      "to": 461.469,
+      "sid": 223,
+      "location": 2,
+      "content": "开启苹果的游戏模式",
+      "music": 0.0
+    },
+    {
+      "from": 461.469,
+      "to": 463.989,
+      "sid": 224,
+      "location": 2,
+      "content": "在匹诺康尼黄金的时刻跑图半小时",
+      "music": 0.0
+    },
+    {
+      "from": 463.989,
+      "to": 466.329,
+      "sid": 225,
+      "location": 2,
+      "content": "我本以为13pro会有个40帧",
+      "music": 0.0
+    },
+    {
+      "from": 466.329,
+      "to": 468.81,
+      "sid": 226,
+      "location": 2,
+      "content": "再差也得是三开头吧",
+      "music": 0.0
+    },
+    {
+      "from": 468.81,
+      "to": 470.77,
+      "sid": 227,
+      "location": 2,
+      "content": "结果pop dog性能够显示",
+      "music": 0.0
+    },
+    {
+      "from": 470.77,
+      "to": 472.93,
+      "sid": 228,
+      "location": 2,
+      "content": "竟然才26.8帧",
+      "music": 0.0
+    },
+    {
+      "from": 472.93,
+      "to": 475.71,
+      "sid": 229,
+      "location": 2,
+      "content": "60帧跑满只维持了18秒",
+      "music": 0.0
+    },
+    {
+      "from": 475.71,
+      "to": 477.3,
+      "sid": 230,
+      "location": 2,
+      "content": "18秒啊",
+      "music": 0.0
+    },
+    {
+      "from": 477.3,
+      "to": 479.5,
+      "sid": 231,
+      "location": 2,
+      "content": "而且它5分钟就降到了170尼特",
+      "music": 0.0
+    },
+    {
+      "from": 479.5,
+      "to": 481.16,
+      "sid": 232,
+      "location": 2,
+      "content": "整机功耗只有3.8瓦",
+      "music": 0.0
+    },
+    {
+      "from": 481.16,
+      "to": 482.56,
+      "sid": 233,
+      "location": 2,
+      "content": "机身却有点热啦",
+      "music": 0.0
+    },
+    {
+      "from": 482.56,
+      "to": 484.82,
+      "sid": 234,
+      "location": 2,
+      "content": "难道我这颗A15也缩缸了吗",
+      "music": 0.0
+    },
+    {
+      "from": 484.82,
+      "to": 487.06,
+      "sid": 235,
+      "location": 2,
+      "content": "还是三星悄悄代工的大雷体质",
+      "music": 0.0
+    },
+    {
+      "from": 487.06,
+      "to": 487.34,
+      "sid": 236,
+      "location": 2,
+      "content": "哎",
+      "music": 0.0
+    },
+    {
+      "from": 487.34,
+      "to": 488.64,
+      "sid": 237,
+      "location": 2,
+      "content": "不是那个大雷啊",
+      "music": 0.0
+    },
+    {
+      "from": 488.64,
+      "to": 490.64,
+      "sid": 238,
+      "location": 2,
+      "content": "是真的有点雷",
+      "music": 0.0
+    },
+    {
+      "from": 490.84,
+      "to": 492.36,
+      "sid": 239,
+      "location": 2,
+      "content": "IPHONE12pro就强多了",
+      "music": 0.0
+    },
+    {
+      "from": 492.36,
+      "to": 493.48,
+      "sid": 240,
+      "location": 2,
+      "content": "平均45.7帧",
+      "music": 0.0
+    },
+    {
+      "from": 493.48,
+      "to": 494.58,
+      "sid": 241,
+      "location": 2,
+      "content": "而且改进散热以后",
+      "music": 0.0
+    },
+    {
+      "from": 494.58,
+      "to": 497.33,
+      "sid": 242,
+      "location": 2,
+      "content": "16pro降亮度的节点也推迟到了16分钟",
+      "music": 0.0
+    },
+    {
+      "from": 497.33,
+      "to": 500.15,
+      "sid": 243,
+      "location": 2,
+      "content": "在机身温度和13pro差不多的同时",
+      "music": 0.0
+    },
+    {
+      "from": 500.15,
+      "to": 502.03,
+      "sid": 244,
+      "location": 2,
+      "content": "功耗提升到4.5瓦",
+      "music": 0.0
+    },
+    {
+      "from": 502.03,
+      "to": 503.33,
+      "sid": 245,
+      "location": 2,
+      "content": "跟安卓肯定比不了",
+      "music": 0.0
+    },
+    {
+      "from": 503.33,
+      "to": 504.31,
+      "sid": 246,
+      "location": 2,
+      "content": "但对苹果",
+      "music": 0.0
+    },
+    {
+      "from": 504.31,
+      "to": 506.03,
+      "sid": 247,
+      "location": 2,
+      "content": "尤其是pro这个小身板",
+      "music": 0.0
+    },
+    {
+      "from": 506.03,
+      "to": 508.61,
+      "sid": 248,
+      "location": 2,
+      "content": "那已经算是史诗级的进步啦",
+      "music": 0.0
+    },
+    {
+      "from": 508.61,
+      "to": 509.87,
+      "sid": 249,
+      "location": 2,
+      "content": "从14开始",
+      "music": 0.0
+    },
+    {
+      "from": 509.87,
+      "to": 511.71,
+      "sid": 250,
+      "location": 2,
+      "content": "省电模式就不再是性能模式",
+      "music": 0.0
+    },
+    {
+      "from": 511.71,
+      "to": 514.63,
+      "sid": 251,
+      "location": 2,
+      "content": "那现在苹果给了真正的游戏模式",
+      "music": 0.0
+    },
+    {
+      "from": 514.63,
+      "to": 516.789,
+      "sid": 252,
+      "location": 2,
+      "content": "我还挺好奇到底有没有用",
+      "music": 0.0
+    },
+    {
+      "from": 516.789,
+      "to": 517.869,
+      "sid": 253,
+      "location": 2,
+      "content": "结果关闭以后",
+      "music": 0.0
+    },
+    {
+      "from": 517.869,
+      "to": 519.349,
+      "sid": 254,
+      "location": 2,
+      "content": "在功耗不变的情况下",
+      "music": 0.0
+    },
+    {
+      "from": 519.349,
+      "to": 520.729,
+      "sid": 255,
+      "location": 2,
+      "content": "帧数还真低了不少",
+      "music": 0.0
+    },
+    {
+      "from": 520.729,
+      "to": 524.009,
+      "sid": 256,
+      "location": 2,
+      "content": "而且苹果在IOS18上修复了promotion的bug",
+      "music": 0.0
+    },
+    {
+      "from": 524.009,
+      "to": 526.36,
+      "sid": 257,
+      "location": 2,
+      "content": "13pro打王者也能稳120帧啦",
+      "music": 0.0
+    },
+    {
+      "from": 526.36,
+      "to": 528.34,
+      "sid": 258,
+      "location": 2,
+      "content": "整机功耗也只有2.9瓦",
+      "music": 0.0
+    },
+    {
+      "from": 528.34,
+      "to": 530.64,
+      "sid": 259,
+      "location": 2,
+      "content": "你说这是2026年的手机",
+      "music": 0.0
+    },
+    {
+      "from": 530.64,
+      "to": 531.44,
+      "sid": 260,
+      "location": 2,
+      "content": "我都信啊",
+      "music": 0.0
+    },
+    {
+      "from": 531.44,
+      "to": 533.77,
+      "sid": 261,
+      "location": 2,
+      "content": "13pro的含金量还在提升",
+      "music": 0.0
+    },
+    {
+      "from": 533.77,
+      "to": 536.29,
+      "sid": 262,
+      "location": 2,
+      "content": "这次pro屏幕变大比例也有所改变",
+      "music": 0.0
+    },
+    {
+      "from": 536.29,
+      "to": 538.29,
+      "sid": 263,
+      "location": 2,
+      "content": "所以很多app还没做好准备",
+      "music": 0.0
+    },
+    {
+      "from": 538.29,
+      "to": 540.95,
+      "sid": 264,
+      "location": 2,
+      "content": "毕竟IPHONE历史上每次改变比例",
+      "music": 0.0
+    },
+    {
+      "from": 540.95,
+      "to": 543.46,
+      "sid": 265,
+      "location": 2,
+      "content": "前期都会出现app没适配的情况",
+      "music": 0.0
+    },
+    {
+      "from": 543.46,
+      "to": 545.72,
+      "sid": 266,
+      "location": 2,
+      "content": "屏幕本身的素质倒是变化不大",
+      "music": 0.0
+    },
+    {
+      "from": 545.72,
+      "to": 547.78,
+      "sid": 267,
+      "location": 2,
+      "content": "这次啊我抽中了特等奖",
+      "music": 0.0
+    },
+    {
+      "from": 547.78,
+      "to": 549.06,
+      "sid": 268,
+      "location": 2,
+      "content": "也就是lg屏幕",
+      "music": 0.0
+    },
+    {
+      "from": 549.06,
+      "to": 550.66,
+      "sid": 269,
+      "location": 2,
+      "content": "有没有一样幸运的小伙伴扣个一",
+      "music": 0.0
+    },
+    {
+      "from": 550.66,
+      "to": 551.59,
+      "sid": 270,
+      "location": 2,
+      "content": "我看看",
+      "music": 0.0
+    },
+    {
+      "from": 551.59,
+      "to": 552.95,
+      "sid": 271,
+      "location": 2,
+      "content": "经过这几天的使用",
+      "music": 0.0
+    },
+    {
+      "from": 552.95,
+      "to": 555.72,
+      "sid": 272,
+      "location": 2,
+      "content": "我发现lg屏并没有网上说的那么差",
+      "music": 0.0
+    },
+    {
+      "from": 555.72,
+      "to": 557.66,
+      "sid": 273,
+      "location": 2,
+      "content": "色彩一如既往的正原彩",
+      "music": 0.0
+    },
+    {
+      "from": 557.66,
+      "to": 559.2,
+      "sid": 274,
+      "location": 2,
+      "content": "一如既往的好频闪",
+      "music": 0.0
+    },
+    {
+      "from": 559.2,
+      "to": 560.48,
+      "sid": 275,
+      "location": 2,
+      "content": "一如既往的烂低",
+      "music": 0.0
+    },
+    {
+      "from": 560.48,
+      "to": 562.319,
+      "sid": 276,
+      "location": 2,
+      "content": "亮度一如既往的纯净",
+      "music": 0.0
+    },
+    {
+      "from": 562.319,
+      "to": 565.919,
+      "sid": 277,
+      "location": 2,
+      "content": "而且16pro的亮度最低终于能到一尼特啦",
+      "music": 0.0
+    },
+    {
+      "from": 565.919,
+      "to": 566.999,
+      "sid": 278,
+      "location": 2,
+      "content": "看着很简单",
+      "music": 0.0
+    },
+    {
+      "from": 566.999,
+      "to": 568.239,
+      "sid": 279,
+      "location": 2,
+      "content": "其实也真不难",
+      "music": 0.0
+    },
+    {
+      "from": 568.239,
+      "to": 569.43,
+      "sid": 280,
+      "location": 2,
+      "content": "就是安卓机操",
+      "music": 0.0
+    },
+    {
+      "from": 569.43,
+      "to": 572.31,
+      "sid": 281,
+      "location": 2,
+      "content": "好处就是关灯玩手机不会亮瞎眼了",
+      "music": 0.0
+    },
+    {
+      "from": 572.31,
+      "to": 573.21,
+      "sid": 282,
+      "location": 2,
+      "content": "但说实话",
+      "music": 0.0
+    },
+    {
+      "from": 573.21,
+      "to": 577.43,
+      "sid": 283,
+      "location": 2,
+      "content": "这种低频PWM调光的手机还是比较伤眼的",
+      "music": 0.0
+    },
+    {
+      "from": 577.43,
+      "to": 578.41,
+      "sid": 284,
+      "location": 2,
+      "content": "不建议这么做啊",
+      "music": 0.0
+    },
+    {
+      "from": 578.41,
+      "to": 581.13,
+      "sid": 285,
+      "location": 2,
+      "content": "那IPHONE16pro手动最高亮度能在950尼特",
+      "music": 0.0
+    },
+    {
+      "from": 581.13,
+      "to": 581.89,
+      "sid": 286,
+      "location": 2,
+      "content": "遥遥领先",
+      "music": 0.0
+    },
+    {
+      "from": 581.89,
+      "to": 583.07,
+      "sid": 287,
+      "location": 2,
+      "content": "激发接近1200",
+      "music": 0.0
+    },
+    {
+      "from": 583.07,
+      "to": 584.03,
+      "sid": 288,
+      "location": 2,
+      "content": "比13pro高",
+      "music": 0.0
+    },
+    {
+      "from": 584.03,
+      "to": 585.579,
+      "sid": 289,
+      "location": 2,
+      "content": "但比不过现在的安卓啦",
+      "music": 0.0
+    },
+    {
+      "from": 585.579,
+      "to": 587.739,
+      "sid": 290,
+      "location": 2,
+      "content": "好像苹果给的激发阈值很高",
+      "music": 0.0
+    },
+    {
+      "from": 587.739,
+      "to": 589.459,
+      "sid": 291,
+      "location": 2,
+      "content": "在户外很容易就能拉满",
+      "music": 0.0
+    },
+    {
+      "from": 589.459,
+      "to": 591.219,
+      "sid": 292,
+      "location": 2,
+      "content": "这时候肯定会有小伙伴吐槽了",
+      "music": 0.0
+    },
+    {
+      "from": 591.219,
+      "to": 592.259,
+      "sid": 293,
+      "location": 2,
+      "content": "那又有什么用呢",
+      "music": 0.0
+    },
+    {
+      "from": 592.259,
+      "to": 594.44,
+      "sid": 294,
+      "location": 2,
+      "content": "反正苹果也都会降亮度嘛",
+      "music": 0.0
+    },
+    {
+      "from": 594.44,
+      "to": 596.08,
+      "sid": 295,
+      "location": 2,
+      "content": "哎这次我户外取样张",
+      "music": 0.0
+    },
+    {
+      "from": 596.08,
+      "to": 597.68,
+      "sid": 296,
+      "location": 2,
+      "content": "16pro还真挺坚挺的",
+      "music": 0.0
+    },
+    {
+      "from": 597.68,
+      "to": 599.64,
+      "sid": 297,
+      "location": 2,
+      "content": "可能也是吃到了散热进步的红利",
+      "music": 0.0
+    },
+    {
+      "from": 599.64,
+      "to": 601.02,
+      "sid": 298,
+      "location": 2,
+      "content": "而之前我那13pro啊",
+      "music": 0.0
+    },
+    {
+      "from": 601.02,
+      "to": 603.3,
+      "sid": 299,
+      "location": 2,
+      "content": "经常刚刚开始就要结束了",
+      "music": 0.0
+    },
+    {
+      "from": 603.3,
+      "to": 606.14,
+      "sid": 300,
+      "location": 2,
+      "content": "另一个感知明显的进步就是息屏显示了",
+      "music": 0.0
+    },
+    {
+      "from": 606.14,
+      "to": 607.84,
+      "sid": 301,
+      "location": 2,
+      "content": "这玩意是深得我心",
+      "music": 0.0
+    },
+    {
+      "from": 607.84,
+      "to": 608.64,
+      "sid": 302,
+      "location": 2,
+      "content": "不仅美观",
+      "music": 0.0
+    },
+    {
+      "from": 608.64,
+      "to": 611.3,
+      "sid": 303,
+      "location": 2,
+      "content": "还解决了之前我容易漏消息的问题",
+      "music": 0.0
+    },
+    {
+      "from": 611.3,
+      "to": 612.22,
+      "sid": 304,
+      "location": 2,
+      "content": "那相比安卓",
+      "music": 0.0
+    },
+    {
+      "from": 612.22,
+      "to": 613.86,
+      "sid": 305,
+      "location": 2,
+      "content": "它不仅全屏还很亮",
+      "music": 0.0
+    },
+    {
+      "from": 613.86,
+      "to": 617.56,
+      "sid": 306,
+      "location": 2,
+      "content": "当个摆件放在那里就特别的apple only",
+      "music": 0.0
+    },
+    {
+      "from": 617.56,
+      "to": 620.469,
+      "sid": 307,
+      "location": 2,
+      "content": "apple can do续航就比较有意思了",
+      "music": 0.0
+    },
+    {
+      "from": 620.469,
+      "to": 621.869,
+      "sid": 308,
+      "location": 2,
+      "content": "今年pro电池变大",
+      "music": 0.0
+    },
+    {
+      "from": 621.869,
+      "to": 622.969,
+      "sid": 309,
+      "location": 2,
+      "content": "芯片更省电",
+      "music": 0.0
+    },
+    {
+      "from": 622.969,
+      "to": 625.129,
+      "sid": 310,
+      "location": 2,
+      "content": "那想必是能妥妥用一天吧",
+      "music": 0.0
+    },
+    {
+      "from": 625.129,
+      "to": 627.4,
+      "sid": 311,
+      "location": 2,
+      "content": "还真没有",
+      "music": 0.12499999023435356
+    },
+    {
+      "from": 627.4,
+      "to": 629.02,
+      "sid": 312,
+      "location": 2,
+      "content": "在我们的续航测试里",
+      "music": 0.0
+    },
+    {
+      "from": 629.02,
+      "to": 630.62,
+      "sid": 313,
+      "location": 2,
+      "content": "仅剩于46%",
+      "music": 0.0
+    },
+    {
+      "from": 630.62,
+      "to": 632.06,
+      "sid": 314,
+      "location": 2,
+      "content": "中等偏下的水平",
+      "music": 0.0
+    },
+    {
+      "from": 632.06,
+      "to": 634.36,
+      "sid": 315,
+      "location": 2,
+      "content": "我平时用下来只要摸一摸的狠一点",
+      "music": 0.0
+    },
+    {
+      "from": 634.36,
+      "to": 636.06,
+      "sid": 316,
+      "location": 2,
+      "content": "回家前就只有40左右的电了",
+      "music": 0.0
+    },
+    {
+      "from": 636.06,
+      "to": 637.6,
+      "sid": 317,
+      "location": 2,
+      "content": "根本撑不过一个晚上",
+      "music": 0.0
+    },
+    {
+      "from": 637.6,
+      "to": 638.6,
+      "sid": 318,
+      "location": 2,
+      "content": "特别是有一天啊",
+      "music": 0.0
+    },
+    {
+      "from": 638.6,
+      "to": 640.26,
+      "sid": 319,
+      "location": 2,
+      "content": "我亮屏使用12个小时不到",
+      "music": 0.0
+    },
+    {
+      "from": 640.26,
+      "to": 642.42,
+      "sid": 320,
+      "location": 2,
+      "content": "竟然用掉了接近200%的电",
+      "music": 0.0
+    },
+    {
+      "from": 642.42,
+      "to": 643.3,
+      "sid": 321,
+      "location": 2,
+      "content": "不够用",
+      "music": 0.0
+    },
+    {
+      "from": 643.3,
+      "to": 644.619,
+      "sid": 322,
+      "location": 2,
+      "content": "根本就不够用",
+      "music": 0.0
+    },
+    {
+      "from": 644.619,
+      "to": 645.919,
+      "sid": 323,
+      "location": 2,
+      "content": "充电更是重量级",
+      "music": 0.0
+    },
+    {
+      "from": 645.919,
+      "to": 647.359,
+      "sid": 324,
+      "location": 2,
+      "content": "半小时也就60%",
+      "music": 0.0
+    },
+    {
+      "from": 647.359,
+      "to": 650.02,
+      "sid": 325,
+      "location": 2,
+      "content": "UI显示百分百需要整整100分钟",
+      "music": 0.0
+    },
+    {
+      "from": 650.02,
+      "to": 651.62,
+      "sid": 326,
+      "location": 2,
+      "content": "最终充满将近两小时",
+      "music": 0.0
+    },
+    {
+      "from": 651.62,
+      "to": 654.68,
+      "sid": 327,
+      "location": 2,
+      "content": "那这只是一块3600ma时的小电池啊",
+      "music": 0.0
+    },
+    {
+      "from": 654.68,
+      "to": 656.54,
+      "sid": 328,
+      "location": 2,
+      "content": "苹果真有你的好",
+      "music": 0.0
+    },
+    {
+      "from": 656.54,
+      "to": 658.46,
+      "sid": 329,
+      "location": 2,
+      "content": "在马达还是苹果的老传统",
+      "music": 0.0
+    },
+    {
+      "from": 658.46,
+      "to": 660.32,
+      "sid": 330,
+      "location": 2,
+      "content": "又大又爽又防水",
+      "music": 0.0
+    },
+    {
+      "from": 660.32,
+      "to": 662.8,
+      "sid": 331,
+      "location": 2,
+      "content": "尤其是操作按钮的反馈特别的有力",
+      "music": 0.0
+    },
+    {
+      "from": 662.8,
+      "to": 664.08,
+      "sid": 332,
+      "location": 2,
+      "content": "但还是那个老问题",
+      "music": 0.0
+    },
+    {
+      "from": 664.08,
+      "to": 665.6,
+      "sid": 333,
+      "location": 2,
+      "content": "苹果适配太窄了",
+      "music": 0.0
+    },
+    {
+      "from": 665.6,
+      "to": 667.56,
+      "sid": 334,
+      "location": 2,
+      "content": "自带的键盘反馈也特别轻",
+      "music": 0.0
+    },
+    {
+      "from": 667.56,
+      "to": 670.819,
+      "sid": 335,
+      "location": 2,
+      "content": "这时候我推荐你用微信键盘绝对有惊喜",
+      "music": 0.0
+    },
+    {
+      "from": 670.819,
+      "to": 672.659,
+      "sid": 336,
+      "location": 2,
+      "content": "但我有个不能接受的地方",
+      "music": 0.0
+    },
+    {
+      "from": 672.659,
+      "to": 674.919,
+      "sid": 337,
+      "location": 2,
+      "content": "那就是16pro的调音有了很大的变化",
+      "music": 0.0
+    },
+    {
+      "from": 674.919,
+      "to": 675.939,
+      "sid": 338,
+      "location": 2,
+      "content": "跟后盖都一起",
+      "music": 0.0
+    },
+    {
+      "from": 675.939,
+      "to": 678.28,
+      "sid": 339,
+      "location": 2,
+      "content": "真的13pro形成了强烈的反差和对比",
+      "music": 0.0
+    },
+    {
+      "from": 678.28,
+      "to": 681.18,
+      "sid": 340,
+      "location": 2,
+      "content": "难怪苹果调研的小米10pro用户吗",
+      "music": 0.0
+    },
+    {
+      "from": 681.18,
+      "to": 683.62,
+      "sid": 341,
+      "location": 2,
+      "content": "总之要不是我13pro电池不行",
+      "music": 0.0
+    },
+    {
+      "from": 683.62,
+      "to": 684.52,
+      "sid": 342,
+      "location": 2,
+      "content": "内存不够啊",
+      "music": 0.0
+    },
+    {
+      "from": 684.52,
+      "to": 688.34,
+      "sid": 343,
+      "location": 2,
+      "content": "这一系列变化看起来换了约等于没换呢",
+      "music": 0.0
+    },
+    {
+      "from": 689.109,
+      "to": 691.189,
+      "sid": 344,
+      "location": 2,
+      "content": "回顾苹果近3年的影像提升",
+      "music": 0.0
+    },
+    {
+      "from": 691.189,
+      "to": 693.189,
+      "sid": 345,
+      "location": 2,
+      "content": "可以概括为14L级主摄",
+      "music": 0.0
+    },
+    {
+      "from": 693.189,
+      "to": 694.63,
+      "sid": 346,
+      "location": 2,
+      "content": "15L级长焦",
+      "music": 0.0
+    },
+    {
+      "from": 694.63,
+      "to": 695.95,
+      "sid": 347,
+      "location": 2,
+      "content": "16L级超广",
+      "music": 0.0
+    },
+    {
+      "from": 695.95,
+      "to": 699.41,
+      "sid": 348,
+      "location": 2,
+      "content": "而IPHONE13pro当年不仅三个镜头同时更新",
+      "music": 0.0
+    },
+    {
+      "from": 699.41,
+      "to": 700.8,
+      "sid": 349,
+      "location": 2,
+      "content": "还首发了电影模式",
+      "music": 0.0
+    },
+    {
+      "from": 700.8,
+      "to": 703.08,
+      "sid": 350,
+      "location": 2,
+      "content": "摄影风格用一年时间就走完了",
+      "music": 0.0
+    },
+    {
+      "from": 703.08,
+      "to": 704.74,
+      "sid": 351,
+      "location": 2,
+      "content": "后面拼过3年的路啊",
+      "music": 0.0
+    },
+    {
+      "from": 704.74,
+      "to": 706.72,
+      "sid": 352,
+      "location": 2,
+      "content": "要不怎么说13香呢",
+      "music": 0.0
+    },
+    {
+      "from": 706.72,
+      "to": 707.6,
+      "sid": 353,
+      "location": 2,
+      "content": "但再怎么说",
+      "music": 0.0
+    },
+    {
+      "from": 707.6,
+      "to": 709.88,
+      "sid": 354,
+      "location": 2,
+      "content": "13pro的主摄参数放到今天已经不够看了",
+      "music": 0.0
+    },
+    {
+      "from": 709.88,
+      "to": 712.18,
+      "sid": 355,
+      "location": 2,
+      "content": "而16pro这边就有大底高像素",
+      "music": 0.0
+    },
+    {
+      "from": 712.18,
+      "to": 715.55,
+      "sid": 356,
+      "location": 2,
+      "content": "苹果还给它起了个名字叫融合式摄像头",
+      "music": 0.0
+    },
+    {
+      "from": 715.55,
+      "to": 717.21,
+      "sid": 357,
+      "location": 2,
+      "content": "这搞得很厉害的样子",
+      "music": 0.0
+    },
+    {
+      "from": 717.21,
+      "to": 720.99,
+      "sid": 358,
+      "location": 2,
+      "content": "那咱们就掏出小米14作为客串嘉宾",
+      "music": 0.0
+    },
+    {
+      "from": 720.99,
+      "to": 722.03,
+      "sid": 359,
+      "location": 2,
+      "content": "比划比划啊",
+      "music": 0.0
+    },
+    {
+      "from": 722.03,
+      "to": 723.53,
+      "sid": 360,
+      "location": 2,
+      "content": "这时候肯定有观众问了",
+      "music": 0.0
+    },
+    {
+      "from": 723.53,
+      "to": 724.65,
+      "sid": 361,
+      "location": 2,
+      "content": "哎周琦啊",
+      "music": 0.0
+    },
+    {
+      "from": 724.65,
+      "to": 726.11,
+      "sid": 362,
+      "location": 2,
+      "content": "你就用安卓标准版比",
+      "music": 0.0
+    },
+    {
+      "from": 726.11,
+      "to": 728.03,
+      "sid": 363,
+      "location": 2,
+      "content": "是不是看不起IPHONE啊",
+      "music": 0.0
+    },
+    {
+      "from": 728.03,
+      "to": 732.41,
+      "sid": 364,
+      "location": 2,
+      "content": "是这是13pro老用户的自知之明罢了",
+      "music": 0.0
+    },
+    {
+      "from": 732.41,
+      "to": 733.95,
+      "sid": 365,
+      "location": 2,
+      "content": "开启hf max以后",
+      "music": 0.0
+    },
+    {
+      "from": 733.95,
+      "to": 736.29,
+      "sid": 366,
+      "location": 2,
+      "content": "16pro的主摄会在光线允许的时候",
+      "music": 0.0
+    },
+    {
+      "from": 736.29,
+      "to": 738.61,
+      "sid": 367,
+      "location": 2,
+      "content": "输出一张高像素模式的照片",
+      "music": 0.0
+    },
+    {
+      "from": 738.61,
+      "to": 740.17,
+      "sid": 368,
+      "location": 2,
+      "content": "画质比老的13pro",
+      "music": 0.0
+    },
+    {
+      "from": 740.17,
+      "to": 741.51,
+      "sid": 369,
+      "location": 2,
+      "content": "那确实是强一截",
+      "music": 0.0
+    },
+    {
+      "from": 741.51,
+      "to": 742.59,
+      "sid": 370,
+      "location": 2,
+      "content": "锐化还是有",
+      "music": 0.0
+    },
+    {
+      "from": 742.59,
+      "to": 744.03,
+      "sid": 371,
+      "location": 2,
+      "content": "但已经改善很多啦",
+      "music": 0.0
+    },
+    {
+      "from": 744.03,
+      "to": 746.15,
+      "sid": 372,
+      "location": 2,
+      "content": "可惜half max不兼容live模式",
+      "music": 0.0
+    },
+    {
+      "from": 746.15,
+      "to": 747.37,
+      "sid": 373,
+      "location": 2,
+      "content": "那可以退而求其次",
+      "music": 0.0
+    },
+    {
+      "from": 747.37,
+      "to": 749.15,
+      "sid": 374,
+      "location": 2,
+      "content": "只开2400万模式",
+      "music": 0.0
+    },
+    {
+      "from": 749.15,
+      "to": 750.09,
+      "sid": 375,
+      "location": 2,
+      "content": "细节差不多",
+      "music": 0.0
+    },
+    {
+      "from": 750.09,
+      "to": 752.19,
+      "sid": 376,
+      "location": 2,
+      "content": "照片的体积也会变少两倍",
+      "music": 0.0
+    },
+    {
+      "from": 752.19,
+      "to": 753.67,
+      "sid": 377,
+      "location": 2,
+      "content": "也是一个我很常用的焦段",
+      "music": 0.0
+    },
+    {
+      "from": 753.67,
+      "to": 755.73,
+      "sid": 378,
+      "location": 2,
+      "content": "但13pro的两倍确实没法看呐",
+      "music": 0.0
+    },
+    {
+      "from": 755.73,
+      "to": 757.47,
+      "sid": 379,
+      "location": 2,
+      "content": "现在16pro弥补了这个遗憾",
+      "music": 0.0
+    },
+    {
+      "from": 757.47,
+      "to": 759.27,
+      "sid": 380,
+      "location": 2,
+      "content": "也给了个快捷按钮",
+      "music": 0.0
+    },
+    {
+      "from": 759.27,
+      "to": 760.29,
+      "sid": 381,
+      "location": 2,
+      "content": "除了主摄",
+      "music": 0.0
+    },
+    {
+      "from": 760.29,
+      "to": 763.41,
+      "sid": 382,
+      "location": 2,
+      "content": "这回超广角也换成了4800万的CMOS",
+      "music": 0.0
+    },
+    {
+      "from": 763.41,
+      "to": 766.38,
+      "sid": 383,
+      "location": 2,
+      "content": "可惜在这么小的底上变化远没有主色那么明显",
+      "music": 0.0
+    },
+    {
+      "from": 766.38,
+      "to": 768.46,
+      "sid": 384,
+      "location": 2,
+      "content": "不仅没有比1200万清晰多少",
+      "music": 0.0
+    },
+    {
+      "from": 768.46,
+      "to": 771.64,
+      "sid": 385,
+      "location": 2,
+      "content": "跟13pro比起来也几乎没有区别",
+      "music": 0.0
+    },
+    {
+      "from": 771.64,
+      "to": 774.48,
+      "sid": 386,
+      "location": 2,
+      "content": "那这个超广角厉害就厉害",
+      "music": 0.0
+    },
+    {
+      "from": 774.48,
+      "to": 776.86,
+      "sid": 387,
+      "location": 2,
+      "content": "在让你感觉不到他的厉害",
+      "music": 0.0
+    },
+    {
+      "from": 776.86,
+      "to": 780.099,
+      "sid": 388,
+      "location": 2,
+      "content": "都说真正的科技是让你感受不到科技的存在",
+      "music": 0.0
+    },
+    {
+      "from": 780.099,
+      "to": 782.239,
+      "sid": 389,
+      "location": 2,
+      "content": "苹果确实做到了",
+      "music": 0.0
+    },
+    {
+      "from": 782.239,
+      "to": 784.899,
+      "sid": 390,
+      "location": 2,
+      "content": "只有在一些室内环境放大到这种地步",
+      "music": 0.0
+    },
+    {
+      "from": 784.899,
+      "to": 786.93,
+      "sid": 391,
+      "location": 2,
+      "content": "你才能感觉到一丝丝的差距",
+      "music": 0.0
+    },
+    {
+      "from": 786.93,
+      "to": 788.63,
+      "sid": 392,
+      "location": 2,
+      "content": "但也是半斤八两的水平",
+      "music": 0.0
+    },
+    {
+      "from": 788.63,
+      "to": 791.37,
+      "sid": 393,
+      "location": 2,
+      "content": "总之这个超广角单论拍照素质还打不过小米",
+      "music": 0.0
+    },
+    {
+      "from": 791.37,
+      "to": 792.09,
+      "sid": 394,
+      "location": 2,
+      "content": "14",
+      "music": 0.0
+    },
+    {
+      "from": 792.09,
+      "to": 794.33,
+      "sid": 395,
+      "location": 2,
+      "content": "今年和pro和max终于统一了",
+      "music": 0.0
+    },
+    {
+      "from": 794.33,
+      "to": 795.57,
+      "sid": 396,
+      "location": 2,
+      "content": "长焦都是五倍了",
+      "music": 0.0
+    },
+    {
+      "from": 795.57,
+      "to": 797.87,
+      "sid": 397,
+      "location": 2,
+      "content": "但我还是不太适应这个变化",
+      "music": 0.0
+    },
+    {
+      "from": 797.87,
+      "to": 800.47,
+      "sid": 398,
+      "location": 2,
+      "content": "因为我最近几代安卓机嘛也是三倍居多",
+      "music": 0.0
+    },
+    {
+      "from": 800.47,
+      "to": 801.07,
+      "sid": 399,
+      "location": 2,
+      "content": "焦段变",
+      "music": 0.0
+    },
+    {
+      "from": 801.07,
+      "to": 802.61,
+      "sid": 400,
+      "location": 2,
+      "content": "然后构图也不太一样",
+      "music": 0.0
+    },
+    {
+      "from": 802.61,
+      "to": 804.11,
+      "sid": 401,
+      "location": 2,
+      "content": "以前习惯的拍摄位置",
+      "music": 0.0
+    },
+    {
+      "from": 804.11,
+      "to": 805.65,
+      "sid": 402,
+      "location": 2,
+      "content": "现在都得往后退几步",
+      "music": 0.0
+    },
+    {
+      "from": 805.65,
+      "to": 809.39,
+      "sid": 403,
+      "location": 2,
+      "content": "关键是这个五倍画质并没有比三倍好多少啊",
+      "music": 0.0
+    },
+    {
+      "from": 809.39,
+      "to": 811.35,
+      "sid": 404,
+      "location": 2,
+      "content": "唯一的优势就是白天望远",
+      "music": 0.0
+    },
+    {
+      "from": 811.35,
+      "to": 812.77,
+      "sid": 405,
+      "location": 2,
+      "content": "但是又不能太远",
+      "music": 0.0
+    },
+    {
+      "from": 812.77,
+      "to": 815.089,
+      "sid": 406,
+      "location": 2,
+      "content": "不然就是众生平等啊",
+      "music": 0.0
+    },
+    {
+      "from": 815.089,
+      "to": 816.749,
+      "sid": 407,
+      "location": 2,
+      "content": "家人们谁懂啊",
+      "music": 0.0
+    },
+    {
+      "from": 816.749,
+      "to": 821.0,
+      "sid": 408,
+      "location": 2,
+      "content": "CCD胶片感就虽说是个五倍潜望吧",
+      "music": 0.0
+    },
+    {
+      "from": 821.0,
+      "to": 822.54,
+      "sid": 409,
+      "location": 2,
+      "content": "但建议不要超过十倍",
+      "music": 0.0
+    },
+    {
+      "from": 822.54,
+      "to": 823.18,
+      "sid": 410,
+      "location": 2,
+      "content": "远距离",
+      "music": 0.0
+    },
+    {
+      "from": 823.18,
+      "to": 825.24,
+      "sid": 411,
+      "location": 2,
+      "content": "一般近距离是完全拍不了",
+      "music": 0.0
+    },
+    {
+      "from": 825.24,
+      "to": 826.02,
+      "sid": 412,
+      "location": 2,
+      "content": "想用长焦",
+      "music": 0.0
+    },
+    {
+      "from": 826.02,
+      "to": 827.46,
+      "sid": 413,
+      "location": 2,
+      "content": "至少得离个一米开外",
+      "music": 0.0
+    },
+    {
+      "from": 827.46,
+      "to": 829.27,
+      "sid": 414,
+      "location": 2,
+      "content": "不然就是主摄裁切",
+      "music": 0.0
+    },
+    {
+      "from": 829.27,
+      "to": 830.75,
+      "sid": 415,
+      "location": 2,
+      "content": "其实比起硬件升级",
+      "music": 0.0
+    },
+    {
+      "from": 830.75,
+      "to": 832.71,
+      "sid": 416,
+      "location": 2,
+      "content": "这是16pro全新的摄影风格",
+      "music": 0.0
+    },
+    {
+      "from": 832.71,
+      "to": 833.85,
+      "sid": 417,
+      "location": 2,
+      "content": "反而更吸引我",
+      "music": 0.0
+    },
+    {
+      "from": 833.85,
+      "to": 835.93,
+      "sid": 418,
+      "location": 2,
+      "content": "以前必须在拍照前提前预设",
+      "music": 0.0
+    },
+    {
+      "from": 835.93,
+      "to": 837.17,
+      "sid": 419,
+      "location": 2,
+      "content": "拍完就不能更改了",
+      "music": 0.0
+    },
+    {
+      "from": 837.17,
+      "to": 838.25,
+      "sid": 420,
+      "location": 2,
+      "content": "调都没法调",
+      "music": 0.0
+    },
+    {
+      "from": 838.25,
+      "to": 840.47,
+      "sid": 421,
+      "location": 2,
+      "content": "现在跟富士的胶片模拟很像",
+      "music": 0.0
+    },
+    {
+      "from": 840.47,
+      "to": 843.76,
+      "sid": 422,
+      "location": 2,
+      "content": "不管是前期还是后期都可以随时调整",
+      "music": 0.0
+    },
+    {
+      "from": 843.76,
+      "to": 844.64,
+      "sid": 423,
+      "location": 2,
+      "content": "无缝切换",
+      "music": 0.0
+    },
+    {
+      "from": 844.64,
+      "to": 845.88,
+      "sid": 424,
+      "location": 2,
+      "content": "而且类型更多",
+      "music": 0.0
+    },
+    {
+      "from": 845.88,
+      "to": 846.94,
+      "sid": 425,
+      "location": 2,
+      "content": "调节更自由",
+      "music": 0.0
+    },
+    {
+      "from": 846.94,
+      "to": 849.1,
+      "sid": 426,
+      "location": 2,
+      "content": "实现的效果也更自然了",
+      "music": 0.0
+    },
+    {
+      "from": 849.1,
+      "to": 850.72,
+      "sid": 427,
+      "location": 2,
+      "content": "默认是标准色彩",
+      "music": 0.0
+    },
+    {
+      "from": 850.72,
+      "to": 854.18,
+      "sid": 428,
+      "location": 2,
+      "content": "那点击相机右上角就可以切换左边的几个色彩",
+      "music": 0.0
+    },
+    {
+      "from": 854.18,
+      "to": 856.1,
+      "sid": 429,
+      "location": 2,
+      "content": "相对来说会更加适合新手",
+      "music": 0.0
+    },
+    {
+      "from": 856.1,
+      "to": 857.0,
+      "sid": 430,
+      "location": 2,
+      "content": "没有那么重口味",
+      "music": 0.0
+    },
+    {
+      "from": 857.0,
+      "to": 858.41,
+      "sid": 431,
+      "location": 2,
+      "content": "更容易把控一些",
+      "music": 0.0
+    },
+    {
+      "from": 858.41,
+      "to": 860.53,
+      "sid": 432,
+      "location": 2,
+      "content": "但最重要的还是后期随时可以反悔",
+      "music": 0.0
+    },
+    {
+      "from": 860.53,
+      "to": 861.51,
+      "sid": 433,
+      "location": 2,
+      "content": "套用别的风格",
+      "music": 0.0
+    },
+    {
+      "from": 861.51,
+      "to": 863.58,
+      "sid": 434,
+      "location": 2,
+      "content": "不需要再做任何前期的准备啦",
+      "music": 0.0
+    },
+    {
+      "from": 863.58,
+      "to": 865.5,
+      "sid": 435,
+      "location": 2,
+      "content": "苹果现在就通过自己的软硬结合",
+      "music": 0.0
+    },
+    {
+      "from": 865.5,
+      "to": 867.62,
+      "sid": 436,
+      "location": 2,
+      "content": "把原本第三方的功能放到相机里",
+      "music": 0.0
+    },
+    {
+      "from": 867.62,
+      "to": 868.74,
+      "sid": 437,
+      "location": 2,
+      "content": "而且更加强大",
+      "music": 0.0
+    },
+    {
+      "from": 868.74,
+      "to": 869.44,
+      "sid": 438,
+      "location": 2,
+      "content": "更加自由",
+      "music": 0.0
+    },
+    {
+      "from": 869.44,
+      "to": 870.17,
+      "sid": 439,
+      "location": 2,
+      "content": "通过它",
+      "music": 0.0
+    },
+    {
+      "from": 870.17,
+      "to": 872.85,
+      "sid": 440,
+      "location": 2,
+      "content": "我竟然也用IPHONE拍出了我满意的照片",
+      "music": 0.0
+    },
+    {
+      "from": 872.85,
+      "to": 875.03,
+      "sid": 441,
+      "location": 2,
+      "content": "肯定会成为小红书神器",
+      "music": 0.0
+    },
+    {
+      "from": 875.03,
+      "to": 876.48,
+      "sid": 442,
+      "location": 2,
+      "content": "对",
+      "music": 0.9999996666667778
+    },
+    {
+      "from": 885.6,
+      "to": 887.8,
+      "sid": 443,
+      "location": 2,
+      "content": "可惜这个功能啊",
+      "music": 0.0
+    },
+    {
+      "from": 887.8,
+      "to": 890.06,
+      "sid": 444,
+      "location": 2,
+      "content": "嘶苹果目前还没有下放",
+      "music": 0.0
+    },
+    {
+      "from": 890.06,
+      "to": 893.75,
+      "sid": 445,
+      "location": 2,
+      "content": "心疼15pro用户一秒HDR也有一些进步",
+      "music": 0.0
+    },
+    {
+      "from": 893.75,
+      "to": 895.69,
+      "sid": 446,
+      "location": 2,
+      "content": "虽然16pro和13pro都有一些过曝",
+      "music": 0.0
+    },
+    {
+      "from": 895.69,
+      "to": 897.23,
+      "sid": 447,
+      "location": 2,
+      "content": "但13pro更加明显",
+      "music": 0.0
+    },
+    {
+      "from": 897.23,
+      "to": 900.16,
+      "sid": 448,
+      "location": 2,
+      "content": "在大光比场景动态范围提升还要更明显",
+      "music": 0.0
+    },
+    {
+      "from": 900.16,
+      "to": 901.74,
+      "sid": 449,
+      "location": 2,
+      "content": "然而从观感上看",
+      "music": 0.0
+    },
+    {
+      "from": 901.74,
+      "to": 903.4,
+      "sid": 450,
+      "location": 2,
+      "content": "我有时还真就更喜欢",
+      "music": 0.0
+    },
+    {
+      "from": 903.4,
+      "to": 905.89,
+      "sid": 451,
+      "location": 2,
+      "content": "13pro这种明暗分明的影调",
+      "music": 0.0
+    },
+    {
+      "from": 905.89,
+      "to": 908.93,
+      "sid": 452,
+      "location": 2,
+      "content": "其实16pro不仅跟自家老机型比有优势",
+      "music": 0.0
+    },
+    {
+      "from": 908.93,
+      "to": 910.09,
+      "sid": 453,
+      "location": 2,
+      "content": "因为更高的宽容度",
+      "music": 0.0
+    },
+    {
+      "from": 910.09,
+      "to": 913.79,
+      "sid": 454,
+      "location": 2,
+      "content": "有时候就是能比小米14看到更多的细节",
+      "music": 0.0
+    },
+    {
+      "from": 914.35,
+      "to": 916.45,
+      "sid": 455,
+      "location": 2,
+      "content": "苹果总算在部分场景",
+      "music": 0.0
+    },
+    {
+      "from": 916.45,
+      "to": 918.85,
+      "sid": 456,
+      "location": 2,
+      "content": "打赢今年安卓机的标准版啦",
+      "music": 0.0
+    },
+    {
+      "from": 918.85,
+      "to": 920.17,
+      "sid": 457,
+      "location": 2,
+      "content": "可喜可贺",
+      "music": 0.0
+    },
+    {
+      "from": 920.17,
+      "to": 921.93,
+      "sid": 458,
+      "location": 2,
+      "content": "但16pro毕竟是新机",
+      "music": 0.0
+    },
+    {
+      "from": 921.93,
+      "to": 923.85,
+      "sid": 459,
+      "location": 2,
+      "content": "我感觉有些地方确实没优化好",
+      "music": 0.0
+    },
+    {
+      "from": 923.85,
+      "to": 925.7,
+      "sid": 460,
+      "location": 2,
+      "content": "夜景模式的判定太奇怪了",
+      "music": 0.0
+    },
+    {
+      "from": 925.7,
+      "to": 927.74,
+      "sid": 461,
+      "location": 2,
+      "content": "有时候在大白天都能调出来",
+      "music": 0.0
+    },
+    {
+      "from": 927.74,
+      "to": 929.2,
+      "sid": 462,
+      "location": 2,
+      "content": "对画面没啥争议不说",
+      "music": 0.0
+    },
+    {
+      "from": 929.2,
+      "to": 930.38,
+      "sid": 463,
+      "location": 2,
+      "content": "因为要等转圈圈",
+      "music": 0.0
+    },
+    {
+      "from": 930.38,
+      "to": 931.48,
+      "sid": 464,
+      "location": 2,
+      "content": "体验还变差了",
+      "music": 0.0
+    },
+    {
+      "from": 931.48,
+      "to": 933.18,
+      "sid": 465,
+      "location": 2,
+      "content": "让我想起了那首歌",
+      "music": 0.0
+    },
+    {
+      "from": 933.18,
+      "to": 937.599,
+      "sid": 466,
+      "location": 2,
+      "content": "分不清是黑夜还是白天",
+      "music": 0.7279411497080872
+    },
+    {
+      "from": 938.199,
+      "to": 939.679,
+      "sid": 467,
+      "location": 2,
+      "content": "白平衡也有一些小问题",
+      "music": 0.0
+    },
+    {
+      "from": 939.679,
+      "to": 940.739,
+      "sid": 468,
+      "location": 2,
+      "content": "尤其在极限夜景",
+      "music": 0.0
+    },
+    {
+      "from": 940.739,
+      "to": 941.719,
+      "sid": 469,
+      "location": 2,
+      "content": "这是三秒夜景",
+      "music": 0.0
+    },
+    {
+      "from": 941.719,
+      "to": 942.699,
+      "sid": 470,
+      "location": 2,
+      "content": "这是十秒夜景",
+      "music": 0.0
+    },
+    {
+      "from": 942.699,
+      "to": 944.359,
+      "sid": 471,
+      "location": 2,
+      "content": "一个比一个离谱啊",
+      "music": 0.0
+    },
+    {
+      "from": 944.359,
+      "to": 946.69,
+      "sid": 472,
+      "location": 2,
+      "content": "13香的含金量还在提升",
+      "music": 0.0
+    },
+    {
+      "from": 946.69,
+      "to": 947.87,
+      "sid": 473,
+      "location": 2,
+      "content": "但大家都知道",
+      "music": 0.0
+    },
+    {
+      "from": 947.87,
+      "to": 950.11,
+      "sid": 474,
+      "location": 2,
+      "content": "苹果最引以为傲的还是录像",
+      "music": 0.0
+    },
+    {
+      "from": 950.11,
+      "to": 951.95,
+      "sid": 475,
+      "location": 2,
+      "content": "别说是最新的16pro了",
+      "music": 0.0
+    },
+    {
+      "from": 951.95,
+      "to": 953.45,
+      "sid": 476,
+      "location": 2,
+      "content": "13pro也依旧很强",
+      "music": 0.0
+    },
+    {
+      "from": 953.45,
+      "to": 955.19,
+      "sid": 477,
+      "location": 2,
+      "content": "如果给现在的手机录像排个名",
+      "music": 0.0
+    },
+    {
+      "from": 955.19,
+      "to": 958.129,
+      "sid": 478,
+      "location": 2,
+      "content": "我相信前十都是苹果左边",
+      "music": 0.0
+    },
+    {
+      "from": 958.129,
+      "to": 960.209,
+      "sid": 479,
+      "location": 2,
+      "content": "苹果的录像画质很优秀",
+      "music": 0.0
+    },
+    {
+      "from": 960.209,
+      "to": 962.89,
+      "sid": 480,
+      "location": 2,
+      "content": "而且每个镜头都一视同仁",
+      "music": 0.0
+    },
+    {
+      "from": 962.89,
+      "to": 963.73,
+      "sid": 481,
+      "location": 2,
+      "content": "拍照的时候",
+      "music": 0.0
+    },
+    {
+      "from": 963.73,
+      "to": 966.05,
+      "sid": 482,
+      "location": 2,
+      "content": "小米四的长焦和超广还略微领先",
+      "music": 0.0
+    },
+    {
+      "from": 966.05,
+      "to": 966.89,
+      "sid": 483,
+      "location": 2,
+      "content": "到了拍视频",
+      "music": 0.0
+    },
+    {
+      "from": 966.89,
+      "to": 968.13,
+      "sid": 484,
+      "location": 2,
+      "content": "小米就一败涂地了",
+      "music": 0.0
+    },
+    {
+      "from": 968.13,
+      "to": 971.17,
+      "sid": 485,
+      "location": 2,
+      "content": "4K感觉就跟苹果的1080P差不多",
+      "music": 0.0
+    },
+    {
+      "from": 971.17,
+      "to": 972.85,
+      "sid": 486,
+      "location": 2,
+      "content": "其次就是动态范围",
+      "music": 0.0
+    },
+    {
+      "from": 972.85,
+      "to": 974.85,
+      "sid": 487,
+      "location": 2,
+      "content": "小米连13都打不过",
+      "music": 0.0
+    },
+    {
+      "from": 974.85,
+      "to": 976.41,
+      "sid": 488,
+      "location": 2,
+      "content": "更不用说16啦",
+      "music": 0.0
+    },
+    {
+      "from": 976.41,
+      "to": 980.19,
+      "sid": 489,
+      "location": 2,
+      "content": "在视频领域能打败苹果的只有苹果自己",
+      "music": 0.0
+    },
+    {
+      "from": 980.19,
+      "to": 982.29,
+      "sid": 490,
+      "location": 2,
+      "content": "并且得益于散热的提升",
+      "music": 0.0
+    },
+    {
+      "from": 982.29,
+      "to": 984.54,
+      "sid": 491,
+      "location": 2,
+      "content": "16pro拍视频也更坚挺",
+      "music": 0.0
+    },
+    {
+      "from": 984.54,
+      "to": 986.06,
+      "sid": 492,
+      "location": 2,
+      "content": "发热明显好不少",
+      "music": 0.0
+    },
+    {
+      "from": 986.06,
+      "to": 987.38,
+      "sid": 493,
+      "location": 2,
+      "content": "并且热的均匀",
+      "music": 0.0
+    },
+    {
+      "from": 987.38,
+      "to": 988.66,
+      "sid": 494,
+      "location": 2,
+      "content": "后来我也测了一遍",
+      "music": 0.0
+    },
+    {
+      "from": 988.66,
+      "to": 990.44,
+      "sid": 495,
+      "location": 2,
+      "content": "录制4K60帧视频半小时",
+      "music": 0.0
+    },
+    {
+      "from": 990.44,
+      "to": 993.8,
+      "sid": 496,
+      "location": 2,
+      "content": "16pro的温度比13pro低了整整3",
+      "music": 0.0
+    },
+    {
+      "from": 993.8,
+      "to": 996.68,
+      "sid": 497,
+      "location": 2,
+      "content": "而且这台主摄还能拍摄4K120帧的杜比",
+      "music": 0.0
+    },
+    {
+      "from": 996.68,
+      "to": 998.66,
+      "sid": 498,
+      "location": 2,
+      "content": "有四麦克风能录制空间音频",
+      "music": 0.0
+    },
+    {
+      "from": 998.66,
+      "to": 1001.9,
+      "sid": 499,
+      "location": 2,
+      "content": "但是16pro的长焦又掉链子了",
+      "music": 0.0
+    },
+    {
+      "from": 1001.9,
+      "to": 1003.62,
+      "sid": 500,
+      "location": 2,
+      "content": "暗光录像有概率掉不出来",
+      "music": 0.0
+    },
+    {
+      "from": 1003.62,
+      "to": 1004.48,
+      "sid": 501,
+      "location": 2,
+      "content": "建议拉远一点",
+      "music": 0.0
+    },
+    {
+      "from": 1004.48,
+      "to": 1005.36,
+      "sid": 502,
+      "location": 2,
+      "content": "直到它变清楚",
+      "music": 0.0
+    },
+    {
+      "from": 1005.36,
+      "to": 1006.2,
+      "sid": 503,
+      "location": 2,
+      "content": "说明它出来了",
+      "music": 0.0
+    },
+    {
+      "from": 1006.2,
+      "to": 1007.06,
+      "sid": 504,
+      "location": 2,
+      "content": "再缩回去",
+      "music": 0.0
+    },
+    {
+      "from": 1007.06,
+      "to": 1008.4,
+      "sid": 505,
+      "location": 2,
+      "content": "主打一个偷袭",
+      "music": 0.0
+    },
+    {
+      "from": 1008.4,
+      "to": 1010.96,
+      "sid": 506,
+      "location": 2,
+      "content": "那13pro的厂家反而没有这个问题",
+      "music": 0.0
+    },
+    {
+      "from": 1010.96,
+      "to": 1013.04,
+      "sid": 507,
+      "location": 2,
+      "content": "还有苹果官网写的看反射图层啊",
+      "music": 0.0
+    },
+    {
+      "from": 1013.04,
+      "to": 1013.94,
+      "sid": 508,
+      "location": 2,
+      "content": "现在已经删掉了",
+      "music": 0.0
+    },
+    {
+      "from": 1015.06,
+      "to": 1018.66,
+      "sid": 509,
+      "location": 2,
+      "content": "南平毕竟我测下来AI水印一如既往的稳定",
+      "music": 0.0
+    },
+    {
+      "from": 1018.66,
+      "to": 1020.46,
+      "sid": 510,
+      "location": 2,
+      "content": "所以苹果的影像啊",
+      "music": 0.0
+    },
+    {
+      "from": 1020.46,
+      "to": 1021.92,
+      "sid": 511,
+      "location": 2,
+      "content": "就像是那种拿到试卷",
+      "music": 0.0
+    },
+    {
+      "from": 1021.92,
+      "to": 1023.84,
+      "sid": 512,
+      "location": 2,
+      "content": "从后往前做的大佬",
+      "music": 0.0
+    },
+    {
+      "from": 1023.84,
+      "to": 1025.6,
+      "sid": 513,
+      "location": 2,
+      "content": "那些超级难的各种大题",
+      "music": 0.0
+    },
+    {
+      "from": 1025.6,
+      "to": 1027.8,
+      "sid": 514,
+      "location": 2,
+      "content": "附加题对他来说完全没有问题",
+      "music": 0.0
+    },
+    {
+      "from": 1027.8,
+      "to": 1030.2,
+      "sid": 515,
+      "location": 2,
+      "content": "但是前面的送分题反而因为没有时间做啊",
+      "music": 0.0
+    },
+    {
+      "from": 1030.2,
+      "to": 1030.98,
+      "sid": 516,
+      "location": 2,
+      "content": "直接白给了",
+      "music": 0.0
+    },
+    {
+      "from": 1030.98,
+      "to": 1035.61,
+      "sid": 517,
+      "location": 2,
+      "content": "但你说苹果的影像到底是好呢还是差呢",
+      "music": 0.0
+    },
+    {
+      "from": 1035.89,
+      "to": 1037.67,
+      "sid": 518,
+      "location": 2,
+      "content": "其实IPHONE16上市以后",
+      "music": 0.0
+    },
+    {
+      "from": 1037.67,
+      "to": 1039.63,
+      "sid": 519,
+      "location": 2,
+      "content": "大家最多的吐槽不是什么硬件",
+      "music": 0.0
+    },
+    {
+      "from": 1039.63,
+      "to": 1040.23,
+      "sid": 520,
+      "location": 2,
+      "content": "挤牙膏",
+      "music": 0.0
+    },
+    {
+      "from": 1040.23,
+      "to": 1042.09,
+      "sid": 521,
+      "location": 2,
+      "content": "不是什么拍照按钮太难用",
+      "music": 0.0
+    },
+    {
+      "from": 1042.09,
+      "to": 1044.619,
+      "sid": 522,
+      "location": 2,
+      "content": "而是IOS18这个重量级的新系统",
+      "music": 0.0
+    },
+    {
+      "from": 1044.619,
+      "to": 1047.179,
+      "sid": 523,
+      "location": 2,
+      "content": "之前我还以为是网友攻击性太强",
+      "music": 0.0
+    },
+    {
+      "from": 1047.179,
+      "to": 1049.439,
+      "sid": 524,
+      "location": 2,
+      "content": "并每次IOS更新都会被吐槽",
+      "music": 0.0
+    },
+    {
+      "from": 1049.439,
+      "to": 1050.819,
+      "sid": 525,
+      "location": 2,
+      "content": "所以我在用了几天以后",
+      "music": 0.0
+    },
+    {
+      "from": 1050.819,
+      "to": 1051.99,
+      "sid": 526,
+      "location": 2,
+      "content": "我要澄清一下",
+      "music": 0.0
+    },
+    {
+      "from": 1051.99,
+      "to": 1053.31,
+      "sid": 527,
+      "location": 2,
+      "content": "你们说的太对了",
+      "music": 0.0
+    },
+    {
+      "from": 1053.31,
+      "to": 1054.91,
+      "sid": 528,
+      "location": 2,
+      "content": "网友还是太温柔了",
+      "music": 0.0
+    },
+    {
+      "from": 1054.91,
+      "to": 1057.77,
+      "sid": 529,
+      "location": 2,
+      "content": "新的控制中心和相册属于卧龙凤雏",
+      "music": 0.0
+    },
+    {
+      "from": 1057.77,
+      "to": 1058.65,
+      "sid": 530,
+      "location": 2,
+      "content": "我讨厌他们",
+      "music": 0.0
+    },
+    {
+      "from": 1058.65,
+      "to": 1059.61,
+      "sid": 531,
+      "location": 2,
+      "content": "不是因为不好看",
+      "music": 0.0
+    },
+    {
+      "from": 1059.61,
+      "to": 1061.11,
+      "sid": 532,
+      "location": 2,
+      "content": "而是它改变了使用逻辑",
+      "music": 0.0
+    },
+    {
+      "from": 1061.11,
+      "to": 1062.69,
+      "sid": 533,
+      "location": 2,
+      "content": "以前我退出控制中心",
+      "music": 0.0
+    },
+    {
+      "from": 1062.69,
+      "to": 1064.54,
+      "sid": 534,
+      "location": 2,
+      "content": "可以直接在任何地方上滑",
+      "music": 0.0
+    },
+    {
+      "from": 1064.54,
+      "to": 1067.3,
+      "sid": 535,
+      "location": 2,
+      "content": "现在我必须精准地在底部上滑",
+      "music": 0.0
+    },
+    {
+      "from": 1067.3,
+      "to": 1068.56,
+      "sid": 536,
+      "location": 2,
+      "content": "或者轻点空白处",
+      "music": 0.0
+    },
+    {
+      "from": 1068.56,
+      "to": 1070.84,
+      "sid": 537,
+      "location": 2,
+      "content": "不然就会看到两页毫无意义的画面",
+      "music": 0.0
+    },
+    {
+      "from": 1070.84,
+      "to": 1074.22,
+      "sid": 538,
+      "location": 2,
+      "content": "这这两页功能跟第一页的那些有什么区别吗",
+      "music": 0.0
+    },
+    {
+      "from": 1074.22,
+      "to": 1075.46,
+      "sid": 539,
+      "location": 2,
+      "content": "完全重复啊",
+      "music": 0.0
+    },
+    {
+      "from": 1075.46,
+      "to": 1076.62,
+      "sid": 540,
+      "location": 2,
+      "content": "相册也是重量级",
+      "music": 0.0
+    },
+    {
+      "from": 1076.62,
+      "to": 1077.72,
+      "sid": 541,
+      "location": 2,
+      "content": "主页元素太多",
+      "music": 0.0
+    },
+    {
+      "from": 1077.72,
+      "to": 1079.31,
+      "sid": 542,
+      "location": 2,
+      "content": "脱离了相册的本质",
+      "music": 0.0
+    },
+    {
+      "from": 1079.31,
+      "to": 1081.43,
+      "sid": 543,
+      "location": 2,
+      "content": "有国内的某些app那味了",
+      "music": 0.0
+    },
+    {
+      "from": 1081.43,
+      "to": 1083.05,
+      "sid": 544,
+      "location": 2,
+      "content": "特别是那个壁纸推荐啊",
+      "music": 0.0
+    },
+    {
+      "from": 1083.05,
+      "to": 1084.96,
+      "sid": 545,
+      "location": 2,
+      "content": "我还以为是苹果加贴片广告了",
+      "music": 0.0
+    },
+    {
+      "from": 1084.96,
+      "to": 1087.3,
+      "sid": 546,
+      "location": 2,
+      "content": "所以我就教大家怎么让它好用一点",
+      "music": 0.0
+    },
+    {
+      "from": 1087.3,
+      "to": 1088.58,
+      "sid": 547,
+      "location": 2,
+      "content": "能救一个是一个",
+      "music": 0.0
+    },
+    {
+      "from": 1088.58,
+      "to": 1091.08,
+      "sid": 548,
+      "location": 2,
+      "content": "首先点击右上角这个小人的图标",
+      "music": 0.0
+    },
+    {
+      "from": 1091.08,
+      "to": 1092.05,
+      "sid": 549,
+      "location": 2,
+      "content": "也就是头像",
+      "music": 0.0
+    },
+    {
+      "from": 1092.05,
+      "to": 1093.21,
+      "sid": 550,
+      "location": 2,
+      "content": "关闭精选内容",
+      "music": 0.0
+    },
+    {
+      "from": 1093.21,
+      "to": 1095.29,
+      "sid": 551,
+      "location": 2,
+      "content": "节假日活动再拉到相册最底下",
+      "music": 0.0
+    },
+    {
+      "from": 1095.29,
+      "to": 1096.65,
+      "sid": 552,
+      "location": 2,
+      "content": "把不需要的功能全都关掉",
+      "music": 0.0
+    },
+    {
+      "from": 1096.65,
+      "to": 1098.05,
+      "sid": 553,
+      "location": 2,
+      "content": "一下子就清爽了不少",
+      "music": 0.0
+    },
+    {
+      "from": 1098.05,
+      "to": 1099.679,
+      "sid": 554,
+      "location": 2,
+      "content": "不知道你学会了吗",
+      "music": 0.0
+    },
+    {
+      "from": 1099.679,
+      "to": 1101.09,
+      "sid": 555,
+      "location": 2,
+      "content": "one ui使用说明书",
+      "music": 0.0
+    },
+    {
+      "from": 1101.09,
+      "to": 1102.15,
+      "sid": 556,
+      "location": 2,
+      "content": "但除了这两点",
+      "music": 0.0
+    },
+    {
+      "from": 1102.15,
+      "to": 1104.13,
+      "sid": 557,
+      "location": 2,
+      "content": "IOS18其他更新还挺认可的",
+      "music": 0.0
+    },
+    {
+      "from": 1104.13,
+      "to": 1105.29,
+      "sid": 558,
+      "location": 2,
+      "content": "比如图标变色啊",
+      "music": 0.0
+    },
+    {
+      "from": 1105.29,
+      "to": 1106.01,
+      "sid": 559,
+      "location": 2,
+      "content": "无字模式啊",
+      "music": 0.0
+    },
+    {
+      "from": 1106.01,
+      "to": 1106.85,
+      "sid": 560,
+      "location": 2,
+      "content": "还有app图标",
+      "music": 0.0
+    },
+    {
+      "from": 1106.85,
+      "to": 1107.98,
+      "sid": 561,
+      "location": 2,
+      "content": "终于可以随便摆放了",
+      "music": 0.0
+    },
+    {
+      "from": 1107.98,
+      "to": 1109.14,
+      "sid": 562,
+      "location": 2,
+      "content": "这就是照搬安卓嘛",
+      "music": 0.0
+    },
+    {
+      "from": 1109.14,
+      "to": 1111.58,
+      "sid": 563,
+      "location": 2,
+      "content": "幸好苹果没有掺杂任何自己的想法进去",
+      "music": 0.0
+    },
+    {
+      "from": 1111.58,
+      "to": 1113.6,
+      "sid": 564,
+      "location": 2,
+      "content": "这种谦虚的感觉就很不苹果",
+      "music": 0.0
+    },
+    {
+      "from": 1113.6,
+      "to": 1116.44,
+      "sid": 565,
+      "location": 2,
+      "content": "但我个人对借鉴功能的行为是绝对支持的",
+      "music": 0.0
+    },
+    {
+      "from": 1116.44,
+      "to": 1118.22,
+      "sid": 566,
+      "location": 2,
+      "content": "本质上受益的是用户嘛",
+      "music": 0.0
+    },
+    {
+      "from": 1118.22,
+      "to": 1119.4,
+      "sid": 567,
+      "location": 2,
+      "content": "还有音乐触感",
+      "music": 0.0
+    },
+    {
+      "from": 1119.4,
+      "to": 1122.2,
+      "sid": 568,
+      "location": 2,
+      "content": "就是放音乐时手机会跟着节拍震动啊",
+      "music": 0.0
+    },
+    {
+      "from": 1122.2,
+      "to": 1125.0,
+      "sid": 569,
+      "location": 2,
+      "content": "这个功能充分发挥了苹果的马达优势",
+      "music": 0.0
+    },
+    {
+      "from": 1125.0,
+      "to": 1126.04,
+      "sid": 570,
+      "location": 2,
+      "content": "和人文关怀",
+      "music": 0.0
+    },
+    {
+      "from": 1126.04,
+      "to": 1127.24,
+      "sid": 571,
+      "location": 2,
+      "content": "反馈非常细腻",
+      "music": 0.0
+    },
+    {
+      "from": 1127.24,
+      "to": 1129.12,
+      "sid": 572,
+      "location": 2,
+      "content": "比索尼做的好太多了",
+      "music": 0.0
+    },
+    {
+      "from": 1129.12,
+      "to": 1130.83,
+      "sid": 573,
+      "location": 2,
+      "content": "所以我到手就关",
+      "music": 0.0
+    },
+    {
+      "from": 1130.83,
+      "to": 1132.15,
+      "sid": 574,
+      "location": 2,
+      "content": "确实没啥用",
+      "music": 0.0
+    },
+    {
+      "from": 1132.15,
+      "to": 1136.29,
+      "sid": 575,
+      "location": 2,
+      "content": "其他的我觉得主要还是因为IOS18最大的更新",
+      "music": 0.0
+    },
+    {
+      "from": 1136.29,
+      "to": 1138.28,
+      "sid": 576,
+      "location": 2,
+      "content": "AI在咱们地区",
+      "music": 0.0
+    },
+    {
+      "from": 1138.28,
+      "to": 1139.44,
+      "sid": 577,
+      "location": 2,
+      "content": "那确实还用不了",
+      "music": 0.0
+    },
+    {
+      "from": 1142.76,
+      "to": 1144.44,
+      "sid": 578,
+      "location": 2,
+      "content": "多少有种甩锅的感觉",
+      "music": 0.0
+    },
+    {
+      "from": 1144.44,
+      "to": 1147.56,
+      "sid": 579,
+      "location": 2,
+      "content": "所以我也建议大家不要为了厂家画的饼去买",
+      "music": 0.0
+    },
+    {
+      "from": 1147.56,
+      "to": 1148.68,
+      "sid": 580,
+      "location": 2,
+      "content": "未来可期",
+      "music": 0.0
+    },
+    {
+      "from": 1148.68,
+      "to": 1150.11,
+      "sid": 581,
+      "location": 2,
+      "content": "未来抽码",
+      "music": 0.0
+    },
+    {
+      "from": 1150.11,
+      "to": 1151.79,
+      "sid": 582,
+      "location": 2,
+      "content": "不过这段时间用回IPHONE",
+      "music": 0.0
+    },
+    {
+      "from": 1151.79,
+      "to": 1154.17,
+      "sid": 583,
+      "location": 2,
+      "content": "有些地方还是很佩服苹果的",
+      "music": 0.0
+    },
+    {
+      "from": 1154.17,
+      "to": 1156.54,
+      "sid": 584,
+      "location": 2,
+      "content": "比如对生态的保护至今都是独一份",
+      "music": 0.0
+    },
+    {
+      "from": 1156.54,
+      "to": 1157.98,
+      "sid": 585,
+      "location": 2,
+      "content": "不需要任何开关和设置",
+      "music": 0.0
+    },
+    {
+      "from": 1157.98,
+      "to": 1160.4,
+      "sid": 586,
+      "location": 2,
+      "content": "就可以避免长辈和孩子下载垃圾应用了",
+      "music": 0.0
+    },
+    {
+      "from": 1160.4,
+      "to": 1163.78,
+      "sid": 587,
+      "location": 2,
+      "content": "而且苹果还会自动评估我的账号安全等级",
+      "music": 0.0
+    },
+    {
+      "from": 1163.78,
+      "to": 1165.64,
+      "sid": 588,
+      "location": 2,
+      "content": "那像我这种i cloud的用户",
+      "music": 0.0
+    },
+    {
+      "from": 1165.64,
+      "to": 1167.26,
+      "sid": 589,
+      "location": 2,
+      "content": "还绑了好几张卡的",
+      "music": 0.0
+    },
+    {
+      "from": 1167.26,
+      "to": 1169.34,
+      "sid": 590,
+      "location": 2,
+      "content": "是不能设置四位数密码的",
+      "music": 0.0
+    },
+    {
+      "from": 1169.34,
+      "to": 1171.59,
+      "sid": 591,
+      "location": 2,
+      "content": "至少也得是六位数起步",
+      "music": 0.0
+    },
+    {
+      "from": 1171.59,
+      "to": 1173.35,
+      "sid": 592,
+      "location": 2,
+      "content": "最后我还想聊点别的",
+      "music": 0.0
+    },
+    {
+      "from": 1173.35,
+      "to": 1176.09,
+      "sid": 593,
+      "location": 2,
+      "content": "那就是16pro的电池又又又涨价了",
+      "music": 0.0
+    },
+    {
+      "from": 1176.09,
+      "to": 1176.95,
+      "sid": 594,
+      "location": 2,
+      "content": "换一次电池",
+      "music": 0.0
+    },
+    {
+      "from": 1176.95,
+      "to": 1178.31,
+      "sid": 595,
+      "location": 2,
+      "content": "你们猜需要多少钱",
+      "music": 0.0
+    },
+    {
+      "from": 1178.31,
+      "to": 1180.11,
+      "sid": 596,
+      "location": 2,
+      "content": "969",
+      "music": 0.0
+    },
+    {
+      "from": 1180.11,
+      "to": 1181.87,
+      "sid": 597,
+      "location": 2,
+      "content": "将近1000块的电池啊",
+      "music": 0.0
+    },
+    {
+      "from": 1181.87,
+      "to": 1182.76,
+      "sid": 598,
+      "location": 2,
+      "content": "这什么概念呢",
+      "music": 0.0
+    },
+    {
+      "from": 1182.76,
+      "to": 1185.2,
+      "sid": 599,
+      "location": 2,
+      "content": "比华为mate x t还要贵呀",
+      "music": 0.0
+    },
+    {
+      "from": 1185.2,
+      "to": 1186.72,
+      "sid": 600,
+      "location": 2,
+      "content": "这可是三块电池的价格",
+      "music": 0.0
+    },
+    {
+      "from": 1186.72,
+      "to": 1188.71,
+      "sid": 601,
+      "location": 2,
+      "content": "而且不光是这几年机器涨价",
+      "music": 0.0
+    },
+    {
+      "from": 1188.71,
+      "to": 1191.69,
+      "sid": 602,
+      "location": 2,
+      "content": "从tr到13pro也全都涨到了729",
+      "music": 0.0
+    },
+    {
+      "from": 1191.69,
+      "to": 1192.73,
+      "sid": 603,
+      "location": 2,
+      "content": "你说搞笑不",
+      "music": 0.0
+    },
+    {
+      "from": 1192.73,
+      "to": 1195.75,
+      "sid": 604,
+      "location": 2,
+      "content": "tr的电池竟然比tr整机还要贵",
+      "music": 0.0
+    },
+    {
+      "from": 1195.75,
+      "to": 1197.39,
+      "sid": 605,
+      "location": 2,
+      "content": "我只能说太环保了",
+      "music": 0.0
+    },
+    {
+      "from": 1197.39,
+      "to": 1198.57,
+      "sid": 606,
+      "location": 2,
+      "content": "库克",
+      "music": 0.0
+    },
+    {
+      "from": 1199.75,
+      "to": 1201.03,
+      "sid": 607,
+      "location": 2,
+      "content": "当视频看到这里",
+      "music": 0.0
+    },
+    {
+      "from": 1201.03,
+      "to": 1202.97,
+      "sid": 608,
+      "location": 2,
+      "content": "你们应该已经多看了一期视频",
+      "music": 0.0
+    },
+    {
+      "from": 1202.97,
+      "to": 1205.57,
+      "sid": 609,
+      "location": 2,
+      "content": "不知道你们觉得从13pro换到16pro",
+      "music": 0.0
+    },
+    {
+      "from": 1205.57,
+      "to": 1207.38,
+      "sid": 610,
+      "location": 2,
+      "content": "这个升级大不大呢",
+      "music": 0.0
+    },
+    {
+      "from": 1207.38,
+      "to": 1209.38,
+      "sid": 611,
+      "location": 2,
+      "content": "很多人说现在苹果的视频啊",
+      "music": 0.0
+    },
+    {
+      "from": 1209.38,
+      "to": 1211.98,
+      "sid": 612,
+      "location": 2,
+      "content": "来来回回就那几个点在讲",
+      "music": 0.0
+    },
+    {
+      "from": 1211.98,
+      "to": 1213.54,
+      "sid": 613,
+      "location": 2,
+      "content": "有没有一种可能",
+      "music": 0.0
+    },
+    {
+      "from": 1213.54,
+      "to": 1215.92,
+      "sid": 614,
+      "location": 2,
+      "content": "苹果现在的升级点真就那么几个",
+      "music": 0.0
+    },
+    {
+      "from": 1215.92,
+      "to": 1217.96,
+      "sid": 615,
+      "location": 2,
+      "content": "再不讲就没升级啦",
+      "music": 0.0
+    },
+    {
+      "from": 1217.96,
+      "to": 1221.12,
+      "sid": 616,
+      "location": 2,
+      "content": "苹果的价值是由品牌和技术奠定的",
+      "music": 0.0
+    },
+    {
+      "from": 1221.12,
+      "to": 1222.96,
+      "sid": 617,
+      "location": 2,
+      "content": "当技术壁垒不再牢固",
+      "music": 0.0
+    },
+    {
+      "from": 1222.96,
+      "to": 1225.02,
+      "sid": 618,
+      "location": 2,
+      "content": "品牌价值就只能靠营销",
+      "music": 0.0
+    },
+    {
+      "from": 1225.02,
+      "to": 1225.72,
+      "sid": 619,
+      "location": 2,
+      "content": "靠故事",
+      "music": 0.0
+    },
+    {
+      "from": 1225.72,
+      "to": 1226.53,
+      "sid": 620,
+      "location": 2,
+      "content": "靠历史",
+      "music": 0.0
+    },
+    {
+      "from": 1226.53,
+      "to": 1228.47,
+      "sid": 621,
+      "location": 2,
+      "content": "但这些都是老本啊",
+      "music": 0.0
+    },
+    {
+      "from": 1228.47,
+      "to": 1230.04,
+      "sid": 622,
+      "location": 2,
+      "content": "会有被挥霍完的一天",
+      "music": 0.0
+    },
+    {
+      "from": 1230.04,
+      "to": 1231.8,
+      "sid": 623,
+      "location": 2,
+      "content": "曾经的我也天真的以为",
+      "music": 0.0
+    },
+    {
+      "from": 1231.8,
+      "to": 1233.28,
+      "sid": 624,
+      "location": 2,
+      "content": "苹果挤牙膏对我没啥影响",
+      "music": 0.0
+    },
+    {
+      "from": 1233.28,
+      "to": 1234.52,
+      "sid": 625,
+      "location": 2,
+      "content": "毕竟我几年一换嘛",
+      "music": 0.0
+    },
+    {
+      "from": 1234.52,
+      "to": 1235.66,
+      "sid": 626,
+      "location": 2,
+      "content": "再怎么挤牙膏的升级",
+      "music": 0.0
+    },
+    {
+      "from": 1235.66,
+      "to": 1238.03,
+      "sid": 627,
+      "location": 2,
+      "content": "全都加起来也是大更新了吧",
+      "music": 0.0
+    },
+    {
+      "from": 1238.03,
+      "to": 1241.44,
+      "sid": 628,
+      "location": 2,
+      "content": "那其实从结果上看的确是这样的",
+      "music": 0.0
+    },
+    {
+      "from": 1241.44,
+      "to": 1242.24,
+      "sid": 629,
+      "location": 2,
+      "content": "灵动档",
+      "music": 0.0
+    },
+    {
+      "from": 1242.24,
+      "to": 1244.1,
+      "sid": 630,
+      "location": 2,
+      "content": "钛金属type c静音键",
+      "music": 0.0
+    },
+    {
+      "from": 1244.1,
+      "to": 1244.88,
+      "sid": 631,
+      "location": 2,
+      "content": "更好的拍照",
+      "music": 0.0
+    },
+    {
+      "from": 1244.88,
+      "to": 1245.52,
+      "sid": 632,
+      "location": 2,
+      "content": "更强的续航",
+      "music": 0.0
+    },
+    {
+      "from": 1245.52,
+      "to": 1246.22,
+      "sid": 633,
+      "location": 2,
+      "content": "更强的性能",
+      "music": 0.0
+    },
+    {
+      "from": 1246.22,
+      "to": 1247.83,
+      "sid": 634,
+      "location": 2,
+      "content": "还有史无前例的散热",
+      "music": 0.0
+    },
+    {
+      "from": 1247.83,
+      "to": 1251.19,
+      "sid": 635,
+      "location": 2,
+      "content": "的确一定程度都改善了IPHONE13pro的痛点",
+      "music": 0.0
+    },
+    {
+      "from": 1251.19,
+      "to": 1253.99,
+      "sid": 636,
+      "location": 2,
+      "content": "而以前的IPHONE可是只需要一个重大的创新",
+      "music": 0.0
+    },
+    {
+      "from": 1253.99,
+      "to": 1255.219,
+      "sid": 637,
+      "location": 2,
+      "content": "就可以达成质变",
+      "music": 0.0
+    },
+    {
+      "from": 1255.219,
+      "to": 1258.159,
+      "sid": 638,
+      "location": 2,
+      "content": "当年我说13pro就是完全体的12s pro",
+      "music": 0.0
+    },
+    {
+      "from": 1258.159,
+      "to": 1261.22,
+      "sid": 639,
+      "location": 2,
+      "content": "那么今天的16pro本质上就是一台15s pro",
+      "music": 0.0
+    },
+    {
+      "from": 1261.22,
+      "to": 1264.54,
+      "sid": 640,
+      "location": 2,
+      "content": "只是它的升级远没有从12~13那么明显",
+      "music": 0.0
+    },
+    {
+      "from": 1264.54,
+      "to": 1267.34,
+      "sid": 641,
+      "location": 2,
+      "content": "pro版本的升级已经越来越脱离实际了",
+      "music": 0.0
+    },
+    {
+      "from": 1267.34,
+      "to": 1269.7,
+      "sid": 642,
+      "location": 2,
+      "content": "就是想让你觉得标准版除了高刷",
+      "music": 0.0
+    },
+    {
+      "from": 1269.7,
+      "to": 1271.29,
+      "sid": 643,
+      "location": 2,
+      "content": "还挺有性价比的样子",
+      "music": 0.0
+    },
+    {
+      "from": 1271.29,
+      "to": 1272.35,
+      "sid": 644,
+      "location": 2,
+      "content": "没那么差",
+      "music": 0.0
+    },
+    {
+      "from": 1272.35,
+      "to": 1275.37,
+      "sid": 645,
+      "location": 2,
+      "content": "已经是我今年听到对苹果最正面的评价",
+      "music": 0.0
+    },
+    {
+      "from": 1275.37,
+      "to": 1278.73,
+      "sid": 646,
+      "location": 2,
+      "content": "但1万多的手机目标不应该是没那么差",
+      "music": 0.0
+    },
+    {
+      "from": 1278.73,
+      "to": 1281.31,
+      "sid": 647,
+      "location": 2,
+      "content": "苹果现在很多优势我都用不到了",
+      "music": 0.0
+    },
+    {
+      "from": 1281.31,
+      "to": 1283.01,
+      "sid": 648,
+      "location": 2,
+      "content": "我是一个很讨厌双持的人",
+      "music": 0.0
+    },
+    {
+      "from": 1283.01,
+      "to": 1284.45,
+      "sid": 649,
+      "location": 2,
+      "content": "因为我出门不爱带包",
+      "music": 0.0
+    },
+    {
+      "from": 1284.45,
+      "to": 1288.53,
+      "sid": 650,
+      "location": 2,
+      "content": "但是我用IPHONE的这个月我被迫成为了双机党",
+      "music": 0.0
+    },
+    {
+      "from": 1288.53,
+      "to": 1290.03,
+      "sid": 651,
+      "location": 2,
+      "content": "我离不开安卓的拍照",
+      "music": 0.0
+    },
+    {
+      "from": 1290.03,
+      "to": 1290.93,
+      "sid": 652,
+      "location": 2,
+      "content": "FC门禁卡",
+      "music": 0.0
+    },
+    {
+      "from": 1290.93,
+      "to": 1292.51,
+      "sid": 653,
+      "location": 2,
+      "content": "双开应用还有依旧开放",
+      "music": 0.0
+    },
+    {
+      "from": 1292.51,
+      "to": 1295.98,
+      "sid": 654,
+      "location": 2,
+      "content": "但越来越流畅的系统和逐渐赶超的性能",
+      "music": 0.0
+    },
+    {
+      "from": 1295.98,
+      "to": 1297.56,
+      "sid": 655,
+      "location": 2,
+      "content": "但我今年还想换",
+      "music": 0.0
+    },
+    {
+      "from": 1297.56,
+      "to": 1298.7,
+      "sid": 656,
+      "location": 2,
+      "content": "因为我看完发布会",
+      "music": 0.0
+    },
+    {
+      "from": 1298.7,
+      "to": 1302.88,
+      "sid": 657,
+      "location": 2,
+      "content": "apple4和apple watch s10对我的吸引力超过了IPHONE本身",
+      "music": 0.0
+    },
+    {
+      "from": 1302.88,
+      "to": 1306.97,
+      "sid": 658,
+      "location": 2,
+      "content": "所以最后我决定找我们后期当15pro的接盘侠",
+      "music": 0.0
+    },
+    {
+      "from": 1306.97,
+      "to": 1309.51,
+      "sid": 659,
+      "location": 2,
+      "content": "毕竟深能占一半熟人大满贯嘛",
+      "music": 0.0
+    },
+    {
+      "from": 1310.59,
+      "to": 1313.74,
+      "sid": 660,
+      "location": 2,
+      "content": "其实根本原因还是今年苹果最大的卖点",
+      "music": 0.0
+    },
+    {
+      "from": 1313.74,
+      "to": 1314.98,
+      "sid": 661,
+      "location": 2,
+      "content": "现在根本用不了",
+      "music": 0.0
+    },
+    {
+      "from": 1314.98,
+      "to": 1318.06,
+      "sid": 662,
+      "location": 2,
+      "content": "也就是说我花了很多的钱买到的并不是完全体",
+      "music": 0.0
+    },
+    {
+      "from": 1318.06,
+      "to": 1320.36,
+      "sid": 663,
+      "location": 2,
+      "content": "但苹果却没有给我任何的优惠",
+      "music": 0.0
+    },
+    {
+      "from": 1320.36,
+      "to": 1322.16,
+      "sid": 664,
+      "location": 2,
+      "content": "但如果等明年或者后年",
+      "music": 0.0
+    },
+    {
+      "from": 1322.16,
+      "to": 1323.94,
+      "sid": 665,
+      "location": 2,
+      "content": "不管那时候的AI能不能用",
+      "music": 0.0
+    },
+    {
+      "from": 1323.94,
+      "to": 1325.86,
+      "sid": 666,
+      "location": 2,
+      "content": "我都不需要为这个升级点付费",
+      "music": 0.0
+    },
+    {
+      "from": 1325.86,
+      "to": 1328.72,
+      "sid": 667,
+      "location": 2,
+      "content": "因为16系列用户已经帮我买单了",
+      "music": 0.0
+    },
+    {
+      "from": 1328.72,
+      "to": 1329.04,
+      "sid": 668,
+      "location": 2,
+      "content": "好了",
+      "music": 0.0
+    },
+    {
+      "from": 1329.04,
+      "to": 1330.04,
+      "sid": 669,
+      "location": 2,
+      "content": "这期视频到这里就结束了",
+      "music": 0.0
+    },
+    {
+      "from": 1330.04,
+      "to": 1331.26,
+      "sid": 670,
+      "location": 2,
+      "content": "无论你是果粉还是果黑",
+      "music": 0.0
+    },
+    {
+      "from": 1331.26,
+      "to": 1332.88,
+      "sid": 671,
+      "location": 2,
+      "content": "这期视频如果你觉得还中肯的话",
+      "music": 0.0
+    },
+    {
+      "from": 1332.88,
+      "to": 1334.5,
+      "sid": 672,
+      "location": 2,
+      "content": "还请给个三连支持一下",
+      "music": 0.0
+    },
+    {
+      "from": 1334.5,
+      "to": 1334.92,
+      "sid": 673,
+      "location": 2,
+      "content": "对不对",
+      "music": 0.0
+    },
+    {
+      "from": 1334.92,
+      "to": 1336.0,
+      "sid": 674,
+      "location": 2,
+      "content": "话说回家环整一下",
+      "music": 0.0
+    },
+    {
+      "from": 1336.0,
+      "to": 1337.219,
+      "sid": 675,
+      "location": 2,
+      "content": "咱们有缘再见",
+      "music": 0.0
+    }
+  ]
+}

@@ -1,0 +1,108 @@
+{
+  "font_size": 0.4,
+  "font_color": "#FFFFFF",
+  "background_alpha": 0.5,
+  "background_color": "#9C27B0",
+  "Stroke": "none",
+  "type": "AIsubtitle",
+  "lang": "zh",
+  "version": "v1.7.0.4",
+  "body": [
+    {
+      "from": 1.2,
+      "to": 1.96,
+      "sid": 1,
+      "location": 2,
+      "content": "兄弟们啊",
+      "music": 0.0
+    },
+    {
+      "from": 1.96,
+      "to": 2.76,
+      "sid": 2,
+      "location": 2,
+      "content": "来开锁了",
+      "music": 0.0
+    },
+    {
+      "from": 6.2,
+      "to": 7.56,
+      "sid": 3,
+      "location": 2,
+      "content": "老板啊",
+      "music": 0.0
+    },
+    {
+      "from": 7.56,
+      "to": 10.14,
+      "sid": 4,
+      "location": 2,
+      "content": "你看我这款锁能不能开啊",
+      "music": 0.0
+    },
+    {
+      "from": 10.14,
+      "to": 11.78,
+      "sid": 5,
+      "location": 2,
+      "content": "我这一款锁能开吗",
+      "music": 0.0
+    },
+    {
+      "from": 11.78,
+      "to": 16.2,
+      "sid": 6,
+      "location": 2,
+      "content": "不能说这玩火这个锁是可以开啊",
+      "music": 0.0
+    },
+    {
+      "from": 16.2,
+      "to": 19.44,
+      "sid": 7,
+      "location": 2,
+      "content": "问题是有啥证明是你的这所嫌弃啊",
+      "music": 0.0
+    },
+    {
+      "from": 19.44,
+      "to": 22.509,
+      "sid": 8,
+      "location": 2,
+      "content": "这在我身上还不能证明是我的吗",
+      "music": 0.0
+    },
+    {
+      "from": 22.509,
+      "to": 23.729,
+      "sid": 9,
+      "location": 2,
+      "content": "在你身上",
+      "music": 0.0
+    },
+    {
+      "from": 23.729,
+      "to": 25.669,
+      "sid": 10,
+      "location": 2,
+      "content": "这我不知道是哪个美女给你做的呀",
+      "music": 0.0
+    },
+    {
+      "from": 25.669,
+      "to": 27.589,
+      "sid": 11,
+      "location": 2,
+      "content": "我给你24块钱可以吗",
+      "music": 0.0
+    },
+    {
+      "from": 27.589,
+      "to": 29.24,
+      "sid": 12,
+      "location": 2,
+      "content": "哈哈24给我",
+      "music": 0.0
+    }
+  ]
+}

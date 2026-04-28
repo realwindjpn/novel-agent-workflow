@@ -1,0 +1,516 @@
+{
+  "font_size": 0.4,
+  "font_color": "#FFFFFF",
+  "background_alpha": 0.5,
+  "background_color": "#9C27B0",
+  "Stroke": "none",
+  "type": "AIsubtitle",
+  "lang": "zh",
+  "version": "v1.7.0.4",
+  "body": [
+    {
+      "from": 21.02,
+      "to": 25.64,
+      "sid": 1,
+      "location": 2,
+      "content": "♪ Cause you could all in here with the strange ♪",
+      "music": 0.8962263728195113
+    },
+    {
+      "from": 25.64,
+      "to": 28.89,
+      "sid": 2,
+      "location": 2,
+      "content": "♪ Stay like we caught in our eyes ♪",
+      "music": 0.8089887185961396
+    },
+    {
+      "from": 29.05,
+      "to": 35.35,
+      "sid": 3,
+      "location": 2,
+      "content": "♪ And my shadows stretching out through all the things ♪",
+      "music": 0.9999999739583341
+    },
+    {
+      "from": 35.35,
+      "to": 38.325,
+      "sid": 4,
+      "location": 2,
+      "content": "♪ I left behind ♪",
+      "music": 0.9999999425287389
+    },
+    {
+      "from": 50.02,
+      "to": 52.34,
+      "sid": 5,
+      "location": 2,
+      "content": "自从我加入WB以来",
+      "music": 0.0
+    },
+    {
+      "from": 52.34,
+      "to": 54.34,
+      "sid": 6,
+      "location": 2,
+      "content": "确实在对阵BLG",
+      "music": 0.0
+    },
+    {
+      "from": 54.34,
+      "to": 56.56,
+      "sid": 7,
+      "location": 2,
+      "content": "不管是BO3还是BO的对局中",
+      "music": 0.0
+    },
+    {
+      "from": 56.56,
+      "to": 60.15,
+      "sid": 8,
+      "location": 2,
+      "content": "我们都是经常去输掉比赛",
+      "music": 0.0
+    },
+    {
+      "from": 60.15,
+      "to": 65.43,
+      "sid": 9,
+      "location": 2,
+      "content": "然后我觉得对面的选手风格是有点克制",
+      "music": 0.0
+    },
+    {
+      "from": 65.43,
+      "to": 66.19,
+      "sid": 10,
+      "location": 2,
+      "content": "我们这边的",
+      "music": 0.0
+    },
+    {
+      "from": 66.19,
+      "to": 70.96,
+      "sid": 11,
+      "location": 2,
+      "content": "然后嗯也在这方面吃过很多的苦头",
+      "music": 0.0
+    },
+    {
+      "from": 72.52,
+      "to": 76.26,
+      "sid": 12,
+      "location": 2,
+      "content": "Now begins the age of billy",
+      "music": 0.6833332763888863
+    },
+    {
+      "from": 76.26,
+      "to": 77.7,
+      "sid": 13,
+      "location": 2,
+      "content": "Billy gave me",
+      "music": 0.0
+    },
+    {
+      "from": 78.42,
+      "to": 80.22,
+      "sid": 14,
+      "location": 2,
+      "content": "在很重要的比赛里面相遇",
+      "music": 0.0
+    },
+    {
+      "from": 80.22,
+      "to": 84.87,
+      "sid": 15,
+      "location": 2,
+      "content": "说明我们两支战队都是非常有实力的LPL战队",
+      "music": 0.0
+    },
+    {
+      "from": 85.43,
+      "to": 87.89,
+      "sid": 16,
+      "location": 2,
+      "content": "Weibo through all the doubt",
+      "music": 0.32402232826690436
+    },
+    {
+      "from": 87.89,
+      "to": 89.63,
+      "sid": 17,
+      "location": 2,
+      "content": "Through all the disbelief",
+      "music": 0.0
+    },
+    {
+      "from": 89.63,
+      "to": 93.74,
+      "sid": 18,
+      "location": 2,
+      "content": "Earned their place in the finals",
+      "music": 0.0
+    },
+    {
+      "from": 94.58,
+      "to": 96.1,
+      "sid": 19,
+      "location": 2,
+      "content": "♪ It's in my ♪",
+      "music": 0.9999998837209438
+    },
+    {
+      "from": 96.1,
+      "to": 98.58,
+      "sid": 20,
+      "location": 2,
+      "content": "♪ Blood in my ♪",
+      "music": 0.9999999425287389
+    },
+    {
+      "from": 98.58,
+      "to": 100.3,
+      "sid": 21,
+      "location": 2,
+      "content": "去年输掉半决赛之后",
+      "music": 0.028169012100778164
+    },
+    {
+      "from": 100.3,
+      "to": 101.46,
+      "sid": 22,
+      "location": 2,
+      "content": "就觉得非常失落吧",
+      "music": 0.0
+    },
+    {
+      "from": 101.46,
+      "to": 104.81,
+      "sid": 23,
+      "location": 2,
+      "content": "然后也有一些遗憾",
+      "music": 0.2436548099667613
+    },
+    {
+      "from": 104.81,
+      "to": 106.699,
+      "sid": 24,
+      "location": 2,
+      "content": "♪ It's mine ♪",
+      "music": 0.8732393136282623
+    },
+    {
+      "from": 106.699,
+      "to": 109.439,
+      "sid": 25,
+      "location": 2,
+      "content": "我希望我们LPL带来一个冠军",
+      "music": 0.0
+    },
+    {
+      "from": 109.439,
+      "to": 111.499,
+      "sid": 26,
+      "location": 2,
+      "content": "弥补去年的遗憾",
+      "music": 0.0
+    },
+    {
+      "from": 117.82,
+      "to": 120.67,
+      "sid": 27,
+      "location": 2,
+      "content": "我觉得去年出也非常可惜吧",
+      "music": 0.0
+    },
+    {
+      "from": 120.67,
+      "to": 122.31,
+      "sid": 28,
+      "location": 2,
+      "content": "就到现在我都记得",
+      "music": 0.0
+    },
+    {
+      "from": 122.31,
+      "to": 123.75,
+      "sid": 29,
+      "location": 2,
+      "content": "就每每个操作的画面",
+      "music": 0.0
+    },
+    {
+      "from": 123.75,
+      "to": 126.11,
+      "sid": 30,
+      "location": 2,
+      "content": "就感觉那时候我个人状态其实不是很好吧",
+      "music": 0.0
+    },
+    {
+      "from": 126.11,
+      "to": 128.62,
+      "sid": 31,
+      "location": 2,
+      "content": "这种队伍其实整体都是非常好的",
+      "music": 0.0
+    },
+    {
+      "from": 128.62,
+      "to": 131.04,
+      "sid": 32,
+      "location": 2,
+      "content": "Falling apart under the pressure",
+      "music": 0.5111110827160565
+    },
+    {
+      "from": 131.04,
+      "to": 132.59,
+      "sid": 33,
+      "location": 2,
+      "content": "♪ Jd g s hope ♪",
+      "music": 0.9999999000000099
+    },
+    {
+      "from": 133.99,
+      "to": 135.35,
+      "sid": 34,
+      "location": 2,
+      "content": "去年输掉比赛一瞬间",
+      "music": 0.0
+    },
+    {
+      "from": 135.35,
+      "to": 138.63,
+      "sid": 35,
+      "location": 2,
+      "content": "我觉得LPL冠军队伍我远远不够",
+      "music": 0.0
+    },
+    {
+      "from": 141.72,
+      "to": 144.88,
+      "sid": 36,
+      "location": 2,
+      "content": "就我还需要一次世界舞台证明自己",
+      "music": 0.0
+    },
+    {
+      "from": 147.62,
+      "to": 148.94,
+      "sid": 37,
+      "location": 2,
+      "content": "我赢得过LPL",
+      "music": 0.0
+    },
+    {
+      "from": 150.66,
+      "to": 152.84,
+      "sid": 38,
+      "location": 2,
+      "content": "赢得过MSI",
+      "music": 0.0
+    },
+    {
+      "from": 154.48,
+      "to": 159.04,
+      "sid": 39,
+      "location": 2,
+      "content": "但现在我只想在世界赛上证明自己是最强中的",
+      "music": 0.0
+    },
+    {
+      "from": 161.68,
+      "to": 163.44,
+      "sid": 40,
+      "location": 2,
+      "content": "Now night has been exactly",
+      "music": 0.6181817619834954
+    },
+    {
+      "from": 163.44,
+      "to": 166.08,
+      "sid": 41,
+      "location": 2,
+      "content": "Where he wants them going one versus two",
+      "music": 0.7909090549586774
+    },
+    {
+      "from": 166.08,
+      "to": 170.28,
+      "sid": 42,
+      "location": 2,
+      "content": "And he likes those odds stand in my mind",
+      "music": 0.528168995487016
+    },
+    {
+      "from": 170.34,
+      "to": 171.86,
+      "sid": 43,
+      "location": 2,
+      "content": "♪ No problem ♪",
+      "music": 0.9999999137931108
+    },
+    {
+      "from": 171.86,
+      "to": 174.64,
+      "sid": 44,
+      "location": 2,
+      "content": "Chris clashes in the more paranoia on the back of the shock",
+      "music": 0.021582733036583143
+    },
+    {
+      "from": 174.64,
+      "to": 177.52,
+      "sid": 45,
+      "location": 2,
+      "content": "Wave is absolutely ny wo win",
+      "music": 0.3644859642763549
+    },
+    {
+      "from": 177.52,
+      "to": 181.519,
+      "sid": 46,
+      "location": 2,
+      "content": "the fight跟BLG其实交手过这么多次的话",
+      "music": 0.0
+    },
+    {
+      "from": 181.519,
+      "to": 184.279,
+      "sid": 47,
+      "location": 2,
+      "content": "其实我们对于如何应对他们",
+      "music": 0.0
+    },
+    {
+      "from": 184.279,
+      "to": 187.07,
+      "sid": 48,
+      "location": 2,
+      "content": "其实还是有自己的一些想法的",
+      "music": 0.0
+    },
+    {
+      "from": 187.39,
+      "to": 190.46,
+      "sid": 49,
+      "location": 2,
+      "content": "我认为我们这次面对we g",
+      "music": 0.0
+    },
+    {
+      "from": 192.24,
+      "to": 194.68,
+      "sid": 50,
+      "location": 2,
+      "content": "送他们一个九比零",
+      "music": 0.0
+    },
+    {
+      "from": 202.42,
+      "to": 204.38,
+      "sid": 51,
+      "location": 2,
+      "content": "今年我们击败了你们很多次",
+      "music": 0.0
+    },
+    {
+      "from": 206.34,
+      "to": 208.14,
+      "sid": 52,
+      "location": 2,
+      "content": "这次也不会例外",
+      "music": 0.0
+    },
+    {
+      "from": 210.64,
+      "to": 213.68,
+      "sid": 53,
+      "location": 2,
+      "content": "虽然你们在LPL击败了我们无数次",
+      "music": 0.0
+    },
+    {
+      "from": 214.86,
+      "to": 217.1,
+      "sid": 54,
+      "location": 2,
+      "content": "但是最重要的胜利会属于我们",
+      "music": 0.0
+    },
+    {
+      "from": 217.1,
+      "to": 219.38,
+      "sid": 55,
+      "location": 2,
+      "content": "I'm still here",
+      "music": 0.0
+    },
+    {
+      "from": 221.88,
+      "to": 225.269,
+      "sid": 56,
+      "location": 2,
+      "content": "It is the key to pottle is proud diai",
+      "music": 0.0
+    },
+    {
+      "from": 225.749,
+      "to": 229.369,
+      "sid": 57,
+      "location": 2,
+      "content": "Through this sound with concerly to his spotira",
+      "music": 0.0
+    },
+    {
+      "from": 229.369,
+      "to": 233.629,
+      "sid": 58,
+      "location": 2,
+      "content": "He takes out by fhd sakes again",
+      "music": 0.1710526259522107
+    },
+    {
+      "from": 235.24,
+      "to": 238.28,
+      "sid": 59,
+      "location": 2,
+      "content": "我和冰选手都倒在过世界赛决赛的舞台上",
+      "music": 0.0
+    },
+    {
+      "from": 239.28,
+      "to": 242.96,
+      "sid": 60,
+      "location": 2,
+      "content": "所以不管这一次我们谁进入到总决赛",
+      "music": 0.0
+    },
+    {
+      "from": 244.4,
+      "to": 247.76,
+      "sid": 61,
+      "location": 2,
+      "content": "都要让LPL的欢呼声响彻伦敦",
+      "music": 0.0
+    },
+    {
+      "from": 253.18,
+      "to": 254.82,
+      "sid": 62,
+      "location": 2,
+      "content": "I'm sly keep the pose",
+      "music": 0.0
+    },
+    {
+      "from": 254.82,
+      "to": 259.2,
+      "sid": 63,
+      "location": 2,
+      "content": "We roon rive is so loon zero",
+      "music": 0.0
+    }
+  ]
+}

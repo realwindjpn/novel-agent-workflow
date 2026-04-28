@@ -1,0 +1,5860 @@
+{
+  "font_size": 0.4,
+  "font_color": "#FFFFFF",
+  "background_alpha": 0.5,
+  "background_color": "#9C27B0",
+  "Stroke": "none",
+  "type": "AIsubtitle",
+  "lang": "zh",
+  "version": "v1.7.0.4",
+  "body": [
+    {
+      "from": 0.62,
+      "to": 1.1,
+      "sid": 1,
+      "location": 2,
+      "content": "哈喽大家好",
+      "music": 0.0
+    },
+    {
+      "from": 1.1,
+      "to": 2.08,
+      "sid": 2,
+      "location": 2,
+      "content": "我是刘三少",
+      "music": 0.0
+    },
+    {
+      "from": 2.08,
+      "to": 3.62,
+      "sid": 3,
+      "location": 2,
+      "content": "四强快开打了",
+      "music": 0.0
+    },
+    {
+      "from": 3.62,
+      "to": 6.38,
+      "sid": 4,
+      "location": 2,
+      "content": "那这期呢还是照例简单回顾回顾八强吃吃瓜",
+      "music": 0.0
+    },
+    {
+      "from": 6.38,
+      "to": 8.799,
+      "sid": 5,
+      "location": 2,
+      "content": "那第一场WBG和LNG的内战呢",
+      "music": 0.0
+    },
+    {
+      "from": 8.799,
+      "to": 10.039,
+      "sid": 6,
+      "location": 2,
+      "content": "其实也没啥好说的",
+      "music": 0.0
+    },
+    {
+      "from": 10.039,
+      "to": 12.54,
+      "sid": 7,
+      "location": 2,
+      "content": "BP方面呢更像是WBG玩的是现代",
+      "music": 0.0
+    },
+    {
+      "from": 12.54,
+      "to": 14.62,
+      "sid": 8,
+      "location": 2,
+      "content": "我LNG玩的是怀旧服啊",
+      "music": 0.0
+    },
+    {
+      "from": 14.62,
+      "to": 15.98,
+      "sid": 9,
+      "location": 2,
+      "content": "Scout永恩也够抽象的",
+      "music": 0.0
+    },
+    {
+      "from": 15.98,
+      "to": 17.5,
+      "sid": 10,
+      "location": 2,
+      "content": "不会跟gala私下立了个什么",
+      "music": 0.0
+    },
+    {
+      "from": 17.5,
+      "to": 18.759,
+      "sid": 11,
+      "location": 2,
+      "content": "打进八强就免息的协议",
+      "music": 0.0
+    },
+    {
+      "from": 18.759,
+      "to": 20.479,
+      "sid": 12,
+      "location": 2,
+      "content": "1BP呢也是一坨感情",
+      "music": 0.0
+    },
+    {
+      "from": 20.479,
+      "to": 21.659,
+      "sid": 13,
+      "location": 2,
+      "content": "那么长的休赛期",
+      "music": 0.0
+    },
+    {
+      "from": 21.659,
+      "to": 23.98,
+      "sid": 14,
+      "location": 2,
+      "content": "LNG好像全队都在纯休息",
+      "music": 0.0
+    },
+    {
+      "from": 23.98,
+      "to": 25.58,
+      "sid": 15,
+      "location": 2,
+      "content": "那WBG也有话说啊",
+      "music": 0.0
+    },
+    {
+      "from": 25.58,
+      "to": 27.18,
+      "sid": 16,
+      "location": 2,
+      "content": "你拿什么研究我人生轮吗",
+      "music": 0.0
+    },
+    {
+      "from": 27.18,
+      "to": 28.06,
+      "sid": 17,
+      "location": 2,
+      "content": "啊错了",
+      "music": 0.0
+    },
+    {
+      "from": 28.06,
+      "to": 29.02,
+      "sid": 18,
+      "location": 2,
+      "content": "早进化喽",
+      "music": 0.0
+    },
+    {
+      "from": 29.02,
+      "to": 29.86,
+      "sid": 19,
+      "location": 2,
+      "content": "BLG打韩华",
+      "music": 0.0
+    },
+    {
+      "from": 29.86,
+      "to": 32.54,
+      "sid": 20,
+      "location": 2,
+      "content": "这场的赛前大伙对BLG的状态还是比较担心的",
+      "music": 0.0
+    },
+    {
+      "from": 32.54,
+      "to": 34.94,
+      "sid": 21,
+      "location": 2,
+      "content": "但没想到选手倒还挺放松啊",
+      "music": 0.0
+    },
+    {
+      "from": 36.84,
+      "to": 39.76,
+      "sid": 22,
+      "location": 2,
+      "content": "Battle combi e sports and him being here with this team",
+      "music": 0.0
+    },
+    {
+      "from": 39.76,
+      "to": 41.04,
+      "sid": 23,
+      "location": 2,
+      "content": "I think is very significant",
+      "music": 0.0
+    },
+    {
+      "from": 41.04,
+      "to": 41.2,
+      "sid": 24,
+      "location": 2,
+      "content": "Yeah",
+      "music": 0.0
+    },
+    {
+      "from": 41.2,
+      "to": 42.42,
+      "sid": 25,
+      "location": 2,
+      "content": "And alk emily",
+      "music": 0.0
+    },
+    {
+      "from": 42.42,
+      "to": 43.519,
+      "sid": 26,
+      "location": 2,
+      "content": "Would you have funk it",
+      "music": 0.0
+    },
+    {
+      "from": 43.519,
+      "to": 43.999,
+      "sid": 27,
+      "location": 2,
+      "content": "No",
+      "music": 0.0
+    },
+    {
+      "from": 43.999,
+      "to": 46.359,
+      "sid": 28,
+      "location": 2,
+      "content": "I wouldn't have if you go back uas",
+      "music": 0.0
+    },
+    {
+      "from": 46.359,
+      "to": 46.819,
+      "sid": 29,
+      "location": 2,
+      "content": "I",
+      "music": 0.0
+    },
+    {
+      "from": 46.819,
+      "to": 49.239,
+      "sid": 30,
+      "location": 2,
+      "content": "第一场的BLG真是被韩华打的没啥脾气",
+      "music": 0.0
+    },
+    {
+      "from": 49.239,
+      "to": 51.56,
+      "sid": 31,
+      "location": 2,
+      "content": "但多兰真是是LPL的好兄弟啊",
+      "music": 0.0
+    },
+    {
+      "from": 51.56,
+      "to": 53.32,
+      "sid": 32,
+      "location": 2,
+      "content": "多次化身BLG第六人",
+      "music": 0.0
+    },
+    {
+      "from": 53.32,
+      "to": 54.58,
+      "sid": 33,
+      "location": 2,
+      "content": "将韩华置于水火",
+      "music": 0.0
+    },
+    {
+      "from": 54.58,
+      "to": 55.1,
+      "sid": 34,
+      "location": 2,
+      "content": "玩武器",
+      "music": 0.0
+    },
+    {
+      "from": 55.1,
+      "to": 57.18,
+      "sid": 35,
+      "location": 2,
+      "content": "打不过纳尔玩纳尔打不过武器",
+      "music": 0.0
+    },
+    {
+      "from": 57.18,
+      "to": 58.4,
+      "sid": 36,
+      "location": 2,
+      "content": "满怒不放技能",
+      "music": 0.0
+    },
+    {
+      "from": 58.4,
+      "to": 60.34,
+      "sid": 37,
+      "location": 2,
+      "content": "小纳尔当大纳尔玩大纳尔",
+      "music": 0.0
+    },
+    {
+      "from": 60.34,
+      "to": 60.98,
+      "sid": 38,
+      "location": 2,
+      "content": "当小纳尔玩",
+      "music": 0.0
+    },
+    {
+      "from": 60.98,
+      "to": 62.3,
+      "sid": 39,
+      "location": 2,
+      "content": "玩多兰还是太稳定了",
+      "music": 0.0
+    },
+    {
+      "from": 62.3,
+      "to": 63.14,
+      "sid": 40,
+      "location": 2,
+      "content": "但除了他以外",
+      "music": 0.0
+    },
+    {
+      "from": 63.14,
+      "to": 64.6,
+      "sid": 41,
+      "location": 2,
+      "content": "其余人全部操作拉满",
+      "music": 0.0
+    },
+    {
+      "from": 64.6,
+      "to": 66.82,
+      "sid": 42,
+      "location": 2,
+      "content": "尤其是第四场的双英雄登场",
+      "music": 0.0
+    },
+    {
+      "from": 66.82,
+      "to": 68.26,
+      "sid": 43,
+      "location": 2,
+      "content": "看的人真是头皮发麻",
+      "music": 0.0
+    },
+    {
+      "from": 68.26,
+      "to": 69.46,
+      "sid": 44,
+      "location": 2,
+      "content": "堪称世界名画",
+      "music": 0.0
+    },
+    {
+      "from": 69.46,
+      "to": 72.3,
+      "sid": 45,
+      "location": 2,
+      "content": "当然后面BLG的四打五以及elk的卡莎绝境",
+      "music": 0.0
+    },
+    {
+      "from": 72.3,
+      "to": 73.32,
+      "sid": 46,
+      "location": 2,
+      "content": "一打三都很带劲",
+      "music": 0.0
+    },
+    {
+      "from": 73.32,
+      "to": 75.58,
+      "sid": 47,
+      "location": 2,
+      "content": "总之这场比赛真的属于让人忍不住",
+      "music": 0.0
+    },
+    {
+      "from": 75.58,
+      "to": 77.18,
+      "sid": 48,
+      "location": 2,
+      "content": "一直回味的经典战役",
+      "music": 0.0
+    },
+    {
+      "from": 77.18,
+      "to": 79.22,
+      "sid": 49,
+      "location": 2,
+      "content": "韩国解说看到BLG如此强悍的表现",
+      "music": 0.0
+    },
+    {
+      "from": 79.22,
+      "to": 81.24,
+      "sid": 50,
+      "location": 2,
+      "content": "也在感叹的噩梦回来了",
+      "music": 0.0
+    },
+    {
+      "from": 81.24,
+      "to": 83.72,
+      "sid": 51,
+      "location": 2,
+      "content": "如果他们能在后面继续保持这个镜头的话",
+      "music": 0.0
+    },
+    {
+      "from": 83.72,
+      "to": 84.92,
+      "sid": 52,
+      "location": 2,
+      "content": "那说不定还真能夺冠",
+      "music": 0.0
+    },
+    {
+      "from": 84.92,
+      "to": 86.44,
+      "sid": 53,
+      "location": 2,
+      "content": "那滔博对阵T1啊",
+      "music": 0.0
+    },
+    {
+      "from": 86.44,
+      "to": 87.52,
+      "sid": 54,
+      "location": 2,
+      "content": "这场我多说一说啊",
+      "music": 0.0
+    },
+    {
+      "from": 87.52,
+      "to": 90.12,
+      "sid": 55,
+      "location": 2,
+      "content": "如果说前一天的比赛是大战一宿之后的",
+      "music": 0.0
+    },
+    {
+      "from": 90.12,
+      "to": 90.76,
+      "sid": 56,
+      "location": 2,
+      "content": "酣畅淋漓",
+      "music": 0.0
+    },
+    {
+      "from": 90.76,
+      "to": 92.36,
+      "sid": 57,
+      "location": 2,
+      "content": "那么这天滔博打T1的比赛",
+      "music": 0.0
+    },
+    {
+      "from": 92.36,
+      "to": 94.14,
+      "sid": 58,
+      "location": 2,
+      "content": "那就是被束缚住的搜查官啊",
+      "music": 0.0
+    },
+    {
+      "from": 94.14,
+      "to": 94.8,
+      "sid": 59,
+      "location": 2,
+      "content": "纯被吊打",
+      "music": 0.0
+    },
+    {
+      "from": 94.8,
+      "to": 96.44,
+      "sid": 60,
+      "location": 2,
+      "content": "这三把谁的问题最大呢",
+      "music": 0.0
+    },
+    {
+      "from": 96.44,
+      "to": 97.56,
+      "sid": 61,
+      "location": 2,
+      "content": "嗯我的问题最大",
+      "music": 0.0
+    },
+    {
+      "from": 97.56,
+      "to": 100.4,
+      "sid": 62,
+      "location": 2,
+      "content": "我就不该抛弃女主播去看什么滔博打T1啊",
+      "music": 0.0
+    },
+    {
+      "from": 100.4,
+      "to": 102.02,
+      "sid": 63,
+      "location": 2,
+      "content": "但从结果来说呢",
+      "music": 0.0
+    },
+    {
+      "from": 102.02,
+      "to": 104.9,
+      "sid": 64,
+      "location": 2,
+      "content": "呃滔博的发挥跟女主播的摇晃一样啊",
+      "music": 0.0
+    },
+    {
+      "from": 104.9,
+      "to": 105.46,
+      "sid": 65,
+      "location": 2,
+      "content": "都做到了",
+      "music": 0.0
+    },
+    {
+      "from": 105.46,
+      "to": 106.42,
+      "sid": 66,
+      "location": 2,
+      "content": "让我呼吸急促",
+      "music": 0.0
+    },
+    {
+      "from": 106.42,
+      "to": 107.08,
+      "sid": 67,
+      "location": 2,
+      "content": "脸红心跳",
+      "music": 0.0
+    },
+    {
+      "from": 107.08,
+      "to": 108.64,
+      "sid": 68,
+      "location": 2,
+      "content": "区别就是一个想让我打别人",
+      "music": 0.0
+    },
+    {
+      "from": 108.64,
+      "to": 109.72,
+      "sid": 69,
+      "location": 2,
+      "content": "一个想让我打自己",
+      "music": 0.0
+    },
+    {
+      "from": 109.72,
+      "to": 111.36,
+      "sid": 70,
+      "location": 2,
+      "content": "作为一个年近30观赛",
+      "music": 0.0
+    },
+    {
+      "from": 111.36,
+      "to": 113.06,
+      "sid": 71,
+      "location": 2,
+      "content": "今年十去年的中情人呢",
+      "music": 0.0
+    },
+    {
+      "from": 113.06,
+      "to": 114.18,
+      "sid": 72,
+      "location": 2,
+      "content": "自以为已经可以做到",
+      "music": 0.0
+    },
+    {
+      "from": 114.18,
+      "to": 116.1,
+      "sid": 73,
+      "location": 2,
+      "content": "看任何比赛都能波澜不惊啊",
+      "music": 0.0
+    },
+    {
+      "from": 116.1,
+      "to": 117.2,
+      "sid": 74,
+      "location": 2,
+      "content": "但滔博对不起",
+      "music": 0.0
+    },
+    {
+      "from": 117.2,
+      "to": 117.72,
+      "sid": 75,
+      "location": 2,
+      "content": "我错了",
+      "music": 0.0
+    },
+    {
+      "from": 117.72,
+      "to": 119.56,
+      "sid": 76,
+      "location": 2,
+      "content": "你的发挥成功让我红着脸躲避",
+      "music": 0.0
+    },
+    {
+      "from": 119.56,
+      "to": 121.96,
+      "sid": 77,
+      "location": 2,
+      "content": "第一把被T1牵着绳子溜了一整局",
+      "music": 0.0
+    },
+    {
+      "from": 121.96,
+      "to": 123.08,
+      "sid": 78,
+      "location": 2,
+      "content": "最后一脚给踹死",
+      "music": 0.0
+    },
+    {
+      "from": 123.08,
+      "to": 125.78,
+      "sid": 79,
+      "location": 2,
+      "content": "第二把的BP虽然被当天解说的王多多录屏",
+      "music": 0.0
+    },
+    {
+      "from": 125.78,
+      "to": 126.84,
+      "sid": 80,
+      "location": 2,
+      "content": "愚蠢的阵容",
+      "music": 0.0
+    },
+    {
+      "from": 126.84,
+      "to": 129.98,
+      "sid": 81,
+      "location": 2,
+      "content": "无AOE加无远距离开团加无机动性啊",
+      "music": 0.0
+    },
+    {
+      "from": 129.98,
+      "to": 131.98,
+      "sid": 82,
+      "location": 2,
+      "content": "但我觉得瑞平的还是太温和了",
+      "music": 0.0
+    },
+    {
+      "from": 131.98,
+      "to": 133.14,
+      "sid": 83,
+      "location": 2,
+      "content": "杠15诶",
+      "music": 0.0
+    },
+    {
+      "from": 133.14,
+      "to": 134.98,
+      "sid": 84,
+      "location": 2,
+      "content": "朋友一个人头都拿不到",
+      "music": 0.0
+    },
+    {
+      "from": 134.98,
+      "to": 135.34,
+      "sid": 85,
+      "location": 2,
+      "content": "先不谈",
+      "music": 0.0
+    },
+    {
+      "from": 135.34,
+      "to": 137.42,
+      "sid": 86,
+      "location": 2,
+      "content": "你这15是不是有点过于多了",
+      "music": 0.0
+    },
+    {
+      "from": 137.42,
+      "to": 138.66,
+      "sid": 87,
+      "location": 2,
+      "content": "中路推塔放先锋",
+      "music": 0.0
+    },
+    {
+      "from": 138.66,
+      "to": 141.42,
+      "sid": 88,
+      "location": 2,
+      "content": "结果塔还没撞AD坐上了这个加里奥的失误",
+      "music": 0.0
+    },
+    {
+      "from": 141.42,
+      "to": 142.5,
+      "sid": 89,
+      "location": 2,
+      "content": "后边再统一说啊",
+      "music": 0.0
+    },
+    {
+      "from": 142.5,
+      "to": 144.7,
+      "sid": 90,
+      "location": 2,
+      "content": "这把哥几个的战真的太恐怖了",
+      "music": 0.0
+    },
+    {
+      "from": 144.7,
+      "to": 147.42,
+      "sid": 91,
+      "location": 2,
+      "content": "030030020030040哇",
+      "music": 0.0
+    },
+    {
+      "from": 147.42,
+      "to": 150.0,
+      "sid": 92,
+      "location": 2,
+      "content": "这这这是八强赛生死局",
+      "music": 0.0
+    },
+    {
+      "from": 150.0,
+      "to": 152.1,
+      "sid": 93,
+      "location": 2,
+      "content": "小奶油又要约一个即将满怒的纳尔",
+      "music": 0.0
+    },
+    {
+      "from": 152.1,
+      "to": 152.94,
+      "sid": 94,
+      "location": 2,
+      "content": "我是看不懂的",
+      "music": 0.0
+    },
+    {
+      "from": 152.94,
+      "to": 153.38,
+      "sid": 95,
+      "location": 2,
+      "content": "Jackeylove",
+      "music": 0.0
+    },
+    {
+      "from": 153.38,
+      "to": 154.42,
+      "sid": 96,
+      "location": 2,
+      "content": "冰墩儿待的好好的",
+      "music": 0.0
+    },
+    {
+      "from": 154.42,
+      "to": 156.04,
+      "sid": 97,
+      "location": 2,
+      "content": "结果在茫茫海里露头",
+      "music": 0.0
+    },
+    {
+      "from": 156.04,
+      "to": 158.1,
+      "sid": 98,
+      "location": 2,
+      "content": "被KIAQRE配合古马收走",
+      "music": 0.0
+    },
+    {
+      "from": 158.1,
+      "to": 159.3,
+      "sid": 99,
+      "location": 2,
+      "content": "我也是看不懂的",
+      "music": 0.0
+    },
+    {
+      "from": 159.3,
+      "to": 160.7,
+      "sid": 100,
+      "location": 2,
+      "content": "369耍个金字诀",
+      "music": 0.0
+    },
+    {
+      "from": 160.7,
+      "to": 162.06,
+      "sid": 101,
+      "location": 2,
+      "content": "凯南我是更看不懂的",
+      "music": 0.0
+    },
+    {
+      "from": 162.06,
+      "to": 163.48,
+      "sid": 102,
+      "location": 2,
+      "content": "真凯南当司空震呢",
+      "music": 0.0
+    },
+    {
+      "from": 163.48,
+      "to": 165.72,
+      "sid": 103,
+      "location": 2,
+      "content": "我们回顾一下去年369打T1的表现啊",
+      "music": 0.0
+    },
+    {
+      "from": 165.72,
+      "to": 166.84,
+      "sid": 104,
+      "location": 2,
+      "content": "第一把开局3分钟",
+      "music": 0.0
+    },
+    {
+      "from": 166.84,
+      "to": 167.8,
+      "sid": 105,
+      "location": 2,
+      "content": "兰博强压剑魔",
+      "music": 0.0
+    },
+    {
+      "from": 167.8,
+      "to": 168.56,
+      "sid": 106,
+      "location": 2,
+      "content": "被打野逮到",
+      "music": 0.0
+    },
+    {
+      "from": 168.56,
+      "to": 169.34,
+      "sid": 107,
+      "location": 2,
+      "content": "送一个六分",
+      "music": 0.0
+    },
+    {
+      "from": 169.34,
+      "to": 169.74,
+      "sid": 108,
+      "location": 2,
+      "content": "用不到",
+      "music": 0.0
+    },
+    {
+      "from": 169.74,
+      "to": 172.62,
+      "sid": 109,
+      "location": 2,
+      "content": "在有闪的情况下被宙斯满血抗塔单杀",
+      "music": 0.0
+    },
+    {
+      "from": 172.62,
+      "to": 174.08,
+      "sid": 110,
+      "location": 2,
+      "content": "这个闪啊到死都不按",
+      "music": 0.0
+    },
+    {
+      "from": 174.08,
+      "to": 176.72,
+      "sid": 111,
+      "location": 2,
+      "content": "15分钟补刀数61大招放的什么水平",
+      "music": 0.0
+    },
+    {
+      "from": 176.72,
+      "to": 177.36,
+      "sid": 112,
+      "location": 2,
+      "content": "我就不提了",
+      "music": 0.0
+    },
+    {
+      "from": 177.36,
+      "to": 178.36,
+      "sid": 113,
+      "location": 2,
+      "content": "第三把8分钟",
+      "music": 0.0
+    },
+    {
+      "from": 178.36,
+      "to": 181.46,
+      "sid": 114,
+      "location": 2,
+      "content": "八级先手开大的鳄鱼被七级的宙斯吓出闪现",
+      "music": 0.0
+    },
+    {
+      "from": 181.46,
+      "to": 183.52,
+      "sid": 115,
+      "location": 2,
+      "content": "直接导致京东后续的先锋团烂掉",
+      "music": 0.0
+    },
+    {
+      "from": 183.52,
+      "to": 186.44,
+      "sid": 116,
+      "location": 2,
+      "content": "龙坑开大的鳄鱼边缘ob在最好的入场时机",
+      "music": 0.0
+    },
+    {
+      "from": 186.44,
+      "to": 186.92,
+      "sid": 117,
+      "location": 2,
+      "content": "不入场",
+      "music": 0.0
+    },
+    {
+      "from": 186.92,
+      "to": 188.34,
+      "sid": 118,
+      "location": 2,
+      "content": "硬生生给自己大招熬没",
+      "music": 0.0
+    },
+    {
+      "from": 188.34,
+      "to": 189.74,
+      "sid": 119,
+      "location": 2,
+      "content": "今年又是这死出",
+      "music": 0.0
+    },
+    {
+      "from": 189.74,
+      "to": 191.38,
+      "sid": 120,
+      "location": 2,
+      "content": "兰博被宙斯正反手教学",
+      "music": 0.0
+    },
+    {
+      "from": 191.38,
+      "to": 195.18,
+      "sid": 121,
+      "location": 2,
+      "content": "拿加里奥闪现秒W再接E被宙斯一个闪现化解",
+      "music": 0.0
+    },
+    {
+      "from": 195.18,
+      "to": 197.06,
+      "sid": 122,
+      "location": 2,
+      "content": "哎这个连招罗德么先不谈你",
+      "music": 0.0
+    },
+    {
+      "from": 197.06,
+      "to": 198.38,
+      "sid": 123,
+      "location": 2,
+      "content": "你这控制最小化的一套",
+      "music": 0.0
+    },
+    {
+      "from": 198.38,
+      "to": 200.1,
+      "sid": 124,
+      "location": 2,
+      "content": "是要配合哪个队友秒宙斯呢",
+      "music": 0.0
+    },
+    {
+      "from": 200.1,
+      "to": 203.06,
+      "sid": 125,
+      "location": 2,
+      "content": "佛耶戈远在千里的塞拉斯大龙团被赵信吓出",
+      "music": 0.0
+    },
+    {
+      "from": 203.06,
+      "to": 205.06,
+      "sid": 126,
+      "location": 2,
+      "content": "W强势嘲讽了一波空气",
+      "music": 0.0
+    },
+    {
+      "from": 205.06,
+      "to": 206.86,
+      "sid": 127,
+      "location": 2,
+      "content": "还有大半管血的情况下",
+      "music": 0.0
+    },
+    {
+      "from": 206.86,
+      "to": 208.04,
+      "sid": 128,
+      "location": 2,
+      "content": "莫名其妙开个金身",
+      "music": 0.0
+    },
+    {
+      "from": 208.04,
+      "to": 209.32,
+      "sid": 129,
+      "location": 2,
+      "content": "然后被狐狸压起身",
+      "music": 0.0
+    },
+    {
+      "from": 209.32,
+      "to": 211.08,
+      "sid": 130,
+      "location": 2,
+      "content": "魅惑在有大有闪的情况下",
+      "music": 0.0
+    },
+    {
+      "from": 211.08,
+      "to": 212.2,
+      "sid": 131,
+      "location": 2,
+      "content": "做到了贡献最小化",
+      "music": 0.0
+    },
+    {
+      "from": 212.2,
+      "to": 214.08,
+      "sid": 132,
+      "location": 2,
+      "content": "很喜欢传奇辅助wolf的评价",
+      "music": 0.0
+    },
+    {
+      "from": 215.2,
+      "to": 216.459,
+      "sid": 133,
+      "location": 2,
+      "content": "还you play it",
+      "music": 0.0
+    },
+    {
+      "from": 216.459,
+      "to": 219.779,
+      "sid": 134,
+      "location": 2,
+      "content": "他家超话就会给你一顿",
+      "music": 0.0
+    },
+    {
+      "from": 219.779,
+      "to": 220.859,
+      "sid": 135,
+      "location": 2,
+      "content": "打不了就没死啊",
+      "music": 0.0
+    },
+    {
+      "from": 220.859,
+      "to": 223.36,
+      "sid": 136,
+      "location": 2,
+      "content": "我去找同样的没事",
+      "music": 0.0
+    },
+    {
+      "from": 223.36,
+      "to": 225.84,
+      "sid": 137,
+      "location": 2,
+      "content": "那个五啊",
+      "music": 0.0
+    },
+    {
+      "from": 225.84,
+      "to": 227.32,
+      "sid": 138,
+      "location": 2,
+      "content": "你也不要紧张",
+      "music": 0.0
+    },
+    {
+      "from": 227.32,
+      "to": 232.81,
+      "sid": 139,
+      "location": 2,
+      "content": "从不把你的一个农民的能想起pro",
+      "music": 0.0
+    },
+    {
+      "from": 232.81,
+      "to": 234.27,
+      "sid": 140,
+      "location": 2,
+      "content": "给你8分钟",
+      "music": 0.0
+    },
+    {
+      "from": 234.27,
+      "to": 236.11,
+      "sid": 141,
+      "location": 2,
+      "content": "可能还六个",
+      "music": 0.0
+    },
+    {
+      "from": 236.11,
+      "to": 237.29,
+      "sid": 142,
+      "location": 2,
+      "content": "我有菜啊",
+      "music": 0.0
+    },
+    {
+      "from": 243.13,
+      "to": 244.53,
+      "sid": 143,
+      "location": 2,
+      "content": "齐军队对面可以吗",
+      "music": 0.0
+    },
+    {
+      "from": 244.53,
+      "to": 245.57,
+      "sid": 144,
+      "location": 2,
+      "content": "哈哈哎呀",
+      "music": 0.0
+    },
+    {
+      "from": 245.57,
+      "to": 246.93,
+      "sid": 145,
+      "location": 2,
+      "content": "草最后一把了",
+      "music": 0.0
+    },
+    {
+      "from": 246.93,
+      "to": 247.65,
+      "sid": 146,
+      "location": 2,
+      "content": "AD凯南啊",
+      "music": 0.0
+    },
+    {
+      "from": 247.65,
+      "to": 249.07,
+      "sid": 147,
+      "location": 2,
+      "content": "不谈奇招是真奇招",
+      "music": 0.0
+    },
+    {
+      "from": 249.07,
+      "to": 250.1,
+      "sid": 148,
+      "location": 2,
+      "content": "用也是真没用",
+      "music": 0.0
+    },
+    {
+      "from": 250.1,
+      "to": 251.42,
+      "sid": 149,
+      "location": 2,
+      "content": "我滴个六九哇",
+      "music": 0.0
+    },
+    {
+      "from": 251.42,
+      "to": 254.1,
+      "sid": 150,
+      "location": 2,
+      "content": "你都看到波比开W直直勾勾的朝你走过来了",
+      "music": 0.0
+    },
+    {
+      "from": 254.1,
+      "to": 256.6,
+      "sid": 151,
+      "location": 2,
+      "content": "你怎么就死死不交闪现拉开呀",
+      "music": 0.0
+    },
+    {
+      "from": 256.6,
+      "to": 257.32,
+      "sid": 152,
+      "location": 2,
+      "content": "我滴哥",
+      "music": 0.0
+    },
+    {
+      "from": 257.32,
+      "to": 258.6,
+      "sid": 153,
+      "location": 2,
+      "content": "你出这AD的装备",
+      "music": 0.0
+    },
+    {
+      "from": 258.6,
+      "to": 259.779,
+      "sid": 154,
+      "location": 2,
+      "content": "打算干AP的活",
+      "music": 0.0
+    },
+    {
+      "from": 259.779,
+      "to": 261.139,
+      "sid": 155,
+      "location": 2,
+      "content": "类似的场面还有很多啊",
+      "music": 0.0
+    },
+    {
+      "from": 261.139,
+      "to": 262.179,
+      "sid": 156,
+      "location": 2,
+      "content": "当然除了369之外",
+      "music": 0.0
+    },
+    {
+      "from": 262.179,
+      "to": 262.859,
+      "sid": 157,
+      "location": 2,
+      "content": "上到教练",
+      "music": 0.0
+    },
+    {
+      "from": 262.859,
+      "to": 264.299,
+      "sid": 158,
+      "location": 2,
+      "content": "下到选手也都干了啊",
+      "music": 0.0
+    },
+    {
+      "from": 264.299,
+      "to": 265.419,
+      "sid": 159,
+      "location": 2,
+      "content": "更让我难以理解的是",
+      "music": 0.0
+    },
+    {
+      "from": 265.419,
+      "to": 267.699,
+      "sid": 160,
+      "location": 2,
+      "content": "MEIKO能在赛后说出我们对对手的信息",
+      "music": 0.0
+    },
+    {
+      "from": 267.699,
+      "to": 269.04,
+      "sid": 161,
+      "location": 2,
+      "content": "不了解这种话的喂",
+      "music": 0.0
+    },
+    {
+      "from": 269.04,
+      "to": 270.58,
+      "sid": 162,
+      "location": 2,
+      "content": "休赛期那几天你们干嘛去了",
+      "music": 0.0
+    },
+    {
+      "from": 270.58,
+      "to": 272.16,
+      "sid": 163,
+      "location": 2,
+      "content": "你们也是up主做视频去了",
+      "music": 0.0
+    },
+    {
+      "from": 272.16,
+      "to": 273.3,
+      "sid": 164,
+      "location": 2,
+      "content": "这不是瑞士轮",
+      "music": 0.0
+    },
+    {
+      "from": 273.3,
+      "to": 274.16,
+      "sid": 165,
+      "location": 2,
+      "content": "对手轮着换",
+      "music": 0.0
+    },
+    {
+      "from": 274.16,
+      "to": 275.2,
+      "sid": 166,
+      "location": 2,
+      "content": "这是八强啊",
+      "music": 0.0
+    },
+    {
+      "from": 275.2,
+      "to": 276.68,
+      "sid": 167,
+      "location": 2,
+      "content": "大哥你要队内全是新人",
+      "music": 0.0
+    },
+    {
+      "from": 276.68,
+      "to": 277.32,
+      "sid": 168,
+      "location": 2,
+      "content": "我还能理解",
+      "music": 0.0
+    },
+    {
+      "from": 277.32,
+      "to": 279.88,
+      "sid": 169,
+      "location": 2,
+      "content": "但369小傲天JACKEYLOVEMEIKO",
+      "music": 0.0
+    },
+    {
+      "from": 279.88,
+      "to": 281.64,
+      "sid": 170,
+      "location": 2,
+      "content": "对T1信息不了解哇",
+      "music": 0.0
+    },
+    {
+      "from": 281.64,
+      "to": 283.48,
+      "sid": 171,
+      "location": 2,
+      "content": "那那那那T1真是变化多端",
+      "music": 0.0
+    },
+    {
+      "from": 283.48,
+      "to": 285.48,
+      "sid": 172,
+      "location": 2,
+      "content": "这么多年了都没让你们摸到一点门道啊",
+      "music": 0.0
+    },
+    {
+      "from": 285.48,
+      "to": 286.44,
+      "sid": 173,
+      "location": 2,
+      "content": "不过讲道理啊",
+      "music": 0.0
+    },
+    {
+      "from": 286.44,
+      "to": 287.8,
+      "sid": 174,
+      "location": 2,
+      "content": "每次都走的很不体面",
+      "music": 0.0
+    },
+    {
+      "from": 287.8,
+      "to": 291.1,
+      "sid": 175,
+      "location": 2,
+      "content": "那也是一种S12小组赛关键局输越南",
+      "music": 0.0
+    },
+    {
+      "from": 291.1,
+      "to": 291.98,
+      "sid": 176,
+      "location": 2,
+      "content": "成越南俘虏",
+      "music": 0.0
+    },
+    {
+      "from": 291.98,
+      "to": 293.2,
+      "sid": 177,
+      "location": 2,
+      "content": "S13没劲不谈",
+      "music": 0.0
+    },
+    {
+      "from": 293.2,
+      "to": 294.72,
+      "sid": 178,
+      "location": 2,
+      "content": "今年MSI1句万一输了",
+      "music": 0.0
+    },
+    {
+      "from": 294.72,
+      "to": 295.56,
+      "sid": 179,
+      "location": 2,
+      "content": "那就大满败吧",
+      "music": 0.0
+    },
+    {
+      "from": 295.56,
+      "to": 296.48,
+      "sid": 180,
+      "location": 2,
+      "content": "官博严厉谴责",
+      "music": 0.0
+    },
+    {
+      "from": 296.48,
+      "to": 297.88,
+      "sid": 181,
+      "location": 2,
+      "content": "结果反手还真输了",
+      "music": 0.0
+    },
+    {
+      "from": 297.88,
+      "to": 299.92,
+      "sid": 182,
+      "location": 2,
+      "content": "十四八强赛被踢完零封",
+      "music": 0.0
+    },
+    {
+      "from": 299.92,
+      "to": 301.76,
+      "sid": 183,
+      "location": 2,
+      "content": "还达成了S赛历史上第一次",
+      "music": 0.0
+    },
+    {
+      "from": 301.76,
+      "to": 305.04,
+      "sid": 184,
+      "location": 2,
+      "content": "也是目前唯一一次在八强赛出现零封的成就啊",
+      "music": 0.0
+    },
+    {
+      "from": 305.04,
+      "to": 308.78,
+      "sid": 185,
+      "location": 2,
+      "content": "合着你滔博的T1S是特恶神的意思啊",
+      "music": 0.0
+    },
+    {
+      "from": 308.78,
+      "to": 309.78,
+      "sid": 186,
+      "location": 2,
+      "content": "里头都是小馋猫",
+      "music": 0.0
+    },
+    {
+      "from": 309.78,
+      "to": 311.26,
+      "sid": 187,
+      "location": 2,
+      "content": "这好事全让你小子赶上了",
+      "music": 0.0
+    },
+    {
+      "from": 311.26,
+      "to": 312.98,
+      "sid": 188,
+      "location": 2,
+      "content": "上次滔博在S赛赢下BO5呢",
+      "music": 0.0
+    },
+    {
+      "from": 312.98,
+      "to": 315.94,
+      "sid": 189,
+      "location": 2,
+      "content": "还要追溯到1400多天前的是八强赛啊",
+      "music": 0.0
+    },
+    {
+      "from": 315.94,
+      "to": 317.56,
+      "sid": 190,
+      "location": 2,
+      "content": "让二追三击败FNATI啊",
+      "music": 0.0
+    },
+    {
+      "from": 317.56,
+      "to": 320.42,
+      "sid": 191,
+      "location": 2,
+      "content": "没错就是打进四强就算成功的那年啊",
+      "music": 0.0
+    },
+    {
+      "from": 320.42,
+      "to": 321.06,
+      "sid": 192,
+      "location": 2,
+      "content": "偶尔硬",
+      "music": 0.0
+    },
+    {
+      "from": 321.06,
+      "to": 321.76,
+      "sid": 193,
+      "location": 2,
+      "content": "那不叫硬",
+      "music": 0.0
+    },
+    {
+      "from": 321.76,
+      "to": 324.66,
+      "sid": 194,
+      "location": 2,
+      "content": "唯有常红酒才是检验硬的唯一标准",
+      "music": 0.0
+    },
+    {
+      "from": 324.66,
+      "to": 326.98,
+      "sid": 195,
+      "location": 2,
+      "content": "而滔博这支队伍屡屡在关键时刻拉垮",
+      "music": 0.0
+    },
+    {
+      "from": 326.98,
+      "to": 328.22,
+      "sid": 196,
+      "location": 2,
+      "content": "就说明了很多问题啊",
+      "music": 0.0
+    },
+    {
+      "from": 328.22,
+      "to": 329.54,
+      "sid": 197,
+      "location": 2,
+      "content": "我为为什么视频出这么晚",
+      "music": 0.0
+    },
+    {
+      "from": 329.54,
+      "to": 330.34,
+      "sid": 198,
+      "location": 2,
+      "content": "就是因为我想着",
+      "music": 0.0
+    },
+    {
+      "from": 330.34,
+      "to": 332.82,
+      "sid": 199,
+      "location": 2,
+      "content": "可能过两天我看问题的角度可能会更理智一些",
+      "music": 0.0
+    },
+    {
+      "from": 332.82,
+      "to": 335.68,
+      "sid": 200,
+      "location": 2,
+      "content": "但后来发现这三场的发挥确实无无法让人理智",
+      "music": 0.0
+    },
+    {
+      "from": 335.68,
+      "to": 337.14,
+      "sid": 201,
+      "location": 2,
+      "content": "赛训组是干嘛的",
+      "music": 0.0
+    },
+    {
+      "from": 337.14,
+      "to": 338.1,
+      "sid": 202,
+      "location": 2,
+      "content": "教练是干嘛的",
+      "music": 0.0
+    },
+    {
+      "from": 338.1,
+      "to": 339.02,
+      "sid": 203,
+      "location": 2,
+      "content": "休赛期是干嘛的",
+      "music": 0.0
+    },
+    {
+      "from": 339.02,
+      "to": 340.1,
+      "sid": 204,
+      "location": 2,
+      "content": "选手上场是干嘛的",
+      "music": 0.0
+    },
+    {
+      "from": 340.1,
+      "to": 341.22,
+      "sid": 205,
+      "location": 2,
+      "content": "你们是去打比赛的吧",
+      "music": 0.0
+    },
+    {
+      "from": 341.22,
+      "to": 343.94,
+      "sid": 206,
+      "location": 2,
+      "content": "那为啥能给观众呈现出一种史诗级的盛宴呢",
+      "music": 0.0
+    },
+    {
+      "from": 343.94,
+      "to": 344.74,
+      "sid": 207,
+      "location": 2,
+      "content": "老话讲啊",
+      "music": 0.0
+    },
+    {
+      "from": 344.74,
+      "to": 346.26,
+      "sid": 208,
+      "location": 2,
+      "content": "不要为打翻的牛奶而叹息",
+      "music": 0.0
+    },
+    {
+      "from": 346.26,
+      "to": 347.5,
+      "sid": 209,
+      "location": 2,
+      "content": "但如果你总是打翻",
+      "music": 0.0
+    },
+    {
+      "from": 347.5,
+      "to": 348.58,
+      "sid": 210,
+      "location": 2,
+      "content": "那就说明你不够重视",
+      "music": 0.0
+    },
+    {
+      "from": 348.58,
+      "to": 349.18,
+      "sid": 211,
+      "location": 2,
+      "content": "年年期待",
+      "music": 0.0
+    },
+    {
+      "from": 349.18,
+      "to": 349.74,
+      "sid": 212,
+      "location": 2,
+      "content": "年年烂尾",
+      "music": 0.0
+    },
+    {
+      "from": 349.74,
+      "to": 351.92,
+      "sid": 213,
+      "location": 2,
+      "content": "我都不知道该如何评价这支队伍BP操作",
+      "music": 0.0
+    },
+    {
+      "from": 351.92,
+      "to": 352.84,
+      "sid": 214,
+      "location": 2,
+      "content": "对线打团视野",
+      "music": 0.0
+    },
+    {
+      "from": 352.84,
+      "to": 354.56,
+      "sid": 215,
+      "location": 2,
+      "content": "没有一个地方是能让人拿出来夸的",
+      "music": 0.0
+    },
+    {
+      "from": 354.56,
+      "to": 356.76,
+      "sid": 216,
+      "location": 2,
+      "content": "唯一能夸的恐怕就是稳定啊",
+      "music": 0.0
+    },
+    {
+      "from": 356.76,
+      "to": 357.4,
+      "sid": 217,
+      "location": 2,
+      "content": "稳定拉胯",
+      "music": 0.0
+    },
+    {
+      "from": 357.4,
+      "to": 358.08,
+      "sid": 218,
+      "location": 2,
+      "content": "就目前来看呢",
+      "music": 0.0
+    },
+    {
+      "from": 358.08,
+      "to": 359.52,
+      "sid": 219,
+      "location": 2,
+      "content": "这支队伍的未来已经不明朗",
+      "music": 0.0
+    },
+    {
+      "from": 359.52,
+      "to": 361.2,
+      "sid": 220,
+      "location": 2,
+      "content": "虽然集合了三位前世冠选手啊",
+      "music": 0.0
+    },
+    {
+      "from": 361.2,
+      "to": 362.96,
+      "sid": 221,
+      "location": 2,
+      "content": "而且这么多年也不断在排列组合",
+      "music": 0.0
+    },
+    {
+      "from": 362.96,
+      "to": 365.04,
+      "sid": 222,
+      "location": 2,
+      "content": "但他们不仅无法取得成绩上的突破",
+      "music": 0.0
+    },
+    {
+      "from": 365.04,
+      "to": 366.84,
+      "sid": 223,
+      "location": 2,
+      "content": "反而在关键时刻表现一年不如一年",
+      "music": 0.0
+    },
+    {
+      "from": 366.84,
+      "to": 367.92,
+      "sid": 224,
+      "location": 2,
+      "content": "我不知道这是不是也意味着",
+      "music": 0.0
+    },
+    {
+      "from": 367.92,
+      "to": 370.44,
+      "sid": 225,
+      "location": 2,
+      "content": "这支队伍为水的建队思路宣告失败啊",
+      "music": 0.0
+    },
+    {
+      "from": 370.44,
+      "to": 373.28,
+      "sid": 226,
+      "location": 2,
+      "content": "为堂堂赛区2号种子呈现出如此的比赛状态",
+      "music": 0.0
+    },
+    {
+      "from": 373.28,
+      "to": 373.88,
+      "sid": 227,
+      "location": 2,
+      "content": "属实是不",
+      "music": 0.0
+    },
+    {
+      "from": 373.88,
+      "to": 374.84,
+      "sid": 228,
+      "location": 2,
+      "content": "总之还好",
+      "music": 0.0
+    },
+    {
+      "from": 374.84,
+      "to": 377.32,
+      "sid": 229,
+      "location": 2,
+      "content": "这次BLG和WBG在八强的表现还比较争气",
+      "music": 0.0
+    },
+    {
+      "from": 377.32,
+      "to": 379.64,
+      "sid": 230,
+      "location": 2,
+      "content": "能让LPL的观众不至于那么绝望",
+      "music": 0.0
+    },
+    {
+      "from": 379.64,
+      "to": 382.32,
+      "sid": 231,
+      "location": 2,
+      "content": "但如果跟是他们的滔博粉丝换位思考一下呢",
+      "music": 0.0
+    },
+    {
+      "from": 382.32,
+      "to": 383.68,
+      "sid": 232,
+      "location": 2,
+      "content": "那想必会是非常绝望的",
+      "music": 0.0
+    },
+    {
+      "from": 383.68,
+      "to": 384.88,
+      "sid": 233,
+      "location": 2,
+      "content": "那在国外主播的节目里",
+      "music": 0.0
+    },
+    {
+      "from": 384.88,
+      "to": 387.62,
+      "sid": 234,
+      "location": 2,
+      "content": "滔博的表现更是让这些老外刮目相看啊",
+      "music": 0.0
+    },
+    {
+      "from": 387.62,
+      "to": 388.54,
+      "sid": 235,
+      "location": 2,
+      "content": "And so i you know",
+      "music": 0.0
+    },
+    {
+      "from": 388.54,
+      "to": 389.5,
+      "sid": 236,
+      "location": 2,
+      "content": "I didn't i",
+      "music": 0.0
+    },
+    {
+      "from": 389.5,
+      "to": 393.26,
+      "sid": 237,
+      "location": 2,
+      "content": "I felt like top peace bots was this was like the  chat",
+      "music": 0.0
+    },
+    {
+      "from": 393.26,
+      "to": 394.93,
+      "sid": 238,
+      "location": 2,
+      "content": "Gp t chinese team",
+      "music": 0.0
+    },
+    {
+      "from": 394.93,
+      "to": 395.81,
+      "sid": 239,
+      "location": 2,
+      "content": "You know what i mean",
+      "music": 0.0
+    },
+    {
+      "from": 395.81,
+      "to": 398.05,
+      "sid": 240,
+      "location": 2,
+      "content": "It's like piloted by  robots",
+      "music": 0.0
+    },
+    {
+      "from": 398.05,
+      "to": 398.77,
+      "sid": 241,
+      "location": 2,
+      "content": "It was bad",
+      "music": 0.0
+    },
+    {
+      "from": 398.77,
+      "to": 401.61,
+      "sid": 242,
+      "location": 2,
+      "content": "It was bad to that they had no ambition like that",
+      "music": 0.0
+    },
+    {
+      "from": 401.61,
+      "to": 404.67,
+      "sid": 243,
+      "location": 2,
+      "content": "That was like the number one series was just zero",
+      "music": 0.0
+    },
+    {
+      "from": 404.67,
+      "to": 406.83,
+      "sid": 244,
+      "location": 2,
+      "content": "Ambition like they were just showing up to",
+      "music": 0.0
+    },
+    {
+      "from": 406.83,
+      "to": 409.03,
+      "sid": 245,
+      "location": 2,
+      "content": "Go home like that last game like",
+      "music": 0.0
+    },
+    {
+      "from": 409.03,
+      "to": 410.59,
+      "sid": 246,
+      "location": 2,
+      "content": "What are they even doing it",
+      "music": 0.0
+    },
+    {
+      "from": 410.59,
+      "to": 413.55,
+      "sid": 247,
+      "location": 2,
+      "content": "Looked like they just wanted to lose in the last game",
+      "music": 0.0
+    },
+    {
+      "from": 413.55,
+      "to": 415.63,
+      "sid": 248,
+      "location": 2,
+      "content": "Couldn't believe what i was watching tv first",
+      "music": 0.0
+    },
+    {
+      "from": 415.63,
+      "to": 417.07,
+      "sid": 249,
+      "location": 2,
+      "content": "You know like i interviewed machi",
+      "music": 0.0
+    },
+    {
+      "from": 417.07,
+      "to": 418.75,
+      "sid": 250,
+      "location": 2,
+      "content": "When i was in the venue was like",
+      "music": 0.0
+    },
+    {
+      "from": 418.75,
+      "to": 420.17,
+      "sid": 251,
+      "location": 2,
+      "content": "Oh malcolso",
+      "music": 0.0
+    },
+    {
+      "from": 420.17,
+      "to": 422.78,
+      "sid": 252,
+      "location": 2,
+      "content": "Uh that every time in crucial moments",
+      "music": 0.0
+    },
+    {
+      "from": 422.78,
+      "to": 423.98,
+      "sid": 253,
+      "location": 2,
+      "content": "You guys have so much experience",
+      "music": 0.0
+    },
+    {
+      "from": 423.98,
+      "to": 425.14,
+      "sid": 254,
+      "location": 2,
+      "content": "But every time in crusher moments",
+      "music": 0.0
+    },
+    {
+      "from": 425.14,
+      "to": 427.5,
+      "sid": 255,
+      "location": 2,
+      "content": "Crusher buster fired he played so bad for example",
+      "music": 0.018867923638315104
+    },
+    {
+      "from": 427.5,
+      "to": 428.94,
+      "sid": 256,
+      "location": 2,
+      "content": "The g two top espseries",
+      "music": 0.38709674297608093
+    },
+    {
+      "from": 428.94,
+      "to": 430.08,
+      "sid": 257,
+      "location": 2,
+      "content": "You guys were trash",
+      "music": 0.0
+    },
+    {
+      "from": 430.08,
+      "to": 430.78,
+      "sid": 258,
+      "location": 2,
+      "content": "He's like",
+      "music": 0.0
+    },
+    {
+      "from": 430.78,
+      "to": 432.38,
+      "sid": 259,
+      "location": 2,
+      "content": "Oh we've been uh",
+      "music": 0.0
+    },
+    {
+      "from": 432.38,
+      "to": 433.5,
+      "sid": 260,
+      "location": 2,
+      "content": "We've been addressing this",
+      "music": 0.0
+    },
+    {
+      "from": 433.5,
+      "to": 435.1,
+      "sid": 261,
+      "location": 2,
+      "content": "We do breathing exercises",
+      "music": 0.0
+    },
+    {
+      "from": 435.1,
+      "to": 435.9,
+      "sid": 262,
+      "location": 2,
+      "content": "We do meditation",
+      "music": 0.22499997187502485
+    },
+    {
+      "from": 435.9,
+      "to": 437.33,
+      "sid": 263,
+      "location": 2,
+      "content": "I was like shared man this",
+      "music": 0.0
+    },
+    {
+      "from": 437.33,
+      "to": 438.75,
+      "sid": 264,
+      "location": 2,
+      "content": "This is the western solution",
+      "music": 0.0
+    },
+    {
+      "from": 438.75,
+      "to": 440.22,
+      "sid": 265,
+      "location": 2,
+      "content": "They they they",
+      "music": 0.0
+    },
+    {
+      "from": 440.22,
+      "to": 444.82,
+      "sid": 266,
+      "location": 2,
+      "content": "This is the western solution is like i like the wim",
+      "music": 0.0
+    },
+    {
+      "from": 444.82,
+      "to": 446.28,
+      "sid": 267,
+      "location": 2,
+      "content": "Hoffing like i was like",
+      "music": 0.0
+    },
+    {
+      "from": 446.28,
+      "to": 446.5,
+      "sid": 268,
+      "location": 2,
+      "content": "Okay",
+      "music": 0.0
+    },
+    {
+      "from": 446.5,
+      "to": 447.3,
+      "sid": 269,
+      "location": 2,
+      "content": "I can go blessed",
+      "music": 0.0
+    },
+    {
+      "from": 447.3,
+      "to": 447.72,
+      "sid": 270,
+      "location": 2,
+      "content": "That's good",
+      "music": 0.0
+    },
+    {
+      "from": 447.72,
+      "to": 448.81,
+      "sid": 271,
+      "location": 2,
+      "content": "But all right",
+      "music": 0.0
+    },
+    {
+      "from": 448.81,
+      "to": 450.83,
+      "sid": 272,
+      "location": 2,
+      "content": "那最后一场fly对阵Gen.G的比赛",
+      "music": 0.0
+    },
+    {
+      "from": 450.83,
+      "to": 452.59,
+      "sid": 273,
+      "location": 2,
+      "content": "赛前是公认的垃圾比赛",
+      "music": 0.0
+    },
+    {
+      "from": 452.59,
+      "to": 453.24,
+      "sid": 274,
+      "location": 2,
+      "content": "不看不亏",
+      "music": 0.0
+    },
+    {
+      "from": 453.24,
+      "to": 453.98,
+      "sid": 275,
+      "location": 2,
+      "content": "看了浪费",
+      "music": 0.0
+    },
+    {
+      "from": 453.98,
+      "to": 456.2,
+      "sid": 276,
+      "location": 2,
+      "content": "似乎全世界都在等着看fly的笑话",
+      "music": 0.0
+    },
+    {
+      "from": 456.2,
+      "to": 459.0,
+      "sid": 277,
+      "location": 2,
+      "content": "但是没人能想到这场比赛竟然完全相反",
+      "music": 0.0
+    },
+    {
+      "from": 459.0,
+      "to": 460.83,
+      "sid": 278,
+      "location": 2,
+      "content": "看了不亏不看血亏",
+      "music": 0.0
+    },
+    {
+      "from": 460.83,
+      "to": 463.11,
+      "sid": 279,
+      "location": 2,
+      "content": "当中韩的队伍都在寻找版本答案",
+      "music": 0.0
+    },
+    {
+      "from": 463.11,
+      "to": 464.87,
+      "sid": 280,
+      "location": 2,
+      "content": "fly这支来自北美的一号种子",
+      "music": 0.0
+    },
+    {
+      "from": 464.87,
+      "to": 466.06,
+      "sid": 281,
+      "location": 2,
+      "content": "却给出了另一种答案",
+      "music": 0.0
+    },
+    {
+      "from": 466.06,
+      "to": 467.34,
+      "sid": 282,
+      "location": 2,
+      "content": "与其随波逐流",
+      "music": 0.0
+    },
+    {
+      "from": 467.34,
+      "to": 468.38,
+      "sid": 283,
+      "location": 2,
+      "content": "不如做好自己",
+      "music": 0.0
+    },
+    {
+      "from": 468.38,
+      "to": 470.46,
+      "sid": 284,
+      "location": 2,
+      "content": "第一把的中单酸辣粉加上单加里奥体系",
+      "music": 0.0
+    },
+    {
+      "from": 470.46,
+      "to": 472.58,
+      "sid": 285,
+      "location": 2,
+      "content": "直接把夺冠热门的经济打到昏头啊",
+      "music": 0.0
+    },
+    {
+      "from": 472.58,
+      "to": 474.34,
+      "sid": 286,
+      "location": 2,
+      "content": "GG心想哥们这啥阵容啊",
+      "music": 0.0
+    },
+    {
+      "from": 474.34,
+      "to": 475.02,
+      "sid": 287,
+      "location": 2,
+      "content": "没见过呀",
+      "music": 0.0
+    },
+    {
+      "from": 475.02,
+      "to": 477.66,
+      "sid": 288,
+      "location": 2,
+      "content": "fly这边也是操作拉满第一把就成功拿下阵地",
+      "music": 0.0
+    },
+    {
+      "from": 477.66,
+      "to": 479.82,
+      "sid": 289,
+      "location": 2,
+      "content": "全球观众虽然第二把又被经济带走",
+      "music": 0.0
+    },
+    {
+      "from": 479.82,
+      "to": 480.94,
+      "sid": 290,
+      "location": 2,
+      "content": "但第三把的中单泽丽",
+      "music": 0.0
+    },
+    {
+      "from": 480.94,
+      "to": 482.54,
+      "sid": 291,
+      "location": 2,
+      "content": "加上单厄加特体系更是离谱",
+      "music": 0.0
+    },
+    {
+      "from": 482.54,
+      "to": 483.46,
+      "sid": 292,
+      "location": 2,
+      "content": "该打的时候打",
+      "music": 0.0
+    },
+    {
+      "from": 483.46,
+      "to": 484.26,
+      "sid": 293,
+      "location": 2,
+      "content": "该稳的时候稳",
+      "music": 0.0
+    },
+    {
+      "from": 484.26,
+      "to": 485.86,
+      "sid": 294,
+      "location": 2,
+      "content": "在经济强势期的时候就避战",
+      "music": 0.0
+    },
+    {
+      "from": 485.86,
+      "to": 487.42,
+      "sid": 295,
+      "location": 2,
+      "content": "在自己强势期的时候就开战",
+      "music": 0.0
+    },
+    {
+      "from": 487.42,
+      "to": 488.74,
+      "sid": 296,
+      "location": 2,
+      "content": "虽然微操上有些瑕疵",
+      "music": 0.0
+    },
+    {
+      "from": 488.74,
+      "to": 490.94,
+      "sid": 297,
+      "location": 2,
+      "content": "但他们明确知道自己团战该怎么打",
+      "music": 0.0
+    },
+    {
+      "from": 490.94,
+      "to": 493.82,
+      "sid": 298,
+      "location": 2,
+      "content": "同时呢弹幕不仅快把反观俩字儿刷烂了",
+      "music": 0.0
+    },
+    {
+      "from": 493.82,
+      "to": 495.68,
+      "sid": 299,
+      "location": 2,
+      "content": "当天解说的王多多也越红温了",
+      "music": 0.0
+    },
+    {
+      "from": 495.68,
+      "to": 498.54,
+      "sid": 300,
+      "location": 2,
+      "content": "因为当天fly的表现都不禁让所有观众都感叹",
+      "music": 0.0
+    },
+    {
+      "from": 498.54,
+      "to": 501.16,
+      "sid": 301,
+      "location": 2,
+      "content": "如果昨天的滔博是这样的表现感有多好",
+      "music": 0.0
+    },
+    {
+      "from": 501.16,
+      "to": 502.94,
+      "sid": 302,
+      "location": 2,
+      "content": "这支fly的表现真的令人敬佩",
+      "music": 0.0
+    },
+    {
+      "from": 502.94,
+      "to": 504.48,
+      "sid": 303,
+      "location": 2,
+      "content": "风格多变且打法独特",
+      "music": 0.0
+    },
+    {
+      "from": 504.48,
+      "to": 506.1,
+      "sid": 304,
+      "location": 2,
+      "content": "看似似莽撞又不失细节",
+      "music": 0.0
+    },
+    {
+      "from": 506.1,
+      "to": 506.98,
+      "sid": 305,
+      "location": 2,
+      "content": "最后的生死局",
+      "music": 0.0
+    },
+    {
+      "from": 506.98,
+      "to": 509.02,
+      "sid": 306,
+      "location": 2,
+      "content": "fly拿出的万豪永恩稻草人阵容",
+      "music": 0.0
+    },
+    {
+      "from": 509.02,
+      "to": 509.66,
+      "sid": 307,
+      "location": 2,
+      "content": "颇有种",
+      "music": 0.0
+    },
+    {
+      "from": 509.66,
+      "to": 512.3,
+      "sid": 308,
+      "location": 2,
+      "content": "埃尔文团长率领队伍向巨人冲锋般的悲壮",
+      "music": 0.0
+    },
+    {
+      "from": 512.3,
+      "to": 515.18,
+      "sid": 309,
+      "location": 2,
+      "content": "而经济呢也不出意料祭出祖传龟壳啊",
+      "music": 0.0
+    },
+    {
+      "from": 515.18,
+      "to": 516.039,
+      "sid": 310,
+      "location": 2,
+      "content": "小火龙爆弹",
+      "music": 0.0
+    },
+    {
+      "from": 516.039,
+      "to": 517.199,
+      "sid": 311,
+      "location": 2,
+      "content": "丝毫不给fly机会",
+      "music": 0.0
+    },
+    {
+      "from": 517.199,
+      "to": 518.439,
+      "sid": 312,
+      "location": 2,
+      "content": "最后成功进入四强",
+      "music": 0.0
+    },
+    {
+      "from": 518.439,
+      "to": 519.319,
+      "sid": 313,
+      "location": 2,
+      "content": "但毫无疑问",
+      "music": 0.0
+    },
+    {
+      "from": 519.319,
+      "to": 520.399,
+      "sid": 314,
+      "location": 2,
+      "content": "这次世界赛的欧美",
+      "music": 0.0
+    },
+    {
+      "from": 520.399,
+      "to": 522.84,
+      "sid": 315,
+      "location": 2,
+      "content": "不管是瑞士轮的基还是这次的八强的fly",
+      "music": 0.0
+    },
+    {
+      "from": 522.84,
+      "to": 524.78,
+      "sid": 316,
+      "location": 2,
+      "content": "他们用实力征服了全球观众",
+      "music": 0.0
+    },
+    {
+      "from": 524.78,
+      "to": 526.4,
+      "sid": 317,
+      "location": 2,
+      "content": "他们敢于坚持自己的风格",
+      "music": 0.0
+    },
+    {
+      "from": 527.96,
+      "to": 529.32,
+      "sid": 318,
+      "location": 2,
+      "content": "这就是比赛的魅力",
+      "music": 0.0
+    },
+    {
+      "from": 529.32,
+      "to": 531.84,
+      "sid": 319,
+      "location": 2,
+      "content": "没人会去责怪输给六道班的八门凯",
+      "music": 0.0
+    },
+    {
+      "from": 531.84,
+      "to": 534.34,
+      "sid": 320,
+      "location": 2,
+      "content": "fly的表现才是真正的搏至无憾",
+      "music": 0.0
+    },
+    {
+      "from": 534.34,
+      "to": 536.6,
+      "sid": 321,
+      "location": 2,
+      "content": "赛后的BWIPO虽然第一时间是微笑下场",
+      "music": 0.0
+    },
+    {
+      "from": 536.6,
+      "to": 538.96,
+      "sid": 322,
+      "location": 2,
+      "content": "但在后台采访时也没有忍住眼泪",
+      "music": 0.0
+    },
+    {
+      "from": 538.96,
+      "to": 540.72,
+      "sid": 323,
+      "location": 2,
+      "content": "他的采访内容更是发人深省",
+      "music": 0.0
+    },
+    {
+      "from": 540.72,
+      "to": 541.52,
+      "sid": 324,
+      "location": 2,
+      "content": "值得一些队伍",
+      "music": 0.0
+    },
+    {
+      "from": 541.52,
+      "to": 542.98,
+      "sid": 325,
+      "location": 2,
+      "content": "尤其是某个队伍学习",
+      "music": 0.0
+    },
+    {
+      "from": 542.98,
+      "to": 544.82,
+      "sid": 326,
+      "location": 2,
+      "content": "Really i hate losing like this",
+      "music": 0.0
+    },
+    {
+      "from": 544.82,
+      "to": 546.88,
+      "sid": 327,
+      "location": 2,
+      "content": "But i know",
+      "music": 0.0
+    },
+    {
+      "from": 548.64,
+      "to": 549.48,
+      "sid": 328,
+      "location": 2,
+      "content": "Getting to play",
+      "music": 0.0
+    },
+    {
+      "from": 549.48,
+      "to": 549.82,
+      "sid": 329,
+      "location": 2,
+      "content": "Here",
+      "music": 0.0
+    },
+    {
+      "from": 549.82,
+      "to": 551.62,
+      "sid": 330,
+      "location": 2,
+      "content": "Getting to be in front of the crowd",
+      "music": 0.0
+    },
+    {
+      "from": 551.62,
+      "to": 553.16,
+      "sid": 331,
+      "location": 2,
+      "content": "I've never had a crowd jump",
+      "music": 0.0
+    },
+    {
+      "from": 553.16,
+      "to": 554.44,
+      "sid": 332,
+      "location": 2,
+      "content": "My aim like today",
+      "music": 0.0
+    },
+    {
+      "from": 554.44,
+      "to": 555.56,
+      "sid": 333,
+      "location": 2,
+      "content": "You deserve it",
+      "music": 0.0
+    },
+    {
+      "from": 555.56,
+      "to": 557.02,
+      "sid": 334,
+      "location": 2,
+      "content": "And i really wanted to",
+      "music": 0.0
+    },
+    {
+      "from": 557.02,
+      "to": 557.5,
+      "sid": 335,
+      "location": 2,
+      "content": "I",
+      "music": 0.0
+    },
+    {
+      "from": 557.5,
+      "to": 558.3,
+      "sid": 336,
+      "location": 2,
+      "content": "Really wanted to win",
+      "music": 0.0
+    },
+    {
+      "from": 559.58,
+      "to": 560.98,
+      "sid": 337,
+      "location": 2,
+      "content": "Also for them",
+      "music": 0.0
+    },
+    {
+      "from": 561.63,
+      "to": 564.03,
+      "sid": 338,
+      "location": 2,
+      "content": "You know for my partner",
+      "music": 0.0
+    },
+    {
+      "from": 564.03,
+      "to": 565.23,
+      "sid": 339,
+      "location": 2,
+      "content": "Ain't no",
+      "music": 0.0
+    },
+    {
+      "from": 566.4,
+      "to": 569.809,
+      "sid": 340,
+      "location": 2,
+      "content": "I didn't so you deserve it man",
+      "music": 0.0
+    },
+    {
+      "from": 569.809,
+      "to": 570.069,
+      "sid": 341,
+      "location": 2,
+      "content": "You",
+      "music": 0.0
+    },
+    {
+      "from": 570.069,
+      "to": 571.869,
+      "sid": 342,
+      "location": 2,
+      "content": "You really say i am",
+      "music": 0.0
+    },
+    {
+      "from": 571.869,
+      "to": 572.649,
+      "sid": 343,
+      "location": 2,
+      "content": "I'm so happy",
+      "music": 0.0
+    },
+    {
+      "from": 572.649,
+      "to": 573.289,
+      "sid": 344,
+      "location": 2,
+      "content": "I got to play",
+      "music": 0.0
+    },
+    {
+      "from": 573.289,
+      "to": 574.209,
+      "sid": 345,
+      "location": 2,
+      "content": "I got show everyone",
+      "music": 0.0
+    },
+    {
+      "from": 574.209,
+      "to": 575.729,
+      "sid": 346,
+      "location": 2,
+      "content": "And i made people believe",
+      "music": 0.0
+    },
+    {
+      "from": 575.729,
+      "to": 577.079,
+      "sid": 347,
+      "location": 2,
+      "content": "I think i really did",
+      "music": 0.0
+    },
+    {
+      "from": 577.079,
+      "to": 580.199,
+      "sid": 348,
+      "location": 2,
+      "content": "I think we really did that's something to be proud man",
+      "music": 0.0
+    },
+    {
+      "from": 580.199,
+      "to": 580.439,
+      "sid": 349,
+      "location": 2,
+      "content": "I",
+      "music": 0.0
+    },
+    {
+      "from": 580.439,
+      "to": 580.739,
+      "sid": 350,
+      "location": 2,
+      "content": "I",
+      "music": 0.0
+    },
+    {
+      "from": 580.739,
+      "to": 583.079,
+      "sid": 351,
+      "location": 2,
+      "content": "I will not take more time for from you",
+      "music": 0.0
+    },
+    {
+      "from": 583.079,
+      "to": 584.569,
+      "sid": 352,
+      "location": 2,
+      "content": "You deserve a rest",
+      "music": 0.0
+    },
+    {
+      "from": 584.569,
+      "to": 586.649,
+      "sid": 353,
+      "location": 2,
+      "content": "I only wish you",
+      "music": 0.1202843017886765
+    },
+    {
+      "from": 586.649,
+      "to": 589.92,
+      "sid": 354,
+      "location": 2,
+      "content": "You can see uh a message for the western",
+      "music": 0.0
+    },
+    {
+      "from": 589.92,
+      "to": 591.18,
+      "sid": 355,
+      "location": 2,
+      "content": "And the brazil fans",
+      "music": 0.0
+    },
+    {
+      "from": 591.18,
+      "to": 593.44,
+      "sid": 356,
+      "location": 2,
+      "content": "Thank you very much man",
+      "music": 0.0
+    },
+    {
+      "from": 594.09,
+      "to": 594.65,
+      "sid": 357,
+      "location": 2,
+      "content": "Yeah",
+      "music": 0.0
+    },
+    {
+      "from": 594.65,
+      "to": 596.13,
+      "sid": 358,
+      "location": 2,
+      "content": "Just be yourself",
+      "music": 0.0
+    },
+    {
+      "from": 597.53,
+      "to": 598.49,
+      "sid": 359,
+      "location": 2,
+      "content": "Don't look at everyone else",
+      "music": 0.0
+    },
+    {
+      "from": 599.65,
+      "to": 600.61,
+      "sid": 360,
+      "location": 2,
+      "content": "You don't have to be like them",
+      "music": 0.0
+    },
+    {
+      "from": 602.21,
+      "to": 605.289,
+      "sid": 361,
+      "location": 2,
+      "content": "The best way to give it",
+      "music": 0.0
+    },
+    {
+      "from": 605.289,
+      "to": 606.769,
+      "sid": 362,
+      "location": 2,
+      "content": "Your all is by being yourself",
+      "music": 0.0
+    },
+    {
+      "from": 607.969,
+      "to": 609.509,
+      "sid": 363,
+      "location": 2,
+      "content": "Don't care what you need to band",
+      "music": 0.0
+    },
+    {
+      "from": 609.509,
+      "to": 614.36,
+      "sid": 364,
+      "location": 2,
+      "content": "Don't care what your problems are solve them",
+      "music": 0.0
+    },
+    {
+      "from": 614.36,
+      "to": 618.25,
+      "sid": 365,
+      "location": 2,
+      "content": "And be yourself play your own champions",
+      "music": 0.0
+    },
+    {
+      "from": 619.45,
+      "to": 620.71,
+      "sid": 366,
+      "location": 2,
+      "content": "Make your own decisions",
+      "music": 0.0
+    },
+    {
+      "from": 620.71,
+      "to": 621.75,
+      "sid": 367,
+      "location": 2,
+      "content": "If it looks ugly",
+      "music": 0.0
+    },
+    {
+      "from": 621.75,
+      "to": 622.31,
+      "sid": 368,
+      "location": 2,
+      "content": "It looks ugly",
+      "music": 0.0
+    },
+    {
+      "from": 622.31,
+      "to": 623.01,
+      "sid": 369,
+      "location": 2,
+      "content": "That's okay",
+      "music": 0.0
+    },
+    {
+      "from": 623.01,
+      "to": 623.69,
+      "sid": 370,
+      "location": 2,
+      "content": "You know better",
+      "music": 0.0
+    },
+    {
+      "from": 623.69,
+      "to": 624.27,
+      "sid": 371,
+      "location": 2,
+      "content": "What's happening",
+      "music": 0.0
+    },
+    {
+      "from": 624.27,
+      "to": 624.95,
+      "sid": 372,
+      "location": 2,
+      "content": "You know you",
+      "music": 0.0
+    },
+    {
+      "from": 624.95,
+      "to": 625.67,
+      "sid": 373,
+      "location": 2,
+      "content": "You know what's happening",
+      "music": 0.0
+    },
+    {
+      "from": 625.67,
+      "to": 627.35,
+      "sid": 374,
+      "location": 2,
+      "content": "It's it's it's what you're used to",
+      "music": 0.0
+    },
+    {
+      "from": 627.35,
+      "to": 628.98,
+      "sid": 375,
+      "location": 2,
+      "content": "Don't play their ga",
+      "music": 0.0
+    },
+    {
+      "from": 628.98,
+      "to": 630.44,
+      "sid": 376,
+      "location": 2,
+      "content": "You don't need to",
+      "music": 0.0
+    },
+    {
+      "from": 630.44,
+      "to": 631.9,
+      "sid": 377,
+      "location": 2,
+      "content": "I hope everyone sees that",
+      "music": 0.0
+    },
+    {
+      "from": 631.9,
+      "to": 637.18,
+      "sid": 378,
+      "location": 2,
+      "content": "And i really really hope everyone else will feel the same way",
+      "music": 0.0
+    },
+    {
+      "from": 637.18,
+      "to": 637.54,
+      "sid": 379,
+      "location": 2,
+      "content": "呃",
+      "music": 0.0
+    },
+    {
+      "from": 637.54,
+      "to": 639.64,
+      "sid": 380,
+      "location": 2,
+      "content": "总之呢这八强的四场是各有各的看点",
+      "music": 0.0
+    },
+    {
+      "from": 639.64,
+      "to": 641.06,
+      "sid": 381,
+      "location": 2,
+      "content": "最近连看了四场BO5",
+      "music": 0.0
+    },
+    {
+      "from": 641.06,
+      "to": 643.24,
+      "sid": 382,
+      "location": 2,
+      "content": "边看还得边给新视频留素材",
+      "music": 0.0
+    },
+    {
+      "from": 643.24,
+      "to": 644.32,
+      "sid": 383,
+      "location": 2,
+      "content": "着实给我累的不行",
+      "music": 0.0
+    },
+    {
+      "from": 644.32,
+      "to": 646.76,
+      "sid": 384,
+      "location": 2,
+      "content": "听说妙界要给我看好康的小姐姐",
+      "music": 0.0
+    },
+    {
+      "from": 646.76,
+      "to": 647.64,
+      "sid": 385,
+      "location": 2,
+      "content": "我一下就来劲了",
+      "music": 0.0
+    },
+    {
+      "from": 647.64,
+      "to": 649.72,
+      "sid": 386,
+      "location": 2,
+      "content": "带着我的肩颈按摩仪火速更新",
+      "music": 0.0
+    },
+    {
+      "from": 649.72,
+      "to": 650.8,
+      "sid": 387,
+      "location": 2,
+      "content": "很顶的取消啊",
+      "music": 0.0
+    },
+    {
+      "from": 650.8,
+      "to": 652.82,
+      "sid": 388,
+      "location": 2,
+      "content": "不呃很顶的按摩仪啊",
+      "music": 0.0
+    },
+    {
+      "from": 652.82,
+      "to": 655.64,
+      "sid": 389,
+      "location": 2,
+      "content": "高强度加班都不觉得肩颈入手了的兄弟",
+      "music": 0.0
+    },
+    {
+      "from": 655.64,
+      "to": 656.56,
+      "sid": 390,
+      "location": 2,
+      "content": "也是说效果不错",
+      "music": 0.0
+    },
+    {
+      "from": 656.56,
+      "to": 657.68,
+      "sid": 391,
+      "location": 2,
+      "content": "热销榜回购榜",
+      "music": 0.0
+    },
+    {
+      "from": 657.68,
+      "to": 658.24,
+      "sid": 392,
+      "location": 2,
+      "content": "好评榜",
+      "music": 0.0
+    },
+    {
+      "from": 658.24,
+      "to": 659.02,
+      "sid": 393,
+      "location": 2,
+      "content": "三榜第一",
+      "music": 0.0
+    },
+    {
+      "from": 659.02,
+      "to": 660.1,
+      "sid": 394,
+      "location": 2,
+      "content": "实力恐怖如斯",
+      "music": 0.0
+    },
+    {
+      "from": 660.1,
+      "to": 662.32,
+      "sid": 395,
+      "location": 2,
+      "content": "那么久用下来还是觉得他最像真人",
+      "music": 0.0
+    },
+    {
+      "from": 662.32,
+      "to": 664.42,
+      "sid": 396,
+      "location": 2,
+      "content": "巴蒂按摩头带来的紧密包裹感",
+      "music": 0.0
+    },
+    {
+      "from": 664.42,
+      "to": 666.42,
+      "sid": 397,
+      "location": 2,
+      "content": "一边在后脖颈上收缩加揉",
+      "music": 0.0
+    },
+    {
+      "from": 666.42,
+      "to": 668.32,
+      "sid": 398,
+      "location": 2,
+      "content": "一边伸肌斜方肌的G点",
+      "music": 0.0
+    },
+    {
+      "from": 668.32,
+      "to": 669.04,
+      "sid": 399,
+      "location": 2,
+      "content": "搭配热敷",
+      "music": 0.0
+    },
+    {
+      "from": 669.04,
+      "to": 671.22,
+      "sid": 400,
+      "location": 2,
+      "content": "快速排走酸痛爽的灵魂震颤",
+      "music": 0.0
+    },
+    {
+      "from": 671.22,
+      "to": 671.92,
+      "sid": 401,
+      "location": 2,
+      "content": "头皮发麻",
+      "music": 0.0
+    },
+    {
+      "from": 671.92,
+      "to": 672.36,
+      "sid": 402,
+      "location": 2,
+      "content": "兄弟们",
+      "music": 0.0
+    },
+    {
+      "from": 672.36,
+      "to": 673.44,
+      "sid": 403,
+      "location": 2,
+      "content": "平时工作学习忙",
+      "music": 0.0
+    },
+    {
+      "from": 673.44,
+      "to": 674.2,
+      "sid": 404,
+      "location": 2,
+      "content": "低头久坐",
+      "music": 0.0
+    },
+    {
+      "from": 674.2,
+      "to": 675.0,
+      "sid": 405,
+      "location": 2,
+      "content": "老奸巨硬",
+      "music": 0.0
+    },
+    {
+      "from": 675.0,
+      "to": 676.04,
+      "sid": 406,
+      "location": 2,
+      "content": "要我都来试试",
+      "music": 0.0
+    },
+    {
+      "from": 676.04,
+      "to": 676.84,
+      "sid": 407,
+      "location": 2,
+      "content": "包已忘掉",
+      "music": 0.0
+    },
+    {
+      "from": 676.84,
+      "to": 680.2,
+      "sid": 408,
+      "location": 2,
+      "content": "88号技师专业按学手法技术有口皆碑",
+      "music": 0.0
+    },
+    {
+      "from": 680.2,
+      "to": 681.6,
+      "sid": 409,
+      "location": 2,
+      "content": "非常适合日常佩戴",
+      "music": 0.0
+    },
+    {
+      "from": 681.6,
+      "to": 682.4,
+      "sid": 410,
+      "location": 2,
+      "content": "预防颈椎病",
+      "music": 0.0
+    },
+    {
+      "from": 682.4,
+      "to": 683.42,
+      "sid": 411,
+      "location": 2,
+      "content": "只要往肩上一扣",
+      "music": 0.0
+    },
+    {
+      "from": 683.42,
+      "to": 683.92,
+      "sid": 412,
+      "location": 2,
+      "content": "打游戏",
+      "music": 0.0
+    },
+    {
+      "from": 683.92,
+      "to": 686.44,
+      "sid": 413,
+      "location": 2,
+      "content": "摸个鱼都能同时进行一条往下按",
+      "music": 0.0
+    },
+    {
+      "from": 686.44,
+      "to": 686.98,
+      "sid": 414,
+      "location": 2,
+      "content": "按腰腿",
+      "music": 0.0
+    },
+    {
+      "from": 686.98,
+      "to": 689.0,
+      "sid": 415,
+      "location": 2,
+      "content": "全身喵姐都能照顾得很好",
+      "music": 0.0
+    },
+    {
+      "from": 689.0,
+      "to": 690.24,
+      "sid": 416,
+      "location": 2,
+      "content": "还是老朋友靠谱",
+      "music": 0.0
+    },
+    {
+      "from": 690.24,
+      "to": 691.08,
+      "sid": 417,
+      "location": 2,
+      "content": "以前买的按",
+      "music": 0.0
+    },
+    {
+      "from": 691.08,
+      "to": 691.94,
+      "sid": 418,
+      "location": 2,
+      "content": "两人都不得劲",
+      "music": 0.0
+    },
+    {
+      "from": 691.94,
+      "to": 693.96,
+      "sid": 419,
+      "location": 2,
+      "content": "妙界几分钟就给我治的服服帖帖",
+      "music": 0.0
+    },
+    {
+      "from": 693.96,
+      "to": 695.56,
+      "sid": 420,
+      "location": 2,
+      "content": "我前段时间呢还给爸妈也送了",
+      "music": 0.0
+    },
+    {
+      "from": 695.56,
+      "to": 696.52,
+      "sid": 421,
+      "location": 2,
+      "content": "请他们去按摩店呢",
+      "music": 0.0
+    },
+    {
+      "from": 696.52,
+      "to": 698.04,
+      "sid": 422,
+      "location": 2,
+      "content": "舍不得我花钱送按摩仪",
+      "music": 0.0
+    },
+    {
+      "from": 698.04,
+      "to": 699.68,
+      "sid": 423,
+      "location": 2,
+      "content": "高性价比他们肯定满意",
+      "music": 0.0
+    },
+    {
+      "from": 699.68,
+      "to": 700.78,
+      "sid": 424,
+      "location": 2,
+      "content": "现在评论区置顶",
+      "music": 0.0
+    },
+    {
+      "from": 700.78,
+      "to": 701.06,
+      "sid": 425,
+      "location": 2,
+      "content": "领券",
+      "music": 0.0
+    },
+    {
+      "from": 701.06,
+      "to": 703.04,
+      "sid": 426,
+      "location": 2,
+      "content": "一年内有质量问题能免费换新",
+      "music": 0.0
+    },
+    {
+      "from": 703.04,
+      "to": 704.68,
+      "sid": 427,
+      "location": 2,
+      "content": "保价大促还送运费险",
+      "music": 0.0
+    },
+    {
+      "from": 704.68,
+      "to": 705.32,
+      "sid": 428,
+      "location": 2,
+      "content": "送亲朋",
+      "music": 0.0
+    },
+    {
+      "from": 705.32,
+      "to": 705.88,
+      "sid": 429,
+      "location": 2,
+      "content": "送自己啊",
+      "music": 0.0
+    },
+    {
+      "from": 705.88,
+      "to": 706.4,
+      "sid": 430,
+      "location": 2,
+      "content": "都不错",
+      "music": 0.0
+    },
+    {
+      "from": 706.4,
+      "to": 708.04,
+      "sid": 431,
+      "location": 2,
+      "content": "趁活动抓紧入手吧",
+      "music": 0.0
+    },
+    {
+      "from": 708.04,
+      "to": 709.74,
+      "sid": 432,
+      "location": 2,
+      "content": "那赛场外又出了一个新梗",
+      "music": 0.0
+    },
+    {
+      "from": 709.74,
+      "to": 710.92,
+      "sid": 433,
+      "location": 2,
+      "content": "叫对宁弹墙啊",
+      "music": 0.0
+    },
+    {
+      "from": 710.92,
+      "to": 713.36,
+      "sid": 434,
+      "location": 2,
+      "content": "整个事看完真的是让我如芒刺背",
+      "music": 0.0
+    },
+    {
+      "from": 713.36,
+      "to": 714.12,
+      "sid": 435,
+      "location": 2,
+      "content": "如坐针毡",
+      "music": 0.0
+    },
+    {
+      "from": 714.12,
+      "to": 714.96,
+      "sid": 436,
+      "location": 2,
+      "content": "如梗在喉啊",
+      "music": 0.0
+    },
+    {
+      "from": 714.96,
+      "to": 716.56,
+      "sid": 437,
+      "location": 2,
+      "content": "起因是宁在前两天直播的时候",
+      "music": 0.0
+    },
+    {
+      "from": 716.56,
+      "to": 718.92,
+      "sid": 438,
+      "location": 2,
+      "content": "突然开始吐吐槽王多多解说能力不行啊",
+      "music": 0.0
+    },
+    {
+      "from": 718.92,
+      "to": 719.48,
+      "sid": 439,
+      "location": 2,
+      "content": "听着想睡",
+      "music": 0.0
+    },
+    {
+      "from": 719.48,
+      "to": 722.34,
+      "sid": 440,
+      "location": 2,
+      "content": "然后指责他在解说t T1对阵滔博那场比赛时",
+      "music": 0.0
+    },
+    {
+      "from": 722.34,
+      "to": 725.34,
+      "sid": 441,
+      "location": 2,
+      "content": "把T1那把的阵容呢形容成为一面城墙",
+      "music": 0.0
+    },
+    {
+      "from": 725.34,
+      "to": 726.06,
+      "sid": 442,
+      "location": 2,
+      "content": "是纯瞎掰",
+      "music": 0.0
+    },
+    {
+      "from": 726.06,
+      "to": 731.13,
+      "sid": 443,
+      "location": 2,
+      "content": "对呀城墙他说那个啊T1的阵容像一个像城墙",
+      "music": 0.0
+    },
+    {
+      "from": 731.13,
+      "to": 734.21,
+      "sid": 444,
+      "location": 2,
+      "content": "我们要先先把那个前面的墙给拆了",
+      "music": 0.0
+    },
+    {
+      "from": 734.21,
+      "to": 737.88,
+      "sid": 445,
+      "location": 2,
+      "content": "我们才能那个才能把那个腹地的那个那个",
+      "music": 0.0
+    },
+    {
+      "from": 737.88,
+      "to": 738.96,
+      "sid": 446,
+      "location": 2,
+      "content": "GUMAYUC给杀了",
+      "music": 0.0
+    },
+    {
+      "from": 738.96,
+      "to": 739.68,
+      "sid": 447,
+      "location": 2,
+      "content": "我惊呆了",
+      "music": 0.0
+    },
+    {
+      "from": 739.68,
+      "to": 740.4,
+      "sid": 448,
+      "location": 2,
+      "content": "兄弟",
+      "music": 0.0
+    },
+    {
+      "from": 740.4,
+      "to": 742.12,
+      "sid": 449,
+      "location": 2,
+      "content": "就如果是我的话",
+      "music": 0.0
+    },
+    {
+      "from": 742.12,
+      "to": 743.28,
+      "sid": 450,
+      "location": 2,
+      "content": "我是滔博的人的话",
+      "music": 0.0
+    },
+    {
+      "from": 743.28,
+      "to": 744.5,
+      "sid": 451,
+      "location": 2,
+      "content": "我不是不是我是滔博",
+      "music": 0.0
+    },
+    {
+      "from": 744.5,
+      "to": 745.16,
+      "sid": 452,
+      "location": 2,
+      "content": "如果是我的话",
+      "music": 0.0
+    },
+    {
+      "from": 745.16,
+      "to": 746.77,
+      "sid": 453,
+      "location": 2,
+      "content": "那你行你上呗",
+      "music": 0.0
+    },
+    {
+      "from": 746.77,
+      "to": 748.57,
+      "sid": 454,
+      "location": 2,
+      "content": "是我们其实期待一个天雷啊",
+      "music": 0.0
+    },
+    {
+      "from": 748.57,
+      "to": 749.69,
+      "sid": 455,
+      "location": 2,
+      "content": "只有天雷才能破局",
+      "music": 0.0
+    },
+    {
+      "from": 749.69,
+      "to": 751.089,
+      "sid": 456,
+      "location": 2,
+      "content": "才能穿透这个城墙",
+      "music": 0.0
+    },
+    {
+      "from": 751.089,
+      "to": 752.769,
+      "sid": 457,
+      "location": 2,
+      "content": "我们从外围是打不穿的",
+      "music": 0.0
+    },
+    {
+      "from": 752.769,
+      "to": 754.049,
+      "sid": 458,
+      "location": 2,
+      "content": "他是已经是成翔了",
+      "music": 0.0
+    },
+    {
+      "from": 754.049,
+      "to": 756.2,
+      "sid": 459,
+      "location": 2,
+      "content": "我们还要用一矛一矛去戳这个墙吗",
+      "music": 0.0
+    },
+    {
+      "from": 756.2,
+      "to": 757.96,
+      "sid": 460,
+      "location": 2,
+      "content": "然后呢就起了第一波节奏",
+      "music": 0.0
+    },
+    {
+      "from": 757.96,
+      "to": 758.96,
+      "sid": 461,
+      "location": 2,
+      "content": "但目前为止",
+      "music": 0.0
+    },
+    {
+      "from": 758.96,
+      "to": 761.72,
+      "sid": 462,
+      "location": 2,
+      "content": "宁跟弹幕的核心矛盾还是王多多的城墙论",
+      "music": 0.0
+    },
+    {
+      "from": 761.72,
+      "to": 763.34,
+      "sid": 463,
+      "location": 2,
+      "content": "大部分观众是觉得没啥问题的",
+      "music": 0.0
+    },
+    {
+      "from": 763.34,
+      "to": 765.5,
+      "sid": 464,
+      "location": 2,
+      "content": "但您认为那阵容就算是城墙",
+      "music": 0.0
+    },
+    {
+      "from": 765.5,
+      "to": 767.26,
+      "sid": 465,
+      "location": 2,
+      "content": "那369凯南出也没问题",
+      "music": 0.0
+    },
+    {
+      "from": 767.26,
+      "to": 769.16,
+      "sid": 466,
+      "location": 2,
+      "content": "简而言之还是游戏理解上的不同",
+      "music": 0.0
+    },
+    {
+      "from": 769.16,
+      "to": 771.66,
+      "sid": 467,
+      "location": 2,
+      "content": "那这个时候呢正好王多多也发文回应说啊",
+      "music": 0.0
+    },
+    {
+      "from": 771.66,
+      "to": 773.7,
+      "sid": 468,
+      "location": 2,
+      "content": "梦幻联动昨晚复盘的时候还粘到了宁王",
+      "music": 0.0
+    },
+    {
+      "from": 773.7,
+      "to": 774.3,
+      "sid": 469,
+      "location": 2,
+      "content": "巴拉巴拉巴拉",
+      "music": 0.0
+    },
+    {
+      "from": 774.3,
+      "to": 775.94,
+      "sid": 470,
+      "location": 2,
+      "content": "大意就是节奏可以停一停了",
+      "music": 0.0
+    },
+    {
+      "from": 775.94,
+      "to": 777.98,
+      "sid": 471,
+      "location": 2,
+      "content": "希望每个从业者都能为这个行业做出贡献啊",
+      "music": 0.0
+    },
+    {
+      "from": 777.98,
+      "to": 778.9,
+      "sid": 472,
+      "location": 2,
+      "content": "这招以退为进",
+      "music": 0.0
+    },
+    {
+      "from": 778.9,
+      "to": 780.72,
+      "sid": 473,
+      "location": 2,
+      "content": "用的很巧啊啊既给了宁王面子",
+      "music": 0.0
+    },
+    {
+      "from": 780.72,
+      "to": 781.92,
+      "sid": 474,
+      "location": 2,
+      "content": "又有平息节奏的意思",
+      "music": 0.0
+    },
+    {
+      "from": 781.92,
+      "to": 783.52,
+      "sid": 475,
+      "location": 2,
+      "content": "那大家可以把自己想象成宁",
+      "music": 0.0
+    },
+    {
+      "from": 783.52,
+      "to": 784.68,
+      "sid": 476,
+      "location": 2,
+      "content": "如果是你的话",
+      "music": 0.0
+    },
+    {
+      "from": 784.68,
+      "to": 785.88,
+      "sid": 477,
+      "location": 2,
+      "content": "你前一天刚吐槽了",
+      "music": 0.0
+    },
+    {
+      "from": 785.88,
+      "to": 786.52,
+      "sid": 478,
+      "location": 2,
+      "content": "人家反手",
+      "music": 0.0
+    },
+    {
+      "from": 786.52,
+      "to": 788.0,
+      "sid": 479,
+      "location": 2,
+      "content": "面对这种很礼貌的回复啊",
+      "music": 0.0
+    },
+    {
+      "from": 788.0,
+      "to": 788.64,
+      "sid": 480,
+      "location": 2,
+      "content": "你会怎么办",
+      "music": 0.0
+    },
+    {
+      "from": 788.64,
+      "to": 790.96,
+      "sid": 481,
+      "location": 2,
+      "content": "A承认自己前一天的发言不太恰当",
+      "music": 0.0
+    },
+    {
+      "from": 790.96,
+      "to": 792.1,
+      "sid": 482,
+      "location": 2,
+      "content": "祝对方越来越好",
+      "music": 0.0
+    },
+    {
+      "from": 792.1,
+      "to": 793.48,
+      "sid": 483,
+      "location": 2,
+      "content": "B坚持自己的观点",
+      "music": 0.0
+    },
+    {
+      "from": 793.48,
+      "to": 796.54,
+      "sid": 484,
+      "location": 2,
+      "content": "并对那把AD凯南的游戏理解进行分析解释",
+      "music": 0.0
+    },
+    {
+      "from": 796.54,
+      "to": 797.46,
+      "sid": 485,
+      "location": 2,
+      "content": "C不予理睬",
+      "music": 0.0
+    },
+    {
+      "from": 797.46,
+      "to": 798.1,
+      "sid": 486,
+      "location": 2,
+      "content": "当没看到",
+      "music": 0.0
+    },
+    {
+      "from": 798.1,
+      "to": 799.52,
+      "sid": 487,
+      "location": 2,
+      "content": "等节奏平息来",
+      "music": 0.0
+    },
+    {
+      "from": 799.52,
+      "to": 801.6,
+      "sid": 488,
+      "location": 2,
+      "content": "各位观众请作答",
+      "music": 0.0
+    },
+    {
+      "from": 802.01,
+      "to": 803.27,
+      "sid": 489,
+      "location": 2,
+      "content": "来啊",
+      "music": 0.0
+    },
+    {
+      "from": 803.27,
+      "to": 805.09,
+      "sid": 490,
+      "location": 2,
+      "content": "其实以上哪个选项都算OK的",
+      "music": 0.0
+    },
+    {
+      "from": 805.09,
+      "to": 806.63,
+      "sid": 491,
+      "location": 2,
+      "content": "都有相对正当的动机",
+      "music": 0.0
+    },
+    {
+      "from": 806.63,
+      "to": 809.09,
+      "sid": 492,
+      "location": 2,
+      "content": "那我们的宁王在众多正确答案之中",
+      "music": 0.0
+    },
+    {
+      "from": 809.09,
+      "to": 810.49,
+      "sid": 493,
+      "location": 2,
+      "content": "选择了弹幕最多的一种",
+      "music": 0.0
+    },
+    {
+      "from": 810.49,
+      "to": 813.1,
+      "sid": 494,
+      "location": 2,
+      "content": "不是英雄联盟有城墙这个英雄吗",
+      "music": 0.0
+    },
+    {
+      "from": 813.1,
+      "to": 815.22,
+      "sid": 495,
+      "location": 2,
+      "content": "兄弟我就我只问你一件事情",
+      "music": 0.0
+    },
+    {
+      "from": 815.22,
+      "to": 817.45,
+      "sid": 496,
+      "location": 2,
+      "content": "英雄联盟有城墙这个英雄吗",
+      "music": 0.0
+    },
+    {
+      "from": 817.45,
+      "to": 818.13,
+      "sid": 497,
+      "location": 2,
+      "content": "没有吧",
+      "music": 0.0
+    },
+    {
+      "from": 818.13,
+      "to": 819.17,
+      "sid": 498,
+      "location": 2,
+      "content": "应该那行了呀",
+      "music": 0.0
+    },
+    {
+      "from": 819.17,
+      "to": 821.17,
+      "sid": 499,
+      "location": 2,
+      "content": "那你们都不知道191城墙这个英雄",
+      "music": 0.0
+    },
+    {
+      "from": 821.17,
+      "to": 822.17,
+      "sid": 500,
+      "location": 2,
+      "content": "你跟我掰扯啥呢",
+      "music": 0.0
+    },
+    {
+      "from": 822.17,
+      "to": 823.13,
+      "sid": 501,
+      "location": 2,
+      "content": "跟个脑残似的",
+      "music": 0.0
+    },
+    {
+      "from": 823.13,
+      "to": 824.35,
+      "sid": 502,
+      "location": 2,
+      "content": "还多读点书",
+      "music": 0.0
+    },
+    {
+      "from": 824.35,
+      "to": 825.639,
+      "sid": 503,
+      "location": 2,
+      "content": "二逼兄弟",
+      "music": 0.0
+    },
+    {
+      "from": 825.639,
+      "to": 827.059,
+      "sid": 504,
+      "location": 2,
+      "content": "我建议多玩点英雄联盟",
+      "music": 0.0
+    },
+    {
+      "from": 827.059,
+      "to": 827.939,
+      "sid": 505,
+      "location": 2,
+      "content": "你说呢",
+      "music": 0.0
+    },
+    {
+      "from": 827.939,
+      "to": 829.399,
+      "sid": 506,
+      "location": 2,
+      "content": "我他妈是干英雄联盟",
+      "music": 0.0
+    },
+    {
+      "from": 829.399,
+      "to": 830.199,
+      "sid": 507,
+      "location": 2,
+      "content": "我又不用书",
+      "music": 0.0
+    },
+    {
+      "from": 830.199,
+      "to": 832.68,
+      "sid": 508,
+      "location": 2,
+      "content": "读的多就比喻了",
+      "music": 0.0
+    },
+    {
+      "from": 832.68,
+      "to": 834.24,
+      "sid": 509,
+      "location": 2,
+      "content": "不是你要这么说的话",
+      "music": 0.0
+    },
+    {
+      "from": 834.24,
+      "to": 835.44,
+      "sid": 510,
+      "location": 2,
+      "content": "那你试试AD凯南",
+      "music": 0.0
+    },
+    {
+      "from": 835.44,
+      "to": 838.2,
+      "sid": 511,
+      "location": 2,
+      "content": "APAP凯南哪个打前排速度快呢",
+      "music": 0.0
+    },
+    {
+      "from": 840.01,
+      "to": 841.89,
+      "sid": 512,
+      "location": 2,
+      "content": "那那事情到这了",
+      "music": 0.0
+    },
+    {
+      "from": 841.89,
+      "to": 843.49,
+      "sid": 513,
+      "location": 2,
+      "content": "其实就跟游戏内容没啥关系了",
+      "music": 0.0
+    },
+    {
+      "from": 843.49,
+      "to": 845.05,
+      "sid": 514,
+      "location": 2,
+      "content": "因为宁王的这套发言",
+      "music": 0.0
+    },
+    {
+      "from": 845.05,
+      "to": 847.38,
+      "sid": 515,
+      "location": 2,
+      "content": "给观众展示了什么叫冠军选手",
+      "music": 0.0
+    },
+    {
+      "from": 847.38,
+      "to": 848.58,
+      "sid": 516,
+      "location": 2,
+      "content": "奇特的素养和脑回路",
+      "music": 0.0
+    },
+    {
+      "from": 848.58,
+      "to": 850.42,
+      "sid": 517,
+      "location": 2,
+      "content": "更让我难过的是下面的一堆评论",
+      "music": 0.0
+    },
+    {
+      "from": 850.42,
+      "to": 851.28,
+      "sid": 518,
+      "location": 2,
+      "content": "宁王婚礼上",
+      "music": 0.0
+    },
+    {
+      "from": 851.28,
+      "to": 852.42,
+      "sid": 519,
+      "location": 2,
+      "content": "媳妇动情发言",
+      "music": 0.0
+    },
+    {
+      "from": 852.42,
+      "to": 854.16,
+      "sid": 520,
+      "location": 2,
+      "content": "余生还请宁王多多指教",
+      "music": 0.0
+    },
+    {
+      "from": 854.16,
+      "to": 855.3,
+      "sid": 521,
+      "location": 2,
+      "content": "宁王抢过话筒",
+      "music": 0.0
+    },
+    {
+      "from": 855.3,
+      "to": 856.06,
+      "sid": 522,
+      "location": 2,
+      "content": "不是媳妇儿",
+      "music": 0.0
+    },
+    {
+      "from": 856.06,
+      "to": 857.74,
+      "sid": 523,
+      "location": 2,
+      "content": "这大喜日子你提王多多干嘛",
+      "music": 0.0
+    },
+    {
+      "from": 857.74,
+      "to": 859.54,
+      "sid": 524,
+      "location": 2,
+      "content": "王多多日照香炉生紫烟",
+      "music": 0.0
+    },
+    {
+      "from": 859.54,
+      "to": 861.06,
+      "sid": 525,
+      "location": 2,
+      "content": "宁照香炉还挺能生的",
+      "music": 0.0
+    },
+    {
+      "from": 861.06,
+      "to": 861.38,
+      "sid": 526,
+      "location": 2,
+      "content": "是的",
+      "music": 0.0
+    },
+    {
+      "from": 861.38,
+      "to": 862.8,
+      "sid": 527,
+      "location": 2,
+      "content": "足球比赛也有一个叫铁桶",
+      "music": 0.0
+    },
+    {
+      "from": 862.8,
+      "to": 865.48,
+      "sid": 528,
+      "location": 2,
+      "content": "我找了半天也没找到哪个球员叫铁桶啊",
+      "music": 0.0
+    },
+    {
+      "from": 865.48,
+      "to": 867.32,
+      "sid": 529,
+      "location": 2,
+      "content": "当然哈这个您后面有补充说",
+      "music": 0.0
+    },
+    {
+      "from": 867.32,
+      "to": 868.76,
+      "sid": 530,
+      "location": 2,
+      "content": "他认为面对T1那个阵容",
+      "music": 0.0
+    },
+    {
+      "from": 868.76,
+      "to": 870.38,
+      "sid": 531,
+      "location": 2,
+      "content": "凯南就得出AD才拆的快",
+      "music": 0.0
+    },
+    {
+      "from": 870.38,
+      "to": 871.9,
+      "sid": 532,
+      "location": 2,
+      "content": "王多多没有游戏理解",
+      "music": 0.0
+    },
+    {
+      "from": 871.9,
+      "to": 872.82,
+      "sid": 533,
+      "location": 2,
+      "content": "在瞎解说",
+      "music": 0.0
+    },
+    {
+      "from": 872.82,
+      "to": 874.26,
+      "sid": 534,
+      "location": 2,
+      "content": "那么面对二次节奏呢",
+      "music": 0.0
+    },
+    {
+      "from": 874.26,
+      "to": 875.34,
+      "sid": 535,
+      "location": 2,
+      "content": "王多多也挺无语的",
+      "music": 0.0
+    },
+    {
+      "from": 875.34,
+      "to": 876.0,
+      "sid": 536,
+      "location": 2,
+      "content": "不回复吧",
+      "music": 0.0
+    },
+    {
+      "from": 876.0,
+      "to": 877.72,
+      "sid": 537,
+      "location": 2,
+      "content": "节奏有希回复吧",
+      "music": 0.0
+    },
+    {
+      "from": 877.72,
+      "to": 878.92,
+      "sid": 538,
+      "location": 2,
+      "content": "上次都给过台阶了",
+      "music": 0.0
+    },
+    {
+      "from": 878.92,
+      "to": 879.92,
+      "sid": 539,
+      "location": 2,
+      "content": "怎么还得再给啊",
+      "music": 0.0
+    },
+    {
+      "from": 879.92,
+      "to": 881.3,
+      "sid": 540,
+      "location": 2,
+      "content": "所以后面也直播回应道",
+      "music": 0.0
+    },
+    {
+      "from": 881.3,
+      "to": 883.28,
+      "sid": 541,
+      "location": 2,
+      "content": "还有决赛的是五花马千金裘",
+      "music": 0.0
+    },
+    {
+      "from": 883.28,
+      "to": 884.4,
+      "sid": 542,
+      "location": 2,
+      "content": "多喝两杯不算愁",
+      "music": 0.0
+    },
+    {
+      "from": 884.4,
+      "to": 887.18,
+      "sid": 543,
+      "location": 2,
+      "content": "当然要中考高考的朋友们就不要记这句话了",
+      "music": 0.0
+    },
+    {
+      "from": 887.18,
+      "to": 888.6,
+      "sid": 544,
+      "location": 2,
+      "content": "正常的是五花马千金裘",
+      "music": 0.0
+    },
+    {
+      "from": 888.6,
+      "to": 889.32,
+      "sid": 545,
+      "location": 2,
+      "content": "江苏换美酒",
+      "music": 0.0
+    },
+    {
+      "from": 889.32,
+      "to": 890.14,
+      "sid": 546,
+      "location": 2,
+      "content": "与尔同销万古愁",
+      "music": 0.0
+    },
+    {
+      "from": 890.14,
+      "to": 891.52,
+      "sid": 547,
+      "location": 2,
+      "content": "学生党就不要背错了啊",
+      "music": 0.0
+    },
+    {
+      "from": 891.52,
+      "to": 892.92,
+      "sid": 548,
+      "location": 2,
+      "content": "五花马千金裘多喝两杯不算愁",
+      "music": 0.0
+    },
+    {
+      "from": 892.92,
+      "to": 894.0,
+      "sid": 549,
+      "location": 2,
+      "content": "我说给宁王满上",
+      "music": 0.0
+    },
+    {
+      "from": 894.0,
+      "to": 894.72,
+      "sid": 550,
+      "location": 2,
+      "content": "就这三句啊",
+      "music": 0.0
+    },
+    {
+      "from": 894.72,
+      "to": 895.24,
+      "sid": 551,
+      "location": 2,
+      "content": "告诉你啊",
+      "music": 0.0
+    },
+    {
+      "from": 895.24,
+      "to": 896.7,
+      "sid": 552,
+      "location": 2,
+      "content": "你下面直播的时候说一下",
+      "music": 0.0
+    },
+    {
+      "from": 896.7,
+      "to": 897.56,
+      "sid": 553,
+      "location": 2,
+      "content": "把这个三句",
+      "music": 0.0
+    },
+    {
+      "from": 897.56,
+      "to": 898.89,
+      "sid": 554,
+      "location": 2,
+      "content": "把这个三句背一下",
+      "music": 0.0
+    },
+    {
+      "from": 898.89,
+      "to": 901.15,
+      "sid": 555,
+      "location": 2,
+      "content": "因为这三句本身是赞美你的好吧",
+      "music": 0.0
+    },
+    {
+      "from": 901.15,
+      "to": 903.17,
+      "sid": 556,
+      "location": 2,
+      "content": "背一下你也赞美一下自己",
+      "music": 0.0
+    },
+    {
+      "from": 903.17,
+      "to": 904.65,
+      "sid": 557,
+      "location": 2,
+      "content": "这个事情就结束了",
+      "music": 0.0
+    },
+    {
+      "from": 904.65,
+      "to": 907.17,
+      "sid": 558,
+      "location": 2,
+      "content": "然后到时候我去给你刷礼物好不好",
+      "music": 0.0
+    },
+    {
+      "from": 907.17,
+      "to": 909.51,
+      "sid": 559,
+      "location": 2,
+      "content": "但这个时候呢我们不走寻常路的宁王",
+      "music": 0.0
+    },
+    {
+      "from": 909.51,
+      "to": 911.22,
+      "sid": 560,
+      "location": 2,
+      "content": "依旧选择弹幕最多的打法",
+      "music": 0.0
+    },
+    {
+      "from": 911.22,
+      "to": 912.38,
+      "sid": 561,
+      "location": 2,
+      "content": "先是反问弹幕",
+      "music": 0.0
+    },
+    {
+      "from": 912.38,
+      "to": 913.7,
+      "sid": 562,
+      "location": 2,
+      "content": "我喷王多多什么了",
+      "music": 0.0
+    },
+    {
+      "from": 913.7,
+      "to": 914.66,
+      "sid": 563,
+      "location": 2,
+      "content": "你们张口就来",
+      "music": 0.0
+    },
+    {
+      "from": 914.66,
+      "to": 916.3,
+      "sid": 564,
+      "location": 2,
+      "content": "然后自己又做了一个奇妙比喻",
+      "music": 0.0
+    },
+    {
+      "from": 916.3,
+      "to": 918.06,
+      "sid": 565,
+      "location": 2,
+      "content": "就好比我给你一巴掌",
+      "music": 0.0
+    },
+    {
+      "from": 918.06,
+      "to": 918.98,
+      "sid": 566,
+      "location": 2,
+      "content": "你说我打了你了",
+      "music": 0.0
+    },
+    {
+      "from": 918.98,
+      "to": 920.22,
+      "sid": 567,
+      "location": 2,
+      "content": "看你脸也没红啊",
+      "music": 0.0
+    },
+    {
+      "from": 920.22,
+      "to": 921.3,
+      "sid": 568,
+      "location": 2,
+      "content": "不是这道理吗",
+      "music": 0.0
+    },
+    {
+      "from": 921.3,
+      "to": 922.54,
+      "sid": 569,
+      "location": 2,
+      "content": "那我也比喻手法",
+      "music": 0.0
+    },
+    {
+      "from": 922.54,
+      "to": 923.26,
+      "sid": 570,
+      "location": 2,
+      "content": "你不急眼吧",
+      "music": 0.0
+    },
+    {
+      "from": 923.26,
+      "to": 924.9,
+      "sid": 571,
+      "location": 2,
+      "content": "应该我上去就给你一巴掌",
+      "music": 0.0
+    },
+    {
+      "from": 924.9,
+      "to": 925.9,
+      "sid": 572,
+      "location": 2,
+      "content": "然后你非得跟你妈说",
+      "music": 0.0
+    },
+    {
+      "from": 925.9,
+      "to": 926.46,
+      "sid": 573,
+      "location": 2,
+      "content": "我打你了",
+      "music": 0.0
+    },
+    {
+      "from": 926.46,
+      "to": 928.08,
+      "sid": 574,
+      "location": 2,
+      "content": "然后你妈看你脸也没有被打",
+      "music": 0.0
+    },
+    {
+      "from": 928.08,
+      "to": 929.62,
+      "sid": 575,
+      "location": 2,
+      "content": "没有被巴掌打的痕迹啊",
+      "music": 0.0
+    },
+    {
+      "from": 929.62,
+      "to": 930.23,
+      "sid": 576,
+      "location": 2,
+      "content": "行不",
+      "music": 0.0
+    },
+    {
+      "from": 930.23,
+      "to": 931.73,
+      "sid": 577,
+      "location": 2,
+      "content": "那不也比喻吗",
+      "music": 0.0
+    },
+    {
+      "from": 931.73,
+      "to": 933.59,
+      "sid": 578,
+      "location": 2,
+      "content": "这么能比喻对呀",
+      "music": 0.0
+    },
+    {
+      "from": 933.59,
+      "to": 935.0,
+      "sid": 579,
+      "location": 2,
+      "content": "这不是也是比喻吗",
+      "music": 0.0
+    },
+    {
+      "from": 935.0,
+      "to": 936.8,
+      "sid": 580,
+      "location": 2,
+      "content": "后续呢就是他自己总结说",
+      "music": 0.0
+    },
+    {
+      "from": 936.8,
+      "to": 938.98,
+      "sid": 581,
+      "location": 2,
+      "content": "不喜欢这种没有游戏理解的官方解说",
+      "music": 0.0
+    },
+    {
+      "from": 938.98,
+      "to": 942.52,
+      "sid": 582,
+      "location": 2,
+      "content": "他一直在引导观众灌输很爆炸的情绪",
+      "music": 0.0
+    },
+    {
+      "from": 942.52,
+      "to": 945.38,
+      "sid": 583,
+      "location": 2,
+      "content": "而且针对一个选手城墙城墙说的很烦",
+      "music": 0.0
+    },
+    {
+      "from": 945.38,
+      "to": 948.7,
+      "sid": 584,
+      "location": 2,
+      "content": "并且表示这次节奏很大程度都是弹幕的问题",
+      "music": 0.0
+    },
+    {
+      "from": 948.7,
+      "to": 950.78,
+      "sid": 585,
+      "location": 2,
+      "content": "诶一直在问他把他带偏了",
+      "music": 0.0
+    },
+    {
+      "from": 950.78,
+      "to": 952.56,
+      "sid": 586,
+      "location": 2,
+      "content": "所以总结啊哈弹幕的锅",
+      "music": 0.0
+    },
+    {
+      "from": 952.56,
+      "to": 954.42,
+      "sid": 587,
+      "location": 2,
+      "content": "那我先不谈解说啊",
+      "music": 0.0
+    },
+    {
+      "from": 954.42,
+      "to": 955.58,
+      "sid": 588,
+      "location": 2,
+      "content": "这宁指责别人",
+      "music": 0.0
+    },
+    {
+      "from": 955.58,
+      "to": 957.2,
+      "sid": 589,
+      "location": 2,
+      "content": "引导观众灌输情绪",
+      "music": 0.0
+    },
+    {
+      "from": 957.2,
+      "to": 959.86,
+      "sid": 590,
+      "location": 2,
+      "content": "嗯嗯TARZAN表示认可哦",
+      "music": 0.0
+    },
+    {
+      "from": 959.86,
+      "to": 961.91,
+      "sid": 591,
+      "location": 2,
+      "content": "他一直在引导观众",
+      "music": 0.0
+    },
+    {
+      "from": 962.55,
+      "to": 963.79,
+      "sid": 592,
+      "location": 2,
+      "content": "一直在引导观众",
+      "music": 0.0
+    },
+    {
+      "from": 963.79,
+      "to": 966.75,
+      "sid": 593,
+      "location": 2,
+      "content": "给观众灌输很多就很爆炸的情绪",
+      "music": 0.0
+    },
+    {
+      "from": 966.75,
+      "to": 968.73,
+      "sid": 594,
+      "location": 2,
+      "content": "本身就已经大家都很爆炸了",
+      "music": 0.0
+    },
+    {
+      "from": 968.73,
+      "to": 971.44,
+      "sid": 595,
+      "location": 2,
+      "content": "然后还要再灌输很爆炸的情绪",
+      "music": 0.0
+    },
+    {
+      "from": 971.44,
+      "to": 973.24,
+      "sid": 596,
+      "location": 2,
+      "content": "而且是针对一个选手",
+      "music": 0.0
+    },
+    {
+      "from": 974.48,
+      "to": 977.25,
+      "sid": 597,
+      "location": 2,
+      "content": "我做不到感同身受",
+      "music": 0.0
+    },
+    {
+      "from": 990.22,
+      "to": 993.24,
+      "sid": 598,
+      "location": 2,
+      "content": "不是你钩子野都刷不明白",
+      "music": 0.0
+    },
+    {
+      "from": 993.24,
+      "to": 995.34,
+      "sid": 599,
+      "location": 2,
+      "content": "他这大树真是野都刷不明白",
+      "music": 0.0
+    },
+    {
+      "from": 995.34,
+      "to": 996.22,
+      "sid": 600,
+      "location": 2,
+      "content": "我不跟你们开玩笑",
+      "music": 0.0
+    },
+    {
+      "from": 996.22,
+      "to": 996.66,
+      "sid": 601,
+      "location": 2,
+      "content": "兄弟们",
+      "music": 0.0
+    },
+    {
+      "from": 996.66,
+      "to": 998.06,
+      "sid": 602,
+      "location": 2,
+      "content": "你勾八一个大树站",
+      "music": 0.0
+    },
+    {
+      "from": 998.06,
+      "to": 999.08,
+      "sid": 603,
+      "location": 2,
+      "content": "这干什么呀",
+      "music": 0.0
+    },
+    {
+      "from": 999.08,
+      "to": 1000.98,
+      "sid": 604,
+      "location": 2,
+      "content": "这打野他妈是人啊",
+      "music": 0.0
+    },
+    {
+      "from": 1000.98,
+      "to": 1002.39,
+      "sid": 605,
+      "location": 2,
+      "content": "你往前走啊",
+      "music": 0.0
+    },
+    {
+      "from": 1002.39,
+      "to": 1004.15,
+      "sid": 606,
+      "location": 2,
+      "content": "队友打起来了",
+      "music": 0.0
+    },
+    {
+      "from": 1004.15,
+      "to": 1006.44,
+      "sid": 607,
+      "location": 2,
+      "content": "大树人都看不着地图里面",
+      "music": 0.0
+    },
+    {
+      "from": 1006.44,
+      "to": 1009.2,
+      "sid": 608,
+      "location": 2,
+      "content": "那目前呢宁的直播间就是骂声一片啊",
+      "music": 0.0
+    },
+    {
+      "from": 1009.2,
+      "to": 1010.64,
+      "sid": 609,
+      "location": 2,
+      "content": "尤其是一个弹幕一往无前",
+      "music": 0.0
+    },
+    {
+      "from": 1010.64,
+      "to": 1011.16,
+      "sid": 610,
+      "location": 2,
+      "content": "釜山行",
+      "music": 0.0
+    },
+    {
+      "from": 1011.16,
+      "to": 1012.52,
+      "sid": 611,
+      "location": 2,
+      "content": "大字不识高振宁",
+      "music": 0.0
+    },
+    {
+      "from": 1012.52,
+      "to": 1012.92,
+      "sid": 612,
+      "location": 2,
+      "content": "是是啊",
+      "music": 0.0
+    },
+    {
+      "from": 1012.92,
+      "to": 1013.52,
+      "sid": 613,
+      "location": 2,
+      "content": "我绷不住",
+      "music": 0.0
+    },
+    {
+      "from": 1013.52,
+      "to": 1014.88,
+      "sid": 614,
+      "location": 2,
+      "content": "反正我作为吃瓜群众",
+      "music": 0.0
+    },
+    {
+      "from": 1014.88,
+      "to": 1015.88,
+      "sid": 615,
+      "location": 2,
+      "content": "真是给我看麻了",
+      "music": 0.0
+    },
+    {
+      "from": 1015.88,
+      "to": 1019.1,
+      "sid": 616,
+      "location": 2,
+      "content": "这宁但凡走对一步都不至于闹到这个程度",
+      "music": 0.0
+    },
+    {
+      "from": 1019.1,
+      "to": 1020.42,
+      "sid": 617,
+      "location": 2,
+      "content": "之前看到过一个问题啊",
+      "music": 0.0
+    },
+    {
+      "from": 1020.42,
+      "to": 1022.52,
+      "sid": 618,
+      "location": 2,
+      "content": "叫如何看待现在的网红频频翻车",
+      "music": 0.0
+    },
+    {
+      "from": 1022.52,
+      "to": 1024.5,
+      "sid": 619,
+      "location": 2,
+      "content": "其中有一个回答是互联网的红利",
+      "music": 0.0
+    },
+    {
+      "from": 1024.5,
+      "to": 1027.26,
+      "sid": 620,
+      "location": 2,
+      "content": "让很多人拥有了他们本不该拥有的财富和名气",
+      "music": 0.0
+    },
+    {
+      "from": 1027.26,
+      "to": 1029.04,
+      "sid": 621,
+      "location": 2,
+      "content": "其实你上互联网走一圈就能发现",
+      "music": 0.0
+    },
+    {
+      "from": 1029.04,
+      "to": 1030.28,
+      "sid": 622,
+      "location": 2,
+      "content": "很多翻车的网红",
+      "music": 0.0
+    },
+    {
+      "from": 1030.28,
+      "to": 1031.98,
+      "sid": 623,
+      "location": 2,
+      "content": "大部分都是没有什么教育背景",
+      "music": 0.0
+    },
+    {
+      "from": 1031.98,
+      "to": 1034.82,
+      "sid": 624,
+      "location": 2,
+      "content": "或者对整个世界是没有什么明确认知的",
+      "music": 0.0
+    },
+    {
+      "from": 1034.82,
+      "to": 1037.36,
+      "sid": 625,
+      "location": 2,
+      "content": "但也正是因为无知者无畏的这个特性呢",
+      "music": 0.0
+    },
+    {
+      "from": 1037.36,
+      "to": 1039.2,
+      "sid": 626,
+      "location": 2,
+      "content": "以至于他们以前可以毫无顾忌",
+      "music": 0.0
+    },
+    {
+      "from": 1039.2,
+      "to": 1040.96,
+      "sid": 627,
+      "location": 2,
+      "content": "甚至毫无逻辑的说出很多话",
+      "music": 0.0
+    },
+    {
+      "from": 1040.96,
+      "to": 1041.82,
+      "sid": 628,
+      "location": 2,
+      "content": "做出许多事",
+      "music": 0.0
+    },
+    {
+      "from": 1041.82,
+      "to": 1043.2,
+      "sid": 629,
+      "location": 2,
+      "content": "那在观众眼里来看呢",
+      "music": 0.0
+    },
+    {
+      "from": 1043.2,
+      "to": 1044.4,
+      "sid": 630,
+      "location": 2,
+      "content": "就是真实或抽象",
+      "music": 0.0
+    },
+    {
+      "from": 1044.4,
+      "to": 1045.78,
+      "sid": 631,
+      "location": 2,
+      "content": "反而有一定认知的人",
+      "music": 0.0
+    },
+    {
+      "from": 1045.78,
+      "to": 1047.66,
+      "sid": 632,
+      "location": 2,
+      "content": "是不会说一些很无脑的话的",
+      "music": 0.0
+    },
+    {
+      "from": 1047.66,
+      "to": 1050.06,
+      "sid": 633,
+      "location": 2,
+      "content": "主要还是因为正常人压根不会去那样思考",
+      "music": 0.0
+    },
+    {
+      "from": 1050.06,
+      "to": 1051.82,
+      "sid": 634,
+      "location": 2,
+      "content": "就好比你在东北见到漂亮小姐姐",
+      "music": 0.0
+    },
+    {
+      "from": 1051.82,
+      "to": 1053.28,
+      "sid": 635,
+      "location": 2,
+      "content": "一般人的开场都会说你你好",
+      "music": 0.0
+    },
+    {
+      "from": 1053.28,
+      "to": 1054.12,
+      "sid": 636,
+      "location": 2,
+      "content": "而不是国口闸",
+      "music": 0.0
+    },
+    {
+      "from": 1054.12,
+      "to": 1056.34,
+      "sid": 637,
+      "location": 2,
+      "content": "我曾经跟一些同行探讨过类似的问题啊",
+      "music": 0.0
+    },
+    {
+      "from": 1056.34,
+      "to": 1058.6,
+      "sid": 638,
+      "location": 2,
+      "content": "要脸是不是就在互联网赚不到钱",
+      "music": 0.0
+    },
+    {
+      "from": 1058.6,
+      "to": 1059.4,
+      "sid": 639,
+      "location": 2,
+      "content": "我说不是",
+      "music": 0.0
+    },
+    {
+      "from": 1059.4,
+      "to": 1060.42,
+      "sid": 640,
+      "location": 2,
+      "content": "就算你们不要脸",
+      "music": 0.0
+    },
+    {
+      "from": 1060.42,
+      "to": 1062.26,
+      "sid": 641,
+      "location": 2,
+      "content": "也玩不了真实或抽象那一套",
+      "music": 0.0
+    },
+    {
+      "from": 1062.26,
+      "to": 1064.48,
+      "sid": 642,
+      "location": 2,
+      "content": "有的人天生就是吃这碗饭的",
+      "music": 0.0
+    },
+    {
+      "from": 1064.48,
+      "to": 1065.88,
+      "sid": 643,
+      "location": 2,
+      "content": "有的是环境所造就的",
+      "music": 0.0
+    },
+    {
+      "from": 1065.88,
+      "to": 1067.24,
+      "sid": 644,
+      "location": 2,
+      "content": "而你我的朋友啊",
+      "music": 0.0
+    },
+    {
+      "from": 1067.24,
+      "to": 1069.36,
+      "sid": 645,
+      "location": 2,
+      "content": "这个名为知识的金箍一旦戴上",
+      "music": 0.0
+    },
+    {
+      "from": 1069.36,
+      "to": 1070.76,
+      "sid": 646,
+      "location": 2,
+      "content": "就很难再摘下来了",
+      "music": 0.0
+    },
+    {
+      "from": 1070.76,
+      "to": 1072.44,
+      "sid": 647,
+      "location": 2,
+      "content": "所以这可能能是一个最好的时代",
+      "music": 0.0
+    },
+    {
+      "from": 1072.44,
+      "to": 1073.88,
+      "sid": 648,
+      "location": 2,
+      "content": "也可能是一个最坏的时代",
+      "music": 0.0
+    },
+    {
+      "from": 1073.88,
+      "to": 1074.32,
+      "sid": 649,
+      "location": 2,
+      "content": "好是好",
+      "music": 0.0
+    },
+    {
+      "from": 1074.32,
+      "to": 1076.98,
+      "sid": 650,
+      "location": 2,
+      "content": "在它让更多人有了可以实现财富自由的机会",
+      "music": 0.0
+    },
+    {
+      "from": 1076.98,
+      "to": 1077.38,
+      "sid": 651,
+      "location": 2,
+      "content": "坏就坏",
+      "music": 0.0
+    },
+    {
+      "from": 1077.38,
+      "to": 1078.94,
+      "sid": 652,
+      "location": 2,
+      "content": "在很多所谓网红的成功",
+      "music": 0.0
+    },
+    {
+      "from": 1078.94,
+      "to": 1080.98,
+      "sid": 653,
+      "location": 2,
+      "content": "似乎都在传达着读书无用论",
+      "music": 0.0
+    },
+    {
+      "from": 1080.98,
+      "to": 1084.36,
+      "sid": 654,
+      "location": 2,
+      "content": "你像宁这种能明晃晃的说出我是干英雄联盟的",
+      "music": 0.0
+    },
+    {
+      "from": 1084.36,
+      "to": 1085.8,
+      "sid": 655,
+      "location": 2,
+      "content": "又不用书读的多的",
+      "music": 0.0
+    },
+    {
+      "from": 1085.8,
+      "to": 1087.66,
+      "sid": 656,
+      "location": 2,
+      "content": "这种话就是很典型的单向思维",
+      "music": 0.0
+    },
+    {
+      "from": 1087.66,
+      "to": 1088.76,
+      "sid": 657,
+      "location": 2,
+      "content": "我不用读书",
+      "music": 0.0
+    },
+    {
+      "from": 1088.76,
+      "to": 1089.72,
+      "sid": 658,
+      "location": 2,
+      "content": "都已经挣到钱了",
+      "music": 0.0
+    },
+    {
+      "from": 1089.72,
+      "to": 1090.88,
+      "sid": 659,
+      "location": 2,
+      "content": "那我读书也没什么用",
+      "music": 0.0
+    },
+    {
+      "from": 1090.88,
+      "to": 1092.98,
+      "sid": 660,
+      "location": 2,
+      "content": "那人吃饭就是为了拉屎吗",
+      "music": 0.0
+    },
+    {
+      "from": 1092.98,
+      "to": 1093.66,
+      "sid": 661,
+      "location": 2,
+      "content": "那当然不是",
+      "music": 0.0
+    },
+    {
+      "from": 1093.66,
+      "to": 1095.54,
+      "sid": 662,
+      "location": 2,
+      "content": "我们吃饭的首要目的是为了活下去",
+      "music": 0.0
+    },
+    {
+      "from": 1095.54,
+      "to": 1096.92,
+      "sid": 663,
+      "location": 2,
+      "content": "其次才是满足味觉",
+      "music": 0.0
+    },
+    {
+      "from": 1096.92,
+      "to": 1098.5,
+      "sid": 664,
+      "location": 2,
+      "content": "视觉等需求而拉屎",
+      "music": 0.0
+    },
+    {
+      "from": 1098.5,
+      "to": 1101.14,
+      "sid": 665,
+      "location": 2,
+      "content": "只吃饭中的其中一个结果而已",
+      "music": 0.0
+    },
+    {
+      "from": 1101.14,
+      "to": 1103.5,
+      "sid": 666,
+      "location": 2,
+      "content": "所以你读书不一定就只为了挣钱",
+      "music": 0.0
+    },
+    {
+      "from": 1103.5,
+      "to": 1105.92,
+      "sid": 667,
+      "location": 2,
+      "content": "你挣钱也不一定只能通过读书",
+      "music": 0.0
+    },
+    {
+      "from": 1105.92,
+      "to": 1107.5,
+      "sid": 668,
+      "location": 2,
+      "content": "读书是武装你的头脑",
+      "music": 0.0
+    },
+    {
+      "from": 1107.5,
+      "to": 1108.34,
+      "sid": 669,
+      "location": 2,
+      "content": "提高你的认知的",
+      "music": 0.0
+    },
+    {
+      "from": 1108.34,
+      "to": 1110.48,
+      "sid": 670,
+      "location": 2,
+      "content": "当然也把书读到狗肚子里去啊",
+      "music": 0.0
+    },
+    {
+      "from": 1110.48,
+      "to": 1111.56,
+      "sid": 671,
+      "location": 2,
+      "content": "这种情况就另当别论",
+      "music": 0.0
+    },
+    {
+      "from": 1111.56,
+      "to": 1112.6,
+      "sid": 672,
+      "location": 2,
+      "content": "单论这件事的话",
+      "music": 0.0
+    },
+    {
+      "from": 1112.6,
+      "to": 1113.52,
+      "sid": 673,
+      "location": 2,
+      "content": "影响其实不太好",
+      "music": 0.0
+    },
+    {
+      "from": 1113.52,
+      "to": 1116.28,
+      "sid": 674,
+      "location": 2,
+      "content": "因为电竞放以前那是上不得台面的东西",
+      "music": 0.0
+    },
+    {
+      "from": 1116.28,
+      "to": 1117.52,
+      "sid": 675,
+      "location": 2,
+      "content": "不管是sky还是到后来的",
+      "music": 0.0
+    },
+    {
+      "from": 1117.52,
+      "to": 1118.96,
+      "sid": 676,
+      "location": 2,
+      "content": "一代代的游戏从业人员呢",
+      "music": 0.0
+    },
+    {
+      "from": 1118.96,
+      "to": 1120.64,
+      "sid": 677,
+      "location": 2,
+      "content": "都在尽力的去扭转社会",
+      "music": 0.0
+    },
+    {
+      "from": 1120.64,
+      "to": 1122.56,
+      "sid": 678,
+      "location": 2,
+      "content": "大众对于游戏这个行业的刻板印象",
+      "music": 0.0
+    },
+    {
+      "from": 1122.56,
+      "to": 1124.0,
+      "sid": 679,
+      "location": 2,
+      "content": "提升自己的品牌形象啊",
+      "music": 0.0
+    },
+    {
+      "from": 1124.0,
+      "to": 1124.84,
+      "sid": 680,
+      "location": 2,
+      "content": "比如励志啊",
+      "music": 0.0
+    },
+    {
+      "from": 1124.84,
+      "to": 1125.6,
+      "sid": 681,
+      "location": 2,
+      "content": "勤奋呐",
+      "music": 0.0
+    },
+    {
+      "from": 1125.6,
+      "to": 1127.84,
+      "sid": 682,
+      "location": 2,
+      "content": "不是人们口中的网瘾少年啊等等",
+      "music": 0.0
+    },
+    {
+      "from": 1127.84,
+      "to": 1129.24,
+      "sid": 683,
+      "location": 2,
+      "content": "但通过您这档子事",
+      "music": 0.0
+    },
+    {
+      "from": 1129.24,
+      "to": 1130.64,
+      "sid": 684,
+      "location": 2,
+      "content": "很多观众又回过味了啊",
+      "music": 0.0
+    },
+    {
+      "from": 1130.64,
+      "to": 1131.8,
+      "sid": 685,
+      "location": 2,
+      "content": "打游戏的就是打游戏的",
+      "music": 0.0
+    },
+    {
+      "from": 1131.8,
+      "to": 1132.76,
+      "sid": 686,
+      "location": 2,
+      "content": "自己话说不明白",
+      "music": 0.0
+    },
+    {
+      "from": 1132.76,
+      "to": 1133.94,
+      "sid": 687,
+      "location": 2,
+      "content": "别人话也听不明白",
+      "music": 0.0
+    },
+    {
+      "from": 1133.94,
+      "to": 1134.9,
+      "sid": 688,
+      "location": 2,
+      "content": "没文化真可怕",
+      "music": 0.0
+    },
+    {
+      "from": 1134.9,
+      "to": 1135.14,
+      "sid": 689,
+      "location": 2,
+      "content": "对吧",
+      "music": 0.0
+    },
+    {
+      "from": 1135.14,
+      "to": 1135.82,
+      "sid": 690,
+      "location": 2,
+      "content": "哎总的来说呢",
+      "music": 0.0
+    },
+    {
+      "from": 1135.82,
+      "to": 1138.9,
+      "sid": 691,
+      "location": 2,
+      "content": "这件事虽然不至于大幅拉低LPL的品牌形象",
+      "music": 0.0
+    },
+    {
+      "from": 1138.9,
+      "to": 1140.8,
+      "sid": 692,
+      "location": 2,
+      "content": "但观众膈应那也是真膈应",
+      "music": 0.0
+    },
+    {
+      "from": 1140.8,
+      "to": 1142.96,
+      "sid": 693,
+      "location": 2,
+      "content": "世界冠军呢就这素质这脑子是吧",
+      "music": 0.0
+    },
+    {
+      "from": 1142.96,
+      "to": 1144.54,
+      "sid": 694,
+      "location": 2,
+      "content": "借用GUA当初的一段话啊",
+      "music": 0.0
+    },
+    {
+      "from": 1144.54,
+      "to": 1145.98,
+      "sid": 695,
+      "location": 2,
+      "content": "身为一个公众人物",
+      "music": 0.0
+    },
+    {
+      "from": 1145.98,
+      "to": 1149.38,
+      "sid": 696,
+      "location": 2,
+      "content": "你拥有众多粉丝和普通人难以企及的收入",
+      "music": 0.0
+    },
+    {
+      "from": 1149.38,
+      "to": 1151.98,
+      "sid": 697,
+      "location": 2,
+      "content": "那么你也应当约束自己的行为",
+      "music": 0.0
+    },
+    {
+      "from": 1151.98,
+      "to": 1153.9,
+      "sid": 698,
+      "location": 2,
+      "content": "树立好的榜样",
+      "music": 0.0
+    },
+    {
+      "from": 1154.34,
+      "to": 1154.9,
+      "sid": 699,
+      "location": 2,
+      "content": "那好了",
+      "music": 0.0
+    },
+    {
+      "from": 1154.9,
+      "to": 1156.16,
+      "sid": 700,
+      "location": 2,
+      "content": "以上就是本期节目所有内容了",
+      "music": 0.0
+    },
+    {
+      "from": 1156.16,
+      "to": 1157.58,
+      "sid": 701,
+      "location": 2,
+      "content": "四强后天就要开打了",
+      "music": 0.0
+    },
+    {
+      "from": 1157.58,
+      "to": 1158.74,
+      "sid": 702,
+      "location": 2,
+      "content": "上半LPL内战",
+      "music": 0.0
+    },
+    {
+      "from": 1158.74,
+      "to": 1159.82,
+      "sid": 703,
+      "location": 2,
+      "content": "下半LCK内战",
+      "music": 0.0
+    },
+    {
+      "from": 1159.82,
+      "to": 1161.34,
+      "sid": 704,
+      "location": 2,
+      "content": "各自保送一个进决赛",
+      "music": 0.0
+    },
+    {
+      "from": 1161.34,
+      "to": 1162.66,
+      "sid": 705,
+      "location": 2,
+      "content": "那简单分析一下的话呢",
+      "music": 0.0
+    },
+    {
+      "from": 1162.66,
+      "to": 1164.82,
+      "sid": 706,
+      "location": 2,
+      "content": "WBG的硬实力肯定是不如BRG的",
+      "music": 0.0
+    },
+    {
+      "from": 1164.82,
+      "to": 1166.3,
+      "sid": 707,
+      "location": 2,
+      "content": "硬要说优势的话呢",
+      "music": 0.0
+    },
+    {
+      "from": 1166.3,
+      "to": 1168.42,
+      "sid": 708,
+      "location": 2,
+      "content": "那可能就是丹尼的BP8把蛋了",
+      "music": 0.0
+    },
+    {
+      "from": 1168.42,
+      "to": 1170.06,
+      "sid": 709,
+      "location": 2,
+      "content": "我个人是更看好BRG获胜",
+      "music": 0.0
+    },
+    {
+      "from": 1170.06,
+      "to": 1171.94,
+      "sid": 710,
+      "location": 2,
+      "content": "下班的T1经济呢",
+      "music": 0.0
+    },
+    {
+      "from": 1171.94,
+      "to": 1174.74,
+      "sid": 711,
+      "location": 2,
+      "content": "我觉得如果按照往年交手记录来看的话",
+      "music": 0.0
+    },
+    {
+      "from": 1174.74,
+      "to": 1176.3,
+      "sid": 712,
+      "location": 2,
+      "content": "那经济的胜算会更大一些",
+      "music": 0.0
+    },
+    {
+      "from": 1176.3,
+      "to": 1177.74,
+      "sid": 713,
+      "location": 2,
+      "content": "主要还是五性相克",
+      "music": 0.0
+    },
+    {
+      "from": 1177.74,
+      "to": 1179.64,
+      "sid": 714,
+      "location": 2,
+      "content": "GG这个龟壳子那是真硬啊",
+      "music": 0.0
+    },
+    {
+      "from": 1179.64,
+      "to": 1181.76,
+      "sid": 715,
+      "location": 2,
+      "content": "就看T1能不能有什么奇招凿的开了",
+      "music": 0.0
+    },
+    {
+      "from": 1181.76,
+      "to": 1181.92,
+      "sid": 716,
+      "location": 2,
+      "content": "唉",
+      "music": 0.0
+    },
+    {
+      "from": 1181.92,
+      "to": 1182.48,
+      "sid": 717,
+      "location": 2,
+      "content": "总的来说",
+      "music": 0.0
+    },
+    {
+      "from": 1182.48,
+      "to": 1183.4,
+      "sid": 718,
+      "location": 2,
+      "content": "不管四强也好",
+      "music": 0.0
+    },
+    {
+      "from": 1183.4,
+      "to": 1184.16,
+      "sid": 719,
+      "location": 2,
+      "content": "决赛也好啊",
+      "music": 0.0
+    },
+    {
+      "from": 1184.16,
+      "to": 1185.84,
+      "sid": 720,
+      "location": 2,
+      "content": "我只希望比赛能好看点",
+      "music": 0.0
+    },
+    {
+      "from": 1185.84,
+      "to": 1188.41,
+      "sid": 721,
+      "location": 2,
+      "content": "其实看比赛跟看电影的逻辑是一样的",
+      "music": 0.0
+    },
+    {
+      "from": 1188.41,
+      "to": 1190.89,
+      "sid": 722,
+      "location": 2,
+      "content": "就好比一个演员要是回回都演未亡人",
+      "music": 0.0
+    },
+    {
+      "from": 1190.89,
+      "to": 1192.28,
+      "sid": 723,
+      "location": 2,
+      "content": "那销量肯定不会好",
+      "music": 0.0
+    },
+    {
+      "from": 1192.28,
+      "to": 1193.42,
+      "sid": 724,
+      "location": 2,
+      "content": "所以同理呀",
+      "music": 0.0
+    },
+    {
+      "from": 1193.42,
+      "to": 1194.28,
+      "sid": 725,
+      "location": 2,
+      "content": "比赛也一样",
+      "music": 0.0
+    },
+    {
+      "from": 1194.28,
+      "to": 1195.36,
+      "sid": 726,
+      "location": 2,
+      "content": "好看就好看",
+      "music": 0.0
+    },
+    {
+      "from": 1195.36,
+      "to": 1196.32,
+      "sid": 727,
+      "location": 2,
+      "content": "在他的不确定性",
+      "music": 0.0
+    },
+    {
+      "from": 1196.32,
+      "to": 1197.56,
+      "sid": 728,
+      "location": 2,
+      "content": "那咱们就拭目以待吧",
+      "music": 0.0
+    },
+    {
+      "from": 1197.56,
+      "to": 1198.6,
+      "sid": 729,
+      "location": 2,
+      "content": "那这期我就说到这儿",
+      "music": 0.0
+    },
+    {
+      "from": 1198.6,
+      "to": 1199.92,
+      "sid": 730,
+      "location": 2,
+      "content": "我是刘三少",
+      "music": 0.0
+    },
+    {
+      "from": 1199.92,
+      "to": 1202.54,
+      "sid": 731,
+      "location": 2,
+      "content": "我们下期视频再见",
+      "music": 0.0
+    }
+  ]
+}

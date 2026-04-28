@@ -1,6 +1,6 @@
 # Wiki Index
 
-> Last updated: 2026-04-28 | Total pages: 33
+> Last updated: 2026-04-28 | Total pages: 43
 
 ## Entities
 
@@ -45,6 +45,17 @@
 - [[chapter-093]] — 第93章：阿塔卡马
 - [[chapter-094]] — 第94章：盐滩之战
 - [[chapter-095]] — 第95章：算力对决
+
+- [[chapter-096]] — 第96章：数字地震
+- [[chapter-097]] — 第97章：对手研究
+- [[chapter-098]] — 第98章：古武突破
+- [[chapter-099]] — 第99章：全球清剿
+- [[chapter-100]] — 第100章：烽火暂歇
+- [[chapter-101]] — 第101章：三条道路
+- [[chapter-102]] — 第102章：方阵信号
+- [[chapter-103]] — 第103章：异常信号
+- [[chapter-104]] — 第104章：太空萌芽
+- [[chapter-105]] — 第105章：卷二终章
 
 ## Queries
 

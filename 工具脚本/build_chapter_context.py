@@ -10,22 +10,14 @@
 - 最近章节首尾摘录
 
 用法：
-  python3 build_chapter_context.py --chapter 228
+  python3 build_chapter_context.py --chapter 228 --project-dir /path/to/project
   python3 build_chapter_context.py --chapter 228 --write
 """
 from __future__ import annotations
 import argparse
 import re
 from pathlib import Path
-
-BASE = Path('/root/workspace/科武纪元')
-NEW = BASE / '新版'
-OUTLINE = BASE / '科武纪元大纲V8.md'
-REVIEW = BASE / '审核记录' / '六角色外审'
-CARD = BASE / '审核记录' / '章节记忆卡'
-WAL = BASE / '审核记录' / 'WAL'
-CTX = BASE / '审核记录' / '上下文包'
-GATE = BASE / '工具脚本' / 'check_review_gate.py'
+from config import ProjectConfig, add_project_arg
 
 
 def read(p: Path, limit: int | None = None) -> str:
@@ -39,10 +31,10 @@ def cn_count(s: str) -> int:
     return sum(1 for c in s if '\u4e00' <= c <= '\u9fff')
 
 
-def excerpt_chapter(ch: int, head: int = 900, tail: int = 900) -> str:
-    p = NEW / f'第{ch}章.md'
+def excerpt_chapter(cfg, ch: int, head: int = 900, tail: int = 900) -> str:
+    p = cfg.new_dir / f'第{ch}章.md'
     if not p.exists():
-        p = NEW / f'第{ch:03d}章.md'
+        p = cfg.new_dir / f'第{ch:03d}章.md'
     if not p.exists():
         return f'第{ch}章文件不存在'
     s = p.read_text(encoding='utf-8', errors='ignore')
@@ -61,8 +53,8 @@ def excerpt_chapter(ch: int, head: int = 900, tail: int = 900) -> str:
 '''
 
 
-def outline_anchor(ch: int) -> str:
-    s = read(OUTLINE)
+def outline_anchor(cfg, ch: int) -> str:
+    s = read(cfg.outline)
     if not s:
         return '大纲缺失'
     # 只截 V8 第五卷表，避免命中过往 V7 备份造成上下文污染。
@@ -88,9 +80,9 @@ def outline_anchor(ch: int) -> str:
     return focus + '\n' + '\n'.join(keep[:12])
 
 
-def gate_status(ch: int) -> str:
+def gate_status(cfg, ch: int) -> str:
     # 不调用子进程，直接读 index 简化
-    idx = read(REVIEW / 'index.md')
+    idx = read(cfg.review_record_dir / 'index.md')
     prev = ch - 1
     if f'| {prev} | PASS ' in idx:
         return f'GATE_OK: 第{prev}章 PASS，可准备第{ch}章。'
@@ -104,7 +96,7 @@ def budget_note(text: str) -> str:
     return f'字符数: {chars}；粗略token估算: {est_tokens}；状态: {level}。若超过12KB，优先删早期摘录，保留门禁/上一章记忆卡/大纲锚点/末尾摘录。'
 
 
-def build(ch: int) -> str:
+def build(cfg, ch: int) -> str:
     prev = ch - 1
     prev2 = ch - 2
     parts = []
@@ -114,22 +106,22 @@ def build(ch: int) -> str:
     parts.append('目标≤12KB；信息优先级：门禁 > 上一章记忆卡 > 大纲锚点 > 上章末尾 > 前章简摘。')
     parts.append('')
     parts.append('## 0. 门禁')
-    parts.append(gate_status(ch))
+    parts.append(gate_status(cfg, ch))
     parts.append('开始写作前仍需执行：')
-    parts.append(f'`python3 {GATE} --next {ch}`')
+    parts.append(f'`python3 scripts/check_review_gate.py --project-dir {cfg.base} --next {ch}`')
     parts.append('')
     parts.append('## 1. 大纲锚点')
-    parts.append(outline_anchor(ch))
+    parts.append(outline_anchor(cfg, ch))
     parts.append('')
     parts.append('## 2. 上一章记忆卡')
-    parts.append(read(CARD / f'第{prev:03d}章.md') or read(CARD / f'第{prev}章.md') or '缺上一章记忆卡')
+    parts.append(read(cfg.memory_dir / f'第{prev:03d}章.md') or read(cfg.memory_dir / f'第{prev}章.md') or '缺上一章记忆卡')
     parts.append('')
     parts.append('## 3. 前两章简摘')
-    parts.append(excerpt_chapter(prev2, 500, 500))
-    parts.append(excerpt_chapter(prev, 700, 900))
+    parts.append(excerpt_chapter(cfg, prev2, 500, 500))
+    parts.append(excerpt_chapter(cfg, prev, 700, 900))
     parts.append('')
     parts.append('## 4. 当前章WAL草案')
-    wal = read(WAL / f'第{ch:03d}.md') or read(WAL / f'第{ch}.md')
+    wal = read(cfg.wal_dir / f'第{ch:03d}.md') or read(cfg.wal_dir / f'第{ch}.md')
     parts.append(wal if wal else '暂无。写作前需新建 WAL：目标/大纲锚点/允许/禁止/验收。')
     parts.append('')
     parts.append('## 5. 审稿输入规则')
@@ -144,13 +136,15 @@ def build(ch: int) -> str:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
+    add_project_arg(ap)
     ap.add_argument('--chapter', type=int, required=True)
     ap.add_argument('--write', action='store_true')
     args = ap.parse_args()
-    out = build(args.chapter)
+    cfg = ProjectConfig(args.project_dir)
+    out = build(cfg, args.chapter)
     if args.write:
-        CTX.mkdir(parents=True, exist_ok=True)
-        p = CTX / f'第{args.chapter:03d}章_context.md'
+        cfg.context_dir.mkdir(parents=True, exist_ok=True)
+        p = cfg.context_dir / f'第{args.chapter:03d}章_context.md'
         p.write_text(out, encoding='utf-8')
         print(p)
     else:

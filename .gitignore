@@ -1,20 +1,61 @@
-# Local backups and archives
+# ====================
+# 科武纪元·Git忽略规则
+# ====================
+
+# 小说正文（另仓库或私有存储）
+新版/
+已投稿/
+待确认投稿/
+科学素材/
+科普素材/
+素材/
+蒸馏报告/
+
+# 本地备份和归档
 *.bak
 *.bak.*
 backup/
 备份/
 archive/
 归档跟踪表/
+归档/
+硬科学素材/采集_*/
+硬科学素材/采集_*/raw/
 
-# Python/runtime cache
+# Python/runtime缓存
 __pycache__/
 *.pyc
+*.pyo
+*.egg-info/
+.eggs/
 
-# Local credentials/cookies
+# 敏感凭证（绝不上传）
 *cookies*.txt
 bilibili_cookies.txt
 weibo_cookies.txt
+*.key
+*.pem
+*.env
 
-# Generated media/cache
+# 生成媒体/缓存
 配图/
 rag_kb/
+*.npy
+
+# 大型原始素材（保留索引，不传正文）
+硬科学素材/采集_*/raw/*.md
+时事素材/daily/
+
+# 审核记录（只传模板，不传每章审查包）
+审核记录/四层审核包/
+审核记录/外审原始/
+审核记录/证据包/
+
+# 操作系统
+.DS_Store
+Thumbs.db
+
+# 临时文件
+*.tmp
+*.swp
+*~

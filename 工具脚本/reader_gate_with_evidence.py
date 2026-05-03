@@ -1,0 +1,42 @@
+from pathlib import Path
+import subprocess,json,re,sys
+ch=int(sys.argv[1])
+proj=Path('/root/workspace/科武纪元')
+subprocess.run(['python3',str(proj/'工具脚本/build_review_evidence.py'),str(ch)],cwd='/root/workspace',check=True,capture_output=True,text=True)
+md=proj/'审核记录/证据包'/f'第{ch}章_证据包.md'
+review=proj/'审核记录/六角色外审'/f'第{ch}章.md'
+raw_dir=proj/'审核记录/六角色外审/raw'; raw_dir.mkdir(parents=True,exist_ok=True)
+full=md.read_text(encoding='utf-8',errors='ignore')
+def section(name,limit=1800):
+    marker='## '+name
+    i=full.find(marker)
+    if i<0: return ''
+    j=full.find('\n## ',i+1)
+    return full[i:j if j>0 else len(full)][:limit]
+parts=[]
+for name,lim in [('本地预检',500),('任务卡摘录',1000),('首段行号',1800),('尾段行号',6000),('证据地图：章末钩子',1400),('证据地图：大纲锚点',800)]:
+    s=section(name,lim)
+    if s: parts.append(s)
+pkg='\n\n'.join(parts)
+prompt=f'''RTK证据包：
+{pkg[:12000]}
+
+你是审核器。基于以上证据包做出判断。
+*** 第一行必须且只能输出 PASS 或 FAIL（大写英文），不得有任何前缀、标点、修饰。不要分析，不要思考过程，不要复述任务，不要说"首先"。 ***
+PASS=看得懂/顺/爽/AI味轻/想看下一章。FAIL=看不懂/AI味重/结构断裂/不想看下一章。
+第二行起可写≤3条理由。
+章末钩子允许语义等效表达，不要求原文匹配。
+'''
+cmd=['python3',str(proj/'工具脚本/orchestrate_review.py'),'--role','reader','--prompt',prompt]
+rr=subprocess.run(cmd,cwd='/root/workspace',capture_output=True,text=True,timeout=240)
+raw=(rr.stdout or '')+'\n'+(rr.stderr or '')
+(raw_dir/f'第{ch}_reader_evidence_gate.json').write_text(raw,encoding='utf-8')
+m=re.search(r'"content"\s*:\s*"(.*?)"\s*,\s*"tokens_used"',raw,re.S)
+s=(m.group(1) if m else raw).replace('\\n','\n')
+# MiniMax may emit <think>...</think> before the actual verdict.
+s2=re.sub(r'<think>.*?</think>','',s,flags=re.S).strip()
+first=next((x.strip() for x in s2.splitlines() if x.strip()),'')
+ok='"ok": true' in raw and first.startswith('PASS')
+old=review.read_text(encoding='utf-8',errors='ignore') if review.exists() else f'# 第{ch}章 六角色外审记录\n'
+review.write_text(old+f'''\n\n## RTK证据包读者门禁（2026-05-02）\n- 证据包：审核记录/证据包/第{ch}章_证据包.md\n- 原始输出：raw/第{ch}_reader_evidence_gate.json\n- 结论：{'PASS' if ok else 'REVIEW_NEEDED'}\n\n## 当前门禁汇总\n- 编辑证据包：见 raw/第{ch}_editor_evidence_gate.json\n- 读者证据包：{'PASS' if ok else 'REVIEW_NEEDED'}\n''',encoding='utf-8')
+print(json.dumps({'chapter':ch,'reader_evidence_pass':ok,'evidence':str(md),'review':str(review)},ensure_ascii=False))

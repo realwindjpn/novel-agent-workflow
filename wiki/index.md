@@ -1,63 +1,77 @@
-# Wiki Index
+---
+title: 科武纪元 Wiki
+updated: 2026-05-03
+---
 
-> Last updated: 2026-04-28 | Total pages: 43
+# 《科武纪元》Wiki
 
-## Entities
+> 全五卷（+卷六开头）知识图谱。258章正文已建立双链。
 
-- [[chen-siqi]] — 陈思琪
-- [[fang-ning]] — 方宁
-- [[fangzhen]] — 方阵
-- [[iron-curtain]] — 铁幕联盟
-- [[li-mengyao]] — 李梦瑶
-- [[lin-xingchen]] — 林星辰
-- [[su-yuqing]] — 苏雨晴
-- [[xie-yun]] — 谢云
+## Volumes
+
+| 卷 | 章节 | 索引 |
+|---|---|---|
+| [[卷一·觉醒]] | 第1-55章 | [chapter-index/volume-1](chapter-index/volume-1.md) |
+| [[卷二·烽火]] | 第56-105章 | [chapter-index/volume-2](chapter-index/volume-2.md) |
+| [[卷三·暗流]] | 第106-155章 | [chapter-index/volume-3](chapter-index/volume-3.md) |
+| [[卷四·登月]] | 第156-205章 | [chapter-index/volume-4](chapter-index/volume-4.md) |
+| [[卷五·归途]] | 第206-255章 | [chapter-index/volume-5](chapter-index/volume-5.md) |
+| [[卷六·火星]] | 第256-258章 | [chapter-index/volume-6](chapter-index/volume-6.md) |
+
+## Characters
+
+| 人物 | 角色 | 首次出现 |
+|---|---|---|
+| [[林星辰]] | 男主 | [[ch001]] |
+| [[苏雨晴]] | 女主 | [[ch001]] |
+| [[陈思琪]] | 科技天才 | [[ch002]] |
+| [[谢云]] | 少林传人 | [[ch006]] |
+| [[方宁]] | 技术专家 | [[ch010]] |
+| [[赵刚]] | 总教官 | [[ch009]] |
+| [[李梦瑶]] | 心理师 | [[ch008]] |
+| [[李虎]] | 学员 | [[ch010]] |
+| [[林泽远]] | 父亲(已故) | [[ch046]] |
+| [[张维]] | 线人 | [[ch051]] |
+
+## Factions
+
+| 势力 | 描述 |
+|---|---|
+| [[铁幕联盟]] | 反派，闭源生态垄断 |
+| [[南天门计划]] | 中方开源+古武融合 |
 
 ## Concepts
 
-- [[black-market-compute]] — 算力黑市
-- [[brain-computer-cost]] — 脑机接口代价
-- [[dyson-chain]] — 戴森球技术链路
-- [[energy-compute-loop]] — 能源-算力循环
-- [[liuyun-algorithm]] — 流云算法
-- [[open-ecosystem-vs-closed-ecosystem]] — 开源生态 vs 封闭生态
-- [[science-martial-system]] — 科武融合体系
-- [[tracking-table-policy]] — 跟踪表维护策略
-- [[volume-boundary-book1]] — 第一卷卷界
-- [[writing-rules]] — 写作红线
+| 概念 | 描述 |
+|---|---|
+| [[太极]] | 武当古武体系 |
+| [[生物电场]] | 人体生物电场效应 |
+| [[灵犀终端]] | 个人数据采集终端 |
+| [[方舟协议]] | 林泽远隐藏程序 |
+| [[金刚拳]] | 少林刚猛路线 |
+| [[武当派]] | 古武传承 |
+| [[少林派]] | 古武传承 |
 
-## Plot Threads
+## Statistics
+- 总章节: 258章
+- 正文双链: 718+个
+- 人物页: 12个
+- 概念页: 7个
+- Wiki章节页: 258个
 
-- [[alien-signal]] — 半人马座α异常信号
-- [[southern-sea-conflict]] — 南部海域封锁线
-
-## Chapter Index
-
-- [[chapter-053]] — 第53章 铁幕初现
-- [[chapter-055]] — 第55章 觉醒之终
-- [[chapter-086]] — 第86章：铁幕反击
-- [[chapter-087]] — 第87章：算法对决
-- [[chapter-088]] — 第88章：算力崩溃
-- [[chapter-089]] — 第89章：城市巷战
-- [[chapter-090]] — 第90章：能源危机与算力黑市
-- [[chapter-091]] — 第91章：破局
-- [[chapter-092]] — 第92章：盐滩计划
-- [[chapter-093]] — 第93章：阿塔卡马
-- [[chapter-094]] — 第94章：盐滩之战
-- [[chapter-095]] — 第95章：算力对决
-
-- [[chapter-096]] — 第96章：数字地震
-- [[chapter-097]] — 第97章：对手研究
-- [[chapter-098]] — 第98章：古武突破
-- [[chapter-099]] — 第99章：全球清剿
-- [[chapter-100]] — 第100章：烽火暂歇
-- [[chapter-101]] — 第101章：三条道路
-- [[chapter-102]] — 第102章：方阵信号
-- [[chapter-103]] — 第103章：异常信号
-- [[chapter-104]] — 第104章：太空萌芽
-- [[chapter-105]] — 第105章：卷二终章
-
-## Queries
-
-- [[chapter-053-title-alignment]] — 第53章标题对齐审查
+## Directory Structure
+```
+wiki/
+├── index.md          ← 本文件
+├── SCHEMA.md         ← 规范文档
+├── chapters/         ← 章节页 (ch001-ch258)
+├── chapter-index/    ← 卷索引 (volume-1~6)
+├── entities/         ← 人物/势力页
+├── concepts/         ← 概念页
+├── plot-threads/     ← 伏笔链
+├── queries/          ← 查询
+├── raw/              ← 原始素材快照
+├── log.md            ← 更新日志
+└── _meta/            ← 元数据
+```
 

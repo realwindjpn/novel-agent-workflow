@@ -26,16 +26,16 @@ BASE = Path('/root/workspace/科武纪元')
 CONFIG = Path('/root/.hermes/config.yaml')
 
 ROLE_CONFIG = {
-    'editor': {'provider': 'xiaomi', 'model': 'mimo-v2.5', 'key_env': 'XIAOMI_API_KEY', 'base_url': 'https://token-plan-cn.xiaomimimo.com/v1'},
-    'reader': {'provider': 'xiaomi', 'model': 'mimo-v2.5', 'key_env': 'XIAOMI_API_KEY', 'base_url': 'https://token-plan-cn.xiaomimimo.com/v1'},
+    'editor': {'provider': 'custom-43-135-181-17-8080', 'model': 'gpt-5.5', 'api_key': 'sk-proxy-key-20260421', 'base_url': 'http://43.135.181.17:8080/v1'},
+    'reader': {'provider': 'minimax-cn', 'model': 'MiniMax-M2.7', 'key_env': 'MINIMAX_CN_API_KEY', 'base_url': 'https://api.minimaxi.com/v1'},
     'military': {'provider': 'alibaba', 'model': 'qwen3.6-plus', 'key_env': 'DASHSCOPE_API_KEY', 'base_url': 'https://coding.dashscope.aliyuncs.com/v1'},
-    'science': {'provider': 'alibaba', 'model': 'qwen3.6-plus', 'key_env': 'DASHSCOPE_API_KEY', 'base_url': 'https://coding.dashscope.aliyuncs.com/v1'},
+    'science': {'provider': 'zai', 'model': 'glm-5.1', 'key_env': 'ZAI_API_KEY', 'base_url': 'https://open.bigmodel.cn/api/coding/paas/v4'},
     'master': {'provider': 'zai', 'model': 'glm-5.1', 'key_env': 'ZAI_API_KEY', 'base_url': 'https://open.bigmodel.cn/api/coding/paas/v4'},
 }
 
 MAX_INPUT_CHARS = 4000
 MAX_OUTPUT_CHARS = 3000
-MAX_TOKENS = 1200
+MAX_TOKENS = 4096
 RETRY = 3
 
 
@@ -51,7 +51,7 @@ def load_env():
 
 def get_endpoint(role: str):
     cfg = ROLE_CONFIG[role]
-    key = os.environ.get(cfg['key_env'])
+    key = cfg.get('api_key') or os.environ.get(cfg.get('key_env', ''))
     return cfg['base_url'], key, cfg['provider'], cfg['model']
 
 

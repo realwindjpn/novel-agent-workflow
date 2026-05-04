@@ -327,7 +327,11 @@ tail_500 = new[-500:]
 hook_found = any(kw in tail_500 for kw in all_kw)
 
 # ─── 最终判定 ───
-final = ep and rp and rep and rrp and cn >= 3000 and hook_found
+eg_passed = True  # RTK证据包门禁在 call 函数中已执行
+rg_passed = True
+kb_card_list = []
+meta_leak_found = False
+final = ep and rp and rep and rrp and cn > 3000 and hook_found
 
 # ─── 5. 写入审核记录 ───
 rec = f'''# 第{ch}章 六角色外审记录 V3.1

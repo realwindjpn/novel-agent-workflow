@@ -54,7 +54,7 @@ def call(role,prompt,timeout=220):
     except Exception: data={'role':role,'ok':False,'content':p.stdout+p.stderr,'provider':'?','model':'?'}
     return data
 
-def cpa_chat(prompt, max_tokens=1800, timeout=260):
+def cpa_chat(prompt, max_tokens=4096, timeout=260):
     # load env and config inline, call current CPA/gpt8080 as author
     import yaml, urllib.request
     cfg=yaml.safe_load(Path('/root/.hermes/config.yaml').read_text())
@@ -73,7 +73,7 @@ def cpa_chat(prompt, max_tokens=1800, timeout=260):
 def author_rewrite(n,text):
     need=max(0,TARGET_MIN-cn_count(text))
     prompt=f"""角色: 作者\n任务: 精修《科武纪元》第{n}章改，必须保持原剧情，不覆盖设定，不灌水。\n目标: 精品网文质量；中文正文≥3000字；主角行动链更强；信息只服务剧情；结尾钩子成立。\n限制: 输出完整正文；首行保留第{n}章标题；末行必须（本章完）；不要解释。\n当前缺口约{need}字。\n原文:\n{excerpt(text)}"""
-    out=cpa_chat(prompt, max_tokens=2600)
+    out=cpa_chat(prompt, max_tokens=4096)
     # strip fences
     out=re.sub(r'^```\w*\s*','',out).strip(); out=re.sub(r'\s*```$','',out).strip()
     if f'第{n}章' not in out[:80]:
@@ -102,7 +102,7 @@ def blocking(reps):
 def fix_by_reviews(n,text,reps):
     advice='\n\n'.join(f"[{r.get('role')}/{r.get('model')}]\n{r.get('content','')[:1200]}" for r in reps)
     prompt=f"""角色: 作者\n任务: 按外审意见小修第{n}章改。\n限制: 保持原剧情/人物/设定；只落实硬伤和必改；不灌水；输出完整正文；首行第{n}章；末行（本章完）。\n外审意见:\n{advice}\n\n正文:\n{excerpt(text,2600,2200)}"""
-    out=cpa_chat(prompt,max_tokens=2800)
+    out=cpa_chat(prompt,max_tokens=4096)
     out=re.sub(r'^```\w*\s*','',out).strip(); out=re.sub(r'\s*```$','',out).strip()
     if f'第{n}章' not in out[:80] or cn_count(out)<2800:
         return text

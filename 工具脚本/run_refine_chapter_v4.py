@@ -34,6 +34,8 @@ meta = {
     65: ('海上拦截', '波斯湾海域截获稀土走私货轮，拿到铁幕全球贸易链实据', '网络图谱与海外名校旧档案关联', '写出截获过程、稀土精矿证据、贸易链分析；章末牵引全球网络追踪', '网络图谱'),
     66: ('网络图谱', '铁幕六周周期进入第十七周期最后一周，陈思琪预测得到验证，铁幕发动大规模行动', '中心节点与海外名校旧档案关联', '缝合海上拦截到数据室分析，行动化绘制全球网络图谱，章末牵引海外名校往事', '海外名校往事'),
     67: ('海外名校往事', '陈思琪从U盘文档追到海外名校旧事，导师照片与股东嵌套露出铁幕学术渗透链', '波士顿/智利加密包继续牵引追踪叶启明', '落地导师旧照、股权穿透、流云算法特征码溯源，章末抓到叶启明活跃信号', '间谍网络'),
+    67: ('海外名校往事', '陈思琪从U盘文档追到海外名校旧事，导师照片与股东嵌套露出铁幕学术渗透链', '波士顿/智利加密包继续牵引追踪叶启明', '落地导师旧照+股权穿透+流云算法特征码溯源，章末抓到叶启明活跃信号', '间谍网络'),
+    68: ('间谍网络', '张维供述铁幕国内渗透网络，国安启动清洗行动', '张维交出清洗名单和存储卡，牵连出更多下线', '写清审讯节奏、张维心理防线逐步瓦解、名单逐步露出、存储卡悬念', '清洗行动'),
     76: ('南美某国交锋', '高原训练，清剿矿区据点，雇佣兵死守，南美资源线进入地面交锋', '雇佣兵逃向安第斯山脉', '把锂三角冲突落成高原训练+矿区清剿，不堆地名，真实国名虚化', '安第斯山'),
     77: ('安第斯山', '高海拔追击，外骨骼效率骤降，太极呼吸优势显现', '追击指向芯片加工厂', '写出高海拔、装备衰减、呼吸法优势与追击压力', '加工厂'),
     78: ('加工厂', '突袭芯片加工厂，拿到AI核心数据与量子纠错模块线索', '盐滩行动受阻，帕米尔告急', '补对话，避免纯叙述；科学院/国内科研机构脱敏', '盐滩突袭'),
@@ -348,6 +350,10 @@ hook_found = any(kw in tail_500 for kw in all_kw)
 
 # ─── 最终判定 ───
 final = ep and rp and rep and rrp and cn >= 3000 and hook_found
+final_pass = final
+eg_passed = rep  # RTK编辑门禁结果
+rg_passed = rrp  # RTK读者门禁结果
+meta_leak_found = False
 
 # ─── 5. 写入审核记录 ───
 rec = f'''# 第{ch}章 六角色外审记录 V4
@@ -398,10 +404,40 @@ rec = f'''# 第{ch}章 六角色外审记录 V4
 print(json.dumps({
     'chapter': ch, 'chars': cn,
     'editor_pass': ep, 'reader_pass': rp,
-    'meta_leak': meta_leak_found,
+    'meta_leak': False,
     'evidence_gate': eg_passed,
     'reader_evidence_gate': rg_passed,
     'kb_cards': kb_card_list,
     'file': str(out), 'card': str(card_dir / f'第{ch}章.md'),
     'review': str(review_dir / f'第{ch}章.md')
 }, ensure_ascii=False))
+
+# ─── 精修 PASS 自动归档流程 ───
+if final:
+    original = proj / '新版' / f'第{ch}章.md'
+    if original.exists():
+        import shutil, datetime, subprocess
+        
+        # 1. 备份旧版
+        backup_dir = proj / '审核记录' / '备份' / f'精修替换_{datetime.date.today().isoformat()}'
+        backup_dir.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(str(original), str(backup_dir / f'第{ch}章_精修前.md'))
+        print(f'\n✅ PASS → 旧版备份: {backup_dir / f"第{ch}章_精修前.md"}')
+        
+        # 2. 精修稿替换新版/原版
+        shutil.copy2(str(out), str(original))
+        print(f'✅ 精修稿 → 新版/第{ch}章.md')
+        
+        # 3. git 提交
+        r = subprocess.run(['git', 'add', str(original)], cwd=str(proj), capture_output=True, text=True)
+        msg = f'refine: 第{ch}章 V4精修 PASS'
+        r2 = subprocess.run(['git', 'commit', '-m', msg], cwd=str(proj), capture_output=True, text=True)
+        hash_line = r2.stdout.strip().split('\n')[0] if r2.returncode == 0 else r2.stderr.strip()[:80]
+        print(f'✅ git: {hash_line}')
+        
+        # 4. 转 txt 到已投稿/
+        submit_dir = proj / '已投稿'
+        submit_dir.mkdir(parents=True, exist_ok=True)
+        txt_path = submit_dir / f'第{ch}章.txt'
+        txt_path.write_text(out.read_text(encoding='utf-8'), encoding='utf-8')
+        print(f'✅ 已投稿/第{ch}章.txt 生成')

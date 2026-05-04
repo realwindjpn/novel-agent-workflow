@@ -143,6 +143,8 @@ base_card = f'''# 第{ch}章精修任务卡V3.1
 - 禁止发生：不提前解决后续谜题；不写成报告；不靠口号推进。
 - 章末钩子：{hook}，牵引"{next_ch}"。
 - 风格：物理反馈/行动链/短句；禁文艺比喻；技术解释进入动作。
+- 技术名词必须"差评君风格"科普化：先生活类比再给术语（训练=教大学生/推理=上班，量子纠错=KTV消音器，ASIC=专项运动员）。先讲"是什么/怎么用/战术意义"，再给参数。严禁堆砌ASIC/CUDA等学术缩写，用"推理芯片/专用芯片"。
+- 去AI味铁律：禁"仿佛/微微/缓缓/意味着/意识到/不禁/不由得"。角色对话加口癖/犹豫/语法错误，不说完美台词。
 - **铁律：正文和对话中禁止出现"第X章""第X卷"等章节编号。**
 '''
 
@@ -283,7 +285,7 @@ post = f'''任务: 写后快筛第{ch}章。只判断整体体感，不替代RTK
 {ntail}
 '''
 editor_post = call('editor', '角色: 网文编辑\n关注: 整体结构/风格/是否明显跑偏。\n' + post, suffix='editor_post_v3')
-reader_post = call('reader', '角色: 普通网文读者\n关注: 是否顺、是否水、AI味、想不想看下一章。\n' + post, suffix='reader_post_v3')
+reader_post = call('reader', '角色: 普通网文读者\n关注: 是否顺、是否水、AI味（禁"仿佛/微微/缓缓/意味着/意识到/不禁/不由得"）、想不想看下一章、技术解释是否用了生活类比。\n' + post, suffix='reader_post_v3')
 
 def passed(raw):
     """Trust 'ok' field from orchestrate_review.py JSON; fallback to content scan"""

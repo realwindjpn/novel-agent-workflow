@@ -1,12 +1,3 @@
-{"s": "ch001", "p": "has_title", "o": "江城少年", "chapter": 1}
-{"s": "ch001", "p": "next", "o": "ch002", "chapter": 1}
-{"s": "ch001", "p": "contains_entity", "o": "林星辰", "chapter": 1}
-{"s": "ch001", "p": "contains_entity", "o": "苏雨晴", "chapter": 1}
-{"s": "ch001", "p": "contains_entity", "o": "母亲", "chapter": 1}
-{"s": "ch001", "p": "contains_concept", "o": "太极", "chapter": 1}
-{"s": "ch001", "p": "contains_concept", "o": "光伏", "chapter": 1}
-{"s": "ch001", "p": "contains_concept", "o": "少年班", "chapter": 1}
-{"s": "ch001", "p": "ending_hook", "o": "如果三秒是危险线，那我只剩一半时间。 窗外，江城的夜色沉下来。远处光伏电站的航标灯一闪一闪，红光映在天际线上。 林星辰把示波器放到桌边，屏幕朝向自己。 今晚，他不准备睡太早。", "chapter": 1}
 {"s": "ch002", "p": "has_title", "o": "双轨之争", "chapter": 2}
 {"s": "ch002", "p": "previous", "o": "ch001", "chapter": 2}
 {"s": "ch002", "p": "next", "o": "ch003", "chapter": 2}
@@ -755,3 +746,12 @@
 {"s": "ch062", "p": "has_title", "o": "审讯", "chapter": 62}
 {"s": "ch062", "p": "previous", "o": "ch061", "chapter": 62}
 {"s": "ch062", "p": "ending_hook", "o": "桌面上，那张资金穿透图还没收。 沙海区域贸易公司的名字被红圈圈住。 三层壳结构浮出水面。 再往后，线条全部断在同一片空白里。", "chapter": 62}
+{"s": "ch001", "p": "has_title", "o": "江城少年", "chapter": 1}
+{"s": "ch001", "p": "next", "o": "ch002", "chapter": 1}
+{"s": "ch001", "p": "contains_entity", "o": "林星辰", "chapter": 1}
+{"s": "ch001", "p": "contains_entity", "o": "苏雨晴", "chapter": 1}
+{"s": "ch001", "p": "contains_entity", "o": "母亲", "chapter": 1}
+{"s": "ch001", "p": "contains_concept", "o": "太极", "chapter": 1}
+{"s": "ch001", "p": "contains_concept", "o": "光伏", "chapter": 1}
+{"s": "ch001", "p": "contains_concept", "o": "少年班", "chapter": 1}
+{"s": "ch001", "p": "ending_hook", "o": "屋顶的异常在回应他。武学课明天就开始。 他关掉示波器，拿起笔，在计划表最后一行用力写下： 必须去武学课。 窗外，远处光伏电站的红光依旧在闪，一下，一下，像某种沉默的倒计时。", "chapter": 1}

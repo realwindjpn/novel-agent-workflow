@@ -1,151 +1,151 @@
 {
   "entities": [
     {
-      "name": "林星辰",
-      "type": "person",
-      "mentions": 1682
-    },
-    {
-      "name": "陈思琪",
-      "type": "person",
-      "mentions": 927
-    },
-    {
-      "name": "苏雨晴",
-      "type": "person",
-      "mentions": 657
-    },
-    {
-      "name": "谢云",
-      "type": "person",
-      "mentions": 538
-    },
-    {
       "name": "方宁",
       "type": "person",
-      "mentions": 479
-    },
-    {
-      "name": "赵刚",
-      "type": "person",
-      "mentions": 422
-    },
-    {
-      "name": "李梦瑶",
-      "type": "person",
-      "mentions": 106
-    },
-    {
-      "name": "母亲",
-      "type": "person",
-      "mentions": 33
+      "chapter_mentions": 39
     },
     {
       "name": "李明远",
       "type": "person",
-      "mentions": 2
+      "chapter_mentions": 2
+    },
+    {
+      "name": "李梦瑶",
+      "type": "person",
+      "chapter_mentions": 14
+    },
+    {
+      "name": "林星辰",
+      "type": "person",
+      "chapter_mentions": 61
+    },
+    {
+      "name": "母亲",
+      "type": "person",
+      "chapter_mentions": 10
     },
     {
       "name": "王老师",
       "type": "person",
-      "mentions": 1
+      "chapter_mentions": 1
+    },
+    {
+      "name": "苏雨晴",
+      "type": "person",
+      "chapter_mentions": 52
+    },
+    {
+      "name": "谢云",
+      "type": "person",
+      "chapter_mentions": 46
+    },
+    {
+      "name": "赵刚",
+      "type": "person",
+      "chapter_mentions": 34
+    },
+    {
+      "name": "陈思琪",
+      "type": "person",
+      "chapter_mentions": 55
     }
   ],
   "concepts": [
     {
-      "name": "外骨骼",
-      "type": "concept",
-      "mentions": 126
-    },
-    {
-      "name": "芯片",
-      "type": "concept",
-      "mentions": 109
-    },
-    {
-      "name": "算法",
-      "type": "concept",
-      "mentions": 95
-    },
-    {
-      "name": "传感器",
-      "type": "concept",
-      "mentions": 73
-    },
-    {
       "name": "AI",
       "type": "concept",
-      "mentions": 61
-    },
-    {
-      "name": "太极",
-      "type": "concept",
-      "mentions": 59
-    },
-    {
-      "name": "生物电",
-      "type": "concept",
-      "mentions": 48
-    },
-    {
-      "name": "光伏",
-      "type": "concept",
-      "mentions": 46
-    },
-    {
-      "name": "少年班",
-      "type": "concept",
-      "mentions": 37
-    },
-    {
-      "name": "量子",
-      "type": "concept",
-      "mentions": 25
-    },
-    {
-      "name": "融合实验",
-      "type": "concept",
-      "mentions": 22
-    },
-    {
-      "name": "科技节",
-      "type": "concept",
-      "mentions": 13
-    },
-    {
-      "name": "军事学院",
-      "type": "concept",
-      "mentions": 10
-    },
-    {
-      "name": "心理辅导",
-      "type": "concept",
-      "mentions": 3
+      "chapter_mentions": 20
     },
     {
       "name": "V4贴片",
       "type": "concept",
-      "mentions": 2
-    },
-    {
-      "name": "离线同步",
-      "type": "concept",
-      "mentions": 2
-    },
-    {
-      "name": "未知脉冲",
-      "type": "concept",
-      "mentions": 1
+      "chapter_mentions": 1
     },
     {
       "name": "人工智能",
       "type": "concept",
-      "mentions": 1
+      "chapter_mentions": 1
+    },
+    {
+      "name": "传感器",
+      "type": "concept",
+      "chapter_mentions": 18
+    },
+    {
+      "name": "光伏",
+      "type": "concept",
+      "chapter_mentions": 14
+    },
+    {
+      "name": "军事学院",
+      "type": "concept",
+      "chapter_mentions": 2
+    },
+    {
+      "name": "外骨骼",
+      "type": "concept",
+      "chapter_mentions": 24
+    },
+    {
+      "name": "太极",
+      "type": "concept",
+      "chapter_mentions": 23
+    },
+    {
+      "name": "少年班",
+      "type": "concept",
+      "chapter_mentions": 13
+    },
+    {
+      "name": "心理辅导",
+      "type": "concept",
+      "chapter_mentions": 1
+    },
+    {
+      "name": "未知脉冲",
+      "type": "concept",
+      "chapter_mentions": 1
+    },
+    {
+      "name": "生物电",
+      "type": "concept",
+      "chapter_mentions": 12
+    },
+    {
+      "name": "离线同步",
+      "type": "concept",
+      "chapter_mentions": 1
+    },
+    {
+      "name": "科技节",
+      "type": "concept",
+      "chapter_mentions": 3
+    },
+    {
+      "name": "算法",
+      "type": "concept",
+      "chapter_mentions": 21
+    },
+    {
+      "name": "芯片",
+      "type": "concept",
+      "chapter_mentions": 25
+    },
+    {
+      "name": "融合实验",
+      "type": "concept",
+      "chapter_mentions": 6
     },
     {
       "name": "边境危机",
       "type": "concept",
-      "mentions": 1
+      "chapter_mentions": 1
+    },
+    {
+      "name": "量子",
+      "type": "concept",
+      "chapter_mentions": 10
     }
   ]
 }

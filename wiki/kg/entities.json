@@ -41,6 +41,11 @@
       "chapter_mentions": 46
     },
     {
+      "name": "赵凯",
+      "type": "person",
+      "chapter_mentions": 1
+    },
+    {
       "name": "赵刚",
       "type": "person",
       "chapter_mentions": 34
@@ -95,7 +100,7 @@
     {
       "name": "少年班",
       "type": "concept",
-      "chapter_mentions": 13
+      "chapter_mentions": 12
     },
     {
       "name": "心理辅导",

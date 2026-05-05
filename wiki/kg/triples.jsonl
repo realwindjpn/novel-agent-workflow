@@ -1,18 +1,3 @@
-{"s": "ch004", "p": "has_title", "o": "科技少女", "chapter": 4}
-{"s": "ch004", "p": "previous", "o": "ch003", "chapter": 4}
-{"s": "ch004", "p": "next", "o": "ch005", "chapter": 4}
-{"s": "ch004", "p": "contains_entity", "o": "林星辰", "chapter": 4}
-{"s": "ch004", "p": "contains_entity", "o": "陈思琪", "chapter": 4}
-{"s": "ch004", "p": "contains_entity", "o": "苏雨晴", "chapter": 4}
-{"s": "ch004", "p": "contains_entity", "o": "王老师", "chapter": 4}
-{"s": "ch004", "p": "contains_concept", "o": "生物电", "chapter": 4}
-{"s": "ch004", "p": "contains_concept", "o": "光伏", "chapter": 4}
-{"s": "ch004", "p": "contains_concept", "o": "算法", "chapter": 4}
-{"s": "ch004", "p": "contains_concept", "o": "量子", "chapter": 4}
-{"s": "ch004", "p": "contains_concept", "o": "科技节", "chapter": 4}
-{"s": "ch004", "p": "contains_concept", "o": "传感器", "chapter": 4}
-{"s": "ch004", "p": "contains_concept", "o": "未知脉冲", "chapter": 4}
-{"s": "ch004", "p": "ending_hook", "o": "远处，一片楼顶的光伏板在夜色里沉默排列，像无数块黑色镜面。就在其中一栋建筑顶端，有一道极淡的蓝白色微光闪了一下，随即消失。 他的传感器再次震动。 这一次，面板上跳出了更清晰的一行字。 “未知脉冲源接近。”", "chapter": 4}
 {"s": "ch005", "p": "has_title", "o": "首次实验", "chapter": 5}
 {"s": "ch005", "p": "previous", "o": "ch004", "chapter": 5}
 {"s": "ch005", "p": "next", "o": "ch006", "chapter": 5}
@@ -755,3 +740,12 @@
 {"s": "ch003", "p": "contains_concept", "o": "光伏", "chapter": 3}
 {"s": "ch003", "p": "contains_concept", "o": "实验", "chapter": 3}
 {"s": "ch003", "p": "ending_hook", "o": "实验楼B栋异常加速，三秒前弄清来源", "chapter": 3}
+{"s": "ch004", "p": "has_title", "o": "科技少女", "chapter": 4}
+{"s": "ch004", "p": "previous", "o": "ch003", "chapter": 4}
+{"s": "ch004", "p": "next", "o": "ch005", "chapter": 4}
+{"s": "ch004", "p": "contains_entity", "o": "林星辰", "chapter": 4}
+{"s": "ch004", "p": "contains_entity", "o": "陈思琪", "chapter": 4}
+{"s": "ch004", "p": "contains_concept", "o": "光伏", "chapter": 4}
+{"s": "ch004", "p": "contains_concept", "o": "生物电", "chapter": 4}
+{"s": "ch004", "p": "contains_concept", "o": "算法", "chapter": 4}
+{"s": "ch004", "p": "contains_concept", "o": "传感器", "chapter": 4}

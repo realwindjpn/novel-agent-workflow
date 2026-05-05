@@ -77,3 +77,9 @@
 - 同步章节记忆卡与六角色外审index。
 - 已投稿TXT镜像确认至1-70连续。
 - 说明：本次为补齐未走V4脚本造成的尾巴；后续精修/上传前处理必须走V4闭环。
+## [2026-05-05] update | 1-62 Wiki/KG/RAG前置重建
+- 重建 `wiki/chapters/ch001.md`—`ch062.md`，补章节功能、关键事件、人物动作、技术钩子、Source Material、Risk Points。
+- 更新卷索引：`chapter-index/volume-1.md`、`volume-2.md`。
+- 生成轻量KG：`wiki/kg/triples.jsonl`、`entities.json`、`relations.md`。
+- 备份旧文件：`/root/workspace/科武纪元/审核记录/备份/2026-05-05/wiki_kg_rag_1_62/20260505_212941`。
+- 正文未改；后续V4修改任一章须同步 Wiki/KG/RAG。

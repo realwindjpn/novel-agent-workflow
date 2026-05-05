@@ -1,18 +1,3 @@
-{"s": "ch007", "p": "has_title", "o": "抉择时刻", "chapter": 7}
-{"s": "ch007", "p": "previous", "o": "ch006", "chapter": 7}
-{"s": "ch007", "p": "next", "o": "ch008", "chapter": 7}
-{"s": "ch007", "p": "contains_entity", "o": "林星辰", "chapter": 7}
-{"s": "ch007", "p": "contains_entity", "o": "陈思琪", "chapter": 7}
-{"s": "ch007", "p": "contains_entity", "o": "苏雨晴", "chapter": 7}
-{"s": "ch007", "p": "contains_entity", "o": "李明远", "chapter": 7}
-{"s": "ch007", "p": "contains_entity", "o": "母亲", "chapter": 7}
-{"s": "ch007", "p": "contains_concept", "o": "光伏", "chapter": 7}
-{"s": "ch007", "p": "contains_concept", "o": "算法", "chapter": 7}
-{"s": "ch007", "p": "contains_concept", "o": "AI", "chapter": 7}
-{"s": "ch007", "p": "contains_concept", "o": "少年班", "chapter": 7}
-{"s": "ch007", "p": "contains_concept", "o": "军事学院", "chapter": 7}
-{"s": "ch007", "p": "contains_concept", "o": "传感器", "chapter": 7}
-{"s": "ch007", "p": "ending_hook", "o": "“坐标解出来了，在京城，距离军事学院三公里。” 林星辰停下脚步。 远处公交车缓缓进站，车门打开，发出一声低响。 他抬头看向清晨薄白的天色，把手机收起，向车站走去。", "chapter": 7}
 {"s": "ch008", "p": "has_title", "o": "心理辅导", "chapter": 8}
 {"s": "ch008", "p": "previous", "o": "ch007", "chapter": 8}
 {"s": "ch008", "p": "next", "o": "ch009", "chapter": 8}
@@ -737,3 +722,12 @@
 {"s": "ch006", "p": "contains_concept", "o": "算法", "chapter": 6}
 {"s": "ch006", "p": "contains_concept", "o": "传感器", "chapter": 6}
 {"s": "ch006", "p": "contains_concept", "o": "边境", "chapter": 6}
+{"s": "ch007", "p": "has_title", "o": "抉择时刻", "chapter": 7}
+{"s": "ch007", "p": "previous", "o": "ch006", "chapter": 7}
+{"s": "ch007", "p": "next", "o": "ch008", "chapter": 7}
+{"s": "ch007", "p": "contains_entity", "o": "林星辰", "chapter": 7}
+{"s": "ch007", "p": "contains_concept", "o": "光伏", "chapter": 7}
+{"s": "ch007", "p": "contains_concept", "o": "算法", "chapter": 7}
+{"s": "ch007", "p": "contains_concept", "o": "AI", "chapter": 7}
+{"s": "ch007", "p": "contains_concept", "o": "传感器", "chapter": 7}
+{"s": "ch007", "p": "contains_concept", "o": "心理", "chapter": 7}

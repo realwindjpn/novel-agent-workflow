@@ -1,17 +1,3 @@
-{"s": "ch005", "p": "has_title", "o": "首次实验", "chapter": 5}
-{"s": "ch005", "p": "previous", "o": "ch004", "chapter": 5}
-{"s": "ch005", "p": "next", "o": "ch006", "chapter": 5}
-{"s": "ch005", "p": "contains_entity", "o": "林星辰", "chapter": 5}
-{"s": "ch005", "p": "contains_entity", "o": "陈思琪", "chapter": 5}
-{"s": "ch005", "p": "contains_entity", "o": "苏雨晴", "chapter": 5}
-{"s": "ch005", "p": "contains_concept", "o": "太极", "chapter": 5}
-{"s": "ch005", "p": "contains_concept", "o": "生物电", "chapter": 5}
-{"s": "ch005", "p": "contains_concept", "o": "光伏", "chapter": 5}
-{"s": "ch005", "p": "contains_concept", "o": "算法", "chapter": 5}
-{"s": "ch005", "p": "contains_concept", "o": "外骨骼", "chapter": 5}
-{"s": "ch005", "p": "contains_concept", "o": "科技节", "chapter": 5}
-{"s": "ch005", "p": "contains_concept", "o": "传感器", "chapter": 5}
-{"s": "ch005", "p": "ending_hook", "o": "而在徽章下方，父亲用很淡的笔迹写着四个字： “不要接近。” 林星辰盯着那行字，手指慢慢收紧。 窗外，天台上的灯忽然闪了一下。", "chapter": 5}
 {"s": "ch006", "p": "has_title", "o": "边境危机", "chapter": 6}
 {"s": "ch006", "p": "previous", "o": "ch005", "chapter": 6}
 {"s": "ch006", "p": "next", "o": "ch007", "chapter": 6}
@@ -749,3 +735,14 @@
 {"s": "ch004", "p": "contains_concept", "o": "生物电", "chapter": 4}
 {"s": "ch004", "p": "contains_concept", "o": "算法", "chapter": 4}
 {"s": "ch004", "p": "contains_concept", "o": "传感器", "chapter": 4}
+{"s": "ch005", "p": "has_title", "o": "首次实验", "chapter": 5}
+{"s": "ch005", "p": "previous", "o": "ch004", "chapter": 5}
+{"s": "ch005", "p": "next", "o": "ch006", "chapter": 5}
+{"s": "ch005", "p": "contains_entity", "o": "林星辰", "chapter": 5}
+{"s": "ch005", "p": "contains_entity", "o": "陈思琪", "chapter": 5}
+{"s": "ch005", "p": "contains_entity", "o": "苏雨晴", "chapter": 5}
+{"s": "ch005", "p": "contains_concept", "o": "光伏", "chapter": 5}
+{"s": "ch005", "p": "contains_concept", "o": "生物电", "chapter": 5}
+{"s": "ch005", "p": "contains_concept", "o": "算法", "chapter": 5}
+{"s": "ch005", "p": "contains_concept", "o": "外骨骼", "chapter": 5}
+{"s": "ch005", "p": "contains_concept", "o": "传感器", "chapter": 5}

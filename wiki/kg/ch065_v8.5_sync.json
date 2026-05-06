@@ -1,0 +1,43 @@
+{
+  "chapter": 65,
+  "updated": "2026-05-06",
+  "entities": [
+    "林星辰",
+    "陈思琪",
+    "方宁",
+    "苏雨晴",
+    "谢云",
+    "赵刚",
+    "老K",
+    "方阵",
+    "算力黑市",
+    "铁幕联盟"
+  ],
+  "relations": [
+    [
+      "第65章",
+      "contains_entity",
+      "老K"
+    ],
+    [
+      "第65章",
+      "contains_entity",
+      "方阵"
+    ],
+    [
+      "第65章",
+      "contains_faction",
+      "算力黑市"
+    ],
+    [
+      "K-old relay",
+      "reports_to",
+      "PHALANX-ROOT"
+    ],
+    [
+      "PHALANX-ROOT",
+      "alias_of",
+      "方阵"
+    ]
+  ]
+}

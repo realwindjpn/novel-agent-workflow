@@ -101,7 +101,7 @@ def status():
     load_env()
     print("# 角色模型状态")
     for role, cfg in ROLE_CONFIG.items():
-        key = os.environ.get(cfg['key_env'])
+        key = cfg.get('api_key') or os.environ.get(cfg.get('key_env', ''))
         print(f"- {role}: {cfg['provider']}/{cfg['model']} {'[OK]' if key else '[MISSING KEY]'}")
 
 

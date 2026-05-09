@@ -38,9 +38,17 @@ s=(m.group(1) if m else raw).replace('\\n','\n')
 # MiniMax may emit <think>...</think> before the actual verdict.
 s2=re.sub(r'<think>.*?</think>','',s,flags=re.S).strip()
 first=next((x.strip() for x in s2.splitlines() if x.strip()),'')
-positive = any(k in s2 for k in ['PASS', '想继续看下一章', '想继续看', '继续看下一章', '继续阅读', '可进入第', '追读', '阅读欲望强烈'])
-negative = any(k in first for k in ['FAIL', 'REVIEW_NEEDED']) or any(k in s2 for k in ['不想看下一章', '无追读欲', '看不懂', 'AI味重'])
-ok='"ok": true' in raw and positive and not negative
+# 中文模型正向表达
+positive_en = any(k in s2 for k in ['PASS', 'pass'])
+positive_zh = any(k in s2 for k in [
+    '没问题','通过','合格','想继续看','想追','追读','很好','不错','想看下一章',
+    '继续看下一章','继续阅读','可进入','完整度达标','悬念设置好',
+    '值得看','可以进入','节奏好','结构完整','没有大问题'
+])
+# 负向阻断
+negative = any(k in first for k in ['FAIL','失败','不合格','重写','看不懂','AI味重','无追读欲','不想看','不推荐']) or \
+           any(k in s2 for k in ['重写全文','方向性错误','严重跑题'])
+ok = '"ok": true' in raw and (positive_en or positive_zh) and not negative
 old=review.read_text(encoding='utf-8',errors='ignore') if review.exists() else f'# 第{ch}章 六角色外审记录\n'
 review.write_text(old+f'''\n\n## RTK证据包读者门禁（2026-05-02）\n- 证据包：审核记录/证据包/第{ch}章_证据包.md\n- 原始输出：raw/第{ch}_reader_evidence_gate.json\n- 结论：{'PASS' if ok else 'REVIEW_NEEDED'}\n\n## 当前门禁汇总\n- 编辑证据包：见 raw/第{ch}_editor_evidence_gate.json\n- 读者证据包：{'PASS' if ok else 'REVIEW_NEEDED'}\n''',encoding='utf-8')
 print(json.dumps({'chapter':ch,'reader_evidence_pass':ok,'evidence':str(md),'review':str(review)},ensure_ascii=False))

@@ -19,7 +19,7 @@ RTK压缩：所有结果写文件，只返回统计摘要。
 采集源配置：微信URL从配置文件读取，其他按关键词自动搜。
 """
 
-import json, os, re, sys, time, html
+import json, os, re, sys, time, html, subprocess, shutil
 import urllib.request
 from pathlib import Path
 from datetime import datetime
@@ -59,13 +59,80 @@ CONFIG = {
     "rss_feeds": {
         "ArsTechnica": "https://feeds.arstechnica.com/arstechnica/index",
         "TechCrunch": "https://techcrunch.com/feed/",
-        "NewScientist": "https://www.newscientist.com/feed/technology/",
+        "NewScientist": "https://www.newscientist.com/subject/technology/feed/",
         "DefenseNews": "https://www.defensenews.com/arc/outboundfeeds/rss/",
     },
 }
 
 def log(msg):
     print(f"[{datetime.now().strftime('%H:%M:%S')}] {msg}")
+
+def filter_crawl4ai_logs(text):
+    prefixes = ('[INIT]', '[FETCH]', '[SCRAPE]', '[COMPLETE]', '| ✓')
+    return '\n'.join(l for l in text.splitlines() if not l.startswith(prefixes))
+
+def run_crawl4ai(url, timeout=60):
+    """安全调用 crawl4ai-skill，避免 shell 注入并保留错误信息。"""
+    if not shutil.which("crawl4ai-skill"):
+        return False, "crawl4ai-skill 不存在"
+    try:
+        result = subprocess.run(
+            ["crawl4ai-skill", "crawl", url, "--format", "fit_markdown"],
+            capture_output=True,
+            text=True,
+            timeout=timeout,
+            check=False,
+        )
+    except subprocess.TimeoutExpired:
+        return False, "crawl4ai超时"
+    if result.returncode != 0:
+        err = (result.stderr.strip() or result.stdout.strip())[:300]
+        return False, f"crawl4ai失败: {err}"
+    return True, filter_crawl4ai_logs(result.stdout)
+
+def clean_xml_text(s):
+    """清理 RSS/Atom 文本：CDATA、HTML 实体、标签、多余空白。"""
+    if not s:
+        return ""
+    s = re.sub(r'^\s*<!\[CDATA\[(.*?)\]\]>\s*$', r'\1', s, flags=re.S)
+    s = html.unescape(s)
+    s = re.sub(r'<[^>]+>', '', s)
+    return re.sub(r'\s+', ' ', s).strip()
+
+def extract_first(pattern, text, flags=re.S | re.I):
+    m = re.search(pattern, text, flags)
+    return clean_xml_text(m.group(1)) if m else ""
+
+def extract_rss_items(xml, limit=4):
+    """按 item/entry 解析 RSS/Atom，避免 channel/feed 标题混入。"""
+    articles = []
+    items = re.findall(r'<item\b[^>]*>(.*?)</item>', xml, flags=re.S | re.I)
+    if items:
+        for item in items[:limit]:
+            title = extract_first(r'<title[^>]*>(.*?)</title>', item)
+            link = extract_first(r'<link[^>]*>(.*?)</link>', item)
+            if not link:
+                link = extract_first(r'<guid[^>]*isPermaLink=["\']true["\'][^>]*>(.*?)</guid>', item)
+            date = extract_first(r'<pubDate[^>]*>(.*?)</pubDate>', item)
+            if title:
+                articles.append({"title": title, "link": link, "date": date})
+        return articles
+    entries = re.findall(r'<entry\b[^>]*>(.*?)</entry>', xml, flags=re.S | re.I)
+    for entry in entries[:limit]:
+        title = extract_first(r'<title[^>]*>(.*?)</title>', entry)
+        link = ""
+        m = re.search(r'<link[^>]*href=["\']([^"\']+)["\']', entry, flags=re.S | re.I)
+        if m:
+            link = html.unescape(m.group(1)).strip()
+        if not link:
+            link = extract_first(r'<link[^>]*>(.*?)</link>', entry)
+        date = extract_first(r'<(?:updated|published)[^>]*>(.*?)</(?:updated|published)>', entry)
+        if title:
+            articles.append({"title": title, "link": link, "date": date})
+    return articles
+
+def md_cell(s):
+    return str(s or "").replace("|", "\\|").replace("\n", " ")
 
 # ========== 微信采集（wechat-article-spider）==========
 
@@ -249,12 +316,9 @@ def download_bili_subtitle(bvid, output_path):
 def crawl_guancha(author_url, author_name):
     """爬取观察者网专栏文章列表"""
     try:
-        cmd = f'crawl4ai-skill crawl "{author_url}" --format fit_markdown 2>/dev/null'
-        result = os.popen(cmd).read()
-        
-        # 过滤日志行
-        lines = [l for l in result.split('\n') if not l.startswith('[INIT]') and not l.startswith('[FETCH]') and not l.startswith('[SCRAPE]') and not l.startswith('[COMPLETE]') and not l.startswith('| ✓')]
-        clean = '\n'.join(lines)
+        ok, clean = run_crawl4ai(author_url)
+        if not ok:
+            return False, clean
         
         # 提取文章链接和标题（格式: #### [标题](URL)）
         links = re.findall(r'#### \[(.+?)\]\((https://www\.guancha\.cn/[^)]+\.shtml)', clean)
@@ -273,12 +337,9 @@ def crawl_guancha(author_url, author_name):
 def crawl_guancha_article(article_url, output_path):
     """爬取观察者网单篇文章全文"""
     try:
-        cmd = f'crawl4ai-skill crawl "{article_url}" --format fit_markdown 2>/dev/null'
-        result = os.popen(cmd).read()
-        
-        # 过滤日志
-        lines = [l for l in result.split('\n') if not l.startswith('[INIT]') and not l.startswith('[FETCH]') and not l.startswith('[SCRAPE]') and not l.startswith('[COMPLETE]') and not l.startswith('| ✓')]
-        clean = '\n'.join(lines)
+        ok, clean = run_crawl4ai(article_url)
+        if not ok:
+            return False, clean
         
         if len(clean) > 200:
             Path(output_path).parent.mkdir(parents=True, exist_ok=True)
@@ -414,24 +475,16 @@ def fetch_hot_topics():
 # ========== RSS采集 ==========
 
 def fetch_rss_feeds():
-    """并行抓取多个RSS源"""
+    """抓取多个RSS源"""
     results = {}
     for name, url in CONFIG["rss_feeds"].items():
         try:
             req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
             resp = urllib.request.urlopen(req, timeout=10)
-            xml = resp.read().decode('utf-8')
-            
-            # 提取标题
-            titles = re.findall(r'<title>(.*?)</title>', xml)
-            pub_dates = re.findall(r'<pubDate>(.*?)</pubDate>', xml)
-            
-            articles = []
-            for i, t in enumerate(titles[1:5]):  # 跳过feed标题，取前4篇
-                article = {"title": html.unescape(t)}
-                if i < len(pub_dates):
-                    article["date"] = pub_dates[i]
-                articles.append(article)
+            xml = resp.read().decode('utf-8', errors='replace')
+            articles = extract_rss_items(xml, limit=4)
+            if not articles:
+                log(f"  RSS {name}: 0篇，可能不是RSS/XML: {resp.getheader('content-type')}")
             
             results[name] = articles
             log(f"  RSS {name}: {len(articles)}篇")
@@ -525,6 +578,23 @@ def main():
         for k, v in stats.items():
             f.write(f"| {k} | {v} |\n")
         f.write(f"\n## 输出目录\n\n- 原始素材: `{RAW_DIR}`\n- 素材卡: `{CARDS_OUT}`\n")
+        f.write("\n## 输出文件\n\n")
+        for p in sorted(OUT_DIR.rglob("*")):
+            if p.is_file() and p.name != "MANIFEST.md":
+                f.write(f"- `{p.relative_to(OUT_DIR)}`\n")
+        rss_file = RAW_DIR / "rss_feeds.json"
+        if rss_file.exists():
+            try:
+                rss_data = json.loads(rss_file.read_text(encoding="utf-8"))
+                f.write("\n## RSS明细\n\n| 源 | 标题 | 日期 | 链接 |\n|----|------|------|------|\n")
+                for source, items in rss_data.items():
+                    if isinstance(items, list):
+                        for item in items:
+                            f.write(f"| {md_cell(source)} | {md_cell(item.get('title'))} | {md_cell(item.get('date'))} | {md_cell(item.get('link'))} |\n")
+                    else:
+                        f.write(f"| {md_cell(source)} | 失败 |  | {md_cell(items)} |\n")
+            except Exception as e:
+                f.write(f"\nRSS明细读取失败：{e}\n")
     
     log("\n=== 采集完成 ===")
     for k, v in stats.items():

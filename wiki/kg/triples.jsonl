@@ -651,3 +651,104 @@
 {"s": "ch008", "p": "contains_concept", "o": "数据", "chapter": 8}
 {"s": "ch008", "p": "contains_concept", "o": "测试", "chapter": 8}
 {"s": "ch008", "p": "contains_concept", "o": "反应时", "chapter": 8}
+{"s": "ch073", "p": "has_kg_sync", "o": "ch073_20260508_sync.json", "chapter": 73}
+{"s": "ch073", "p": "contains_entity", "o": "林星辰", "chapter": 73}
+{"s": "ch073", "p": "contains_entity", "o": "陈思琪", "chapter": 73}
+{"s": "ch073", "p": "contains_entity", "o": "方宁", "chapter": 73}
+{"s": "ch073", "p": "contains_entity", "o": "谢云", "chapter": 73}
+{"s": "ch073", "p": "contains_entity", "o": "赵刚", "chapter": 73}
+{"s": "ch073", "p": "contains_entity", "o": "铁幕联盟", "chapter": 73}
+{"s": "ch073", "p": "contains_entity", "o": "蓝幔贸易", "chapter": 73}
+{"s": "ch073", "p": "contains_entity", "o": "Blue Mantle Trading", "chapter": 73}
+{"s": "ch073", "p": "contains_entity", "o": "瓦尔帕莱索港", "chapter": 73}
+{"s": "ch073", "p": "contains_entity", "o": "刚果残余势力", "chapter": 73}
+{"s": "ch073", "p": "contains_concept", "o": "钴矿供应链", "chapter": 73}
+{"s": "ch073", "p": "contains_concept", "o": "矿物指纹", "chapter": 73}
+{"s": "ch073", "p": "contains_concept", "o": "哈希校验", "chapter": 73}
+{"s": "ch073", "p": "contains_concept", "o": "服务器灾备接管箱", "chapter": 73}
+{"s": "ch073", "p": "contains_concept", "o": "独立卫星链路", "chapter": 73}
+{"s": "ch073", "p": "contains_concept", "o": "权限链", "chapter": 73}
+{"s": "ch073", "p": "contains_concept", "o": "AIS异常航线", "chapter": 73}
+{"s": "第73章", "p": "contains_entity", "o": "蓝幔贸易", "chapter": 73}
+{"s": "蓝幔贸易", "p": "registered_in", "o": "开曼", "chapter": 73}
+{"s": "蓝幔贸易", "p": "payment_route", "o": "卢森堡账户", "chapter": 73}
+{"s": "第73章", "p": "contains_concept", "o": "矿物指纹", "chapter": 73}
+{"s": "矿物指纹", "p": "evidence_for", "o": "钴矿来源溯源", "chapter": 73}
+{"s": "第73章", "p": "contains_concept", "o": "哈希校验", "chapter": 73}
+{"s": "哈希校验", "p": "secures", "o": "服务器镜像证据", "chapter": 73}
+{"s": "服务器灾备接管箱", "p": "has_capability", "o": "独立卫星链路", "chapter": 73}
+{"s": "服务器灾备接管箱", "p": "threatens", "o": "矿区远程调度权", "chapter": 73}
+{"s": "第73章", "p": "ending_hook", "o": "刚果残余势力天亮后收网", "chapter": 73}
+{"s": "第73章", "p": "next", "o": "第74章", "chapter": 73}
+{"s": "ch074", "p": "has_kg_sync", "o": "ch074_20260508_sync.json", "chapter": 74}
+{"s": "ch074", "p": "contains_entity", "o": "林星辰", "chapter": 74}
+{"s": "ch074", "p": "contains_entity", "o": "陈思琪", "chapter": 74}
+{"s": "ch074", "p": "contains_entity", "o": "方宁", "chapter": 74}
+{"s": "ch074", "p": "contains_entity", "o": "谢云", "chapter": 74}
+{"s": "ch074", "p": "contains_entity", "o": "赵刚", "chapter": 74}
+{"s": "ch074", "p": "contains_entity", "o": "穆巴拉克上校", "chapter": 74}
+{"s": "ch074", "p": "contains_entity", "o": "联合国监督组", "chapter": 74}
+{"s": "ch074", "p": "contains_entity", "o": "铁幕联盟", "chapter": 74}
+{"s": "ch074", "p": "contains_entity", "o": "南美锂三角", "chapter": 74}
+{"s": "ch074", "p": "contains_concept", "o": "刚果残局", "chapter": 74}
+{"s": "ch074", "p": "contains_concept", "o": "联合国框架清剿", "chapter": 74}
+{"s": "ch074", "p": "contains_concept", "o": "只读取证", "chapter": 74}
+{"s": "ch074", "p": "contains_concept", "o": "管理员硬件钥匙", "chapter": 74}
+{"s": "ch074", "p": "contains_concept", "o": "远端擦写", "chapter": 74}
+{"s": "ch074", "p": "contains_concept", "o": "Salar", "chapter": 74}
+{"s": "ch074", "p": "contains_concept", "o": "Litio", "chapter": 74}
+{"s": "ch074", "p": "contains_concept", "o": "Triángulo", "chapter": 74}
+{"s": "ch074", "p": "contains_concept", "o": "锂盐湖", "chapter": 74}
+{"s": "第74章", "p": "contains_entity", "o": "穆巴拉克上校", "chapter": 74}
+{"s": "穆巴拉克上校", "p": "represents", "o": "当地政府军代价", "chapter": 74}
+{"s": "第74章", "p": "contains_entity", "o": "联合国监督组", "chapter": 74}
+{"s": "联合国监督组", "p": "constrains", "o": "清剿取证边界", "chapter": 74}
+{"s": "第74章", "p": "contains_concept", "o": "管理员硬件钥匙", "chapter": 74}
+{"s": "管理员硬件钥匙", "p": "accesses", "o": "海运系统/海外服务器", "chapter": 74}
+{"s": "第74章", "p": "contains_concept", "o": "远端擦写", "chapter": 74}
+{"s": "Salar", "p": "points_to", "o": "盐湖", "chapter": 74}
+{"s": "Litio", "p": "points_to", "o": "锂", "chapter": 74}
+{"s": "Triángulo", "p": "points_to", "o": "南美锂三角", "chapter": 74}
+{"s": "第74章", "p": "ending_hook", "o": "南美锂三角", "chapter": 74}
+{"s": "第74章", "p": "next", "o": "第75章", "chapter": 74}
+{"s": "V8.6", "p": "has_kg_sync", "o": "ch000_20260508_sync.json", "chapter": 0}
+{"s": "国产算力训练主权", "p": "maps_to", "o": "第78章", "chapter": 0}
+{"s": "国产算力训练主权", "p": "maps_to", "o": "第95章", "chapter": 0}
+{"s": "国产算力训练主权", "p": "maps_to", "o": "第221章", "chapter": 0}
+{"s": "地月规则竞赛", "p": "maps_to", "o": "第156章", "chapter": 0}
+{"s": "地月规则竞赛", "p": "maps_to", "o": "第169章", "chapter": 0}
+{"s": "地月规则竞赛", "p": "maps_to", "o": "第221章", "chapter": 0}
+{"s": "军事AI蜂群", "p": "maps_to", "o": "第184章", "chapter": 0}
+{"s": "军事AI蜂群", "p": "maps_to", "o": "第306章", "chapter": 0}
+{"s": "军事AI蜂群", "p": "maps_to", "o": "第307章", "chapter": 0}
+{"s": "量子先存后解", "p": "maps_to", "o": "第220章", "chapter": 0}
+{"s": "量子先存后解", "p": "maps_to", "o": "第261章", "chapter": 0}
+{"s": "量子先存后解", "p": "maps_to", "o": "第381章", "chapter": 0}
+{"s": "国产算力训练主权", "p": "source_card", "o": "素材卡_国产算力训练主权_能推到能训", "chapter": 0}
+{"s": "量子先存后解", "p": "source_card", "o": "素材卡_量子先存后解_后量子密钥", "chapter": 0}
+{"s": "Mozilla Agent Harness", "p": "maps_to", "o": "流云硬反馈闭环", "chapters": [95, 184, 269, 286, 317, 339]}
+{"s": "DHS DNA Database Lawsuit", "p": "maps_to", "o": "白盾生物数据算法暴力", "chapters": [217, 223, 226, 233, 243]}
+{"s": "European Defense Autonomy", "p": "maps_to", "o": "欧陆C2自主摩擦", "chapters": [86, 106, 121, 306, 307, 309]}
+{"s": "Turkey Yildirimhan Propellant", "p": "maps_to", "o": "推进剂供应链威慑", "chapters": [308, 311, 337, 340]}
+{"subject":"欧陆C2备份链","predicate":"causes","object":"三秒延迟","chapter":86,"v87":true}
+{"subject":"审计权冲突","predicate":"manifests_as","object":"签名队列死循环","chapter":86,"v87":true}
+{"subject":"流云自生成代码","predicate":"requires","object":"红队harness验证","chapter":95,"v87":true}
+{"subject":"模型自证安全","predicate":"is_prohibited_by","object":"双模型复核","chapter":95,"v87":true}
+{"subject":"流云推演","predicate":"requires","object":"三层验证链","chapter":184,"v87":true}
+{"subject":"集中命令/边缘自主","predicate":"is_structural_defect_of","object":"铁幕AI架构","chapter":184,"v87":true}
+{"subject":"白盾风险分","predicate":"incorporates","object":"生物数据标签","chapter":217,"v87":true}
+{"subject":"DNA/面部/车牌/社媒/位置","predicate":"拼成","object":"长期风险标签","chapter":217,"v87":true}
+{"subject":"白盾标签","predicate":"enters","object":"多部门系统","chapter":233,"v87":true}
+{"subject":"标签跨部门","predicate":"has_property","object":"不可单点撤销","chapter":233,"v87":true}
+{"subject":"执行者","predicate":"sees","object":"红色风险等级","chapter":233,"v87":true}
+{"subject":"执行者","predicate":"cannot_see","object":"标签来源","chapter":233,"v87":true}
+{"s": "ch086", "p": "uses_source", "o": "时事素材/素材卡/2026-05-10/素材卡_霍尔木兹海峡封锁_击伤伊朗油轮.md", "date": "2026-05-10", "version": "V8.8"}
+{"s": "ch086", "p": "uses_source", "o": "时事素材/素材卡/2026-05-08/素材卡_欧洲防务自主_500亿欧_C2_Drone_Starlink.md", "date": "2026-05-10", "version": "V8.8"}
+{"s": "ch124", "p": "uses_source", "o": "时事素材/素材卡/2026-05-10/素材卡_量子比特可移动_代尔夫特_QuTech.md", "date": "2026-05-10", "version": "V8.8"}
+{"s": "ch217", "p": "uses_source", "o": "时事素材/素材卡/2026-05-10/素材卡_乌克兰UGV地面机器人_5万台扩产.md", "date": "2026-05-10", "version": "V8.8"}
+{"s": "ch217", "p": "uses_source", "o": "时事素材/素材卡/2026-05-08/素材卡_DHS_DNA数据库_抗议者_算法暴力.md", "date": "2026-05-10", "version": "V8.8"}
+{"s": "ch223", "p": "uses_source", "o": "时事素材/素材卡/2026-05-10/素材卡_乌克兰UGV地面机器人_5万台扩产.md", "date": "2026-05-10", "version": "V8.8"}
+{"s": "ch086", "p": "foreshadows", "o": "ch110 天门封锁", "date": "2026-05-10", "version": "V8.8"}
+{"s": "ch124", "p": "foreshadows", "o": "ch240 量子钥匙", "date": "2026-05-10", "version": "V8.8"}
+{"s": "ch217", "p": "sets_up", "o": "ch223 UGV终局画面", "date": "2026-05-10", "version": "V8.8"}
+{"s": "UGV群", "p": "embodies", "o": "算法暴力", "date": "2026-05-10", "version": "V8.8"}

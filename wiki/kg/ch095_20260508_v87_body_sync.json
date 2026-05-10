@@ -1,0 +1,14 @@
+{
+  "chapter": 95,
+  "sync_date": "2026-05-08",
+  "sync_type": "v87_body_modification",
+  "changes": [
+    "agent_hard_feedback_loop",
+    "red_team_harness",
+    "sandbox_crash_test",
+    "regression_samples",
+    "dual_model_review",
+    "no_self_validation"
+  ],
+  "status": "synced"
+}

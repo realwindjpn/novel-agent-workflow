@@ -3,7 +3,8 @@
     {
       "name": "方宁",
       "type": "person",
-      "chapter_mentions": 39
+      "chapter_mentions": 39,
+      "updated": "2026-05-08"
     },
     {
       "name": "李明远",
@@ -18,7 +19,8 @@
     {
       "name": "林星辰",
       "type": "person",
-      "chapter_mentions": 61
+      "chapter_mentions": 61,
+      "updated": "2026-05-08"
     },
     {
       "name": "母亲",
@@ -38,7 +40,8 @@
     {
       "name": "谢云",
       "type": "person",
-      "chapter_mentions": 46
+      "chapter_mentions": 46,
+      "updated": "2026-05-08"
     },
     {
       "name": "赵凯",
@@ -48,12 +51,86 @@
     {
       "name": "赵刚",
       "type": "person",
-      "chapter_mentions": 34
+      "chapter_mentions": 34,
+      "updated": "2026-05-08"
     },
     {
       "name": "陈思琪",
       "type": "person",
-      "chapter_mentions": 55
+      "chapter_mentions": 55,
+      "updated": "2026-05-08"
+    },
+    {
+      "name": "铁幕联盟",
+      "type": "entity",
+      "chapter_mentions": 1,
+      "updated": "2026-05-08"
+    },
+    {
+      "name": "蓝幔贸易",
+      "type": "entity",
+      "chapter_mentions": 1,
+      "updated": "2026-05-08"
+    },
+    {
+      "name": "Blue Mantle Trading",
+      "type": "entity",
+      "chapter_mentions": 1,
+      "updated": "2026-05-08"
+    },
+    {
+      "name": "瓦尔帕莱索港",
+      "type": "entity",
+      "chapter_mentions": 1,
+      "updated": "2026-05-08"
+    },
+    {
+      "name": "刚果残余势力",
+      "type": "entity",
+      "chapter_mentions": 1,
+      "updated": "2026-05-08"
+    },
+    {
+      "name": "穆巴拉克上校",
+      "type": "entity",
+      "chapter_mentions": 1,
+      "updated": "2026-05-08"
+    },
+    {
+      "name": "联合国监督组",
+      "type": "entity",
+      "chapter_mentions": 1,
+      "updated": "2026-05-08"
+    },
+    {
+      "name": "南美锂三角",
+      "type": "entity",
+      "chapter_mentions": 1,
+      "updated": "2026-05-08"
+    },
+    {
+      "name": "主角团/南天门",
+      "type": "entity",
+      "chapter_mentions": 1,
+      "updated": "2026-05-08"
+    },
+    {
+      "name": "月面规则参与方",
+      "type": "entity",
+      "chapter_mentions": 1,
+      "updated": "2026-05-08"
+    },
+    {
+      "name": "无人蜂群",
+      "type": "entity",
+      "chapter_mentions": 1,
+      "updated": "2026-05-08"
+    },
+    {
+      "name": "量子攻击方",
+      "type": "entity",
+      "chapter_mentions": 1,
+      "updated": "2026-05-08"
     }
   ],
   "concepts": [
@@ -151,6 +228,144 @@
       "name": "量子",
       "type": "concept",
       "chapter_mentions": 10
+    },
+    {
+      "name": "钴矿供应链",
+      "type": "concept",
+      "chapter_mentions": 1,
+      "updated": "2026-05-08"
+    },
+    {
+      "name": "矿物指纹",
+      "type": "concept",
+      "chapter_mentions": 1,
+      "updated": "2026-05-08"
+    },
+    {
+      "name": "哈希校验",
+      "type": "concept",
+      "chapter_mentions": 1,
+      "updated": "2026-05-08"
+    },
+    {
+      "name": "服务器灾备接管箱",
+      "type": "concept",
+      "chapter_mentions": 1,
+      "updated": "2026-05-08"
+    },
+    {
+      "name": "独立卫星链路",
+      "type": "concept",
+      "chapter_mentions": 1,
+      "updated": "2026-05-08"
+    },
+    {
+      "name": "权限链",
+      "type": "concept",
+      "chapter_mentions": 1,
+      "updated": "2026-05-08"
+    },
+    {
+      "name": "AIS异常航线",
+      "type": "concept",
+      "chapter_mentions": 1,
+      "updated": "2026-05-08"
+    },
+    {
+      "name": "刚果残局",
+      "type": "concept",
+      "chapter_mentions": 1,
+      "updated": "2026-05-08"
+    },
+    {
+      "name": "联合国框架清剿",
+      "type": "concept",
+      "chapter_mentions": 1,
+      "updated": "2026-05-08"
+    },
+    {
+      "name": "只读取证",
+      "type": "concept",
+      "chapter_mentions": 1,
+      "updated": "2026-05-08"
+    },
+    {
+      "name": "管理员硬件钥匙",
+      "type": "concept",
+      "chapter_mentions": 1,
+      "updated": "2026-05-08"
+    },
+    {
+      "name": "远端擦写",
+      "type": "concept",
+      "chapter_mentions": 1,
+      "updated": "2026-05-08"
+    },
+    {
+      "name": "Salar",
+      "type": "concept",
+      "chapter_mentions": 1,
+      "updated": "2026-05-08"
+    },
+    {
+      "name": "Litio",
+      "type": "concept",
+      "chapter_mentions": 1,
+      "updated": "2026-05-08"
+    },
+    {
+      "name": "Triángulo",
+      "type": "concept",
+      "chapter_mentions": 1,
+      "updated": "2026-05-08"
+    },
+    {
+      "name": "锂盐湖",
+      "type": "concept",
+      "chapter_mentions": 1,
+      "updated": "2026-05-08"
+    },
+    {
+      "name": "V8.6",
+      "type": "concept",
+      "chapter_mentions": 1,
+      "updated": "2026-05-08"
+    },
+    {
+      "name": "国产算力训练主权",
+      "type": "concept",
+      "chapter_mentions": 1,
+      "updated": "2026-05-08"
+    },
+    {
+      "name": "地月规则竞赛",
+      "type": "concept",
+      "chapter_mentions": 1,
+      "updated": "2026-05-08"
+    },
+    {
+      "name": "军事AI蜂群",
+      "type": "concept",
+      "chapter_mentions": 1,
+      "updated": "2026-05-08"
+    },
+    {
+      "name": "OODA压缩",
+      "type": "concept",
+      "chapter_mentions": 1,
+      "updated": "2026-05-08"
+    },
+    {
+      "name": "量子先存后解",
+      "type": "concept",
+      "chapter_mentions": 1,
+      "updated": "2026-05-08"
+    },
+    {
+      "name": "后量子密钥",
+      "type": "concept",
+      "chapter_mentions": 1,
+      "updated": "2026-05-08"
     }
   ]
 }

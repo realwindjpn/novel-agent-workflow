@@ -1,0 +1,55 @@
+{
+  "type": "outline_sync",
+  "version": "V8.7",
+  "items": [
+    {
+      "s": "Mozilla Agent Harness",
+      "p": "maps_to",
+      "o": "流云硬反馈闭环",
+      "chapters": [
+        95,
+        184,
+        269,
+        286,
+        317,
+        339
+      ]
+    },
+    {
+      "s": "DHS DNA Database Lawsuit",
+      "p": "maps_to",
+      "o": "白盾生物数据算法暴力",
+      "chapters": [
+        217,
+        223,
+        226,
+        233,
+        243
+      ]
+    },
+    {
+      "s": "European Defense Autonomy",
+      "p": "maps_to",
+      "o": "欧陆C2自主摩擦",
+      "chapters": [
+        86,
+        106,
+        121,
+        306,
+        307,
+        309
+      ]
+    },
+    {
+      "s": "Turkey Yildirimhan Propellant",
+      "p": "maps_to",
+      "o": "推进剂供应链威慑",
+      "chapters": [
+        308,
+        311,
+        337,
+        340
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "chapter": 184,
+  "sync_date": "2026-05-08",
+  "sync_type": "v87_body_modification",
+  "changes": [
+    "three_layer_verification_chain",
+    "simulation_battle_damage",
+    "rule_conflict_detection",
+    "on_site_sensor_readback",
+    "central_command_edge_autonomy_structural_defect",
+    "wikilink_cleanup"
+  ],
+  "status": "synced"
+}

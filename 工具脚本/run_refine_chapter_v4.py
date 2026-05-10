@@ -185,6 +185,11 @@ if lookup.returncode == 0:
         pass
 kb_section = f'\n## 知识库素材卡（相关{len(kb_card_list)}张）\n{kb_cards_text}' if kb_card_list else ''
 
+# ─── 作家风格OS（由X文章Content OS思想落地：去AI味只是底线，作家风格是目标） ───
+style_os_path = proj / '参考资料/作家风格OS/author_prompt_patch.md'
+style_os = style_os_path.read_text(encoding='utf-8', errors='ignore')[:1400] if style_os_path.exists() else ''
+style_section = f'\n## 作家风格OS\n{style_os}' if style_os else ''
+
 # ─── 上章记忆卡 ───
 mem_path = proj / '审核记录/章节记忆卡' / f'第{ch-1}章.md'
 mem_text = mem_path.read_text(encoding='utf-8', errors='ignore')[:1500] if mem_path.exists() else ''
@@ -218,6 +223,7 @@ base_card = f'''# 第{ch}章精修任务卡V3.1
 - 风格：物理反馈/行动链/短句；禁文艺比喻；技术解释进入动作。
 - 技术名词必须"差评君风格"科普化：先生活类比再给术语（训练=教大学生/推理=上班，量子纠错=KTV消音器，ASIC=专项运动员）。先讲"是什么/怎么用/战术意义"，再给参数。严禁堆砌ASIC/CUDA等学术缩写，用"推理芯片/专用芯片"。
 - 去AI味铁律：禁"仿佛/微微/缓缓/意味着/意识到/不禁/不由得"。角色对话加口癖/犹豫/语法错误，不说完美台词。
+- 作家风格OS：去AI味只是底线；每场戏必须有环境压力、行动链、反馈链、代价；技术点落到操作/仪表/身体/成本。
 - **铁律：正文和对话中禁止出现"第X章""第X卷"等章节编号。**
 '''
 
@@ -280,12 +286,13 @@ author_prompt = f'''你是《科武纪元》作者。按精修任务卡V3.1改�
 不得解释，不得输出正文外任何内容。
 
 {card_text[:3000]}
+{style_section[:1400]}
 {wiki_section[:1500]}
 {kb_section[:2000]}
 {ev_section[:1500]}
 {link_context}
 
-原版全文：
+原版全文:
 {text}
 '''
 

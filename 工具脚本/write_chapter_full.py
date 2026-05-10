@@ -10,6 +10,10 @@ from pathlib import Path
 
 BASE = Path('/root/workspace/科武纪元')
 CONFIG = Path('/root/.hermes/config.yaml')
+STYLE_OS = BASE / '参考资料/作家风格OS/author_prompt_patch.md'
+
+def load_style_os():
+    return STYLE_OS.read_text(encoding='utf-8', errors='ignore')[:1400] if STYLE_OS.exists() else ''
 
 # ── 加载.env ──
 env_path = Path(os.path.expanduser('~/.hermes/.env'))
@@ -123,6 +127,7 @@ def write_chapter(chapter_num, task_card, outline_text, kb_cards):
             prev_text = prev_path.read_text(encoding='utf-8')[-1000:]
     
     cards_text = ''.join(f'【卡{i+1}】{c[:300]}\n' for i, c in enumerate(kb_cards)) if kb_cards else '无'
+    style_os = load_style_os()
     prompt = f"""角色: 作者
 任务: 写第{chapter_num}章正文
 大纲: {outline_text}
@@ -134,6 +139,9 @@ def write_chapter(chapter_num, task_card, outline_text, kb_cards):
 
 素材卡摘要:
 {cards_text}
+
+作家风格OS:
+{style_os}
 
 写作铁律:
 - ≥3000番茄口径字（去空白总字符-标题字符）

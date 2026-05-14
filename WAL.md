@@ -370,3 +370,12 @@
 - V8.12.1 第115章G3民用模型征召第三幕收口闭环
 
 - 2026-05-15 07:17 | 第115章V8.12.1精修闭环：G3热线挂牌/归档服务器/交互留档收口；非上传章未生成TXT；报告：审核记录/六角色外审/第115章_V8121闭环报告_20260515.md
+
+### 2026-05-15 07:33
+- V8.12 P1-5 指纹突变/徽章切换闭环
+- 2026-05-15 07:34 | Chapter 184 V8.12 badge-switch/fingerprint-mutation project close-loop; Wiki Full Text covered; Vector/foreshadow/STATUS/WAL synced; non-upload, no TXT; report: review/six-role/ch184_V812_close_loop_20260515.md
+
+### 2026-05-15 07:56
+- V8.12.1 第189章算力结算/许可延迟/散热账单定点闭环
+
+- 2026-05-15 07:56 | 第189章V8.12.1精修闭环：算力结算单/许可回执/散热账单/GPU排队/审计接口轻触；非上传章未生成TXT；报告：审核记录/六角色外审/第189章_V8121闭环报告_20260515.md

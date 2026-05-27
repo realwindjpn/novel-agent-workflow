@@ -21,5 +21,13 @@
 
 - SenseNova/采集资料：提供“写什么”。
 - 知识库素材卡/RAG：提供事实、数字、来源。
-- 作家风格OS：规定“怎么写”。
+- 写作角色OS：把采集学习经验蒸馏为动作、反馈、代价、失败模式、口吻。
+- 作家风格OS：规定小说“怎么写”。
 - 六角色审核：判断“能不能过”。
+
+## 前置注入
+
+作者角色写正文前，除本目录核心卡外，还必须读：
+
+- `/root/workspace/写作角色OS/writer_role_core.md`
+- `/root/workspace/写作角色OS/experience_distillation_rules.md`

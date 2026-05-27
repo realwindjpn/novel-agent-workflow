@@ -1,0 +1,1502 @@
+[2026-05-16 01:43:37] START fanqie classroom dual model learning
+[2026-05-16 01:43:37] FETCH 1/3 写好过渡章，优化剧情冲突，学会高效改文
+[2026-05-16 01:43:40] WF_EDITOR 写好过渡章，优化剧情冲突，学会高效改文 chars=2478
+[2026-05-16 01:44:07] TKX_WRITER 写好过渡章，优化剧情冲突，学会高效改文 editor_chars=2708
+[2026-05-16 01:45:53] COMPLETED 1/3 写好过渡章，优化剧情冲突，学会高效改文
+[2026-05-16 01:45:53] FETCH 2/3 第二十期短故事作家课堂—解锁言情向爆款短故事创作共性和指南
+[2026-05-16 01:45:56] WF_EDITOR 第二十期短故事作家课堂—解锁言情向爆款短故事创作共性和指南 chars=3210
+[2026-05-16 01:46:26] TKX_WRITER 第二十期短故事作家课堂—解锁言情向爆款短故事创作共性和指南 editor_chars=2553
+[2026-05-16 01:48:26] COMPLETED 2/3 第二十期短故事作家课堂—解锁言情向爆款短故事创作共性和指南
+[2026-05-16 01:48:26] FETCH 3/3 5月改编风向标｜短剧×漫剧爆款题材与人设
+[2026-05-16 01:48:29] WF_EDITOR 5月改编风向标｜短剧×漫剧爆款题材与人设 chars=3828
+[2026-05-16 01:49:01] TKX_WRITER 5月改编风向标｜短剧×漫剧爆款题材与人设 editor_chars=3124
+[2026-05-16 01:51:06] ERROR HTTPError: 524 Server Error: <none> for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 07:47:39] START fanqie classroom dynamic learning
+[2026-05-16 07:49:11] START fanqie classroom dynamic learning
+[2026-05-16 07:49:20] START fanqie classroom dynamic learning
+[2026-05-16 07:49:22] BATCH 1/1 稳定更新｜如何稳住剧情节奏
+[2026-05-16 07:49:22] FETCH 稳定更新｜如何稳住剧情节奏
+[2026-05-16 07:49:26] WF_EDITOR 稳定更新｜如何稳住剧情节奏 chars=3093
+[2026-05-16 07:49:49] TKX_WRITER 稳定更新｜如何稳住剧情节奏 editor_chars=2336
+[2026-05-16 07:51:34] COMPLETED 稳定更新｜如何稳住剧情节奏
+[2026-05-16 07:51:34] DONE batch_completed pending=229
+[2026-05-16 08:41:57] START fanqie classroom dynamic learning
+[2026-05-16 08:41:59] BATCH 1/3 如何稳定剧情，让读者追更不停？
+[2026-05-16 08:41:59] FETCH 如何稳定剧情，让读者追更不停？
+[2026-05-16 08:42:03] WF_EDITOR 如何稳定剧情，让读者追更不停？ chars=5122
+[2026-05-16 08:42:33] TKX_WRITER 如何稳定剧情，让读者追更不停？ editor_chars=3004
+[2026-05-16 08:44:05] COMPLETED 如何稳定剧情，让读者追更不停？
+[2026-05-16 08:44:05] BATCH 2/3 人物塑造｜用反差标签法打造鲜活角色团
+[2026-05-16 08:44:05] FETCH 人物塑造｜用反差标签法打造鲜活角色团
+[2026-05-16 08:44:09] WF_EDITOR 人物塑造｜用反差标签法打造鲜活角色团 chars=8737
+[2026-05-16 08:44:38] TKX_WRITER 人物塑造｜用反差标签法打造鲜活角色团 editor_chars=2950
+[2026-05-16 08:46:27] COMPLETED 人物塑造｜用反差标签法打造鲜活角色团
+[2026-05-16 08:46:27] BATCH 3/3 人物塑造｜CP塑造与避免人设崩塌的方法
+[2026-05-16 08:46:27] FETCH 人物塑造｜CP塑造与避免人设崩塌的方法
+[2026-05-16 08:46:31] WF_EDITOR 人物塑造｜CP塑造与避免人设崩塌的方法 chars=5701
+[2026-05-16 08:46:59] TKX_WRITER 人物塑造｜CP塑造与避免人设崩塌的方法 editor_chars=2787
+[2026-05-16 08:48:49] COMPLETED 人物塑造｜CP塑造与避免人设崩塌的方法
+[2026-05-16 08:48:49] DONE batch_completed pending=226
+[2026-05-16 09:23:06] START fanqie classroom dynamic learning
+[2026-05-16 09:23:08] BATCH 1/3 【如何写好新书】第五讲｜三幕式篇（上）
+[2026-05-16 09:23:08] FETCH 【如何写好新书】第五讲｜三幕式篇（上）
+[2026-05-16 09:23:12] ERROR 7249642247954628663 RuntimeError: FETCH_ARTICLE_EMPTY
+[2026-05-16 09:23:12] DONE batch_completed pending=226
+[2026-05-16 09:23:32] START fanqie classroom dynamic learning
+[2026-05-16 09:23:35] BATCH 1/3 【如何写好新书】第五讲｜三幕式篇（上）
+[2026-05-16 09:23:35] FETCH 【如何写好新书】第五讲｜三幕式篇（上）
+[2026-05-16 09:23:38] ERROR 7249642247954628663 RuntimeError: FETCH_ARTICLE_EMPTY
+[2026-05-16 09:23:38] DONE batch_completed pending=226
+[2026-05-16 10:31:45] START fanqie classroom dynamic learning
+[2026-05-16 10:31:47] START fanqie classroom dynamic learning
+[2026-05-16 10:31:50] BATCH 1/3 网络小说大纲和细纲是必要的吗
+[2026-05-16 10:31:50] FETCH 网络小说大纲和细纲是必要的吗
+[2026-05-16 10:31:54] ERROR 7025875917129908232 RuntimeError: FETCH_ARTICLE_EMPTY
+[2026-05-16 10:31:54] DONE batch_completed pending=224
+[2026-05-16 10:32:14] START fanqie classroom dynamic learning
+[2026-05-16 10:32:16] BATCH 1/3 单章到底怎么改？节奏快慢如何调？一次讲透！
+[2026-05-16 10:32:16] FETCH 单章到底怎么改？节奏快慢如何调？一次讲透！
+[2026-05-16 10:32:20] WF_EDITOR 单章到底怎么改？节奏快慢如何调？一次讲透！ chars=3629
+[2026-05-16 10:32:49] TKX_WRITER 单章到底怎么改？节奏快慢如何调？一次讲透！ editor_chars=2732
+[2026-05-16 10:34:38] COMPLETED 单章到底怎么改？节奏快慢如何调？一次讲透！
+[2026-05-16 10:34:38] BATCH 2/3 拒绝流水账！从情节到节奏，多维度丰富小说内容
+[2026-05-16 10:34:38] FETCH 拒绝流水账！从情节到节奏，多维度丰富小说内容
+[2026-05-16 10:34:42] WF_EDITOR 拒绝流水账！从情节到节奏，多维度丰富小说内容 chars=4194
+[2026-05-16 10:35:09] TKX_WRITER 拒绝流水账！从情节到节奏，多维度丰富小说内容 editor_chars=2650
+[2026-05-16 10:36:41] COMPLETED 拒绝流水账！从情节到节奏，多维度丰富小说内容
+[2026-05-16 10:36:41] BATCH 3/3 人物立不住？4个技巧，让你笔下的人物自带“活人感”
+[2026-05-16 10:36:41] FETCH 人物立不住？4个技巧，让你笔下的人物自带“活人感”
+[2026-05-16 10:36:44] WF_EDITOR 人物立不住？4个技巧，让你笔下的人物自带“活人感” chars=3199
+[2026-05-16 10:37:10] TKX_WRITER 人物立不住？4个技巧，让你笔下的人物自带“活人感” editor_chars=2563
+[2026-05-16 10:39:06] COMPLETED 人物立不住？4个技巧，让你笔下的人物自带“活人感”
+[2026-05-16 10:39:06] DONE batch_completed pending=221
+[2026-05-16 10:39:26] START fanqie classroom dynamic learning
+[2026-05-16 10:39:28] BATCH 1/3 编辑说 | 编辑拆解：如何选对题材、超越前作、安全创新！
+[2026-05-16 10:39:28] FETCH 编辑说 | 编辑拆解：如何选对题材、超越前作、安全创新！
+[2026-05-16 10:39:32] WF_EDITOR 编辑说 | 编辑拆解：如何选对题材、超越前作、安全创新！ chars=3773
+[2026-05-16 10:40:04] TKX_WRITER 编辑说 | 编辑拆解：如何选对题材、超越前作、安全创新！ editor_chars=3470
+[2026-05-16 10:42:08] COMPLETED 编辑说 | 编辑拆解：如何选对题材、超越前作、安全创新！
+[2026-05-16 10:42:08] BATCH 2/3 副本设计｜如何打造吸睛副本
+[2026-05-16 10:42:08] FETCH 副本设计｜如何打造吸睛副本
+[2026-05-16 10:42:12] WF_EDITOR 副本设计｜如何打造吸睛副本 chars=6937
+[2026-05-16 10:42:39] TKX_WRITER 副本设计｜如何打造吸睛副本 editor_chars=2681
+[2026-05-16 10:44:37] COMPLETED 副本设计｜如何打造吸睛副本
+[2026-05-16 10:44:37] BATCH 3/3 代入感设计｜塑造代入感的六大核心技巧
+[2026-05-16 10:44:37] FETCH 代入感设计｜塑造代入感的六大核心技巧
+[2026-05-16 10:44:41] WF_EDITOR 代入感设计｜塑造代入感的六大核心技巧 chars=5800
+[2026-05-16 10:45:05] TKX_WRITER 代入感设计｜塑造代入感的六大核心技巧 editor_chars=2332
+[2026-05-16 10:47:10] TKX_WRITER_RETRY_COMPACT 代入感设计｜塑造代入感的六大核心技巧: HTTPError: 524 Server Error: <none> for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 10:47:36] COMPLETED 代入感设计｜塑造代入感的六大核心技巧
+[2026-05-16 10:47:36] DONE batch_completed pending=218
+[2026-05-16 10:47:56] START fanqie classroom dynamic learning
+[2026-05-16 10:47:58] BATCH 1/3 人物塑造｜从模型搭建到记忆点强化
+[2026-05-16 10:47:58] FETCH 人物塑造｜从模型搭建到记忆点强化
+[2026-05-16 10:48:02] WF_EDITOR 人物塑造｜从模型搭建到记忆点强化 chars=6549
+[2026-05-16 10:48:34] TKX_WRITER 人物塑造｜从模型搭建到记忆点强化 editor_chars=3263
+[2026-05-16 10:50:31] COMPLETED 人物塑造｜从模型搭建到记忆点强化
+[2026-05-16 10:50:31] BATCH 2/3 稳定更新｜如何把握百万长篇
+[2026-05-16 10:50:31] FETCH 稳定更新｜如何把握百万长篇
+[2026-05-16 10:50:35] WF_EDITOR 稳定更新｜如何把握百万长篇 chars=2813
+[2026-05-16 10:51:02] TKX_WRITER 稳定更新｜如何把握百万长篇 editor_chars=2738
+[2026-05-16 10:52:35] COMPLETED 稳定更新｜如何把握百万长篇
+[2026-05-16 10:52:35] BATCH 3/3 稳定更新｜告别卡文！四步突破十万字大关
+[2026-05-16 10:52:35] FETCH 稳定更新｜告别卡文！四步突破十万字大关
+[2026-05-16 10:52:39] WF_EDITOR 稳定更新｜告别卡文！四步突破十万字大关 chars=6139
+[2026-05-16 10:53:02] TKX_WRITER 稳定更新｜告别卡文！四步突破十万字大关 editor_chars=2323
+[2026-05-16 10:54:54] COMPLETED 稳定更新｜告别卡文！四步突破十万字大关
+[2026-05-16 10:54:54] DONE batch_completed pending=215
+[2026-05-16 10:55:14] START fanqie classroom dynamic learning
+[2026-05-16 10:55:17] BATCH 1/3 【版权说】第4集｜新知解锁之动态审核
+[2026-05-16 10:55:17] FETCH 【版权说】第4集｜新知解锁之动态审核
+[2026-05-16 10:55:20] ERROR 7419190108558983193 RuntimeError: FETCH_ARTICLE_EMPTY
+[2026-05-16 10:55:20] DONE batch_completed pending=214
+[2026-05-16 10:55:40] START fanqie classroom dynamic learning
+[2026-05-16 10:55:43] BATCH 1/3 【如何写好新书】第七讲｜多线叙事篇（上）
+[2026-05-16 10:55:43] FETCH 【如何写好新书】第七讲｜多线叙事篇（上）
+[2026-05-16 10:55:46] ERROR 7249651078277365817 RuntimeError: FETCH_ARTICLE_EMPTY
+[2026-05-16 10:55:46] DONE batch_completed pending=213
+[2026-05-16 10:56:07] START fanqie classroom dynamic learning
+[2026-05-16 10:56:09] BATCH 1/3 【如何写好新书】第八讲｜多线叙事篇（下）
+[2026-05-16 10:56:09] FETCH 【如何写好新书】第八讲｜多线叙事篇（下）
+[2026-05-16 10:56:13] ERROR 7249656127787368503 RuntimeError: FETCH_ARTICLE_EMPTY
+[2026-05-16 10:56:13] DONE batch_completed pending=212
+[2026-05-16 10:56:33] START fanqie classroom dynamic learning
+[2026-05-16 10:56:35] BATCH 1/3 【如何写好新书】第一讲｜选题篇（上）
+[2026-05-16 10:56:35] FETCH 【如何写好新书】第一讲｜选题篇（上）
+[2026-05-16 10:56:39] ERROR 7246350822534021176 RuntimeError: FETCH_ARTICLE_EMPTY
+[2026-05-16 10:56:39] DONE batch_completed pending=211
+[2026-05-16 10:56:59] START fanqie classroom dynamic learning
+[2026-05-16 10:57:01] BATCH 1/3 【如何写好新书】第二讲｜选题篇（下）
+[2026-05-16 10:57:01] FETCH 【如何写好新书】第二讲｜选题篇（下）
+[2026-05-16 10:57:05] ERROR 7246354049069482045 RuntimeError: FETCH_ARTICLE_EMPTY
+[2026-05-16 10:57:05] DONE batch_completed pending=210
+[2026-05-16 10:57:25] START fanqie classroom dynamic learning
+[2026-05-16 10:57:27] BATCH 1/3 年度最受欢迎书籍作家驾到！论人气作品如何进行人物塑造
+[2026-05-16 10:57:27] FETCH 年度最受欢迎书籍作家驾到！论人气作品如何进行人物塑造
+[2026-05-16 10:57:31] WF_EDITOR 年度最受欢迎书籍作家驾到！论人气作品如何进行人物塑造 chars=4639
+[2026-05-16 10:58:05] TKX_WRITER 年度最受欢迎书籍作家驾到！论人气作品如何进行人物塑造 editor_chars=3320
+[2026-05-16 10:59:46] COMPLETED 年度最受欢迎书籍作家驾到！论人气作品如何进行人物塑造
+[2026-05-16 10:59:46] BATCH 2/3 资深编辑如何判断一部作品可签约
+[2026-05-16 10:59:46] FETCH 资深编辑如何判断一部作品可签约
+[2026-05-16 10:59:50] ERROR 7025872718549483533 RuntimeError: FETCH_ARTICLE_EMPTY
+[2026-05-16 10:59:50] DONE batch_completed pending=208
+[2026-05-16 11:00:10] START fanqie classroom dynamic learning
+[2026-05-16 11:00:13] BATCH 1/3 如何写好开篇
+[2026-05-16 11:00:13] FETCH 如何写好开篇
+[2026-05-16 11:00:16] ERROR 7025879668578320398 RuntimeError: FETCH_ARTICLE_EMPTY
+[2026-05-16 11:00:16] DONE batch_completed pending=207
+[2026-05-16 11:00:36] START fanqie classroom dynamic learning
+[2026-05-16 11:00:39] BATCH 1/3 如何保持稳定的更新速度
+[2026-05-16 11:00:39] FETCH 如何保持稳定的更新速度
+[2026-05-16 11:00:42] ERROR 7025882542381203487 RuntimeError: FETCH_ARTICLE_EMPTY
+[2026-05-16 11:00:42] DONE batch_completed pending=206
+[2026-05-16 11:01:03] START fanqie classroom dynamic learning
+[2026-05-16 11:01:05] BATCH 1/3 如何塑造人物
+[2026-05-16 11:01:05] FETCH 如何塑造人物
+[2026-05-16 11:01:09] ERROR 7025880344582684703 RuntimeError: FETCH_ARTICLE_EMPTY
+[2026-05-16 11:01:09] DONE batch_completed pending=205
+[2026-05-16 11:01:29] START fanqie classroom dynamic learning
+[2026-05-16 11:01:31] BATCH 1/3 小说情节如何制造矛盾冲突
+[2026-05-16 11:01:31] FETCH 小说情节如何制造矛盾冲突
+[2026-05-16 11:01:35] ERROR 7025881468408692749 RuntimeError: FETCH_ARTICLE_EMPTY
+[2026-05-16 11:01:35] DONE batch_completed pending=204
+[2026-05-16 11:01:55] START fanqie classroom dynamic learning
+[2026-05-16 11:01:58] BATCH 1/3 网络小说的爽点
+[2026-05-16 11:01:58] FETCH 网络小说的爽点
+[2026-05-16 11:02:01] ERROR 7025881902951170055 RuntimeError: FETCH_ARTICLE_EMPTY
+[2026-05-16 11:02:01] DONE batch_completed pending=203
+[2026-05-16 11:02:21] START fanqie classroom dynamic learning
+[2026-05-16 11:02:24] BATCH 1/3 网络小说的代入感
+[2026-05-16 11:02:24] FETCH 网络小说的代入感
+[2026-05-16 11:02:27] ERROR 7025882180156915748 RuntimeError: FETCH_ARTICLE_EMPTY
+[2026-05-16 11:02:27] DONE batch_completed pending=202
+[2026-05-16 11:02:47] START fanqie classroom dynamic learning
+[2026-05-16 11:02:50] BATCH 1/3 开篇写对，拉新翻倍！专业编审团队教你做精修投放
+[2026-05-16 11:02:50] FETCH 开篇写对，拉新翻倍！专业编审团队教你做精修投放
+[2026-05-16 11:02:54] WF_EDITOR 开篇写对，拉新翻倍！专业编审团队教你做精修投放 chars=5311
+[2026-05-16 11:03:25] TKX_WRITER 开篇写对，拉新翻倍！专业编审团队教你做精修投放 editor_chars=2942
+[2026-05-16 11:05:30] TKX_WRITER_RETRY_COMPACT 开篇写对，拉新翻倍！专业编审团队教你做精修投放: HTTPError: 524 Server Error: <none> for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 11:05:57] COMPLETED 开篇写对，拉新翻倍！专业编审团队教你做精修投放
+[2026-05-16 11:05:57] BATCH 2/3 改编风向标｜短剧×漫剧爆款题材拆解！
+[2026-05-16 11:05:57] FETCH 改编风向标｜短剧×漫剧爆款题材拆解！
+[2026-05-16 11:06:01] WF_EDITOR 改编风向标｜短剧×漫剧爆款题材拆解！ chars=2861
+[2026-05-16 11:06:29] TKX_WRITER 改编风向标｜短剧×漫剧爆款题材拆解！ editor_chars=2623
+[2026-05-16 11:08:30] COMPLETED 改编风向标｜短剧×漫剧爆款题材拆解！
+[2026-05-16 11:08:30] BATCH 3/3 【版权说】一图看懂“自己抄自己”
+[2026-05-16 11:08:30] FETCH 【版权说】一图看懂“自己抄自己”
+[2026-05-16 11:08:33] ERROR 7619169538407399449 RuntimeError: FETCH_ARTICLE_EMPTY
+[2026-05-16 11:08:33] DONE batch_completed pending=199
+[2026-05-16 11:08:53] START fanqie classroom dynamic learning
+[2026-05-16 11:08:56] BATCH 1/3 编辑说 | 崩文、差评、视角混乱！编辑教你如何解决！
+[2026-05-16 11:08:56] FETCH 编辑说 | 崩文、差评、视角混乱！编辑教你如何解决！
+[2026-05-16 11:09:00] WF_EDITOR 编辑说 | 崩文、差评、视角混乱！编辑教你如何解决！ chars=3411
+[2026-05-16 11:09:25] TKX_WRITER 编辑说 | 崩文、差评、视角混乱！编辑教你如何解决！ editor_chars=2633
+[2026-05-16 11:10:44] COMPLETED 编辑说 | 崩文、差评、视角混乱！编辑教你如何解决！
+[2026-05-16 11:10:44] BATCH 2/3 大神答疑｜对写出来的内容不满意？五步让作品质感飙升！
+[2026-05-16 11:10:44] FETCH 大神答疑｜对写出来的内容不满意？五步让作品质感飙升！
+[2026-05-16 11:10:47] WF_EDITOR 大神答疑｜对写出来的内容不满意？五步让作品质感飙升！ chars=3564
+[2026-05-16 11:11:14] TKX_WRITER 大神答疑｜对写出来的内容不满意？五步让作品质感飙升！ editor_chars=2721
+[2026-05-16 11:12:50] COMPLETED 大神答疑｜对写出来的内容不满意？五步让作品质感飙升！
+[2026-05-16 11:12:50] BATCH 3/3 大神答疑｜传统玄幻遇冷？本篇答疑带你找到新出路！
+[2026-05-16 11:12:50] FETCH 大神答疑｜传统玄幻遇冷？本篇答疑带你找到新出路！
+[2026-05-16 11:12:54] WF_EDITOR 大神答疑｜传统玄幻遇冷？本篇答疑带你找到新出路！ chars=7431
+[2026-05-16 11:13:24] TKX_WRITER 大神答疑｜传统玄幻遇冷？本篇答疑带你找到新出路！ editor_chars=3096
+[2026-05-16 11:15:29] TKX_WRITER_RETRY_COMPACT 大神答疑｜传统玄幻遇冷？本篇答疑带你找到新出路！: HTTPError: 524 Server Error: <none> for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 11:15:52] COMPLETED 大神答疑｜传统玄幻遇冷？本篇答疑带你找到新出路！
+[2026-05-16 11:15:52] DONE batch_completed pending=196
+[2026-05-16 11:16:12] START fanqie classroom dynamic learning
+[2026-05-16 11:16:14] BATCH 1/3 【版权说】第12集 | 小说书名封面侵权避坑指南
+[2026-05-16 11:16:14] FETCH 【版权说】第12集 | 小说书名封面侵权避坑指南
+[2026-05-16 11:16:18] ERROR 7521724090348994585 RuntimeError: FETCH_ARTICLE_EMPTY
+[2026-05-16 11:16:18] DONE batch_completed pending=195
+[2026-05-16 11:16:38] START fanqie classroom dynamic learning
+[2026-05-16 11:16:41] BATCH 1/3 【版权说】第11集 | 小说常见人格权侵权避坑指南
+[2026-05-16 11:16:41] FETCH 【版权说】第11集 | 小说常见人格权侵权避坑指南
+[2026-05-16 11:16:44] ERROR 7516904477350166553 RuntimeError: FETCH_ARTICLE_EMPTY
+[2026-05-16 11:16:44] DONE batch_completed pending=194
+[2026-05-16 11:17:04] START fanqie classroom dynamic learning
+[2026-05-16 11:17:07] BATCH 1/3 【版权说】第10集|被指抄袭下架？3步教你有效申诉—申诉材料
+[2026-05-16 11:17:07] FETCH 【版权说】第10集|被指抄袭下架？3步教你有效申诉—申诉材料
+[2026-05-16 11:17:11] ERROR 7498314351615410238 RuntimeError: FETCH_ARTICLE_EMPTY
+[2026-05-16 11:17:11] DONE batch_completed pending=193
+[2026-05-16 11:17:31] START fanqie classroom dynamic learning
+[2026-05-16 11:17:34] BATCH 1/3 【版权说】第9集|被指抄袭下架？3步教你有效申诉——申诉选项
+[2026-05-16 11:17:34] FETCH 【版权说】第9集|被指抄袭下架？3步教你有效申诉——申诉选项
+[2026-05-16 11:17:37] ERROR 7495684950570565656 RuntimeError: FETCH_ARTICLE_EMPTY
+[2026-05-16 11:17:37] DONE batch_completed pending=192
+[2026-05-16 11:17:57] START fanqie classroom dynamic learning
+[2026-05-16 11:18:00] BATCH 1/3 【版权说】第8集|被指抄袭下架？3步教你有效申诉——申诉路径
+[2026-05-16 11:18:00] FETCH 【版权说】第8集|被指抄袭下架？3步教你有效申诉——申诉路径
+[2026-05-16 11:18:03] ERROR 7490508500221575192 RuntimeError: FETCH_ARTICLE_EMPTY
+[2026-05-16 11:18:03] DONE batch_completed pending=191
+[2026-05-16 11:18:24] START fanqie classroom dynamic learning
+[2026-05-16 11:18:26] BATCH 1/3 金番讲写作：五类时间线设定（下）
+[2026-05-16 11:18:26] FETCH 金番讲写作：五类时间线设定（下）
+[2026-05-16 11:18:29] WF_EDITOR 金番讲写作：五类时间线设定（下） chars=2723
+[2026-05-16 11:18:55] TKX_WRITER 金番讲写作：五类时间线设定（下） editor_chars=2735
+[2026-05-16 11:20:31] COMPLETED 金番讲写作：五类时间线设定（下）
+[2026-05-16 11:20:31] BATCH 2/3 金番讲写作：五类时间线设定（上）
+[2026-05-16 11:20:31] FETCH 金番讲写作：五类时间线设定（上）
+[2026-05-16 11:20:35] WF_EDITOR 金番讲写作：五类时间线设定（上） chars=3623
+[2026-05-16 11:21:01] TKX_WRITER 金番讲写作：五类时间线设定（上） editor_chars=2716
+[2026-05-16 11:23:07] TKX_WRITER_RETRY_COMPACT 金番讲写作：五类时间线设定（上）: HTTPError: 524 Server Error: <none> for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 11:23:46] COMPLETED 金番讲写作：五类时间线设定（上）
+[2026-05-16 11:23:46] BATCH 3/3 【版权说】第7集｜发现抄袭怎么办？来看看作品维权的正确姿势！
+[2026-05-16 11:23:46] FETCH 【版权说】第7集｜发现抄袭怎么办？来看看作品维权的正确姿势！
+[2026-05-16 11:23:49] ERROR 7455331810457681944 RuntimeError: FETCH_ARTICLE_EMPTY
+[2026-05-16 11:23:49] DONE batch_completed pending=188
+[2026-05-16 11:24:09] START fanqie classroom dynamic learning
+[2026-05-16 11:24:12] BATCH 1/3 【版权说】第6集｜正确的请假姿势
+[2026-05-16 11:24:12] FETCH 【版权说】第6集｜正确的请假姿势
+[2026-05-16 11:24:15] ERROR 7447827864642142270 RuntimeError: FETCH_ARTICLE_EMPTY
+[2026-05-16 11:24:15] DONE batch_completed pending=187
+[2026-05-16 11:24:35] START fanqie classroom dynamic learning
+[2026-05-16 11:24:38] BATCH 1/3 【版权说】第5集｜抄袭行为大揭秘：“自己抄自己”也算抄袭？
+[2026-05-16 11:24:38] FETCH 【版权说】第5集｜抄袭行为大揭秘：“自己抄自己”也算抄袭？
+[2026-05-16 11:24:41] ERROR 7439979984002744344 RuntimeError: FETCH_ARTICLE_EMPTY
+[2026-05-16 11:24:41] DONE batch_completed pending=186
+[2026-05-16 11:25:01] START fanqie classroom dynamic learning
+[2026-05-16 11:25:04] BATCH 1/3 【版权说】第3集｜抄袭行为大揭秘（下）
+[2026-05-16 11:25:04] FETCH 【版权说】第3集｜抄袭行为大揭秘（下）
+[2026-05-16 11:25:07] ERROR 7408522021631442968 RuntimeError: FETCH_ARTICLE_EMPTY
+[2026-05-16 11:25:07] DONE batch_completed pending=185
+[2026-05-16 11:25:27] START fanqie classroom dynamic learning
+[2026-05-16 11:25:30] BATCH 1/3 【版权说】第2集｜抄袭行为大揭秘（中）
+[2026-05-16 11:25:30] FETCH 【版权说】第2集｜抄袭行为大揭秘（中）
+[2026-05-16 11:25:33] ERROR 7384399531330240574 RuntimeError: FETCH_ARTICLE_EMPTY
+[2026-05-16 11:25:33] DONE batch_completed pending=184
+[2026-05-16 11:25:54] START fanqie classroom dynamic learning
+[2026-05-16 11:25:56] BATCH 1/3 【版权说】第1集｜抄袭行为大揭秘（上）
+[2026-05-16 11:25:56] FETCH 【版权说】第1集｜抄袭行为大揭秘（上）
+[2026-05-16 11:25:59] ERROR 7375128732605890622 RuntimeError: FETCH_ARTICLE_EMPTY
+[2026-05-16 11:25:59] DONE batch_completed pending=183
+[2026-05-16 11:26:20] START fanqie classroom dynamic learning
+[2026-05-16 11:26:22] BATCH 1/3 【如何写好新书】第六讲｜三幕式篇（下）
+[2026-05-16 11:26:22] FETCH 【如何写好新书】第六讲｜三幕式篇（下）
+[2026-05-16 11:26:26] ERROR 7249646542141784121 RuntimeError: FETCH_ARTICLE_EMPTY
+[2026-05-16 11:26:26] DONE batch_completed pending=182
+[2026-05-16 11:26:46] START fanqie classroom dynamic learning
+[2026-05-16 11:26:48] BATCH 1/3 【如何写好新书】第三讲｜故事支点篇（上）
+[2026-05-16 11:26:48] FETCH 【如何写好新书】第三讲｜故事支点篇（上）
+[2026-05-16 11:26:52] ERROR 7249300955714289701 RuntimeError: FETCH_ARTICLE_EMPTY
+[2026-05-16 11:26:52] DONE batch_completed pending=181
+[2026-05-16 11:27:12] START fanqie classroom dynamic learning
+[2026-05-16 11:27:15] BATCH 1/3 【如何写好新书】第四讲｜故事支点篇（下）
+[2026-05-16 11:27:15] FETCH 【如何写好新书】第四讲｜故事支点篇（下）
+[2026-05-16 11:27:18] ERROR 7249302247115325496 RuntimeError: FETCH_ARTICLE_EMPTY
+[2026-05-16 11:27:18] DONE batch_completed pending=180
+[2026-05-16 11:27:38] START fanqie classroom dynamic learning
+[2026-05-16 11:27:41] BATCH 1/3 写在落笔前，如何构思一本男频网文小说
+[2026-05-16 11:27:41] FETCH 写在落笔前，如何构思一本男频网文小说
+[2026-05-16 11:27:45] WF_EDITOR 写在落笔前，如何构思一本男频网文小说 chars=3645
+[2026-05-16 11:28:14] TKX_WRITER 写在落笔前，如何构思一本男频网文小说 editor_chars=2999
+[2026-05-16 11:30:06] COMPLETED 写在落笔前，如何构思一本男频网文小说
+[2026-05-16 11:30:06] BATCH 2/3 还不会起书名吗？这几招让你的作品脱颖而出！
+[2026-05-16 11:30:06] FETCH 还不会起书名吗？这几招让你的作品脱颖而出！
+[2026-05-16 11:30:10] WF_EDITOR 还不会起书名吗？这几招让你的作品脱颖而出！ chars=2568
+[2026-05-16 11:30:37] TKX_WRITER 还不会起书名吗？这几招让你的作品脱颖而出！ editor_chars=2720
+[2026-05-16 11:32:13] COMPLETED 还不会起书名吗？这几招让你的作品脱颖而出！
+[2026-05-16 11:32:13] BATCH 3/3 网络文学发展史
+[2026-05-16 11:32:13] FETCH 网络文学发展史
+[2026-05-16 11:32:17] ERROR 7029209280565739551 RuntimeError: FETCH_ARTICLE_EMPTY
+[2026-05-16 11:32:17] DONE batch_completed pending=177
+[2026-05-16 11:32:37] START fanqie classroom dynamic learning
+[2026-05-16 11:32:39] BATCH 1/3 如何提升小说的IP价值
+[2026-05-16 11:32:39] FETCH 如何提升小说的IP价值
+[2026-05-16 11:32:43] ERROR 7029210339350675464 RuntimeError: FETCH_ARTICLE_EMPTY
+[2026-05-16 11:32:43] DONE batch_completed pending=176
+[2026-05-16 11:33:03] START fanqie classroom dynamic learning
+[2026-05-16 11:33:06] BATCH 1/3 了解常见的网络文学作品类型
+[2026-05-16 11:33:06] FETCH 了解常见的网络文学作品类型
+[2026-05-16 11:33:09] ERROR 7025873541803278373 RuntimeError: FETCH_ARTICLE_EMPTY
+[2026-05-16 11:33:09] DONE batch_completed pending=175
+[2026-05-16 11:33:29] START fanqie classroom dynamic learning
+[2026-05-16 11:33:32] BATCH 1/3 如何构思一部网络小说作品
+[2026-05-16 11:33:32] FETCH 如何构思一部网络小说作品
+[2026-05-16 11:33:36] ERROR 7025875220435042317 RuntimeError: FETCH_ARTICLE_EMPTY
+[2026-05-16 11:33:36] DONE batch_completed pending=174
+[2026-05-16 11:33:56] START fanqie classroom dynamic learning
+[2026-05-16 11:33:58] BATCH 1/3 如何起作品名称和写作品简介
+[2026-05-16 11:33:58] FETCH 如何起作品名称和写作品简介
+[2026-05-16 11:34:02] ERROR 7025876380030074888 RuntimeError: FETCH_ARTICLE_EMPTY
+[2026-05-16 11:34:02] DONE batch_completed pending=173
+[2026-05-16 11:34:22] START fanqie classroom dynamic learning
+[2026-05-16 11:34:25] BATCH 1/3 如何通过对白为作品增色
+[2026-05-16 11:34:25] FETCH 如何通过对白为作品增色
+[2026-05-16 11:34:28] ERROR 7025880964215603237 RuntimeError: FETCH_ARTICLE_EMPTY
+[2026-05-16 11:34:28] DONE batch_completed pending=172
+[2026-05-16 11:34:48] START fanqie classroom dynamic learning
+[2026-05-16 11:34:50] BATCH 1/3 写网络小说需要存稿吗
+[2026-05-16 11:34:50] FETCH 写网络小说需要存稿吗
+[2026-05-16 11:34:54] ERROR 7025882746736082980 RuntimeError: FETCH_ARTICLE_EMPTY
+[2026-05-16 11:34:54] DONE batch_completed pending=171
+[2026-05-16 11:35:14] START fanqie classroom dynamic learning
+[2026-05-16 11:35:17] BATCH 1/3 4月改编风向标｜叮！请查收4月番茄短故事改编风向
+[2026-05-16 11:35:17] FETCH 4月改编风向标｜叮！请查收4月番茄短故事改编风向
+[2026-05-16 11:35:21] WF_EDITOR 4月改编风向标｜叮！请查收4月番茄短故事改编风向 chars=4257
+[2026-05-16 11:35:51] TKX_WRITER 4月改编风向标｜叮！请查收4月番茄短故事改编风向 editor_chars=2902
+[2026-05-16 11:37:47] COMPLETED 4月改编风向标｜叮！请查收4月番茄短故事改编风向
+[2026-05-16 11:37:47] BATCH 2/3 第十七期短故事作家课堂—从共性到技巧：进阶短故事的悬疑氛围
+[2026-05-16 11:37:47] FETCH 第十七期短故事作家课堂—从共性到技巧：进阶短故事的悬疑氛围
+[2026-05-16 11:37:50] WF_EDITOR 第十七期短故事作家课堂—从共性到技巧：进阶短故事的悬疑氛围 chars=2947
+[2026-05-16 11:38:19] TKX_WRITER 第十七期短故事作家课堂—从共性到技巧：进阶短故事的悬疑氛围 editor_chars=3137
+[2026-05-16 11:40:07] COMPLETED 第十七期短故事作家课堂—从共性到技巧：进阶短故事的悬疑氛围
+[2026-05-16 11:40:07] BATCH 3/3 第十六期短故事作家课堂—解锁热门题材创作秘籍：宫斗宅斗
+[2026-05-16 11:40:07] FETCH 第十六期短故事作家课堂—解锁热门题材创作秘籍：宫斗宅斗
+[2026-05-16 11:40:11] WF_EDITOR 第十六期短故事作家课堂—解锁热门题材创作秘籍：宫斗宅斗 chars=3205
+[2026-05-16 11:40:45] TKX_WRITER 第十六期短故事作家课堂—解锁热门题材创作秘籍：宫斗宅斗 editor_chars=3156
+[2026-05-16 11:42:50] TKX_WRITER_RETRY_COMPACT 第十六期短故事作家课堂—解锁热门题材创作秘籍：宫斗宅斗: HTTPError: 524 Server Error: <none> for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 11:43:21] COMPLETED 第十六期短故事作家课堂—解锁热门题材创作秘籍：宫斗宅斗
+[2026-05-16 11:43:21] DONE batch_completed pending=168
+[2026-05-16 11:43:41] START fanqie classroom dynamic learning
+[2026-05-16 11:43:43] BATCH 1/3 从选题到框架，《十八岁太奶奶》原著作者独家爆款秘诀！
+[2026-05-16 11:43:43] FETCH 从选题到框架，《十八岁太奶奶》原著作者独家爆款秘诀！
+[2026-05-16 11:43:47] WF_EDITOR 从选题到框架，《十八岁太奶奶》原著作者独家爆款秘诀！ chars=4349
+[2026-05-16 11:44:11] TKX_WRITER 从选题到框架，《十八岁太奶奶》原著作者独家爆款秘诀！ editor_chars=2471
+[2026-05-16 11:45:55] COMPLETED 从选题到框架，《十八岁太奶奶》原著作者独家爆款秘诀！
+[2026-05-16 11:45:55] BATCH 2/3 3月改编风向标｜请查收！3月番茄短故事改编风向宝典
+[2026-05-16 11:45:55] FETCH 3月改编风向标｜请查收！3月番茄短故事改编风向宝典
+[2026-05-16 11:46:00] WF_EDITOR 3月改编风向标｜请查收！3月番茄短故事改编风向宝典 chars=3800
+[2026-05-16 11:46:32] TKX_WRITER 3月改编风向标｜请查收！3月番茄短故事改编风向宝典 editor_chars=2901
+[2026-05-16 11:48:18] COMPLETED 3月改编风向标｜请查收！3月番茄短故事改编风向宝典
+[2026-05-16 11:48:18] BATCH 3/3 拉新向写作全攻略！从噱头到世界观一次性讲透！
+[2026-05-16 11:48:18] FETCH 拉新向写作全攻略！从噱头到世界观一次性讲透！
+[2026-05-16 11:48:22] WF_EDITOR 拉新向写作全攻略！从噱头到世界观一次性讲透！ chars=4647
+[2026-05-16 11:48:50] TKX_WRITER 拉新向写作全攻略！从噱头到世界观一次性讲透！ editor_chars=2839
+[2026-05-16 11:50:55] TKX_WRITER_RETRY_COMPACT 拉新向写作全攻略！从噱头到世界观一次性讲透！: HTTPError: 524 Server Error: <none> for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 11:51:25] COMPLETED 拉新向写作全攻略！从噱头到世界观一次性讲透！
+[2026-05-16 11:51:25] DONE batch_completed pending=165
+[2026-05-16 11:51:45] START fanqie classroom dynamic learning
+[2026-05-16 11:51:48] BATCH 1/3 超短故事高热风向：电费异常揭开隐情 男频悬疑爽文拆解
+[2026-05-16 11:51:48] FETCH 超短故事高热风向：电费异常揭开隐情 男频悬疑爽文拆解
+[2026-05-16 11:51:51] WF_EDITOR 超短故事高热风向：电费异常揭开隐情 男频悬疑爽文拆解 chars=2199
+[2026-05-16 11:52:17] TKX_WRITER 超短故事高热风向：电费异常揭开隐情 男频悬疑爽文拆解 editor_chars=2540
+[2026-05-16 11:54:14] COMPLETED 超短故事高热风向：电费异常揭开隐情 男频悬疑爽文拆解
+[2026-05-16 11:54:14] BATCH 2/3 读者说我写的剧情太平淡没有爽点，怎么办？
+[2026-05-16 11:54:14] FETCH 读者说我写的剧情太平淡没有爽点，怎么办？
+[2026-05-16 11:54:18] WF_EDITOR 读者说我写的剧情太平淡没有爽点，怎么办？ chars=4277
+[2026-05-16 11:54:47] TKX_WRITER 读者说我写的剧情太平淡没有爽点，怎么办？ editor_chars=2833
+[2026-05-16 11:56:23] COMPLETED 读者说我写的剧情太平淡没有爽点，怎么办？
+[2026-05-16 11:56:23] BATCH 3/3 科幻作品创作宝典
+[2026-05-16 11:56:23] FETCH 科幻作品创作宝典
+[2026-05-16 11:56:26] WF_EDITOR 科幻作品创作宝典 chars=1504
+[2026-05-16 11:56:58] ERROR 7025887140504403998 HTTPError: 429 Client Error: Too Many Requests for url: http://43.135.181.17:8081/v1/chat/completions
+[2026-05-16 11:56:58] DONE batch_completed pending=162
+[2026-05-16 11:57:18] START fanqie classroom dynamic learning
+[2026-05-16 11:57:21] BATCH 1/3 都市作品创作宝典
+[2026-05-16 11:57:21] FETCH 都市作品创作宝典
+[2026-05-16 11:57:25] WF_EDITOR 都市作品创作宝典 chars=15332
+[2026-05-16 11:58:00] ERROR 7025883617540702245 HTTPError: 429 Client Error: Too Many Requests for url: http://43.135.181.17:8081/v1/chat/completions
+[2026-05-16 11:58:00] DONE batch_completed pending=161
+[2026-05-16 11:58:20] START fanqie classroom dynamic learning
+[2026-05-16 11:58:22] BATCH 1/3 新媒体小说创作宝典
+[2026-05-16 11:58:22] FETCH 新媒体小说创作宝典
+[2026-05-16 11:58:26] WF_EDITOR 新媒体小说创作宝典 chars=8378
+[2026-05-16 11:59:01] ERROR 7025885935753494535 HTTPError: 429 Client Error: Too Many Requests for url: http://43.135.181.17:8081/v1/chat/completions
+[2026-05-16 11:59:01] DONE batch_completed pending=160
+[2026-05-16 11:59:21] START fanqie classroom dynamic learning
+[2026-05-16 11:59:23] BATCH 1/3 悬疑推理作品创作宝典
+[2026-05-16 11:59:23] FETCH 悬疑推理作品创作宝典
+[2026-05-16 11:59:27] WF_EDITOR 悬疑推理作品创作宝典 chars=2620
+[2026-05-16 12:00:02] ERROR 7025886492685762568 HTTPError: 429 Client Error: Too Many Requests for url: http://43.135.181.17:8081/v1/chat/completions
+[2026-05-16 12:00:02] DONE batch_completed pending=159
+[2026-05-16 12:00:22] START fanqie classroom dynamic learning
+[2026-05-16 12:00:25] BATCH 1/3 历史创作宝典
+[2026-05-16 12:00:25] FETCH 历史创作宝典
+[2026-05-16 12:00:28] WF_EDITOR 历史创作宝典 chars=2133
+[2026-05-16 12:01:03] ERROR 7025886867564265479 HTTPError: 429 Client Error: Too Many Requests for url: http://43.135.181.17:8081/v1/chat/completions
+[2026-05-16 12:01:03] DONE batch_completed pending=158
+[2026-05-16 12:01:24] START fanqie classroom dynamic learning
+[2026-05-16 12:01:26] BATCH 1/3 第十九期短故事作家课堂—请收下「玄幻仙侠」类短故事创作宝典
+[2026-05-16 12:01:26] FETCH 第十九期短故事作家课堂—请收下「玄幻仙侠」类短故事创作宝典
+[2026-05-16 12:01:30] WF_EDITOR 第十九期短故事作家课堂—请收下「玄幻仙侠」类短故事创作宝典 chars=3683
+[2026-05-16 12:02:05] ERROR 7637490541487194174 HTTPError: 429 Client Error: Too Many Requests for url: http://43.135.181.17:8081/v1/chat/completions
+[2026-05-16 12:02:05] DONE batch_completed pending=157
+[2026-05-16 12:02:25] START fanqie classroom dynamic learning
+[2026-05-16 12:02:28] BATCH 1/3 改编风向标｜打脸、逆袭、甜宠要素全解析
+[2026-05-16 12:02:28] FETCH 改编风向标｜打脸、逆袭、甜宠要素全解析
+[2026-05-16 12:02:32] WF_EDITOR 改编风向标｜打脸、逆袭、甜宠要素全解析 chars=2845
+[2026-05-16 12:03:06] ERROR 7632530327365238846 HTTPError: 429 Client Error: Too Many Requests for url: http://43.135.181.17:8081/v1/chat/completions
+[2026-05-16 12:03:06] DONE batch_completed pending=156
+[2026-05-16 12:03:26] START fanqie classroom dynamic learning
+[2026-05-16 12:03:29] BATCH 1/3 第十五期短故事作家课堂—脑洞文写作避坑指南
+[2026-05-16 12:03:29] FETCH 第十五期短故事作家课堂—脑洞文写作避坑指南
+[2026-05-16 12:03:32] WF_EDITOR 第十五期短故事作家课堂—脑洞文写作避坑指南 chars=4521
+[2026-05-16 12:04:08] ERROR 7624047712786202686 HTTPError: 429 Client Error: Too Many Requests for url: http://43.135.181.17:8081/v1/chat/completions
+[2026-05-16 12:04:08] DONE batch_completed pending=155
+[2026-05-16 12:04:28] START fanqie classroom dynamic learning
+[2026-05-16 12:04:30] BATCH 1/3 爆款新书怎么写？吃透这四点，直接抓住读者！
+[2026-05-16 12:04:30] FETCH 爆款新书怎么写？吃透这四点，直接抓住读者！
+[2026-05-16 12:04:34] WF_EDITOR 爆款新书怎么写？吃透这四点，直接抓住读者！ chars=3571
+[2026-05-16 12:05:09] ERROR 7619170181129961534 HTTPError: 429 Client Error: Too Many Requests for url: http://43.135.181.17:8081/v1/chat/completions
+[2026-05-16 12:05:09] DONE batch_completed pending=154
+[2026-05-16 12:05:29] START fanqie classroom dynamic learning
+[2026-05-16 12:05:32] BATCH 1/3 一篇读懂IP改编，让你搞懂常识少走弯路！
+[2026-05-16 12:05:32] FETCH 一篇读懂IP改编，让你搞懂常识少走弯路！
+[2026-05-16 12:05:35] WF_EDITOR 一篇读懂IP改编，让你搞懂常识少走弯路！ chars=2275
+[2026-05-16 12:06:10] ERROR 7613968305774133310 HTTPError: 429 Client Error: Too Many Requests for url: http://43.135.181.17:8081/v1/chat/completions
+[2026-05-16 12:06:10] DONE batch_completed pending=153
+[2026-05-16 12:06:30] START fanqie classroom dynamic learning
+[2026-05-16 12:06:32] BATCH 1/3 第十三期短故事作家课堂—世情爽文写作避坑指南
+[2026-05-16 12:06:32] FETCH 第十三期短故事作家课堂—世情爽文写作避坑指南
+[2026-05-16 12:06:36] WF_EDITOR 第十三期短故事作家课堂—世情爽文写作避坑指南 chars=2351
+[2026-05-16 12:07:11] ERROR 7614020727024386110 HTTPError: 429 Client Error: Too Many Requests for url: http://43.135.181.17:8081/v1/chat/completions
+[2026-05-16 12:07:11] DONE batch_completed pending=152
+[2026-05-16 12:07:31] START fanqie classroom dynamic learning
+[2026-05-16 12:07:34] BATCH 1/3 超短故事高热风向：女配凭弹幕破局，古言脑洞追妻文创作精讲
+[2026-05-16 12:07:34] FETCH 超短故事高热风向：女配凭弹幕破局，古言脑洞追妻文创作精讲
+[2026-05-16 12:07:37] WF_EDITOR 超短故事高热风向：女配凭弹幕破局，古言脑洞追妻文创作精讲 chars=1998
+[2026-05-16 12:08:13] ERROR 7611463623545716760 HTTPError: 429 Client Error: Too Many Requests for url: http://43.135.181.17:8081/v1/chat/completions
+[2026-05-16 12:08:13] DONE batch_completed pending=151
+[2026-05-16 12:08:33] START fanqie classroom dynamic learning
+[2026-05-16 12:08:35] BATCH 1/3 改编风向标｜什么样的作品更易被改编？
+[2026-05-16 12:08:35] FETCH 改编风向标｜什么样的作品更易被改编？
+[2026-05-16 12:08:39] WF_EDITOR 改编风向标｜什么样的作品更易被改编？ chars=3401
+[2026-05-16 12:09:14] ERROR 7606553382794313790 HTTPError: 429 Client Error: Too Many Requests for url: http://43.135.181.17:8081/v1/chat/completions
+[2026-05-16 12:09:14] DONE batch_completed pending=150
+[2026-05-16 12:09:34] START fanqie classroom dynamic learning
+[2026-05-16 12:09:36] BATCH 1/3 长篇标签风向标：代嫁代娶超高看点
+[2026-05-16 12:09:36] FETCH 长篇标签风向标：代嫁代娶超高看点
+[2026-05-16 12:09:40] WF_EDITOR 长篇标签风向标：代嫁代娶超高看点 chars=3697
+[2026-05-16 12:10:15] ERROR 7605541526113878078 HTTPError: 429 Client Error: Too Many Requests for url: http://43.135.181.17:8081/v1/chat/completions
+[2026-05-16 12:10:15] DONE batch_completed pending=149
+[2026-05-16 12:10:35] START fanqie classroom dynamic learning
+[2026-05-16 12:10:38] BATCH 1/3 长篇标签风向标：欢迎来到惊悚游戏
+[2026-05-16 12:10:38] FETCH 长篇标签风向标：欢迎来到惊悚游戏
+[2026-05-16 12:10:41] WF_EDITOR 长篇标签风向标：欢迎来到惊悚游戏 chars=2033
+[2026-05-16 12:11:16] ERROR 7605527506208178238 HTTPError: 429 Client Error: Too Many Requests for url: http://43.135.181.17:8081/v1/chat/completions
+[2026-05-16 12:11:16] DONE batch_completed pending=148
+[2026-05-16 12:11:36] START fanqie classroom dynamic learning
+[2026-05-16 12:11:38] BATCH 1/3 超短故事高热风向：我成了外婆的虐渣系统，年代女性逆袭路
+[2026-05-16 12:11:38] FETCH 超短故事高热风向：我成了外婆的虐渣系统，年代女性逆袭路
+[2026-05-16 12:11:42] WF_EDITOR 超短故事高热风向：我成了外婆的虐渣系统，年代女性逆袭路 chars=2327
+[2026-05-16 12:12:17] ERROR 7604746397652369432 HTTPError: 429 Client Error: Too Many Requests for url: http://43.135.181.17:8081/v1/chat/completions
+[2026-05-16 12:12:17] DONE batch_completed pending=147
+[2026-05-16 12:12:37] START fanqie classroom dynamic learning
+[2026-05-16 12:12:40] BATCH 1/3 【训练营精品课程】浅谈宫斗宅斗创作经验
+[2026-05-16 12:12:40] FETCH 【训练营精品课程】浅谈宫斗宅斗创作经验
+[2026-05-16 12:12:43] WF_EDITOR 【训练营精品课程】浅谈宫斗宅斗创作经验 chars=9980
+[2026-05-16 12:13:19] ERROR 7273042943110283326 HTTPError: 429 Client Error: Too Many Requests for url: http://43.135.181.17:8081/v1/chat/completions
+[2026-05-16 12:13:19] DONE batch_completed pending=146
+[2026-05-16 12:13:39] START fanqie classroom dynamic learning
+[2026-05-16 12:13:42] BATCH 1/3 这一日，人类再入神级文明境界：从科幻网文的科技树升级体系说起
+[2026-05-16 12:13:42] FETCH 这一日，人类再入神级文明境界：从科幻网文的科技树升级体系说起
+[2026-05-16 12:13:45] WF_EDITOR 这一日，人类再入神级文明境界：从科幻网文的科技树升级体系说起 chars=3914
+[2026-05-16 12:14:21] ERROR 7180298334702141499 HTTPError: 429 Client Error: Too Many Requests for url: http://43.135.181.17:8081/v1/chat/completions
+[2026-05-16 12:14:21] DONE batch_completed pending=145
+[2026-05-16 12:14:41] START fanqie classroom dynamic learning
+[2026-05-16 12:14:43] BATCH 1/3 现言作品创作宝典
+[2026-05-16 12:14:43] FETCH 现言作品创作宝典
+[2026-05-16 12:14:47] WF_EDITOR 现言作品创作宝典 chars=6315
+[2026-05-16 12:15:22] ERROR 7025884840759132190 HTTPError: 429 Client Error: Too Many Requests for url: http://43.135.181.17:8081/v1/chat/completions
+[2026-05-16 12:15:22] DONE batch_completed pending=144
+[2026-05-16 12:15:42] START fanqie classroom dynamic learning
+[2026-05-16 12:15:45] BATCH 1/3 番茄历史课: 秦汉的出行
+[2026-05-16 12:15:45] FETCH 番茄历史课: 秦汉的出行
+[2026-05-16 12:15:48] WF_EDITOR 番茄历史课: 秦汉的出行 chars=722
+[2026-05-16 12:16:23] ERROR 7615483648950665241 HTTPError: 429 Client Error: Too Many Requests for url: http://43.135.181.17:8081/v1/chat/completions
+[2026-05-16 12:16:23] DONE batch_completed pending=143
+[2026-05-16 12:16:43] START fanqie classroom dynamic learning
+[2026-05-16 12:16:46] BATCH 1/3 番茄历史课: 历史地理在小说中的运用
+[2026-05-16 12:16:46] FETCH 番茄历史课: 历史地理在小说中的运用
+[2026-05-16 12:16:49] WF_EDITOR 番茄历史课: 历史地理在小说中的运用 chars=882
+[2026-05-16 12:17:24] ERROR 7615482130503565337 HTTPError: 429 Client Error: Too Many Requests for url: http://43.135.181.17:8081/v1/chat/completions
+[2026-05-16 12:17:24] DONE batch_completed pending=142
+[2026-05-16 12:17:44] START fanqie classroom dynamic learning
+[2026-05-16 12:17:47] BATCH 1/3 编辑说 | 一篇让你看懂番茄榜单新风向！
+[2026-05-16 12:17:47] FETCH 编辑说 | 一篇让你看懂番茄榜单新风向！
+[2026-05-16 12:17:51] WF_EDITOR 编辑说 | 一篇让你看懂番茄榜单新风向！ chars=5201
+[2026-05-16 12:18:26] ERROR 7616327014571573272 HTTPError: 429 Client Error: Too Many Requests for url: http://43.135.181.17:8081/v1/chat/completions
+[2026-05-16 12:18:26] DONE batch_completed pending=141
+[2026-05-16 12:18:46] START fanqie classroom dynamic learning
+[2026-05-16 12:18:48] BATCH 1/3 番茄历史课: 明清北京城旅行路线推介
+[2026-05-16 12:18:48] FETCH 番茄历史课: 明清北京城旅行路线推介
+[2026-05-16 12:18:52] WF_EDITOR 番茄历史课: 明清北京城旅行路线推介 chars=786
+[2026-05-16 12:19:27] ERROR 7615478956845711385 HTTPError: 429 Client Error: Too Many Requests for url: http://43.135.181.17:8081/v1/chat/completions
+[2026-05-16 12:19:27] DONE batch_completed pending=140
+[2026-05-16 12:19:47] START fanqie classroom dynamic learning
+[2026-05-16 12:19:49] BATCH 1/3 番茄历史课: 苏东坡的足迹与诗文
+[2026-05-16 12:19:49] FETCH 番茄历史课: 苏东坡的足迹与诗文
+[2026-05-16 12:19:53] WF_EDITOR 番茄历史课: 苏东坡的足迹与诗文 chars=736
+[2026-05-16 12:20:28] ERROR 7615478100687585305 HTTPError: 429 Client Error: Too Many Requests for url: http://43.135.181.17:8081/v1/chat/completions
+[2026-05-16 12:20:28] DONE batch_completed pending=139
+[2026-05-16 12:20:48] START fanqie classroom dynamic learning
+[2026-05-16 12:20:50] BATCH 1/3 番茄历史课: 清朝人怎么出远门
+[2026-05-16 12:20:50] FETCH 番茄历史课: 清朝人怎么出远门
+[2026-05-16 12:20:53] WF_EDITOR 番茄历史课: 清朝人怎么出远门 chars=966
+[2026-05-16 12:21:29] ERROR 7612573283195551768 HTTPError: 429 Client Error: Too Many Requests for url: http://43.135.181.17:8081/v1/chat/completions
+[2026-05-16 12:21:29] DONE batch_completed pending=138
+[2026-05-16 12:21:49] START fanqie classroom dynamic learning
+[2026-05-16 12:21:52] BATCH 1/3 开书准备｜如何写一本古言小说
+[2026-05-16 12:21:52] FETCH 开书准备｜如何写一本古言小说
+[2026-05-16 12:21:55] WF_EDITOR 开书准备｜如何写一本古言小说 chars=2513
+[2026-05-16 12:22:31] ERROR 7451920356694048793 HTTPError: 429 Client Error: Too Many Requests for url: http://43.135.181.17:8081/v1/chat/completions
+[2026-05-16 12:22:31] DONE batch_completed pending=137
+[2026-05-16 12:22:51] START fanqie classroom dynamic learning
+[2026-05-16 12:22:53] BATCH 1/3 这里有你不容错过的，女频脑洞文创作指南！
+[2026-05-16 12:22:53] FETCH 这里有你不容错过的，女频脑洞文创作指南！
+[2026-05-16 12:22:57] WF_EDITOR 这里有你不容错过的，女频脑洞文创作指南！ chars=5634
+[2026-05-16 12:23:32] ERROR 7226316335490269241 HTTPError: 429 Client Error: Too Many Requests for url: http://43.135.181.17:8081/v1/chat/completions
+[2026-05-16 12:23:32] DONE batch_completed pending=136
+[2026-05-16 12:23:52] START fanqie classroom dynamic learning
+[2026-05-16 12:23:54] BATCH 1/3 码住这篇教学，轻松开启男频脑洞文创作之路！
+[2026-05-16 12:23:54] FETCH 码住这篇教学，轻松开启男频脑洞文创作之路！
+[2026-05-16 12:23:58] WF_EDITOR 码住这篇教学，轻松开启男频脑洞文创作之路！ chars=3325
+[2026-05-16 12:24:35] ERROR 7226314038802645053 HTTPError: 429 Client Error: Too Many Requests for url: http://43.135.181.17:8081/v1/chat/completions
+[2026-05-16 12:24:35] DONE batch_completed pending=135
+[2026-05-16 12:24:55] START fanqie classroom dynamic learning
+[2026-05-16 12:24:58] BATCH 1/3 千粉+作者专属功能！番茄小说粉丝群使用指南大揭秘！
+[2026-05-16 12:24:58] FETCH 千粉+作者专属功能！番茄小说粉丝群使用指南大揭秘！
+[2026-05-16 12:25:02] WF_EDITOR 千粉+作者专属功能！番茄小说粉丝群使用指南大揭秘！ chars=2313
+[2026-05-16 12:25:35] ERROR 7210610015567085605 HTTPError: 429 Client Error: Too Many Requests for url: http://43.135.181.17:8081/v1/chat/completions
+[2026-05-16 12:25:35] DONE batch_completed pending=134
+[2026-05-16 12:25:55] START fanqie classroom dynamic learning
+[2026-05-16 12:25:57] BATCH 1/3 想写出闪闪惹人爱的职场女主？来了解下女频职业文创作科普吧
+[2026-05-16 12:25:57] FETCH 想写出闪闪惹人爱的职场女主？来了解下女频职业文创作科普吧
+[2026-05-16 12:26:01] WF_EDITOR 想写出闪闪惹人爱的职场女主？来了解下女频职业文创作科普吧 chars=4219
+[2026-05-16 12:26:36] ERROR 7201011003666989115 HTTPError: 429 Client Error: Too Many Requests for url: http://43.135.181.17:8081/v1/chat/completions
+[2026-05-16 12:26:36] DONE batch_completed pending=133
+[2026-05-16 12:26:56] START fanqie classroom dynamic learning
+[2026-05-16 12:26:59] BATCH 1/3 让你写末世，你日收过千？新手友好的末世文写作技巧分享
+[2026-05-16 12:26:59] FETCH 让你写末世，你日收过千？新手友好的末世文写作技巧分享
+[2026-05-16 12:27:02] WF_EDITOR 让你写末世，你日收过千？新手友好的末世文写作技巧分享 chars=3296
+[2026-05-16 12:27:37] ERROR 7181730354435194935 HTTPError: 429 Client Error: Too Many Requests for url: http://43.135.181.17:8081/v1/chat/completions
+[2026-05-16 12:27:37] DONE batch_completed pending=132
+[2026-05-16 12:27:58] START fanqie classroom dynamic learning
+[2026-05-16 12:28:00] BATCH 1/3 来到番茄，书名还可以这样取？教你快速掌握宫斗宅斗文写作方式
+[2026-05-16 12:28:00] FETCH 来到番茄，书名还可以这样取？教你快速掌握宫斗宅斗文写作方式
+[2026-05-16 12:28:04] WF_EDITOR 来到番茄，书名还可以这样取？教你快速掌握宫斗宅斗文写作方式 chars=3681
+[2026-05-16 12:28:39] ERROR 7175166815314640956 HTTPError: 429 Client Error: Too Many Requests for url: http://43.135.181.17:8081/v1/chat/completions
+[2026-05-16 12:28:39] DONE batch_completed pending=131
+[2026-05-16 12:28:59] START fanqie classroom dynamic learning
+[2026-05-16 12:29:02] BATCH 1/3 道友请留步，为什么我感觉自己写的很好，但读者都在骂？
+[2026-05-16 12:29:02] FETCH 道友请留步，为什么我感觉自己写的很好，但读者都在骂？
+[2026-05-16 12:29:05] WF_EDITOR 道友请留步，为什么我感觉自己写的很好，但读者都在骂？ chars=3577
+[2026-05-16 12:29:41] ERROR 7168090249560588295 HTTPError: 429 Client Error: Too Many Requests for url: http://43.135.181.17:8081/v1/chat/completions
+[2026-05-16 12:29:41] DONE batch_completed pending=130
+[2026-05-16 12:30:01] START fanqie classroom dynamic learning
+[2026-05-16 12:30:03] BATCH 1/3 你在写一种很新的东西，仙侠文原来还能这么去创作！
+[2026-05-16 12:30:03] FETCH 你在写一种很新的东西，仙侠文原来还能这么去创作！
+[2026-05-16 12:30:07] WF_EDITOR 你在写一种很新的东西，仙侠文原来还能这么去创作！ chars=3385
+[2026-05-16 12:31:31] START fanqie classroom dynamic learning
+[2026-05-16 12:31:34] BATCH 1/1 你在写一种很新的东西，仙侠文原来还能这么去创作！
+[2026-05-16 12:31:34] FETCH 你在写一种很新的东西，仙侠文原来还能这么去创作！
+[2026-05-16 12:31:37] WF_EDITOR 你在写一种很新的东西，仙侠文原来还能这么去创作！ chars=3385
+[2026-05-16 12:32:12] ERROR 7164729557746974757 HTTPError: 429 Client Error: Too Many Requests for url: http://43.135.181.17:8081/v1/chat/completions
+[2026-05-16 12:32:12] DONE batch_completed pending=129
+[2026-05-16 12:33:01] START fanqie classroom dynamic learning
+[2026-05-16 12:33:03] BATCH 1/1 少年，看你骨骼清奇，不妨来了解一下仙侠
+[2026-05-16 12:33:03] FETCH 少年，看你骨骼清奇，不妨来了解一下仙侠
+[2026-05-16 12:33:06] WF_EDITOR 少年，看你骨骼清奇，不妨来了解一下仙侠 chars=1640
+[2026-05-16 12:34:50] START fanqie classroom dynamic learning
+[2026-05-16 12:34:53] BATCH 1/1 少年，看你骨骼清奇，不妨来了解一下仙侠
+[2026-05-16 12:34:53] FETCH 少年，看你骨骼清奇，不妨来了解一下仙侠
+[2026-05-16 12:34:56] QWEN_EDITOR 少年，看你骨骼清奇，不妨来了解一下仙侠 chars=1640
+[2026-05-16 12:36:09] TKX_WRITER 少年，看你骨骼清奇，不妨来了解一下仙侠 editor_chars=2113
+[2026-05-16 12:38:09] COMPLETED 少年，看你骨骼清奇，不妨来了解一下仙侠
+[2026-05-16 12:38:09] DONE batch_completed pending=128
+[2026-05-16 12:43:09] START fanqie classroom dynamic learning
+[2026-05-16 12:43:12] BATCH 1/1 玄幻作品创作宝典
+[2026-05-16 12:43:12] FETCH 玄幻作品创作宝典
+[2026-05-16 12:43:15] QWEN_EDITOR 玄幻作品创作宝典 chars=13828
+[2026-05-16 12:44:44] TKX_WRITER 玄幻作品创作宝典 editor_chars=2589
+[2026-05-16 12:46:30] COMPLETED 玄幻作品创作宝典
+[2026-05-16 12:46:30] DONE batch_completed pending=127
+[2026-05-16 12:51:30] START fanqie classroom dynamic learning
+[2026-05-16 12:51:33] BATCH 1/1 古代言情作品创作宝典
+[2026-05-16 12:51:33] FETCH 古代言情作品创作宝典
+[2026-05-16 12:51:36] QWEN_EDITOR 古代言情作品创作宝典 chars=13766
+[2026-05-16 12:52:54] TKX_WRITER 古代言情作品创作宝典 editor_chars=2335
+[2026-05-16 12:54:33] COMPLETED 古代言情作品创作宝典
+[2026-05-16 12:54:33] DONE batch_completed pending=126
+[2026-05-16 12:59:33] START fanqie classroom dynamic learning
+[2026-05-16 12:59:35] BATCH 1/1 游戏作品创作宝典
+[2026-05-16 12:59:35] FETCH 游戏作品创作宝典
+[2026-05-16 12:59:39] QWEN_EDITOR 游戏作品创作宝典 chars=2253
+[2026-05-16 13:01:10] TKX_WRITER 游戏作品创作宝典 editor_chars=2490
+[2026-05-16 13:02:49] COMPLETED 游戏作品创作宝典
+[2026-05-16 13:02:49] DONE batch_completed pending=125
+[2026-05-16 13:07:49] START fanqie classroom dynamic learning
+[2026-05-16 13:07:52] BATCH 1/1 写作避雷｜节奏混乱？冲突乏力？爽点不足？一篇让你从踩雷到吸睛
+[2026-05-16 13:07:52] FETCH 写作避雷｜节奏混乱？冲突乏力？爽点不足？一篇让你从踩雷到吸睛
+[2026-05-16 13:07:55] QWEN_EDITOR 写作避雷｜节奏混乱？冲突乏力？爽点不足？一篇让你从踩雷到吸睛 chars=2333
+[2026-05-16 13:09:14] TKX_WRITER 写作避雷｜节奏混乱？冲突乏力？爽点不足？一篇让你从踩雷到吸睛 editor_chars=2206
+[2026-05-16 13:11:03] COMPLETED 写作避雷｜节奏混乱？冲突乏力？爽点不足？一篇让你从踩雷到吸睛
+[2026-05-16 13:11:03] DONE batch_completed pending=124
+[2026-05-16 13:16:03] START fanqie classroom dynamic learning
+[2026-05-16 13:16:06] BATCH 1/1 题材选择｜写作之路千千万，选对题材好开篇！
+[2026-05-16 13:16:06] FETCH 题材选择｜写作之路千千万，选对题材好开篇！
+[2026-05-16 13:16:09] QWEN_EDITOR 题材选择｜写作之路千千万，选对题材好开篇！ chars=6125
+[2026-05-16 13:17:33] TKX_WRITER 题材选择｜写作之路千千万，选对题材好开篇！ editor_chars=2380
+[2026-05-16 13:19:12] COMPLETED 题材选择｜写作之路千千万，选对题材好开篇！
+[2026-05-16 13:19:12] DONE batch_completed pending=123
+[2026-05-16 13:24:12] START fanqie classroom dynamic learning
+[2026-05-16 13:24:14] BATCH 1/1 开篇设计｜从情节、感情、人设出发，3招抓住读者眼球
+[2026-05-16 13:24:14] FETCH 开篇设计｜从情节、感情、人设出发，3招抓住读者眼球
+[2026-05-16 13:24:18] QWEN_EDITOR 开篇设计｜从情节、感情、人设出发，3招抓住读者眼球 chars=6578
+[2026-05-16 13:25:39] TKX_WRITER 开篇设计｜从情节、感情、人设出发，3招抓住读者眼球 editor_chars=2238
+[2026-05-16 13:27:32] COMPLETED 开篇设计｜从情节、感情、人设出发，3招抓住读者眼球
+[2026-05-16 13:27:32] DONE batch_completed pending=122
+[2026-05-16 13:32:32] START fanqie classroom dynamic learning
+[2026-05-16 13:32:35] BATCH 1/1 大纲设计｜“核心纲 + 强设定”，让你的剧情一顺到底！
+[2026-05-16 13:32:35] FETCH 大纲设计｜“核心纲 + 强设定”，让你的剧情一顺到底！
+[2026-05-16 13:32:38] QWEN_EDITOR 大纲设计｜“核心纲 + 强设定”，让你的剧情一顺到底！ chars=4588
+[2026-05-16 13:34:04] TKX_WRITER 大纲设计｜“核心纲 + 强设定”，让你的剧情一顺到底！ editor_chars=2406
+[2026-05-16 13:36:04] COMPLETED 大纲设计｜“核心纲 + 强设定”，让你的剧情一顺到底！
+[2026-05-16 13:36:04] DONE batch_completed pending=121
+[2026-05-16 13:41:04] START fanqie classroom dynamic learning
+[2026-05-16 13:41:07] BATCH 1/1 钩子设计｜拯救平淡剧情！五类钩子设置指南（上）
+[2026-05-16 13:41:07] FETCH 钩子设计｜拯救平淡剧情！五类钩子设置指南（上）
+[2026-05-16 13:41:11] QWEN_EDITOR 钩子设计｜拯救平淡剧情！五类钩子设置指南（上） chars=3786
+[2026-05-16 13:42:19] TKX_WRITER 钩子设计｜拯救平淡剧情！五类钩子设置指南（上） editor_chars=1951
+[2026-05-16 13:44:24] TKX_WRITER_RETRY_COMPACT 钩子设计｜拯救平淡剧情！五类钩子设置指南（上）: HTTPError: 524 Server Error: <none> for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 13:44:55] COMPLETED 钩子设计｜拯救平淡剧情！五类钩子设置指南（上）
+[2026-05-16 13:44:55] DONE batch_completed pending=120
+[2026-05-16 13:49:55] START fanqie classroom dynamic learning
+[2026-05-16 13:49:57] BATCH 1/1 钩子设计｜拯救平淡剧情！五类钩子设置指南（下）
+[2026-05-16 13:49:57] FETCH 钩子设计｜拯救平淡剧情！五类钩子设置指南（下）
+[2026-05-16 13:50:01] QWEN_EDITOR 钩子设计｜拯救平淡剧情！五类钩子设置指南（下） chars=3245
+[2026-05-16 13:51:23] TKX_WRITER 钩子设计｜拯救平淡剧情！五类钩子设置指南（下） editor_chars=2291
+[2026-05-16 13:53:29] TKX_WRITER_RETRY_COMPACT 钩子设计｜拯救平淡剧情！五类钩子设置指南（下）: HTTPError: 524 Server Error: <none> for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 13:54:00] COMPLETED 钩子设计｜拯救平淡剧情！五类钩子设置指南（下）
+[2026-05-16 13:54:00] DONE batch_completed pending=119
+[2026-05-16 13:59:00] START fanqie classroom dynamic learning
+[2026-05-16 13:59:03] BATCH 1/1 稳定更新｜如何提升签约率
+[2026-05-16 13:59:03] FETCH 稳定更新｜如何提升签约率
+[2026-05-16 13:59:06] QWEN_EDITOR 稳定更新｜如何提升签约率 chars=2030
+[2026-05-16 14:00:26] TKX_WRITER 稳定更新｜如何提升签约率 editor_chars=2507
+[2026-05-16 14:02:02] COMPLETED 稳定更新｜如何提升签约率
+[2026-05-16 14:02:02] DONE batch_completed pending=118
+[2026-05-16 14:07:02] START fanqie classroom dynamic learning
+[2026-05-16 14:07:04] BATCH 1/1 写作避雷｜网文选题秘诀，打造你的专属风格！
+[2026-05-16 14:07:04] FETCH 写作避雷｜网文选题秘诀，打造你的专属风格！
+[2026-05-16 14:07:08] QWEN_EDITOR 写作避雷｜网文选题秘诀，打造你的专属风格！ chars=2848
+[2026-05-16 14:08:40] TKX_WRITER 写作避雷｜网文选题秘诀，打造你的专属风格！ editor_chars=2275
+[2026-05-16 14:08:41] TKX_WRITER_RETRY_COMPACT 写作避雷｜网文选题秘诀，打造你的专属风格！: HTTPError: 403 Client Error: Forbidden for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 14:08:41] ERROR 7588076684453101592 HTTPError: 403 Client Error: Forbidden for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 14:08:41] DONE batch_completed pending=117
+[2026-05-16 14:13:41] START fanqie classroom dynamic learning
+[2026-05-16 14:13:44] BATCH 1/1 开篇设计｜两个开头示例让你少走弯路！
+[2026-05-16 14:13:44] FETCH 开篇设计｜两个开头示例让你少走弯路！
+[2026-05-16 14:13:47] QWEN_EDITOR 开篇设计｜两个开头示例让你少走弯路！ chars=5265
+[2026-05-16 14:15:19] TKX_WRITER 开篇设计｜两个开头示例让你少走弯路！ editor_chars=2483
+[2026-05-16 14:15:20] TKX_WRITER_RETRY_COMPACT 开篇设计｜两个开头示例让你少走弯路！: HTTPError: 403 Client Error: Forbidden for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 14:15:20] ERROR 7545081439683870745 HTTPError: 403 Client Error: Forbidden for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 14:15:20] DONE batch_completed pending=116
+[2026-05-16 14:20:20] START fanqie classroom dynamic learning
+[2026-05-16 14:20:23] BATCH 1/1 开书准备｜大纲这样写才不崩
+[2026-05-16 14:20:23] FETCH 开书准备｜大纲这样写才不崩
+[2026-05-16 14:20:27] QWEN_EDITOR 开书准备｜大纲这样写才不崩 chars=5619
+[2026-05-16 14:21:52] TKX_WRITER 开书准备｜大纲这样写才不崩 editor_chars=2530
+[2026-05-16 14:21:52] TKX_WRITER_RETRY_COMPACT 开书准备｜大纲这样写才不崩: HTTPError: 403 Client Error: Forbidden for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 14:21:53] ERROR 7528322925343014936 HTTPError: 403 Client Error: Forbidden for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 14:21:53] DONE batch_completed pending=115
+[2026-05-16 14:26:53] START fanqie classroom dynamic learning
+[2026-05-16 14:26:56] BATCH 1/1 钩子设计｜从定义到实战，0-1解析钩子设置技巧（上）
+[2026-05-16 14:26:56] FETCH 钩子设计｜从定义到实战，0-1解析钩子设置技巧（上）
+[2026-05-16 14:26:59] QWEN_EDITOR 钩子设计｜从定义到实战，0-1解析钩子设置技巧（上） chars=2450
+[2026-05-16 14:28:19] TKX_WRITER 钩子设计｜从定义到实战，0-1解析钩子设置技巧（上） editor_chars=2167
+[2026-05-16 14:28:20] TKX_WRITER_RETRY_COMPACT 钩子设计｜从定义到实战，0-1解析钩子设置技巧（上）: HTTPError: 403 Client Error: Forbidden for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 14:28:20] ERROR 7488224385929576473 HTTPError: 403 Client Error: Forbidden for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 14:28:20] DONE batch_completed pending=114
+[2026-05-16 14:33:20] START fanqie classroom dynamic learning
+[2026-05-16 14:33:22] BATCH 1/1 钩子设计｜从定义到实战，0-1解析钩子设置技巧（下）
+[2026-05-16 14:33:22] FETCH 钩子设计｜从定义到实战，0-1解析钩子设置技巧（下）
+[2026-05-16 14:33:26] QWEN_EDITOR 钩子设计｜从定义到实战，0-1解析钩子设置技巧（下） chars=4231
+[2026-05-16 14:34:41] TKX_WRITER 钩子设计｜从定义到实战，0-1解析钩子设置技巧（下） editor_chars=2343
+[2026-05-16 14:34:41] TKX_WRITER_RETRY_COMPACT 钩子设计｜从定义到实战，0-1解析钩子设置技巧（下）: HTTPError: 403 Client Error: Forbidden for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 14:34:42] ERROR 7488225861238276121 HTTPError: 403 Client Error: Forbidden for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 14:34:42] DONE batch_completed pending=113
+[2026-05-16 14:39:42] START fanqie classroom dynamic learning
+[2026-05-16 14:39:45] BATCH 1/1 钩子设计｜好钩子就是九连环（下）
+[2026-05-16 14:39:45] FETCH 钩子设计｜好钩子就是九连环（下）
+[2026-05-16 14:39:48] QWEN_EDITOR 钩子设计｜好钩子就是九连环（下） chars=5377
+[2026-05-16 14:41:06] TKX_WRITER 钩子设计｜好钩子就是九连环（下） editor_chars=2330
+[2026-05-16 14:41:06] TKX_WRITER_RETRY_COMPACT 钩子设计｜好钩子就是九连环（下）: HTTPError: 403 Client Error: Forbidden for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 14:41:07] ERROR 7486738667394842648 HTTPError: 403 Client Error: Forbidden for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 14:41:07] DONE batch_completed pending=112
+[2026-05-16 14:46:07] START fanqie classroom dynamic learning
+[2026-05-16 14:46:09] BATCH 1/1 钩子设计｜好钩子就是九连环（上）
+[2026-05-16 14:46:09] FETCH 钩子设计｜好钩子就是九连环（上）
+[2026-05-16 14:46:13] QWEN_EDITOR 钩子设计｜好钩子就是九连环（上） chars=3067
+[2026-05-16 14:47:33] TKX_WRITER 钩子设计｜好钩子就是九连环（上） editor_chars=2493
+[2026-05-16 14:47:34] TKX_WRITER_RETRY_COMPACT 钩子设计｜好钩子就是九连环（上）: HTTPError: 403 Client Error: Forbidden for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 14:47:34] ERROR 7486450671865036825 HTTPError: 403 Client Error: Forbidden for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 14:47:34] DONE batch_completed pending=111
+[2026-05-16 14:52:34] START fanqie classroom dynamic learning
+[2026-05-16 14:52:37] BATCH 1/1 开篇设计｜开篇五步走，轻松拿捏读者期待感（下）
+[2026-05-16 14:52:37] FETCH 开篇设计｜开篇五步走，轻松拿捏读者期待感（下）
+[2026-05-16 14:52:40] QWEN_EDITOR 开篇设计｜开篇五步走，轻松拿捏读者期待感（下） chars=5122
+[2026-05-16 14:53:59] TKX_WRITER 开篇设计｜开篇五步走，轻松拿捏读者期待感（下） editor_chars=2331
+[2026-05-16 14:53:59] TKX_WRITER_RETRY_COMPACT 开篇设计｜开篇五步走，轻松拿捏读者期待感（下）: HTTPError: 403 Client Error: Forbidden for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 14:54:00] ERROR 7480089164512247832 HTTPError: 403 Client Error: Forbidden for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 14:54:00] DONE batch_completed pending=110
+[2026-05-16 14:59:00] START fanqie classroom dynamic learning
+[2026-05-16 14:59:02] BATCH 1/1 开篇设计｜开篇五步走，轻松拿捏读者期待感（上）
+[2026-05-16 14:59:02] FETCH 开篇设计｜开篇五步走，轻松拿捏读者期待感（上）
+[2026-05-16 14:59:06] QWEN_EDITOR 开篇设计｜开篇五步走，轻松拿捏读者期待感（上） chars=3843
+[2026-05-16 15:00:32] TKX_WRITER 开篇设计｜开篇五步走，轻松拿捏读者期待感（上） editor_chars=2621
+[2026-05-16 15:00:33] TKX_WRITER_RETRY_COMPACT 开篇设计｜开篇五步走，轻松拿捏读者期待感（上）: HTTPError: 403 Client Error: Forbidden for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 15:00:33] ERROR 7480087779494346776 HTTPError: 403 Client Error: Forbidden for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 15:00:33] DONE batch_completed pending=109
+[2026-05-16 15:05:33] START fanqie classroom dynamic learning
+[2026-05-16 15:05:35] BATCH 1/1 开篇设计｜三步公式打造高黏性开头（下）
+[2026-05-16 15:05:35] FETCH 开篇设计｜三步公式打造高黏性开头（下）
+[2026-05-16 15:05:39] QWEN_EDITOR 开篇设计｜三步公式打造高黏性开头（下） chars=3032
+[2026-05-16 15:06:55] TKX_WRITER 开篇设计｜三步公式打造高黏性开头（下） editor_chars=2236
+[2026-05-16 15:06:56] TKX_WRITER_RETRY_COMPACT 开篇设计｜三步公式打造高黏性开头（下）: HTTPError: 403 Client Error: Forbidden for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 15:06:56] ERROR 7478306809401327640 HTTPError: 403 Client Error: Forbidden for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 15:06:56] DONE batch_completed pending=108
+[2026-05-16 15:11:56] START fanqie classroom dynamic learning
+[2026-05-16 15:11:58] BATCH 1/1 开篇设计｜三步公式打造高黏性开头（上）
+[2026-05-16 15:11:58] FETCH 开篇设计｜三步公式打造高黏性开头（上）
+[2026-05-16 15:12:02] QWEN_EDITOR 开篇设计｜三步公式打造高黏性开头（上） chars=3202
+[2026-05-16 15:13:18] TKX_WRITER 开篇设计｜三步公式打造高黏性开头（上） editor_chars=2128
+[2026-05-16 15:13:19] TKX_WRITER_RETRY_COMPACT 开篇设计｜三步公式打造高黏性开头（上）: HTTPError: 403 Client Error: Forbidden for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 15:15:24] ERROR 7478303864752455705 HTTPError: 524 Server Error: <none> for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 15:15:24] DONE batch_completed pending=107
+[2026-05-16 15:20:24] START fanqie classroom dynamic learning
+[2026-05-16 15:20:27] BATCH 1/1 大纲设计｜感情线与事业线大纲全攻略（下）
+[2026-05-16 15:20:27] FETCH 大纲设计｜感情线与事业线大纲全攻略（下）
+[2026-05-16 15:20:30] QWEN_EDITOR 大纲设计｜感情线与事业线大纲全攻略（下） chars=3976
+[2026-05-16 15:22:26] TKX_WRITER 大纲设计｜感情线与事业线大纲全攻略（下） editor_chars=2179
+[2026-05-16 15:22:26] TKX_WRITER_RETRY_COMPACT 大纲设计｜感情线与事业线大纲全攻略（下）: HTTPError: 403 Client Error: Forbidden for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 15:22:27] ERROR 7476362088164622361 HTTPError: 403 Client Error: Forbidden for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 15:22:27] DONE batch_completed pending=106
+[2026-05-16 15:27:27] START fanqie classroom dynamic learning
+[2026-05-16 15:27:30] BATCH 1/1 大纲设计｜感情线与事业线大纲全攻略（上）
+[2026-05-16 15:27:30] FETCH 大纲设计｜感情线与事业线大纲全攻略（上）
+[2026-05-16 15:27:34] QWEN_EDITOR 大纲设计｜感情线与事业线大纲全攻略（上） chars=2555
+[2026-05-16 15:28:59] TKX_WRITER 大纲设计｜感情线与事业线大纲全攻略（上） editor_chars=2334
+[2026-05-16 15:29:00] TKX_WRITER_RETRY_COMPACT 大纲设计｜感情线与事业线大纲全攻略（上）: HTTPError: 403 Client Error: Forbidden for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 15:29:00] ERROR 7476359595707858968 HTTPError: 403 Client Error: Forbidden for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 15:29:00] DONE batch_completed pending=105
+[2026-05-16 15:34:00] START fanqie classroom dynamic learning
+[2026-05-16 15:34:03] BATCH 1/1 开篇设计｜开篇抓住读者注意力
+[2026-05-16 15:34:03] FETCH 开篇设计｜开篇抓住读者注意力
+[2026-05-16 15:34:06] QWEN_EDITOR 开篇设计｜开篇抓住读者注意力 chars=3472
+[2026-05-16 15:35:34] TKX_WRITER 开篇设计｜开篇抓住读者注意力 editor_chars=2450
+[2026-05-16 15:35:35] TKX_WRITER_RETRY_COMPACT 开篇设计｜开篇抓住读者注意力: HTTPError: 403 Client Error: Forbidden for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 15:35:35] ERROR 7447827243289559064 HTTPError: 403 Client Error: Forbidden for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 15:35:35] DONE batch_completed pending=104
+[2026-05-16 15:40:35] START fanqie classroom dynamic learning
+[2026-05-16 15:40:38] BATCH 1/1 稳定更新｜如何保证不断更
+[2026-05-16 15:40:38] FETCH 稳定更新｜如何保证不断更
+[2026-05-16 15:40:42] QWEN_EDITOR 稳定更新｜如何保证不断更 chars=4081
+[2026-05-16 15:42:11] TKX_WRITER 稳定更新｜如何保证不断更 editor_chars=2568
+[2026-05-16 15:42:11] TKX_WRITER_RETRY_COMPACT 稳定更新｜如何保证不断更: HTTPError: 403 Client Error: Forbidden for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 15:42:12] ERROR 7410314379003969598 HTTPError: 403 Client Error: Forbidden for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 15:42:12] DONE batch_completed pending=103
+[2026-05-16 15:47:12] START fanqie classroom dynamic learning
+[2026-05-16 15:47:14] BATCH 1/1 稳定更新｜编辑助你作品写到推荐字数
+[2026-05-16 15:47:14] FETCH 稳定更新｜编辑助你作品写到推荐字数
+[2026-05-16 15:47:18] QWEN_EDITOR 稳定更新｜编辑助你作品写到推荐字数 chars=4448
+[2026-05-16 15:48:35] TKX_WRITER 稳定更新｜编辑助你作品写到推荐字数 editor_chars=2140
+[2026-05-16 15:48:36] TKX_WRITER_RETRY_COMPACT 稳定更新｜编辑助你作品写到推荐字数: HTTPError: 403 Client Error: Forbidden for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 15:48:36] ERROR 7172872330849288228 HTTPError: 403 Client Error: Forbidden for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 15:48:36] DONE batch_completed pending=102
+[2026-05-16 15:53:36] START fanqie classroom dynamic learning
+[2026-05-16 15:53:39] BATCH 1/1 活动汇总｜2026年番茄最强活动指北（2026年1月更新版）
+[2026-05-16 15:53:39] FETCH 活动汇总｜2026年番茄最强活动指北（2026年1月更新版）
+[2026-05-16 15:53:43] QWEN_EDITOR 活动汇总｜2026年番茄最强活动指北（2026年1月更新版） chars=621
+[2026-05-16 15:55:02] TKX_WRITER 活动汇总｜2026年番茄最强活动指北（2026年1月更新版） editor_chars=2040
+[2026-05-16 15:55:03] TKX_WRITER_RETRY_COMPACT 活动汇总｜2026年番茄最强活动指北（2026年1月更新版）: HTTPError: 403 Client Error: Forbidden for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 15:55:03] ERROR 7595490280552284184 HTTPError: 403 Client Error: Forbidden for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 15:55:03] DONE batch_completed pending=101
+[2026-05-16 16:00:03] START fanqie classroom dynamic learning
+[2026-05-16 16:00:06] BATCH 1/1 大神答疑丨还在纠结怎么写？3步带你找到答案！
+[2026-05-16 16:00:06] FETCH 大神答疑丨还在纠结怎么写？3步带你找到答案！
+[2026-05-16 16:00:09] QWEN_EDITOR 大神答疑丨还在纠结怎么写？3步带你找到答案！ chars=3291
+[2026-05-16 16:01:31] TKX_WRITER 大神答疑丨还在纠结怎么写？3步带你找到答案！ editor_chars=2268
+[2026-05-16 16:01:32] TKX_WRITER_RETRY_COMPACT 大神答疑丨还在纠结怎么写？3步带你找到答案！: HTTPError: 403 Client Error: Forbidden for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 16:01:32] ERROR 7576612076861259838 HTTPError: 403 Client Error: Forbidden for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 16:01:32] DONE batch_completed pending=100
+[2026-05-16 16:06:32] START fanqie classroom dynamic learning
+[2026-05-16 16:06:35] BATCH 1/1 大神答疑｜新手写作第一步？先动笔再说！
+[2026-05-16 16:06:35] FETCH 大神答疑｜新手写作第一步？先动笔再说！
+[2026-05-16 16:06:39] QWEN_EDITOR 大神答疑｜新手写作第一步？先动笔再说！ chars=2502
+[2026-05-16 16:08:06] TKX_WRITER 大神答疑｜新手写作第一步？先动笔再说！ editor_chars=2325
+[2026-05-16 16:08:07] TKX_WRITER_RETRY_COMPACT 大神答疑｜新手写作第一步？先动笔再说！: HTTPError: 403 Client Error: Forbidden for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 16:08:07] ERROR 7571294020903632958 HTTPError: 403 Client Error: Forbidden for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 16:08:07] DONE batch_completed pending=99
+[2026-05-16 16:13:08] START fanqie classroom dynamic learning
+[2026-05-16 16:13:10] BATCH 1/1 写作地图｜六步带你突破四大写作难关！
+[2026-05-16 16:13:10] FETCH 写作地图｜六步带你突破四大写作难关！
+[2026-05-16 16:13:14] QWEN_EDITOR 写作地图｜六步带你突破四大写作难关！ chars=5548
+[2026-05-16 16:14:29] TKX_WRITER 写作地图｜六步带你突破四大写作难关！ editor_chars=2024
+[2026-05-16 16:14:29] TKX_WRITER_RETRY_COMPACT 写作地图｜六步带你突破四大写作难关！: HTTPError: 403 Client Error: Forbidden for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 16:14:29] ERROR 7561060957946920984 HTTPError: 403 Client Error: Forbidden for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 16:14:30] DONE batch_completed pending=98
+[2026-05-16 16:19:30] START fanqie classroom dynamic learning
+[2026-05-16 16:19:32] BATCH 1/1 写作避雷｜6个高频写作“雷”点，90%的新手都有！
+[2026-05-16 16:19:32] FETCH 写作避雷｜6个高频写作“雷”点，90%的新手都有！
+[2026-05-16 16:19:36] QWEN_EDITOR 写作避雷｜6个高频写作“雷”点，90%的新手都有！ chars=4088
+[2026-05-16 16:21:02] TKX_WRITER 写作避雷｜6个高频写作“雷”点，90%的新手都有！ editor_chars=2516
+[2026-05-16 16:21:03] TKX_WRITER_RETRY_COMPACT 写作避雷｜6个高频写作“雷”点，90%的新手都有！: HTTPError: 403 Client Error: Forbidden for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 16:21:03] ERROR 7530926898411470872 HTTPError: 403 Client Error: Forbidden for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 16:21:03] DONE batch_completed pending=97
+[2026-05-16 16:26:03] START fanqie classroom dynamic learning
+[2026-05-16 16:26:06] BATCH 1/1 开书准备｜轻装写作技巧，心态才是关键！
+[2026-05-16 16:26:06] FETCH 开书准备｜轻装写作技巧，心态才是关键！
+[2026-05-16 16:26:09] QWEN_EDITOR 开书准备｜轻装写作技巧，心态才是关键！ chars=10575
+[2026-05-16 16:27:38] TKX_WRITER 开书准备｜轻装写作技巧，心态才是关键！ editor_chars=2444
+[2026-05-16 16:27:39] TKX_WRITER_RETRY_COMPACT 开书准备｜轻装写作技巧，心态才是关键！: HTTPError: 403 Client Error: Forbidden for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 16:27:39] ERROR 7524993113262145598 HTTPError: 403 Client Error: Forbidden for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 16:27:39] DONE batch_completed pending=96
+[2026-05-16 16:32:39] START fanqie classroom dynamic learning
+[2026-05-16 16:32:41] BATCH 1/1 写作避雷｜新手写作五大避雷针
+[2026-05-16 16:32:41] FETCH 写作避雷｜新手写作五大避雷针
+[2026-05-16 16:32:45] QWEN_EDITOR 写作避雷｜新手写作五大避雷针 chars=9618
+[2026-05-16 16:34:08] TKX_WRITER 写作避雷｜新手写作五大避雷针 editor_chars=2323
+[2026-05-16 16:34:08] TKX_WRITER_RETRY_COMPACT 写作避雷｜新手写作五大避雷针: HTTPError: 403 Client Error: Forbidden for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 16:34:09] ERROR 7511925003550457881 HTTPError: 403 Client Error: Forbidden for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 16:34:09] DONE batch_completed pending=95
+[2026-05-16 16:39:09] START fanqie classroom dynamic learning
+[2026-05-16 16:39:11] BATCH 1/1 作品包装｜封面简介双剑合璧，作品突围在此一举！
+[2026-05-16 16:39:11] FETCH 作品包装｜封面简介双剑合璧，作品突围在此一举！
+[2026-05-16 16:39:15] QWEN_EDITOR 作品包装｜封面简介双剑合璧，作品突围在此一举！ chars=1643
+[2026-05-16 16:40:42] TKX_WRITER 作品包装｜封面简介双剑合璧，作品突围在此一举！ editor_chars=2273
+[2026-05-16 16:40:43] TKX_WRITER_RETRY_COMPACT 作品包装｜封面简介双剑合璧，作品突围在此一举！: HTTPError: 403 Client Error: Forbidden for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 16:40:43] ERROR 7480101551080489022 HTTPError: 403 Client Error: Forbidden for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 16:40:43] DONE batch_completed pending=94
+[2026-05-16 16:45:43] START fanqie classroom dynamic learning
+[2026-05-16 16:45:46] BATCH 1/1 开书准备｜巅峰榜榜首顶级教学局
+[2026-05-16 16:45:46] FETCH 开书准备｜巅峰榜榜首顶级教学局
+[2026-05-16 16:45:49] QWEN_EDITOR 开书准备｜巅峰榜榜首顶级教学局 chars=10179
+[2026-05-16 16:47:13] TKX_WRITER 开书准备｜巅峰榜榜首顶级教学局 editor_chars=2554
+[2026-05-16 16:47:14] TKX_WRITER_RETRY_COMPACT 开书准备｜巅峰榜榜首顶级教学局: HTTPError: 403 Client Error: Forbidden for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 16:47:14] ERROR 7473704731601289241 HTTPError: 403 Client Error: Forbidden for url: https://tokenx24.com/v1/chat/completions
+[2026-05-16 16:47:14] DONE batch_completed pending=93
+[2026-05-16 16:51:07] START fanqie classroom dynamic learning
+[2026-05-16 16:51:09] BATCH 1/1 开书准备｜开书前的六大硬核筹备要点
+[2026-05-16 16:51:09] FETCH 开书准备｜开书前的六大硬核筹备要点
+[2026-05-16 16:51:12] QWEN_EDITOR 开书准备｜开书前的六大硬核筹备要点 chars=2200
+[2026-05-16 16:52:40] WRITER_MODEL 开书准备｜开书前的六大硬核筹备要点 editor_chars=2351
+[2026-05-16 16:54:46] COMPLETED 开书准备｜开书前的六大硬核筹备要点
+[2026-05-16 16:54:46] DONE batch_completed pending=92
+[2026-05-16 16:59:46] START fanqie classroom dynamic learning
+[2026-05-16 16:59:48] BATCH 1/1 开书准备｜新手如何写一个好故事
+[2026-05-16 16:59:48] FETCH 开书准备｜新手如何写一个好故事
+[2026-05-16 16:59:52] QWEN_EDITOR 开书准备｜新手如何写一个好故事 chars=11589
+[2026-05-16 17:01:15] WRITER_MODEL 开书准备｜新手如何写一个好故事 editor_chars=2612
+[2026-05-16 17:05:43] COMPLETED 开书准备｜新手如何写一个好故事
+[2026-05-16 17:05:43] DONE batch_completed pending=91
+[2026-05-16 17:10:43] START fanqie classroom dynamic learning
+[2026-05-16 17:10:46] BATCH 1/1 作品包装｜如何制作精美封面，让作品更加引人瞩目！
+[2026-05-16 17:10:46] FETCH 作品包装｜如何制作精美封面，让作品更加引人瞩目！
+[2026-05-16 17:10:50] QWEN_EDITOR 作品包装｜如何制作精美封面，让作品更加引人瞩目！ chars=709
+[2026-05-16 17:12:12] WRITER_MODEL 作品包装｜如何制作精美封面，让作品更加引人瞩目！ editor_chars=1660
+[2026-05-16 17:14:07] COMPLETED 作品包装｜如何制作精美封面，让作品更加引人瞩目！
+[2026-05-16 17:14:07] DONE batch_completed pending=90
+[2026-05-16 17:19:07] START fanqie classroom dynamic learning
+[2026-05-16 17:19:09] BATCH 1/1 爆款制造者——作者爱哭的小十七：拆解新媒体网文的创作密钥
+[2026-05-16 17:19:09] FETCH 爆款制造者——作者爱哭的小十七：拆解新媒体网文的创作密钥
+[2026-05-16 17:19:14] QWEN_EDITOR 爆款制造者——作者爱哭的小十七：拆解新媒体网文的创作密钥 chars=2324
+[2026-05-16 17:20:36] WRITER_MODEL 爆款制造者——作者爱哭的小十七：拆解新媒体网文的创作密钥 editor_chars=2416
+[2026-05-16 17:22:08] COMPLETED 爆款制造者——作者爱哭的小十七：拆解新媒体网文的创作密钥
+[2026-05-16 17:22:08] DONE batch_completed pending=89
+[2026-05-16 17:27:08] START fanqie classroom dynamic learning
+[2026-05-16 17:27:11] BATCH 1/1 平台规则｜从签约到完结，产品功能助你打造爆款
+[2026-05-16 17:27:11] FETCH 平台规则｜从签约到完结，产品功能助你打造爆款
+[2026-05-16 17:27:15] QWEN_EDITOR 平台规则｜从签约到完结，产品功能助你打造爆款 chars=3016
+[2026-05-16 17:28:51] WRITER_MODEL 平台规则｜从签约到完结，产品功能助你打造爆款 editor_chars=2554
+[2026-05-16 17:29:56] COMPLETED 平台规则｜从签约到完结，产品功能助你打造爆款
+[2026-05-16 17:29:56] DONE batch_completed pending=88
+[2026-05-16 17:34:57] START fanqie classroom dynamic learning
+[2026-05-16 17:34:59] BATCH 1/1 旧题材怎么写出新花样？番茄签约作家月下灼灼告诉你一个小诀窍
+[2026-05-16 17:34:59] FETCH 旧题材怎么写出新花样？番茄签约作家月下灼灼告诉你一个小诀窍
+[2026-05-16 17:35:04] QWEN_EDITOR 旧题材怎么写出新花样？番茄签约作家月下灼灼告诉你一个小诀窍 chars=2968
+[2026-05-16 17:36:26] WRITER_MODEL 旧题材怎么写出新花样？番茄签约作家月下灼灼告诉你一个小诀窍 editor_chars=2486
+[2026-05-16 17:37:50] COMPLETED 旧题材怎么写出新花样？番茄签约作家月下灼灼告诉你一个小诀窍
+[2026-05-16 17:37:50] DONE batch_completed pending=87
+[2026-05-16 17:42:50] START fanqie classroom dynamic learning
+[2026-05-16 17:42:52] BATCH 1/1 平台规则｜速进！作品标签最全讲解来啦！
+[2026-05-16 17:42:52] FETCH 平台规则｜速进！作品标签最全讲解来啦！
+[2026-05-16 17:42:56] QWEN_EDITOR 平台规则｜速进！作品标签最全讲解来啦！ chars=1367
+[2026-05-16 17:44:40] WRITER_MODEL 平台规则｜速进！作品标签最全讲解来啦！ editor_chars=1802
+[2026-05-16 17:45:52] COMPLETED 平台规则｜速进！作品标签最全讲解来啦！
+[2026-05-16 17:45:52] DONE batch_completed pending=86
+[2026-05-16 17:50:53] START fanqie classroom dynamic learning
+[2026-05-16 17:50:55] BATCH 1/1 平台规则｜番茄签约最全流程详解
+[2026-05-16 17:50:55] FETCH 平台规则｜番茄签约最全流程详解
+[2026-05-16 17:50:59] QWEN_EDITOR 平台规则｜番茄签约最全流程详解 chars=2836
+[2026-05-16 17:52:17] WRITER_MODEL 平台规则｜番茄签约最全流程详解 editor_chars=2046
+[2026-05-16 17:53:18] COMPLETED 平台规则｜番茄签约最全流程详解
+[2026-05-16 17:53:18] DONE batch_completed pending=85
+[2026-05-16 17:58:18] START fanqie classroom dynamic learning
+[2026-05-16 17:58:20] BATCH 1/1 平台规则｜如何根据审核不通过原因优化作品
+[2026-05-16 17:58:20] FETCH 平台规则｜如何根据审核不通过原因优化作品
+[2026-05-16 17:58:24] ERROR 7025892096754057223 RuntimeError: FETCH_ARTICLE_EMPTY
+[2026-05-16 17:58:24] DONE batch_completed pending=84
+[2026-05-16 18:03:24] START fanqie classroom dynamic learning
+[2026-05-16 18:03:26] BATCH 1/1 平台规则｜一支视频教会你解读作品数据
+[2026-05-16 18:03:26] FETCH 平台规则｜一支视频教会你解读作品数据
+[2026-05-16 18:03:30] ERROR 7025892643825516574 RuntimeError: FETCH_ARTICLE_EMPTY
+[2026-05-16 18:03:30] DONE batch_completed pending=83
+[2026-05-16 18:08:30] START fanqie classroom dynamic learning
+[2026-05-16 18:08:33] BATCH 1/1 专访｜短故事爆款作者如火如荼：从稿费1元到字字千金
+[2026-05-16 18:08:33] FETCH 专访｜短故事爆款作者如火如荼：从稿费1元到字字千金
+[2026-05-16 18:08:36] QWEN_EDITOR 专访｜短故事爆款作者如火如荼：从稿费1元到字字千金 chars=4659
+[2026-05-16 18:10:23] WRITER_MODEL 专访｜短故事爆款作者如火如荼：从稿费1元到字字千金 editor_chars=2209
+[2026-05-16 18:11:50] COMPLETED 专访｜短故事爆款作者如火如荼：从稿费1元到字字千金
+[2026-05-16 18:11:50] DONE batch_completed pending=82
+[2026-05-16 18:16:50] START fanqie classroom dynamic learning
+[2026-05-16 18:16:53] BATCH 1/1 【她·悬疑】第一名《小山河》：连载期即签约出版
+[2026-05-16 18:16:53] FETCH 【她·悬疑】第一名《小山河》：连载期即签约出版
+[2026-05-16 18:16:56] QWEN_EDITOR 【她·悬疑】第一名《小山河》：连载期即签约出版 chars=4745
+[2026-05-16 18:18:23] WRITER_MODEL 【她·悬疑】第一名《小山河》：连载期即签约出版 editor_chars=2601
+[2026-05-16 18:19:39] COMPLETED 【她·悬疑】第一名《小山河》：连载期即签约出版
+[2026-05-16 18:19:39] DONE batch_completed pending=81
+[2026-05-16 18:24:39] START fanqie classroom dynamic learning
+[2026-05-16 18:24:41] BATCH 1/1 风雨如书：十五年悬疑题材深耕 出版作品30部
+[2026-05-16 18:24:41] FETCH 风雨如书：十五年悬疑题材深耕 出版作品30部
+[2026-05-16 18:24:46] QWEN_EDITOR 风雨如书：十五年悬疑题材深耕 出版作品30部 chars=2183
+[2026-05-16 18:26:16] WRITER_MODEL 风雨如书：十五年悬疑题材深耕 出版作品30部 editor_chars=2488
+[2026-05-16 18:29:40] COMPLETED 风雨如书：十五年悬疑题材深耕 出版作品30部
+[2026-05-16 18:29:40] DONE batch_completed pending=80
+[2026-05-16 18:34:40] START fanqie classroom dynamic learning
+[2026-05-16 18:34:42] BATCH 1/1 现实题材爆款作者阿刀：努力就是我故事主角的金手指
+[2026-05-16 18:34:42] FETCH 现实题材爆款作者阿刀：努力就是我故事主角的金手指
+[2026-05-16 18:34:46] QWEN_EDITOR 现实题材爆款作者阿刀：努力就是我故事主角的金手指 chars=5406
+[2026-05-16 18:36:14] WRITER_MODEL 现实题材爆款作者阿刀：努力就是我故事主角的金手指 editor_chars=2457
+[2026-05-16 18:37:35] COMPLETED 现实题材爆款作者阿刀：努力就是我故事主角的金手指
+[2026-05-16 18:37:35] DONE batch_completed pending=79
+[2026-05-16 18:42:36] START fanqie classroom dynamic learning
+[2026-05-16 18:42:38] BATCH 1/1 作家知更：大时代下小人物的故事也值得被关注
+[2026-05-16 18:42:38] FETCH 作家知更：大时代下小人物的故事也值得被关注
+[2026-05-16 18:42:42] QWEN_EDITOR 作家知更：大时代下小人物的故事也值得被关注 chars=3995
+[2026-05-16 18:43:54] WRITER_MODEL 作家知更：大时代下小人物的故事也值得被关注 editor_chars=2149
+[2026-05-16 18:45:21] COMPLETED 作家知更：大时代下小人物的故事也值得被关注
+[2026-05-16 18:45:21] DONE batch_completed pending=78
+[2026-05-16 18:50:22] START fanqie classroom dynamic learning
+[2026-05-16 18:50:24] BATCH 1/1 平台规则｜好书缺流量？帖子来帮忙！
+[2026-05-16 18:50:24] FETCH 平台规则｜好书缺流量？帖子来帮忙！
+[2026-05-16 18:50:28] QWEN_EDITOR 平台规则｜好书缺流量？帖子来帮忙！ chars=3803
+[2026-05-16 18:51:49] WRITER_MODEL 平台规则｜好书缺流量？帖子来帮忙！ editor_chars=2525
+[2026-05-16 18:52:56] COMPLETED 平台规则｜好书缺流量？帖子来帮忙！
+[2026-05-16 18:52:56] DONE batch_completed pending=77
+[2026-05-16 18:57:56] START fanqie classroom dynamic learning
+[2026-05-16 18:57:58] BATCH 1/1 平台规则｜作品顺利收官！请查收你的保姆级作品完结攻略
+[2026-05-16 18:57:58] FETCH 平台规则｜作品顺利收官！请查收你的保姆级作品完结攻略
+[2026-05-16 18:58:02] QWEN_EDITOR 平台规则｜作品顺利收官！请查收你的保姆级作品完结攻略 chars=1210
+[2026-05-16 18:59:18] WRITER_MODEL 平台规则｜作品顺利收官！请查收你的保姆级作品完结攻略 editor_chars=2062
+[2026-05-16 19:00:01] COMPLETED 平台规则｜作品顺利收官！请查收你的保姆级作品完结攻略
+[2026-05-16 19:00:01] DONE batch_completed pending=76
+[2026-05-16 19:05:01] START fanqie classroom dynamic learning
+[2026-05-16 19:05:03] BATCH 1/1 平台规则｜「定时发布」功能全攻略， 新手也能秒上手！
+[2026-05-16 19:05:03] FETCH 平台规则｜「定时发布」功能全攻略， 新手也能秒上手！
+[2026-05-16 19:05:07] QWEN_EDITOR 平台规则｜「定时发布」功能全攻略， 新手也能秒上手！ chars=980
+[2026-05-16 19:06:28] WRITER_MODEL 平台规则｜「定时发布」功能全攻略， 新手也能秒上手！ editor_chars=2042
+[2026-05-16 19:07:45] COMPLETED 平台规则｜「定时发布」功能全攻略， 新手也能秒上手！
+[2026-05-16 19:07:45] DONE batch_completed pending=75
+[2026-05-16 19:12:45] START fanqie classroom dynamic learning
+[2026-05-16 19:12:48] BATCH 1/1 平台规则丨「多书名实验」常见问题，你“中招”了吗？
+[2026-05-16 19:12:48] FETCH 平台规则丨「多书名实验」常见问题，你“中招”了吗？
+[2026-05-16 19:12:55] QWEN_EDITOR 平台规则丨「多书名实验」常见问题，你“中招”了吗？ chars=999
+[2026-05-16 19:14:05] WRITER_MODEL 平台规则丨「多书名实验」常见问题，你“中招”了吗？ editor_chars=1933
+[2026-05-16 19:15:41] COMPLETED 平台规则丨「多书名实验」常见问题，你“中招”了吗？
+[2026-05-16 19:15:41] DONE batch_completed pending=74
+[2026-05-16 19:20:41] START fanqie classroom dynamic learning
+[2026-05-16 19:20:44] BATCH 1/1 平台规则丨「多书名实验」是什么？一站式教学，帮你轻松搞懂！
+[2026-05-16 19:20:44] FETCH 平台规则丨「多书名实验」是什么？一站式教学，帮你轻松搞懂！
+[2026-05-16 19:20:48] QWEN_EDITOR 平台规则丨「多书名实验」是什么？一站式教学，帮你轻松搞懂！ chars=1023
+[2026-05-16 19:22:13] WRITER_MODEL 平台规则丨「多书名实验」是什么？一站式教学，帮你轻松搞懂！ editor_chars=2017
+[2026-05-16 19:23:27] COMPLETED 平台规则丨「多书名实验」是什么？一站式教学，帮你轻松搞懂！
+[2026-05-16 19:23:27] DONE batch_completed pending=73
+[2026-05-16 19:28:27] START fanqie classroom dynamic learning
+[2026-05-16 19:28:30] BATCH 1/1 平台规则｜安利作品有新招！番茄小说图文发帖功能上线！
+[2026-05-16 19:28:30] FETCH 平台规则｜安利作品有新招！番茄小说图文发帖功能上线！
+[2026-05-16 19:28:35] QWEN_EDITOR 平台规则｜安利作品有新招！番茄小说图文发帖功能上线！ chars=1715
+[2026-05-16 19:30:12] WRITER_MODEL 平台规则｜安利作品有新招！番茄小说图文发帖功能上线！ editor_chars=2067
+[2026-05-16 19:30:42] COMPLETED 平台规则｜安利作品有新招！番茄小说图文发帖功能上线！
+[2026-05-16 19:30:42] DONE batch_completed pending=72
+[2026-05-16 19:35:42] START fanqie classroom dynamic learning
+[2026-05-16 19:35:44] BATCH 1/1 平台规则｜遇到「章节调序」问题先别慌，小助手来救场！
+[2026-05-16 19:35:44] FETCH 平台规则｜遇到「章节调序」问题先别慌，小助手来救场！
+[2026-05-16 19:35:48] ERROR 7587314563549249598 RuntimeError: FETCH_ARTICLE_EMPTY
+[2026-05-16 19:35:48] DONE batch_completed pending=71
+[2026-05-16 19:40:48] START fanqie classroom dynamic learning
+[2026-05-16 19:40:51] BATCH 1/1 平台规则｜解锁三种写作编辑器
+[2026-05-16 19:40:51] FETCH 平台规则｜解锁三种写作编辑器
+[2026-05-16 19:40:55] QWEN_EDITOR 平台规则｜解锁三种写作编辑器 chars=1388
+[2026-05-16 19:42:18] WRITER_MODEL 平台规则｜解锁三种写作编辑器 editor_chars=2267
+[2026-05-16 19:43:14] COMPLETED 平台规则｜解锁三种写作编辑器
+[2026-05-16 19:43:14] DONE batch_completed pending=70
+[2026-05-16 19:48:14] START fanqie classroom dynamic learning
+[2026-05-16 19:48:16] BATCH 1/1 平台规则｜获得稿费前，你会经历哪些环节
+[2026-05-16 19:48:16] FETCH 平台规则｜获得稿费前，你会经历哪些环节
+[2026-05-16 19:48:20] QWEN_EDITOR 平台规则｜获得稿费前，你会经历哪些环节 chars=1502
+[2026-05-16 19:49:37] WRITER_MODEL 平台规则｜获得稿费前，你会经历哪些环节 editor_chars=2117
+[2026-05-16 19:51:16] COMPLETED 平台规则｜获得稿费前，你会经历哪些环节
+[2026-05-16 19:51:16] DONE batch_completed pending=69
+[2026-05-16 19:56:16] START fanqie classroom dynamic learning
+[2026-05-16 19:56:18] BATCH 1/1 平台规则｜社区使用指南：教你玩转番茄社区
+[2026-05-16 19:56:18] FETCH 平台规则｜社区使用指南：教你玩转番茄社区
+[2026-05-16 19:56:22] QWEN_EDITOR 平台规则｜社区使用指南：教你玩转番茄社区 chars=2305
+[2026-05-16 19:57:43] WRITER_MODEL 平台规则｜社区使用指南：教你玩转番茄社区 editor_chars=2164
+[2026-05-16 19:58:37] COMPLETED 平台规则｜社区使用指南：教你玩转番茄社区
+[2026-05-16 19:58:37] DONE batch_completed pending=68
+[2026-05-16 20:03:37] START fanqie classroom dynamic learning
+[2026-05-16 20:03:40] BATCH 1/1 平台规则｜你不知道的硬知识，原来在番茄还可以写这些！
+[2026-05-16 20:03:40] FETCH 平台规则｜你不知道的硬知识，原来在番茄还可以写这些！
+[2026-05-16 20:03:43] QWEN_EDITOR 平台规则｜你不知道的硬知识，原来在番茄还可以写这些！ chars=2144
+[2026-05-16 20:05:15] WRITER_MODEL 平台规则｜你不知道的硬知识，原来在番茄还可以写这些！ editor_chars=2570
+[2026-05-16 20:06:34] COMPLETED 平台规则｜你不知道的硬知识，原来在番茄还可以写这些！
+[2026-05-16 20:06:34] DONE batch_completed pending=67
+[2026-05-16 20:11:34] START fanqie classroom dynamic learning
+[2026-05-16 20:11:36] BATCH 1/1 平台规则｜一份使用指南，带你玩转作家帮助中心
+[2026-05-16 20:11:36] FETCH 平台规则｜一份使用指南，带你玩转作家帮助中心
+[2026-05-16 20:11:40] QWEN_EDITOR 平台规则｜一份使用指南，带你玩转作家帮助中心 chars=1090
+[2026-05-16 20:12:59] WRITER_MODEL 平台规则｜一份使用指南，带你玩转作家帮助中心 editor_chars=2144
+[2026-05-16 20:14:30] COMPLETED 平台规则｜一份使用指南，带你玩转作家帮助中心
+[2026-05-16 20:14:30] DONE batch_completed pending=66
+[2026-05-16 20:19:30] START fanqie classroom dynamic learning
+[2026-05-16 20:19:33] BATCH 1/1 平台规则｜来这里，解锁番茄最全作家福利
+[2026-05-16 20:19:33] FETCH 平台规则｜来这里，解锁番茄最全作家福利
+[2026-05-16 20:19:36] QWEN_EDITOR 平台规则｜来这里，解锁番茄最全作家福利 chars=2043
+[2026-05-16 20:21:04] WRITER_MODEL 平台规则｜来这里，解锁番茄最全作家福利 editor_chars=2381
+[2026-05-16 20:22:06] COMPLETED 平台规则｜来这里，解锁番茄最全作家福利
+[2026-05-16 20:22:06] DONE batch_completed pending=65
+[2026-05-16 20:27:06] START fanqie classroom dynamic learning
+[2026-05-16 20:27:09] BATCH 1/1 平台规则｜嗨！极具潜力的你有份新人宝典待查收哦
+[2026-05-16 20:27:09] FETCH 平台规则｜嗨！极具潜力的你有份新人宝典待查收哦
+[2026-05-16 20:27:12] QWEN_EDITOR 平台规则｜嗨！极具潜力的你有份新人宝典待查收哦 chars=2317
+[2026-05-16 20:28:28] WRITER_MODEL 平台规则｜嗨！极具潜力的你有份新人宝典待查收哦 editor_chars=2166
+[2026-05-16 20:29:19] COMPLETED 平台规则｜嗨！极具潜力的你有份新人宝典待查收哦
+[2026-05-16 20:29:19] DONE batch_completed pending=64
+[2026-05-16 20:34:19] START fanqie classroom dynamic learning
+[2026-05-16 20:34:22] BATCH 1/1 平台规则｜三分钟带你认识番茄小说网
+[2026-05-16 20:34:22] FETCH 平台规则｜三分钟带你认识番茄小说网
+[2026-05-16 20:34:26] ERROR 7025889304912068616 RuntimeError: FETCH_ARTICLE_EMPTY
+[2026-05-16 20:34:26] DONE batch_completed pending=63
+[2026-05-16 20:39:26] START fanqie classroom dynamic learning
+[2026-05-16 20:39:28] BATCH 1/1 平台规则｜在番茄小说创作，这些功能你学会了吗
+[2026-05-16 20:39:28] FETCH 平台规则｜在番茄小说创作，这些功能你学会了吗
+[2026-05-16 20:39:32] ERROR 7025891135671238670 RuntimeError: FETCH_ARTICLE_EMPTY
+[2026-05-16 20:39:32] DONE batch_completed pending=62
+[2026-05-16 20:44:32] START fanqie classroom dynamic learning
+[2026-05-16 20:44:34] BATCH 1/1 古言爆款《缚春情》作者任欢游：我想成为有影响力的作者
+[2026-05-16 20:44:34] FETCH 古言爆款《缚春情》作者任欢游：我想成为有影响力的作者
+[2026-05-16 20:44:39] QWEN_EDITOR 古言爆款《缚春情》作者任欢游：我想成为有影响力的作者 chars=3576
+[2026-05-16 20:46:05] WRITER_MODEL 古言爆款《缚春情》作者任欢游：我想成为有影响力的作者 editor_chars=2278
+[2026-05-16 20:47:14] COMPLETED 古言爆款《缚春情》作者任欢游：我想成为有影响力的作者
+[2026-05-16 20:47:14] DONE batch_completed pending=61
+[2026-05-16 20:52:14] START fanqie classroom dynamic learning
+[2026-05-16 20:52:16] BATCH 1/1 人气萌神作者【酒小七】携青春竞技文《冰糖炖雪梨》入驻番茄
+[2026-05-16 20:52:16] FETCH 人气萌神作者【酒小七】携青春竞技文《冰糖炖雪梨》入驻番茄
+[2026-05-16 20:52:20] QWEN_EDITOR 人气萌神作者【酒小七】携青春竞技文《冰糖炖雪梨》入驻番茄 chars=3803
+[2026-05-16 20:53:48] WRITER_MODEL 人气萌神作者【酒小七】携青春竞技文《冰糖炖雪梨》入驻番茄 editor_chars=2321
+[2026-05-16 20:54:37] COMPLETED 人气萌神作者【酒小七】携青春竞技文《冰糖炖雪梨》入驻番茄
+[2026-05-16 20:54:37] DONE batch_completed pending=60
+[2026-05-16 20:59:37] START fanqie classroom dynamic learning
+[2026-05-16 20:59:40] BATCH 1/1 专访| 作者睡醒不呆：50万人在追她的9.6分喜剧烧脑马甲文
+[2026-05-16 20:59:40] FETCH 专访| 作者睡醒不呆：50万人在追她的9.6分喜剧烧脑马甲文
+[2026-05-16 20:59:44] QWEN_EDITOR 专访| 作者睡醒不呆：50万人在追她的9.6分喜剧烧脑马甲文 chars=2401
+[2026-05-16 21:01:07] WRITER_MODEL 专访| 作者睡醒不呆：50万人在追她的9.6分喜剧烧脑马甲文 editor_chars=2199
+[2026-05-16 21:04:28] COMPLETED 专访| 作者睡醒不呆：50万人在追她的9.6分喜剧烧脑马甲文
+[2026-05-16 21:04:28] DONE batch_completed pending=59
+[2026-05-16 21:09:28] START fanqie classroom dynamic learning
+[2026-05-16 21:09:32] BATCH 1/1 《鹿灵风水铺》作者不语忧：始终存稿5-8w字的新手过河
+[2026-05-16 21:09:32] FETCH 《鹿灵风水铺》作者不语忧：始终存稿5-8w字的新手过河
+[2026-05-16 21:09:36] QWEN_EDITOR 《鹿灵风水铺》作者不语忧：始终存稿5-8w字的新手过河 chars=2815
+[2026-05-16 21:11:31] WRITER_MODEL 《鹿灵风水铺》作者不语忧：始终存稿5-8w字的新手过河 editor_chars=2281
+[2026-05-16 21:12:38] COMPLETED 《鹿灵风水铺》作者不语忧：始终存稿5-8w字的新手过河
+[2026-05-16 21:12:38] DONE batch_completed pending=58
+[2026-05-16 21:17:38] START fanqie classroom dynamic learning
+[2026-05-16 21:17:41] BATCH 1/1 第一届网络文学大赛悬疑TOP4《蛇仙》作者创作经验分享
+[2026-05-16 21:17:41] FETCH 第一届网络文学大赛悬疑TOP4《蛇仙》作者创作经验分享
+[2026-05-16 21:17:45] QWEN_EDITOR 第一届网络文学大赛悬疑TOP4《蛇仙》作者创作经验分享 chars=2728
+[2026-05-16 21:19:10] WRITER_MODEL 第一届网络文学大赛悬疑TOP4《蛇仙》作者创作经验分享 editor_chars=2077
+[2026-05-16 21:20:14] COMPLETED 第一届网络文学大赛悬疑TOP4《蛇仙》作者创作经验分享
+[2026-05-16 21:20:14] DONE batch_completed pending=57
+[2026-05-16 21:25:14] START fanqie classroom dynamic learning
+[2026-05-16 21:25:16] BATCH 1/1 科幻小说《我右眼是神级计算机》作者王自律：动笔一定要快
+[2026-05-16 21:25:16] FETCH 科幻小说《我右眼是神级计算机》作者王自律：动笔一定要快
+[2026-05-16 21:25:20] QWEN_EDITOR 科幻小说《我右眼是神级计算机》作者王自律：动笔一定要快 chars=4307
+[2026-05-16 21:26:58] WRITER_MODEL 科幻小说《我右眼是神级计算机》作者王自律：动笔一定要快 editor_chars=2576
+[2026-05-16 21:28:47] COMPLETED 科幻小说《我右眼是神级计算机》作者王自律：动笔一定要快
+[2026-05-16 21:28:47] DONE batch_completed pending=56
+[2026-05-16 21:33:47] START fanqie classroom dynamic learning
+[2026-05-16 21:33:50] BATCH 1/1 囧囧有皮：怎么写出40w人在追的年代文
+[2026-05-16 21:33:50] FETCH 囧囧有皮：怎么写出40w人在追的年代文
+[2026-05-16 21:33:54] QWEN_EDITOR 囧囧有皮：怎么写出40w人在追的年代文 chars=4166
+[2026-05-16 21:35:18] WRITER_MODEL 囧囧有皮：怎么写出40w人在追的年代文 editor_chars=2357
+[2026-05-16 21:36:52] COMPLETED 囧囧有皮：怎么写出40w人在追的年代文
+[2026-05-16 21:36:52] DONE batch_completed pending=55
+[2026-05-16 21:41:53] START fanqie classroom dynamic learning
+[2026-05-16 21:41:55] BATCH 1/1 作家恩怨各一半：从被拒稿到写出番茄年代爆款
+[2026-05-16 21:41:55] FETCH 作家恩怨各一半：从被拒稿到写出番茄年代爆款
+[2026-05-16 21:41:59] QWEN_EDITOR 作家恩怨各一半：从被拒稿到写出番茄年代爆款 chars=2546
+[2026-05-16 21:43:33] WRITER_MODEL 作家恩怨各一半：从被拒稿到写出番茄年代爆款 editor_chars=2685
+[2026-05-16 21:44:56] COMPLETED 作家恩怨各一半：从被拒稿到写出番茄年代爆款
+[2026-05-16 21:44:56] DONE batch_completed pending=54
+[2026-05-16 21:49:56] START fanqie classroom dynamic learning
+[2026-05-16 21:49:59] BATCH 1/1 作家路长在：从扑街到月入过万，他如何写出凡人流修仙热作
+[2026-05-16 21:49:59] FETCH 作家路长在：从扑街到月入过万，他如何写出凡人流修仙热作
+[2026-05-16 21:50:02] QWEN_EDITOR 作家路长在：从扑街到月入过万，他如何写出凡人流修仙热作 chars=2710
+[2026-05-16 21:51:24] WRITER_MODEL 作家路长在：从扑街到月入过万，他如何写出凡人流修仙热作 editor_chars=2429
+[2026-05-16 21:52:15] COMPLETED 作家路长在：从扑街到月入过万，他如何写出凡人流修仙热作
+[2026-05-16 21:52:15] DONE batch_completed pending=53
+[2026-05-16 21:57:15] START fanqie classroom dynamic learning
+[2026-05-16 21:57:18] BATCH 1/1 作家宋象白：家庭和事业，成年人可以全都有
+[2026-05-16 21:57:18] FETCH 作家宋象白：家庭和事业，成年人可以全都有
+[2026-05-16 21:57:22] QWEN_EDITOR 作家宋象白：家庭和事业，成年人可以全都有 chars=3137
+[2026-05-16 21:58:40] WRITER_MODEL 作家宋象白：家庭和事业，成年人可以全都有 editor_chars=2179
+[2026-05-16 22:00:15] COMPLETED 作家宋象白：家庭和事业，成年人可以全都有
+[2026-05-16 22:00:15] DONE batch_completed pending=52
+[2026-05-16 22:05:15] START fanqie classroom dynamic learning
+[2026-05-16 22:05:18] BATCH 1/1 他为什么能写出《我祖父是朱元璋》
+[2026-05-16 22:05:18] FETCH 他为什么能写出《我祖父是朱元璋》
+[2026-05-16 22:05:22] QWEN_EDITOR 他为什么能写出《我祖父是朱元璋》 chars=3216
+[2026-05-16 22:06:48] WRITER_MODEL 他为什么能写出《我祖父是朱元璋》 editor_chars=2576
+[2026-05-16 22:09:12] COMPLETED 他为什么能写出《我祖父是朱元璋》
+[2026-05-16 22:09:12] DONE batch_completed pending=51
+[2026-05-16 22:14:12] START fanqie classroom dynamic learning
+[2026-05-16 22:14:15] BATCH 1/1 作家梧桐私语：小说创作不单是写作，更是传递家乡人文
+[2026-05-16 22:14:15] FETCH 作家梧桐私语：小说创作不单是写作，更是传递家乡人文
+[2026-05-16 22:14:19] QWEN_EDITOR 作家梧桐私语：小说创作不单是写作，更是传递家乡人文 chars=3129
+[2026-05-16 22:15:51] WRITER_MODEL 作家梧桐私语：小说创作不单是写作，更是传递家乡人文 editor_chars=2717
+[2026-05-16 22:17:21] COMPLETED 作家梧桐私语：小说创作不单是写作，更是传递家乡人文
+[2026-05-16 22:17:21] DONE batch_completed pending=50
+[2026-05-16 22:22:21] START fanqie classroom dynamic learning
+[2026-05-16 22:22:23] BATCH 1/1 作家姜双鱼：有时候你的自我怀疑是多余的，要相信自己
+[2026-05-16 22:22:23] FETCH 作家姜双鱼：有时候你的自我怀疑是多余的，要相信自己
+[2026-05-16 22:22:27] QWEN_EDITOR 作家姜双鱼：有时候你的自我怀疑是多余的，要相信自己 chars=1792
+[2026-05-16 22:23:44] WRITER_MODEL 作家姜双鱼：有时候你的自我怀疑是多余的，要相信自己 editor_chars=2208
+[2026-05-16 22:25:39] COMPLETED 作家姜双鱼：有时候你的自我怀疑是多余的，要相信自己
+[2026-05-16 22:25:39] DONE batch_completed pending=49
+[2026-05-16 22:30:39] START fanqie classroom dynamic learning
+[2026-05-16 22:30:42] BATCH 1/1 作家桩桩：用读者爱看的方式创作小众冷门题材
+[2026-05-16 22:30:42] FETCH 作家桩桩：用读者爱看的方式创作小众冷门题材
+[2026-05-16 22:30:46] QWEN_EDITOR 作家桩桩：用读者爱看的方式创作小众冷门题材 chars=2466
+[2026-05-16 22:32:09] WRITER_MODEL 作家桩桩：用读者爱看的方式创作小众冷门题材 editor_chars=2264
+[2026-05-16 22:34:03] COMPLETED 作家桩桩：用读者爱看的方式创作小众冷门题材
+[2026-05-16 22:34:03] DONE batch_completed pending=48
+[2026-05-16 22:39:03] START fanqie classroom dynamic learning
+[2026-05-16 22:39:06] BATCH 1/1 作家蓝手：写作蕴藏着我的热情与热爱
+[2026-05-16 22:39:06] FETCH 作家蓝手：写作蕴藏着我的热情与热爱
+[2026-05-16 22:39:10] QWEN_EDITOR 作家蓝手：写作蕴藏着我的热情与热爱 chars=1352
+[2026-05-16 22:40:27] WRITER_MODEL 作家蓝手：写作蕴藏着我的热情与热爱 editor_chars=2214
+[2026-05-16 22:42:50] COMPLETED 作家蓝手：写作蕴藏着我的热情与热爱
+[2026-05-16 22:42:50] DONE batch_completed pending=47
+[2026-05-16 22:47:51] START fanqie classroom dynamic learning
+[2026-05-16 22:47:53] BATCH 1/1 小盐子：一个“淡人”作者，如何写出“发疯文学”的天花板？
+[2026-05-16 22:47:53] FETCH 小盐子：一个“淡人”作者，如何写出“发疯文学”的天花板？
+[2026-05-16 22:47:57] QWEN_EDITOR 小盐子：一个“淡人”作者，如何写出“发疯文学”的天花板？ chars=4080
+[2026-05-16 22:49:31] WRITER_MODEL 小盐子：一个“淡人”作者，如何写出“发疯文学”的天花板？ editor_chars=2417
+[2026-05-16 22:52:36] COMPLETED 小盐子：一个“淡人”作者，如何写出“发疯文学”的天花板？
+[2026-05-16 22:52:36] DONE batch_completed pending=46
+[2026-05-16 22:57:36] START fanqie classroom dynamic learning
+[2026-05-16 22:57:39] BATCH 1/1 鸟松米：从《深情诱引》到《盛夏芬德拉》，好故事如何打穿媒介？
+[2026-05-16 22:57:39] FETCH 鸟松米：从《深情诱引》到《盛夏芬德拉》，好故事如何打穿媒介？
+[2026-05-16 22:57:43] QWEN_EDITOR 鸟松米：从《深情诱引》到《盛夏芬德拉》，好故事如何打穿媒介？ chars=4322
+[2026-05-16 22:59:11] WRITER_MODEL 鸟松米：从《深情诱引》到《盛夏芬德拉》，好故事如何打穿媒介？ editor_chars=2506
+[2026-05-16 23:01:37] COMPLETED 鸟松米：从《深情诱引》到《盛夏芬德拉》，好故事如何打穿媒介？
+[2026-05-16 23:01:37] DONE batch_completed pending=45
+[2026-05-16 23:06:37] START fanqie classroom dynamic learning
+[2026-05-16 23:06:39] BATCH 1/1 番茄大师课 | 东西：如何讲好故事
+[2026-05-16 23:06:39] FETCH 番茄大师课 | 东西：如何讲好故事
+[2026-05-16 23:06:43] QWEN_EDITOR 番茄大师课 | 东西：如何讲好故事 chars=5700
+[2026-05-16 23:08:12] WRITER_MODEL 番茄大师课 | 东西：如何讲好故事 editor_chars=2441
+[2026-05-16 23:11:54] COMPLETED 番茄大师课 | 东西：如何讲好故事
+[2026-05-16 23:11:54] DONE batch_completed pending=44
+[2026-05-16 23:16:54] START fanqie classroom dynamic learning
+[2026-05-16 23:16:56] BATCH 1/1 十二日谈｜王跃文、骁骑校、郑小悠：雪山下的文学对话
+[2026-05-16 23:16:56] FETCH 十二日谈｜王跃文、骁骑校、郑小悠：雪山下的文学对话
+[2026-05-16 23:17:00] QWEN_EDITOR 十二日谈｜王跃文、骁骑校、郑小悠：雪山下的文学对话 chars=21167
+[2026-05-16 23:18:22] WRITER_MODEL 十二日谈｜王跃文、骁骑校、郑小悠：雪山下的文学对话 editor_chars=2439
+[2026-05-16 23:20:13] COMPLETED 十二日谈｜王跃文、骁骑校、郑小悠：雪山下的文学对话
+[2026-05-16 23:20:13] DONE batch_completed pending=43
+[2026-05-16 23:25:13] START fanqie classroom dynamic learning
+[2026-05-16 23:25:16] BATCH 1/1 十二日谈｜阿来、刘慈欣等：如果失去幻想，人类将会怎样？
+[2026-05-16 23:25:16] FETCH 十二日谈｜阿来、刘慈欣等：如果失去幻想，人类将会怎样？
+[2026-05-16 23:25:19] QWEN_EDITOR 十二日谈｜阿来、刘慈欣等：如果失去幻想，人类将会怎样？ chars=16505
+[2026-05-16 23:26:52] WRITER_MODEL 十二日谈｜阿来、刘慈欣等：如果失去幻想，人类将会怎样？ editor_chars=2552
+[2026-05-16 23:28:18] COMPLETED 十二日谈｜阿来、刘慈欣等：如果失去幻想，人类将会怎样？
+[2026-05-16 23:28:18] DONE batch_completed pending=42
+[2026-05-16 23:33:18] START fanqie classroom dynamic learning
+[2026-05-16 23:33:21] BATCH 1/1 十二日谈｜阿来、管平潮等：江湖未远、玄幻新生
+[2026-05-16 23:33:21] FETCH 十二日谈｜阿来、管平潮等：江湖未远、玄幻新生
+[2026-05-16 23:33:24] ERROR 7577730557451190334 RuntimeError: FETCH_ARTICLE_EMPTY
+[2026-05-16 23:33:24] DONE batch_completed pending=41
+[2026-05-16 23:38:25] START fanqie classroom dynamic learning
+[2026-05-16 23:38:27] BATCH 1/1 番茄大师课 | 格非：小说创作的“真”与“美”
+[2026-05-16 23:38:27] FETCH 番茄大师课 | 格非：小说创作的“真”与“美”
+[2026-05-16 23:38:31] QWEN_EDITOR 番茄大师课 | 格非：小说创作的“真”与“美” chars=7901
+[2026-05-16 23:40:01] WRITER_MODEL 番茄大师课 | 格非：小说创作的“真”与“美” editor_chars=2413
+[2026-05-16 23:43:01] COMPLETED 番茄大师课 | 格非：小说创作的“真”与“美”
+[2026-05-16 23:43:01] DONE batch_completed pending=40
+[2026-05-16 23:48:01] START fanqie classroom dynamic learning
+[2026-05-16 23:48:04] BATCH 1/1 番茄大师课 | 阿来：破除分别心，探寻共同性
+[2026-05-16 23:48:04] FETCH 番茄大师课 | 阿来：破除分别心，探寻共同性
+[2026-05-16 23:48:08] QWEN_EDITOR 番茄大师课 | 阿来：破除分别心，探寻共同性 chars=3661
+[2026-05-16 23:49:34] WRITER_MODEL 番茄大师课 | 阿来：破除分别心，探寻共同性 editor_chars=2419
+[2026-05-16 23:51:24] COMPLETED 番茄大师课 | 阿来：破除分别心，探寻共同性
+[2026-05-16 23:51:24] DONE batch_completed pending=39
+[2026-05-16 23:56:24] START fanqie classroom dynamic learning
+[2026-05-16 23:56:27] BATCH 1/1 番茄作者的十年成长｜网文圈没有童话
+[2026-05-16 23:56:27] FETCH 番茄作者的十年成长｜网文圈没有童话
+[2026-05-16 23:56:31] QWEN_EDITOR 番茄作者的十年成长｜网文圈没有童话 chars=5527
+[2026-05-16 23:58:04] WRITER_MODEL 番茄作者的十年成长｜网文圈没有童话 editor_chars=2458
+[2026-05-16 23:59:13] COMPLETED 番茄作者的十年成长｜网文圈没有童话
+[2026-05-16 23:59:13] DONE batch_completed pending=38
+[2026-05-17 00:04:13] START fanqie classroom dynamic learning
+[2026-05-17 00:04:16] BATCH 1/1 她的江湖是从“心”出发，作者空留笔下的情义与锋芒
+[2026-05-17 00:04:16] FETCH 她的江湖是从“心”出发，作者空留笔下的情义与锋芒
+[2026-05-17 00:04:20] QWEN_EDITOR 她的江湖是从“心”出发，作者空留笔下的情义与锋芒 chars=4388
+[2026-05-17 00:05:39] WRITER_MODEL 她的江湖是从“心”出发，作者空留笔下的情义与锋芒 editor_chars=2410
+[2026-05-17 00:08:15] COMPLETED 她的江湖是从“心”出发，作者空留笔下的情义与锋芒
+[2026-05-17 00:08:15] DONE batch_completed pending=37
+[2026-05-17 00:13:15] START fanqie classroom dynamic learning
+[2026-05-17 00:13:18] BATCH 1/1 从"孤独写手"到"情感共鸣者"，作者之知的成长独白
+[2026-05-17 00:13:18] FETCH 从"孤独写手"到"情感共鸣者"，作者之知的成长独白
+[2026-05-17 00:13:26] QWEN_EDITOR 从"孤独写手"到"情感共鸣者"，作者之知的成长独白 chars=2064
+[2026-05-17 00:14:46] WRITER_MODEL 从"孤独写手"到"情感共鸣者"，作者之知的成长独白 editor_chars=2293
+[2026-05-17 00:15:55] COMPLETED 从"孤独写手"到"情感共鸣者"，作者之知的成长独白
+[2026-05-17 00:15:55] DONE batch_completed pending=36
+[2026-05-17 00:20:55] START fanqie classroom dynamic learning
+[2026-05-17 00:20:58] BATCH 1/1 古言医术作者「曲梨瑶」：写作两年我的生活“天翻地覆”
+[2026-05-17 00:20:58] FETCH 古言医术作者「曲梨瑶」：写作两年我的生活“天翻地覆”
+[2026-05-17 00:21:01] QWEN_EDITOR 古言医术作者「曲梨瑶」：写作两年我的生活“天翻地覆” chars=2566
+[2026-05-17 00:22:17] WRITER_MODEL 古言医术作者「曲梨瑶」：写作两年我的生活“天翻地覆” editor_chars=2086
+[2026-05-17 00:23:56] COMPLETED 古言医术作者「曲梨瑶」：写作两年我的生活“天翻地覆”
+[2026-05-17 00:23:56] DONE batch_completed pending=35
+[2026-05-17 00:28:56] START fanqie classroom dynamic learning
+[2026-05-17 00:28:59] BATCH 1/1 畅销IP作者【清扬婉兮】携新书《有归》入驻番茄
+[2026-05-17 00:28:59] FETCH 畅销IP作者【清扬婉兮】携新书《有归》入驻番茄
+[2026-05-17 00:29:03] QWEN_EDITOR 畅销IP作者【清扬婉兮】携新书《有归》入驻番茄 chars=3214
+[2026-05-17 00:30:23] WRITER_MODEL 畅销IP作者【清扬婉兮】携新书《有归》入驻番茄 editor_chars=2352
+[2026-05-17 00:32:21] COMPLETED 畅销IP作者【清扬婉兮】携新书《有归》入驻番茄
+[2026-05-17 00:32:21] DONE batch_completed pending=34
+[2026-05-17 00:37:22] START fanqie classroom dynamic learning
+[2026-05-17 00:37:24] BATCH 1/1 这本玄幻脑洞文从单机十万字到破100w人在读
+[2026-05-17 00:37:24] FETCH 这本玄幻脑洞文从单机十万字到破100w人在读
+[2026-05-17 00:37:28] QWEN_EDITOR 这本玄幻脑洞文从单机十万字到破100w人在读 chars=3189
+[2026-05-17 00:38:50] WRITER_MODEL 这本玄幻脑洞文从单机十万字到破100w人在读 editor_chars=2376
+[2026-05-17 00:40:25] COMPLETED 这本玄幻脑洞文从单机十万字到破100w人在读
+[2026-05-17 00:40:25] DONE batch_completed pending=33
+[2026-05-17 00:45:25] START fanqie classroom dynamic learning
+[2026-05-17 00:45:27] BATCH 1/1 《咬一口甜梨》作者「春不语」：在我喜欢的状态生活
+[2026-05-17 00:45:27] FETCH 《咬一口甜梨》作者「春不语」：在我喜欢的状态生活
+[2026-05-17 00:45:31] QWEN_EDITOR 《咬一口甜梨》作者「春不语」：在我喜欢的状态生活 chars=2954
+[2026-05-17 00:46:53] WRITER_MODEL 《咬一口甜梨》作者「春不语」：在我喜欢的状态生活 editor_chars=2248
+[2026-05-17 00:47:20] COMPLETED 《咬一口甜梨》作者「春不语」：在我喜欢的状态生活
+[2026-05-17 00:47:20] DONE batch_completed pending=32
+[2026-05-17 00:52:20] START fanqie classroom dynamic learning
+[2026-05-17 00:52:22] BATCH 1/1 95w人在读玄幻脑洞《玄幻，我顿悟了混沌体》作者
+[2026-05-17 00:52:22] FETCH 95w人在读玄幻脑洞《玄幻，我顿悟了混沌体》作者
+[2026-05-17 00:52:27] QWEN_EDITOR 95w人在读玄幻脑洞《玄幻，我顿悟了混沌体》作者 chars=1876
+[2026-05-17 00:53:57] WRITER_MODEL 95w人在读玄幻脑洞《玄幻，我顿悟了混沌体》作者 editor_chars=2083
+[2026-05-17 00:54:53] COMPLETED 95w人在读玄幻脑洞《玄幻，我顿悟了混沌体》作者
+[2026-05-17 00:54:53] DONE batch_completed pending=31
+[2026-05-17 00:59:53] START fanqie classroom dynamic learning
+[2026-05-17 00:59:56] BATCH 1/1 【她·甜宠】征文活动第一名作者三奈果子
+[2026-05-17 00:59:56] FETCH 【她·甜宠】征文活动第一名作者三奈果子
+[2026-05-17 01:00:01] QWEN_EDITOR 【她·甜宠】征文活动第一名作者三奈果子 chars=2378
+[2026-05-17 01:01:34] WRITER_MODEL 【她·甜宠】征文活动第一名作者三奈果子 editor_chars=2134
+[2026-05-17 01:03:00] COMPLETED 【她·甜宠】征文活动第一名作者三奈果子
+[2026-05-17 01:03:00] DONE batch_completed pending=30
+[2026-05-17 01:08:00] START fanqie classroom dynamic learning
+[2026-05-17 01:08:02] BATCH 1/1 《我一个史莱姆吊打巨龙很合理吧？》 作者三风11
+[2026-05-17 01:08:02] FETCH 《我一个史莱姆吊打巨龙很合理吧？》 作者三风11
+[2026-05-17 01:08:06] QWEN_EDITOR 《我一个史莱姆吊打巨龙很合理吧？》 作者三风11 chars=2166
+[2026-05-17 01:09:22] WRITER_MODEL 《我一个史莱姆吊打巨龙很合理吧？》 作者三风11 editor_chars=2038
+[2026-05-17 01:10:05] COMPLETED 《我一个史莱姆吊打巨龙很合理吧？》 作者三风11
+[2026-05-17 01:10:05] DONE batch_completed pending=29
+[2026-05-17 01:15:05] START fanqie classroom dynamic learning
+[2026-05-17 01:15:08] BATCH 1/1 作者冯一病：彷徨岁月里扎入网文行业写修仙
+[2026-05-17 01:15:08] FETCH 作者冯一病：彷徨岁月里扎入网文行业写修仙
+[2026-05-17 01:15:12] QWEN_EDITOR 作者冯一病：彷徨岁月里扎入网文行业写修仙 chars=3066
+[2026-05-17 01:18:12] WRITER_MODEL 作者冯一病：彷徨岁月里扎入网文行业写修仙 editor_chars=2050
+[2026-05-17 01:19:43] COMPLETED 作者冯一病：彷徨岁月里扎入网文行业写修仙
+[2026-05-17 01:19:43] DONE batch_completed pending=28
+[2026-05-17 01:24:43] START fanqie classroom dynamic learning
+[2026-05-17 01:24:46] BATCH 1/1 自述 | 历史大佬月关：如果能穿越，我想去种田
+[2026-05-17 01:24:46] FETCH 自述 | 历史大佬月关：如果能穿越，我想去种田
+[2026-05-17 01:24:51] QWEN_EDITOR 自述 | 历史大佬月关：如果能穿越，我想去种田 chars=5358
+[2026-05-17 01:26:14] WRITER_MODEL 自述 | 历史大佬月关：如果能穿越，我想去种田 editor_chars=2262
+[2026-05-17 01:27:29] COMPLETED 自述 | 历史大佬月关：如果能穿越，我想去种田
+[2026-05-17 01:27:29] DONE batch_completed pending=27
+[2026-05-17 01:32:29] START fanqie classroom dynamic learning
+[2026-05-17 01:32:32] BATCH 1/1 采薇采薇：怎么写出百万字完读率14%的爆笑萌宝文?
+[2026-05-17 01:32:32] FETCH 采薇采薇：怎么写出百万字完读率14%的爆笑萌宝文?
+[2026-05-17 01:32:35] QWEN_EDITOR 采薇采薇：怎么写出百万字完读率14%的爆笑萌宝文? chars=2676
+[2026-05-17 01:34:00] WRITER_MODEL 采薇采薇：怎么写出百万字完读率14%的爆笑萌宝文? editor_chars=2062
+[2026-05-17 01:34:22] COMPLETED 采薇采薇：怎么写出百万字完读率14%的爆笑萌宝文?
+[2026-05-17 01:34:22] DONE batch_completed pending=26
+[2026-05-17 01:39:22] START fanqie classroom dynamic learning
+[2026-05-17 01:39:24] BATCH 1/1 自述|最高68万在读逃荒文作者锦火火：写作能赚钱 行走有故事
+[2026-05-17 01:39:24] FETCH 自述|最高68万在读逃荒文作者锦火火：写作能赚钱 行走有故事
+[2026-05-17 01:39:28] QWEN_EDITOR 自述|最高68万在读逃荒文作者锦火火：写作能赚钱 行走有故事 chars=4774
+[2026-05-17 01:41:00] WRITER_MODEL 自述|最高68万在读逃荒文作者锦火火：写作能赚钱 行走有故事 editor_chars=2410
+[2026-05-17 01:43:26] COMPLETED 自述|最高68万在读逃荒文作者锦火火：写作能赚钱 行走有故事
+[2026-05-17 01:43:26] DONE batch_completed pending=25
+[2026-05-17 01:48:26] START fanqie classroom dynamic learning
+[2026-05-17 01:48:29] BATCH 1/1 沙漠里的雕: 都市修真文怎么月收破十万？
+[2026-05-17 01:48:29] FETCH 沙漠里的雕: 都市修真文怎么月收破十万？
+[2026-05-17 01:48:33] QWEN_EDITOR 沙漠里的雕: 都市修真文怎么月收破十万？ chars=4419
+[2026-05-17 01:49:56] WRITER_MODEL 沙漠里的雕: 都市修真文怎么月收破十万？ editor_chars=2448
+[2026-05-17 01:50:51] COMPLETED 沙漠里的雕: 都市修真文怎么月收破十万？
+[2026-05-17 01:50:51] DONE batch_completed pending=24
+[2026-05-17 01:55:51] START fanqie classroom dynamic learning
+[2026-05-17 01:55:54] BATCH 1/1 《见野》校园人气作家宁雨沉：版权自运营的突破
+[2026-05-17 01:55:54] FETCH 《见野》校园人气作家宁雨沉：版权自运营的突破
+[2026-05-17 01:55:57] QWEN_EDITOR 《见野》校园人气作家宁雨沉：版权自运营的突破 chars=5382
+[2026-05-17 01:57:56] WRITER_MODEL 《见野》校园人气作家宁雨沉：版权自运营的突破 editor_chars=2369
+[2026-05-17 01:58:22] COMPLETED 《见野》校园人气作家宁雨沉：版权自运营的突破
+[2026-05-17 01:58:22] DONE batch_completed pending=23
+[2026-05-17 02:03:22] START fanqie classroom dynamic learning
+[2026-05-17 02:03:25] BATCH 1/1 待出版《我于深渊时见你》作者京祺：我写的就是生活
+[2026-05-17 02:03:25] FETCH 待出版《我于深渊时见你》作者京祺：我写的就是生活
+[2026-05-17 02:03:29] QWEN_EDITOR 待出版《我于深渊时见你》作者京祺：我写的就是生活 chars=4131
+[2026-05-17 02:04:48] WRITER_MODEL 待出版《我于深渊时见你》作者京祺：我写的就是生活 editor_chars=2236
+[2026-05-17 02:05:31] COMPLETED 待出版《我于深渊时见你》作者京祺：我写的就是生活
+[2026-05-17 02:05:31] DONE batch_completed pending=22
+[2026-05-17 02:10:31] START fanqie classroom dynamic learning
+[2026-05-17 02:10:34] BATCH 1/1 《首辅家的锦鲤妻》：15万人打出9.7分的古言种田文
+[2026-05-17 02:10:34] FETCH 《首辅家的锦鲤妻》：15万人打出9.7分的古言种田文
+[2026-05-17 02:10:37] QWEN_EDITOR 《首辅家的锦鲤妻》：15万人打出9.7分的古言种田文 chars=4083
+[2026-05-17 02:12:14] WRITER_MODEL 《首辅家的锦鲤妻》：15万人打出9.7分的古言种田文 editor_chars=2421
+[2026-05-17 02:13:38] COMPLETED 《首辅家的锦鲤妻》：15万人打出9.7分的古言种田文
+[2026-05-17 02:13:38] DONE batch_completed pending=21
+[2026-05-17 02:18:39] START fanqie classroom dynamic learning
+[2026-05-17 02:18:41] BATCH 1/1 从22个阅读到40w人在看，现言品类之王洛宝儿亲述创作路
+[2026-05-17 02:18:41] FETCH 从22个阅读到40w人在看，现言品类之王洛宝儿亲述创作路
+[2026-05-17 02:18:45] QWEN_EDITOR 从22个阅读到40w人在看，现言品类之王洛宝儿亲述创作路 chars=3594
+[2026-05-17 02:20:11] WRITER_MODEL 从22个阅读到40w人在看，现言品类之王洛宝儿亲述创作路 editor_chars=2284
+[2026-05-17 02:21:12] COMPLETED 从22个阅读到40w人在看，现言品类之王洛宝儿亲述创作路
+[2026-05-17 02:21:12] DONE batch_completed pending=20
+[2026-05-17 02:26:12] START fanqie classroom dynamic learning
+[2026-05-17 02:26:14] BATCH 1/1 《五行混沌经》作者：“扑街”四本后终于体验日收破千是什么感觉
+[2026-05-17 02:26:14] FETCH 《五行混沌经》作者：“扑街”四本后终于体验日收破千是什么感觉
+[2026-05-17 02:26:18] QWEN_EDITOR 《五行混沌经》作者：“扑街”四本后终于体验日收破千是什么感觉 chars=4431
+[2026-05-17 02:27:48] WRITER_MODEL 《五行混沌经》作者：“扑街”四本后终于体验日收破千是什么感觉 editor_chars=2558
+[2026-05-17 02:28:26] COMPLETED 《五行混沌经》作者：“扑街”四本后终于体验日收破千是什么感觉
+[2026-05-17 02:28:26] DONE batch_completed pending=19
+[2026-05-17 02:33:26] START fanqie classroom dynamic learning
+[2026-05-17 02:33:28] BATCH 1/1 《小小驱魔人，从武馆走出的驱邪师》：网游到玄幻的不断突破
+[2026-05-17 02:33:28] FETCH 《小小驱魔人，从武馆走出的驱邪师》：网游到玄幻的不断突破
+[2026-05-17 02:33:32] QWEN_EDITOR 《小小驱魔人，从武馆走出的驱邪师》：网游到玄幻的不断突破 chars=3035
+[2026-05-17 02:34:52] WRITER_MODEL 《小小驱魔人，从武馆走出的驱邪师》：网游到玄幻的不断突破 editor_chars=2216
+[2026-05-17 02:35:46] COMPLETED 《小小驱魔人，从武馆走出的驱邪师》：网游到玄幻的不断突破
+[2026-05-17 02:35:46] DONE batch_completed pending=18
+[2026-05-17 02:40:46] START fanqie classroom dynamic learning
+[2026-05-17 02:40:48] BATCH 1/1 传统玄幻怎么月入10w+？《武道丹帝》作者亲口告诉你！
+[2026-05-17 02:40:48] FETCH 传统玄幻怎么月入10w+？《武道丹帝》作者亲口告诉你！
+[2026-05-17 02:40:52] QWEN_EDITOR 传统玄幻怎么月入10w+？《武道丹帝》作者亲口告诉你！ chars=3636
+[2026-05-17 02:42:19] WRITER_MODEL 传统玄幻怎么月入10w+？《武道丹帝》作者亲口告诉你！ editor_chars=2443
+[2026-05-17 02:43:07] COMPLETED 传统玄幻怎么月入10w+？《武道丹帝》作者亲口告诉你！
+[2026-05-17 02:43:07] DONE batch_completed pending=17
+[2026-05-17 02:48:07] START fanqie classroom dynamic learning
+[2026-05-17 02:48:09] BATCH 1/1 番茄古言《团宠农家小糖宝》让单亲妈妈的她年入百万
+[2026-05-17 02:48:09] FETCH 番茄古言《团宠农家小糖宝》让单亲妈妈的她年入百万
+[2026-05-17 02:48:13] QWEN_EDITOR 番茄古言《团宠农家小糖宝》让单亲妈妈的她年入百万 chars=3566
+[2026-05-17 02:49:33] WRITER_MODEL 番茄古言《团宠农家小糖宝》让单亲妈妈的她年入百万 editor_chars=2380
+[2026-05-17 02:50:08] COMPLETED 番茄古言《团宠农家小糖宝》让单亲妈妈的她年入百万
+[2026-05-17 02:50:08] DONE batch_completed pending=16
+[2026-05-17 02:55:08] START fanqie classroom dynamic learning
+[2026-05-17 02:55:10] BATCH 1/1 60万人都在追的番茄传统修仙文《通幽小儒仙》竟是他的处女作？
+[2026-05-17 02:55:10] FETCH 60万人都在追的番茄传统修仙文《通幽小儒仙》竟是他的处女作？
+[2026-05-17 02:55:14] QWEN_EDITOR 60万人都在追的番茄传统修仙文《通幽小儒仙》竟是他的处女作？ chars=4922
+[2026-05-17 02:56:38] WRITER_MODEL 60万人都在追的番茄传统修仙文《通幽小儒仙》竟是他的处女作？ editor_chars=2414
+[2026-05-17 02:57:38] COMPLETED 60万人都在追的番茄传统修仙文《通幽小儒仙》竟是他的处女作？
+[2026-05-17 02:57:38] DONE batch_completed pending=15
+[2026-05-17 03:02:38] START fanqie classroom dynamic learning
+[2026-05-17 03:02:41] BATCH 1/1 作家天香瞳: 不断更是一个写手的基本素养
+[2026-05-17 03:02:41] FETCH 作家天香瞳: 不断更是一个写手的基本素养
+[2026-05-17 03:02:45] QWEN_EDITOR 作家天香瞳: 不断更是一个写手的基本素养 chars=2572
+[2026-05-17 03:04:47] WRITER_MODEL 作家天香瞳: 不断更是一个写手的基本素养 editor_chars=2292
+[2026-05-17 03:05:30] COMPLETED 作家天香瞳: 不断更是一个写手的基本素养
+[2026-05-17 03:05:30] DONE batch_completed pending=14
+[2026-05-17 03:10:30] START fanqie classroom dynamic learning
+[2026-05-17 03:10:33] BATCH 1/1 《天神殿》：一个“社恐患者”内心的热血世界
+[2026-05-17 03:10:33] FETCH 《天神殿》：一个“社恐患者”内心的热血世界
+[2026-05-17 03:10:37] QWEN_EDITOR 《天神殿》：一个“社恐患者”内心的热血世界 chars=4096
+[2026-05-17 03:12:05] WRITER_MODEL 《天神殿》：一个“社恐患者”内心的热血世界 editor_chars=2475
+[2026-05-17 03:13:05] COMPLETED 《天神殿》：一个“社恐患者”内心的热血世界
+[2026-05-17 03:13:05] DONE batch_completed pending=13
+[2026-05-17 03:18:05] START fanqie classroom dynamic learning
+[2026-05-17 03:18:08] BATCH 1/1 作家三九音域：《我在精神病院学斩神》爆火秘诀，帮你们问到了！
+[2026-05-17 03:18:08] FETCH 作家三九音域：《我在精神病院学斩神》爆火秘诀，帮你们问到了！
+[2026-05-17 03:18:11] QWEN_EDITOR 作家三九音域：《我在精神病院学斩神》爆火秘诀，帮你们问到了！ chars=3504
+[2026-05-17 03:19:37] WRITER_MODEL 作家三九音域：《我在精神病院学斩神》爆火秘诀，帮你们问到了！ editor_chars=2405
+[2026-05-17 03:21:16] COMPLETED 作家三九音域：《我在精神病院学斩神》爆火秘诀，帮你们问到了！
+[2026-05-17 03:21:16] DONE batch_completed pending=12
+[2026-05-17 03:26:17] START fanqie classroom dynamic learning
+[2026-05-17 03:26:19] BATCH 1/1 作家童童：流量时代如何在洪流中脱颖而出
+[2026-05-17 03:26:19] FETCH 作家童童：流量时代如何在洪流中脱颖而出
+[2026-05-17 03:26:23] ERROR 7027030199644454920 RuntimeError: FETCH_ARTICLE_EMPTY
+[2026-05-17 03:26:23] DONE batch_completed pending=11
+[2026-05-17 03:31:23] START fanqie classroom dynamic learning
+[2026-05-17 03:31:25] BATCH 1/1 作家陶罐：生活纵然普通，但网文可能无限
+[2026-05-17 03:31:25] FETCH 作家陶罐：生活纵然普通，但网文可能无限
+[2026-05-17 03:31:28] ERROR 7027030922213982215 RuntimeError: FETCH_ARTICLE_EMPTY
+[2026-05-17 03:31:28] DONE batch_completed pending=10
+[2026-05-17 03:36:29] START fanqie classroom dynamic learning
+[2026-05-17 03:36:31] BATCH 1/1 作家歌怨：文字无边界，改变人生轨迹不难
+[2026-05-17 03:36:31] FETCH 作家歌怨：文字无边界，改变人生轨迹不难
+[2026-05-17 03:36:35] ERROR 7027031575845928968 RuntimeError: FETCH_ARTICLE_EMPTY
+[2026-05-17 03:36:35] DONE batch_completed pending=9
+[2026-05-17 03:41:35] START fanqie classroom dynamic learning
+[2026-05-17 03:41:37] BATCH 1/1 作家续写春秋：一直坚持的意义是年入百万
+[2026-05-17 03:41:37] FETCH 作家续写春秋：一直坚持的意义是年入百万
+[2026-05-17 03:41:41] QWEN_EDITOR 作家续写春秋：一直坚持的意义是年入百万 chars=1538
+[2026-05-17 03:42:51] WRITER_MODEL 作家续写春秋：一直坚持的意义是年入百万 editor_chars=2343
+[2026-05-17 03:43:13] COMPLETED 作家续写春秋：一直坚持的意义是年入百万
+[2026-05-17 03:43:13] DONE batch_completed pending=8
+[2026-05-17 03:48:14] START fanqie classroom dynamic learning
+[2026-05-17 03:48:16] BATCH 1/1 作家神无踪：从钢筋工到年入百万
+[2026-05-17 03:48:16] FETCH 作家神无踪：从钢筋工到年入百万
+[2026-05-17 03:48:19] QWEN_EDITOR 作家神无踪：从钢筋工到年入百万 chars=1716
+[2026-05-17 03:49:37] WRITER_MODEL 作家神无踪：从钢筋工到年入百万 editor_chars=2194
+[2026-05-17 03:50:24] COMPLETED 作家神无踪：从钢筋工到年入百万
+[2026-05-17 03:50:24] DONE batch_completed pending=7
+[2026-05-17 03:55:24] START fanqie classroom dynamic learning
+[2026-05-17 03:55:26] BATCH 1/1 作家云锦鹊：不随波逐流
+[2026-05-17 03:55:26] FETCH 作家云锦鹊：不随波逐流
+[2026-05-17 03:55:29] QWEN_EDITOR 作家云锦鹊：不随波逐流 chars=1842
+[2026-05-17 03:56:48] WRITER_MODEL 作家云锦鹊：不随波逐流 editor_chars=2274
+[2026-05-17 03:57:17] COMPLETED 作家云锦鹊：不随波逐流
+[2026-05-17 03:57:17] DONE batch_completed pending=6
+[2026-05-17 04:02:17] START fanqie classroom dynamic learning
+[2026-05-17 04:02:19] BATCH 1/1 作家叶大刀：有所坚持，有所得
+[2026-05-17 04:02:19] FETCH 作家叶大刀：有所坚持，有所得
+[2026-05-17 04:02:23] QWEN_EDITOR 作家叶大刀：有所坚持，有所得 chars=1957
+[2026-05-17 04:03:48] WRITER_MODEL 作家叶大刀：有所坚持，有所得 editor_chars=2332
+[2026-05-17 04:04:22] COMPLETED 作家叶大刀：有所坚持，有所得
+[2026-05-17 04:04:22] DONE batch_completed pending=5
+[2026-05-17 04:09:22] START fanqie classroom dynamic learning
+[2026-05-17 04:09:25] BATCH 1/1 作家非我良人：写书如逆水行舟，不进则退
+[2026-05-17 04:09:25] FETCH 作家非我良人：写书如逆水行舟，不进则退
+[2026-05-17 04:09:28] QWEN_EDITOR 作家非我良人：写书如逆水行舟，不进则退 chars=1812
+[2026-05-17 04:10:53] WRITER_MODEL 作家非我良人：写书如逆水行舟，不进则退 editor_chars=2421
+[2026-05-17 04:13:04] COMPLETED 作家非我良人：写书如逆水行舟，不进则退
+[2026-05-17 04:13:04] DONE batch_completed pending=4
+[2026-05-17 04:18:05] START fanqie classroom dynamic learning
+[2026-05-17 04:18:07] BATCH 1/1 作家惜若黄：从流水线打螺丝到年入百万
+[2026-05-17 04:18:07] FETCH 作家惜若黄：从流水线打螺丝到年入百万
+[2026-05-17 04:18:10] QWEN_EDITOR 作家惜若黄：从流水线打螺丝到年入百万 chars=1375
+[2026-05-17 04:19:28] WRITER_MODEL 作家惜若黄：从流水线打螺丝到年入百万 editor_chars=2013
+[2026-05-17 04:19:51] COMPLETED 作家惜若黄：从流水线打螺丝到年入百万
+[2026-05-17 04:19:51] DONE batch_completed pending=3
+[2026-05-17 04:24:51] START fanqie classroom dynamic learning
+[2026-05-17 04:24:54] BATCH 1/1 从抱全勤到日收两千，古言新人逆袭
+[2026-05-17 04:24:54] FETCH 从抱全勤到日收两千，古言新人逆袭
+[2026-05-17 04:24:57] QWEN_EDITOR 从抱全勤到日收两千，古言新人逆袭 chars=1536
+[2026-05-17 04:26:23] WRITER_MODEL 从抱全勤到日收两千，古言新人逆袭 editor_chars=2232
+[2026-05-17 04:27:04] COMPLETED 从抱全勤到日收两千，古言新人逆袭
+[2026-05-17 04:27:04] DONE batch_completed pending=2
+[2026-05-17 04:32:04] START fanqie classroom dynamic learning
+[2026-05-17 04:32:07] BATCH 1/1 平台福利｜平台稿费&福利内容大揭秘
+[2026-05-17 04:32:07] FETCH 平台福利｜平台稿费&福利内容大揭秘
+[2026-05-17 04:32:10] QWEN_EDITOR 平台福利｜平台稿费&福利内容大揭秘 chars=3771
+[2026-05-17 04:33:28] WRITER_MODEL 平台福利｜平台稿费&福利内容大揭秘 editor_chars=2146
+[2026-05-17 04:33:59] COMPLETED 平台福利｜平台稿费&福利内容大揭秘
+[2026-05-17 04:33:59] DONE batch_completed pending=1
+[2026-05-17 04:38:59] START fanqie classroom dynamic learning
+[2026-05-17 04:39:02] BATCH 1/1 平台规则｜新手入门！账号注册登录全指南
+[2026-05-17 04:39:02] FETCH 平台规则｜新手入门！账号注册登录全指南
+[2026-05-17 04:39:05] QWEN_EDITOR 平台规则｜新手入门！账号注册登录全指南 chars=1622
+[2026-05-17 04:40:27] WRITER_MODEL 平台规则｜新手入门！账号注册登录全指南 editor_chars=1775
+[2026-05-17 04:40:45] COMPLETED 平台规则｜新手入门！账号注册登录全指南
+[2026-05-17 04:40:45] DONE completed pending=0

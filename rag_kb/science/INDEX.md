@@ -1,0 +1,55 @@
+# 科武科学素材 RAG 索引
+- cas_000｜科研人员研制出双螺旋纤维增强的自感知人工肌肉｜章节 ｜https://www.cas.cn/syky/202604/t20260422_5107561.shtml
+- cas_001｜科学家提出光子材料制造新范式｜章节 ｜https://www.cas.cn/syky/202604/t20260423_5107703.shtml
+- cas_002｜非易失存算一体芯片研究取得进展｜章节 ｜https://www.cas.cn/syky/202604/t20260414_5106899.shtml
+- cas_003｜育种基因芯片单核苷酸多态性传感机制研究取得进展｜章节 ｜https://www.cas.cn/syky/202604/t20260416_5107119.shtml
+- bili_004｜FAST天眼_“不要回答！”中国天眼捕捉到宇宙中的神秘声音｜章节 ｜None
+- bili_005｜外骨骼_概念设计：中国军用防护集成战术外骨骼｜章节 ｜None
+- bili_006｜差评_芯片_【差评君】全站最全分析：为什么说华为手机芯片看不到希望？｜章节 ｜None
+- bili_007｜差评_芯片_国产存储芯片逆袭世界巨头，这家公司是啥来头？【差评君】｜章节 ｜None
+- bili_008｜核聚变_可控核聚变能源王者，盛世回归的终极密码，中国实现还需多久？｜章节 ｜None
+- bili_009｜核聚变_看，这是新“太阳”｜章节 ｜None
+- bili_010｜核聚变_重磅！核聚变实现两项关键技术突破，预计2050年前后商用，【｜章节 ｜None
+- bili_011｜量子AI_谷歌紧急宣布，突破人类两大科技界限，Willow量子计算芯片｜章节 ｜None
+- bili_012｜量子纠错_从“测量”这个角度出发，揭秘量子计算的核心难题｜章节 ｜None
+- bili_013｜量子纠错_祖冲之三号，确立了什么新标杆？｜章节 ｜None
+- cpj_014｜AI大模型_BV11VP4eXEbf_弹幕：来点高僧预测，瓶子：别急我在思考，低僧（deepseek）预测DRX 2-1 T1｜章节 ｜None
+- cpj_015｜AI大模型_BV1qhJuzQEn1_生活索然无味，AI调教人类。【泽光君_Deepseek拟人】｜章节 ｜None
+- cpj_016｜供应链_BV1CmGAzcEde_美国稀土多到用不完，为什么还得从中国买？【差评君】｜章节 ｜None
+- cpj_017｜供应链_BV1QH4y1c7rT_八年都没交车成功的特斯拉，在印度经历了什么？【差评君 】｜章节 ｜None
+- cpj_018｜供应链_BV1Xw411J7VJ_为了在印度造出iPhone，富士康找了一群中国“老师傅”【差评君】｜章节 ｜None
+- cpj_019｜科技产业_BV16w411E74S_火遍全网的“工业大摸底”，堪称新时代的手撕鬼子【差评君】｜章节 ｜None
+- cpj_020｜科技产业_BV1Bv5vzjEF2_日本曾经全球第一的人形机器人技术，如今怎么样了？【差评君】｜章节 ｜None
+- cpj_021｜科技产业_BV1CJagzwEnF_一场长达百年的“铅骗局”，如何改变了整整三代人？【差评君】｜章节 ｜None
+- cpj_022｜芯片AI_BV1Xw411e76g_“力大砖飞”的光刻厂到底是个啥玩意儿？【差评君】｜章节 ｜None
+- cpj_023｜芯片AI_BV1Yd4y1v7Ef_国产存储芯片逆袭世界巨头，这家公司是啥来头？【差评君】｜章节 ｜None
+- cpj_024｜芯片AI_BV1rK4y1g72K_全球芯片短缺只是因为疫情？背后原因远比你想的复杂【差评君】｜章节 ｜None
+- cpj_025｜芯片AI_BV1uP4y187F9_默默发展了二十年，如今的龙芯咋样了？【差评君】｜章节 ｜None
+- cpj_026｜量子加密_BV18s411z7kc_【C菌】爽到爆炸! 科幻巨作【量子破碎】【完结】 (08_09更新, 全部完结)｜章节 ｜None
+- cpj_027｜量子加密_BV1YD4y1D7AT_【差评君】我在阿三哥的卸载中国app中，发现了印度版财富密码...｜章节 ｜None
+- cpj_028｜量子加密_BV1uV411N7Cg_够21万人喝一生的水，还不够谷歌服务器用7个月的？【差评君】｜章节 ｜None
+- cas_new_000｜研究人员解析阿尔茨海默病关键病理特征协同致病机制｜章节 ｜https://www.cas.cn//www.cas.cn/../../syky/202604/t20260424_5108047.shtml
+- cas_new_002｜大连化物所开发的生物基呋喃二甲酸技术中试装置顺利开车｜章节 ｜https://www.cas.cn//www.cas.cn/../../cg/zh/202604/t20260423_5107864.shtml
+- cas_new_003｜过程工程所安全氢基能源供热示范项目完成工况运行验证｜章节 ｜https://www.cas.cn//www.cas.cn/../../cg/zh/202604/t20260421_5107468.shtml
+- cas_new_004｜东莞材料所自研高频软磁纳米晶合金量产交付｜章节 ｜https://www.cas.cn//www.cas.cn/../../cg/zh/202604/t20260420_5107341.shtml
+- cas_new_005｜合肥研究院等研发的经颅磁刺激医疗机器人获医疗器械证并临床应用｜章节 ｜https://www.cas.cn//www.cas.cn/../../cg/zh/202604/t20260409_5106351.shtml
+- cas_new_006｜工程热物理所等在压缩空气储能压缩机研发方面取得突破｜章节 ｜https://www.cas.cn//www.cas.cn/../../cg/zh/202602/t20260206_5099906.shtml
+- cas_new_007｜上海硅酸盐所3D打印硅基生物陶瓷口腔修复产品开发取得新进展｜章节 ｜https://www.cas.cn//www.cas.cn/../../cg/zh/202601/t20260112_5095833.shtml
+- deepseek_v4_ecosystem_war_20260426｜DeepSeek V4 + 国产模型适配国产芯片——生态级战争｜章节 ｜
+- cas_20260428_self_sensing_artificial_muscle_full｜双螺旋纤维增强的自感知人工肌肉｜章节 ｜https://www.cas.cn/syky/202604/t20260422_5107561.shtml
+- exo_001｜单兵外骨骼实战应用与人机融合｜章节 ｜https://news.qq.com/rain/a/20250827A01KPE00
+- quantum_002｜超导量子比特相干时间突破1毫秒｜章节 ｜https://www.cas.cn/kj/202511/t20251107_5087875.shtml
+- fusion_003｜激光聚变双锥对撞方案突破｜章节 ｜https://www.futureprize.org/cn/nav/detail/1740.html
+- current_20260507_01｜军事AI蜂群：OODA压缩｜章节 ｜/root/workspace/科武纪元/时事素材/素材卡/2026-05-07/素材卡_军事AI蜂群_OODA压缩.md
+- current_20260507_02｜国产算力训练主权：能推到能训｜章节 ｜/root/workspace/科武纪元/时事素材/素材卡/2026-05-07/素材卡_国产算力训练主权_能推到能训.md
+- current_20260507_03｜地月规则竞赛：存在即权益｜章节 ｜/root/workspace/科武纪元/时事素材/素材卡/2026-05-07/素材卡_地月规则竞赛_存在即权益.md
+- current_20260507_04｜量子先存后解与后量子密钥｜章节 ｜/root/workspace/科武纪元/时事素材/素材卡/2026-05-07/素材卡_量子先存后解_后量子密钥.md
+- 20260508_mozilla_agent_harness｜Mozilla AI漏洞挖掘与Agent Harness｜章节 95,184,269,286,317,339｜https://arstechnica.com/information-technology/2026/05/mozilla-says-271-vulnerabilities-found-by-mythos-have-almost-no-false-positives/
+- 20260508_dhs_dna_whiteshield｜DHS抗议者DNA数据库与白盾算法暴力｜章节 217,223,226,233,243｜https://arstechnica.com/tech-policy/2026/05/ice-protesters-sue-to-stop-dhs-from-seizing-dna-samples/
+- 20260508_europe_defense_autonomy｜欧洲防务自主与C2主权｜章节 86,106,121,306,307,309｜https://www.defensenews.com/global/europe/2026/05/07/europe-defense-autonomy-is-in-reach-at-50-billion-a-year-german-experts/
+- 20260508_turkey_propellant｜土耳其远程导弹推进剂国产化｜章节 308,311,337,340｜https://www.defensenews.com/global/europe/2026/05/08/turkey-touts-propellant-breakthrough-for-yildirimhan-long-range-ballistic-missile/
+- v87_ch86_c2_friction｜C2备份链审计权冲突导致结构性延迟｜第86章｜V8.7正文修改
+- v87_ch95_agent_feedback｜Agent自生成代码必须经红队harness验证｜第95章｜V8.7正文修改
+- v87_ch184_verification_chain｜三层验证链：模拟战损→规则冲突→传感器回读｜第184章｜V8.7正文修改
+- v87_ch217_bio_data_labels｜生物数据算法暴力：DNA/面部/车牌/社媒/位置拼成长期标签｜第217章｜V8.7正文修改
+- v87_ch233_label_overspill｜白盾标签跨部门不可撤销外溢与问责断裂｜第233章｜V8.7正文修改

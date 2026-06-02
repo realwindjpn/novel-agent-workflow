@@ -1,0 +1,14 @@
+{
+  "task": {
+    "name": "overseas_grok_x_reddit",
+    "provider": "grok",
+    "model": "grok-4.20-fast",
+    "geo": "overseas",
+    "timeout": 240,
+    "prompt": "你负责海外游戏热点采集。聚焦 X/Reddit/Steam/ResetEra/IGN/PC Gamer/Eurogamer/官方源。给 6-10 个当前候选，每条含 title/source_links/player_controversy/verification_need。只输出 JSON。"
+  },
+  "exit_code": 1,
+  "duration_sec": 13.7,
+  "stdout": "API call failed after 1 retries: HTTP 503: 当前繁忙，稍后恢复，通知群:116231758 (request id: 2026052501023144712478268d9d6ndPr4HAm)\n",
+  "stderr": "\nsession_id: 20260525_090228_59e9dd\n"
+}

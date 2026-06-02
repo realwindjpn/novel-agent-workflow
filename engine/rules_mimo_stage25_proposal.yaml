@@ -1,0 +1,152 @@
+# ============================================================
+# 科武纪元 Stage2.5 守卫补丁 PROPOSAL
+# 日期: 2026-05-28 | 状态: PROPOSAL | 不改生产文件
+# ============================================================
+
+version: "0.2.5"
+created: "2026-05-28"
+status: proposal
+extends: rules_mimo_stage2_proposal.yaml
+
+# ────────────────────────────────────────────
+# 1. 路径守卫
+# ────────────────────────────────────────────
+path_guards:
+  blacklist:  # 写入即 BLOCKED + RED_VIOLATION
+    - "新版/"
+    - "已投稿/"
+    - "番茄草稿箱/"
+    - "STATUS.md"
+    - "WAL.md"
+    - "HANDOFF.md"
+    - "engine/rules.yaml"
+    - "科武纪元大纲*.md"
+    - "小说综合跟踪表.md"
+    - "wiki/raw/outline/"
+  whitelist:  # runner 可写
+    - "审核记录/自循环落地_20260528/"
+    - "审核记录/决策卡/"
+
+# ────────────────────────────────────────────
+# 2. --test-only 产物目录
+# ────────────────────────────────────────────
+test_only_output:
+  root: "审核记录/自循环落地_20260528/"
+  subdirs: ["raw/", "candidate/"]
+  files: ["events.jsonl", "state.json", "queue.json", ".runner.lock"]
+
+# ────────────────────────────────────────────
+# 3. gate/smoke/lock/queue 事件注册
+# ────────────────────────────────────────────
+events:
+  registry_append:
+    # gate
+    - name: "GATE_GREEN_PASS"
+      gate: "green"
+      fields: "chapter,gate_type,checks[],timestamp"
+    - name: "GATE_RED_BLOCK"
+      gate: "red"
+      fields: "chapter,gate_type,failed_check,reason"
+    - name: "GATE_YELLOW_REVIEW"
+      gate: "yellow"
+      fields: "chapter,gate_type,decision_card_path"
+    # smoke
+    - name: "SMOKE_PASS"
+      gate: "green"
+      fields: "provider,model,latency_ms,timestamp"
+    - name: "SMOKE_FAIL"
+      gate: "red"
+      fields: "provider,model,error,timestamp"
+    - name: "SMOKE_ALL_PASS"
+      gate: "green"
+      fields: "models_tested[],pass_count,timestamp"
+    # lock
+    - name: "LOCK_ACQUIRED"
+      gate: "green"
+      fields: "pid,runner_name,timestamp"
+    - name: "LOCK_RELEASED"
+      gate: "green"
+      fields: "pid,duration_sec,timestamp"
+    - name: "RUNNER_ALREADY_ACTIVE"
+      gate: "red"
+      fields: "existing_pid,new_pid,blocked"
+    # queue
+    - name: "QUEUE_INIT"
+      gate: "green"
+      fields: "chapters[],timestamp"
+    - name: "QUEUE_CHAPTER_PICKED"
+      gate: "green"
+      fields: "chapter,status,timestamp"
+    - name: "QUEUE_CHAPTER_DONE"
+      gate: "green"
+      fields: "chapter,status,outcome,timestamp"
+    - name: "QUEUE_CHAPTER_FAILED"
+      gate: "red"
+      fields: "chapter,status,fail_reason,timestamp"
+    - name: "QUEUE_EMPTY"
+      gate: "green"
+      fields: "total_done,total_failed,timestamp"
+
+# ────────────────────────────────────────────
+# 4. 117 启动红线（阻断条件）
+# ────────────────────────────────────────────
+startup_redlines:
+  chapter: 117
+  block_if_any:
+    - id: "R1"
+      check: "runner_lock_pid_alive"
+      source: "filesystem .runner.lock"
+    - id: "R2"
+      check: "smoke_stale > 2h"
+      source: "events.jsonl SMOKE_*"
+    - id: "R3"
+      check: "smoke_fail_unresolved"
+      source: "events.jsonl SMOKE_FAIL"
+    - id: "R4"
+      check: "source_md_missing"
+      source: "新版/第117章.md"
+    - id: "R5"
+      check: "tomato_chars < 3000"
+      source: "kewu_daily_state.py"
+    - id: "R6"
+      check: "rules_mimo_proposal_not_aligned"
+      source: "diff engine/rules.yaml vs proposal"
+    - id: "R7"
+      check: "queue_status != pending"
+      source: "queue.json"
+    - id: "R8"
+      check: "duplicate_test_pass_exists"
+      source: "events.jsonl SIXROLE_TEST_PASS"
+    - id: "R9"
+      check: "git_dirty_production_dirs"
+      source: "git status 新版/ 已投稿/"
+    - id: "R10"
+      check: "test_output_dir_missing"
+      source: "审核记录/自循环落地_20260528/"
+    - id: "R11"
+      check: "model_route_not_smoked"
+      source: "upstream confirmation"
+
+# ────────────────────────────────────────────
+# 5. 主控验收清单
+# ────────────────────────────────────────────
+acceptance:
+  events:
+    - "SIXROLE_TEST_START exists with full fields"
+    - "SIXROLE_TEST_END exists with valid outcome"
+    - "events.jsonl: zero invalid JSON lines"
+  path_guard:
+    - "RED_VIOLATION count == 0"
+    - "git diff --name-only on 新版/ 已投稿/ STATUS.md WAL.md = clean"
+    - "all artifacts in 审核记录/自循环落地_20260528/"
+  roles:
+    - "raw/ has all 6 role outputs"
+    - "candidate/candidate_ch117.md exists, tomato_chars >= 3000"
+    - "editor PASS x2 + reader PASS x2"
+  gates:
+    - "smoke record exists and recent"
+    - ".runner.lock released"
+    - "queue.json ch117 status = done or failed"
+  decisions:
+    - "all yellow decision_cards exist and non-empty"
+    - "no unresolved yellow cards"

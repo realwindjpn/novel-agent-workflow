@@ -1,0 +1,62 @@
+{
+  "date": "2026-05-25",
+  "base": "/root/workspace/科武纪元/热点选题/multimodel/2026-05-25",
+  "precollect_exit": 0,
+  "tasks": [
+    {
+      "name": "overseas_grok_x_reddit",
+      "provider": "grok",
+      "model": "grok-4.20-fast",
+      "geo": "overseas",
+      "exit_code": 1,
+      "duration_sec": 13.7,
+      "path": "/root/workspace/科武纪元/热点选题/multimodel/2026-05-25/overseas_grok_x_reddit.json",
+      "stdout_preview": "API call failed after 1 retries: HTTP 503: 当前繁忙，稍后恢复，通知群:116231758 (request id: 2026052501023144712478268d9d6ndPr4HAm)\n",
+      "stderr_preview": "\nsession_id: 20260525_090228_59e9dd\n"
+    },
+    {
+      "name": "overseas_aiapi_gpt55_crosscheck",
+      "provider": "aiapi-gpt55",
+      "model": "gpt-5.5",
+      "geo": "overseas",
+      "exit_code": 1,
+      "duration_sec": 10.98,
+      "path": "/root/workspace/科武纪元/热点选题/multimodel/2026-05-25/overseas_aiapi_gpt55_crosscheck.json",
+      "stdout_preview": "Unknown provider 'aiapi-gpt55'. Check 'hermes model' for available providers, or\nrun 'hermes doctor' to diagnose config issues.\n",
+      "stderr_preview": ""
+    },
+    {
+      "name": "overseas_key2_gpt55_backup",
+      "provider": "key2",
+      "model": "gpt-5.5",
+      "geo": "overseas",
+      "exit_code": 1,
+      "duration_sec": 10.99,
+      "path": "/root/workspace/科武纪元/热点选题/multimodel/2026-05-25/overseas_key2_gpt55_backup.json",
+      "stdout_preview": "Unknown provider 'key2'. Check 'hermes model' for available providers, or run \n'hermes doctor' to diagnose config issues.\n",
+      "stderr_preview": ""
+    },
+    {
+      "name": "domestic_zai_glm",
+      "provider": "zai",
+      "model": "glm-5.1",
+      "geo": "domestic",
+      "exit_code": 0,
+      "duration_sec": 75.16,
+      "path": "/root/workspace/科武纪元/热点选题/multimodel/2026-05-25/domestic_zai_glm.json",
+      "stdout_preview": "数据已够。综合 3DM、游民星空两大源，筛选出 8 个候选：\n\n```json\n[\n  {\n    \"id\": 1,\n    \"title\": \"虚幻引擎6官宣跳过UE5直上UE6，首个适配《火箭联盟》\",\n    \"heat_source\": [\"3DM\", \"游民星空\", \"B站\"],\n    \"player_angle\": \"老引擎终于换新，十多年UE3的火箭联盟能否焕发第二春；Epic这波跳级操作是什么信号\",\n    \"need_overseas_cross_verify\": true,\n    \"notes\": \"Epic官方在巴黎Major现场公布，海外已有大量报道；国内玩家讨论热度高但解读偏浅，可补充海外开发者视角\"\n  },\n  {\n    \"id\": 2,\n    \"title\": \"《007：初露锋芒》5月27日发售，IO互动冰川引擎，15分钟实机已出\",\n    \"heat_source\": [\"3DM\", \"游民星空\"],\n    \"player_angle\": \"杀手工作室做邦德到底行不行；D加密争议+46GB容量引PC玩家焦虑；预载已开\",\n    \"need_overseas_cross_verify\": true,\n    \"notes\": \"海外媒体评测即将解禁，发售日临近热度持续上升；D加密话题国内讨论度需海外交叉验证\"\n  },\n  {\n    \"id\": 3,\n    \"title\": \"《极限竞速：地平线6》Steam在线峰值近30万，成Xbox史上最佳首发\",\n    \"heat_source\": [\"游民星空\", \"3DM\"],\n    \"player_angle\": \"赛车年到底稳不稳；运镜被吐槽不如初代倒退十年 vs 销量近500万；A卡兼容性翻车\",\n    \"need_overseas_cross_verify\": true,\n    \"notes\": \"销量数据来自Alinea Analytics海外机构；运镜对比视频来自YouTube博主，需交叉验证原始源\"\n  },\n  {\n    \"id\": 4,\n    \"title\": \"《明末：渊虚之羽》被外资收购后Steam公告全英文，国产IP外流引争议\",\n    \"heat_source\": [\"3DM\"],\n    \"player_angle\": \"自己做的游戏连中文公告都没了；505Games母公司收购到底意味着什么；国产游戏IP出海还是被吃\",\n    \"need_overseas_cross_verify\": true,\n    \"notes\": \"Digital Bros收购事件需查海外原公告；国内玩家情绪强烈，海外报道角度可能不同\"\n  },\n  {\n    \"id\": 5,\n    \"title\": \"《刺客信条：黑旗 记忆重置》实机演",
+      "stderr_preview": "\nsession_id: 20260525_090228_a5fb13\n"
+    },
+    {
+      "name": "domestic_alibaba_qwen",
+      "provider": "alibaba",
+      "model": "qwen3.6-plus",
+      "geo": "domestic",
+      "exit_code": 1,
+      "duration_sec": 16.82,
+      "path": "/root/workspace/科武纪元/热点选题/multimodel/2026-05-25/domestic_alibaba_qwen.json",
+      "stdout_preview": "API call failed after 1 retries: Connection error.\n",
+      "stderr_preview": "\nsession_id: 20260525_090228_6bcec4\n"
+    }
+  ]
+}

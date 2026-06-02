@@ -1,0 +1,14 @@
+{
+  "task": {
+    "name": "domestic_zai_glm",
+    "provider": "zai",
+    "model": "glm-5.1",
+    "geo": "domestic",
+    "timeout": 180,
+    "prompt": "你负责国内游戏/平台热点采集。聚焦小黑盒/游民星空/IT之家/3DM/B站/小红书/Rebang。给 8 个候选，标国内热度来源、玩家切口、是否需海外交叉验证。JSON。"
+  },
+  "exit_code": 0,
+  "duration_sec": 75.16,
+  "stdout": "数据已够。综合 3DM、游民星空两大源，筛选出 8 个候选：\n\n```json\n[\n  {\n    \"id\": 1,\n    \"title\": \"虚幻引擎6官宣跳过UE5直上UE6，首个适配《火箭联盟》\",\n    \"heat_source\": [\"3DM\", \"游民星空\", \"B站\"],\n    \"player_angle\": \"老引擎终于换新，十多年UE3的火箭联盟能否焕发第二春；Epic这波跳级操作是什么信号\",\n    \"need_overseas_cross_verify\": true,\n    \"notes\": \"Epic官方在巴黎Major现场公布，海外已有大量报道；国内玩家讨论热度高但解读偏浅，可补充海外开发者视角\"\n  },\n  {\n    \"id\": 2,\n    \"title\": \"《007：初露锋芒》5月27日发售，IO互动冰川引擎，15分钟实机已出\",\n    \"heat_source\": [\"3DM\", \"游民星空\"],\n    \"player_angle\": \"杀手工作室做邦德到底行不行；D加密争议+46GB容量引PC玩家焦虑；预载已开\",\n    \"need_overseas_cross_verify\": true,\n    \"notes\": \"海外媒体评测即将解禁，发售日临近热度持续上升；D加密话题国内讨论度需海外交叉验证\"\n  },\n  {\n    \"id\": 3,\n    \"title\": \"《极限竞速：地平线6》Steam在线峰值近30万，成Xbox史上最佳首发\",\n    \"heat_source\": [\"游民星空\", \"3DM\"],\n    \"player_angle\": \"赛车年到底稳不稳；运镜被吐槽不如初代倒退十年 vs 销量近500万；A卡兼容性翻车\",\n    \"need_overseas_cross_verify\": true,\n    \"notes\": \"销量数据来自Alinea Analytics海外机构；运镜对比视频来自YouTube博主，需交叉验证原始源\"\n  },\n  {\n    \"id\": 4,\n    \"title\": \"《明末：渊虚之羽》被外资收购后Steam公告全英文，国产IP外流引争议\",\n    \"heat_source\": [\"3DM\"],\n    \"player_angle\": \"自己做的游戏连中文公告都没了；505Games母公司收购到底意味着什么；国产游戏IP出海还是被吃\",\n    \"need_overseas_cross_verify\": true,\n    \"notes\": \"Digital Bros收购事件需查海外原公告；国内玩家情绪强烈，海外报道角度可能不同\"\n  },\n  {\n    \"id\": 5,\n    \"title\": \"《刺客信条：黑旗 记忆重置》实机演示+删现代剧情+新增终局章节\",\n    \"heat_source\": [\"3DM\", \"游民星空\"],\n    \"player_angle\": \"安妮和谐被狂喷；删现代线剧情到底该不该；新终局章节能否挽回口碑；非全价游戏定价策略\",\n    \"need_overseas_cross_verify\": false,\n    \"notes\": \"信息主要来自育碧新加坡创意总监Paul Fu采访及GameFile外媒，国内报道已翻译完整；玩家讨论以国内情绪为主\"\n  },\n  {\n    \"id\": 6,\n    \"title\": \"国产UE5 MMORPG《诡秘之主》灰雾测试招募，6月26日三端首测\",\n    \"heat_source\": [\"3DM\"],\n    \"player_angle\": \"白金网文改编MMO到底能不能打；220个序列途径系统有多复杂；国产MMO赛道卷出新花样\",\n    \"need_overseas_cross_verify\": false,\n    \"notes\": \"纯国产游戏，国内IP，信息源为国内官方发布，无需海外交叉验证\"\n  },\n  {\n    \"id\": 7,\n    \"title\": \"RTX 5090D v2被中国海关禁止进口，韩国满血版价格暴涨\",\n    \"heat_source\": [\"游民星空\", \"3DM\"],\n    \"player_angle\": \"阉割版都不让进，国产显卡砺算7G100的3万人疯抢是不是信号；国内5000块的RX 9070XT vs 日本3747元史低\",\n    \"need_overseas_cross_verify\": true,\n    \"notes\": \"禁令消息需海关/工信部原始文件交叉验证；韩国涨价来自海外渠道；国产显卡话题国内热度高但需核实预售数据\"\n  },\n  {\n    \"id\": 8,\n    \"title\": \"Switch 2 Lite专利曝光 + 日版涨价1万日元 + 产能上调至2000万台\",\n    \"heat_source\": [\"游民星空\", \"3DM\"],\n    \"player_angle\": \"还没买到就涨价了；任天堂凭什么这么自信；宫本茂暗示马里奥新作+6月直面会预期拉满\",\n    \"need_overseas_cross_verify\": true,\n    \"notes\": \"专利信息来自Nintendores和海外博主Mike Odyssey；彭博社产能数据需交叉验证；直面会时间来自Jeff Grubb舅舅党\"\n  }\n]\n```\n\n小哥，8 选已列。#4《明末》和 #6《诡秘》偏国产独有切口，其余 6 条热度均需海外交叉。需要深挖哪条，说一声。\n",
+  "stderr": "\nsession_id: 20260525_090228_a5fb13\n"
+}

@@ -1,0 +1,286 @@
+{
+  "date": "2026-05-24",
+  "proxy_10819_alive": true,
+  "results": [
+    {
+      "name": "pcgamer_rss",
+      "url": "https://www.pcgamer.com/rss/",
+      "proxy": false,
+      "status": 200,
+      "bytes": 600000,
+      "seconds": 15.5,
+      "items": [
+        {
+          "title": "A 23-year-old D&D CRPG just got patched to add achievements and fix a bug that stopped you from earning XP",
+          "link": ""
+        },
+        {
+          "title": "Great moments in PC gaming: Stealing and selling someone else's treasure in Sea of Thieves",
+          "link": ""
+        },
+        {
+          "title": "Our readers are clear: They want Destiny 3, which is awkward, because Bungie reportedly isn't making Destiny 3",
+          "link": ""
+        },
+        {
+          "title": "Kickstarter rolls back new mature content guidelines after week of backlash",
+          "link": ""
+        },
+        {
+          "title": "14 years ago we published our Elder Scrolls 6 wishlist, and honestly? It still holds up",
+          "link": ""
+        },
+        {
+          "title": "Diablo 2 players made nearly 2 million warlocks in a single month",
+          "link": ""
+        },
+        {
+          "title": "I'll never love another RPG like I loved Neverwinter Nights",
+          "link": ""
+        },
+        {
+          "title": "The best birding board game on PC is getting a sequel about dragons, which are like cooler birds",
+          "link": ""
+        },
+        {
+          "title": "Deadlock's latest 'small update' yet again remixes basic mechanics and rebalances most of the roster",
+          "link": ""
+        },
+        {
+          "title": "PC Gamer's MMO readers are, according to you, fashion-forward healers who like your keybinds, and I couldn't be more proud",
+          "link": ""
+        },
+        {
+          "title": "As the UK plunges once more into political chaos, I’ve found the roguelike deckbuilder that can help me process it",
+          "link": ""
+        },
+        {
+          "title": "A Broken Sword movie is in the works, aiming to move the adventure game classics into 'the next medium it deserves'",
+          "link": ""
+        }
+      ],
+      "error": null
+    },
+    {
+      "name": "eurogamer_news",
+      "url": "https://www.eurogamer.net/feed/news",
+      "proxy": false,
+      "status": 200,
+      "bytes": 59018,
+      "seconds": 0.77,
+      "items": [],
+      "error": null
+    },
+    {
+      "name": "playstation_blog",
+      "url": "https://blog.playstation.com/feed/",
+      "proxy": false,
+      "status": 200,
+      "bytes": 181704,
+      "seconds": 1.3,
+      "items": [
+        {
+          "title": "PlayStation.Blog",
+          "link": "https://blog.playstation.com"
+        },
+        {
+          "title": "PlayStation.Blog",
+          "link": "https://blog.playstation.com"
+        },
+        {
+          "title": "Official PlayStation Podcast Episode 542: Horror on a Dark Knight",
+          "link": "https://blog.playstation.com/2026/05/22/official-playstation-podcast-episode-542-horror-on-a-dark-knight/"
+        },
+        {
+          "title": "Share of the Week: Hands",
+          "link": "https://blog.playstation.com/2026/05/22/share-of-the-week-hands/"
+        },
+        {
+          "title": "13 must-play open-world games available with PlayStation Plus Game Catalog",
+          "link": "https://blog.playstation.com/2026/05/22/13-must-play-open-world-games-available-with-playstation-plus-game-catalog/"
+        },
+        {
+          "title": "The sound of the Eclipse: Sam Slater on scoring Saros",
+          "link": "https://blog.playstation.com/2026/05/22/the-sound-of-the-eclipse-sam-slater-on-scoring-saros/"
+        },
+        {
+          "title": "Watch the world’s top Gran Turismo 7 gamers race live in Milan",
+          "link": "https://blog.playstation.com/2026/05/21/watch-the-worlds-top-gran-turismo-7-gamers-race-live-in-milan/"
+        },
+        {
+          "title": "State of Play returns Tuesday, June 2",
+          "link": "https://blog.playstation.com/2026/05/20/state-of-play-returns-tuesday-june-2/"
+        },
+        {
+          "title": "007 First Light on PS5 Pro: upgraded PSSR upscaling details",
+          "link": "https://blog.playstation.com/2026/05/19/007-first-light-on-ps5-pro-upgraded-pssr-upscaling-details/"
+        },
+        {
+          "title": "Time travel, trials, and treasure awaits in The Adventures of Elliot: The Millennium Tales",
+          "link": "https://blog.playstation.com/2026/05/18/time-travel-trials-and-treasure-awaits-in-the-adventures-of-elliot-the-millennium-tales/"
+        },
+        {
+          "title": "Official PlayStation Podcast Episode 541: Legendary Run",
+          "link": "https://blog.playstation.com/2026/05/15/official-playstation-podcast-episode-541-legendary-run/"
+        },
+        {
+          "title": "Share of the Week: EA Sports FC 26",
+          "link": "https://blog.playstation.com/2026/05/15/share-of-the-week-ea-sports-fc-26/"
+        }
+      ],
+      "error": null
+    },
+    {
+      "name": "ign_news",
+      "url": "https://www.ign.com/news",
+      "proxy": true,
+      "status": 200,
+      "bytes": 203880,
+      "seconds": 2.55,
+      "items": [
+        {
+          "title": "Game Reviews",
+          "link": "https://www.ign.com/reviews/games"
+        },
+        {
+          "title": "Upcoming Games",
+          "link": "https://www.ign.com/upcoming/games"
+        },
+        {
+          "title": "Video Game Trailers",
+          "link": "https://www.ign.com/events/video-game-trailers"
+        },
+        {
+          "title": "Movie Trailers",
+          "link": "https://www.ign.com/events/movie-trailers"
+        },
+        {
+          "title": "2dBungie Walks Away From Destiny 2, Final Content Update Coming in June238",
+          "link": "https://www.ign.com/articles/bungie-walks-away-from-destiny-2-final-content-update-coming-in-june"
+        },
+        {
+          "title": "2dFormer Splinter Cell Creative Director Says Realistic Graphics Are Causing Problems for Modern Stealth Games49",
+          "link": "https://www.ign.com/articles/former-splinter-cell-creative-director-says-realistic-graphics-are-causing-problems-for-modern-stealth-games"
+        },
+        {
+          "title": "1d agoSpartacus: House of Ashur Reportedly Canceled After Just 1 Season1d ago - Dead again?Spartacus",
+          "link": "https://www.ign.com/articles/spartacus-house-of-ashur-reportedly-canceled-after-just-1-season"
+        },
+        {
+          "title": "1d agoDestiny Players Review Bomb Marathon Only to Be Met With Countercampaign from Bungie Fans1d ago - Guardians.Destiny 2",
+          "link": "https://www.ign.com/articles/destiny-players-review-bomb-marathon-only-to-be-met-with-countercampaign-from-bungie-fans"
+        },
+        {
+          "title": "Board Game Reviews",
+          "link": "https://www.ign.com/events/board-game-reviews"
+        },
+        {
+          "title": "Game Release Dates",
+          "link": "https://www.ign.com/upcoming/games"
+        }
+      ],
+      "error": null
+    },
+    {
+      "name": "gamespot_news",
+      "url": "https://www.gamespot.com/news/",
+      "proxy": true,
+      "status": null,
+      "bytes": 0,
+      "seconds": 0.39,
+      "items": [],
+      "error": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "name": "steam_news",
+      "url": "https://store.steampowered.com/news/",
+      "proxy": true,
+      "status": 200,
+      "bytes": 200471,
+      "seconds": 1.82,
+      "items": [
+        {
+          "title": "Get the Steam Mobile App",
+          "link": "https://store.steampowered.com/mobile"
+        },
+        {
+          "title": "Steam Subscriber Agreement",
+          "link": "https://store.steampowered.com/subscriber_agreement/?snr=1_2108_4__global-responsive-menu"
+        },
+        {
+          "title": "Español - España (Spanish - Spain)",
+          "link": "https://store.steampowered.com/news/?l=spanish"
+        },
+        {
+          "title": "Français (French)",
+          "link": "https://store.steampowered.com/news/?l=french"
+        },
+        {
+          "title": "Українська (Ukrainian)",
+          "link": "https://store.steampowered.com/news/?l=ukrainian"
+        }
+      ],
+      "error": null
+    },
+    {
+      "name": "x_search_gaming",
+      "url": "https://x.com/search?q=gaming%20news%20OR%20PlayStation%20OR%20Steam%20OR%20Xbox&src=typed_query",
+      "proxy": true,
+      "status": 200,
+      "bytes": 268826,
+      "seconds": 2.5,
+      "items": [],
+      "error": null
+    },
+    {
+      "name": "reddit_games_search",
+      "url": "https://www.reddit.com/search/?q=gaming%20news&type=link",
+      "proxy": true,
+      "status": 200,
+      "bytes": 8431,
+      "seconds": 0.53,
+      "items": [],
+      "error": null
+    },
+    {
+      "name": "resetera",
+      "url": "https://www.resetera.com/forums/gaming-forum.7/",
+      "proxy": true,
+      "status": null,
+      "bytes": 0,
+      "seconds": 0.34,
+      "items": [],
+      "error": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "name": "rebang_gamersky",
+      "url": "https://api.rebang.today/v1/items?tab=gamersky&sub_tab=rec&page=1&version=1",
+      "proxy": false,
+      "status": 200,
+      "bytes": 23007,
+      "seconds": 0.14,
+      "items": [],
+      "error": null
+    },
+    {
+      "name": "rebang_ithome",
+      "url": "https://api.rebang.today/v1/items?tab=ithome&sub_tab=latest&page=1&version=1",
+      "proxy": false,
+      "status": 200,
+      "bytes": 12851,
+      "seconds": 0.3,
+      "items": [],
+      "error": null
+    },
+    {
+      "name": "rebang_xiaohongshu",
+      "url": "https://api.rebang.today/v1/items?tab=xiaohongshu&sub_tab=hot-search&page=1&version=1",
+      "proxy": false,
+      "status": 200,
+      "bytes": 4935,
+      "seconds": 0.29,
+      "items": [],
+      "error": null
+    }
+  ]
+}

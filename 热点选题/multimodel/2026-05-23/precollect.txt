@@ -1,0 +1,37 @@
+HOTSPOT_PRECOLLECT date=2026-05-23 proxy_10819_alive=True raw=/root/workspace/科武纪元/热点选题/raw/hotspot_probe_2026-05-23.json
+[OK] pcgamer_rss status=200 proxy=False bytes=600000 err=
+  - Shock, tears, and relief: How Destiny 2's most popular creators reacted to the end of the legendary shooter | 
+  - Last Flag studio lays off half its employees as it puts 'the future of the game in the hands of our players' | 
+  - Former Bungie dev says 'you'd be surprised how many times' expansions were pitched for a fan-favorite Destiny archvillain who's now left hanging | 
+  - Fallout lead Tim Cain argues games industry crisis hasn't reached the level of the 1983 crash: 'I don't think there's ever been a worse time in the games industry' | 
+  - Why play Wordle when you could be playing this new word puzzle game that rewards you with frogs? | 
+[BLOCKED_OR_EMPTY] eurogamer_news status=200 proxy=False bytes=81733 err=
+[OK] playstation_blog status=200 proxy=False bytes=181702 err=
+  - PlayStation.Blog | https://blog.playstation.com
+  - PlayStation.Blog | https://blog.playstation.com
+  - Official PlayStation Podcast Episode 542: Horror on a Dark Knight | https://blog.playstation.com/2026/05/22/official-playstation-podcast-episode-542-horror-on-a-dark-knight/
+  - Share of the Week: Hands | https://blog.playstation.com/2026/05/22/share-of-the-week-hands/
+  - 13 must-play open-world games available with PlayStation Plus Game Catalog | https://blog.playstation.com/2026/05/22/13-must-play-open-world-games-available-with-playstation-plus-game-catalog/
+[OK] ign_news status=200 proxy=True bytes=203893 err=
+  - Game Reviews | https://www.ign.com/reviews/games
+  - Upcoming Games | https://www.ign.com/upcoming/games
+  - Video Game Trailers | https://www.ign.com/events/video-game-trailers
+  - Movie Trailers | https://www.ign.com/events/movie-trailers
+  - 1dFormer Splinter Cell Creative Director Says Realistic Graphics Are Causing Problems for Modern Stealth Games47 | https://www.ign.com/articles/former-splinter-cell-creative-director-says-realistic-graphics-are-causing-problems-for-modern-stealth-games
+[BLOCKED_OR_EMPTY] gamespot_news status=None proxy=True bytes=0 err=HTTPError: HTTP Error 403: Forbidden
+[OK] steam_news status=200 proxy=True bytes=225493 err=
+  - Get the Steam Mobile App | https://store.steampowered.com/mobile
+  - Steam Subscriber Agreement | https://store.steampowered.com/subscriber_agreement/?snr=1_2108_4__global-responsive-menu
+  - Español - España (Spanish - Spain) | https://store.steampowered.com/news/?l=spanish
+  - Français (French) | https://store.steampowered.com/news/?l=french
+  - Українська (Ukrainian) | https://store.steampowered.com/news/?l=ukrainian
+[BLOCKED_OR_EMPTY] x_search_gaming status=200 proxy=True bytes=268768 err=
+[BLOCKED_OR_EMPTY] reddit_games_search status=200 proxy=True bytes=8431 err=
+[BLOCKED_OR_EMPTY] resetera status=None proxy=True bytes=0 err=HTTPError: HTTP Error 403: Forbidden
+[BLOCKED_OR_EMPTY] rebang_gamersky status=200 proxy=False bytes=23623 err=
+[BLOCKED_OR_EMPTY] rebang_ithome status=200 proxy=False bytes=12685 err=
+[BLOCKED_OR_EMPTY] rebang_xiaohongshu status=200 proxy=False bytes=4935 err=
+
+LLM_ROUTE_REQUIRED: if web_search fails, use terminal evidence above + Grok provider live-search/sources; do not collapse to domestic-only. Label blocked X/Reddit as gaps and use Grok/official/RSS/media as fallback.
+
+STDERR

@@ -1,0 +1,294 @@
+{
+  "date": "2026-05-23",
+  "proxy_10819_alive": true,
+  "results": [
+    {
+      "name": "pcgamer_rss",
+      "url": "https://www.pcgamer.com/rss/",
+      "proxy": false,
+      "status": 200,
+      "bytes": 600000,
+      "seconds": 53.1,
+      "items": [
+        {
+          "title": "Shock, tears, and relief: How Destiny 2's most popular creators reacted to the end of the legendary shooter",
+          "link": ""
+        },
+        {
+          "title": "Last Flag studio lays off half its employees as it puts 'the future of the game in the hands of our players'",
+          "link": ""
+        },
+        {
+          "title": "Former Bungie dev says 'you'd be surprised how many times' expansions were pitched for a fan-favorite Destiny archvillain who's now left hanging",
+          "link": ""
+        },
+        {
+          "title": "Fallout lead Tim Cain argues games industry crisis hasn't reached the level of the 1983 crash: 'I don't think there's ever been a worse time in the games industry'",
+          "link": ""
+        },
+        {
+          "title": "Why play Wordle when you could be playing this new word puzzle game that rewards you with frogs?",
+          "link": ""
+        },
+        {
+          "title": "Four years later, Microsoft finally finishes fighting over the Activision acquisition",
+          "link": ""
+        },
+        {
+          "title": "EU politician says killing games is bad, but 'wokeness' and the Black samurai Yasuke are the real problem",
+          "link": ""
+        },
+        {
+          "title": "Alright, so maybe Zohran Mamdani isn't New York's first gamer mayor",
+          "link": ""
+        },
+        {
+          "title": "Apple legend Steve Wozniak makes history again: Actually gets applause talking about AI at commencement speech",
+          "link": ""
+        },
+        {
+          "title": "How to find a Stunt Party event in Forza Horizon 6",
+          "link": ""
+        },
+        {
+          "title": "The EFortune Cookie is an adorable e-paper fortune-telling device and I really want to give it a bite",
+          "link": ""
+        },
+        {
+          "title": "It's Lenovo a-go-go as the company is responsible for nearly 1 in 4 of all PCs shipped worldwide",
+          "link": ""
+        }
+      ],
+      "error": null
+    },
+    {
+      "name": "eurogamer_news",
+      "url": "https://www.eurogamer.net/feed/news",
+      "proxy": false,
+      "status": 200,
+      "bytes": 81733,
+      "seconds": 0.79,
+      "items": [],
+      "error": null
+    },
+    {
+      "name": "playstation_blog",
+      "url": "https://blog.playstation.com/feed/",
+      "proxy": false,
+      "status": 200,
+      "bytes": 181702,
+      "seconds": 1.67,
+      "items": [
+        {
+          "title": "PlayStation.Blog",
+          "link": "https://blog.playstation.com"
+        },
+        {
+          "title": "PlayStation.Blog",
+          "link": "https://blog.playstation.com"
+        },
+        {
+          "title": "Official PlayStation Podcast Episode 542: Horror on a Dark Knight",
+          "link": "https://blog.playstation.com/2026/05/22/official-playstation-podcast-episode-542-horror-on-a-dark-knight/"
+        },
+        {
+          "title": "Share of the Week: Hands",
+          "link": "https://blog.playstation.com/2026/05/22/share-of-the-week-hands/"
+        },
+        {
+          "title": "13 must-play open-world games available with PlayStation Plus Game Catalog",
+          "link": "https://blog.playstation.com/2026/05/22/13-must-play-open-world-games-available-with-playstation-plus-game-catalog/"
+        },
+        {
+          "title": "The sound of the Eclipse: Sam Slater on scoring Saros",
+          "link": "https://blog.playstation.com/2026/05/22/the-sound-of-the-eclipse-sam-slater-on-scoring-saros/"
+        },
+        {
+          "title": "Watch the world’s top Gran Turismo 7 gamers race live in Milan",
+          "link": "https://blog.playstation.com/2026/05/21/watch-the-worlds-top-gran-turismo-7-gamers-race-live-in-milan/"
+        },
+        {
+          "title": "State of Play returns Tuesday, June 2",
+          "link": "https://blog.playstation.com/2026/05/20/state-of-play-returns-tuesday-june-2/"
+        },
+        {
+          "title": "007 First Light on PS5 Pro: upgraded PSSR upscaling details",
+          "link": "https://blog.playstation.com/2026/05/19/007-first-light-on-ps5-pro-upgraded-pssr-upscaling-details/"
+        },
+        {
+          "title": "Time travel, trials, and treasure awaits in The Adventures of Elliot: The Millennium Tales",
+          "link": "https://blog.playstation.com/2026/05/18/time-travel-trials-and-treasure-awaits-in-the-adventures-of-elliot-the-millennium-tales/"
+        },
+        {
+          "title": "Official PlayStation Podcast Episode 541: Legendary Run",
+          "link": "https://blog.playstation.com/2026/05/15/official-playstation-podcast-episode-541-legendary-run/"
+        },
+        {
+          "title": "Share of the Week: EA Sports FC 26",
+          "link": "https://blog.playstation.com/2026/05/15/share-of-the-week-ea-sports-fc-26/"
+        }
+      ],
+      "error": null
+    },
+    {
+      "name": "ign_news",
+      "url": "https://www.ign.com/news",
+      "proxy": true,
+      "status": 200,
+      "bytes": 203893,
+      "seconds": 0.91,
+      "items": [
+        {
+          "title": "Game Reviews",
+          "link": "https://www.ign.com/reviews/games"
+        },
+        {
+          "title": "Upcoming Games",
+          "link": "https://www.ign.com/upcoming/games"
+        },
+        {
+          "title": "Video Game Trailers",
+          "link": "https://www.ign.com/events/video-game-trailers"
+        },
+        {
+          "title": "Movie Trailers",
+          "link": "https://www.ign.com/events/movie-trailers"
+        },
+        {
+          "title": "1dFormer Splinter Cell Creative Director Says Realistic Graphics Are Causing Problems for Modern Stealth Games47",
+          "link": "https://www.ign.com/articles/former-splinter-cell-creative-director-says-realistic-graphics-are-causing-problems-for-modern-stealth-games"
+        },
+        {
+          "title": "2dOpen-World Lord of Rings RPG and New Kingdom Come Game Confirmed in Development at Warhorse Studios68",
+          "link": "https://www.ign.com/articles/open-world-lord-of-rings-rpg-and-new-kingdom-come-game-confirmed-in-development-at-warhorse-studios"
+        },
+        {
+          "title": "1dSony Quietly Increased the Price of PlayStation Plus Extra and Premium Subscriptions, Too285",
+          "link": "https://www.ign.com/articles/sony-quietly-increased-the-price-of-playstation-plus-extra-and-premium-subscriptions-too"
+        },
+        {
+          "title": "1dThe Boys Showrunner Explains Queen Maeve No-Show in Series Finale11",
+          "link": "https://www.ign.com/articles/the-boys-showrunner-explains-queen-maeve-no-show-in-series-finale"
+        },
+        {
+          "title": "2h agoSpartacus: House of Ashur Reportedly Canceled After Just 1 Season2h ago - Dead again?Spartacus",
+          "link": "https://www.ign.com/articles/spartacus-house-of-ashur-reportedly-canceled-after-just-1-season"
+        },
+        {
+          "title": "3h agoDestiny Players Review Bomb Marathon Only to Be Met With Countercampaign from Bungie Fans3h ago - Guardians.Destiny 2",
+          "link": "https://www.ign.com/articles/destiny-players-review-bomb-marathon-only-to-be-met-with-countercampaign-from-bungie-fans"
+        },
+        {
+          "title": "Board Game Reviews",
+          "link": "https://www.ign.com/events/board-game-reviews"
+        },
+        {
+          "title": "Game Release Dates",
+          "link": "https://www.ign.com/upcoming/games"
+        }
+      ],
+      "error": null
+    },
+    {
+      "name": "gamespot_news",
+      "url": "https://www.gamespot.com/news/",
+      "proxy": true,
+      "status": null,
+      "bytes": 0,
+      "seconds": 0.38,
+      "items": [],
+      "error": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "name": "steam_news",
+      "url": "https://store.steampowered.com/news/",
+      "proxy": true,
+      "status": 200,
+      "bytes": 225493,
+      "seconds": 0.65,
+      "items": [
+        {
+          "title": "Get the Steam Mobile App",
+          "link": "https://store.steampowered.com/mobile"
+        },
+        {
+          "title": "Steam Subscriber Agreement",
+          "link": "https://store.steampowered.com/subscriber_agreement/?snr=1_2108_4__global-responsive-menu"
+        },
+        {
+          "title": "Español - España (Spanish - Spain)",
+          "link": "https://store.steampowered.com/news/?l=spanish"
+        },
+        {
+          "title": "Français (French)",
+          "link": "https://store.steampowered.com/news/?l=french"
+        },
+        {
+          "title": "Українська (Ukrainian)",
+          "link": "https://store.steampowered.com/news/?l=ukrainian"
+        }
+      ],
+      "error": null
+    },
+    {
+      "name": "x_search_gaming",
+      "url": "https://x.com/search?q=gaming%20news%20OR%20PlayStation%20OR%20Steam%20OR%20Xbox&src=typed_query",
+      "proxy": true,
+      "status": 200,
+      "bytes": 268768,
+      "seconds": 0.9,
+      "items": [],
+      "error": null
+    },
+    {
+      "name": "reddit_games_search",
+      "url": "https://www.reddit.com/search/?q=gaming%20news&type=link",
+      "proxy": true,
+      "status": 200,
+      "bytes": 8431,
+      "seconds": 0.35,
+      "items": [],
+      "error": null
+    },
+    {
+      "name": "resetera",
+      "url": "https://www.resetera.com/forums/gaming-forum.7/",
+      "proxy": true,
+      "status": null,
+      "bytes": 0,
+      "seconds": 0.35,
+      "items": [],
+      "error": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "name": "rebang_gamersky",
+      "url": "https://api.rebang.today/v1/items?tab=gamersky&sub_tab=rec&page=1&version=1",
+      "proxy": false,
+      "status": 200,
+      "bytes": 23623,
+      "seconds": 0.3,
+      "items": [],
+      "error": null
+    },
+    {
+      "name": "rebang_ithome",
+      "url": "https://api.rebang.today/v1/items?tab=ithome&sub_tab=latest&page=1&version=1",
+      "proxy": false,
+      "status": 200,
+      "bytes": 12685,
+      "seconds": 0.17,
+      "items": [],
+      "error": null
+    },
+    {
+      "name": "rebang_xiaohongshu",
+      "url": "https://api.rebang.today/v1/items?tab=xiaohongshu&sub_tab=hot-search&page=1&version=1",
+      "proxy": false,
+      "status": 200,
+      "bytes": 4935,
+      "seconds": 0.28,
+      "items": [],
+      "error": null
+    }
+  ]
+}

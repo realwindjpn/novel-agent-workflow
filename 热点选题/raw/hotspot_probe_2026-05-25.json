@@ -1,0 +1,290 @@
+{
+  "date": "2026-05-25",
+  "proxy_10819_alive": true,
+  "results": [
+    {
+      "name": "pcgamer_rss",
+      "url": "https://www.pcgamer.com/rss/",
+      "proxy": false,
+      "status": 200,
+      "bytes": 521553,
+      "seconds": 17.53,
+      "items": [
+        {
+          "title": "PC gaming's very own indie-themed Smash Bros. just added the guy from Spelunky, who I now know is named Guy Spelunky",
+          "link": ""
+        },
+        {
+          "title": "Deus Ex, Marathon actor Elias Toufexis doesn't get why people root for games to fail: 'Life is so short, man'",
+          "link": ""
+        },
+        {
+          "title": "Epic reveals first Unreal Engine 6 game, and it's not Fortnite",
+          "link": ""
+        },
+        {
+          "title": "Peak boss doesn't mind us calling it friendslop: 'Why not make a game where the point is to hang out with your friends?'",
+          "link": ""
+        },
+        {
+          "title": "Forza Horizon 6 speeds into Steam's top 5 most played games with over 300k concurrent players",
+          "link": ""
+        },
+        {
+          "title": "I'm not ashamed to admit that The Sims 2 got me into house music, especially since its devs hired the best DJs in the biz to score it",
+          "link": ""
+        },
+        {
+          "title": "Comedian Alasdair Beckett-King was a die-hard adventure gamer until he discovered Morrowind: 'The first time I loaded it up, I walked straight into a little pond and was killed by a fish'",
+          "link": ""
+        },
+        {
+          "title": "Dawn of War 2 review (2009)",
+          "link": ""
+        },
+        {
+          "title": "We live in a world where every single Hatsune Miku is canon, which means that includes Helldivers Miku and Pyramid Head Miku",
+          "link": ""
+        },
+        {
+          "title": "The design lead of Half-Life's biggest competitor says that its publisher was so 'pissed off' by the time the game launched that it didn't bother testing it properly: 'We got trashed in the press because of bugs'",
+          "link": ""
+        },
+        {
+          "title": "A game developer compared Godot and Unity by making the same game in both engines, and he's found a clear winner",
+          "link": ""
+        },
+        {
+          "title": "Space Marine 2 gets a steep discount, a free trial and an update that adds a 'major revamp' of Siege Mode, as its multiplayer continues to outpace games like Marathon",
+          "link": ""
+        }
+      ],
+      "error": null
+    },
+    {
+      "name": "eurogamer_news",
+      "url": "https://www.eurogamer.net/feed/news",
+      "proxy": false,
+      "status": 200,
+      "bytes": 85624,
+      "seconds": 0.41,
+      "items": [],
+      "error": null
+    },
+    {
+      "name": "playstation_blog",
+      "url": "https://blog.playstation.com/feed/",
+      "proxy": false,
+      "status": 200,
+      "bytes": 181704,
+      "seconds": 1.34,
+      "items": [
+        {
+          "title": "PlayStation.Blog",
+          "link": "https://blog.playstation.com"
+        },
+        {
+          "title": "PlayStation.Blog",
+          "link": "https://blog.playstation.com"
+        },
+        {
+          "title": "Official PlayStation Podcast Episode 542: Horror on a Dark Knight",
+          "link": "https://blog.playstation.com/2026/05/22/official-playstation-podcast-episode-542-horror-on-a-dark-knight/"
+        },
+        {
+          "title": "Share of the Week: Hands",
+          "link": "https://blog.playstation.com/2026/05/22/share-of-the-week-hands/"
+        },
+        {
+          "title": "13 must-play open-world games available with PlayStation Plus Game Catalog",
+          "link": "https://blog.playstation.com/2026/05/22/13-must-play-open-world-games-available-with-playstation-plus-game-catalog/"
+        },
+        {
+          "title": "The sound of the Eclipse: Sam Slater on scoring Saros",
+          "link": "https://blog.playstation.com/2026/05/22/the-sound-of-the-eclipse-sam-slater-on-scoring-saros/"
+        },
+        {
+          "title": "Watch the world’s top Gran Turismo 7 gamers race live in Milan",
+          "link": "https://blog.playstation.com/2026/05/21/watch-the-worlds-top-gran-turismo-7-gamers-race-live-in-milan/"
+        },
+        {
+          "title": "State of Play returns Tuesday, June 2",
+          "link": "https://blog.playstation.com/2026/05/20/state-of-play-returns-tuesday-june-2/"
+        },
+        {
+          "title": "007 First Light on PS5 Pro: upgraded PSSR upscaling details",
+          "link": "https://blog.playstation.com/2026/05/19/007-first-light-on-ps5-pro-upgraded-pssr-upscaling-details/"
+        },
+        {
+          "title": "Time travel, trials, and treasure awaits in The Adventures of Elliot: The Millennium Tales",
+          "link": "https://blog.playstation.com/2026/05/18/time-travel-trials-and-treasure-awaits-in-the-adventures-of-elliot-the-millennium-tales/"
+        },
+        {
+          "title": "Official PlayStation Podcast Episode 541: Legendary Run",
+          "link": "https://blog.playstation.com/2026/05/15/official-playstation-podcast-episode-541-legendary-run/"
+        },
+        {
+          "title": "Share of the Week: EA Sports FC 26",
+          "link": "https://blog.playstation.com/2026/05/15/share-of-the-week-ea-sports-fc-26/"
+        }
+      ],
+      "error": null
+    },
+    {
+      "name": "ign_news",
+      "url": "https://www.ign.com/news",
+      "proxy": true,
+      "status": 200,
+      "bytes": 199212,
+      "seconds": 0.44,
+      "items": [
+        {
+          "title": "Game Reviews",
+          "link": "https://www.ign.com/reviews/games"
+        },
+        {
+          "title": "Upcoming Games",
+          "link": "https://www.ign.com/upcoming/games"
+        },
+        {
+          "title": "Video Game Trailers",
+          "link": "https://www.ign.com/events/video-game-trailers"
+        },
+        {
+          "title": "Movie Trailers",
+          "link": "https://www.ign.com/events/movie-trailers"
+        },
+        {
+          "title": "3dFormer Splinter Cell Creative Director Says Realistic Graphics Are Causing Problems for Modern Stealth Games50",
+          "link": "https://www.ign.com/articles/former-splinter-cell-creative-director-says-realistic-graphics-are-causing-problems-for-modern-stealth-games"
+        },
+        {
+          "title": "2dDestiny Players Review Bomb Marathon Only to Be Met With Countercampaign from Bungie Fans58",
+          "link": "https://www.ign.com/articles/destiny-players-review-bomb-marathon-only-to-be-met-with-countercampaign-from-bungie-fans"
+        },
+        {
+          "title": "8h agoUnreal Engine 6 Revealed as Rocket League Gets a New Coat of Paint8h ago - &quot;What. A. Moment.&quot;Rocket League",
+          "link": "https://www.ign.com/articles/unreal-engine-6-revealed-as-rocket-league-gets-a-new-coat-of-paint"
+        },
+        {
+          "title": "8h ago007 First Light Leaks Prompt IO Interactive to Publish Gameplay Early8h ago - Skyfall.007 First Light",
+          "link": "https://www.ign.com/articles/007-first-light-leaks-prompt-io-interactive-to-publish-gameplay-early"
+        },
+        {
+          "title": "12h agoHands Over Is a Multiplayer Horror Party Game Where Childhood Games Turn Deadly12h ago - Duck, duck, DEAD.Ryan McCaffrey",
+          "link": "https://www.ign.com/articles/hands-over-announced-for-pc"
+        },
+        {
+          "title": "Board Game Reviews",
+          "link": "https://www.ign.com/events/board-game-reviews"
+        },
+        {
+          "title": "Game Release Dates",
+          "link": "https://www.ign.com/upcoming/games"
+        }
+      ],
+      "error": null
+    },
+    {
+      "name": "gamespot_news",
+      "url": "https://www.gamespot.com/news/",
+      "proxy": true,
+      "status": null,
+      "bytes": 0,
+      "seconds": 0.38,
+      "items": [],
+      "error": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "name": "steam_news",
+      "url": "https://store.steampowered.com/news/",
+      "proxy": true,
+      "status": 200,
+      "bytes": 184250,
+      "seconds": 0.73,
+      "items": [
+        {
+          "title": "Get the Steam Mobile App",
+          "link": "https://store.steampowered.com/mobile"
+        },
+        {
+          "title": "Steam Subscriber Agreement",
+          "link": "https://store.steampowered.com/subscriber_agreement/?snr=1_2108_4__global-responsive-menu"
+        },
+        {
+          "title": "Español - España (Spanish - Spain)",
+          "link": "https://store.steampowered.com/news/?l=spanish"
+        },
+        {
+          "title": "Français (French)",
+          "link": "https://store.steampowered.com/news/?l=french"
+        },
+        {
+          "title": "Українська (Ukrainian)",
+          "link": "https://store.steampowered.com/news/?l=ukrainian"
+        }
+      ],
+      "error": null
+    },
+    {
+      "name": "x_search_gaming",
+      "url": "https://x.com/search?q=gaming%20news%20OR%20PlayStation%20OR%20Steam%20OR%20Xbox&src=typed_query",
+      "proxy": true,
+      "status": 200,
+      "bytes": 269942,
+      "seconds": 0.97,
+      "items": [],
+      "error": null
+    },
+    {
+      "name": "reddit_games_search",
+      "url": "https://www.reddit.com/search/?q=gaming%20news&type=link",
+      "proxy": true,
+      "status": 200,
+      "bytes": 8431,
+      "seconds": 0.61,
+      "items": [],
+      "error": null
+    },
+    {
+      "name": "resetera",
+      "url": "https://www.resetera.com/forums/gaming-forum.7/",
+      "proxy": true,
+      "status": null,
+      "bytes": 0,
+      "seconds": 0.39,
+      "items": [],
+      "error": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "name": "rebang_gamersky",
+      "url": "https://api.rebang.today/v1/items?tab=gamersky&sub_tab=rec&page=1&version=1",
+      "proxy": false,
+      "status": 200,
+      "bytes": 21660,
+      "seconds": 0.14,
+      "items": [],
+      "error": null
+    },
+    {
+      "name": "rebang_ithome",
+      "url": "https://api.rebang.today/v1/items?tab=ithome&sub_tab=latest&page=1&version=1",
+      "proxy": false,
+      "status": 200,
+      "bytes": 13089,
+      "seconds": 0.14,
+      "items": [],
+      "error": null
+    },
+    {
+      "name": "rebang_xiaohongshu",
+      "url": "https://api.rebang.today/v1/items?tab=xiaohongshu&sub_tab=hot-search&page=1&version=1",
+      "proxy": false,
+      "status": 200,
+      "bytes": 4935,
+      "seconds": 0.11,
+      "items": [],
+      "error": null
+    }
+  ]
+}

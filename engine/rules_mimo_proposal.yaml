@@ -1,0 +1,261 @@
+# ============================================================
+# 科武纪元·自修复/自进化规则草案  v0.1
+# 作者: MiMo-v2.5 | 日期: 2026-05-28 | 状态: PENDING
+# 边界: 不碰新版/、已投稿/、大纲、STATUS/WAL
+# ============================================================
+
+version: "0.1.0"
+created: "2026-05-28"
+status: pending  # 须主控/用户批准后才生效
+
+# ────────────────────────────────────────────
+# 1. 三色闸门定义
+# ────────────────────────────────────────────
+gates:
+  green:
+    label: "自走"
+    desc: "脚本/单模型可自动执行，无需人工确认"
+    actions:
+      - "cron_heartbeat_check"
+      - "stale_lock_cleanup"
+      - "route_429_fallback"
+      - "format_wikilink_strip"
+      - "ban_word_deterministic_fix"
+      - "sync_kewu_run"
+      - "empty_report_reload"
+      - "txt_byte_count_verify"
+    guardrails:
+      - "不写回新版/"
+      - "不生成已投稿TXT"
+      - "不触碰大纲"
+
+  yellow:
+    label: "主控审"
+    desc: "主控读decision_card后裁决"
+    actions:
+      - "outline_candidate_patch"
+      - "style_arbitration"
+      - "low_risk_content_fix"
+      - "rule_patch_proposal"
+      - "council_conflict_resolve"
+      - "monitor_rebuild"
+    guardrails:
+      - "决策须落decision_card"
+      - "剧情方向变化不可yellow"
+      - "跨章结构改动不可yellow"
+
+  red:
+    label: "用户审"
+    desc: "必须用户明确批准"
+    actions:
+      - "outline_structural_change"
+      - "plot_direction_change"
+      - "chapter_add_delete"
+      - "batch_old_chapter_overwrite"
+      - "platform_publish_submit"
+      - "login_risk_action"
+      - "daily_upload_quota_change"
+      - "major_setting_change"
+      - "prose_full_rewrite"
+      - "outline_root_edit"
+    guardrails:
+      - "不允许任何自动降级绕过"
+
+# ────────────────────────────────────────────
+# 2. healing 自修复规则
+# ────────────────────────────────────────────
+healing:
+  scope:
+    - "flow"
+    - "format"
+    - "route"
+    - "monitor"
+  forbidden:
+    - "prose"
+    - "outline"
+    - "platform_publish"
+
+  rules:
+    - id: "H01"
+      name: "stale_lock_cleanup"
+      gate: "green"
+      trigger: "lock文件mtime>30min"
+      action: "kill旧PID→删锁→emit事件"
+      evidence: "PID存活检查+锁已删"
+    - id: "H02"
+      name: "route_429_fallback"
+      gate: "green"
+      trigger: "stderr含429或rate_limit"
+      action: "切备用路由→smoke→emit事件"
+      evidence: "旧路由+新路由+smoke PASS"
+    - id: "H03"
+      name: "empty_report_reload"
+      gate: "green"
+      trigger: "report为空且进程存活>10min"
+      action: "重读子进程stdout/stderr→重建report"
+      evidence: "原大小→新大小"
+    - id: "H04"
+      name: "monitor_rebuild"
+      gate: "yellow"
+      trigger: "监控报BLOCKED/alive=False≥3次"
+      action: "停旧监控→读state→重建→emit事件"
+      evidence: "旧cron_id+新cron_id+run验证"
+    - id: "H05"
+      name: "ban_word_deterministic"
+      gate: "green"
+      trigger: "机器门禁BAN:*失败"
+      action: "禁词表确定性替换→emit事件"
+      evidence: "修复前数量→修复后数量"
+    - id: "H06"
+      name: "txt_byte_count_recheck"
+      gate: "green"
+      trigger: "TXT字数<3000或>5000"
+      action: "重新导出TXT→复核→emit事件"
+      evidence: "旧字数→新字数"
+    - id: "H07"
+      name: "wiki_fulltext_sync"
+      gate: "green"
+      trigger: "sync_kewu报告Full Text不一致"
+      action: "用新版/覆盖wiki Full Text"
+      evidence: "grep关键词diff"
+    - id: "H08"
+      name: "heartbeat_check"
+      gate: "green"
+      trigger: "cron心跳脚本运行"
+      action: "检查PID+state文件时效"
+      evidence: "PID+mtime"
+
+# ────────────────────────────────────────────
+# 3. evolution 自进化规则
+# ────────────────────────────────────────────
+evolution:
+  mode: "pending_only"
+  storage: "审核记录/自循环落地_20260528/evolution_pending.jsonl"
+  approval:
+    - "user"
+    - "controller"
+
+  rules:
+    - id: "E01"
+      name: "route_pool_optimize"
+      desc: "根据历史成功率/延迟建议调整provider优先级"
+      trigger: "同role连续3次FAIL后换路由成功"
+      auto_apply: false
+    - id: "E02"
+      name: "gate_threshold_tune"
+      desc: "根据误判率建议调整机器门禁阈值"
+      trigger: "月度内假FAIL率>20%"
+      auto_apply: false
+    - id: "E03"
+      name: "sixrole_prompt_iterate"
+      desc: "根据FAIL聚类建议优化角色prompt"
+      trigger: "同角色连续3次相同FAIL类型"
+      auto_apply: false
+    - id: "E04"
+      name: "monitor_frequency_adapt"
+      desc: "根据实际耗时建议调整cron间隔"
+      trigger: "连续5次报告仍在运行且无新产物"
+      auto_apply: false
+    - id: "E05"
+      name: "ban_word_table_extend"
+      desc: "从复审FAIL中提取新增禁词候选"
+      trigger: "编辑/读者FAIL中≥2次相同非禁词问题"
+      auto_apply: false
+
+# ────────────────────────────────────────────
+# 4. 事件名规范
+# ────────────────────────────────────────────
+events:
+  naming: "{domain}_{action}[_{detail}]"
+  registry:
+    # 自修复
+    - name: "HEAL_LOCK_CLEANUP"
+      gate: "green"
+      fields: "stale_pid,lock_path,duration"
+    - name: "HEAL_ROUTE_SWITCH"
+      gate: "green"
+      fields: "old_route,new_route,trigger,smoke"
+    - name: "HEAL_REPORT_RELOAD"
+      gate: "green"
+      fields: "report_path,old_size,new_size"
+    - name: "HEAL_MONITOR_REBUILD"
+      gate: "yellow"
+      fields: "old_cron_id,new_cron_id,trigger_count"
+    - name: "HEAL_BAN_FIX"
+      gate: "green"
+      fields: "chapter,word,count_before,count_after"
+    - name: "HEAL_TXT_RECOUNT"
+      gate: "green"
+      fields: "chapter,old_count,new_count"
+    - name: "HEAL_WIKI_SYNC"
+      gate: "green"
+      fields: "chapter,keyword_diff"
+    # 心跳
+    - name: "HEARTBEAT_OK"
+      gate: "green"
+      fields: "pid,state_mtime"
+    - name: "HEARTBEAT_STALE"
+      gate: "green"
+      fields: "pid,state_mtime,stale_duration"
+    # 闸门
+    - name: "GATE_GREEN_EXECUTE"
+      gate: "green"
+      fields: "action,chapter,result"
+    - name: "GATE_YELLOW_REVIEW"
+      gate: "yellow"
+      fields: "action,chapter,decision_card_path"
+    - name: "GATE_RED_BLOCK"
+      gate: "red"
+      fields: "action,chapter,reason"
+    # 自进化
+    - name: "EVO_PROPOSAL"
+      gate: "pending"
+      fields: "rule_id,desc,evidence"
+    - name: "EVO_APPROVED"
+      gate: "pending"
+      fields: "rule_id,approver,patch"
+    - name: "EVO_REJECTED"
+      gate: "pending"
+      fields: "rule_id,reason"
+    # 循环
+    - name: "CYCLE_DAY_START"
+      gate: "green"
+      fields: "date,pending_chapters,upload_target"
+    - name: "CYCLE_DAY_END"
+      gate: "green"
+      fields: "date,done,failed,evo_pending"
+
+# ────────────────────────────────────────────
+# 5. MVP 验收清单
+# ────────────────────────────────────────────
+mvp:
+  phase1:
+    name: "三色闸门落地"
+    items:
+      - "H01/H02/H05可触发并产出事件"
+      - "decision_card模板可创建/读取"
+      - "红灯动作被拦截并产出GATE_RED_BLOCK"
+  phase2:
+    name: "自修复链路"
+    items:
+      - "H03/H06/H07端到端验证"
+      - "H08接入no_agent cron"
+      - "green healing可在单章闭环中自动触发"
+  phase3:
+    name: "自进化pending"
+    items:
+      - "evolution_pending.jsonl可追加"
+      - "E01-E05任一触发后产出EVO_PROPOSAL"
+      - "EVO_PROPOSAL不自动生效"
+      - "EVO_APPROVED/EVO_REJECTED写回jsonl"
+  phase4:
+    name: "监控集成"
+    items:
+      - "kewu_daily_state.py读events汇总日报"
+      - "CYCLE_DAY_START/END可产出"
+      - "HEARTBEAT_OK/STALE接入cron"
+  dod:
+    - "14天内green healing自动触发>=5次且0次误触prose/outline"
+    - "evolution_pending有>=3条且0条auto_apply"
+    - "红灯拦截率100%"
+    - "daily_state可汇总全部事件"

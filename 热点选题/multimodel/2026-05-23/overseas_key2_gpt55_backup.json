@@ -1,0 +1,14 @@
+{
+  "task": {
+    "name": "overseas_key2_gpt55_backup",
+    "provider": "key2",
+    "model": "gpt-5.5",
+    "geo": "overseas",
+    "timeout": 240,
+    "prompt": "你是海外游戏资讯备用采集器。用公开来源视角列今日可写热点，尤其玩家争议/评论入口。输出 JSON 数组，含来源链接或可检索来源名。"
+  },
+  "exit_code": 1,
+  "duration_sec": 14.67,
+  "stdout": "",
+  "stderr": "Error: Error code: 401 - {'code': 'INVALID_API_KEY', 'message': 'Invalid API key'}\n\nsession_id: 20260523_090135_c89b00\n"
+}

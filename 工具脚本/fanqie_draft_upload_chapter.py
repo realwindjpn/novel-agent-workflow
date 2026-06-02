@@ -28,13 +28,19 @@ DEFAULT_STATE = Path('/root/workspace/browser_profiles/fanqie/fanqie_state.json'
 
 def run(cmd: str, timeout: int = 60) -> str:
     p = subprocess.run(cmd, shell=True, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=timeout)
+    out = p.stdout
+    # agent-browser 若 daemon 已运行，会把“--state ignored”警告写入 stdout，污染 get url / eval JSON。
+    # 该警告不代表当前会话未登录；运行中会话应以实际页面状态为准。
+    out = '\n'.join(line for line in out.splitlines() if not line.startswith('⚠ --state ignored:'))
     if p.returncode != 0:
-        raise RuntimeError(f'命令失败({p.returncode}): {cmd}\n{p.stdout}')
-    return p.stdout
+        raise RuntimeError(f'命令失败({p.returncode}): {cmd}\n{out}')
+    return out
 
 
 def ab(session: str, command: str, timeout: int = 60, state_path: Path | None = None) -> str:
-    state = f"--state {shlex.quote(str(state_path))} " if state_path and state_path.exists() else ''
+    # --state 只在冷启动时有用；daemon 已运行时会被忽略，还会污染 stdout。
+    # 因此默认复用当前 fanqie 会话；需要从 state 冷启动时先在外部 close --all。
+    state = f"--state {shlex.quote(str(state_path))} " if state_path and state_path.exists() and command.startswith('open ') else ''
     return run(f"agent-browser --session-name {shlex.quote(session)} {state}{command}", timeout=timeout)
 
 
@@ -273,7 +279,9 @@ def save_and_verify(session: str, data: dict, state_path: Path | None = None):
 (() => { const txt=document.body.innerText; const m=txt.match(new RegExp('正文字数\\\\s*([0-9]+)')); return {url:location.href, saved:txt.includes('已保存到云端')||txt.includes('已保存'), word:m?m[1]:null, vol:document.querySelector('.publish-header-volume-name')?.innerText, title:Array.from(document.querySelectorAll('input')).find(e=>e.placeholder==='请输入标题')?.value, num:Array.from(document.querySelectorAll('input')).find(e=>String(e.className).includes('byte-input')&&!e.placeholder)?.value}; })()
 """
     saved = js_eval(session, js, state_path=state_path)
-    if not isinstance(saved, dict) or not saved.get('saved') or saved.get('num') != str(data['chapter']):
+    # 番茄有时点“存草稿”后不立即刷新“已保存到云端”文案，但草稿 URL、章号、标题、字数已落页。
+    # 以草稿箱列表复核作为最终证据，不在此处因 saved 文案滞后中断。
+    if not isinstance(saved, dict) or saved.get('num') != str(data['chapter']):
         raise RuntimeError(f'顶部存草稿失败: {saved}')
     ab(session, f"open {shlex.quote(DRAFT_URL)}", timeout=60, state_path=state_path)
     time.sleep(2)

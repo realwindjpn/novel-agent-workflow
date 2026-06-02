@@ -1,0 +1,339 @@
+{
+  "date": "2026-05-21",
+  "proxy_10819_alive": true,
+  "results": [
+    {
+      "name": "pcgamer_rss",
+      "url": "https://www.pcgamer.com/rss/",
+      "proxy": false,
+      "status": 200,
+      "bytes": 506360,
+      "seconds": 25.38,
+      "items": [
+        {
+          "title": "How well do you know Baldur's Gate 3's third act? See what you remember about the RPG's big finale with a quiz built for real Elder Brains",
+          "link": ""
+        },
+        {
+          "title": "It's my own fault for thinking Warren Spector's new multiplayer stealth game adding singleplayer would make it the Thief successor I was hoping for",
+          "link": ""
+        },
+        {
+          "title": "How to watch Warhammer Skulls 2026",
+          "link": ""
+        },
+        {
+          "title": "I read every document in the Musk vs Altman case and my takeaway is—'Heartbreaking: The Worst Person You Know Just Made a Great Point'",
+          "link": ""
+        },
+        {
+          "title": "In the early 1990s, Doom was famously installed on more PCs than Windows itself—but how many was that, actually?",
+          "link": ""
+        },
+        {
+          "title": "Nearly a decade after its last update, Darksiders Warmastered Edition gets a photo mode and motion controls in a surprise new patch",
+          "link": ""
+        },
+        {
+          "title": "Splitgate studio reveals its new game, looks a lot like its old game",
+          "link": ""
+        },
+        {
+          "title": "Civ 7's massive overhaul update brings its highest Steam player count in over a year",
+          "link": ""
+        },
+        {
+          "title": "Valve asks New York court to dismiss Counter-Strike lawsuit, says 'people enjoy surprises' and equating loot boxes to gambling is 'nonsensical'",
+          "link": ""
+        },
+        {
+          "title": "Another live service game is dead just a few months after launch",
+          "link": ""
+        },
+        {
+          "title": "Embark busts 9 myths about Arc Raiders' aggression-based matchmaking, and says defending yourself is no longer a hostile action",
+          "link": ""
+        },
+        {
+          "title": "007 First Light's James Bond (probably) won't be a sexist, misogynist dinosaur: 'Some things fall by the wayside,' IO Interactive says",
+          "link": ""
+        }
+      ],
+      "error": null
+    },
+    {
+      "name": "eurogamer_news",
+      "url": "https://www.eurogamer.net/feed/news",
+      "proxy": false,
+      "status": 200,
+      "bytes": 167029,
+      "seconds": 0.88,
+      "items": [
+        {
+          "title": "Eurogamer.net News Feed",
+          "link": "https://www.eurogamer.net/feed/news"
+        },
+        {
+          "title": "Ubisoft confirms new Assassin's Creed, Far Cry, and Ghost Recon games are coming before April 2029",
+          "link": "https://www.eurogamer.net/ubisoft-new-assassins-creed-far-cry-ghost-recon-ai-experience"
+        },
+        {
+          "title": "Quantic Dream's multiplayer game Spellcasters Chronicles is being shut down and the studio reorganised, but Star Wars Eclipse is unaffected",
+          "link": "https://www.eurogamer.net/quantic-dream-closing-spellcasters-chronicles"
+        },
+        {
+          "title": "\"Honestly? We botched it\" - Kickstarter apologises for its criticised adult content rules, and for betraying its \"f*ck the establishment spirit\"",
+          "link": "https://www.eurogamer.net/kickstarter-adult-content-rules-censorship-apology"
+        },
+        {
+          "title": "Surreal narrative match-3 game Titanium Court has sold over 25,000 copies, giving designer AP Thomson enough time to peacefully work on his next game",
+          "link": "https://www.eurogamer.net/titanium-court-sells-25k-copies"
+        },
+        {
+          "title": "\"We overlooked the potential offense and harm\" - the studio behind popular multiplayer game Party Animals has now cancelled its AI video competition entirely",
+          "link": "https://www.eurogamer.net/party-animals-ai-video-contest-cancelled"
+        },
+        {
+          "title": "\"Whoa what a wild reaction\" - Final Fantasy creator Hironobu Sakaguchi reacts to backlash after praising an AI-generated FF6 remake trailer",
+          "link": "https://www.eurogamer.net/final-fantasy-creator-generative-ai-backlash"
+        },
+        {
+          "title": "PlayStation just announced a new State of Play, and it'll be over an hour long",
+          "link": "https://www.eurogamer.net/playstation-just-announced-a-new-state-of-play-and-itll-be-over-an-hour-long"
+        },
+        {
+          "title": "Months of work later, one Pokémon Pokopia player's recreation of the original Kanto region is almost complete",
+          "link": "https://www.eurogamer.net/pokemon-pokopia-kanto-build"
+        },
+        {
+          "title": "Returnal director and Housemarque veteran Harry Krueger launches Finland-based game studio Cosmic Division",
+          "link": "https://www.eurogamer.net/returnal-director-launches-cosmic-division-studio"
+        },
+        {
+          "title": "It's true: the Kingdom Come Deliverance studio is making a Lord of the Rings RPG",
+          "link": "https://www.eurogamer.net/kingdom-come-deliverance-lotr-lord-of-the-rings-rpg"
+        },
+        {
+          "title": "Star Wars Jedi director's single-player Dungeons &amp; Dragons game cancelled less than a year after it was announced",
+          "link": "https://www.eurogamer.net/star-wars-jedi-dungeons-dragons-game-cancelled"
+        }
+      ],
+      "error": null
+    },
+    {
+      "name": "playstation_blog",
+      "url": "https://blog.playstation.com/feed/",
+      "proxy": false,
+      "status": 200,
+      "bytes": 158677,
+      "seconds": 1.25,
+      "items": [
+        {
+          "title": "PlayStation.Blog",
+          "link": "https://blog.playstation.com"
+        },
+        {
+          "title": "PlayStation.Blog",
+          "link": "https://blog.playstation.com"
+        },
+        {
+          "title": "State of Play returns Tuesday, June 2",
+          "link": "https://blog.playstation.com/2026/05/20/state-of-play-returns-tuesday-june-2/"
+        },
+        {
+          "title": "007 First Light on PS5 Pro: upgraded PSSR upscaling details",
+          "link": "https://blog.playstation.com/2026/05/19/007-first-light-on-ps5-pro-upgraded-pssr-upscaling-details/"
+        },
+        {
+          "title": "Time travel, trials, and treasure awaits in The Adventures of Elliot: The Millennium Tales",
+          "link": "https://blog.playstation.com/2026/05/18/time-travel-trials-and-treasure-awaits-in-the-adventures-of-elliot-the-millennium-tales/"
+        },
+        {
+          "title": "Official PlayStation Podcast Episode 541: Legendary Run",
+          "link": "https://blog.playstation.com/2026/05/15/official-playstation-podcast-episode-541-legendary-run/"
+        },
+        {
+          "title": "Share of the Week: EA Sports FC 26",
+          "link": "https://blog.playstation.com/2026/05/15/share-of-the-week-ea-sports-fc-26/"
+        },
+        {
+          "title": "Ghost of Yōtei Legends Raid: building the multiplayer mode’s endgame",
+          "link": "https://blog.playstation.com/2026/05/15/ghost-of-yotei-legends-raid-building-the-multiplayer-modes-endgame/"
+        },
+        {
+          "title": "Creating Saros: how performance tech and a bad commute brought Arjun Devraj to life",
+          "link": "https://blog.playstation.com/2026/05/14/creating-saros-how-performance-tech-and-a-bad-commute-brought-arjun-devraj-to-life/"
+        },
+        {
+          "title": "PlayStation Plus Game Catalog for May: Star Wars Outlaws, Red Dead Redemption 2, Bramble: The Mountain King, The Thaumaturge and more",
+          "link": "https://blog.playstation.com/2026/05/13/playstation-plus-game-catalog-for-may-star-wars-outlaws-red-dead-redemption-2-bramble-the-mountain-king-the-thaumaturge-and-more/"
+        },
+        {
+          "title": "Revealing Scuf Omega, a performance controller officially licensed for PlayStation 5 consoles",
+          "link": "https://blog.playstation.com/2026/05/12/revealing-scuf-omega-a-performance-controller-officially-licensed-for-playstation-5-consoles/"
+        },
+        {
+          "title": "(For Southeast Asia) Genshin Impact Version &#8220;Luna VII&#8221; Introduces Nicole Reeyn, the First Playable Hexenzirkel Member, on May 20!",
+          "link": "https://blog.playstation.com/2026/05/11/20260511-gi/"
+        }
+      ],
+      "error": null
+    },
+    {
+      "name": "ign_news",
+      "url": "https://www.ign.com/news",
+      "proxy": true,
+      "status": 200,
+      "bytes": 200543,
+      "seconds": 1.46,
+      "items": [
+        {
+          "title": "Game Reviews",
+          "link": "https://www.ign.com/reviews/games"
+        },
+        {
+          "title": "Upcoming Games",
+          "link": "https://www.ign.com/upcoming/games"
+        },
+        {
+          "title": "Video Game Trailers",
+          "link": "https://www.ign.com/events/video-game-trailers"
+        },
+        {
+          "title": "Movie Trailers",
+          "link": "https://www.ign.com/events/movie-trailers"
+        },
+        {
+          "title": "2dSony Announces PlayStation Plus Price Increases &#x27;Due to Ongoing Market Conditions&#x27;764",
+          "link": "https://www.ign.com/articles/sony-announces-playstation-plus-price-increases-due-to-ongoing-market-conditions"
+        },
+        {
+          "title": "2dPlayStation Console Owners Launch Class-Action Lawsuit Against Sony Over Tariff Refunds19",
+          "link": "https://www.ign.com/articles/playstation-console-owners-launch-class-action-lawsuit-against-sony-over-tariff-refunds"
+        },
+        {
+          "title": "2dSubnautica 2 Dev Gives Players Hope Amid the Game&#x27;s First Hot Topic Following Launch17",
+          "link": "https://www.ign.com/articles/subnautica-2-dev-gives-players-hope-amid-the-games-first-hot-topic-following-launch"
+        },
+        {
+          "title": "2dPlayStation Reportedly Tells Developers That It Is Returning to Console Exclusives for Single-Player Games398",
+          "link": "https://www.ign.com/articles/playstation-is-returning-to-console-exclusives-for-single-player-games"
+        },
+        {
+          "title": "2dWarhammer 40,000 Confirms Ready-Painted Terrain for 11th Edition, but Games Workshop Rules Out Ready-Painted Miniatures2",
+          "link": "https://www.ign.com/articles/warhammer-40000-confirms-ready-painted-terrain-for-11th-edition-but-games-workshop-rules-out-ready-painted-miniatures"
+        },
+        {
+          "title": "Board Game Reviews",
+          "link": "https://www.ign.com/events/board-game-reviews"
+        },
+        {
+          "title": "Game Release Dates",
+          "link": "https://www.ign.com/upcoming/games"
+        }
+      ],
+      "error": null
+    },
+    {
+      "name": "gamespot_news",
+      "url": "https://www.gamespot.com/news/",
+      "proxy": true,
+      "status": null,
+      "bytes": 0,
+      "seconds": 0.41,
+      "items": [],
+      "error": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "name": "steam_news",
+      "url": "https://store.steampowered.com/news/",
+      "proxy": true,
+      "status": 200,
+      "bytes": 209699,
+      "seconds": 1.31,
+      "items": [
+        {
+          "title": "Get the Steam Mobile App",
+          "link": "https://store.steampowered.com/mobile"
+        },
+        {
+          "title": "Steam Subscriber Agreement",
+          "link": "https://store.steampowered.com/subscriber_agreement/?snr=1_2108_4__global-responsive-menu"
+        },
+        {
+          "title": "Español - España (Spanish - Spain)",
+          "link": "https://store.steampowered.com/news/?l=spanish"
+        },
+        {
+          "title": "Français (French)",
+          "link": "https://store.steampowered.com/news/?l=french"
+        },
+        {
+          "title": "Українська (Ukrainian)",
+          "link": "https://store.steampowered.com/news/?l=ukrainian"
+        }
+      ],
+      "error": null
+    },
+    {
+      "name": "x_search_gaming",
+      "url": "https://x.com/search?q=gaming%20news%20OR%20PlayStation%20OR%20Steam%20OR%20Xbox&src=typed_query",
+      "proxy": true,
+      "status": 200,
+      "bytes": 268498,
+      "seconds": 2.25,
+      "items": [],
+      "error": null
+    },
+    {
+      "name": "reddit_games_search",
+      "url": "https://www.reddit.com/search/?q=gaming%20news&type=link",
+      "proxy": true,
+      "status": 200,
+      "bytes": 8431,
+      "seconds": 0.39,
+      "items": [],
+      "error": null
+    },
+    {
+      "name": "resetera",
+      "url": "https://www.resetera.com/forums/gaming-forum.7/",
+      "proxy": true,
+      "status": null,
+      "bytes": 0,
+      "seconds": 0.34,
+      "items": [],
+      "error": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "name": "rebang_gamersky",
+      "url": "https://api.rebang.today/v1/items?tab=gamersky&sub_tab=rec&page=1&version=1",
+      "proxy": false,
+      "status": 200,
+      "bytes": 22039,
+      "seconds": 0.15,
+      "items": [],
+      "error": null
+    },
+    {
+      "name": "rebang_ithome",
+      "url": "https://api.rebang.today/v1/items?tab=ithome&sub_tab=latest&page=1&version=1",
+      "proxy": false,
+      "status": 200,
+      "bytes": 11771,
+      "seconds": 0.12,
+      "items": [],
+      "error": null
+    },
+    {
+      "name": "rebang_xiaohongshu",
+      "url": "https://api.rebang.today/v1/items?tab=xiaohongshu&sub_tab=hot-search&page=1&version=1",
+      "proxy": false,
+      "status": 200,
+      "bytes": 4931,
+      "seconds": 0.1,
+      "items": [],
+      "error": null
+    }
+  ]
+}

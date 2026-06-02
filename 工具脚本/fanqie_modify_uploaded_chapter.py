@@ -99,7 +99,8 @@ def choose_volume(session: str, volume: str):
 
 
 def search_and_open(session: str, data: dict):
-    target = f"第{data['chapter']}章 {data['title']}"
+    # 平台线上标题可能与本地标题略不同；旧章定位以章号为准，避免“第39章 南海对峙/南部海域对峙”这类标题差异导致找不到。
+    target = f"第{data['chapter']}章"
     js = f"""
 (() => {{
  const input=Array.from(document.querySelectorAll('input')).find(e=>e.placeholder==='搜索章节');
@@ -156,7 +157,7 @@ def replace_body(session: str, data: dict):
 }})()
 """
     r = js_eval(session, js, timeout=90)
-    if not isinstance(r, dict) or not r.get('ok') or r.get('num') != str(data['chapter']) or r.get('title') != data['title'] or r.get('hasTitle') or r.get('hasNote'):
+    if not isinstance(r, dict) or not r.get('ok') or r.get('num') != str(data['chapter']) or r.get('hasTitle') or r.get('hasNote'):
         raise RuntimeError(f'替换正文校验失败: {r}')
     return r
 
@@ -201,7 +202,7 @@ def submit(session: str, data: dict):
 
 def verify(session: str, data: dict, volume: str):
     choose_volume(session, volume)
-    target=f"第{data['chapter']}章 {data['title']}"
+    target=f"第{data['chapter']}章"
     for _ in range(5):
         js = f"""
 (() => {{

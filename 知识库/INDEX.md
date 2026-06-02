@@ -638,3 +638,205 @@
 | [NASA_Provides_Update_on_Moon_Base_Rovers,_Landers,_Missions](深空工程/素材卡_NASA_Provides_Update_on_Moon_Base_Rovers,_Landers,_Missions_20260527.md) | 深空工程 | 待角色调用 | 自动归档/SenseNova计划驱动 |
 | [NASA_Astronauts_to_Answer_Questions_from_Students_in_New_York](深空工程/素材卡_NASA_Astronauts_to_Answer_Questions_from_Students_in_New_York_20260527.md) | 深空工程 | 待角色调用 | 自动归档/SenseNova计划驱动 |
 | [注_：`[CARD_PENDING]`标记条目需主控补充具体章节需求（如_第381章需量子密钥切换场景_），否则仅归档。](量子计算/素材卡_注_：`[CARD_PENDING]`标记条目需主控补充具体章节需求（如_第381章需量子密钥切换场景_），否则仅归档。_20260527.md) | 量子计算 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+
+## 自动归档素材 2026-05-27 1832
+
+| 素材卡 | 分类 | 调用位置 | 来源 |
+|---|---|---|---|
+| [NASA_to_Announce_Artemis_III_Crew...](科普解释/素材卡_NASA_to_Announce_Artemis_III_Crew..._20260527.md) | 科普解释 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [Ever_Restless_Mount_Dukono_Erupts](深空工程/素材卡_Ever_Restless_Mount_Dukono_Erupts_20260527.md) | 深空工程 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [[CARD_PENDING]_量子密钥切换场景](量子计算/素材卡_[CARD_PENDING]_量子密钥切换场景_20260527.md) | 量子计算 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [CARD_PENDING判定](科普解释/素材卡_CARD_PENDING判定_20260527.md) | 科普解释 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+
+## 自动归档素材 2026-05-28 0548
+
+| 素材卡 | 分类 | 调用位置 | 来源 |
+|---|---|---|---|
+| [`[CARD_PENDING]_量子密钥切换场景`_→_需主控补充具体章节需求_，否则仅归档](量子计算/素材卡_`[CARD_PENDING]_量子密钥切换场景`_→_需主控补充具体章节需求_，否则仅归档_20260528.md) | 量子计算 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [NASA_Artemis_III_Crew](科普解释/素材卡_NASA_Artemis_III_Crew_20260528.md) | 科普解释 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [Students_Build_Moon_Robots_for_NASA’s_2026_Lunabotics_Challenge](深空工程/素材卡_Students_Build_Moon_Robots_for_NASA’s_2026_Lunabotics_Challenge_20260528.md) | 深空工程 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [NASA-European_Sea_Level_Mission_Homes_in_on_El_Niño](深空工程/素材卡_NASA-European_Sea_Level_Mission_Homes_in_on_El_Niño_20260528.md) | 深空工程 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+
+## 自动归档素材 2026-05-28 1116
+
+| 素材卡 | 分类 | 调用位置 | 来源 |
+|---|---|---|---|
+| [NASA’s_Webb_Reveals_Black_Hole_That_Formed_Before_Its_Galaxy](深空工程/素材卡_NASA’s_Webb_Reveals_Black_Hole_That_Formed_Before_Its_Galaxy_20260528.md) | 深空工程 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [NASA’s_2026_Lunabotics_Winning_Student_Teams_Engineering_Lunar_Future](深空工程/素材卡_NASA’s_2026_Lunabotics_Winning_Student_Teams_Engineering_Lunar_Future_20260528.md) | 深空工程 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [Hubble_Spies_Faint_Irregular_Galaxy](深空工程/素材卡_Hubble_Spies_Faint_Irregular_Galaxy_20260528.md) | 深空工程 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [National_Institutes_of_Health_Nutrition_Education_Challenge](深空工程/素材卡_National_Institutes_of_Health_Nutrition_Education_Challenge_20260528.md) | 深空工程 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+
+## 自动归档素材 2026-05-28 1645
+
+| 素材卡 | 分类 | 调用位置 | 来源 |
+|---|---|---|---|
+| [La_NASA_anunciará_la_tripulación_de_Artemis_III_e_informará_sobre_el_progreso_de](深空工程/素材卡_La_NASA_anunciará_la_tripulación_de_Artemis_III_e_informará_sobre_el_progreso_de_20260528.md) | 深空工程 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [Webinar_6_17_Discover,_Access,_and_Task_Commercial_Data_with_NASA’s_Satellite_Da](深空工程/素材卡_Webinar_6_17_Discover,_Access,_and_Task_Commercial_Data_with_NASA’s_Satellite_Da_20260528.md) | 深空工程 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [South_Africa_Has_AI_Leverage._Its_Draft_Policy_Leaves_It_Unused](科普解释/素材卡_South_Africa_Has_AI_Leverage._Its_Draft_Policy_Leaves_It_Unused_20260528.md) | 科普解释 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [Released_NASA_Goddard_Issues_Draft_Request_for_Proposal_for_the_Landsat_10_Space](深空工程/素材卡_Released_NASA_Goddard_Issues_Draft_Request_for_Proposal_for_the_Landsat_10_Space_20260528.md) | 深空工程 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+
+## 自动归档素材 2026-05-28 1809
+
+| 素材卡 | 分类 | 调用位置 | 来源 |
+|---|---|---|---|
+| [La_NASA_ofrece_información_actualizada_sobre_rovers,_módulos_de_alunizaje_y_misi](深空工程/素材卡_La_NASA_ofrece_información_actualizada_sobre_rovers,_módulos_de_alunizaje_y_misi_20260528.md) | 深空工程 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [Girl_Scouts_Event_Brings_Space_Science_to_the_Next_Generation](深空工程/素材卡_Girl_Scouts_Event_Brings_Space_Science_to_the_Next_Generation_20260528.md) | 深空工程 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [`[CARD_PENDING]_量子密钥切换场景`：_需主控补充具体章节需求_（如_第381章需量子密钥切换场景_），否则仅归档不转卡](量子计算/素材卡_`[CARD_PENDING]_量子密钥切换场景`：_需主控补充具体章节需求_（如_第381章需量子密钥切换场景_），否则仅归档不转卡_20260528.md) | 量子计算 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [执行提示_：主控若需正文转素材卡，请标记`[CARD_PENDING]`并附_具体章节需求_，否则仅归档不转卡。](科普解释/素材卡_执行提示_：主控若需正文转素材卡，请标记`[CARD_PENDING]`并附_具体章节需求_，否则仅归档不转卡。_20260528.md) | 科普解释 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+
+## 自动归档素材 2026-05-29 2341
+
+| 素材卡 | 分类 | 调用位置 | 来源 |
+|---|---|---|---|
+| [NASA_Develops_Sensor_to_Improve_Firefighter_Safety](深空工程/素材卡_NASA_Develops_Sensor_to_Improve_Firefighter_Safety_20260529.md) | 深空工程 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [NASA_Artemis_III船员公告_：✅_值得转卡（关联第359章_人才争夺_，需提取船员背景与政治博弈细节）](科普解释/素材卡_NASA_Artemis_III船员公告_：✅_值得转卡（关联第359章_人才争夺_，需提取船员背景与政治博弈细节）_20260529.md) | 科普解释 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [A_Shift_in_What’s_Shaping_U.S._Landscapes](深空工程/素材卡_A_Shift_in_What’s_Shaping_U.S._Landscapes_20260529.md) | 深空工程 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [NASA_Artemis_III船员公告](科普解释/素材卡_NASA_Artemis_III船员公告_20260529.md) | 科普解释 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+
+## 自动归档素材 2026-05-29 1542
+
+| 素材卡 | 分类 | 调用位置 | 来源 |
+|---|---|---|---|
+| [边界提醒_：本报告仅做采集_蒸馏_分类_调用建议，不涉及大纲调整_正文修改_精修章节_投稿建议。如需正文转素材卡，请主控标记`[CARD_PENDING]`并附](科普解释/素材卡_边界提醒_：本报告仅做采集_蒸馏_分类_调用建议，不涉及大纲调整_正文修改_精修章节_投稿建议。如需正文转素材卡，请主控标记`[CARD_PENDING]`并附_20260529.md) | 科普解释 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [[CARD_PENDING]`_量子密钥切换场景](量子计算/素材卡_[CARD_PENDING]`_量子密钥切换场景_20260529.md) | 量子计算 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [`[CARD_PENDING]_量子密钥切换场景`_：需主控补充具体章节需求（如“第381章需量子密钥切换场景”），否则仅归档不转卡。](量子计算/素材卡_`[CARD_PENDING]_量子密钥切换场景`_：需主控补充具体章节需求（如“第381章需量子密钥切换场景”），否则仅归档不转卡。_20260529.md) | 量子计算 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [执行提示_：主控若需正文转素材卡，请标记`[CARD_PENDING]`并附具体章节需求，否则仅归档不转卡。](科普解释/素材卡_执行提示_：主控若需正文转素材卡，请标记`[CARD_PENDING]`并附具体章节需求，否则仅归档不转卡。_20260529.md) | 科普解释 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+
+## 自动归档素材 2026-05-29 2058
+
+| 素材卡 | 分类 | 调用位置 | 来源 |
+|---|---|---|---|
+| [NASA’s_Roman_Mission_Preps_to_Unveil_New_Populations_of_Faraway_Worlds](深空工程/素材卡_NASA’s_Roman_Mission_Preps_to_Unveil_New_Populations_of_Faraway_Worlds_20260529.md) | 深空工程 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [Growing_Stem_Cells_in_Space_to_Improve_Cancer_and_Disease_Treatments](深空工程/素材卡_Growing_Stem_Cells_in_Space_to_Improve_Cancer_and_Disease_Treatments_20260529.md) | 深空工程 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [How_NASA_Uses_Light_to_Detect_Waste_From_Mines](深空工程/素材卡_How_NASA_Uses_Light_to_Detect_Waste_From_Mines_20260529.md) | 深空工程 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+
+## 自动归档素材 2026-05-30 0215
+
+| 素材卡 | 分类 | 调用位置 | 来源 |
+|---|---|---|---|
+| [Webb_reveals_black_hole_that_formed_before_its_galaxy](科普解释/素材卡_Webb_reveals_black_hole_that_formed_before_its_galaxy_20260530.md) | 科普解释 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [MTG-I2_embarks_on_journey_to_Europe’s_Spaceport](科普解释/素材卡_MTG-I2_embarks_on_journey_to_Europe’s_Spaceport_20260530.md) | 科普解释 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [Finding_Success_in_Industry_as_a_Chip_Designer](芯片算力/素材卡_Finding_Success_in_Industry_as_a_Chip_Designer_20260530.md) | 芯片算力 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [本报告仅做采集_蒸馏_分类_调用建议，_不涉及大纲调整_正文修改_精修章节_投稿建议_。如需正文转素材卡，请主控标记`[CARD_PENDING]`并附具体章节](科普解释/素材卡_本报告仅做采集_蒸馏_分类_调用建议，_不涉及大纲调整_正文修改_精修章节_投稿建议_。如需正文转素材卡，请主控标记`[CARD_PENDING]`并附具体章节_20260530.md) | 科普解释 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+
+## 自动归档素材 2026-05-30 0732
+
+| 素材卡 | 分类 | 调用位置 | 来源 |
+|---|---|---|---|
+| [I_Am_Artemis_Daniel_Stubbs](深空工程/素材卡_I_Am_Artemis_Daniel_Stubbs_20260530.md) | 深空工程 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [New_Landsat_Science_Team_Holds_First_In-Person_Meeting](科普解释/素材卡_New_Landsat_Science_Team_Holds_First_In-Person_Meeting_20260530.md) | 科普解释 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [Contractor_to_Civil_Servant_NASA_Welcomes_Kenny_Heckle](深空工程/素材卡_Contractor_to_Civil_Servant_NASA_Welcomes_Kenny_Heckle_20260530.md) | 深空工程 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [Painting_the_Growing_Season_in_the_Maize_Triangle](深空工程/素材卡_Painting_the_Growing_Season_in_the_Maize_Triangle_20260530.md) | 深空工程 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+
+## 自动归档素材 2026-05-30 1249
+
+| 素材卡 | 分类 | 调用位置 | 来源 |
+|---|---|---|---|
+| [NASA’s_X-59_Prepares_for_First_Supersonic_Flight](深空工程/素材卡_NASA’s_X-59_Prepares_for_First_Supersonic_Flight_20260530.md) | 深空工程 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [Curiosity_Blog,_Sols_4900-4907_Pasadena,_We_Have_a_Drill_Sample!](深空工程/素材卡_Curiosity_Blog,_Sols_4900-4907_Pasadena,_We_Have_a_Drill_Sample!_20260530.md) | 深空工程 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [NASA_Uses_Mineralogical_Marker_to_Understand_Ancient_Martian_Climate](深空工程/素材卡_NASA_Uses_Mineralogical_Marker_to_Understand_Ancient_Martian_Climate_20260530.md) | 深空工程 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [Nancy_Grace_Roman_Space_Telescope_Poster](深空工程/素材卡_Nancy_Grace_Roman_Space_Telescope_Poster_20260530.md) | 深空工程 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+
+## 自动归档素材 2026-05-30 1806
+
+| 素材卡 | 分类 | 调用位置 | 来源 |
+|---|---|---|---|
+| [NASA_Astronaut_Andrew_Morgan_Retires](深空工程/素材卡_NASA_Astronaut_Andrew_Morgan_Retires_20260530.md) | 深空工程 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [Going_Low_and_Slow_in_Testing](深空工程/素材卡_Going_Low_and_Slow_in_Testing_20260530.md) | 深空工程 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [[CARD_PENDING]_量子密钥切换场景](量子计算/素材卡_[CARD_PENDING]_量子密钥切换场景_20260530.md) | 量子计算 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [量子缺口_（score=114）暂可依靠已有QKD工程卡和`[CARD_PENDING]`需求驱动，优先级稍后。](量子计算/素材卡_量子缺口_（score=114）暂可依靠已有QKD工程卡和`[CARD_PENDING]`需求驱动，优先级稍后。_20260530.md) | 量子计算 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+
+## 自动归档素材 2026-05-30 2123
+
+| 素材卡 | 分类 | 调用位置 | 来源 |
+|---|---|---|---|
+| [4._对_`RSS原始候选_CARD_PENDING`_的判定_：](科普解释/素材卡_4._对_`RSS原始候选_CARD_PENDING`_的判定_：_20260530.md) | 科普解释 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [本轮`CARD_PENDING`条目_均无具体事实内容_，仅为系统提示或_需求占位符_。](科普解释/素材卡_本轮`CARD_PENDING`条目_均无具体事实内容_，仅为系统提示或_需求占位符_。_20260530.md) | 科普解释 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [Hubble_Captures_M88_on_Journey_to_Center_of_Virgo_Cluster](深空工程/素材卡_Hubble_Captures_M88_on_Journey_to_Center_of_Virgo_Cluster_20260530.md) | 深空工程 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [Make_a_Soft_Digital_Clock_Tick_With_Millifluidics](科普解释/素材卡_Make_a_Soft_Digital_Clock_Tick_With_Millifluidics_20260530.md) | 科普解释 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+
+## 自动归档素材 2026-05-31 0251
+
+| 素材卡 | 分类 | 调用位置 | 来源 |
+|---|---|---|---|
+| [NASA_Roman_Mission](深空工程/素材卡_NASA_Roman_Mission_20260531.md) | 深空工程 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [NASA光检测矿山废料](科普解释/素材卡_NASA光检测矿山废料_20260531.md) | 科普解释 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [Webb黑洞发现](深空工程/素材卡_Webb黑洞发现_20260531.md) | 深空工程 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [IEEE芯片设计文章](芯片算力/素材卡_IEEE芯片设计文章_20260531.md) | 芯片算力 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+
+## 自动归档素材 2026-05-31 0802
+
+| 素材卡 | 分类 | 调用位置 | 来源 |
+|---|---|---|---|
+| [Artemis人物访谈](深空工程/素材卡_Artemis人物访谈_20260531.md) | 深空工程 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [边界声明_：本报告仅做采集_蒸馏_分类_调用建议，不涉及大纲调整_正文修改_精修章节_投稿建议。如需正文转素材卡，请主控标记`[CARD_PENDING]`并附](科普解释/素材卡_边界声明_：本报告仅做采集_蒸馏_分类_调用建议，不涉及大纲调整_正文修改_精修章节_投稿建议。如需正文转素材卡，请主控标记`[CARD_PENDING]`并附_20260531.md) | 科普解释 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [NASA’s_Roman_Space_Telescope_Primary_Mirror_Gets_Last_Look](深空工程/素材卡_NASA’s_Roman_Space_Telescope_Primary_Mirror_Gets_Last_Look_20260531.md) | 深空工程 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [Hubble_Spies_Faint_Irregular_Galaxy](深空工程/素材卡_Hubble_Spies_Faint_Irregular_Galaxy_20260531.md) | 深空工程 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+
+## 自动归档素材 2026-05-31 1105
+
+| 素材卡 | 分类 | 调用位置 | 来源 |
+|---|---|---|---|
+| [This_Month_at_ESA_May_2026](科普解释/素材卡_This_Month_at_ESA_May_2026_20260531.md) | 科普解释 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [I_Am_Artemis_Daniel_Stubbs](科普解释/素材卡_I_Am_Artemis_Daniel_Stubbs_20260531.md) | 科普解释 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [NASA_Hosts_SpaceX_Crew-11_Astronauts_for_Public_Event_at_Headquarters](深空工程/素材卡_NASA_Hosts_SpaceX_Crew-11_Astronauts_for_Public_Event_at_Headquarters_20260531.md) | 深空工程 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [NASA_Awards_Contract_for_Johnson_Space_Center_Infrastructure](深空工程/素材卡_NASA_Awards_Contract_for_Johnson_Space_Center_Infrastructure_20260531.md) | 深空工程 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+
+## 自动归档素材 2026-05-31 1632
+
+| 素材卡 | 分类 | 调用位置 | 来源 |
+|---|---|---|---|
+| [Curiosity_Blog,_Sols_4900-4907](深空工程/素材卡_Curiosity_Blog,_Sols_4900-4907_20260531.md) | 深空工程 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [NASA_Uses_Mineralogical_Marker](科普解释/素材卡_NASA_Uses_Mineralogical_Marker_20260531.md) | 科普解释 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [NASA_Astronaut_Andrew_Morgan_Retires](科普解释/素材卡_NASA_Astronaut_Andrew_Morgan_Retires_20260531.md) | 科普解释 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [量子密钥切换场景（`[CARD_PENDING]`无事实内容，等待主控补充第381章需求）](量子计算/素材卡_量子密钥切换场景（`[CARD_PENDING]`无事实内容，等待主控补充第381章需求）_20260531.md) | 量子计算 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+
+## 自动归档素材 2026-05-31 1701
+
+| 素材卡 | 分类 | 调用位置 | 来源 |
+|---|---|---|---|
+| [`RSS原始候选_CARD_PENDING`判定_：](科普解释/素材卡_`RSS原始候选_CARD_PENDING`判定_：_20260531.md) | 科普解释 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [所有`[CARD_PENDING]`条目（如量子密钥切换场景）无事实内容，_不转卡_，仅归档。](量子计算/素材卡_所有`[CARD_PENDING]`条目（如量子密钥切换场景）无事实内容，_不转卡_，仅归档。_20260531.md) | 量子计算 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [CARD_PENDING_：无事实内容，不安排正文转卡，仅归档。](科普解释/素材卡_CARD_PENDING_：无事实内容，不安排正文转卡，仅归档。_20260531.md) | 科普解释 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [如需正文转素材卡，请主控标记_`[CARD_PENDING]`_并附具体章节需求。](科普解释/素材卡_如需正文转素材卡，请主控标记_`[CARD_PENDING]`_并附具体章节需求。_20260531.md) | 科普解释 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+
+## 自动归档素材 2026-05-31 1755
+
+| 素材卡 | 分类 | 调用位置 | 来源 |
+|---|---|---|---|
+| [Releases_&#183;_earthsworth_LunarClient-CN_-_GitHub](深空工程/素材卡_Releases_&#183;_earthsworth_LunarClient-CN_-_GitHub_20260531.md) | 深空工程 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [【亲测免费】_探秘LunarClient-CN：一款为Minecraft打造的_...](深空工程/素材卡_【亲测免费】_探秘LunarClient-CN：一款为Minecraft打造的_..._20260531.md) | 深空工程 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [Webb_reveals_black_hole_that_formed_before_its_galaxy](科普解释/素材卡_Webb_reveals_black_hole_that_formed_before_its_galaxy_20260531.md) | 科普解释 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+
+## 自动归档素材 2026-05-31 1817
+
+| 素材卡 | 分类 | 调用位置 | 来源 |
+|---|---|---|---|
+| [MTG-I2_embarks_on_journey_to_Europe’s_Spaceport](深空工程/素材卡_MTG-I2_embarks_on_journey_to_Europe’s_Spaceport_20260531.md) | 深空工程 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [ESA’s_Prodex_programme_brings_scientific_research_to_space](深空工程/素材卡_ESA’s_Prodex_programme_brings_scientific_research_to_space_20260531.md) | 深空工程 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [ESA_at_GLOBSEC_2026](科普解释/素材卡_ESA_at_GLOBSEC_2026_20260531.md) | 科普解释 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [Author_Correction_US_oil_and_gas_system_emissions_from_nearly_one_million_aerial](科普解释/素材卡_Author_Correction_US_oil_and_gas_system_emissions_from_nearly_one_million_aerial_20260531.md) | 科普解释 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+
+## 自动归档素材 2026-05-31 2234
+
+| 素材卡 | 分类 | 调用位置 | 来源 |
+|---|---|---|---|
+| [Surgeons_in_imperial_China_used_anaesthetics_—_in_careful_doses](科普解释/素材卡_Surgeons_in_imperial_China_used_anaesthetics_—_in_careful_doses_20260531.md) | 科普解释 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [What_it_will_take_to_stop_the_spiraling_Ebola_outbreak](生物技术/素材卡_What_it_will_take_to_stop_the_spiraling_Ebola_outbreak_20260531.md) | 生物技术 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [阿尔忒弥斯2号任务核心级集成–完成！_NASA中文](科普解释/素材卡_阿尔忒弥斯2号任务核心级集成–完成！_NASA中文_20260531.md) | 科普解释 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [阿尔忒弥斯计划_-_卫星百科，很认真的中文航天百科_-_灰机wiki](空天一体化/素材卡_阿尔忒弥斯计划_-_卫星百科，很认真的中文航天百科_-_灰机wiki_20260531.md) | 空天一体化 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+
+## 自动归档素材 2026-06-01 1311
+
+| 素材卡 | 分类 | 调用位置 | 来源 |
+|---|---|---|---|
+| [This_DIY_Bipedal_Robot_Used_Pneumatic_“Air-Muscles”_Instead_of_Motors](生物技术/素材卡_This_DIY_Bipedal_Robot_Used_Pneumatic_“Air-Muscles”_Instead_of_Motors_20260601.md) | 生物技术 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+
+## 自动归档素材 2026-06-01 2230
+
+| 素材卡 | 分类 | 调用位置 | 来源 |
+|---|---|---|---|
+| [【新华社】嫦娥六号样品刷新认知_首次揭示月背演化与巨型_...](科普解释/素材卡_【新华社】嫦娥六号样品刷新认知_首次揭示月背演化与巨型_..._20260601.md) | 科普解释 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [Gravity_Waves_From_Super_Typhoon_Sinlaku](深空工程/素材卡_Gravity_Waves_From_Super_Typhoon_Sinlaku_20260601.md) | 深空工程 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [Space_Out_This_Summer_with_Variety_of_NASA_STEM_Activities](深空工程/素材卡_Space_Out_This_Summer_with_Variety_of_NASA_STEM_Activities_20260601.md) | 深空工程 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [Nature](科普解释/素材卡_Nature_20260601.md) | 科普解释 | 待角色调用 | 自动归档/SenseNova计划驱动 |

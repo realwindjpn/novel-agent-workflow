@@ -1,0 +1,14 @@
+{
+  "task": {
+    "name": "domestic_alibaba_qwen",
+    "provider": "alibaba",
+    "model": "qwen3.6-plus",
+    "geo": "domestic",
+    "timeout": 180,
+    "prompt": "你负责中文平台热点补充。找今日国内玩家社区/游戏媒体/二游/主机/硬件相关热点，输出 JSON: title, source_hint, player_angle, collision_risk。"
+  },
+  "exit_code": 1,
+  "duration_sec": 16.82,
+  "stdout": "API call failed after 1 retries: Connection error.\n",
+  "stderr": "\nsession_id: 20260525_090228_6bcec4\n"
+}

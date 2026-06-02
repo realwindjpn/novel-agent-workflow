@@ -1,0 +1,62 @@
+{
+  "date": "2026-05-23",
+  "base": "/root/workspace/科武纪元/热点选题/multimodel/2026-05-23",
+  "precollect_exit": 0,
+  "tasks": [
+    {
+      "name": "overseas_grok_x_reddit",
+      "provider": "grok",
+      "model": "grok-4.20-fast",
+      "geo": "overseas",
+      "exit_code": 1,
+      "duration_sec": 14.68,
+      "path": "/root/workspace/科武纪元/热点选题/multimodel/2026-05-23/overseas_grok_x_reddit.json",
+      "stdout_preview": "API call failed after 1 retries: HTTP 503: 当前繁忙，稍后恢复，通知群:116231758 (request id: 202605230101388175370288268d9d65GPETZTe)\n",
+      "stderr_preview": "\nsession_id: 20260523_090135_19ee78\n"
+    },
+    {
+      "name": "overseas_aiapi_gpt55_crosscheck",
+      "provider": "aiapi-gpt55",
+      "model": "gpt-5.5",
+      "geo": "overseas",
+      "exit_code": 1,
+      "duration_sec": 14.7,
+      "path": "/root/workspace/科武纪元/热点选题/multimodel/2026-05-23/overseas_aiapi_gpt55_crosscheck.json",
+      "stdout_preview": "API call failed after 1 retries: HTTP 503: 当前繁忙，稍后恢复，通知群:116231758 (request id: 202605230101388661012778268d9d6SG5zPNaC)\n",
+      "stderr_preview": "\nsession_id: 20260523_090135_24494d\n"
+    },
+    {
+      "name": "overseas_key2_gpt55_backup",
+      "provider": "key2",
+      "model": "gpt-5.5",
+      "geo": "overseas",
+      "exit_code": 1,
+      "duration_sec": 14.67,
+      "path": "/root/workspace/科武纪元/热点选题/multimodel/2026-05-23/overseas_key2_gpt55_backup.json",
+      "stdout_preview": "",
+      "stderr_preview": "Error: Error code: 401 - {'code': 'INVALID_API_KEY', 'message': 'Invalid API key'}\n\nsession_id: 20260523_090135_c89b00\n"
+    },
+    {
+      "name": "domestic_zai_glm",
+      "provider": "zai",
+      "model": "glm-5.1",
+      "geo": "domestic",
+      "exit_code": 0,
+      "duration_sec": 79.57,
+      "path": "/root/workspace/科武纪元/热点选题/multimodel/2026-05-23/domestic_zai_glm.json",
+      "stdout_preview": "IT之家用 `/tag/game/` 只返回2019旧数据，B站热榜JS渲染抓不到。数据已够，从游民星空+3DM提取热点，交叉整理8个候选。\n\n```json\n{\n  \"date\": \"2026-05-23\",\n  \"candidates\": [\n    {\n      \"id\": 1,\n      \"title\": \"GTA6定价之争：分析师喊涨80刀，CEO直接无视\",\n      \"sources\": [\"游民星空\", \"3DM\"],\n      \"heat\": \"高 — Take-Two财报会核心议题，全站头条\",\n      \"angle\": \"PC玩家苦等首发+定价博弈，国内玩家视角：会不会比NS2还贵？大表哥2当年首发199的回忆杀\",\n      \"cross_verify\": false,\n      \"note\": \"纯行业新闻，国内源已充分；可补Reddit玩家反应增加讨论度\"\n    },\n    {\n      \"id\": 2,\n      \"title\": \"NS2产能拉满：任天堂上调年度目标至2000万台，涨价也不愁卖\",\n      \"sources\": [\"游民星空\", \"3DM\", \"彭博社\"],\n      \"heat\": \"高 — 多平台连续报道，国内主机圈热议\",\n      \"angle\": \"黄牛炒价 vs 官方扩产，日版/港版/国行选哪个，京东/拼多多抢购攻略向\",\n      \"cross_verify\": true,\n      \"note\": \"需交叉验证彭博原文产能数据；日亚/骏河屋实时价格对比更有料\"\n    },\n    {\n      \"id\": 3,\n      \"title\": \"极限竞速：地平线6发售3天破600万玩家，Steam峰值28.4万\",\n      \"sources\": [\"3DM\", \"游民星空\"],\n      \"heat\": \"高 — 现象级首发，SteamDB数据可查\",\n      \"angle\": \"日本地图+怪兽岛DLC呼声，地平线5老玩家升级体验对比，显卡要求实测\",\n      \"cross_verify\": true,\n      \"note\": \"需交叉验证SteamDB在线峰值、Xbox/PS平台销量口径\"\n    },\n    {\n      \"id\": 4,\n      \"title\": \"崩坏：星穹铁道 × Fate/Stay Night UBW 重磅联动定档7.24\",\n      \"sources\": [\"游民星空\", \"B站(米哈游官方直播)\"],\n      \"heat\": \"高 — 二游圈爆炸，B站热搜\",\n      \"angle\": \"Fate IP情怀+抽卡期望，国服/国际服福利对比，联动角色强度预测\",\n      \"cross_v",
+      "stderr_preview": "\nsession_id: 20260523_090135_8941e4\n"
+    },
+    {
+      "name": "domestic_alibaba_qwen",
+      "provider": "alibaba",
+      "model": "qwen3.6-plus",
+      "geo": "domestic",
+      "exit_code": 1,
+      "duration_sec": 17.3,
+      "path": "/root/workspace/科武纪元/热点选题/multimodel/2026-05-23/domestic_alibaba_qwen.json",
+      "stdout_preview": "API call failed after 1 retries: Connection error.\n",
+      "stderr_preview": "\nsession_id: 20260523_090135_53090a\n"
+    }
+  ]
+}

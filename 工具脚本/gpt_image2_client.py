@@ -35,8 +35,8 @@ except ImportError:
 class GPTImage2Config:
     """GPT Image 2 配置"""
     
-    API_BASE_URL = os.environ.get('GPT8080_BASE_URL', 'http://43.135.181.17:8080/v1')
-    API_KEY = os.environ.get('GPT8080_API_KEY', '')
+    API_BASE_URL = os.environ.get('CPA_BASE_URL') or os.environ.get('GPT8080_BASE_URL', 'http://43.135.181.17:8080/v1')
+    API_KEY = os.environ.get('CPA_API_KEY') or os.environ.get('GPT8080_API_KEY', '')
     MODEL = 'gpt-image-2'  # 或 'gpt-image-2'
     
     # 默认参数
@@ -50,7 +50,7 @@ class GPTImage2Config:
     def validate(cls):
         """验证配置是否完整"""
         if not cls.API_KEY:
-            print("ERROR: GPT8080_API_KEY 环境变量未设置")
+            print("ERROR: CPA_API_KEY 环境变量未设置（兼容旧 GPT8080_API_KEY）")
             print("请在 /root/.hermes/.env 中配置或手动设置")
             return False
         print(f"✅ API Base URL: {cls.API_BASE_URL}")

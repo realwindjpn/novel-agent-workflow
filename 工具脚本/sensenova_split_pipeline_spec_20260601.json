@@ -1,0 +1,230 @@
+{
+  "spec_version": "2026-06-01",
+  "name": "sensenova_split_pipeline",
+  "purpose": "SenseNova 采集体系分段化旁路方案。先并行试运行，不替换现有 cron 67cc540dd63a。",
+  "cron_migration_source": "67cc540dd63a",
+  "sla_hours": 5,
+  "watch_interval_minutes": 30,
+  "base_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化",
+  "dirs": {
+    "raw": "raw",
+    "cards": "cards",
+    "reports": "reports",
+    "state": "state",
+    "events": "state/events.jsonl"
+  },
+  "run_id_format": "YYYYMMDD_HHMMSS",
+  "tasks": [
+    {
+      "name": "deterministic_collect",
+      "description": "纯采集；国内中文、国外英文、官方源/RSS/API/搜索；产 raw candidates。",
+      "timeout_minutes": 45,
+      "input": {
+        "query_mode": ["domestic_zh", "overseas_en"],
+        "source_policy": ["official", "academic", "institutional"],
+        "allow_discovery_only": true,
+        "deny_direct_index_write": true,
+        "dedupe_inputs": ["existing_index_summary", "seen_urls", "seen_hashes"]
+      },
+      "output": {
+        "candidates": "raw/<run_id>/deterministic_candidates.jsonl",
+        "manifest": "raw/<run_id>/source_fetch_manifest.json",
+        "state": "state/<run_id>/deterministic_collect.state.json"
+      },
+      "failure_tags": [
+        "DETERMINISTIC_COLLECT_TIMEOUT",
+        "NO_OFFICIAL_MATCH",
+        "SOURCE_FETCH_FAIL",
+        "SOURCE_PARSE_FAIL"
+      ],
+      "fallback": {
+        "allowed": false,
+        "owner": ""
+      }
+    },
+    {
+      "name": "p0_current_events",
+      "description": "老时事情报线；P0 3-4条；双师分析；只做事实+映射。",
+      "timeout_minutes": 40,
+      "input": {
+        "topics": ["中美", "AI芯片", "太空", "军事科技", "地缘博弈", "台湾", "出口管制", "量子", "能源"],
+        "language_policy": ["zh", "en"],
+        "require_url": true,
+        "official_first": true,
+        "noise_domains": ["baike", "zhihu", "csdn", "github release", "beian", "qa"],
+        "teacher_templates": ["shenyu", "gaozhikai"]
+      },
+      "output": {
+        "facts": "raw/<run_id>/p0_current_events.jsonl",
+        "report": "reports/<run_id>/p0_dual_teacher.md",
+        "state": "state/<run_id>/p0_current_events.state.json"
+      },
+      "failure_tags": [
+        "P0_STAGE_TIMEOUT",
+        "NO_P0_EVENT_AFTER_AUTHORITY_FILTER",
+        "P0_NO_URL",
+        "P0_NOISE_FILTERED",
+        "DUAL_TEACHER_CONTEXT_MISSING"
+      ],
+      "fallback": {
+        "allowed": false,
+        "owner": ""
+      }
+    },
+    {
+      "name": "book_learning",
+      "description": "书单学习；SenseNova 分身处理；失败由 MiMo fallback。",
+      "timeout_minutes": 40,
+      "per_item_timeout_minutes": 20,
+      "input": {
+        "book_batch_size": 1,
+        "max_items": 2,
+        "min_fields": ["title", "author", "category_seed", "why_this_book", "target_gap"],
+        "context_policy": "minimal",
+        "no_full_project_context": true,
+        "allow_one_book_per_child": true
+      },
+      "output": {
+        "notes": "raw/<run_id>/book_learning_notes.jsonl",
+        "report": "reports/<run_id>/book_learning_report.md",
+        "state": "state/<run_id>/book_learning.state.json"
+      },
+      "failure_tags": [
+        "BOOK_LEARNING_TIMEOUT",
+        "SENSENOVA_EMPTY_CONTENT",
+        "SENSENOVA_HTTP_FAIL",
+        "MIMO_FALLBACK_TIMEOUT",
+        "BOOK_LEARNING_FAIL"
+      ],
+      "fallback": {
+        "allowed": true,
+        "provider": "xiaomi",
+        "model": "mimo-v2.5"
+      }
+    },
+    {
+      "name": "card_distill",
+      "description": "每个 raw/candidate 单独蒸馏成卡；不整批长 prompt。",
+      "timeout_minutes": 90,
+      "per_item_timeout_minutes": 8,
+      "input": {
+        "one_candidate_per_prompt": true,
+        "required_fields": ["candidate_id", "url", "title", "source", "captured_at", "credibility"],
+        "dedupe_inputs": ["index_summary", "kb_index_summary", "rag_summary"],
+        "allow_missing_raw_card": true
+      },
+      "output": {
+        "cards": "cards/<run_id>/<candidate_id>.md",
+        "state": "state/<run_id>/card_distill.state.json"
+      },
+      "failure_tags": [
+        "CARD_DISTILL_TIMEOUT",
+        "CARD_DISTILL_FAIL",
+        "MISSING_RAW",
+        "MISSING_URL",
+        "NO_OFFICIAL_MATCH"
+      ],
+      "fallback": {
+        "allowed": true,
+        "provider": "xiaomi",
+        "model": "mimo-v2.5"
+      }
+    },
+    {
+      "name": "card_review",
+      "description": "MiMo 审卡、判重、补证；失败标 CARD_REVIEW_FAIL。",
+      "timeout_minutes": 60,
+      "per_item_timeout_minutes": 6,
+      "input": {
+        "review_scope": ["url_exists", "source_authority", "traceability", "duplicate_check", "scope_overreach", "need_evidence"],
+        "dedupe_inputs": ["index_summary", "kb_index_summary", "rag_summary"]
+      },
+      "output": {
+        "reviews": "cards/<run_id>/<candidate_id>.review.json",
+        "summary": "reports/<run_id>/card_review_summary.md",
+        "state": "state/<run_id>/card_review.state.json"
+      },
+      "status_values": ["CARD_PASS", "SKIP_DUPLICATE", "NEED_PRIMARY_SOURCE", "MISSING_RAW", "CARD_REVIEW_FAIL"],
+      "failure_tags": [
+        "CARD_REVIEW_TIMEOUT",
+        "CARD_REVIEW_FAIL",
+        "DUPLICATE_UNCERTAIN",
+        "NEED_PRIMARY_SOURCE"
+      ],
+      "fallback": {
+        "allowed": true,
+        "provider": "xiaomi",
+        "model": "mimo-v2.5"
+      }
+    },
+    {
+      "name": "report_qq",
+      "description": "汇总 5 小时内完成结果，发 QQ，含卡片路径和失败项。",
+      "timeout_minutes": 10,
+      "input": {
+        "aggregate_sources": ["pipeline_state", "all_task_states", "events_jsonl", "card_paths", "report_paths"],
+        "sla_deadline_policy": "5h_final_or_partial",
+        "qq_delivery_required": true
+      },
+      "output": {
+        "report": "reports/<run_id>/qq_report.md",
+        "state": "state/<run_id>/report_qq.state.json"
+      },
+      "failure_tags": [
+        "REPORT_QQ_FAIL",
+        "QQ_DELIVERY_FAIL",
+        "SLA_PARTIAL_REPORT"
+      ],
+      "fallback": {
+        "allowed": false,
+        "owner": ""
+      }
+    }
+  ],
+  "watchdog": {
+    "interval_minutes": 30,
+    "deadline_policy": "5h_sla",
+    "freeze_new_tasks_at_minutes": 270,
+    "finalize_at_minutes": 300,
+    "report_modes": ["FINAL", "PARTIAL"],
+    "must_write_events": true,
+    "must_write_state": true,
+    "must_not_block_on_single_task_failure": true
+  },
+  "routing": {
+    "sense_nova_priority": ["book_learning", "card_distill"],
+    "mimo_fallback": {
+      "provider": "xiaomi",
+      "model": "mimo-v2.5",
+      "secondary_model": "mimo-v2.5-pro"
+    },
+    "gpt55_scope": ["architecture_fix", "final_audit", "migration_verification"],
+    "skyclaw_scope": ["watchdog_only", "pass_fail_need_controller"],
+    "controller_scope": ["task_split", "final_verification", "cron_migration_decision", "qq_report"]
+  },
+  "migration_plan": {
+    "phase_0": "保持现 cron 不变；旁路试运行 split pipeline",
+    "phase_1": "第一轮验目录、state、timeout、PARTIAL 报告",
+    "phase_2": "第二轮验至少一个官方候选与至少一张卡或 NO_OFFICIAL_MATCH",
+    "phase_3": "两轮 PASS 后再决定是否迁移 cron prompt/script",
+    "rollback": "保留旧 cron prompt/script，不删除，不覆盖"
+  },
+  "acceptance": {
+    "must_have": [
+      "至少一个官方源候选",
+      "至少一个卡片或明确 NO_OFFICIAL_MATCH",
+      "书单或模型超时不应导致全链路失败",
+      "每任务独立 timeout",
+      "每任务独立 state 文件",
+      "events.jsonl 可回放",
+      "不改小说正文/大纲/TXT",
+      "不替换 cron"
+    ],
+    "hard_fail_examples": [
+      "cron last_status=ok 但目标文件未刷新",
+      "book_learning 失败导致 deterministic_collect/report_qq 也失败",
+      "card_distill 整批长 prompt 超时吞掉全部候选",
+      "MiMo fallback 接管整链路而非失败项"
+    ]
+  }
+}

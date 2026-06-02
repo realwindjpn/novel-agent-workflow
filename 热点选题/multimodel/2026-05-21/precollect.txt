@@ -1,0 +1,42 @@
+HOTSPOT_PRECOLLECT date=2026-05-21 proxy_10819_alive=True raw=/root/workspace/科武纪元/热点选题/raw/hotspot_probe_2026-05-21.json
+[OK] pcgamer_rss status=200 proxy=False bytes=506360 err=
+  - How well do you know Baldur's Gate 3's third act? See what you remember about the RPG's big finale with a quiz built for real Elder Brains | 
+  - It's my own fault for thinking Warren Spector's new multiplayer stealth game adding singleplayer would make it the Thief successor I was hoping for | 
+  - How to watch Warhammer Skulls 2026 | 
+  - I read every document in the Musk vs Altman case and my takeaway is—'Heartbreaking: The Worst Person You Know Just Made a Great Point' | 
+  - In the early 1990s, Doom was famously installed on more PCs than Windows itself—but how many was that, actually? | 
+[OK] eurogamer_news status=200 proxy=False bytes=167029 err=
+  - Eurogamer.net News Feed | https://www.eurogamer.net/feed/news
+  - Ubisoft confirms new Assassin's Creed, Far Cry, and Ghost Recon games are coming before April 2029 | https://www.eurogamer.net/ubisoft-new-assassins-creed-far-cry-ghost-recon-ai-experience
+  - Quantic Dream's multiplayer game Spellcasters Chronicles is being shut down and the studio reorganised, but Star Wars Eclipse is unaffected | https://www.eurogamer.net/quantic-dream-closing-spellcasters-chronicles
+  - "Honestly? We botched it" - Kickstarter apologises for its criticised adult content rules, and for betraying its "f*ck the establishment spirit" | https://www.eurogamer.net/kickstarter-adult-content-rules-censorship-apology
+  - Surreal narrative match-3 game Titanium Court has sold over 25,000 copies, giving designer AP Thomson enough time to peacefully work on his next game | https://www.eurogamer.net/titanium-court-sells-25k-copies
+[OK] playstation_blog status=200 proxy=False bytes=158677 err=
+  - PlayStation.Blog | https://blog.playstation.com
+  - PlayStation.Blog | https://blog.playstation.com
+  - State of Play returns Tuesday, June 2 | https://blog.playstation.com/2026/05/20/state-of-play-returns-tuesday-june-2/
+  - 007 First Light on PS5 Pro: upgraded PSSR upscaling details | https://blog.playstation.com/2026/05/19/007-first-light-on-ps5-pro-upgraded-pssr-upscaling-details/
+  - Time travel, trials, and treasure awaits in The Adventures of Elliot: The Millennium Tales | https://blog.playstation.com/2026/05/18/time-travel-trials-and-treasure-awaits-in-the-adventures-of-elliot-the-millennium-tales/
+[OK] ign_news status=200 proxy=True bytes=200659 err=
+  - Game Reviews | https://www.ign.com/reviews/games
+  - Upcoming Games | https://www.ign.com/upcoming/games
+  - Video Game Trailers | https://www.ign.com/events/video-game-trailers
+  - Movie Trailers | https://www.ign.com/events/movie-trailers
+  - 2dSony Announces PlayStation Plus Price Increases &#x27;Due to Ongoing Market Conditions&#x27;764 | https://www.ign.com/articles/sony-announces-playstation-plus-price-increases-due-to-ongoing-market-conditions
+[BLOCKED_OR_EMPTY] gamespot_news status=None proxy=True bytes=0 err=HTTPError: HTTP Error 403: Forbidden
+[OK] steam_news status=200 proxy=True bytes=209699 err=
+  - Get the Steam Mobile App | https://store.steampowered.com/mobile
+  - Steam Subscriber Agreement | https://store.steampowered.com/subscriber_agreement/?snr=1_2108_4__global-responsive-menu
+  - Español - España (Spanish - Spain) | https://store.steampowered.com/news/?l=spanish
+  - Français (French) | https://store.steampowered.com/news/?l=french
+  - Українська (Ukrainian) | https://store.steampowered.com/news/?l=ukrainian
+[BLOCKED_OR_EMPTY] x_search_gaming status=200 proxy=True bytes=268498 err=
+[BLOCKED_OR_EMPTY] reddit_games_search status=200 proxy=True bytes=8431 err=
+[BLOCKED_OR_EMPTY] resetera status=None proxy=True bytes=0 err=HTTPError: HTTP Error 403: Forbidden
+[BLOCKED_OR_EMPTY] rebang_gamersky status=200 proxy=False bytes=22199 err=
+[BLOCKED_OR_EMPTY] rebang_ithome status=200 proxy=False bytes=11231 err=
+[BLOCKED_OR_EMPTY] rebang_xiaohongshu status=200 proxy=False bytes=4935 err=
+
+LLM_ROUTE_REQUIRED: if web_search fails, use terminal evidence above + Grok provider live-search/sources; do not collapse to domestic-only. Label blocked X/Reddit as gaps and use Grok/official/RSS/media as fallback.
+
+STDERR

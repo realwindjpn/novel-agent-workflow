@@ -158,10 +158,11 @@ def compare_one(ch: int, url: str, outdir: Path) -> dict:
     return rec
 
 
-def write_reports(records: list[dict], outdir: Path):
-    json_path = outdir / 'compare_11_70.json'
-    csv_path = outdir / 'compare_11_70.csv'
-    md_path = outdir / 'compare_11_70_report.md'
+def write_reports(records: list[dict], outdir: Path, start: int = 11, end: int = 70):
+    stem = f'compare_{start}_{end}'
+    json_path = outdir / f'{stem}.json'
+    csv_path = outdir / f'{stem}.csv'
+    md_path = outdir / f'{stem}_report.md'
     json_path.write_text(json.dumps(records, ensure_ascii=False, indent=2), encoding='utf-8')
     fields = ['chapter','status','similarity','local_chars_compact','online_chars_compact','local_sha','online_sha','title_ok','local_title','online_title','first_diff','url']
     with csv_path.open('w', newline='', encoding='utf-8') as f:
@@ -170,7 +171,7 @@ def write_reports(records: list[dict], outdir: Path):
     diffs = [r for r in records if r['status'] != 'same']
     same = [r for r in records if r['status'] == 'same']
     lines = []
-    lines.append('# 番茄线上正文 vs 本地已投稿 11-70 对比报告')
+    lines.append(f'# 番茄线上正文 vs 本地已投稿 {start}-{end} 对比报告')
     lines.append('')
     lines.append(f'- 生成时间：{datetime.now().isoformat(timespec="seconds")}')
     lines.append('- 方法：agent-browser 只读打开番茄“修改章节”页，抽取第一个正文编辑器；本地读取 `已投稿/第X章.txt`；去空白后比对 SHA。')
@@ -193,7 +194,9 @@ def write_reports(records: list[dict], outdir: Path):
     for r in records:
         fd = (r.get('first_diff') or '').replace('\n','<br>').replace('|','｜')[:260]
         title = f"{r.get('local_title','')} / {r.get('online_title','')}".replace('|','｜')
-        lines.append(f"|{r['chapter']}|{r['status']}|{r['similarity']:.4f}|{r['local_chars_compact']}|{r['online_chars_compact']}|{title}|{fd}|")
+        sim = r.get('similarity')
+        sim_s = f"{sim:.4f}" if isinstance(sim, (int, float)) else ''
+        lines.append(f"|{r['chapter']}|{r['status']}|{sim_s}|{r.get('local_chars_compact','')}|{r.get('online_chars_compact','')}|{title}|{fd}|")
     md_path.write_text('\n'.join(lines), encoding='utf-8')
     return {'json': str(json_path), 'csv': str(csv_path), 'md': str(md_path), 'diffs': [r['chapter'] for r in diffs], 'same': [r['chapter'] for r in same]}
 
@@ -219,7 +222,7 @@ def main():
         records.append(rec)
         print(json.dumps({k: rec.get(k) for k in ['chapter','status','similarity','local_chars_compact','online_chars_compact']}, ensure_ascii=False), flush=True)
         time.sleep(args.sleep)
-    summary = write_reports(records, outdir)
+    summary = write_reports(records, outdir, args.start, args.end)
     print(json.dumps(summary, ensure_ascii=False, indent=2))
 
 

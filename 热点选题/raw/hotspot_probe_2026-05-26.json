@@ -1,0 +1,278 @@
+{
+  "date": "2026-05-26",
+  "proxy_10819_alive": true,
+  "results": [
+    {
+      "name": "pcgamer_rss",
+      "url": "https://www.pcgamer.com/rss/",
+      "proxy": false,
+      "status": 200,
+      "bytes": 560887,
+      "seconds": 3.49,
+      "items": [
+        {
+          "title": "Talos Principle 3 will definitely be the last one in the series, because 'so many videogames just don't end, and then you have an endless kind of cliffhanger'",
+          "link": ""
+        },
+        {
+          "title": "More Elden Ring filming leaks: Here's a castle with some suspiciously familiar guys on it",
+          "link": ""
+        },
+        {
+          "title": "Ultra-hard survival sandbox Kenshi passes 3 million copies sold, teases fans with 'Kenshi 2 When?' website",
+          "link": ""
+        },
+        {
+          "title": "One Move Away is a great cosy packing game, even if it had me rage-flinging boxes into the back of a truck",
+          "link": ""
+        },
+        {
+          "title": "'We’re just thrilled the stars aligned': Less than 2 years after his own game fully shut down, Jason Voorhees is coming to Dead by Daylight",
+          "link": ""
+        },
+        {
+          "title": "The new game from the makers of Botanicula and Chuchel is like 1984 meets the Keystone Kops, but in a way that actually works",
+          "link": ""
+        },
+        {
+          "title": "Paralives has done the one exact thing I was begging life sims for",
+          "link": ""
+        },
+        {
+          "title": "Before Dishonored, Arkane was tapped to make Thief 4, and my heart weeps for what might have been: 'We had an amazing pitch for Thief'",
+          "link": ""
+        },
+        {
+          "title": "Here's how to catch all the goodies from GamesRadar's dispatch from BitSummit Punch 2026",
+          "link": ""
+        },
+        {
+          "title": "I solved the Strait of Hormuz crisis with videogames, simply by creating an even bigger Strait of Hormuz crisis",
+          "link": ""
+        },
+        {
+          "title": "Crimson Desert's latest patch adds 20 new types of small animal and then hands Kliff a shotgun",
+          "link": ""
+        },
+        {
+          "title": "Peak's success helped Aggro Crab commit to co-op, says studio head: 'We thought we were a character action studio'",
+          "link": ""
+        }
+      ],
+      "error": null
+    },
+    {
+      "name": "eurogamer_news",
+      "url": "https://www.eurogamer.net/feed/news",
+      "proxy": false,
+      "status": 200,
+      "bytes": 84083,
+      "seconds": 0.67,
+      "items": [],
+      "error": null
+    },
+    {
+      "name": "playstation_blog",
+      "url": "https://blog.playstation.com/feed/",
+      "proxy": false,
+      "status": 200,
+      "bytes": 183655,
+      "seconds": 1.46,
+      "items": [
+        {
+          "title": "PlayStation.Blog",
+          "link": "https://blog.playstation.com"
+        },
+        {
+          "title": "PlayStation.Blog",
+          "link": "https://blog.playstation.com"
+        },
+        {
+          "title": "Where Winds Meet: Secrets of the Imperial Palace Unfold May 28 with PS5 Pro enhancements",
+          "link": "https://blog.playstation.com/2026/05/25/where-winds-meet-secrets-of-the-imperial-palace-unfold-may-28-with-ps5-pro-enhancements/"
+        },
+        {
+          "title": "(For Southeast Asia) Singapore’s Sands Theatre to host first Gran Turismo World Series event in Southeast Asia on Saturday, 3 October",
+          "link": "https://blog.playstation.com/2026/05/24/20260525-gt/"
+        },
+        {
+          "title": "Official PlayStation Podcast Episode 542: Horror on a Dark Knight",
+          "link": "https://blog.playstation.com/2026/05/22/official-playstation-podcast-episode-542-horror-on-a-dark-knight/"
+        },
+        {
+          "title": "Share of the Week: Hands",
+          "link": "https://blog.playstation.com/2026/05/22/share-of-the-week-hands/"
+        },
+        {
+          "title": "13 must-play open-world games available with PlayStation Plus Game Catalog",
+          "link": "https://blog.playstation.com/2026/05/22/13-must-play-open-world-games-available-with-playstation-plus-game-catalog/"
+        },
+        {
+          "title": "The sound of the Eclipse: Sam Slater on scoring Saros",
+          "link": "https://blog.playstation.com/2026/05/22/the-sound-of-the-eclipse-sam-slater-on-scoring-saros/"
+        },
+        {
+          "title": "Watch the world’s top Gran Turismo 7 gamers race live in Milan",
+          "link": "https://blog.playstation.com/2026/05/21/watch-the-worlds-top-gran-turismo-7-gamers-race-live-in-milan/"
+        },
+        {
+          "title": "State of Play returns Tuesday, June 2",
+          "link": "https://blog.playstation.com/2026/05/20/state-of-play-returns-tuesday-june-2/"
+        },
+        {
+          "title": "007 First Light on PS5 Pro: upgraded PSSR upscaling details",
+          "link": "https://blog.playstation.com/2026/05/19/007-first-light-on-ps5-pro-upgraded-pssr-upscaling-details/"
+        },
+        {
+          "title": "Time travel, trials, and treasure awaits in The Adventures of Elliot: The Millennium Tales",
+          "link": "https://blog.playstation.com/2026/05/18/time-travel-trials-and-treasure-awaits-in-the-adventures-of-elliot-the-millennium-tales/"
+        }
+      ],
+      "error": null
+    },
+    {
+      "name": "ign_news",
+      "url": "https://www.ign.com/news",
+      "proxy": true,
+      "status": 200,
+      "bytes": 201112,
+      "seconds": 2.26,
+      "items": [
+        {
+          "title": "Game Reviews",
+          "link": "https://www.ign.com/reviews/games"
+        },
+        {
+          "title": "Upcoming Games",
+          "link": "https://www.ign.com/upcoming/games"
+        },
+        {
+          "title": "Video Game Trailers",
+          "link": "https://www.ign.com/events/video-game-trailers"
+        },
+        {
+          "title": "Movie Trailers",
+          "link": "https://www.ign.com/events/movie-trailers"
+        },
+        {
+          "title": "2dKingdom Come Dev Confirms Next Installment Is an &#x27;Open-World RPG&#x27; Set to Launch Next Fiscal Year6",
+          "link": "https://www.ign.com/articles/kingdom-come-dev-confirms-next-installment-is-an-open-world-rpg-set-to-launch-next-fiscal-year"
+        },
+        {
+          "title": "3dDestiny Players Review Bomb Marathon Only to Be Met With Countercampaign from Bungie Fans58",
+          "link": "https://www.ign.com/articles/destiny-players-review-bomb-marathon-only-to-be-met-with-countercampaign-from-bungie-fans"
+        },
+        {
+          "title": "Board Game Reviews",
+          "link": "https://www.ign.com/events/board-game-reviews"
+        },
+        {
+          "title": "Game Release Dates",
+          "link": "https://www.ign.com/upcoming/games"
+        }
+      ],
+      "error": null
+    },
+    {
+      "name": "gamespot_news",
+      "url": "https://www.gamespot.com/news/",
+      "proxy": true,
+      "status": null,
+      "bytes": 0,
+      "seconds": 0.34,
+      "items": [],
+      "error": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "name": "steam_news",
+      "url": "https://store.steampowered.com/news/",
+      "proxy": true,
+      "status": 200,
+      "bytes": 197485,
+      "seconds": 0.64,
+      "items": [
+        {
+          "title": "Get the Steam Mobile App",
+          "link": "https://store.steampowered.com/mobile"
+        },
+        {
+          "title": "Steam Subscriber Agreement",
+          "link": "https://store.steampowered.com/subscriber_agreement/?snr=1_2108_4__global-responsive-menu"
+        },
+        {
+          "title": "Español - España (Spanish - Spain)",
+          "link": "https://store.steampowered.com/news/?l=spanish"
+        },
+        {
+          "title": "Français (French)",
+          "link": "https://store.steampowered.com/news/?l=french"
+        },
+        {
+          "title": "Українська (Ukrainian)",
+          "link": "https://store.steampowered.com/news/?l=ukrainian"
+        }
+      ],
+      "error": null
+    },
+    {
+      "name": "x_search_gaming",
+      "url": "https://x.com/search?q=gaming%20news%20OR%20PlayStation%20OR%20Steam%20OR%20Xbox&src=typed_query",
+      "proxy": true,
+      "status": 200,
+      "bytes": 269942,
+      "seconds": 4.05,
+      "items": [],
+      "error": null
+    },
+    {
+      "name": "reddit_games_search",
+      "url": "https://www.reddit.com/search/?q=gaming%20news&type=link",
+      "proxy": true,
+      "status": 200,
+      "bytes": 8431,
+      "seconds": 0.35,
+      "items": [],
+      "error": null
+    },
+    {
+      "name": "resetera",
+      "url": "https://www.resetera.com/forums/gaming-forum.7/",
+      "proxy": true,
+      "status": null,
+      "bytes": 0,
+      "seconds": 0.34,
+      "items": [],
+      "error": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "name": "rebang_gamersky",
+      "url": "https://api.rebang.today/v1/items?tab=gamersky&sub_tab=rec&page=1&version=1",
+      "proxy": false,
+      "status": 200,
+      "bytes": 21318,
+      "seconds": 0.38,
+      "items": [],
+      "error": null
+    },
+    {
+      "name": "rebang_ithome",
+      "url": "https://api.rebang.today/v1/items?tab=ithome&sub_tab=latest&page=1&version=1",
+      "proxy": false,
+      "status": 200,
+      "bytes": 12770,
+      "seconds": 0.29,
+      "items": [],
+      "error": null
+    },
+    {
+      "name": "rebang_xiaohongshu",
+      "url": "https://api.rebang.today/v1/items?tab=xiaohongshu&sub_tab=hot-search&page=1&version=1",
+      "proxy": false,
+      "status": 200,
+      "bytes": 4931,
+      "seconds": 0.1,
+      "items": [],
+      "error": null
+    }
+  ]
+}

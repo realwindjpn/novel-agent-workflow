@@ -1,0 +1,200 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""番茄作家课堂双模型学习队列：WF Opus4.7fast 编辑 + TKX gpt-5.5 作家。
+每条课程：抓取正文 -> WF提炼编辑规则 -> TKX转作家OS补丁 -> 写阶段报告/索引。
+"""
+from __future__ import annotations
+import os, re, json, time, hashlib, subprocess, sys
+from pathlib import Path
+from urllib.request import Request, urlopen
+
+try:
+    import requests
+except Exception:
+    requests = None
+
+ROOT = Path('/root/workspace/科武纪元')
+OUT = ROOT / '写作技巧' / '番茄作家课堂'
+STATE = OUT / 'state.json'
+LOG = OUT / 'run.log'
+REPORT = OUT / '阶段报告.md'
+INDEX = OUT / '番茄作家课堂学习索引.md'
+AUTHOR_PATCH = Path('/root/workspace/写作角色OS/fanqie_writer_classroom_patch_20260516.md')
+KEWU_AUTHOR_PATCH = ROOT / '参考资料' / '作家风格OS' / 'fanqie_classroom_author_patch.md'
+OUT.mkdir(parents=True, exist_ok=True)
+KEWU_AUTHOR_PATCH.parent.mkdir(parents=True, exist_ok=True)
+
+TASKS = [
+    {
+        'id': 'transition_conflict_revision_7633339641977897022',
+        'title': '写好过渡章，优化剧情冲突，学会高效改文',
+        'url': 'https://fanqienovel.com/writer/zone/article/7633339641977897022?share_token=8FDAB7E9-91CC-4338-82EC-B10AD7DF9399'
+    },
+    {
+        'id': 'romance_short_story_class_7638908973290111038',
+        'title': '第二十期短故事作家课堂—解锁言情向爆款短故事创作共性和指南',
+        'url': 'https://fanqienovel.com/writer/zone/article/7638908973290111038?share_token=2C95397F-19F9-4C1D-AE4C-C9EEE4EC1723'
+    },
+    {
+        'id': 'adaptation_trend_7639993606463307838',
+        'title': '5月改编风向标｜短剧×漫剧爆款题材与人设',
+        'url': 'https://fanqienovel.com/writer/zone/article/7639993606463307838?share_token=5FF14F0E-19B0-4E69-9FA8-3B16B5C430C1'
+    },
+]
+
+
+def log(msg: str):
+    ts = time.strftime('%F %T')
+    line = f'[{ts}] {msg}\n'
+    LOG.parent.mkdir(parents=True, exist_ok=True)
+    with LOG.open('a', encoding='utf-8') as f: f.write(line)
+    print(line, end='', flush=True)
+
+
+def save_state(**kw):
+    cur = {}
+    if STATE.exists():
+        try: cur = json.loads(STATE.read_text(encoding='utf-8'))
+        except Exception: cur = {}
+    cur.update(kw, updated_at=time.strftime('%F %T'))
+    STATE.write_text(json.dumps(cur, ensure_ascii=False, indent=2), encoding='utf-8')
+
+
+def fetch_article(url: str) -> str:
+    # 优先浏览器可抓内容；requests兜底读取SPA HTML，再用简单标签清理。
+    try:
+        cmd = [
+            'python3','-c',
+            "from hermes_tools import mcp_research_materials_crawl_url_markdown as c; import sys,json; print(json.dumps(c(url=sys.argv[1], max_chars=50000), ensure_ascii=False))",
+            url
+        ]
+    except Exception:
+        cmd = []
+    # 实际 hermes_tools 未必暴露mcp，故直接用 agent-browser 稳定抽 article。
+    try:
+        subprocess.run(['agent-browser','--session-name','fanqie_classroom','open',url], check=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, timeout=90)
+        time.sleep(2)
+        js = "(() => document.querySelector('article')?.innerText || document.body.innerText)()"
+        out = subprocess.check_output(['agent-browser','--session-name','fanqie_classroom','eval',js], text=True, timeout=90)
+        text = out.strip()
+        if text.startswith('"'):
+            try: text = json.loads(text)
+            except Exception: pass
+        if len(text) > 500:
+            return text
+    except Exception as e:
+        log(f'browser_fetch_failed {type(e).__name__}: {e}')
+    if requests:
+        r = requests.get(url, timeout=30, headers={'User-Agent':'Mozilla/5.0'})
+        return re.sub('<[^>]+>', '\n', r.text)
+    req=Request(url, headers={'User-Agent':'Mozilla/5.0'})
+    return urlopen(req, timeout=30).read().decode('utf-8','ignore')
+
+
+def openai_chat(base_url: str, api_key: str, model: str, messages: list[dict], timeout=240) -> tuple[str, str]:
+    import requests
+    url = base_url.rstrip('/') + '/chat/completions'
+    payload = {'model': model, 'messages': messages, 'temperature': 0.25}
+    r = requests.post(url, headers={'Authorization': f'Bearer {api_key}', 'Content-Type':'application/json'}, json=payload, timeout=timeout)
+    r.raise_for_status()
+    data = r.json()
+    returned = data.get('model') or model
+    text = data['choices'][0]['message']['content']
+    return text, returned
+
+
+def wf_editor(article_title: str, article_text: str) -> tuple[str, str]:
+    base = os.environ.get('WF_BASE_URL','http://43.135.181.17:8081/v1')
+    key = os.environ.get('WF_API_KEY')
+    model = 'claude-opus-4-7-high-fast'
+    if not key: raise RuntimeError('WF_API_KEY missing')
+    prompt = f"""你是《科武纪元》编辑学习官。请学习番茄作家课堂文章《{article_title}》。
+目标：提炼可用于长篇科幻小说《科武纪元》的编辑规则，不写空泛鸡汤。
+输出Markdown，必须包含：
+1 课程核心判断（≤6条）
+2 过渡章/冲突/节奏/人设/改编等编辑规则（按文章内容）
+3 科武适配：哪些可用，哪些不可硬套
+4 编辑检查表（10条以内）
+5 对作家角色的输入要求（动作链、物理反馈、代价、钩子）
+原文：
+{article_text[:24000]}
+"""
+    return openai_chat(base, key, model, [{'role':'user','content':prompt}])
+
+
+def tkx_writer(article_title: str, editor_rules: str) -> tuple[str, str]:
+    base = os.environ.get('TOKENX_BASE_URL','https://tokenx24.com/v1')
+    key = os.environ.get('TOKENX_API_KEY')
+    model = os.environ.get('TOKENX_MODEL','gpt-5.5')
+    if not key: raise RuntimeError('TOKENX_API_KEY missing')
+    prompt = f"""你是《科武纪元》作家角色训练官。把编辑学习稿转成作家OS可执行补丁。
+文章：{article_title}
+要求：
+- 不写理论长文。
+- 提炼为作者写作时可直接执行的动作、反馈、代价、失败模式、人物口吻、段落节奏、章末钩子。
+- 给出“写作前任务卡字段更新”。
+- 给出“过渡章/冲突/改文”可复用模板。
+- 标注短故事/狼人篇可借点；标注科武长篇可借点。
+编辑学习稿：
+{editor_rules[:22000]}
+"""
+    return openai_chat(base, key, model, [{'role':'user','content':prompt}], timeout=300)
+
+
+def append(path: Path, text: str):
+    old = path.read_text(encoding='utf-8') if path.exists() else ''
+    path.write_text(old.rstrip() + '\n\n' + text.strip() + '\n', encoding='utf-8')
+
+
+def main():
+    log('START fanqie classroom dual model learning')
+    save_state(status='running', total=len(TASKS), completed=0, current='')
+    if not INDEX.exists():
+        INDEX.write_text('# 番茄作家课堂学习索引\n\n', encoding='utf-8')
+    if not AUTHOR_PATCH.exists():
+        AUTHOR_PATCH.write_text('# 番茄作家课堂 → 作家角色OS补丁\n\n', encoding='utf-8')
+    if not KEWU_AUTHOR_PATCH.exists():
+        KEWU_AUTHOR_PATCH.write_text('# 科武纪元作家风格OS｜番茄课堂补丁\n\n', encoding='utf-8')
+    completed=[]
+    for idx, task in enumerate(TASKS, 1):
+        tid=task['id']; title=task['title']
+        save_state(status='running', current=tid, current_title=title, completed=len(completed))
+        log(f'FETCH {idx}/{len(TASKS)} {title}')
+        raw = fetch_article(task['url'])
+        raw_path = OUT / f'{tid}_raw.md'
+        raw_path.write_text(f"# {title}\n\n来源：{task['url']}\n\n{raw}\n", encoding='utf-8')
+        log(f'WF_EDITOR {title} chars={len(raw)}')
+        editor, wf_model = wf_editor(title, raw)
+        editor_path = OUT / f'{tid}_editor_opus47fast.md'
+        editor_path.write_text(f"# {title}｜编辑学习稿\n\nmodel: {wf_model}\n\n{editor}\n", encoding='utf-8')
+        log(f'TKX_WRITER {title} editor_chars={len(editor)}')
+        writer, tkx_model = tkx_writer(title, editor)
+        writer_path = OUT / f'{tid}_writer_tkx_gpt55.md'
+        writer_path.write_text(f"# {title}｜作家OS转译稿\n\nmodel: {tkx_model}\n\n{writer}\n", encoding='utf-8')
+        summary = f"""
+## {time.strftime('%F %T')}｜{title}
+
+- 状态：PASS
+- WF编辑模型：{wf_model}
+- TKX作家模型：{tkx_model}
+- 原文：`{raw_path}`
+- 编辑稿：`{editor_path}`
+- 作家稿：`{writer_path}`
+"""
+        append(REPORT, summary)
+        append(INDEX, f"- [{title}]({task['url']})：编辑稿 `{editor_path.name}`；作家稿 `{writer_path.name}`。")
+        append(AUTHOR_PATCH, f"## {title}\n\n来源：`{writer_path}`\n\n{writer[:6000]}")
+        append(KEWU_AUTHOR_PATCH, f"## {title}\n\n来源：`{writer_path}`\n\n{writer[:6000]}")
+        completed.append(tid)
+        save_state(status='running', current='', completed=len(completed), last_completed=tid, last_title=title, last_report=str(writer_path))
+        log(f'COMPLETED {idx}/{len(TASKS)} {title}')
+    save_state(status='completed', completed=len(completed), current='', report=str(REPORT), index=str(INDEX))
+    log('DONE all classroom tasks')
+
+if __name__ == '__main__':
+    try:
+        main()
+    except Exception as e:
+        log(f'ERROR {type(e).__name__}: {e}')
+        save_state(status='failed', error=f'{type(e).__name__}: {e}')
+        raise

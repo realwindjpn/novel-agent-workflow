@@ -1,0 +1,138 @@
+# ============================================================
+# 科武纪元·自修复/自进化规则草案 v0.2 — Stage2 六角色测试补充
+# 作者: MiMo-v2.5 | 日期: 2026-05-28 | 状态: PENDING
+# 边界: 不覆盖正式 rules.yaml，仅补充测试用闸门+事件
+# ============================================================
+
+version: "0.2.0"
+created: "2026-05-28"
+status: pending
+extends: rules_mimo_proposal.yaml  # 继承 v0.1 全部定义
+
+# ────────────────────────────────────────────
+# 1. Stage2 测试闸门扩展
+# ────────────────────────────────────────────
+gates:
+  green:
+    actions_append:  # 追加到 v0.1 green.actions
+      - "sixrole_machine_preflight"
+      - "sixrole_route_smoke"
+      - "sixrole_txt_candidate_recount"
+
+  red:
+    actions_append:
+      - "sixrole_test_writeback_block"
+      - "sixrole_test_upload_block"
+
+# ────────────────────────────────────────────
+# 2. 测试期红线守卫
+# ────────────────────────────────────────────
+test_guards:
+  enabled: true
+  chapter: 117
+  mode: "candidate_only"  # 只产出候选，不写回
+  block_targets:
+    - "新版/"
+    - "已投稿/"
+    - "番茄草稿箱/"
+  block_events:
+    writeback_violation: "SIXROLE_TEST_RED_VIOLATION"
+    upload_violation: "SIXROLE_TEST_RED_VIOLATION"
+
+# ────────────────────────────────────────────
+# 3. 测试事件注册（追加到 v0.1 events.registry）
+# ────────────────────────────────────────────
+events:
+  registry_append:
+    - name: "SIXROLE_TEST_START"
+      gate: "green"
+      fields: "chapter,timestamp,runner_pid,target_dir"
+    - name: "SIXROLE_TEST_ROUTE_SMOKE"
+      gate: "green"
+      fields: "role,provider,model,status,latency"
+    - name: "SIXROLE_TEST_GREEN_PASS"
+      gate: "green"
+      fields: "action,chapter,evidence_path"
+    - name: "SIXROLE_TEST_YELLOW_REVIEW"
+      gate: "yellow"
+      fields: "action,chapter,decision_card_path"
+    - name: "SIXROLE_TEST_RED_BLOCK"
+      gate: "red"
+      fields: "action,chapter,violation_type"
+    - name: "SIXROLE_TEST_AUTHOR_CANDIDATE"
+      gate: "green"
+      fields: "chapter,round,word_count,model,raw_path"
+    - name: "SIXROLE_TEST_EDITOR_REVIEW"
+      gate: "yellow"
+      fields: "chapter,round,verdict,issues_count"
+    - name: "SIXROLE_TEST_READER_REVIEW"
+      gate: "yellow"
+      fields: "chapter,round,verdict,fatigue_score"
+    - name: "SIXROLE_TEST_ADVISOR_REVIEW"
+      gate: "green"
+      fields: "chapter,round,advisor_type,verdict"
+    - name: "SIXROLE_TEST_PASS"
+      gate: "green"
+      fields: "chapter,total_rounds,summary_path"
+    - name: "SIXROLE_TEST_FAIL"
+      gate: "yellow"
+      fields: "chapter,fail_stage,fail_reason"
+    - name: "SIXROLE_TEST_BLOCKED"
+      gate: "red"
+      fields: "chapter,blocked_at,reason,recovery_hint"
+    - name: "SIXROLE_TEST_END"
+      gate: "green"
+      fields: "chapter,outcome,evidence_bundle"
+    - name: "SIXROLE_TEST_RED_VIOLATION"
+      gate: "red"
+      fields: "chapter,violation_type,target_path"
+
+# ────────────────────────────────────────────
+# 4. 通过条件 → 118 门禁
+# ────────────────────────────────────────────
+promotion:
+  from_test_to_production:
+    requires:
+      - "SIXROLE_TEST_PASS in events"
+      - "RED_VIOLATION count == 0"
+      - "candidate_ch117.md word_count >= 3000"
+      - "editor PASS + reader PASS (two rounds)"
+      - "user explicit approval in chat"
+    chapter_118_mode: "full_production"  # 118 走正式流程
+
+# ────────────────────────────────────────────
+# 5. 自修复允许/禁止清单
+# ────────────────────────────────────────────
+healing:
+  test_allowed:
+    - id: "TH01"
+      name: "sixrole_route_switch"
+      gate: "green"
+      trigger: "角色调用 429/403/5xx"
+      action: "切候选→smoke→emit HEAL_ROUTE_SWITCH"
+    - id: "TH02"
+      name: "sixrole_report_reload"
+      gate: "green"
+      trigger: "raw为空+进程存活>5min"
+      action: "重读子进程→emit HEAL_REPORT_RELOAD"
+    - id: "TH03"
+      name: "sixrole_author_pollution"
+      gate: "yellow"
+      trigger: "作者stdout含思考噪声/禁词"
+      action: "截取clean段→换模型/提示词重跑"
+    - id: "TH04"
+      name: "sixrole_editor_fail_requeue"
+      gate: "yellow"
+      trigger: "编辑FAIL(结构/节奏)"
+      action: "decision_card→主控裁决→重派"
+
+  test_forbidden:
+    - "write_to_新版"
+    - "generate_已投稿TXT"
+    - "upload_fanqie"
+    - "modify_大纲"
+    - "modify_rules_yaml"
+    - "skip_smoke"
+    - "single_model_simulate_all_roles"
+    - "auto_rewrite_on_fail"
+    - "execute_yellow_without_decision_card"

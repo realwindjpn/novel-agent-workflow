@@ -1,0 +1,4 @@
+title_ok=True
+source_ok=True
+size=108679
+image_infos=[('cover_official_ds163_720x404.jpg', (720, 404), 67290), ('cover_official_ds163_original.jpg', (1920, 1080), 707629)]

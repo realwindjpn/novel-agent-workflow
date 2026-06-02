@@ -19,11 +19,11 @@ RTK压缩：所有结果写文件，只返回统计摘要。
 采集源配置：微信URL从配置文件读取，其他按关键词自动搜。
 """
 
-import json, os, re, sys, time, html, subprocess, shutil
+import json, os, re, sys, time, html, subprocess, shutil, hashlib
 import urllib.request
 from pathlib import Path
 from datetime import datetime
-from urllib.parse import quote
+from urllib.parse import quote, urljoin
 
 # 路径
 BASE = Path("/root/workspace/科武纪元/硬科学素材")
@@ -72,9 +72,34 @@ def filter_crawl4ai_logs(text):
     return '\n'.join(l for l in text.splitlines() if not l.startswith(prefixes))
 
 def run_crawl4ai(url, timeout=60):
-    """安全调用 crawl4ai-skill，避免 shell 注入并保留错误信息。"""
+    """安全调用 crawl4ai；优先用 Hermes 已更新的系统 Chrome，避开 Playwright 专用 chromium 缺失。"""
+    chrome = shutil.which('google-chrome') or shutil.which('chromium') or shutil.which('chromium-browser')
+    if chrome:
+        try:
+            from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
+            import asyncio
+            async def _crawl():
+                async with AsyncWebCrawler(
+                    config=BrowserConfig(
+                        headless=True,
+                        chrome_channel='chrome',
+                        channel='chrome',
+                        extra_args=['--no-sandbox','--disable-dev-shm-usage']
+                    )
+                ) as crawler:
+                    result = await crawler.arun(url=url, config=CrawlerRunConfig(cache_mode='bypass'))
+                    return result.markdown or ''
+            md = asyncio.run(_crawl())
+            if md.strip():
+                return True, filter_crawl4ai_logs(md)
+        except Exception as e:
+            chrome_err = f'system_chrome_crawl4ai失败: {e}'
+        else:
+            chrome_err = 'system_chrome_crawl4ai空输出'
+    else:
+        chrome_err = '未找到系统Chrome'
     if not shutil.which("crawl4ai-skill"):
-        return False, "crawl4ai-skill 不存在"
+        return False, chrome_err + '; crawl4ai-skill 不存在'
     try:
         result = subprocess.run(
             ["crawl4ai-skill", "crawl", url, "--format", "fit_markdown"],
@@ -84,10 +109,10 @@ def run_crawl4ai(url, timeout=60):
             check=False,
         )
     except subprocess.TimeoutExpired:
-        return False, "crawl4ai超时"
+        return False, chrome_err + '; crawl4ai超时'
     if result.returncode != 0:
         err = (result.stderr.strip() or result.stdout.strip())[:300]
-        return False, f"crawl4ai失败: {err}"
+        return False, chrome_err + '; crawl4ai失败: ' + err
     return True, filter_crawl4ai_logs(result.stdout)
 
 def clean_xml_text(s):
@@ -353,30 +378,44 @@ def crawl_guancha_article(article_url, output_path):
 # ========== 中科院（crawl4ai列表 + 浏览器正文）==========
 
 def crawl_cas_list():
-    """爬中科院科研进展列表"""
+    """爬中科院科研进展列表。
+
+    优先轻量 urllib 抓公开页面，不依赖 Playwright 浏览器；失败才降级 crawl4ai。
+    只返回列表，不抓全文，避免全站扫。
+    """
     try:
-        import asyncio
-        from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
-        
-        async def _crawl():
-            async with AsyncWebCrawler(config=BrowserConfig(headless=True, extra_args=['--no-sandbox'])) as crawler:
-                r = await crawler.arun(url="https://www.cas.cn/kyjz/", config=CrawlerRunConfig(cache_mode='bypass'))
-                return r.markdown
-        
-        md = asyncio.run(_crawl())
+        url = "https://www.cas.cn/kyjz/"
+        req = urllib.request.Request(url, headers={
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36',
+            'Accept-Language': 'zh-CN,zh;q=0.9',
+        })
+        raw = urllib.request.urlopen(req, timeout=20).read().decode('utf-8', errors='replace')
+        md = html.unescape(raw)
         
         links = []
         seen = set()
-        # 匹配格式: 日期[标题](https://www.cas.cn/syky/xxx.shtml "标题")
-        # 或: [标题](https://www.cas.cn/syky/xxx.shtml "标题")
-        # 排除图片链接（包含 W0/ ORIGIN.jpg 等）
-        for m in re.finditer(r'([\d-]+)?\s*\[(.+?)\]\((https://www\.cas\.cn/(?:syky|cg|kj|cm)/[^)]+\.shtml)', md):
-            date = m.group(1) or ''
-            title = m.group(2).strip()
-            url = m.group(3)
+        # HTML/Markdown 双模式兼容：提取 cas.cn 下科研进展/成果链接。
+        patterns = [
+            r'<a[^>]+href=["\']([^"\']+\.shtml)["\'][^>]*>(.*?)</a>',
+            r'([\d-]+)?\s*\[(.+?)\]\((https?://[^)]+\.shtml)',
+        ]
+        candidates = []
+        for m in re.finditer(patterns[0], md, flags=re.S|re.I):
+            href, title = m.group(1), m.group(2)
+            href = urljoin('https://www.cas.cn/kyjz/', href)
+            href = href.replace('https://www.cas.cn/../..', 'https://www.cas.cn').replace('https://www.cas.cn/..', 'https://www.cas.cn')
+            candidates.append({'date':'', 'title': clean_xml_text(title), 'url': href})
+        for m in re.finditer(patterns[1], md, flags=re.S|re.I):
+            candidates.append({'date': m.group(1) or '', 'title': clean_xml_text(m.group(2)), 'url': m.group(3)})
+        for item in candidates:
+            date = item.get('date') or ''
+            title = (item.get('title') or '').strip()
+            url = item.get('url') or ''
             
             # 过滤图片标题、过短标题、已投稿链接
-            if 'W0' in url or 'ORIGIN' in url or '![]' in title or len(title) < 10 or url in seen:
+            if 'W0' in url or 'ORIGIN' in url or '![]' in title or len(title) < 8 or url in seen:
+                continue
+            if 'cas.cn' not in url or not url.endswith('.shtml'):
                 continue
             
             # 清理日期前缀
@@ -397,48 +436,111 @@ def crawl_cas_list():
         log(f"  中科院列表爬取失败: {e}")
         return []
 
+def collect_existing_material_signatures():
+    """收集已有素材 URL/标题签名，避免重复入库。"""
+    roots = [Path('/root/workspace/科武纪元/时事素材'), Path('/root/workspace/科武纪元/硬科学素材')]
+    text = ''
+    for root in roots:
+        if not root.exists():
+            continue
+        for p in root.rglob('*.md'):
+            try:
+                text += '\n' + p.read_text(encoding='utf-8', errors='ignore')[:20000]
+            except Exception:
+                pass
+        for p in root.rglob('*.jsonl'):
+            try:
+                text += '\n' + p.read_text(encoding='utf-8', errors='ignore')[:20000]
+            except Exception:
+                pass
+    urls = set(re.findall(r'https?://[^\s)`]+', text))
+    titles = set()
+    for m in re.finditer(r'(?:# 素材卡：|# |主题[：:])([^\n]{8,80})', text):
+        t = re.sub(r'[`*_\[\]（）()|]', '', m.group(1)).strip()
+        if len(t) >= 8:
+            titles.add(t[:40])
+    return urls, titles
+
+def is_duplicate_material(title, url, existing_urls, existing_titles):
+    if url in existing_urls:
+        return True
+    compact = re.sub(r'\s+', '', title or '')
+    for t in existing_titles:
+        tt = re.sub(r'\s+', '', t)
+        if compact and tt and (compact in tt or tt in compact):
+            return True
+    return False
+
+def select_cas_links_by_need(links, keywords=None, limit=3):
+    """按需求关键词筛选中科院链接，限量去重。"""
+    if keywords is None:
+        env = os.environ.get('KEWU_CAS_KEYWORDS', '')
+        keywords = [x.strip() for x in re.split(r'[,，\s]+', env) if x.strip()] or CONFIG.get('cas_keywords', [])
+    existing_urls, existing_titles = collect_existing_material_signatures()
+    selected, skipped = [], []
+    for link in links:
+        title = link.get('title','')
+        url = link.get('url','')
+        if is_duplicate_material(title, url, existing_urls, existing_titles):
+            skipped.append({'reason':'duplicate', **link})
+            continue
+        if keywords and not any(k.lower() in title.lower() for k in keywords):
+            skipped.append({'reason':'need_mismatch', **link})
+            continue
+        selected.append(link)
+        if len(selected) >= limit:
+            break
+    return selected, skipped, keywords
+
 # ========== 物理所 ==========
 
 def crawl_iop(base_url):
-    """爬取中科院物理所科普页"""
-    try:
-        import asyncio
-        from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
-        
-        async def _crawl():
-            async with AsyncWebCrawler(
-                config=BrowserConfig(headless=True, extra_args=['--no-sandbox', '--disable-dev-shm-usage'])
-            ) as crawler:
-                result = await crawler.arun(
-                    url=base_url,
-                    config=CrawlerRunConfig(cache_mode='bypass')
-                )
-                return result.markdown
-        
-        md = asyncio.run(_crawl())
-        
-        links = []
-        seen = set()
-        for line in md.split('\n'):
-            if 'iop.cas.cn/kxcb/' in line and '.html' in line:
-                m = re.search(r'https://www\.iop\.cas\.cn/kxcb/[^)\s\]]+\.html', line)
-                if m:
-                    url = m.group(0)
-                    if url in seen:
-                        continue
-                    seen.add(url)
-                    title = line.replace(url, '').replace('[', '').replace(']', '').strip()[:80]
-                    if title and len(title) > 5:
-                        links.append({"title": title, "url": url})
-        
-        out = RAW_DIR / "iop_links.json"
-        with open(out, 'w', encoding='utf-8') as f:
-            json.dump(links, f, ensure_ascii=False, indent=2)
-        
-        return len(links)
-    except Exception as e:
-        log(f"  物理所爬取失败: {e}")
-        return 0
+    """爬取中科院物理所科普页：系统Chrome/crawl4ai优先，urllib静态解析兜底。"""
+    def parse_links(text):
+        links=[]; seen=set()
+        patterns=[
+            r'https?://www\.iop\.cas\.cn/kxcb/[^)\s\]\"<>]+\.html',
+            r'href=[\"\']([^\"\']*kxcb/[^\"\']+\.html)[\"\']',
+        ]
+        for pat in patterns:
+            for m in re.finditer(pat, text, flags=re.I):
+                url=m.group(1) if m.lastindex else m.group(0)
+                if url.startswith('/'):
+                    url='https://www.iop.cas.cn'+url
+                elif url.startswith('./'):
+                    url=base_url.rstrip('/')+'/'+url[2:]
+                elif url.startswith('../'):
+                    url='https://www.iop.cas.cn/'+url.lstrip('../')
+                if '://' not in url:
+                    url='https://www.iop.cas.cn/'+url.lstrip('/')
+                if url in seen:
+                    continue
+                seen.add(url)
+                # 尝试从所在行提标题
+                line=next((ln for ln in text.split('\n') if url in ln or m.group(0) in ln), '')
+                title=clean_xml_text(line).replace(url,'').strip()[:80]
+                if not title or len(title)<5:
+                    title=Path(url).stem
+                links.append({'title':title,'url':url})
+        return links
+    md=''
+    ok, md_or_err = run_crawl4ai(base_url, timeout=90)
+    if ok:
+        md=md_or_err
+    else:
+        log(f"  物理所crawl4ai降级: {md_or_err[:180]}")
+    links=parse_links(md) if md else []
+    if not links:
+        try:
+            req=urllib.request.Request(base_url, headers={'User-Agent':'Mozilla/5.0 Chrome/124 Safari/537.36','Accept-Language':'zh-CN,zh;q=0.9'})
+            raw=urllib.request.urlopen(req, timeout=30).read().decode('utf-8','ignore')
+            links=parse_links(raw)
+        except Exception as e:
+            log(f"  物理所urllib兜底失败: {e}")
+    out = RAW_DIR / "iop_links.json"
+    with open(out, 'w', encoding='utf-8') as f:
+        json.dump(links, f, ensure_ascii=False, indent=2)
+    return len(links)
 
 # ========== 热点采集 ==========
 
@@ -546,14 +648,14 @@ def main():
         links = crawl_cas_list()
         stats["cas列表"] = f"{len(links)}条"
         if links:
-            # 生成浏览器读取脚本
-            script_path = OUT_DIR / "read_cas_articles.sh"
-            with open(script_path, 'w', encoding='utf-8') as f:
-                f.write("#!/bin/bash\n# 中科院文章正文读取脚本（需浏览器执行）\n")
-                for i, link in enumerate(links[:10]):
-                    f.write(f'echo "爬取第{i+1}篇: {link["title"][:50]}"\n')
-            os.chmod(script_path, 0o755)
-            stats["cas脚本"] = f"10篇待爬"
+            selected, skipped, keywords = select_cas_links_by_need(links, limit=int(os.environ.get('KEWU_CAS_LIMIT', '3')))
+            with open(RAW_DIR / "cas_selected.json", 'w', encoding='utf-8') as f:
+                json.dump(selected, f, ensure_ascii=False, indent=2)
+            with open(RAW_DIR / "cas_skipped.json", 'w', encoding='utf-8') as f:
+                json.dump(skipped[:100], f, ensure_ascii=False, indent=2)
+            stats["cas需求关键词"] = ','.join(keywords) if keywords else '未设置'
+            stats["cas待抓正文"] = f"{len(selected)}条（已限量去重）"
+            stats["cas跳过"] = f"{len(skipped)}条"
     
     if mode in ("all", "iop"):
         log("\n=== 中科院物理所 ===")

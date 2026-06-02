@@ -1,0 +1,14 @@
+{
+  "task": {
+    "name": "overseas_key2_gpt55_backup",
+    "provider": "key2",
+    "model": "gpt-5.5",
+    "geo": "overseas",
+    "timeout": 240,
+    "prompt": "你是海外游戏资讯备用采集器。用公开来源视角列今日可写热点，尤其玩家争议/评论入口。输出 JSON 数组，含来源链接或可检索来源名。"
+  },
+  "exit_code": 1,
+  "duration_sec": 10.99,
+  "stdout": "Unknown provider 'key2'. Check 'hermes model' for available providers, or run \n'hermes doctor' to diagnose config issues.\n",
+  "stderr": ""
+}

@@ -1,0 +1,343 @@
+{
+  "date": "2026-05-29",
+  "proxy_10819_alive": true,
+  "results": [
+    {
+      "name": "pcgamer_rss",
+      "url": "https://www.pcgamer.com/rss/",
+      "proxy": false,
+      "status": 200,
+      "bytes": 501529,
+      "seconds": 1.8,
+      "items": [
+        {
+          "title": "Where to find the Minamino region Treasure Hunt in Forza Horizon 6",
+          "link": ""
+        },
+        {
+          "title": "In a bittersweet return to form, Destiny 2's final update is giving players reasons to roam its public zones once again",
+          "link": ""
+        },
+        {
+          "title": "6 months before the launch of Grand Theft Auto 6, Rockstar employees in the UK have formed a union",
+          "link": ""
+        },
+        {
+          "title": "After the success of Lord of Hatred, Diablo 4 looks to be turning its back on the fun in its next season",
+          "link": ""
+        },
+        {
+          "title": "Now that we have Paralives, Inzoi, and The Sims 4, life simmers finally have the variety we've been begging for",
+          "link": ""
+        },
+        {
+          "title": "'Proper big': The Witcher 3's new expansion will be 'closer to Blood and Wine' in scope",
+          "link": ""
+        },
+        {
+          "title": "4 years later, Infinity Ward reflects on Call of Duty: Modern Warfare 2's controversial changes: 'It came at the cost of feel and fun'",
+          "link": ""
+        },
+        {
+          "title": "This week's most compelling Steam demo is a torment engine disguised as golf",
+          "link": ""
+        },
+        {
+          "title": "Despite astronomical price hike, the Steam Deck has sold out again in North America",
+          "link": ""
+        },
+        {
+          "title": "Overwatch's latest anniversary mode brings back pre-Overwatch 2 6v6 and I have to admit, I missed it",
+          "link": ""
+        },
+        {
+          "title": "A malware dev has committed a magnificent self-own after an AI-coded malicious package leaked its own GitHub private token",
+          "link": ""
+        },
+        {
+          "title": "Subnautica 2's botched bonus deal is about to wipe out more than one-third of Krafton's $736 million annual profit for 2025",
+          "link": ""
+        }
+      ],
+      "error": null
+    },
+    {
+      "name": "eurogamer_news",
+      "url": "https://www.eurogamer.net/feed/news",
+      "proxy": false,
+      "status": 200,
+      "bytes": 166869,
+      "seconds": 0.87,
+      "items": [
+        {
+          "title": "Eurogamer.net News Feed",
+          "link": "https://www.eurogamer.net/feed/news"
+        },
+        {
+          "title": "The Witcher 3 expansion Songs of the Past was once intended to launch this year, CD Projekt Red reveals, so the rumours were correct",
+          "link": "https://www.eurogamer.net/witcher-3-expansion-songs-of-the-past-release-date-details"
+        },
+        {
+          "title": "CD Projekt Red reveals huge The Witcher 3 sales milestone, which helps explain why a third expansion is in development 11 years later",
+          "link": "https://www.eurogamer.net/witcher-3-sales-milestone-65-million"
+        },
+        {
+          "title": "Unlike The Sims, early access hit Paralives will \"never\" have paid DLC and will stick to free updates, devs say",
+          "link": "https://www.eurogamer.net/paralives-devs-say-no-paid-dlc-plans"
+        },
+        {
+          "title": "Call of Duty: Modern Warfare 4 finally revealed, and it's officially leaving last-generation consoles behind",
+          "link": "https://www.eurogamer.net/call-of-duty-modern-warfare-4-reveal"
+        },
+        {
+          "title": "Heroes of Might and Magic: Olden Era reveals early access roadmap as publisher Hooded Horse celebrates 1m copies sold during its first month",
+          "link": "https://www.eurogamer.net/heroes-of-might-and-magic-olden-era-roadmap"
+        },
+        {
+          "title": "IOI is 'keeping the British end up' in 007 First Light by switching out Americanisms to \"reinforce the immersion\"",
+          "link": "https://www.eurogamer.net/007-first-light-americanism-parking-lot"
+        },
+        {
+          "title": "That sword Geralt unsheaths in The Witcher 3 Songs of the Past expansion artwork? We've seen it before",
+          "link": "https://www.eurogamer.net/witcher-3-expansion-songs-of-past-sword"
+        },
+        {
+          "title": "Planet Zoo 2 finally revealed after much teasing, with an autumn release date, aquatic and flying species, and the ability to conserve outside of your zoo",
+          "link": "https://www.eurogamer.net/planet-zoo-2-revealed"
+        },
+        {
+          "title": "Subnautica 2 publisher Krafton now forced to pay $250m earnout to Unknown Worlds developers after more than 4m units sold",
+          "link": "https://www.eurogamer.net/subnautica-2-krafton-unknown-worlds-earnout"
+        },
+        {
+          "title": "Donkey Kong 64 finally arrives on Nintendo Switch Online next month",
+          "link": "https://www.eurogamer.net/donkey-kong-64-nintendo-switch-online"
+        },
+        {
+          "title": "A Pragmata sequel? Well, \"of course\" Capcom's game director would love one, but alas, he is \"not the only one who decides\"",
+          "link": "https://www.eurogamer.net/pragmata-sequel-of-course-director-would-love-one"
+        }
+      ],
+      "error": null
+    },
+    {
+      "name": "playstation_blog",
+      "url": "https://blog.playstation.com/feed/",
+      "proxy": false,
+      "status": 200,
+      "bytes": 172984,
+      "seconds": 8.09,
+      "items": [
+        {
+          "title": "PlayStation.Blog",
+          "link": "https://blog.playstation.com"
+        },
+        {
+          "title": "PlayStation.Blog",
+          "link": "https://blog.playstation.com"
+        },
+        {
+          "title": "Play NBA The Run open beta on PS5 this weekend",
+          "link": "https://blog.playstation.com/2026/05/28/play-nba-the-run-open-beta-on-ps5-this-weekend/"
+        },
+        {
+          "title": "Call of Duty: Modern Warfare 4 — Campaign, Multiplayer, and DMZ launches October 23",
+          "link": "https://blog.playstation.com/2026/05/28/call-of-duty-modern-warfare-4-campaign-multiplayer-and-dmz-launches-october-23/"
+        },
+        {
+          "title": "BeamNG.drive speeds onto PS5 this year",
+          "link": "https://blog.playstation.com/2026/05/28/beamng-drive-speeds-onto-ps5-this-year/"
+        },
+        {
+          "title": "Marathon Season 2 arrives June 2",
+          "link": "https://blog.playstation.com/2026/05/27/marathon-season-2-arrives-june-2/"
+        },
+        {
+          "title": "PlayStation × Dragon Quest: celebrating the RPG franchise’s 40th anniversary",
+          "link": "https://blog.playstation.com/2026/05/27/playstation-x-dragon-quest-celebrating-the-rpg-franchises-40th-anniversary/"
+        },
+        {
+          "title": "No Man’s Sky: The Swarm update launches today",
+          "link": "https://blog.playstation.com/2026/05/27/no-mans-sky-the-swarm-update-launches-today/"
+        },
+        {
+          "title": "(For Southeast Asia) Days of Play 2026 begins May 27",
+          "link": "https://blog.playstation.com/2026/05/26/20260527-dop/"
+        },
+        {
+          "title": "MLB The Show Mobile launches globally today",
+          "link": "https://blog.playstation.com/2026/05/26/mlb-the-show-mobile-launches-globally-today/"
+        },
+        {
+          "title": "Playstation Plus Monthly Games for June: Grounded Fully Yoked Edition, Nickelodeon All-Star Brawl 2, Warhammer 40,000: Darktide",
+          "link": "https://blog.playstation.com/2026/05/26/playstation-plus-monthly-games-for-june-grounded-fully-yoked-edition-nickelodeon-all-star-brawl-2-warhammer-40000-darktide/"
+        },
+        {
+          "title": "Days of Play 2026 begins May 27",
+          "link": "https://blog.playstation.com/2026/05/26/days-of-play-2026-begins-may-27/"
+        }
+      ],
+      "error": null
+    },
+    {
+      "name": "ign_news",
+      "url": "https://www.ign.com/news",
+      "proxy": true,
+      "status": 200,
+      "bytes": 198210,
+      "seconds": 2.59,
+      "items": [
+        {
+          "title": "Game Reviews",
+          "link": "https://www.ign.com/reviews/games"
+        },
+        {
+          "title": "Upcoming Games",
+          "link": "https://www.ign.com/upcoming/games"
+        },
+        {
+          "title": "Video Game Trailers",
+          "link": "https://www.ign.com/events/video-game-trailers"
+        },
+        {
+          "title": "Movie Trailers",
+          "link": "https://www.ign.com/events/movie-trailers"
+        },
+        {
+          "title": "1dThe Witcher 3: Wild Hunt - Songs of the Past Expansion DLC Announced, First Details Confirmed169",
+          "link": "https://www.ign.com/articles/the-witcher-3-wild-hunt-songs-of-the-past-expansion-dlc-announced-first-details-confirmed"
+        },
+        {
+          "title": "1dEXCLUSIVE: First Look at EA Sports FC 26 The World&#x27;s Game Update1",
+          "link": "https://www.ign.com/articles/exclusive-first-look-at-ea-sports-fc-26-the-worlds-game-update"
+        },
+        {
+          "title": "2dSony Confirms PlayStation Plus Monthly Games for June 2026, First Lineup Announcement Since Price Rise66",
+          "link": "https://www.ign.com/articles/sony-confirms-playstation-plus-monthly-games-for-june-2026-first-lineup-announcement-since-price-rise"
+        },
+        {
+          "title": "1dThe Fantastic Four: First Steps Star Paul Walter Hauser Reveals His Marvel Paycheck — And How Much He Actually Got After Taxes46",
+          "link": "https://www.ign.com/articles/the-fantastic-four-first-steps-star-paul-walter-hauser-reveals-his-marvel-paycheck-and-how-much-he-actually-got-after-taxes"
+        },
+        {
+          "title": "4h agoCall of Duty: Modern Warfare 4 Leak May Reveal Early Access for Campaign4h ago - Prepare for launch.Call of Duty: Modern Warfare 4",
+          "link": "https://www.ign.com/articles/call-of-duty-modern-warfare-4-leak-may-reveal-early-access-for-campaign"
+        },
+        {
+          "title": "4h agoRambo Prequel Gets Summer 2027 Release Date4h ago - First blood... again.John Rambo",
+          "link": "https://www.ign.com/articles/rambo-prequel-gets-summer-2027-release-date"
+        },
+        {
+          "title": "3:186h agoCall of Duty: Modern Warfare 4 Is Leaving PS4, Xbox One Behind - IGN Daily Fix6h agoCall of Duty: Modern Warfare 4",
+          "link": "https://www.ign.com/videos/call-of-duty-modern-warfare-4-is-leaving-ps4-xbox-one-behind-ign-daily-fix"
+        },
+        {
+          "title": "Tom Phillips",
+          "link": "https://www.ign.com/person/tomphillipsIGN"
+        }
+      ],
+      "error": null
+    },
+    {
+      "name": "gamespot_news",
+      "url": "https://www.gamespot.com/news/",
+      "proxy": true,
+      "status": null,
+      "bytes": 0,
+      "seconds": 0.66,
+      "items": [],
+      "error": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "name": "steam_news",
+      "url": "https://store.steampowered.com/news/",
+      "proxy": true,
+      "status": 200,
+      "bytes": 229409,
+      "seconds": 1.49,
+      "items": [
+        {
+          "title": "Get the Steam Mobile App",
+          "link": "https://store.steampowered.com/mobile"
+        },
+        {
+          "title": "Steam Subscriber Agreement",
+          "link": "https://store.steampowered.com/subscriber_agreement/?snr=1_2108_4__global-responsive-menu"
+        },
+        {
+          "title": "Español - España (Spanish - Spain)",
+          "link": "https://store.steampowered.com/news/?l=spanish"
+        },
+        {
+          "title": "Français (French)",
+          "link": "https://store.steampowered.com/news/?l=french"
+        },
+        {
+          "title": "Українська (Ukrainian)",
+          "link": "https://store.steampowered.com/news/?l=ukrainian"
+        }
+      ],
+      "error": null
+    },
+    {
+      "name": "x_search_gaming",
+      "url": "https://x.com/search?q=gaming%20news%20OR%20PlayStation%20OR%20Steam%20OR%20Xbox&src=typed_query",
+      "proxy": true,
+      "status": 200,
+      "bytes": 270004,
+      "seconds": 1.06,
+      "items": [],
+      "error": null
+    },
+    {
+      "name": "reddit_games_search",
+      "url": "https://www.reddit.com/search/?q=gaming%20news&type=link",
+      "proxy": true,
+      "status": 200,
+      "bytes": 8431,
+      "seconds": 0.52,
+      "items": [],
+      "error": null
+    },
+    {
+      "name": "resetera",
+      "url": "https://www.resetera.com/forums/gaming-forum.7/",
+      "proxy": true,
+      "status": null,
+      "bytes": 0,
+      "seconds": 0.57,
+      "items": [],
+      "error": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "name": "rebang_gamersky",
+      "url": "https://api.rebang.today/v1/items?tab=gamersky&sub_tab=rec&page=1&version=1",
+      "proxy": false,
+      "status": 200,
+      "bytes": 23169,
+      "seconds": 0.12,
+      "items": [],
+      "error": null
+    },
+    {
+      "name": "rebang_ithome",
+      "url": "https://api.rebang.today/v1/items?tab=ithome&sub_tab=latest&page=1&version=1",
+      "proxy": false,
+      "status": 200,
+      "bytes": 11659,
+      "seconds": 0.09,
+      "items": [],
+      "error": null
+    },
+    {
+      "name": "rebang_xiaohongshu",
+      "url": "https://api.rebang.today/v1/items?tab=xiaohongshu&sub_tab=hot-search&page=1&version=1",
+      "proxy": false,
+      "status": 200,
+      "bytes": 4937,
+      "seconds": 0.11,
+      "items": [],
+      "error": null
+    }
+  ]
+}

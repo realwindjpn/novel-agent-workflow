@@ -18,6 +18,7 @@ import time
 from pathlib import Path
 
 PROJECT_DIR = Path('/root/workspace/科武纪元')
+READY_GATE = PROJECT_DIR / '工具脚本' / 'ensure_fanqie_upload_txt_ready.py'
 BOOK_ID = '7628216044850531352'
 BOOK_NAME_ENC = '%E7%A7%91%E6%AD%A6%E7%BA%AA%E5%85%83%EF%BC%9A%E6%88%91%E5%9C%A8%E6%9C%AB%E4%B8%96%E4%BF%AE%E4%BB%99'
 DRAFT_URL = f'https://fanqienovel.com/main/writer/chapter-manage/{BOOK_ID}&{BOOK_NAME_ENC}?type=2'
@@ -316,6 +317,11 @@ def main():
             save_state(args.session, args.state)
         print(json.dumps(ok | {'state': str(args.state)}, ensure_ascii=False, indent=2))
         return
+
+    if READY_GATE.exists() and args.project_dir == PROJECT_DIR:
+        gate = subprocess.run([sys.executable, str(READY_GATE), '--chapter', str(args.chapter)], text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        if gate.returncode != 0:
+            raise RuntimeError('上传TXT完备门禁失败，请先运行 ensure_fanqie_upload_txt_ready.py --write 修复：\n' + gate.stdout)
 
     data = parse_chapter(args.project_dir, args.chapter)
     print(json.dumps({k: v for k, v in data.items() if k not in ('body','note')} | {'note': data['note']}, ensure_ascii=False, indent=2))

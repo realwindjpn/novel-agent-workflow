@@ -1,0 +1,200 @@
+[
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260609_189df018fa",
+    "title": "发展新质生产力是推动高质量发展的内在要求和重要着力点 - 时政",
+    "source_url": "http://politics.people.com.cn/n1/2024/0531/c1024-40247782.html",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/prod_verify_domestic_hotfix_20260608_225908/cards/发展新质生产力是推动高质量发展的内在要求和重要着力点_-_时政.md",
+    "target_chapter_hint": 125,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_RAG",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_RAG_jsonl"
+    ],
+    "not_done_in_dry_run": true
+  },
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260609_c2ef339ce5",
+    "title": "着力打造京津冀世界级先进制造业集群 - 理论- 人民网",
+    "source_url": "http://theory.people.com.cn/n1/2023/1117/c40531-40120265.html",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/prod_verify_domestic_hotfix_20260608_225908/cards/着力打造京津冀世界级先进制造业集群_-_理论-_人民网.md",
+    "target_chapter_hint": 359,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_RAG",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_RAG_jsonl"
+    ],
+    "not_done_in_dry_run": true
+  },
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260609_55b749ffda",
+    "title": "新质生产力的内涵特征和发展重点 - 新华网",
+    "source_url": "http://www.xinhuanet.com/politics/20240301/ec9c1f5a8ab748fab5f74c59d3fe5862/c.html",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/prod_verify_domestic_hotfix_20260608_225908/cards/新质生产力的内涵特征和发展重点_-_新华网.md",
+    "target_chapter_hint": 125,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_RAG",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_RAG_jsonl"
+    ],
+    "not_done_in_dry_run": true
+  },
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260609_d2419b4711",
+    "title": "牢牢把握产业革命大趋势 - 新华网",
+    "source_url": "http://news.xinhuanet.com/politics/2016-03/02/c_128765346.htm",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/prod_verify_domestic_hotfix_20260608_225908/cards/牢牢把握产业革命大趋势_-_新华网.md",
+    "target_chapter_hint": 125,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_RAG",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_RAG_jsonl"
+    ],
+    "not_done_in_dry_run": true
+  },
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260609_d184279482",
+    "title": "诺安基金邓心怡：国内机器人行业有望迎来产业高速发展窗口期-经济参考网 _ 新华社《经济参考报》官方网站",
+    "source_url": "http://jjckb.xinhuanet.com/20250220/177b6f445b2a4ba2a285c63b4c62f0f2/c.html",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/prod_verify_domestic_hotfix_20260608_225908/cards/诺安基金邓心怡_国内机器人行业有望迎来产业高速发展窗口期-经济参考网___新华社_经济参考报_官方网.md",
+    "target_chapter_hint": 359,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_RAG",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_RAG_jsonl"
+    ],
+    "not_done_in_dry_run": true
+  },
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260609_0089cfd1a9",
+    "title": "市场最前沿｜逐空而上！低空经济加速启航万亿新赛道 - 新华网",
+    "source_url": "http://www.xinhuanet.com/20251222/15fef6ce60024e5aac0226a0d88924a1/c.html",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/prod_verify_domestic_hotfix_20260608_225908/cards/市场最前沿_逐空而上_低空经济加速启航万亿新赛道_-_新华网.md",
+    "target_chapter_hint": 217,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_RAG",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_RAG_jsonl"
+    ],
+    "not_done_in_dry_run": true
+  },
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260609_d2926e2496",
+    "title": "“嫦娥二号”在700万公里深空成功探测小行星 - 新华时政 - 新华网",
+    "source_url": "http://www.xinhuanet.com/politics/2012-12/15/c_124099234.htm",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/prod_verify_domestic_hotfix_20260608_225908/cards/嫦娥二号_在700万公里深空成功探测小行星_-_新华时政_-_新华网.md",
+    "target_chapter_hint": 156,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_RAG",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_RAG_jsonl"
+    ],
+    "not_done_in_dry_run": true
+  },
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260609_5cc6ef174a",
+    "title": "新质生产力加快培育 释放高质量发展新动能_新闻频道_央视网(cctv.com)",
+    "source_url": "https://news.cctv.com/2024/03/15/ARTI5f0l7td8AffCDHjbL9EI240315.shtml",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/prod_verify_domestic_hotfix_20260608_225908/cards/新质生产力加快培育_释放高质量发展新动能_新闻频道_央视网_cctv_com.md",
+    "target_chapter_hint": 156,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_RAG",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_RAG_jsonl"
+    ],
+    "not_done_in_dry_run": true
+  },
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260609_96eb526832",
+    "title": "NASA Satellites Help Map Ocean Nutrient Stress",
+    "source_url": "https://science.nasa.gov/earth/ocean-nutrient-stress",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/prod_verify_domestic_hotfix_20260608_225908/cards/NASA_Satellites_Help_Map_Ocean_Nutrient_Stress.md",
+    "target_chapter_hint": 156,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_RAG",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_RAG_jsonl"
+    ],
+    "not_done_in_dry_run": true
+  },
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260609_03f6eed164",
+    "title": "ESA at ILA Berlin International Airshow 2026",
+    "source_url": "https://www.esa.int/About_Us/Corporate_news/ESA_at_ILA_Berlin_International_Airshow_2026",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/prod_verify_domestic_hotfix_20260608_225908/cards/ESA_at_ILA_Berlin_International_Airshow_2026.md",
+    "target_chapter_hint": 156,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_RAG",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_RAG_jsonl"
+    ],
+    "not_done_in_dry_run": true
+  },
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260609_e98ca3c005",
+    "title": "AI is taking on antibiotic resistance — here’s how",
+    "source_url": "https://www.nature.com/articles/d41586-026-01818-9",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/prod_verify_domestic_hotfix_20260608_225908/cards/AI_is_taking_on_antibiotic_resistance___here_s_how.md",
+    "target_chapter_hint": 359,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_RAG",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_RAG_jsonl"
+    ],
+    "not_done_in_dry_run": true
+  }
+]

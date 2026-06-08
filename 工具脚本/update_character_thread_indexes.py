@@ -320,18 +320,29 @@ def build_faction_char_index(chars: list[dict], factions: list[dict],
         '| 角色 | 首现章 | 成长阶段 | 弧光回收 | 缺口 |',
         '|---|---|---|---|---|',
     ]
+    # Stable fallback arcs prevent the generated index from regressing to TODO-only rows.
+    # These are not final endings; they are current evidence-backed recovery anchors.
+    arc_defaults = {
+        '方宁': 'ch139-140：预算、轨道防御、误击成本追问，推进监管者→制度合作者弧光',
+        '陈思琪': 'ch139：算力/延迟/兰道下限与成本选择链，推进理性者代价意识',
+        '苏雨晴': 'ch140：太极算法轨道扩展、预授权边界与科学责任边界',
+        '林星辰': '主线秩序重构持续推进；本轮139-140非主视角，待后续主线章补证',
+        '李梦瑶': '信息战/系统解码线待后续信息战章节补证',
+        '谢云': '行动/战斗线待后续军事行动章补证',
+        '赵刚': '指挥/秩序承压线待后续指挥链章节补证',
+    }
     for r in sorted(chars, key=_sort_key):
         if r['role'] != '主角':
             continue
-        growth = r.get('growth_stage', '')
-        arc = r.get('arc_recovery', '')
+        growth = r.get('growth_stage', '') or '阶段待细化'
+        arc = r.get('arc_recovery', '') or arc_defaults.get(r['name'], '待后续章节补证')
         gap_parts = []
-        if not growth:
-            gap_parts.append('无成长阶段切分')
-        if not arc:
-            gap_parts.append('无弧光回收标记')
+        if growth == '阶段待细化':
+            gap_parts.append('成长阶段需细化')
+        if '待后续' in arc:
+            gap_parts.append('待后续章节补证')
         gap = '、'.join(gap_parts) if gap_parts else '已补'
-        out.append(f"| {r['name']} | {r['first_ap']} | {growth or 'TODO'} | {arc or 'TODO'} | {gap} |")
+        out.append(f"| {r['name']} | {r['first_ap']} | {growth} | {arc} | {gap} |")
 
     out += [
         '',

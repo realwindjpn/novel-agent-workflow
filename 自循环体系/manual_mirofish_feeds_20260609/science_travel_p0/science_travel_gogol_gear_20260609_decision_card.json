@@ -1,0 +1,30 @@
+{
+  "$schema": "manual_mirofish_decision_card_v1",
+  "material_id": "science_travel_gogol_gear_20260609",
+  "title": "古戈尔齿轮：10^100数量级与机械传动物理禁区",
+  "source_card_path": "/root/workspace/科武纪元/时事素材/素材卡/2026-06-09/素材卡_古戈尔齿轮数量级边界_20260609.md",
+  "decision": "CHAPTER_PREP_ONLY",
+  "gain": "P1",
+  "axis": "quantity_boundary",
+  "target_chapters": [
+    95,
+    184
+  ],
+  "reason": "数量级认知差/伪科技骗局/工程师拆神话，可增强算法主权与工程边界表达，不直接改大纲。",
+  "force_reactions": [
+    {
+      "force": "主角团/工程线",
+      "reaction": "只取物理约束与动作链，不取科普夸张标题。"
+    },
+    {
+      "force": "反派/黑市",
+      "reaction": "可用作伪科技骗局或错误直觉的战术陷阱。"
+    }
+  ],
+  "anti_patterns": [
+    "不得把B站视频当事实源",
+    "不得把科普类比写成现实战力",
+    "不得直接改大纲/正文/TXT/草稿箱"
+  ],
+  "created_at": "2026-06-09T00:16:26"
+}

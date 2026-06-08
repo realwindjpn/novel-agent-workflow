@@ -1,0 +1,34 @@
+{
+  "schema": "manual_mirofish_feed_v1",
+  "created_at": "2026-06-09T00:16:26",
+  "source": "B站科学旅行P0核源后正式卡",
+  "policy": "no_outline_text_txt_draft_modified",
+  "items": [
+    {
+      "id": "science_travel_gogol_gear_20260609",
+      "title": "古戈尔齿轮：10^100数量级与机械传动物理禁区",
+      "source": "/root/workspace/科武纪元/时事素材/素材卡/2026-06-09/素材卡_古戈尔齿轮数量级边界_20260609.md",
+      "decision": "CHAPTER_PREP_ONLY",
+      "gain": "P1",
+      "chapters": [
+        95,
+        184
+      ],
+      "axis": "quantity_boundary",
+      "reason": "数量级认知差/伪科技骗局/工程师拆神话，可增强算法主权与工程边界表达，不直接改大纲。"
+    },
+    {
+      "id": "science_travel_brachistochrone_20260609",
+      "title": "最速降线：两点之间最短不等于最快",
+      "source": "/root/workspace/科武纪元/时事素材/素材卡/2026-06-09/素材卡_最速降线最短不等于最快_20260609.md",
+      "decision": "CHAPTER_PREP_ONLY",
+      "gain": "P1",
+      "chapters": [
+        125,
+        184
+      ],
+      "axis": "optimal_path",
+      "reason": "最优路径不等于最短路径，可用于追击/撤退/资源调度/策略弧线，不直接改大纲。"
+    }
+  ]
+}

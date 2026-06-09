@@ -122,7 +122,27 @@ def material_years(title: str, url: str, body: str) -> list[int]:
     return sorted(set(years), reverse=True)
 
 
+def published_years(body: str) -> list[int]:
+    """Prefer article publish dates over captured_at/future planning years."""
+    sample = (body or '')[:2500]
+    explicit = [
+        r'(?:发布时间|发布日期|发表时间|发稿时间)[:：\s]*(20\d{2})[-年/.]',
+        r'(?:发布时间|发布日期|发表时间|发稿时间)[:：\s]*.*?(20\d{2})年',
+    ]
+    years: list[int] = []
+    for pat in explicit:
+        years.extend(int(y) for y in re.findall(pat, sample))
+    if years:
+        return sorted(set(years), reverse=True)
+    body_only = sample.split('## Body Extract', 1)[-1]
+    years = [int(y) for y in re.findall(r'(?<!captured_at: )(20\d{2})[-年/.]\d{1,2}[-月/.]\d{1,2}日?', body_only)]
+    return sorted(set(years), reverse=True)
+
+
 def is_stale_material(title: str, url: str, body: str, max_age_years: int = 1) -> bool:
+    pub_years = published_years(body)
+    if pub_years:
+        return max(pub_years) < dt.datetime.now().year - max_age_years
     years = material_years(title, url, body)
     if not years:
         return False
@@ -256,7 +276,8 @@ def main() -> int:
         if is_short_navigation_body(card_preview):
             skipped.append({'candidate_id': it.get('candidate_id'), 'title': it.get('title'), 'url': url, 'status': status, 'reason': 'short_navigation_body'})
             continue
-        if it.get('source_group') == 'domestic' and is_stale_material(title, url, card_preview):
+        domestic_hint = (it.get('source_group') == 'domestic') or bool(re.search(r'(\.gov\.cn|people\.com\.cn|xinhuanet\.com|cnsa\.gov\.cn)', url.lower())) or any(k in card_preview for k in ['发布时间：', '发布日期：', '来源：新华社', '来源：人民日报', '国家航天局'])
+        if domestic_hint and is_stale_material(title, url, card_preview):
             skipped.append({'candidate_id': it.get('candidate_id'), 'title': it.get('title'), 'url': url, 'status': status, 'reason': 'stale_domestic_article'})
             continue
         valid_items.append(it)
@@ -306,6 +327,11 @@ def main() -> int:
                 'not_done_in_dry_run': True,
             })
 
+    skip_reason_counts: dict[str, int] = {}
+    for s in skipped:
+        r = str(s.get('reason') or 'unknown').lower()
+        skip_reason_counts[r] = skip_reason_counts.get(r, 0) + 1
+
     feed_package = {
         'schema': 'sensenova_mirofish_feed_package_v1',
         'created_at': now(),
@@ -326,6 +352,8 @@ def main() -> int:
         },
         'valid_input_count': len(valid_items),
         'skipped_count': len(skipped),
+        'skip_reason_counts': skip_reason_counts,
+        'stale_domestic_blocked_count': skip_reason_counts.get('stale_domestic_article', 0),
         'skipped': skipped,
         'decision_cards_path': str(bridge_dir / 'decision_cards.json'),
         'conversion_tasks_path': str(bridge_dir / 'card_conversion_tasks.json'),
@@ -345,6 +373,8 @@ def main() -> int:
         f'- outline_text_txt_draft_modified: NO',
         f'- valid_input_count: {len(valid_items)}',
         f'- skipped_count: {len(skipped)}',
+        f'- skip_reason_counts: {json.dumps(skip_reason_counts, ensure_ascii=False)}',
+        f'- stale_domestic_blocked_count: {skip_reason_counts.get("stale_domestic_article", 0)}',
         f'- disposition_counts: {json.dumps(counts, ensure_ascii=False)}',
         f'- conversion_task_count: {len(conversion_tasks)}', '',
         '## Outputs', '',
@@ -364,7 +394,7 @@ def main() -> int:
     (bridge_dir / 'dry_run_report.generated.md').write_text(report, encoding='utf-8')
     # Root required file copy; safe independent artifact.
     (out_dir / 'DRY_RUN_REPORT.md').write_text(report, encoding='utf-8')
-    print(json.dumps({'status': 'DRY_RUN_DONE' if args.dry_run else 'BRIDGE_DONE', 'run_dir': str(run_dir), 'out_dir': str(out_dir), 'valid_input_count': len(valid_items), 'skipped_count': len(skipped), 'disposition_counts': counts, 'conversion_task_count': len(conversion_tasks), 'report': str(out_dir / 'DRY_RUN_REPORT.md')}, ensure_ascii=False, indent=2))
+    print(json.dumps({'status': 'DRY_RUN_DONE' if args.dry_run else 'BRIDGE_DONE', 'run_dir': str(run_dir), 'out_dir': str(out_dir), 'valid_input_count': len(valid_items), 'skipped_count': len(skipped), 'skip_reason_counts': skip_reason_counts, 'stale_domestic_blocked_count': skip_reason_counts.get('stale_domestic_article', 0), 'disposition_counts': counts, 'conversion_task_count': len(conversion_tasks), 'report': str(out_dir / 'DRY_RUN_REPORT.md')}, ensure_ascii=False, indent=2))
     return 0
 
 

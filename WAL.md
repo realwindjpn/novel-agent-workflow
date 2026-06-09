@@ -1,3 +1,4 @@
+- 2026-06-09 SenseNova→MiroFish桥接硬化：修复旧文因未来规划年份绕过 stale 判定的问题；watcher 输出跳过原因/旧文拦截；MiroFish接管cron更新为 `CONTROLLER_REVIEW`，不再误建 `GPT55_REVIEW`。复验 `bridge_hardening_20260609_v3`：valid=8、skipped=12、stale_domestic_blocked=3、conversion_task=3。第156章准备包已落：`审核记录/大纲会议_20260609/ch156_preparation_package_20260609.md`；确认源稿为第四卷《重返月球》，正文4286，未TXT/未上传。
 - 2026-06-07 第137/138章上传线草稿箱保存完成：第137章《太极算法》（第三卷：暗流，4188字）、第138章《算法弱点》（第三卷：暗流，5213字）均在草稿箱列表命中；仅保存草稿，未发布。第138章真六角色闭环报告：`审核记录/自循环体系会议_20260607/ch138/ch138_loop_report.md`。
 - 2026-06-09 MiroFish 后续补证落地：已 patch latest 第95章备注层（图灵进化+Nature AI 双证）与第156章准备包事实锚（人民网－人民日报 2026-04-11 嫦娥七号）。未改正文/TXT/草稿箱；未重排156冲突。报告：`审核记录/大纲会议_20260609/MiroFish_followup_ch95_ch156_outline_note_report.md`。
 - 2026-06-07 G2融纲备注层补丁已落 latest：欧洲防务自主转为 OUTLINE_PATCH；算力网/Token/技术主权仅作候选并设P0补证；分布式工业韧性/UGV/Agent政策/QuTech 进 CHAPTER_PREP_ONLY；OpenAI治理与NASA弱耦合素材归档。边界：不升版本号、不改正文、不改已投稿TXT、不上传。报告：`审核记录/大纲会议_20260607/G2_outline_patch_report.md`。

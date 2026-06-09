@@ -1,0 +1,115 @@
+{
+  "schema": "sensenova_mirofish_feed_package_v1",
+  "created_at": "2026-06-09T08:37:15",
+  "source_run_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/prod_cnsa_fallback_20260609_031025",
+  "source_pipeline_state": {
+    "run_id": "prod_cnsa_fallback_20260609_031025",
+    "status": "done",
+    "valid_content_cards": 9,
+    "query_plan_cards": 8,
+    "body_fetch_success": 10,
+    "card_pass_count": 9
+  },
+  "policy": {
+    "query_plan_excluded": true,
+    "formal_cards_written": false,
+    "production_runner_modified": false,
+    "outline_text_txt_draft_modified": false
+  },
+  "valid_input_count": 8,
+  "skipped_count": 12,
+  "skip_reason_counts": {
+    "stale_domestic_article": 3,
+    "not_official_verified": 1,
+    "query_plan_no_body": 8
+  },
+  "stale_domestic_blocked_count": 3,
+  "skipped": [
+    {
+      "candidate_id": "期待_中国深空探测_大动作_346d8e6132a0b05d",
+      "title": "期待，中国深空探测“大动作”！",
+      "url": "https://www.cnsa.gov.cn/n6758823/n6758838/c6841686/content.html",
+      "status": "DISTILLED",
+      "reason": "stale_domestic_article"
+    },
+    {
+      "candidate_id": "探月_三步走__收官_有看头___中国探月工程嫦娥五号任务正式启航_2a1d693eb3ab8146",
+      "title": "探月“三步走” 收官“有看头”——中国探月工程嫦娥五号任务正式启航",
+      "url": "https://www.xinhuanet.com/politics/2020-11/24/c_1126779817.htm",
+      "status": "DISCOVERY_ONLY",
+      "reason": "not_official_verified"
+    },
+    {
+      "candidate_id": "QP_unknown__微博热榜_科技_航天_b48c56527da45192",
+      "title": "[QP:unknown] 微博热榜 科技 航天",
+      "url": "",
+      "status": "DISCOVERY_PENDING",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_unknown__Twitter_space_technology_95943bdcf6413b74",
+      "title": "[QP:unknown] Twitter space technology",
+      "url": "",
+      "status": "DISCOVERY_PENDING",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "科技创新引领制造业高质量发展_-_理论-_人民网_1ca77d4629bd8bcc",
+      "title": "科技创新引领制造业高质量发展 - 理论- 人民网",
+      "url": "http://theory.people.com.cn/n1/2024/0919/c40531-40322974.html",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "STALE_DOMESTIC_ARTICLE"
+    },
+    {
+      "candidate_id": "QP_unknown__知乎热榜_科技_半导体_2b418337da655f15",
+      "title": "[QP:unknown] 知乎热榜 科技 半导体",
+      "url": "",
+      "status": "DISCOVERY_PENDING",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "新质生产力的内涵特征和发展重点_-_新华网_4cb27ea308e86370",
+      "title": "新质生产力的内涵特征和发展重点 - 新华网",
+      "url": "http://www.xinhuanet.com/politics/20240301/ec9c1f5a8ab748fab5f74c59d3fe5862/c.html",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "STALE_DOMESTIC_ARTICLE"
+    },
+    {
+      "candidate_id": "QP_unknown__reddit_technology_defense_c055c54c756f12b1",
+      "title": "[QP:unknown] reddit technology defense",
+      "url": "",
+      "status": "DISCOVERY_PENDING",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_unknown__B站热门_科技_航天_0debe177ed399684",
+      "title": "[QP:unknown] B站热门 科技 航天",
+      "url": "",
+      "status": "DISCOVERY_PENDING",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_unknown__Hacker_News_AI_eb85b797bf93b074",
+      "title": "[QP:unknown] Hacker News AI",
+      "url": "",
+      "status": "DISCOVERY_PENDING",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_unknown__百度热搜_科技_航天_804cc43648b34058",
+      "title": "[QP:unknown] 百度热搜 科技 航天",
+      "url": "",
+      "status": "DISCOVERY_PENDING",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_unknown__ResetEra_technology_defense_5d879f5c09affc2a",
+      "title": "[QP:unknown] ResetEra technology defense",
+      "url": "",
+      "status": "DISCOVERY_PENDING",
+      "reason": "query_plan_no_body"
+    }
+  ],
+  "decision_cards_path": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/verification_runs/bridge_hardening_20260609_v3/bridge_run/decision_cards.json",
+  "conversion_tasks_path": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/verification_runs/bridge_hardening_20260609_v3/bridge_run/card_conversion_tasks.json"
+}

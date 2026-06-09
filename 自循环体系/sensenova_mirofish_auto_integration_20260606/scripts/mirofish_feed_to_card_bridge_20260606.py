@@ -129,11 +129,24 @@ def is_stale_material(title: str, url: str, body: str, max_age_years: int = 1) -
     return max(years) < dt.datetime.now().year - max_age_years
 
 
+def event_signature(item: dict[str, Any]) -> str:
+    title = normalize_title(item.get('title', '')).lower()
+    url = (item.get('url') or item.get('source_url') or '').strip().lower()
+    blob = f'{title}\n{url}'
+    # NASA sometimes publishes the same event under image-article and article URLs.
+    if ('x-59' in blob or 'x59' in blob or 'supersonic' in blob) and ('nasa.gov' in blob or 'nasa' in blob):
+        return 'nasa_x59_first_supersonic_flight'
+    return ''
+
+
 def is_duplicate(item: dict[str, Any], dedupe_text: str) -> tuple[bool, str]:
     url = (item.get('url') or item.get('source_url') or '').strip().lower()
     title = normalize_title(item.get('title', ''))
     if url and url in dedupe_text:
         return True, 'SOURCE_URL_ALREADY_IN_INDEX_OR_CARD'
+    sig = event_signature(item)
+    if sig == 'nasa_x59_first_supersonic_flight' and ('x-59' in dedupe_text or 'x59' in dedupe_text) and 'supersonic' in dedupe_text:
+        return True, 'SAME_EVENT_X59_FIRST_SUPERSONIC_FLIGHT'
     toks = title_tokens(title)
     if len(toks) >= 3 and sum(1 for t in toks if t in dedupe_text) >= min(4, len(toks)):
         return True, 'TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY'

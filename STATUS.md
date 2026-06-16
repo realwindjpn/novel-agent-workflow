@@ -1,3 +1,41 @@
+
+## 2026-06-11 15:45 番茄草稿箱上传145/146完成
+- 第145章《资源调配》已保存番茄草稿箱，第三卷：暗流，列表复核字数3100；未发布。
+- 第146章《新装备测试》已保存番茄草稿箱，第三卷：暗流，列表复核字数3570；未发布。
+- 上传前门禁：R3候选写回新版；TXT已生成；145=3100、146=3570；wikilink=0，Markdown残留=0，三连空行=False。
+- 完成报告：`审核记录/上传线145146_20260611/fanqie_draft_upload_145_146_完成报告_20260611.md`；写回/TXT报告：`审核记录/上传线145146_20260611/WRITEBACK_TXT_CLOSE_REPORT_20260611.json`。
+- 边界：未正式发布；未git提交。
+
+## 2026-06-10 12:20 番茄草稿箱上传143/144完成
+- 第143章《武当和解》已保存番茄草稿箱，第三卷：暗流，列表字数6181；未发布。
+- 第144章《计划批准》已保存番茄草稿箱，第三卷：暗流，列表字数7651；未发布。
+- 上传前门禁已补第143作者有话说；143/144 dry-run PASS；作家后台登录态 PASS。
+- 完成报告：`审核记录/fanqie_draft_upload_143_144_完成报告_20260610.md`。
+- 边界：未git提交；144 Wiki Full Text 尾句抽查待后续修复。
+
+
+## 2026-06-10 12:10 上传线143/144 TXT_READY
+- 第143章：`TXT_READY / NOT_UPLOADED`；TXT `/root/workspace/科武纪元/已投稿/第143章.txt`，番茄口径 `6182`，wikilink=0，三连空行=False，章末标记=True；上传前报告 `审核记录/第143章_上传前准备报告_20260610.md`。
+- 第144章：`TXT_READY / NOT_UPLOADED`；MiMo作者返修PASS + byeapi/GPT5.5编辑读者复审PASS；已写回 `新版/第144章.md` 并生成 TXT `/root/workspace/科武纪元/已投稿/第144章.txt`，番茄口径 `7650`，wikilink=0，三连空行=False，章末标记=True。
+- 第144章DEAI硬闸：`WARN_DENSE_SOFT`，hard_count=0；扫描目录 `审核记录/去AI硬闸扫描/20260610_144_writeback_txt_final/20260610_120748/`。
+- 项目同步：已执行 `sync_kewu.py --chapter 144 --no-git --no-vector`；未登录番茄、未上传、未发布、未git提交。
+- 报告：`审核记录/第144章_上传前准备报告_20260610.md`。
+
+
+## 2026-06-10 00:40 工作方法硬闸 + DEAI闭环验收
+- A已落地：`/root/AGENTS.md` 新增 Mandatory Task Intake Loop；主记忆基础工作法铁律已更新；`user-workflow-router` 新增强制开工回复模板。
+- B已验收：DEAI工具链 py_compile PASS；bad_sample=FAIL_HARD，good_sample=PASS；第143章候选稿=FAIL_HARD，证实新门禁可拦截问题稿。
+- 产物：`审核记录/去AI硬闸闭环验收_20260610/DEAI_CLOSURE_REPORT.md`。
+- 边界：143/144 未写回、未TXT、未上传；需后续用新V4重跑到作者→编辑DEAI→读者DEAI完整PASS。
+
+## 2026-06-09 18:05 去AI角色门禁整合
+- 暂停/移除误开的 143/144 监控；143/144 候选不写回、不上传。
+- 新增 `工具脚本/kewu_deai_role_gate.py`，作者/编辑/读者共用 DEAI 硬闸。
+- `run_refine_chapter_v4.py` 注入作者位、写后编辑DEAI、读者DEAI；缺 `DEAI_*_PASS` 与计数字段不得通过。
+- `build_review_evidence.py` 改为优先读取临时候选稿，并把去AI硬闸扫描写入证据包。
+- `editor_gate_with_evidence.py` / `reader_gate_with_evidence.py` 接入 DEAI 字段与从严判定。
+- 回归：第143章候选稿被扫描为 FAIL_HARD（META_INFO_HARD=2, NOT_BUT_HARD=1, REPORT_TONE_SOFT=6），可证明门禁能拦截“下一章/第二卷/不是而是”等问题。
+
 - 2026-06-09 SenseNova→MiroFish桥接复发问题已加硬门禁：发布时间优先判旧文、国内官方域/正文提示双判、skip_reason_counts/旧文拦截数写入报告与watcher；接管cron改为 `CONTROLLER_REVIEW` 命名，禁止误称GPT5.5复核。复验 `bridge_hardening_20260609_v3`：valid=8、skipped=12、stale_domestic_blocked=3、转卡候选=3。第156章准备包已完成，源稿核为第四卷《重返月球》，番茄口径4286，未生成TXT/未上传。报告：`审核记录/大纲会议_20260609/ch156_preparation_package_20260609.md`。
 - 2026-06-07 第137/138章上传线草稿箱保存完成：第137章《太极算法》（第三卷：暗流，4188字）、第138章《算法弱点》（第三卷：暗流，5213字）均在草稿箱列表命中；仅保存草稿，未发布。第138章真六角色闭环报告：`审核记录/自循环体系会议_20260607/ch138/ch138_loop_report.md`。
 - 2026-06-09 MiroFish 后续补证已落 latest 备注层/准备包：ch95 增补“科研AI/算力主权双证”（图灵进化+Nature AI，备注层候选，不重复全审）；ch156 增补人民网－人民日报 2026-04-11 嫦娥七号事实锚，替代2022旧文作当前事实。边界：不升版本、不改正文、不生成TXT、不上传、不重排156冲突。报告：`审核记录/大纲会议_20260609/MiroFish_followup_ch95_ch156_outline_note_report.md`。
@@ -728,3 +766,11 @@
 - 2026-06-08 15:56 | 上传线139-140闭环终验：P2索引回填
 - 2026-06-08 17:22 | fix: chapter 140 source done marker after draft upload
 - 2026-06-09 09:15 | 第156章六角色精修闭环：月面稳定存在与补给救援压力链
+- 2026-06-09 13:16 | 同步章节 141, 142
+- 2026-06-10 12:08 | upload prep chapter 144 writeback
+- 2026-06-14 02:03 | G6收束：147/148已发布，Wiki/RAG/跟踪表/STATUS/WAL同步
+- 2026-06-14 09:47 | G6收束补录：147/148同步
+- 2026-06-14 14:53 | 同步章节 149, 150
+- 2026-06-14 14:54 | 同步章节 149, 150
+- 2026-06-17 01:07 | 同步章节 153, 154
+- 2026-06-17 01:08 | 同步章节 153, 154

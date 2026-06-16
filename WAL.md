@@ -1,3 +1,61 @@
+
+## 2026-06-11 15:45｜番茄草稿箱上传145/146完成
+- 第145章《资源调配》：保存草稿箱，第三卷：暗流，番茄口径3100。
+- 第146章《新装备测试》：保存草稿箱，第三卷：暗流，番茄口径3570。
+- 两章均为非发布状态。R3双审PASS后已写回新版并导出已投稿TXT；dry-run/check-login/execute/listing复核通过。
+- 初次上传因卷名传 `第三卷` 被页面 `第三卷：暗流` 精确匹配拦截，改准确卷名后成功。
+- 证据：`审核记录/上传线145146_20260611/WRITEBACK_TXT_CLOSE_REPORT_20260611.json`、`审核记录/上传线145146_20260611/fanqie_draft_upload_145_146_完成报告_20260611.md`。
+
+## 2026-06-10 12:20｜番茄草稿箱上传143/144完成
+- 已执行番茄草稿箱上传：143《武当和解》列表命中6181字；144《计划批准》列表命中7651字；均为第三卷：暗流。
+- 第143上传前由 `ensure_fanqie_upload_txt_ready.py --chapter 143 144 --write` 补作者有话说；第144原作者说已合格。
+- 上传结果：草稿箱保存成功；未点下一步，未发布。
+- 报告：`审核记录/fanqie_draft_upload_143_144_完成报告_20260610.md`。
+
+
+## 2026-06-10 12:10｜上传线143/144 TXT_READY
+- 143 TXT确认存在：`已投稿/第143章.txt`，番茄口径 6182；未上传。
+- 144 已从 MiMo返修候选写回 `新版/第144章.md`，写回前备份在 `审核记录/写回备份/20260610_ch144_writeback/`。
+- 144 TXT已生成：`已投稿/第144章.txt`，番茄口径 7650；wikilink=0，三连空行=False，章末标记=True。
+- 144 硬闸扫描：`WARN_DENSE_SOFT`，hard_count=0；软风险不阻断，复审报告已说明。
+- 已跑 `sync_kewu.py --chapter 144 --no-git --no-vector`；未登录番茄、未上传、未发布、未git提交。
+
+
+## 2026-06-10 02:34｜143 DEAI硬闸PASS + SenseNova P0补丁验证
+- 第143章已按MiMo小修建议做最小补丁并清理模型开场污染；未生成TXT/未上传。
+- DEAI硬闸扫描：`审核记录/去AI硬闸扫描/20260610_023415/`，结果 `non_pass=0`；番茄口径6214；无反斜杠引号/英文引号/下一章/第二卷/wikilink。
+- SenseNova P0补丁静态验收PASS：`seen_short_bodies/SKIP_DUPLICATE_BODY/rescue_queue/article_url_rescue_queue.json` 均存在。
+- SenseNova小样 `verify_p0_20260610_022805` A/B完成，但 B2 body_fetch 约6分钟无进度、无body/report/rescue_queue，主控终止，裁为 `PARTIAL_PASS/BLOCKED`。
+- 验收报告：`审核记录/SenseNova采集闭环审计_20260610/SENSENOVA_P0_VERIFY_20260610_0234.md`。
+- 下一步：143若进上传线，须继续编辑/读者复审与TXT/同步；SenseNova须单独修 body_fetch 启动/候选读取/超时心跳。
+
+## 2026-06-10 01:12｜DEAI代码硬闸补丁 + SenseNova/明日方舟方案回收
+- SharedChat Codex 配置已修复并重新跑通；旧失败为本机 key/config 问题。
+- DEAI代码补丁已由 SharedChat Codex 完成，主控复验 `py_compile PASS`。
+- 已改：`工具脚本/run_refine_chapter_v4.py`、`工具脚本/editor_gate_with_evidence.py`。
+- 关键改动：作者候选稿写入前先确定性扫描；`META_INFO_HARD/NOT_BUT_HARD/NUM_ENUM_HARD/CN_ENUM_HARD` 命中即 `AUTHOR_DEAI_HARD_FAIL`，不写候选稿、不进入 PASS；编辑门禁 `META_INFO_HARD` 改读证据包 `deai_counts`，避免字符串误判；`passed()` 条件加括号消歧。
+- 验证：bad_sample=FAIL_HARD；good_sample=PASS；第143候选=FAIL_HARD；第144候选=FAIL_HARD。
+- 报告：`审核记录/去AI硬闸闭环验收_20260610/SHAREDCHAT_AB_FIX_REPORT.md`。
+- Kimi重复DEAI修复席已停，避免覆盖已验版本。
+- SenseNova修复方案已回收：`审核记录/SenseNova采集闭环审计_20260610/MIMO_SENSENOVA_FIX_PLAN.md`。
+- 明日方舟补救方案已回收：`/root/workspace/deliveries/arknights_football_guide_20260609/REPAIR_PLAN_20260610.md`。
+- 下一步：若授权，按 P0 先修 SenseNova body_hash 去重 + query_plan rescue；143/144需重新走作者/编辑/读者完整链，旧候选不得写回。
+
+## 2026-06-10 00:40｜工作方法硬闸 + DEAI闭环验收
+- 授权范围：先A、B，完成后开C。A=工作方法硬闸；B=去AI技能闭环验收。
+- 已改：`/root/AGENTS.md`、主记忆基础工作法铁律、`user-workflow-router`模板、`novel-six-role-cpa-lite`工具字段说明。
+- 已验：DEAI相关6个py文件 `py_compile PASS`；坏样例FAIL_HARD，好样例PASS；第143章候选稿FAIL_HARD。
+- 报告：`审核记录/去AI硬闸闭环验收_20260610/DEAI_CLOSURE_REPORT.md`。
+- 下一步：进入 C，做 SenseNova 最新 run 审计、失败矩阵、修复方案；先审计，不直接改 runner。
+
+## 2026-06-09 18:05 去AI角色门禁整合
+- 暂停/移除误开的 143/144 监控；143/144 候选不写回、不上传。
+- 新增 `工具脚本/kewu_deai_role_gate.py`，作者/编辑/读者共用 DEAI 硬闸。
+- `run_refine_chapter_v4.py` 注入作者位、写后编辑DEAI、读者DEAI；缺 `DEAI_*_PASS` 与计数字段不得通过。
+- `build_review_evidence.py` 改为优先读取临时候选稿，并把去AI硬闸扫描写入证据包。
+- `editor_gate_with_evidence.py` / `reader_gate_with_evidence.py` 接入 DEAI 字段与从严判定。
+- 回归：第143章候选稿被扫描为 FAIL_HARD（META_INFO_HARD=2, NOT_BUT_HARD=1, REPORT_TONE_SOFT=6），可证明门禁能拦截“下一章/第二卷/不是而是”等问题。
+
 - 2026-06-09 SenseNova→MiroFish桥接硬化：修复旧文因未来规划年份绕过 stale 判定的问题；watcher 输出跳过原因/旧文拦截；MiroFish接管cron更新为 `CONTROLLER_REVIEW`，不再误建 `GPT55_REVIEW`。复验 `bridge_hardening_20260609_v3`：valid=8、skipped=12、stale_domestic_blocked=3、conversion_task=3。第156章准备包已落：`审核记录/大纲会议_20260609/ch156_preparation_package_20260609.md`；确认源稿为第四卷《重返月球》，正文4286，未TXT/未上传。
 - 2026-06-07 第137/138章上传线草稿箱保存完成：第137章《太极算法》（第三卷：暗流，4188字）、第138章《算法弱点》（第三卷：暗流，5213字）均在草稿箱列表命中；仅保存草稿，未发布。第138章真六角色闭环报告：`审核记录/自循环体系会议_20260607/ch138/ch138_loop_report.md`。
 - 2026-06-09 MiroFish 后续补证落地：已 patch latest 第95章备注层（图灵进化+Nature AI 双证）与第156章准备包事实锚（人民网－人民日报 2026-04-11 嫦娥七号）。未改正文/TXT/草稿箱；未重排156冲突。报告：`审核记录/大纲会议_20260609/MiroFish_followup_ch95_ch156_outline_note_report.md`。
@@ -1167,3 +1225,27 @@
 
 ### 2026-06-09 09:15
 - 第156章六角色精修闭环：月面稳定存在与补给救援压力链
+
+### 2026-06-09 13:16
+- 同步章节 141, 142
+
+### 2026-06-10 12:08
+- upload prep chapter 144 writeback
+
+### 2026-06-14 02:03
+- G6收束：147/148已发布，Wiki/RAG/跟踪表/STATUS/WAL同步
+
+### 2026-06-14 09:47
+- G6收束补录：147/148同步
+
+### 2026-06-14 14:53
+- 同步章节 149, 150
+
+### 2026-06-14 14:54
+- 同步章节 149, 150
+
+### 2026-06-17 01:07
+- 同步章节 153, 154
+
+### 2026-06-17 01:08
+- 同步章节 153, 154

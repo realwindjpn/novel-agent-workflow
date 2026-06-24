@@ -1,0 +1,106 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "decision_card_v1",
+  "description": "MiroFish变量注入产出的素材处置卡，供G2融纲会议审议",
+  "type": "object",
+  "required": ["material_id", "source_url", "title", "captured_at", "mirofish_projection", "disposition", "disposition_reason"],
+  "properties": {
+    "material_id": {
+      "type": "string",
+      "description": "唯一标识，格式: {date}_{slug}_{hash8}"
+    },
+    "source_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "title": {
+      "type": "string"
+    },
+    "captured_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "mirofish_projection": {
+      "type": "object",
+      "required": ["force_reactions", "chain_conflicts", "chapter_hooks", "outline_delta_candidate", "anti_patterns", "six_role_recommendation"],
+      "properties": {
+        "force_reactions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["force", "reaction", "wiki_ref"],
+            "properties": {
+              "force": { "type": "string" },
+              "reaction": { "type": "string" },
+              "wiki_ref": { "type": "string" }
+            }
+          }
+        },
+        "chain_conflicts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["chain", "time_anchor", "intensity"],
+            "properties": {
+              "chain": { "type": "array", "items": { "type": "string" }, "minItems": 2 },
+              "time_anchor": { "type": "string" },
+              "intensity": { "type": "string", "enum": ["low", "medium", "high"] }
+            }
+          }
+        },
+        "chapter_hooks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["hook_id", "description", "suitable_chapters"],
+            "properties": {
+              "hook_id": { "type": "string" },
+              "description": { "type": "string" },
+              "suitable_chapters": { "type": "array", "items": { "type": "integer" } },
+              "reversal": { "type": "string" }
+            }
+          }
+        },
+        "outline_delta_candidate": {
+          "type": "object",
+          "required": ["type", "target_chapter", "proposed_addition"],
+          "properties": {
+            "type": { "type": "string", "enum": ["note_layer", "hook", "conflict", "red_line"] },
+            "target_chapter": { "type": "integer" },
+            "proposed_addition": { "type": "string" },
+            "not_proposed": { "type": "string" }
+          }
+        },
+        "anti_patterns": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "six_role_recommendation": {
+          "type": "object",
+          "required": ["needed", "reason"],
+          "properties": {
+            "needed": { "type": "boolean" },
+            "reason": { "type": "string" }
+          }
+        }
+      }
+    },
+    "disposition": {
+      "type": "string",
+      "enum": ["OUTLINE_PATCH", "CHAPTER_PREP_ONLY", "ARCHIVE_WITH_REASON"],
+      "description": "三态处置，由G2会议裁决填写"
+    },
+    "disposition_reason": {
+      "type": "string",
+      "description": "处置理由，ARCHIVE时必须具体说明原因"
+    },
+    "disposition_by": {
+      "type": "string",
+      "description": "裁决席位"
+    },
+    "disposition_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

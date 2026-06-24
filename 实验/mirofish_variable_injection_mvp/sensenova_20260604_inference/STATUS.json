@@ -1,0 +1,25 @@
+{
+  "run_id": "sensenova_20260604_mirofish",
+  "status": "DONE",
+  "started_at": "2026-06-04T16:30:00",
+  "completed_at": "2026-06-04T16:30:00",
+  "total_cards": 10,
+  "counts_by_disposition": {
+    "OUTLINE_PATCH": 2,
+    "CHAPTER_PREP_ONLY": 4,
+    "ARCHIVE_WITH_REASON": 4
+  },
+  "files": [
+    "material_disposition.md",
+    "decision_cards.json",
+    "outline_delta_proposals.md",
+    "chapter_prep_candidates.md",
+    "INFERENCE_REPORT.md",
+    "STATUS.json"
+  ],
+  "g2_pending": true,
+  "outline_modified": false,
+  "text_modified": false,
+  "git_modified": false,
+  "updated_at": "2026-06-04T16:30:00"
+}

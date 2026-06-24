@@ -1,0 +1,19 @@
+{
+  "run_id": "historical_2026-05-16_20260606_230711",
+  "day": "2026-05-16",
+  "pack_path": "/root/workspace/科武纪元/自循环体系/historical_mirofish_replay_20260606/historical_2026-05-16_20260606_230711/MIROFISH_HISTORICAL_FEED_PACK.md",
+  "selected_count": 2,
+  "selected_cards": [
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-16/待转卡_中美元首会谈后续_H200霍尔木兹补证_20260516.md",
+      "title": "待转卡：中美元首会谈后续·H200与霍尔木兹补证"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-16/素材卡_Anduril融资估值与军事AI资本化_20260516_2301.md",
+      "title": "素材卡：Anduril融资估值与军事AI资本化"
+    }
+  ],
+  "skipped": [],
+  "status": "FEED_PACK_READY",
+  "created_at": "2026-06-06T23:07:11"
+}

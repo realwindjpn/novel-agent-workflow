@@ -353,8 +353,31 @@ def main():
     fill = fill_main(args.session, data, args.volume, state_path=args.state)
     note = add_author_note(args.session, data['note'], state_path=args.state)
     final = save_and_verify(args.session, data, state_path=args.state)
+    # 上传成功后自动同步 sync_kewu
+    sync_result = 'SYNC_SKIPPED'
+    if isinstance(final, dict) and final.get('listing', {}).get('ok'):
+        try:
+            sync_cmd = [
+                sys.executable,
+                str(args.project_dir / '工具脚本' / 'sync_kewu.py'),
+                '--chapter', str(args.chapter),
+                '--no-git', '--no-vector',
+            ]
+            sync_proc = subprocess.run(
+                sync_cmd, text=True, capture_output=True, timeout=120,
+            )
+            if sync_proc.returncode == 0:
+                sync_result = 'SYNC_OK'
+                print(f'sync_kewu: {sync_proc.stdout[:500]}', file=sys.stderr)
+            else:
+                sync_result = 'SYNC_FAILED'
+                print(f'sync_kewu failed: {sync_proc.stderr[:300]}', file=sys.stderr)
+        except Exception as e:
+            sync_result = 'SYNC_FAILED'
+            print(f'sync_kewu exception: {e}', file=sys.stderr)
     save_state(args.session, args.state)
-    print(json.dumps({'fill': fill, 'note': note, 'final': final, 'state': str(args.state)}, ensure_ascii=False, indent=2))
+    report = {'fill': fill, 'note': note, 'final': final, 'sync': sync_result, 'state': str(args.state)}
+    print(json.dumps(report, ensure_ascii=False, indent=2))
 
 if __name__ == '__main__':
     try:

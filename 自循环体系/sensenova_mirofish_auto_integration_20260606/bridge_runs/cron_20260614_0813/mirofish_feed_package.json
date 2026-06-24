@@ -1,0 +1,104 @@
+{
+  "schema": "sensenova_mirofish_feed_package_v1",
+  "created_at": "2026-06-14T09:48:16",
+  "source_run_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260614_0813",
+  "mirofish_input_gate": {
+    "status": "ALLOW_MIROFISH_INPUT",
+    "reason": "",
+    "status_hint": "after_card_distill",
+    "valid_content_cards": 11,
+    "domestic_body_success": 5,
+    "body_fetch_success": 11,
+    "body_files_written": 11,
+    "body_fetch_success_metric": "raw/bodies/*.txt with BODY_FETCHED report item",
+    "bridge_mirofish_cron_recoverable": true
+  },
+  "mirofish_input_gate_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260614_0813/raw/mirofish_input_gate.json",
+  "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260614_0813/raw/body_fetch_report.json",
+  "raw_bodies_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260614_0813/raw/bodies",
+  "source_pipeline_state": {
+    "run_id": "cron_20260614_0813",
+    "status": "done",
+    "valid_content_cards": 11,
+    "query_plan_cards": 0,
+    "body_fetch_success": 11,
+    "card_pass_count": 11
+  },
+  "policy": {
+    "query_plan_excluded": true,
+    "formal_cards_written": false,
+    "production_runner_modified": false,
+    "outline_text_txt_draft_modified": false,
+    "body_success_requires_raw_bodies_txt": true
+  },
+  "valid_input_count": 3,
+  "skipped_count": 8,
+  "skip_reason_counts": {
+    "already_in_previous_bridge_run": 5,
+    "http_403|jina_timeout": 2,
+    "malformed_search_title": 1
+  },
+  "body_fetch_evidence_count": 11,
+  "body_fetch_evidence_key_count": 22,
+  "stale_domestic_blocked_count": 0,
+  "skipped": [
+    {
+      "candidate_id": "23055983bfc01127",
+      "title": "Earth from Space: Buenos Aires",
+      "url": "https://www.esa.int/ESA_Multimedia/Images/2026/06/Earth_from_Space_Buenos_Aires",
+      "status": "DISTILLED",
+      "reason": "already_in_previous_bridge_run"
+    },
+    {
+      "candidate_id": "0cf76e456e781fc9",
+      "title": "Conversations in the sky: Galileo’s intersatellite links tested",
+      "url": "https://www.esa.int/Applications/Satellite_navigation/Conversations_in_the_sky_Galileo_s_intersatellite_links_tested",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "HTTP_403|JINA_TIMEOUT"
+    },
+    {
+      "candidate_id": "f30db63597b3cb01",
+      "title": "ESA at ILA 2026 – Day 2 highlights",
+      "url": "https://www.esa.int/About_Us/Corporate_news/ESA_at_ILA_2026_Day_2_highlights",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "HTTP_403|JINA_TIMEOUT"
+    },
+    {
+      "candidate_id": "6ba66c7dba01e49f",
+      "title": "I advise the Vatican and the UN on AI — don’t dismiss the Pope’s message as theology",
+      "url": "https://www.nature.com/articles/d41586-026-01876-z",
+      "status": "DISTILLED",
+      "reason": "already_in_previous_bridge_run"
+    },
+    {
+      "candidate_id": "f277cceb29ba146c",
+      "title": "Humans outperform AI at this highly rigorous mathematics test",
+      "url": "https://www.nature.com/articles/d41586-026-01888-9",
+      "status": "DISTILLED",
+      "reason": "already_in_previous_bridge_run"
+    },
+    {
+      "candidate_id": "b0575c12905ca69e",
+      "title": "两部门部署在全国开展2026年“全民反诈在行动”集中宣传月活动",
+      "url": "https://news.cctv.com/2026/06/10/ARTImWdyfJZtw95kmOJgdob2260610.shtml",
+      "status": "DISTILLED",
+      "reason": "already_in_previous_bridge_run"
+    },
+    {
+      "candidate_id": "46f2f8ed8146dd8f",
+      "title": "高质量数据集建设激活人工智能发展新动能",
+      "url": "http://finance.people.com.cn/n1/2026/0529/c1004-40729991.html",
+      "status": "DISTILLED",
+      "reason": "already_in_previous_bridge_run"
+    },
+    {
+      "candidate_id": "c64094_40247809_b483b37152c480d6",
+      "title": "c64094 40247809",
+      "url": "http://cpc.people.com.cn/n1/2024/0531/c64094-40247809.html",
+      "status": "DISTILLED",
+      "reason": "malformed_search_title"
+    }
+  ],
+  "decision_cards_path": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260614_0813/decision_cards.json",
+  "conversion_tasks_path": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260614_0813/card_conversion_tasks.json"
+}

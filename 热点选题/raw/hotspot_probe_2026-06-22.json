@@ -1,0 +1,319 @@
+{
+  "date": "2026-06-22",
+  "proxy_10819_alive": true,
+  "results": [
+    {
+      "name": "pcgamer_rss",
+      "url": "https://www.pcgamer.com/rss/",
+      "proxy": false,
+      "status": 200,
+      "bytes": 568612,
+      "seconds": 67.59,
+      "items": [
+        {
+          "title": "Former Unreal Engine 'lead evangelist' Sjoerd De Jong leaves Epic Games, says the industry is reaching a 'pivotal' moment that he must 'come to terms with'",
+          "link": ""
+        },
+        {
+          "title": "One of the best ways to play Morrowind just got better with improved scripting support for magic mods and a host of crash fixes",
+          "link": ""
+        },
+        {
+          "title": "RPG studio Obsidian faces class action lawsuit alleging violations of state wage laws",
+          "link": ""
+        },
+        {
+          "title": "'I was like, am I gonna pass out on stage?': Final Fantasy 14's rock band on transcending from videogame music to on-stage at the UK's biggest rock and metal festival",
+          "link": ""
+        },
+        {
+          "title": "Don't Starve Together hits new concurrent player count peak a decade after release",
+          "link": ""
+        },
+        {
+          "title": "Data analyst finds 'AI stigma' on Steam can reduce the number of reviews a game gets by around 53%—and the reviews it does get are more negative",
+          "link": ""
+        },
+        {
+          "title": "Bryce Clark, game director of Poppy Playtime, has played 23,000 hours of Steam games: 'I'm a bit obsessed with learning the market'",
+          "link": ""
+        },
+        {
+          "title": "You will never guess who turns up in this video about why you can't build British towns in SimCity 4",
+          "link": ""
+        },
+        {
+          "title": "Dishonored review (2012)",
+          "link": ""
+        },
+        {
+          "title": "This gorgeous and ambitious Grand Theft Auto 4 total conversion swaps Liberty City for a Fargo-style slice of rural Wisconsin, featuring backroads and a pizza delivery job gone wrong",
+          "link": ""
+        },
+        {
+          "title": "CD Projekt Red boss believes some fans were forever burned by Cyberpunk 2077's disastrous launch: 'I'm convinced that we lost the faith of some people indefinitely'",
+          "link": ""
+        },
+        {
+          "title": "Marathon players are amassing way too much loot in Season 2, and the primary cause is a mystery: 'We're still unravelling the source'",
+          "link": ""
+        }
+      ],
+      "error": null
+    },
+    {
+      "name": "eurogamer_news",
+      "url": "https://www.eurogamer.net/feed/news",
+      "proxy": false,
+      "status": 200,
+      "bytes": 168188,
+      "seconds": 0.85,
+      "items": [
+        {
+          "title": "Eurogamer.net News Feed",
+          "link": "https://www.eurogamer.net/feed/news"
+        },
+        {
+          "title": "CD Projekt Red co-CEO admits it \"indefinitely\" \"lost the faith\" of some fans after Cyberpunk 2077",
+          "link": "https://www.eurogamer.net/cd-projekt-red-admits-it-lost-the-faith-of-some-fans-indefinitely"
+        },
+        {
+          "title": "Ubisoft co-founder Claude Guillemot dies in plane crash",
+          "link": "https://www.eurogamer.net/ubisoft-cofounder-claude-guillemot-dies"
+        },
+        {
+          "title": "Hot off the Guild Wars 3 reveal, the long-running MMO series is getting its first-ever CCG in Mistbound",
+          "link": "https://www.eurogamer.net/mistbound-guild-wars-card-game-ccg-announce"
+        },
+        {
+          "title": "Doom soundtrack composer Bobby Prince dies aged 81",
+          "link": "https://www.eurogamer.net/doom-composer-bobby-prince-dies"
+        },
+        {
+          "title": "Halo: Campaign Evolved PS5 players will require an Xbox account and gamertag to play – as well as PS Plus to play split-screen co-op",
+          "link": "https://www.eurogamer.net/halo-campaign-evolved-ps5-xbox-account-gamertag-psplus"
+        },
+        {
+          "title": "Brendan \"PlayerUnknown\" Greene \"moves forward with a smaller team\", as Prologue: Go Wayback! studio struggles to find funding",
+          "link": "https://www.eurogamer.net/playerunknown-free-prologue-go-wayback-funding"
+        },
+        {
+          "title": "Take-Two's ex-AI boss says the generative AI hype is \"poisoning the well\" and could ward off all use of traditional AI in the future",
+          "link": "https://www.eurogamer.net/take-two-former-ai-head-generative-ai-hype-poisoning-the-well"
+        },
+        {
+          "title": "Battlefield 6's next update is bringing back a classic mechanic… from Call of Duty: Ghosts",
+          "link": "https://www.eurogamer.net/battlefield-6-high-value-target-update-season-3-wet-work-event"
+        },
+        {
+          "title": "Amazon's Fallout series has scored itself some impressive talent, with Star Wars and The Hobbit actors all joining for season three",
+          "link": "https://www.eurogamer.net/amazon-fallout-season-three-cast-update"
+        },
+        {
+          "title": "Steam Controller demand is so high Valve is changing reservation estimates, and some customers won't get theirs until 2027",
+          "link": "https://www.eurogamer.net/steam-controller-reservation-update-high-demand"
+        },
+        {
+          "title": "Pragmata's development team included a group of women known as the \"Diana Police\" to convincingly capture her child-like innocence",
+          "link": "https://www.eurogamer.net/capcom-pragmata-diana-police"
+        }
+      ],
+      "error": null
+    },
+    {
+      "name": "playstation_blog",
+      "url": "https://blog.playstation.com/feed/",
+      "proxy": false,
+      "status": 200,
+      "bytes": 239235,
+      "seconds": 1.36,
+      "items": [
+        {
+          "title": "PlayStation.Blog",
+          "link": "https://blog.playstation.com"
+        },
+        {
+          "title": "PlayStation.Blog",
+          "link": "https://blog.playstation.com"
+        },
+        {
+          "title": "Official PlayStation Podcast Episode 544: Vesper Underground",
+          "link": "https://blog.playstation.com/2026/06/19/official-playstation-podcast-episode-544-vesper-underground/"
+        },
+        {
+          "title": "Share of the Week: Saros",
+          "link": "https://blog.playstation.com/2026/06/19/share-of-the-week-saros/"
+        },
+        {
+          "title": "Granblue Fantasy: Relink – Endless Ragnarok hands-on report, demo available today",
+          "link": "https://blog.playstation.com/2026/06/18/granblue-fantasy-relink-endless-ragnarok-hands-on-report-demo-available-today/"
+        },
+        {
+          "title": "The VFX tech behind Saros: from NGP to Graphite",
+          "link": "https://blog.playstation.com/2026/06/17/the-vfx-tech-behind-saros-from-ngp-to-graphite/"
+        },
+        {
+          "title": "The Planet Crafter launches on PS5 July 21",
+          "link": "https://blog.playstation.com/2026/06/16/the-planet-crafter-launches-on-ps5-july-21/"
+        },
+        {
+          "title": "Assassin’s Creed Shadows’ final update features Animus-bending endgame content Domains",
+          "link": "https://blog.playstation.com/2026/06/15/assassins-creed-shadows-final-update-features-animus-bending-endgame-content-domains/"
+        },
+        {
+          "title": "Share of the Week: Duality",
+          "link": "https://blog.playstation.com/2026/06/12/share-of-the-week-duality-2/"
+        },
+        {
+          "title": "Tomb Raider: Legacy of Atlantis hands-on report",
+          "link": "https://blog.playstation.com/2026/06/11/tomb-raider-legacy-of-atlantis-hands-on-report/"
+        },
+        {
+          "title": "PlayStation Plus Game Catalog for June: Final Fantasy XVI, Sonic X Shadow Generations, Kingdom Come: Deliverance, and more",
+          "link": "https://blog.playstation.com/2026/06/10/playstation-plus-game-catalog-for-june-final-fantasy-xvi-sonic-x-shadow-generations-kingdom-come-deliverance-and-more/"
+        },
+        {
+          "title": "Gran Turismo 7 free update 1.70: choose Your Le Mans Hypercar",
+          "link": "https://blog.playstation.com/2026/06/10/gran-turismo-7-free-update-1-70-choose-your-le-mans-hypercar/"
+        }
+      ],
+      "error": null
+    },
+    {
+      "name": "ign_news",
+      "url": "https://www.ign.com/news",
+      "proxy": true,
+      "status": 200,
+      "bytes": 197911,
+      "seconds": 1.48,
+      "items": [
+        {
+          "title": "Game Reviews",
+          "link": "https://www.ign.com/reviews/games"
+        },
+        {
+          "title": "Upcoming Games",
+          "link": "https://www.ign.com/upcoming/games"
+        },
+        {
+          "title": "Video Game Trailers",
+          "link": "https://www.ign.com/events/video-game-trailers"
+        },
+        {
+          "title": "Movie Trailers",
+          "link": "https://www.ign.com/events/movie-trailers"
+        },
+        {
+          "title": "7dRockstar Co-Founder Dan Houser Says There’s No Right Way to Play an Open-World Game21",
+          "link": "https://www.ign.com/articles/rockstar-co-founder-dan-houser-says-theres-no-right-way-to-play-an-open-world-game-tribeca-festival-2026"
+        },
+        {
+          "title": "4dCall of Duty: Black Ops 1 and 2 Are Officially Being Ported to New Platforms Next Month23",
+          "link": "https://www.ign.com/articles/call-of-duty-black-ops-1-and-2-are-officially-being-ported-to-new-platforms-next-month"
+        },
+        {
+          "title": "4h agoCall of Duty: Black Ops 1 and 2 Listings Have Fans Fearing Pricey PlayStation Ports4h ago - What do they mean?Call of Duty: Black Ops",
+          "link": "https://www.ign.com/articles/call-of-duty-black-ops-1-and-2-listings-have-fans-fearing-pricey-playstation-ports"
+        },
+        {
+          "title": "Board Game Reviews",
+          "link": "https://www.ign.com/events/board-game-reviews"
+        },
+        {
+          "title": "Game Release Dates",
+          "link": "https://www.ign.com/upcoming/games"
+        }
+      ],
+      "error": null
+    },
+    {
+      "name": "gamespot_news",
+      "url": "https://www.gamespot.com/news/",
+      "proxy": true,
+      "status": null,
+      "bytes": 0,
+      "seconds": 0.37,
+      "items": [],
+      "error": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "name": "steam_news",
+      "url": "https://store.steampowered.com/news/",
+      "proxy": true,
+      "status": 200,
+      "bytes": 600000,
+      "seconds": 1.25,
+      "items": [
+        {
+          "title": "Get the Steam Mobile App",
+          "link": "https://store.steampowered.com/mobile"
+        },
+        {
+          "title": "Steam Subscriber Agreement",
+          "link": "https://store.steampowered.com/subscriber_agreement/?snr=1_2108_4__global-responsive-menu"
+        }
+      ],
+      "error": null
+    },
+    {
+      "name": "x_search_gaming",
+      "url": "https://x.com/search?q=gaming%20news%20OR%20PlayStation%20OR%20Steam%20OR%20Xbox&src=typed_query",
+      "proxy": true,
+      "status": 200,
+      "bytes": 280933,
+      "seconds": 1.33,
+      "items": [],
+      "error": null
+    },
+    {
+      "name": "reddit_games_search",
+      "url": "https://www.reddit.com/search/?q=gaming%20news&type=link",
+      "proxy": true,
+      "status": 200,
+      "bytes": 8431,
+      "seconds": 0.35,
+      "items": [],
+      "error": null
+    },
+    {
+      "name": "resetera",
+      "url": "https://www.resetera.com/forums/gaming-forum.7/",
+      "proxy": true,
+      "status": null,
+      "bytes": 0,
+      "seconds": 0.53,
+      "items": [],
+      "error": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "name": "rebang_gamersky",
+      "url": "https://api.rebang.today/v1/items?tab=gamersky&sub_tab=rec&page=1&version=1",
+      "proxy": false,
+      "status": 200,
+      "bytes": 21503,
+      "seconds": 0.36,
+      "items": [],
+      "error": null
+    },
+    {
+      "name": "rebang_ithome",
+      "url": "https://api.rebang.today/v1/items?tab=ithome&sub_tab=latest&page=1&version=1",
+      "proxy": false,
+      "status": 200,
+      "bytes": 14346,
+      "seconds": 0.15,
+      "items": [],
+      "error": null
+    },
+    {
+      "name": "rebang_xiaohongshu",
+      "url": "https://api.rebang.today/v1/items?tab=xiaohongshu&sub_tab=hot-search&page=1&version=1",
+      "proxy": false,
+      "status": 200,
+      "bytes": 4937,
+      "seconds": 0.1,
+      "items": [],
+      "error": null
+    }
+  ]
+}

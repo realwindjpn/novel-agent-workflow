@@ -1,0 +1,15 @@
+{
+  "run_id": "historical_2026-05-09_20260606_224911",
+  "day": "2026-05-09",
+  "pack_path": "/root/workspace/科武纪元/自循环体系/historical_mirofish_replay_20260606/historical_2026-05-09_20260606_224911/MIROFISH_HISTORICAL_FEED_PACK.md",
+  "selected_count": 1,
+  "selected_cards": [
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-09/agent_policy_19_scenarios_70pct.md",
+      "title": "素材卡：中国首部 Agent 政策出台：19大场景、70%普及率"
+    }
+  ],
+  "skipped": [],
+  "status": "FEED_PACK_READY",
+  "created_at": "2026-06-06T22:49:11"
+}

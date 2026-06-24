@@ -869,3 +869,13 @@
 | [AI工具介入抗生素耐药：靶向药物发现与微生物机制解释](生物技术/AI制药/素材卡_AI抗生素耐药_20260609.md) | Nature 2026-06-08技术特写指出，一组AI工具正在帮助加速新抗生素发现。 | 第350-370/359章：生物伦理、AI制药、耐药危机、地下生物实验室与监管缺口。 | https://www.nature.com/articles/d41586-026-01818-9 |
 | [古戈尔齿轮：10^100数量级与机械传动物理禁区](科普解释/数量级边界/素材卡_古戈尔齿轮数量级边界_20260609.md) | Googol 定义为10^100。 | 第95/184/工程线：数量级认知差、伪科技骗局、工程师拆神话；适合角色用计算当场破局。 | https://mathworld.wolfram.com/Googol.html |
 | [最速降线：两点之间最短不等于最快](科普解释/最优路径/素材卡_最速降线最短不等于最快_20260609.md) | 1696年 Johann Bernoulli 提出最速降线问题。 | 第125/184/战术线：最优路径不等于最短路径，陷阱/撤退/追击都可用。 | https://mathworld.wolfram.com/BrachistochroneProblem.html |
+
+## MiroFish Bridge 素材准备包 2026-06-22
+
+| 素材卡 | 核心数据 | 小说映射 | 来源 |
+|--------|---------|---------|------|
+| [Tropical Storm Arthur](时事素材/素材卡/2026-06-22/素材卡_Tropical_Storm_Arthur_遥感灾害观测_20260622.md) | primary official；MiroFish=CHAPTER_PREP_ONLY | 第156章准备：遥感盲区、灾害观测、侦察代价；只作细节变量。 | https://science.nasa.gov/earth/earth-observatory/tropical-storm-arthur |
+| [Galileo signal updated for internet-of-things use](时事素材/素材卡/2026-06-22/素材卡_Galileo_E5a_QP_低功耗定位_20260622.md) | primary official；MiroFish=CHAPTER_PREP_ONLY | 第156章准备：低功耗定位、E5a-QP、抗欺骗/抗干扰、IoT定位链路。 | https://www.esa.int/Applications/Satellite_navigation/Galileo/Galileo_signal_updated_for_internet-of-things_use |
+| [科学家让活细胞成像既全又清](时事素材/素材卡/2026-06-22/素材卡_LargePNet_活细胞AI成像_20260622.md) | primary official；MiroFish=CHAPTER_PREP_ONLY | 第359章远端准备：活细胞长时观测、大视野AI复原、科研治理与人才争夺。 | https://news.cctv.com/2026/06/22/ARTIZPIxDC4mgWxyNv9fFYQa260622.shtml |
+| [央地共建粤港澳大湾区国际科技创新中心工作推进会在广州召开](时事素材/素材卡/2026-06-22/素材卡_粤港澳科创中心_产业组织_20260622.md) | primary official；MiroFish=CHAPTER_PREP_ONLY | 第125章背景：国家级科创中心、数据算力算法应用一体、湾区产业组织。 | https://www.most.gov.cn/kjbgz/202606/t20260618_196809.html |
+| [两部门部署在全国开展2026年“全民反诈在行动”集中宣传月活动](时事素材/素材卡/2026-06-22/素材卡_全民反诈_基层治理与平台治理_20260622.md) | primary official；MiroFish=CHAPTER_PREP_ONLY | 第125章背景：基层网格、平台治理、跨境诈骗人口与资金链治理。 | https://news.cctv.com/2026/06/10/ARTImWdyfJZtw95kmOJgdob2260610.shtml |

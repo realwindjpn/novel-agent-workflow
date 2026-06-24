@@ -1,0 +1,120 @@
+{
+  "schema": "sensenova_mirofish_feed_package_v1",
+  "created_at": "2026-06-10T22:17:54",
+  "source_run_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/b2_final_gate_polish_20260610",
+  "source_pipeline_state": {
+    "run_id": "b2_final_gate_polish_20260610",
+    "status": "partial",
+    "valid_content_cards": 9,
+    "query_plan_cards": 0,
+    "body_fetch_success": 9,
+    "card_pass_count": 9
+  },
+  "policy": {
+    "query_plan_excluded": true,
+    "formal_cards_written": false,
+    "production_runner_modified": false,
+    "outline_text_txt_draft_modified": false
+  },
+  "valid_input_count": 8,
+  "skipped_count": 12,
+  "skip_reason_counts": {
+    "http_403|jina_timeout": 3,
+    "missing_body_path": 2,
+    "stale_domestic_article": 1,
+    "low_value_policy_theory_source": 1,
+    "low_value_expo_or_conference": 2,
+    "low_value_policy_or_commentary": 1,
+    "malformed_search_title": 1,
+    "query_plan_no_body": 1
+  },
+  "stale_domestic_blocked_count": 1,
+  "skipped": [
+    {
+      "candidate_id": "080248b6fa436508",
+      "title": "Artemis III NASA announcement highlights: Luca Parmitano assigned as pilot",
+      "url": "https://www.esa.int/ESA_Multimedia/Videos/2026/06/Artemis_III_NASA_announcement_highlights_Luca_Parmitano_assigned_as_pilot",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "HTTP_403|JINA_TIMEOUT"
+    },
+    {
+      "candidate_id": "f17ffd1d4c23f97a",
+      "title": "Luca Parmitano on Artemis III selection",
+      "url": "https://www.esa.int/ESA_Multimedia/Videos/2026/06/Luca_Parmitano_on_Artemis_III_selection",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "HTTP_403|JINA_TIMEOUT"
+    },
+    {
+      "candidate_id": "1bb253789f966629",
+      "title": "Cleaner air and prosperity can go hand in hand",
+      "url": "https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Sentinel-5P/Cleaner_air_and_prosperity_can_go_hand_in_hand",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "HTTP_403|JINA_TIMEOUT"
+    },
+    {
+      "candidate_id": "304ebaed9e9025a2",
+      "title": "Gen Z scepticism towards AI is a wake-up call — universities must take it seriously",
+      "url": "https://www.nature.com/articles/d41586-026-01814-z",
+      "status": "NEED_FETCH_BODY",
+      "reason": "missing_body_path"
+    },
+    {
+      "candidate_id": "6362079479edbc5f",
+      "title": "How I use AI to turn failed drugs into new medicines",
+      "url": "https://www.nature.com/articles/d41586-026-01626-1",
+      "status": "NEED_FETCH_BODY",
+      "reason": "missing_body_path"
+    },
+    {
+      "candidate_id": "c40531_40208988_345b110a31f26417",
+      "title": "c40531 40208988",
+      "url": "http://theory.people.com.cn/n1/2024/0403/c40531-40208988.html",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "STALE_DOMESTIC_ARTICLE"
+    },
+    {
+      "candidate_id": "c40531_40521652_6e2aaacb1328ead0",
+      "title": "c40531 40521652",
+      "url": "http://theory.people.com.cn/n1/2025/0715/c40531-40521652.html",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "LOW_VALUE_POLICY_THEORY_SOURCE"
+    },
+    {
+      "candidate_id": "c1004_40732291_21564c63da264999",
+      "title": "c1004 40732291",
+      "url": "http://finance.people.com.cn/n1/2026/0602/c1004-40732291.html",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "LOW_VALUE_EXPO_OR_CONFERENCE"
+    },
+    {
+      "candidate_id": "c_715e1f10b1311588",
+      "title": "c",
+      "url": "http://www.xinhuanet.com/finance/20260215/0783f8b9f59c42b2a760fb2d7d02e4f6/c.html",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "LOW_VALUE_POLICY_OR_COMMENTARY"
+    },
+    {
+      "candidate_id": "c_b58571fd349864aa",
+      "title": "c",
+      "url": "http://www.xinhuanet.com/tech/20260603/44dd8c3e5fa74da08edc24cf410da524/c.html",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "LOW_VALUE_EXPO_OR_CONFERENCE"
+    },
+    {
+      "candidate_id": "c_f65ede0d2a8099c1",
+      "title": "c",
+      "url": "https://www.xinhuanet.com/20260605/b32af21726164352a2305705ecd7ef7d/c.html",
+      "status": "DISTILLED",
+      "reason": "malformed_search_title"
+    },
+    {
+      "candidate_id": "QP_cctv_com__先进制造_7e87c831428e4964",
+      "title": "[QP:cctv.com] 先进制造",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    }
+  ],
+  "decision_cards_path": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/b2_final_gate_polish_20260610/decision_cards.json",
+  "conversion_tasks_path": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/b2_final_gate_polish_20260610/card_conversion_tasks.json"
+}

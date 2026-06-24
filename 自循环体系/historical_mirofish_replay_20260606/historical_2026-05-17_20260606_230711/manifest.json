@@ -1,0 +1,59 @@
+{
+  "run_id": "historical_2026-05-17_20260606_230711",
+  "day": "2026-05-17",
+  "pack_path": "/root/workspace/科武纪元/自循环体系/historical_mirofish_replay_20260606/historical_2026-05-17_20260606_230711/MIROFISH_HISTORICAL_FEED_PACK.md",
+  "selected_count": 12,
+  "selected_cards": [
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-17/素材卡_AI预测市场内幕交易_监管博弈_20260517.md",
+      "title": "素材卡：CFTC用AI追踪预测市内幕交易"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-17/素材卡_Anthropic_版权诉讼_AI训练数据_20260517.md",
+      "title": "素材卡：Anthropic $1.5B版权和解案"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-17/素材卡_ArXiv封禁AI代笔_学术诚信_20260517.md",
+      "title": "素材卡：ArXiv封禁AI代笔·学术诚信与算法责任边界"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-17/素材卡_Barracuda-500M_Anduril_军工供应链_20260517.md",
+      "title": "素材卡：Barracuda-500M·Anduril大规模导弹交易"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-17/素材卡_CAR-T癌症疗法_生物技术_20260517.md",
+      "title": "素材卡：CAR-T细胞疗法·癌症到自身免疫病"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-17/素材卡_Cerebras_2.5B_芯片算力_20260517.md",
+      "title": "素材卡：Cerebras 25亿美元融资·物理世界AI"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-17/素材卡_俄罗斯大学生无人机动员_人才枯竭_20260517.md",
+      "title": "素材卡：俄罗斯大学生无人机动员·人才枯竭与技术代价"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-17/素材卡_台湾军售筹码化_AI芯片经贸谈判_20260517.md",
+      "title": "素材卡：台湾军售筹码化、AI芯片与中美经贸谈判"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-17/素材卡_波兰部署取消_制度僵化_20260517.md",
+      "title": "素材卡：波兰驻军取消——美军制度僵化与盟友信任危机"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-17/素材卡_美军多域指挥太平洋_制度重组_20260517.md",
+      "title": "素材卡：美军多域指挥太平洋·制度重组与盟友协同"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-17/素材卡_美军蜂群训练_听觉识别与制度短板_20260517.md",
+      "title": "素材卡：美军蜂群训练·听觉识别与制度短板"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-17/素材卡_量子计算机三要点_量子计算_20260517.md",
+      "title": "素材卡：量子计算机三要点·量子计算科普"
+    }
+  ],
+  "skipped": [],
+  "status": "FEED_PACK_READY",
+  "created_at": "2026-06-06T23:07:11"
+}

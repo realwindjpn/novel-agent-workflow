@@ -1,0 +1,20 @@
+[
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260613_1bd3184ff2",
+    "title": "两部门部署在全国开展2026年“全民反诈在行动”集中宣传月活动",
+    "source_url": "https://news.cctv.com/2026/06/10/ARTImWdyfJZtw95kmOJgdob2260610.shtml",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/sensenova_b2_rootfix_20260613_verify/cards/两部门部署在全国开展2026年_全民反诈在行动_集中宣传月活动_b0575c12.md",
+    "target_chapter_hint": 125,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_RAG",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_RAG_jsonl"
+    ],
+    "not_done_in_dry_run": true
+  }
+]

@@ -1,0 +1,19 @@
+{
+  "run_id": "historical_2026-06-04_20260607_003051",
+  "day": "2026-06-04",
+  "pack_path": "/root/workspace/科武纪元/自循环体系/historical_mirofish_replay_20260606/historical_2026-06-04_20260607_003051/MIROFISH_HISTORICAL_FEED_PACK.md",
+  "selected_count": 2,
+  "selected_cards": [
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-06-04/素材卡_中东临时协议与霍尔木兹筹码_20260604.md",
+      "title": "素材卡：中东临时协议与霍尔木兹筹码"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-06-04/素材卡_印度20亿美元国产军用无人机采购_20260604.md",
+      "title": "素材卡：印度20亿美元国产军用无人机采购"
+    }
+  ],
+  "skipped": [],
+  "status": "FEED_PACK_READY",
+  "created_at": "2026-06-07T00:30:51"
+}

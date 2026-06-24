@@ -1,0 +1,36 @@
+{
+  "run_id": "historical_2026-05-26_20260607_000420",
+  "day": "2026-05-26",
+  "pack_path": "/root/workspace/科武纪元/自循环体系/historical_mirofish_replay_20260606/historical_2026-05-26_20260607_000420/MIROFISH_HISTORICAL_FEED_PACK.md",
+  "selected_count": 4,
+  "selected_cards": [
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-26/素材卡_Jaclyn_Kagey_Shapes_Humanity’s_Return_to_the_Moon_20260526_1613.md",
+      "title": "素材卡：Jaclyn Kagey Shapes Humanity’s Return to the Moon"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-26/素材卡_Mechanistic_elucidation_of_strictosidine_synthase-catalyzed_Pictet-Spe_20260526_2036.md",
+      "title": "素材卡：Mechanistic elucidation of strictosidine synthase-catalyzed Pictet-Spengler "
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-26/素材卡_[Construction_and_identification_of_recombinant_adenovirus_containing__20260526_2036.md",
+      "title": "素材卡：[Construction and identification of recombinant adenovirus containing the po"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-26/素材卡_华为韬定律与3D芯片堆叠_20260526.md",
+      "title": "素材卡：华为“韬（τ）定律”与3D芯片堆叠"
+    }
+  ],
+  "skipped": [
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-26/素材卡_RSS原始候选_CARD_PENDING判定_：_20260526_0652.md",
+      "reason": "noise_or_pending"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-26/素材卡_[CARD_PENDING]_Real_Candidate_20260526_1613.md",
+      "reason": "noise_or_pending"
+    }
+  ],
+  "status": "FEED_PACK_READY",
+  "created_at": "2026-06-07T00:04:20"
+}

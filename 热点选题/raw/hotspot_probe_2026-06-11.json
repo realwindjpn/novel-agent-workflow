@@ -1,0 +1,331 @@
+{
+  "date": "2026-06-11",
+  "proxy_10819_alive": true,
+  "results": [
+    {
+      "name": "pcgamer_rss",
+      "url": "https://www.pcgamer.com/rss/",
+      "proxy": false,
+      "status": 200,
+      "bytes": 600000,
+      "seconds": 37.99,
+      "items": [
+        {
+          "title": "Xbox CCO Matt Booty says he's seen The Elder Scrolls 6, 'it looks amazing, and it's coming along well'",
+          "link": ""
+        },
+        {
+          "title": "Xbox speedruns 'we're so back' to 'it's so over' pipeline at a speed previously thought impossible",
+          "link": ""
+        },
+        {
+          "title": "Your dad's favorite TV show might become a videogame",
+          "link": ""
+        },
+        {
+          "title": "Microsoft doesn't know what to do about the memory pricing crisis Microsoft is causing",
+          "link": ""
+        },
+        {
+          "title": "While you're waiting for Valheim 1.0, why not try this map that transforms it into a massive RPG?",
+          "link": ""
+        },
+        {
+          "title": "Jason Momoa drops out of the Helldivers movie",
+          "link": ""
+        },
+        {
+          "title": "Once again players are right to suspect AI was used in a game, once again a dev apologizes for using AI in their game",
+          "link": ""
+        },
+        {
+          "title": "'An evolved game of cat and mouse:' Alien: Isolation 2 leads on taking the alien outside, the good kind of AI, and why a sequel took so long",
+          "link": ""
+        },
+        {
+          "title": "Are these real posts from the r/skyrimmods subreddit, or did I make them up? Take our newest and rudest quiz!",
+          "link": ""
+        },
+        {
+          "title": "Ubisoft closes another 2 studios, lays off hundreds more employees",
+          "link": ""
+        },
+        {
+          "title": "Ico and Shadow of the Colossus creator Fumito Ueda would like to see his old games on PC someday, too",
+          "link": ""
+        },
+        {
+          "title": "Xbox 'console exclusives' are strictly about console releases, Xbox exec affirms: Games will 'still show up on all the normal places where we sell the PC version'",
+          "link": ""
+        }
+      ],
+      "error": null
+    },
+    {
+      "name": "eurogamer_news",
+      "url": "https://www.eurogamer.net/feed/news",
+      "proxy": false,
+      "status": 200,
+      "bytes": 161335,
+      "seconds": 1.03,
+      "items": [
+        {
+          "title": "Eurogamer.net News Feed",
+          "link": "https://www.eurogamer.net/feed/news"
+        },
+        {
+          "title": "Frontier quietly announces a \"brand-new\" Planet game and everyone's trying to guess what it might be",
+          "link": "https://www.eurogamer.net/frontier-confirms-new-planet-game"
+        },
+        {
+          "title": "Here are our PS Plus Premium and Extra games for June",
+          "link": "https://www.eurogamer.net/here-are-our-ps-plus-premium-and-extra-games-for-june"
+        },
+        {
+          "title": "\"The curse of Mixed is broken\" - Swery turns opinion around on oddball roguelike Hotel Barcelona by removing gen-AI voices and substantially reworking the game",
+          "link": "https://www.eurogamer.net/hotel-barcelona-swery-opinion-gen-ai-steam-ratings"
+        },
+        {
+          "title": "Despite reports and a video takedown, Gears of War: E-Day developers insist it was never in development for PS5",
+          "link": "https://www.eurogamer.net/gears-of-war-e-day-ps5-snub-smaller-audience-interview"
+        },
+        {
+          "title": "Gears of War: E-Day is making big changes to one of the series' most iconic mechanics",
+          "link": "https://www.eurogamer.net/gears-of-war-e-day-active-reload-big-change"
+        },
+        {
+          "title": "\"It's coming\" Gears of War: E-Day developer reassures multiplayer fans that more information is on the way",
+          "link": "https://www.eurogamer.net/gears-of-war-e-day-multiplayer-its-coming"
+        },
+        {
+          "title": "Wondering why Resident Evil Veronica has ditched the \"Code\" from the original's name? Capcom explains all",
+          "link": "https://www.eurogamer.net/resident-evil-veronica-no-code-explained"
+        },
+        {
+          "title": "Despite its trailer, Capcom says its Resident Evil - Code: Veronica remake is third-person and taking its cue from Resident Evil 2",
+          "link": "https://www.eurogamer.net/resident-evil-veronica-first-person"
+        },
+        {
+          "title": "Physical Steam gift cards are being ended by Valve because scammers keep using them to trick people",
+          "link": "https://www.eurogamer.net/steam-valve-ends-physical-gift-cards-scams"
+        },
+        {
+          "title": "The Dragon's Dogma 2 expansion and Switch 2 port provide Capcom with a perfect opportunity to substantially update the game - and work has already begun",
+          "link": "https://www.eurogamer.net/dragons-dogma-2-patch-update-june-2026"
+        },
+        {
+          "title": "\"It's not just one definition or meaning\" - legendary designer Fumito Ueda says Gen Atlas, the title of his new game, means more than you might think",
+          "link": "https://www.eurogamer.net/fumito-ueda-gen-atlas-game-name-explanation"
+        }
+      ],
+      "error": null
+    },
+    {
+      "name": "playstation_blog",
+      "url": "https://blog.playstation.com/feed/",
+      "proxy": false,
+      "status": 200,
+      "bytes": 393095,
+      "seconds": 1.47,
+      "items": [
+        {
+          "title": "PlayStation.Blog",
+          "link": "https://blog.playstation.com"
+        },
+        {
+          "title": "PlayStation.Blog",
+          "link": "https://blog.playstation.com"
+        },
+        {
+          "title": "PlayStation Plus Game Catalog for June: Final Fantasy XVI, Sonic X Shadow Generations, Kingdom Come: Deliverance, and more",
+          "link": "https://blog.playstation.com/2026/06/10/playstation-plus-game-catalog-for-june-final-fantasy-xvi-sonic-x-shadow-generations-kingdom-come-deliverance-and-more/"
+        },
+        {
+          "title": "Gran Turismo 7 free update 1.70: choose Your Le Mans Hypercar",
+          "link": "https://blog.playstation.com/2026/06/10/gran-turismo-7-free-update-1-70-choose-your-le-mans-hypercar/"
+        },
+        {
+          "title": "Summer Game Fest 2026: Hands-on and more details on 11 upcoming PS5 games",
+          "link": "https://blog.playstation.com/2026/06/08/summer-game-fest-2026-hands-on-and-more-details-on-11-upcoming-ps5-games/"
+        },
+        {
+          "title": "Summer Game Fest 2026 highlights: 16 games coming to PS5",
+          "link": "https://blog.playstation.com/2026/06/05/summer-game-fest-2026-highlights-16-games-coming-to-ps5/"
+        },
+        {
+          "title": "Official PlayStation Podcast Episode 543: State of Faye",
+          "link": "https://blog.playstation.com/2026/06/05/official-playstation-podcast-episode-543-state-of-faye/"
+        },
+        {
+          "title": "Share of the Week: Star Wars Outlaws",
+          "link": "https://blog.playstation.com/2026/06/05/share-of-the-week-star-wars-outlaws/"
+        },
+        {
+          "title": "(For Southeast Asia) PlayStation Store: May 2026’s top downloads",
+          "link": "https://blog.playstation.com/2026/06/05/20260605-top/"
+        },
+        {
+          "title": "Hands-on report — Ace Combat 8: Wings of Theve",
+          "link": "https://blog.playstation.com/2026/06/04/hands-on-report-ace-combat-8-wings-of-theve/"
+        },
+        {
+          "title": "PlayStation Store: May 2026’s top downloads",
+          "link": "https://blog.playstation.com/2026/06/03/playstation-store-may-2026s-top-downloads/"
+        },
+        {
+          "title": "(For Southeast Asia) Marvel’s Wolverine: new gameplay, story details from State of Play",
+          "link": "https://blog.playstation.com/2026/06/02/20260603-marvel/"
+        }
+      ],
+      "error": null
+    },
+    {
+      "name": "ign_news",
+      "url": "https://www.ign.com/news",
+      "proxy": true,
+      "status": 200,
+      "bytes": 200425,
+      "seconds": 2.62,
+      "items": [
+        {
+          "title": "Game Reviews",
+          "link": "https://www.ign.com/reviews/games"
+        },
+        {
+          "title": "Upcoming Games",
+          "link": "https://www.ign.com/upcoming/games"
+        },
+        {
+          "title": "Video Game Trailers",
+          "link": "https://www.ign.com/events/video-game-trailers"
+        },
+        {
+          "title": "Movie Trailers",
+          "link": "https://www.ign.com/events/movie-trailers"
+        },
+        {
+          "title": "1dEverything Announced at Nintendo Direct June 2026884",
+          "link": "https://www.ign.com/articles/nintendo-direct-june-2026-live-updates-every-game-announcement"
+        },
+        {
+          "title": "2dXbox Is Unable to Meet Demand for New Consoles, Rethinking Approach to Project Helix83",
+          "link": "https://www.ign.com/articles/xbox-is-unable-to-meet-demand-for-new-consoles-rethinking-approach-to-project-helix"
+        },
+        {
+          "title": "2dHalo: Campaign Evolved Collector&#x27;s Edition Includes a Relic of a Bygone Gaming Era11",
+          "link": "https://www.ign.com/articles/halo-campaign-evolved-collectors-edition-includes-a-relic-of-a-bygone-gaming-era"
+        },
+        {
+          "title": "1dShift Up CEO Explains Design of Stellar Blade: Blood Rain&#x27;s New Main Character204",
+          "link": "https://www.ign.com/articles/shift-up-ceo-explains-design-of-stellar-blade-blood-rains-new-main-character"
+        },
+        {
+          "title": "2dCall of Duty: Black Ops 1 and 2 Ports Have Apparently Leaked15",
+          "link": "https://www.ign.com/articles/call-of-duty-black-ops-1-and-2-ports-have-apparently-leaked"
+        },
+        {
+          "title": "7h agoXbox Reportedly Planning &#x27;Significant&#x27; Layoffs, Budget Cuts for Marketing, and More7h ago - Reset.Xbox Series X",
+          "link": "https://www.ign.com/articles/xbox-reportedly-planning-significant-layoffs-budget-cuts-for-marketing-and-more"
+        },
+        {
+          "title": "14h agoUbisoft Closing 2 More Studios Amid Further Cuts and Job Losses14h ago - And announces further restructuring.Rainbow Six",
+          "link": "https://www.ign.com/articles/ubisoft-closing-2-more-studios-amid-further-cuts-and-job-losses"
+        },
+        {
+          "title": "Tom Phillips",
+          "link": "https://www.ign.com/person/tomphillipsIGN"
+        }
+      ],
+      "error": null
+    },
+    {
+      "name": "gamespot_news",
+      "url": "https://www.gamespot.com/news/",
+      "proxy": true,
+      "status": null,
+      "bytes": 0,
+      "seconds": 0.5,
+      "items": [],
+      "error": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "name": "steam_news",
+      "url": "https://store.steampowered.com/news/",
+      "proxy": true,
+      "status": 200,
+      "bytes": 175662,
+      "seconds": 1.18,
+      "items": [
+        {
+          "title": "Get the Steam Mobile App",
+          "link": "https://store.steampowered.com/mobile"
+        },
+        {
+          "title": "Steam Subscriber Agreement",
+          "link": "https://store.steampowered.com/subscriber_agreement/?snr=1_2108_4__global-responsive-menu"
+        }
+      ],
+      "error": null
+    },
+    {
+      "name": "x_search_gaming",
+      "url": "https://x.com/search?q=gaming%20news%20OR%20PlayStation%20OR%20Steam%20OR%20Xbox&src=typed_query",
+      "proxy": true,
+      "status": 200,
+      "bytes": 276868,
+      "seconds": 1.82,
+      "items": [],
+      "error": null
+    },
+    {
+      "name": "reddit_games_search",
+      "url": "https://www.reddit.com/search/?q=gaming%20news&type=link",
+      "proxy": true,
+      "status": 200,
+      "bytes": 8431,
+      "seconds": 0.67,
+      "items": [],
+      "error": null
+    },
+    {
+      "name": "resetera",
+      "url": "https://www.resetera.com/forums/gaming-forum.7/",
+      "proxy": true,
+      "status": null,
+      "bytes": 0,
+      "seconds": 0.53,
+      "items": [],
+      "error": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "name": "rebang_gamersky",
+      "url": "https://api.rebang.today/v1/items?tab=gamersky&sub_tab=rec&page=1&version=1",
+      "proxy": false,
+      "status": 200,
+      "bytes": 23346,
+      "seconds": 0.12,
+      "items": [],
+      "error": null
+    },
+    {
+      "name": "rebang_ithome",
+      "url": "https://api.rebang.today/v1/items?tab=ithome&sub_tab=latest&page=1&version=1",
+      "proxy": false,
+      "status": 200,
+      "bytes": 12284,
+      "seconds": 0.31,
+      "items": [],
+      "error": null
+    },
+    {
+      "name": "rebang_xiaohongshu",
+      "url": "https://api.rebang.today/v1/items?tab=xiaohongshu&sub_tab=hot-search&page=1&version=1",
+      "proxy": false,
+      "status": 200,
+      "bytes": 4933,
+      "seconds": 0.28,
+      "items": [],
+      "error": null
+    }
+  ]
+}

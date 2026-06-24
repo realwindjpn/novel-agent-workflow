@@ -1,0 +1,252 @@
+{
+  "run_id": "mirofish_high_gain_batch_20260606",
+  "generated_at": "2026-06-07T00:30:00",
+  "criteria": {
+    "total_chapters": 500,
+    "phase_target": 300,
+    "endgame_year": 2029,
+    "gating": "500章总盘正增益 + 300章阶段目标 + 2029一致性校验（非硬门槛）"
+  },
+  "input_batches": [
+    {"run_id": "historical_2026-05-06_20260606_184831", "cards": 3},
+    {"run_id": "historical_2026-05-07_20260606_194914", "cards": 4},
+    {"run_id": "historical_2026-05-08_20260606_204955", "cards": 12},
+    {"run_id": "historical_2026-05-08_20260606_215007", "cards": 5},
+    {"run_id": "historical_2026-05-09_20260606_224911", "cards": 1},
+    {"run_id": "historical_2026-05-10_20260606_225028", "cards": 9}
+  ],
+  "g2b_decision_review": "G2B_2029_PARTIAL（2 OUTLINE_PATCH均降级，0条通过终局压力测试）",
+  "totals": {
+    "raw_cards": 40,
+    "deduplicated": 28,
+    "top10_high_gain": 10,
+    "archive_only": 15,
+    "outline_patch_candidates": 2,
+    "outline_patch_passed_2029": 1,
+    "chapter_prep_strong": 3
+  },
+  "top10": [
+    {
+      "rank": 1,
+      "title": "分布式工业体系韧性与打不垮的制造网络",
+      "source_day": "2026-05-06",
+      "original_disposition": "CHAPTER_PREP_ONLY",
+      "gain": "strong",
+      "chaos_variables": ["秩序（熵减）", "C 群体智能", "E 地缘摇摆"],
+      "chapter_range": ["221-300", "301-500"],
+      "forces_affected": ["主角团/秩序侧", "铁幕", "黑市"],
+      "evidence_quality": "C",
+      "needs_supplement": true,
+      "supplement_queries": ["distributed manufacturing resilience wartime", "分布式制造 战时韧性 民转军"],
+      "archive_only": false,
+      "upgrade_candidate": "OUTLINE_PATCH（补primary源后）"
+    },
+    {
+      "rank": 2,
+      "title": "欧洲防务自主路线（500亿欧/C2/无人机/欧洲版Starlink）",
+      "source_day": "2026-05-08",
+      "original_disposition": "OUTLINE_PATCH",
+      "gain": "strong",
+      "chaos_variables": ["E 地缘摇摆", "A 算法主权"],
+      "chapter_range": ["86", "106", "121", "306", "307", "309", "311"],
+      "forces_affected": ["铁幕", "白盾", "欧陆分支", "主角团"],
+      "evidence_quality": "B+",
+      "needs_supplement": true,
+      "supplement_queries": ["EURODRONE European Sky Shield Initiative 2026", "IRIS² deployment timeline"],
+      "archive_only": false,
+      "upgrade_candidate": null
+    },
+    {
+      "rank": 3,
+      "title": "乌克兰地面无人车（UGV）大规模扩产",
+      "source_day": "2026-05-10",
+      "original_disposition": "CHAPTER_PREP_ONLY",
+      "gain": "strong",
+      "chaos_variables": ["B 算法暴力", "C 群体智能"],
+      "chapter_range": ["217-223", "306-307"],
+      "forces_affected": ["白盾", "铁幕", "主角团"],
+      "evidence_quality": "A",
+      "needs_supplement": false,
+      "supplement_queries": [],
+      "archive_only": false,
+      "upgrade_candidate": null
+    },
+    {
+      "rank": 4,
+      "title": "土耳其Yıldırımhan远程导弹（6000km/3t/推进剂国产化）",
+      "source_day": "2026-05-08",
+      "original_disposition": "CHAPTER_PREP_ONLY",
+      "gain": "medium",
+      "chaos_variables": ["E 地缘摇摆", "A 算法主权·供应链"],
+      "chapter_range": ["308", "311", "337", "340"],
+      "forces_affected": ["地缘摇摆方", "铁幕", "白盾", "主角团"],
+      "evidence_quality": "B+",
+      "needs_supplement": true,
+      "supplement_queries": ["Turkey Yıldırımhan missile test 2026", "Middle East ballistic missile proliferation"],
+      "archive_only": false,
+      "upgrade_candidate": null
+    },
+    {
+      "rank": 5,
+      "title": "中国首部Agent政策出台：19大场景、70%普及率",
+      "source_day": "2026-05-09",
+      "original_disposition": "CHAPTER_PREP_ONLY",
+      "gain": "medium",
+      "chaos_variables": ["A 算法主权", "E 地缘摇摆"],
+      "chapter_range": ["135-160", "161-220"],
+      "forces_affected": ["铁幕", "白盾", "星穹", "黑市", "主角团"],
+      "evidence_quality": "C",
+      "needs_supplement": true,
+      "supplement_queries": ["智能体 规范应用 创新发展 实施意见 网信办", "AI Agent 合规 备案 违规 黑市"],
+      "archive_only": false,
+      "upgrade_candidate": null
+    },
+    {
+      "rank": 6,
+      "title": "量子比特可移动制造突破（QuTech）",
+      "source_day": "2026-05-10",
+      "original_disposition": "CHAPTER_PREP_ONLY",
+      "gain": "medium",
+      "chaos_variables": ["D AI越界", "E 地缘摇摆"],
+      "chapter_range": ["220", "261", "381"],
+      "forces_affected": ["星穹/铁幕", "主角团"],
+      "evidence_quality": "A",
+      "needs_supplement": false,
+      "supplement_queries": [],
+      "archive_only": false,
+      "upgrade_candidate": null
+    },
+    {
+      "rank": 7,
+      "title": "美军封锁霍尔木兹海峡·击伤伊朗油轮",
+      "source_day": "2026-05-10",
+      "original_disposition": "CHAPTER_PREP_ONLY",
+      "gain": "medium",
+      "chaos_variables": ["E 地缘摇摆", "A 算法主权"],
+      "chapter_range": ["110", "306-307"],
+      "forces_affected": ["铁幕联盟", "地缘方"],
+      "evidence_quality": "B+",
+      "needs_supplement": true,
+      "supplement_queries": ["US Iran Hormuz ceasefire execution 2026"],
+      "archive_only": false,
+      "upgrade_candidate": null
+    },
+    {
+      "rank": 8,
+      "title": "OpenAI非营利转营利、慈善信托与AGI军备竞赛",
+      "source_day": "2026-05-06",
+      "original_disposition": "CHAPTER_PREP_ONLY",
+      "gain": "medium",
+      "chaos_variables": ["A 算法主权", "D AI越界"],
+      "chapter_range": ["221-300", "301-500"],
+      "forces_affected": ["星穹", "铁幕", "主角团/秩序侧"],
+      "evidence_quality": "C",
+      "needs_supplement": true,
+      "supplement_queries": ["OpenAI trial 2026 court filing", "Cerebras SEC filing conflict of interest"],
+      "archive_only": false,
+      "upgrade_candidate": "OUTLINE_PATCH（补primary源后）"
+    },
+    {
+      "rank": 9,
+      "title": "AI儿童玩具的成人模型失配与监管真空",
+      "source_day": "2026-05-10",
+      "original_disposition": "CHAPTER_PREP_ONLY",
+      "gain": "medium",
+      "chaos_variables": ["B 算法暴力", "A 算法主权"],
+      "chapter_range": ["161-220", "221-300"],
+      "forces_affected": ["白盾/铁幕"],
+      "evidence_quality": "C",
+      "needs_supplement": true,
+      "supplement_queries": ["AI children toy safety regulation China MIIT 2026"],
+      "archive_only": false,
+      "upgrade_candidate": null
+    },
+    {
+      "rank": 10,
+      "title": "GM驾驶数据隐私和车机遥测变现",
+      "source_day": "2026-05-10",
+      "original_disposition": "CHAPTER_PREP_ONLY",
+      "gain": "medium",
+      "chaos_variables": ["B 算法暴力", "A 算法主权"],
+      "chapter_range": ["161-220", "221-300"],
+      "forces_affected": ["白盾/铁幕"],
+      "evidence_quality": "B",
+      "needs_supplement": true,
+      "supplement_queries": ["FTC GM OnStar data privacy settlement final order"],
+      "archive_only": false,
+      "upgrade_candidate": null
+    }
+  ],
+  "outline_patch_passed_2029": [
+    {
+      "title": "欧洲防务自主路线",
+      "status": "OUTLINE_PATCH",
+      "reason": "唯一通过2029终局压力测试的素材，决定铁幕联盟弹性上限"
+    }
+  ],
+  "outline_patch_candidates_awaiting_primary": [
+    {
+      "title": "分布式工业体系韧性",
+      "current": "CHAPTER_PREP_ONLY",
+      "needs": "RUSI/IISS/CNAS 智库报告",
+      "upgrade_potential": "高"
+    },
+    {
+      "title": "OpenAI非营利转营利",
+      "current": "CHAPTER_PREP_ONLY",
+      "needs": "CourtListener docket / SEC filings",
+      "upgrade_potential": "中高"
+    }
+  ],
+  "senseNova_queries": {
+    "priority_A_outline_patch": [
+      "distributed manufacturing resilience wartime civilian-to-military conversion decentralized command",
+      "分布式制造 战时韧性 民转军 产能恢复 2025 2026",
+      "OpenAI trial 2026 court filing Greg Brockman equity testimony",
+      "Cerebras SEC filing conflict of interest OpenAI investment"
+    ],
+    "priority_B_chapter_prep": [
+      "EURODRONE European Sky Shield Initiative C2 autonomous 2026 progress",
+      "European sovereign satellite constellation IRIS² deployment timeline 2026",
+      "Turkey Yıldırımhan missile test 2026 second half",
+      "Middle East ballistic missile proliferation Turkey Iran Saudi 2026",
+      "智能体 规范应用 创新发展 实施意见 网信办 发改委 工信部 2026",
+      "AI Agent 合规 备案 违规 黑市 改装 合规壳 2026",
+      "China AI agent regulation US EU response standard competition 2026",
+      "US Iran one page agreement Hormuz ceasefire execution 2026",
+      "AI children toy safety regulation China MIIT 2026",
+      "FTC GM OnStar data privacy settlement final order 2026"
+    ],
+    "priority_C_card_pending_381": [
+      "NIST post-quantum cryptography standard FIPS 203 204 205 implementation",
+      "中国 后量子密码 迁移 国密局 2026",
+      "quantum key distribution practical deployment distance 2026"
+    ]
+  },
+  "archive_items": [
+    "AI术语表与写作科普口径",
+    "番茄平台稿费福利与全勤星火规则",
+    "Google Fitbit Air",
+    "Kodiak AI融资",
+    "NASA大学创新竞赛获奖者",
+    "NASA Artemis II 研究持续推进",
+    "ESA Earth from Space: Baku",
+    "Nature 科学图片（火星直升机）",
+    "CCTV科技频道首页（G2B降级归档）",
+    "DHS RSS候选（重复）",
+    "NHS RSS候选（重复）",
+    "Mozilla RSS候选（重复）",
+    "OpenAI RSS候选（重复）",
+    "CNSA官网首页（入口锚点非素材）"
+  ],
+  "next_actions": [
+    "发起SenseNova A类补采（4条query），聚焦分布式韧性+OpenAI治理primary源",
+    "发起SenseNova B类补采（10条query），覆盖欧洲/土耳其/Agent/霍尔木兹/玩具/GM",
+    "第381章量子密钥CARD_PENDING单独补采（C类3条query）",
+    "补采结果经MiroFish推演后，评估分布式韧性/OpenAI是否升级为OUTLINE_PATCH",
+    "G3进入条件：至少1条新OUTLINE_PATCH通过2029终局压力测试（当前：欧洲防务自主已有1条）"
+  ],
+  "mirofish_version": "v2.5 (xiaomi)",
+  "immutable": true,
+  "note": "本文件为只读分析状态，不修改任何正文/大纲/TXT/草稿箱"
+}

@@ -1,0 +1,337 @@
+[
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260622_1d6480597f",
+    "source_url": "https://www.nasa.gov/news-release/nasa-mission-to-study-space-weather-impacts-of-earths-atmosphere",
+    "title": "NASA Mission to Study Space Weather Impacts of Earth’s Atmosphere",
+    "captured_at": "2026-06-22T21:11:38",
+    "source_group": "overseas",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/cards/NASA_Mission_to_Study_Space_Weather_Impacts_of_Ear_aeff2f9d.md",
+    "body_fetch_evidence": {
+      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/raw/body_fetch_report.json",
+      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/raw/bodies/NASA_Mission_to_Study_Space_Weather_Impa_aeff2f9d74fa9a8a.txt",
+      "candidate_id": "aeff2f9d74fa9a8a",
+      "status": "BODY_FETCHED",
+      "counts_as_body_success": true,
+      "source_role": "primary_official",
+      "source_confidence": ""
+    },
+    "title_body_mismatch": false,
+    "evidence_complete": false,
+    "duplicate_check": {
+      "duplicate": true,
+      "reason": "TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY"
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "主控",
+          "reaction": "归档备查；不进入G2/G3。",
+          "wiki_ref": "时事素材/归档"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "space_chain",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "low"
+        }
+      ],
+      "chapter_hooks": [],
+      "outline_delta_candidate": {
+        "type": "red_line",
+        "target_chapter": 0,
+        "proposed_addition": "",
+        "not_proposed": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY"
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": false,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "ARCHIVE_WITH_REASON",
+    "disposition_reason": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-06-22T21:11:38",
+    "bridge_policy": "dry_run_no_formal_card_no_index_no_wiki_write"
+  },
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260622_52c249b390",
+    "source_url": "https://www.nasa.gov/news-release/nasa-awards-contract-for-commercial-satellite-data-acquisition",
+    "title": "NASA Awards Contract for Commercial Satellite Data Acquisition",
+    "captured_at": "2026-06-22T21:11:38",
+    "source_group": "overseas",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/cards/NASA_Awards_Contract_for_Commercial_Satellite_Data_3d519a02.md",
+    "body_fetch_evidence": {
+      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/raw/body_fetch_report.json",
+      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/raw/bodies/NASA_Awards_Contract_for_Commercial_Sate_3d519a02c1734807.txt",
+      "candidate_id": "3d519a02c1734807",
+      "status": "BODY_FETCHED",
+      "counts_as_body_success": true,
+      "source_role": "primary_official",
+      "source_confidence": ""
+    },
+    "title_body_mismatch": false,
+    "evidence_complete": false,
+    "duplicate_check": {
+      "duplicate": true,
+      "reason": "TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY"
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "主控",
+          "reaction": "归档备查；不进入G2/G3。",
+          "wiki_ref": "时事素材/归档"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "earth_observation",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "low"
+        }
+      ],
+      "chapter_hooks": [],
+      "outline_delta_candidate": {
+        "type": "red_line",
+        "target_chapter": 0,
+        "proposed_addition": "",
+        "not_proposed": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY"
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": false,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "ARCHIVE_WITH_REASON",
+    "disposition_reason": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-06-22T21:11:38",
+    "bridge_policy": "dry_run_no_formal_card_no_index_no_wiki_write"
+  },
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260622_6350dc298a",
+    "source_url": "https://science.nasa.gov/photojournal/desert-field-test-with-nasa-advanced-rover-prototype",
+    "title": "Desert Field Test With NASA Advanced Rover Prototype",
+    "captured_at": "2026-06-22T21:11:38",
+    "source_group": "overseas",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/cards/Desert_Field_Test_With_NASA_Advanced_Rover_Prototy_8715446b.md",
+    "body_fetch_evidence": {
+      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/raw/body_fetch_report.json",
+      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/raw/bodies/Desert_Field_Test_With_NASA_Advanced_Rov_8715446b835c83ea.txt",
+      "candidate_id": "8715446b835c83ea",
+      "status": "BODY_FETCHED",
+      "counts_as_body_success": true,
+      "source_role": "primary_official",
+      "source_confidence": ""
+    },
+    "title_body_mismatch": true,
+    "evidence_complete": false,
+    "duplicate_check": {
+      "duplicate": true,
+      "reason": "TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY"
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "主控",
+          "reaction": "归档备查；不进入G2/G3。",
+          "wiki_ref": "时事素材/归档"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "space_chain",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "low"
+        }
+      ],
+      "chapter_hooks": [],
+      "outline_delta_candidate": {
+        "type": "red_line",
+        "target_chapter": 0,
+        "proposed_addition": "",
+        "not_proposed": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY"
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": false,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "ARCHIVE_WITH_REASON",
+    "disposition_reason": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-06-22T21:11:38",
+    "bridge_policy": "dry_run_no_formal_card_no_index_no_wiki_write"
+  },
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260622_8160e14528",
+    "source_url": "https://www.most.gov.cn/kjbgz/202606/t20260616_196788.html",
+    "title": "俄罗斯核聚变专家中国行活动成功举办",
+    "captured_at": "2026-06-22T21:11:38",
+    "source_group": "domestic",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/cards/俄罗斯核聚变专家中国行活动成功举办_274bdaa2.md",
+    "body_fetch_evidence": {
+      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/raw/body_fetch_report.json",
+      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/raw/bodies/俄罗斯核聚变专家中国行活动成功举办_274bdaa24b59ba50.txt",
+      "candidate_id": "274bdaa24b59ba50",
+      "status": "BODY_FETCHED",
+      "counts_as_body_success": true,
+      "source_role": "primary_official",
+      "source_confidence": ""
+    },
+    "title_body_mismatch": false,
+    "evidence_complete": false,
+    "duplicate_check": {
+      "duplicate": true,
+      "reason": "SOURCE_URL_ALREADY_IN_INDEX_OR_CARD"
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "主控",
+          "reaction": "归档备查；不进入G2/G3。",
+          "wiki_ref": "时事素材/归档"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "domestic_official_brief",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "low"
+        }
+      ],
+      "chapter_hooks": [],
+      "outline_delta_candidate": {
+        "type": "red_line",
+        "target_chapter": 0,
+        "proposed_addition": "",
+        "not_proposed": "重复或已入库：SOURCE_URL_ALREADY_IN_INDEX_OR_CARD"
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": false,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "ARCHIVE_WITH_REASON",
+    "disposition_reason": "重复或已入库：SOURCE_URL_ALREADY_IN_INDEX_OR_CARD",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-06-22T21:11:38",
+    "bridge_policy": "dry_run_no_formal_card_no_index_no_wiki_write"
+  },
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260622_497225b562",
+    "source_url": "https://www.anthropic.com/news/fable-mythos-access",
+    "title": "Statement on the US government directive to suspend access to Fable 5 and Mythos 5 Announcements Jun 12, 2026 The US government has issued an export control directive to suspend al",
+    "captured_at": "2026-06-22T21:11:38",
+    "source_group": "overseas",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/cards/Statement_on_the_US_government_directive_to_suspen_00131728.md",
+    "body_fetch_evidence": {
+      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/raw/body_fetch_report.json",
+      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/raw/bodies/Statement_on_the_US_government_directive_001317287cdd9d97.txt",
+      "candidate_id": "001317287cdd9d97",
+      "status": "BODY_FETCHED",
+      "counts_as_body_success": true,
+      "source_role": "primary_official",
+      "source_confidence": ""
+    },
+    "title_body_mismatch": true,
+    "evidence_complete": false,
+    "duplicate_check": {
+      "duplicate": true,
+      "reason": "TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY"
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "主控",
+          "reaction": "归档备查；不进入G2/G3。",
+          "wiki_ref": "时事素材/归档"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "expo_event",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "low"
+        }
+      ],
+      "chapter_hooks": [],
+      "outline_delta_candidate": {
+        "type": "red_line",
+        "target_chapter": 0,
+        "proposed_addition": "",
+        "not_proposed": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY"
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": false,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "ARCHIVE_WITH_REASON",
+    "disposition_reason": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-06-22T21:11:38",
+    "bridge_policy": "dry_run_no_formal_card_no_index_no_wiki_write"
+  }
+]

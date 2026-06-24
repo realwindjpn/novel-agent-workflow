@@ -1,0 +1,80 @@
+{
+  "run_id": "historical_2026-05-27_20260607_000420",
+  "day": "2026-05-27",
+  "pack_path": "/root/workspace/科武纪元/自循环体系/historical_mirofish_replay_20260606/historical_2026-05-27_20260607_000420/MIROFISH_HISTORICAL_FEED_PACK.md",
+  "selected_count": 11,
+  "selected_cards": [
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-27/素材卡_A_Full_Moon_Checkup_20260527_0245.md",
+      "title": "素材卡：A Full Moon Checkup"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-27/素材卡_An_Early_“Decoration_Day”_Celebration_20260527_0742.md",
+      "title": "素材卡：An Early “Decoration Day” Celebration"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-27/素材卡_Chennai_City_Lights_20260527_0245.md",
+      "title": "素材卡：Chennai City Lights"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-27/素材卡_Ever_Restless_Mount_Dukono_Erupts_20260527_1832.md",
+      "title": "素材卡：Ever Restless Mount Dukono Erupts"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-27/素材卡_Meet_NASA_Low_Outgassing_Standards_With_Adhesives_for_Aerospace_and_Op_20260527_0742.md",
+      "title": "素材卡：Meet NASA Low Outgassing Standards With Adhesives for Aerospace and Optical "
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-27/素材卡_NASA_Astronauts_to_Answer_Questions_from_Students_in_New_York_20260527_1307.md",
+      "title": "素材卡：NASA Astronauts to Answer Questions from Students in New York"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-27/素材卡_NASA_Provides_Update_on_Moon_Base_Rovers,_Landers,_Missions_20260527_1307.md",
+      "title": "素材卡：NASA Provides Update on Moon Base Rovers, Landers, Missions"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-27/素材卡_NASA_to_Announce_Artemis_III_Crew,_Provide_Mission_Progress_Update_20260527_1307.md",
+      "title": "素材卡：NASA to Announce Artemis III Crew, Provide Mission Progress Update"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-27/素材卡_NASA_to_Announce_Artemis_III_Crew..._20260527_1832.md",
+      "title": "素材卡：NASA to Announce Artemis III Crew..."
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-27/素材卡_New_Instrument_Used_Antarctic_Ice_Sheet_to_Probe_Extreme_Universe_20260527_0245.md",
+      "title": "素材卡：New Instrument Used Antarctic Ice Sheet to Probe Extreme Universe"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-27/素材卡_华为韬定律_多层电子系统时间缩放_补证_20260527.md",
+      "title": "素材卡：华为“韬（τ）定律”与多层电子系统时间缩放理论（补证）"
+    }
+  ],
+  "skipped": [
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-27/素材卡_CARD_PENDING判定_20260527_1832.md",
+      "reason": "noise_or_pending"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-27/素材卡_[CARD_PENDING]_量子密钥切换场景_20260527_1832.md",
+      "reason": "noise_or_pending"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-27/素材卡_当前无`[CARD_PENDING]`标记条目。_20260527_0742.md",
+      "reason": "noise_or_pending"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-27/素材卡_执行提示_：主控若需正文转素材卡，请标记`[CARD_PENDING]`并附_具体章节需求_（例：“第381章需量子密钥切换场景”），否则仅_20260527_0245.md",
+      "reason": "noise_or_pending"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-27/素材卡_提醒主控_：若需正文转素材卡，必须标记`[CARD_PENDING]`并附_具体章节需求_（例：_第381章需量子密钥切换场景_），否则仅归_20260527_0742.md",
+      "reason": "noise_or_pending"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-27/素材卡_注_：`[CARD_PENDING]`标记条目需主控补充具体章节需求（如_第381章需量子密钥切换场景_），否则仅归档。_20260527_1307.md",
+      "reason": "noise_or_pending"
+    }
+  ],
+  "status": "FEED_PACK_READY",
+  "created_at": "2026-06-07T00:04:20"
+}

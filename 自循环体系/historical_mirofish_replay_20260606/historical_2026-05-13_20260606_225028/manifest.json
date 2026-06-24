@@ -1,0 +1,39 @@
+{
+  "run_id": "historical_2026-05-13_20260606_225028",
+  "day": "2026-05-13",
+  "pack_path": "/root/workspace/科武纪元/自循环体系/historical_mirofish_replay_20260606/historical_2026-05-13_20260606_225028/MIROFISH_HISTORICAL_FEED_PACK.md",
+  "selected_count": 7,
+  "selected_cards": [
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-13/素材卡_aselsan_networked_mass_producible_weapons_20260513.md",
+      "title": "素材卡：土耳其Aselsan网络化量产武器路线"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-13/素材卡_deepseek_华为芯片_黄仁勋随团_20260513.md",
+      "title": "素材卡：DeepSeek适配华为芯片 · 黄仁勋随特朗普访华"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-13/素材卡_nato_vetted_counter_drone_vendor_pool_20260513.md",
+      "title": "素材卡：NATO反无人机预认证供应商池"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-13/素材卡_五角大楼AI合同扩张_民用模型军用征召_20260513.md",
+      "title": "素材卡：五角大楼扩张AI合同 · 民用大模型集体军用化"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-13/素材卡_本源悟空180_量子算力服务化_20260513.md",
+      "title": "素材卡：本源悟空180上线 · 量子算力进入服务化阶段"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-13/素材卡_特朗普访华_台海预算延宕_规则制定权_20260513.md",
+      "title": "素材卡：特朗普访华 · 台海防务预算延宕 · 规则制定权博弈"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-13/素材卡_美国官方UAP资料释放_舆论烟幕与异常数据治理_20260513.md",
+      "title": "素材卡：美国官方UAP资料释放、舆论烟幕与异常数据治理"
+    }
+  ],
+  "skipped": [],
+  "status": "FEED_PACK_READY",
+  "created_at": "2026-06-06T22:50:28"
+}

@@ -1,0 +1,332 @@
+[
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260615_df6ab3dc5f",
+    "source_url": "https://science.nasa.gov/missions/hubble/hubble-sees-swarm-of-galaxies",
+    "title": "Hubble Sees Swarm of Galaxies",
+    "captured_at": "2026-06-15T01:47:05",
+    "source_group": "overseas",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260615_r5_no_skip_verify/cards/Hubble_Sees_Swarm_of_Galaxies_c2f12848.md",
+    "body_fetch_evidence": {
+      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260615_r5_no_skip_verify/raw/body_fetch_report.json",
+      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260615_r5_no_skip_verify/raw/bodies/Hubble_Sees_Swarm_of_Galaxies_c2f1284842554b55.txt",
+      "candidate_id": "c2f1284842554b55",
+      "status": "BODY_FETCHED",
+      "counts_as_body_success": true,
+      "source_role": "primary_official",
+      "source_confidence": ""
+    },
+    "evidence_complete": true,
+    "duplicate_check": {
+      "duplicate": false,
+      "reason": ""
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "主控",
+          "reaction": "归档备查；不进入G2/G3。",
+          "wiki_ref": "时事素材/归档"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "low_kewu_relevance",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "low"
+        }
+      ],
+      "chapter_hooks": [],
+      "outline_delta_candidate": {
+        "type": "red_line",
+        "target_chapter": 0,
+        "proposed_addition": "",
+        "not_proposed": "与当前算力主权、地月争夺、群体智能或军事制度主线因果链不足。"
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": false,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "ARCHIVE_WITH_REASON",
+    "disposition_reason": "与当前算力主权、地月争夺、群体智能或军事制度主线因果链不足。",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-06-15T01:47:05",
+    "bridge_policy": "bridge_artifacts_only_no_production_write"
+  },
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260615_126773388b",
+    "source_url": "https://www.nasa.gov/learning-resources/stem-engagement-at-nasa/murep/nasa-award-boosts-space-technology-research-capabilities",
+    "title": "NASA Award Boosts Space Technology Research Capabilities",
+    "captured_at": "2026-06-15T01:47:05",
+    "source_group": "overseas",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260615_r5_no_skip_verify/cards/NASA_Award_Boosts_Space_Technology_Research_Capabi_3f13b7f5.md",
+    "body_fetch_evidence": {
+      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260615_r5_no_skip_verify/raw/body_fetch_report.json",
+      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260615_r5_no_skip_verify/raw/bodies/NASA_Award_Boosts_Space_Technology_Resea_3f13b7f55a075bb7.txt",
+      "candidate_id": "3f13b7f55a075bb7",
+      "status": "BODY_FETCHED",
+      "counts_as_body_success": true,
+      "source_role": "primary_official",
+      "source_confidence": ""
+    },
+    "evidence_complete": false,
+    "duplicate_check": {
+      "duplicate": true,
+      "reason": "TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY"
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "主控",
+          "reaction": "归档备查；不进入G2/G3。",
+          "wiki_ref": "时事素材/归档"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "space_chain",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "low"
+        }
+      ],
+      "chapter_hooks": [],
+      "outline_delta_candidate": {
+        "type": "red_line",
+        "target_chapter": 0,
+        "proposed_addition": "",
+        "not_proposed": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY"
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": false,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "ARCHIVE_WITH_REASON",
+    "disposition_reason": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-06-15T01:47:05",
+    "bridge_policy": "bridge_artifacts_only_no_production_write"
+  },
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260615_d470540dc4",
+    "source_url": "https://science.nasa.gov/missions/chandra/nasas-chandra-discovers-possible-supernova-remnant-in-galactic-center",
+    "title": "NASA’s Chandra Discovers Possible Supernova Remnant in Galactic Center",
+    "captured_at": "2026-06-15T01:47:05",
+    "source_group": "overseas",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260615_r5_no_skip_verify/cards/NASA_s_Chandra_Discovers_Possible_Supernova_Remnan_feef55fd.md",
+    "body_fetch_evidence": {
+      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260615_r5_no_skip_verify/raw/body_fetch_report.json",
+      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260615_r5_no_skip_verify/raw/bodies/NASA_s_Chandra_Discovers_Possible_Supern_feef55fda0ce2866.txt",
+      "candidate_id": "feef55fda0ce2866",
+      "status": "BODY_FETCHED",
+      "counts_as_body_success": true,
+      "source_role": "primary_official",
+      "source_confidence": ""
+    },
+    "evidence_complete": true,
+    "duplicate_check": {
+      "duplicate": false,
+      "reason": ""
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "主控",
+          "reaction": "归档备查；不进入G2/G3。",
+          "wiki_ref": "时事素材/归档"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "low_kewu_relevance",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "low"
+        }
+      ],
+      "chapter_hooks": [],
+      "outline_delta_candidate": {
+        "type": "red_line",
+        "target_chapter": 0,
+        "proposed_addition": "",
+        "not_proposed": "与当前算力主权、地月争夺、群体智能或军事制度主线因果链不足。"
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": false,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "ARCHIVE_WITH_REASON",
+    "disposition_reason": "与当前算力主权、地月争夺、群体智能或军事制度主线因果链不足。",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-06-15T01:47:05",
+    "bridge_policy": "bridge_artifacts_only_no_production_write"
+  },
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260615_c515fb86d0",
+    "source_url": "https://www.esa.int/Applications/Satellite_navigation/Conversations_in_the_sky_Galileo_s_intersatellite_links_tested",
+    "title": "Conversations in the sky: Galileo’s intersatellite links tested",
+    "captured_at": "2026-06-15T01:47:05",
+    "source_group": "overseas",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260615_r5_no_skip_verify/cards/Conversations_in_the_sky__Galileo_s_intersatellite_0cf76e45.md",
+    "body_fetch_evidence": {
+      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260615_r5_no_skip_verify/raw/body_fetch_report.json",
+      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260615_r5_no_skip_verify/raw/bodies/Conversations_in_the_sky__Galileo_s_inte_0cf76e456e781fc9.txt",
+      "candidate_id": "0cf76e456e781fc9",
+      "status": "BODY_FETCHED",
+      "counts_as_body_success": true,
+      "source_role": "primary_official",
+      "source_confidence": ""
+    },
+    "evidence_complete": true,
+    "duplicate_check": {
+      "duplicate": false,
+      "reason": ""
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "主控",
+          "reaction": "归档备查；不进入G2/G3。",
+          "wiki_ref": "时事素材/归档"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "low_kewu_relevance",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "low"
+        }
+      ],
+      "chapter_hooks": [],
+      "outline_delta_candidate": {
+        "type": "red_line",
+        "target_chapter": 0,
+        "proposed_addition": "",
+        "not_proposed": "与当前算力主权、地月争夺、群体智能或军事制度主线因果链不足。"
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": false,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "ARCHIVE_WITH_REASON",
+    "disposition_reason": "与当前算力主权、地月争夺、群体智能或军事制度主线因果链不足。",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-06-15T01:47:05",
+    "bridge_policy": "bridge_artifacts_only_no_production_write"
+  },
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260615_de4f590b1d",
+    "source_url": "https://www.esa.int/About_Us/Corporate_news/ESA_at_ILA_2026_Day_2_highlights",
+    "title": "ESA at ILA 2026 – Day 2 highlights",
+    "captured_at": "2026-06-15T01:47:05",
+    "source_group": "overseas",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260615_r5_no_skip_verify/cards/ESA_at_ILA_2026___Day_2_highlights_f30db635.md",
+    "body_fetch_evidence": {
+      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260615_r5_no_skip_verify/raw/body_fetch_report.json",
+      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260615_r5_no_skip_verify/raw/bodies/ESA_at_ILA_2026___Day_2_highlights_f30db63597b3cb01.txt",
+      "candidate_id": "f30db63597b3cb01",
+      "status": "BODY_FETCHED",
+      "counts_as_body_success": true,
+      "source_role": "primary_official",
+      "source_confidence": ""
+    },
+    "evidence_complete": true,
+    "duplicate_check": {
+      "duplicate": false,
+      "reason": ""
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "主控",
+          "reaction": "归档备查；不进入G2/G3。",
+          "wiki_ref": "时事素材/归档"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "expo_event",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "low"
+        }
+      ],
+      "chapter_hooks": [],
+      "outline_delta_candidate": {
+        "type": "red_line",
+        "target_chapter": 0,
+        "proposed_addition": "",
+        "not_proposed": "展会/航展/博览会文，低技术突破增益，归档。"
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": false,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "ARCHIVE_WITH_REASON",
+    "disposition_reason": "展会/航展/博览会文，低技术突破增益，归档。",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-06-15T01:47:05",
+    "bridge_policy": "bridge_artifacts_only_no_production_write"
+  }
+]

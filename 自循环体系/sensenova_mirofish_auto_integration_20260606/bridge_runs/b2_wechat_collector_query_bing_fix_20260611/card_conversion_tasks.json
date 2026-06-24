@@ -1,0 +1,38 @@
+[
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260611_27bed3fdae",
+    "title": "Train Ride to NASA Kennedy for Artemis III Booster Segments",
+    "source_url": "https://www.nasa.gov/image-article/train-ride-to-nasa-kennedy-for-artemis-iii-booster-segments",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/b2_wechat_collector_query_bing_fix_20260611/cards/Train_Ride_to_NASA_Kennedy_for_Artemis_III_Booster.md",
+    "target_chapter_hint": 156,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_RAG",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_RAG_jsonl"
+    ],
+    "not_done_in_dry_run": true
+  },
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260611_28c24f2add",
+    "title": "Whole-genome duplication shaped cell-type evolution in the vertebrate brain",
+    "source_url": "https://www.nature.com/articles/s41586-026-10629-x",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/b2_wechat_collector_query_bing_fix_20260611/cards/Whole-genome_duplication_shaped_cell-type_evolutio.md",
+    "target_chapter_hint": 359,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_RAG",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_RAG_jsonl"
+    ],
+    "not_done_in_dry_run": true
+  }
+]

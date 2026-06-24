@@ -1,0 +1,64 @@
+{
+  "schema": "sensenova_mirofish_feed_package_v1",
+  "created_at": "2026-06-15T01:16:20",
+  "source_run_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260614_2314",
+  "mirofish_input_gate": {
+    "status": "ALLOW_MIROFISH_INPUT",
+    "reason": "",
+    "status_hint": "after_card_distill",
+    "valid_content_cards": 6,
+    "body_valid_cards": 13,
+    "story_value_cards": 6,
+    "low_story_value_cards": 7,
+    "mirofish_ready_cards": 6,
+    "p0_p1_story_value_cards": 6,
+    "material_relevance_status": "PASS",
+    "domestic_body_success": 5,
+    "body_fetch_success": 13,
+    "body_files_written": 13,
+    "body_fetch_success_metric": "raw/bodies/*.txt with BODY_FETCHED report item",
+    "story_value_threshold": {
+      "story_value_cards_min": 3,
+      "p0_p1_story_value_cards_min": 1,
+      "body_only_path_rejected": true
+    },
+    "bridge_mirofish_cron_recoverable": true
+  },
+  "mirofish_input_gate_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260614_2314/raw/mirofish_input_gate.json",
+  "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260614_2314/raw/body_fetch_report.json",
+  "raw_bodies_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260614_2314/raw/bodies",
+  "source_pipeline_state": {
+    "run_id": "cron_20260614_2314",
+    "status": "done",
+    "valid_content_cards": 6,
+    "query_plan_cards": 0,
+    "body_fetch_success": 13,
+    "card_pass_count": 13
+  },
+  "policy": {
+    "query_plan_excluded": true,
+    "formal_cards_written": false,
+    "production_runner_modified": false,
+    "outline_text_txt_draft_modified": false,
+    "body_success_requires_raw_bodies_txt": true
+  },
+  "valid_input_count": 5,
+  "skipped_count": 1,
+  "skip_reason_counts": {
+    "already_in_previous_bridge_run": 1
+  },
+  "body_fetch_evidence_count": 13,
+  "body_fetch_evidence_key_count": 26,
+  "stale_domestic_blocked_count": 0,
+  "skipped": [
+    {
+      "candidate_id": "23055983bfc01127",
+      "title": "Earth from Space: Buenos Aires",
+      "url": "https://www.esa.int/ESA_Multimedia/Images/2026/06/Earth_from_Space_Buenos_Aires",
+      "status": "DISTILLED",
+      "reason": "already_in_previous_bridge_run"
+    }
+  ],
+  "decision_cards_path": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260614_2314/decision_cards.json",
+  "conversion_tasks_path": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260614_2314/card_conversion_tasks.json"
+}

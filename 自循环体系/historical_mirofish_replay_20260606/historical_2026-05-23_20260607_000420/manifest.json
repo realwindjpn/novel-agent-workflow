@@ -1,0 +1,43 @@
+{
+  "run_id": "historical_2026-05-23_20260607_000420",
+  "day": "2026-05-23",
+  "pack_path": "/root/workspace/科武纪元/自循环体系/historical_mirofish_replay_20260606/historical_2026-05-23_20260607_000420/MIROFISH_HISTORICAL_FEED_PACK.md",
+  "selected_count": 8,
+  "selected_cards": [
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-23/素材卡_NASA_Sets_Coverage_for_Roscosmos_Spacewalk_Outside_Space_Station_20260523_2255.md",
+      "title": "素材卡：NASA Sets Coverage for Roscosmos Spacewalk Outside Space Station"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-23/素材卡_NASA_to_Compete_Contract_for_Jet_Propulsion_Laboratory_Management_20260523_1750.md",
+      "title": "素材卡：NASA to Compete Contract for Jet Propulsion Laboratory Management"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-23/素材卡_NASA·AWE空间天气_20260523_0740.md",
+      "title": "素材卡：NASA·AWE空间天气"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-23/素材卡_New_Material_Could_Help_NASA_Melt_Moon_Rocks,_Harness_Lunar_Resources_20260523_1245.md",
+      "title": "素材卡：New Material Could Help NASA Melt Moon Rocks, Harness Lunar Resources"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-23/素材卡_SEM-Guided_Low-kV_FIB_Finishing_for_Leading-Edge_Semiconductor_Failure_20260523_0235.md",
+      "title": "素材卡：SEM-Guided Low-kV FIB Finishing for Leading-Edge Semiconductor Failure Analy"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-23/素材卡_Striking_New_Views_of_the_First_Atomic_Bomb_Test_20260523_0740.md",
+      "title": "素材卡：Striking New Views of the First Atomic Bomb Test"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-23/素材卡_Tornado·Mississippi_20260523_0740.md",
+      "title": "素材卡：Tornado·Mississippi"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-23/素材卡_Webb_Studies_Star_Clusters_20260523_2255.md",
+      "title": "素材卡：Webb Studies Star Clusters"
+    }
+  ],
+  "skipped": [],
+  "status": "FEED_PACK_READY",
+  "created_at": "2026-06-07T00:04:20"
+}

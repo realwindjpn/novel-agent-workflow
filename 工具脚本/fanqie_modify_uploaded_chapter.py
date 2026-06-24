@@ -66,6 +66,19 @@ def parse_txt(project_dir: Path, chapter: int):
     return {'chapter': chapter, 'title': title, 'body': body, 'body_len': len(body)}
 
 
+def infer_volume(project_dir: Path, chapter: int) -> str:
+    outline = project_dir / '科武纪元大纲 V8_完整版.md'
+    text = outline.read_text(encoding='utf-8')
+    pattern = rf'第{chapter}章\s*\|\s*([^|\n]+?)\s*\|'
+    m = re.search(pattern, text)
+    if not m:
+        raise ValueError(f'大纲未找到第{chapter}章分卷')
+    volume = m.group(1).strip().replace('·', '：')
+    if not volume:
+        raise ValueError(f'第{chapter}章分卷为空')
+    return volume
+
+
 def choose_volume(session: str, volume: str):
     ab(session, f"open {shlex.quote(MANAGE_URL)}", timeout=60)
     time.sleep(2)
@@ -227,19 +240,20 @@ def main():
     ap.add_argument('--chapter', type=int, required=True)
     ap.add_argument('--project-dir', type=Path, default=PROJECT_DIR)
     ap.add_argument('--session', default=DEFAULT_SESSION)
-    ap.add_argument('--volume', default='第一卷：觉醒')
+    ap.add_argument('--volume', default=None, help='覆盖大纲自动推断分卷；默认按大纲第N章行解析')
     ap.add_argument('--execute', action='store_true')
     args=ap.parse_args()
     data=parse_txt(args.project_dir,args.chapter)
-    print(json.dumps({k:v for k,v in data.items() if k!='body'},ensure_ascii=False,indent=2))
+    volume = args.volume or infer_volume(args.project_dir, args.chapter)
+    print(json.dumps({**{k:v for k,v in data.items() if k!='body'}, 'volume': volume}, ensure_ascii=False, indent=2))
     if not args.execute:
         print('DRY_RUN_OK')
         return
-    choose_volume(args.session,args.volume)
+    choose_volume(args.session,volume)
     opened=search_and_open(args.session,data)
     replaced=replace_body(args.session,data)
     submitted=submit(args.session,data)
-    verified=verify(args.session,data,args.volume)
+    verified=verify(args.session,data,volume)
     print(json.dumps({'opened':opened,'replaced':replaced,'submitted':submitted,'verified':verified},ensure_ascii=False,indent=2))
 
 if __name__=='__main__':

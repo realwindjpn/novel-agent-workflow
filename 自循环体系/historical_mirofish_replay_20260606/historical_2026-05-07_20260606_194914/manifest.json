@@ -1,0 +1,27 @@
+{
+  "run_id": "historical_2026-05-07_20260606_194914",
+  "day": "2026-05-07",
+  "pack_path": "/root/workspace/科武纪元/自循环体系/historical_mirofish_replay_20260606/historical_2026-05-07_20260606_194914/MIROFISH_HISTORICAL_FEED_PACK.md",
+  "selected_count": 4,
+  "selected_cards": [
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-07/素材卡_军事AI蜂群_OODA压缩.md",
+      "title": "素材卡｜军事AI蜂群：OODA压缩"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-07/素材卡_国产算力训练主权_能推到能训.md",
+      "title": "素材卡｜国产算力训练主权：能推到能训"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-07/素材卡_地月规则竞赛_存在即权益.md",
+      "title": "素材卡｜地月规则竞赛：存在即权益"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-07/素材卡_量子先存后解_后量子密钥.md",
+      "title": "素材卡｜量子先存后解与后量子密钥"
+    }
+  ],
+  "skipped": [],
+  "status": "FEED_PACK_READY",
+  "created_at": "2026-06-06T19:49:14"
+}

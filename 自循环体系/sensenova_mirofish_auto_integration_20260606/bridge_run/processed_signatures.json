@@ -1,0 +1,55 @@
+{
+  "signatures": [
+    "04dadfadb5e08597",
+    "420160e53a49ac67",
+    "649495a83f1faabd",
+    "67f57bdb9919faf9",
+    "7d52b022d7333d27",
+    "b165bf7a48dd5031",
+    "b55a84ac0df7e613",
+    "b98a6269e9d87d88",
+    "bf17295caa8fd73c",
+    "ce1423e35749b272",
+    "d0d2cbde3bf0f063",
+    "e29841e262d269bf"
+  ],
+  "records": {
+    "04dadfadb5e08597": [
+      "cron_20260615_0248"
+    ],
+    "420160e53a49ac67": [
+      "controller_rescue_20260613_0047"
+    ],
+    "649495a83f1faabd": [
+      "sensenova_b2_rootfix_20260613_verify"
+    ],
+    "67f57bdb9919faf9": [
+      "cron_20260621_1259"
+    ],
+    "7d52b022d7333d27": [
+      "sensenova_b2_rootfix_20260613_verify"
+    ],
+    "b165bf7a48dd5031": [
+      "cron_20260622_1932"
+    ],
+    "b55a84ac0df7e613": [
+      "sensenova_b2_rootfix_20260613_verify"
+    ],
+    "b98a6269e9d87d88": [
+      "cron_20260615_0248"
+    ],
+    "bf17295caa8fd73c": [
+      "cron_20260621_1259"
+    ],
+    "ce1423e35749b272": [
+      "cron_20260613_2212"
+    ],
+    "d0d2cbde3bf0f063": [
+      "__legacy__",
+      "cron_20260611_1857"
+    ],
+    "e29841e262d269bf": [
+      "expert_gate_smoke"
+    ]
+  }
+}

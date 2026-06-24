@@ -19,14 +19,16 @@ for name,lim in [('本地预检',300),('任务卡摘录',700),('尾段行号',22
     s=section(name,lim)
     if s: parts.append(s)
 pkg='\n\n'.join(parts)
-prompt=f'''你是网文读者门禁。只看证据包，判断本章是否想继续看下一章。
+prompt=f'''你是网文读者门禁 + DEAI读者门禁。只看证据包，判断本章是否想继续看下一章。
 
 RTK证据包：
-{pkg[:4500]}
+{pkg[:6500]}
 
 第一行必须且只能输出 PASS 或 FAIL（大写英文），不得有前缀、标点、修饰。
-PASS=看得懂/顺/爽/AI味轻/章末想看下一章。FAIL=看不懂/AI味重/结构断裂/无追读欲。
-第二行起可写≤3条理由。
+PASS=看得懂/顺/爽/听感自然/章末想看下一章。FAIL=看不懂/AI味重/会议PPT感/结构断裂/无追读欲/去AI硬闸未过。
+第二行起必须含：DEAI_READER_PASS 或 DEAI_READER_FAIL；追读意愿1-5；听感出戏句；卡顿段。
+若证据包“去AI硬闸扫描”中 META_INFO_HARD > 0，必须FAIL。
+读者按听书体验审：连续定义句、说明书式枚举、总结句、公文口播、鸡汤结尾应从严。
 章末钩子允许语义等效表达，不要求原文匹配。
 '''
 cmd=['python3',str(proj/'工具脚本/orchestrate_review.py'),'--role','reader','--prompt',prompt]
@@ -38,17 +40,13 @@ s=(m.group(1) if m else raw).replace('\\n','\n')
 # MiniMax may emit <think>...</think> before the actual verdict.
 s2=re.sub(r'<think>.*?</think>','',s,flags=re.S).strip()
 first=next((x.strip() for x in s2.splitlines() if x.strip()),'')
-# 中文模型正向表达
-positive_en = any(k in s2 for k in ['PASS', 'pass'])
-positive_zh = any(k in s2 for k in [
-    '没问题','通过','合格','想继续看','想追','追读','很好','不错','想看下一章',
-    '继续看下一章','继续阅读','可进入','完整度达标','悬念设置好',
-    '值得看','可以进入','节奏好','结构完整','没有大问题'
-])
+# DEAI读者门禁从严：第一行必须PASS，且正文含DEAI_READER_PASS与听感字段。
+positive_en = first.startswith('PASS')
+required_deai = all(k in s2 for k in ['DEAI_READER_PASS', '追读', '听感'])
 # 负向阻断
 negative = any(k in first for k in ['FAIL','失败','不合格','重写','看不懂','AI味重','无追读欲','不想看','不推荐']) or \
-           any(k in s2 for k in ['重写全文','方向性错误','严重跑题'])
-ok = '"ok": true' in raw and (positive_en or positive_zh) and not negative
+           any(k in s2 for k in ['DEAI_READER_FAIL','重写全文','方向性错误','严重跑题','META_INFO_HARD'])
+ok = '"ok": true' in raw and positive_en and required_deai and not negative
 old=review.read_text(encoding='utf-8',errors='ignore') if review.exists() else f'# 第{ch}章 六角色外审记录\n'
 review.write_text(old+f'''\n\n## RTK证据包读者门禁（2026-05-02）\n- 证据包：审核记录/证据包/第{ch}章_证据包.md\n- 原始输出：raw/第{ch}_reader_evidence_gate.json\n- 结论：{'PASS' if ok else 'REVIEW_NEEDED'}\n\n## 当前门禁汇总\n- 编辑证据包：见 raw/第{ch}_editor_evidence_gate.json\n- 读者证据包：{'PASS' if ok else 'REVIEW_NEEDED'}\n''',encoding='utf-8')
 print(json.dumps({'chapter':ch,'reader_evidence_pass':ok,'evidence':str(md),'review':str(review)},ensure_ascii=False))

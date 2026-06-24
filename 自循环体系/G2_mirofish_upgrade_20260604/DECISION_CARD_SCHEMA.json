@@ -1,0 +1,196 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "kewu.g2.mirofish.decision_card.v1",
+  "title": "Kewu G2 MiroFish Decision Card",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "material_id",
+    "source_url",
+    "title",
+    "captured_at",
+    "evidence",
+    "mirofish_projection",
+    "recommended_disposition",
+    "final_disposition"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "decision_card_v1"
+    },
+    "material_id": {
+      "type": "string",
+      "minLength": 3
+    },
+    "source_url": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "captured_at": {
+      "type": "string"
+    },
+    "source_type": {
+      "type": "string"
+    },
+    "evidence": {
+      "type": "object",
+      "required": [
+        "has_url",
+        "has_body_text",
+        "fact_kernel"
+      ],
+      "properties": {
+        "has_url": {
+          "type": "boolean"
+        },
+        "has_body_text": {
+          "type": "boolean"
+        },
+        "fact_kernel": {
+          "type": "string"
+        },
+        "quote_or_excerpt": {
+          "type": "string"
+        },
+        "body_path": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "mirofish_projection": {
+      "type": "object",
+      "required": [
+        "force_reactions",
+        "chain_conflicts",
+        "chapter_hooks",
+        "outline_delta_candidate",
+        "anti_patterns"
+      ],
+      "properties": {
+        "force_reactions": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "chain_conflicts": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "chapter_hooks": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "outline_delta_candidate": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "anti_patterns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "six_role_recommendation": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": true
+    },
+    "recommended_disposition": {
+      "enum": [
+        "OUTLINE_PATCH",
+        "CHAPTER_PREP_ONLY",
+        "ARCHIVE_WITH_REASON"
+      ]
+    },
+    "final_disposition": {
+      "type": "object",
+      "required": [
+        "status",
+        "reason",
+        "decided_by",
+        "decided_at"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "OUTLINE_PATCH",
+            "CHAPTER_PREP_ONLY",
+            "ARCHIVE_WITH_REASON"
+          ]
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 5
+        },
+        "decided_by": {
+          "type": "string"
+        },
+        "decided_at": {
+          "type": "string"
+        },
+        "target_chapter": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "target_chapters": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "delta_type": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "proposed_delta_text": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "usage_scene": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "archive_reason": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "mismatch_dimension": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "possible_revisit_condition": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "status": "READY_FOR_SKYCLAW_REVIEW",
+  "created_at": "2026-06-04T19:42:00+08:00",
+  "target_dir": "/root/workspace/科武纪元/自循环体系/G2_mirofish_upgrade_20260604",
+  "next_action": "SkyClaw审核+SenseNova完成后启动全套流程",
+  "next_sensenova_eta": "2026-06-04 19:42 后",
+  "boundaries": [
+    "不改正式大纲latest",
+    "不改正文/TXT/Wiki/RAG/cron/job",
+    "今日OUTLINE_PATCH仅候选"
+  ],
+  "artifacts": [
+    "G2_MIROFISH_UPGRADE_SPEC.md",
+    "G2_TASK_PROMPT_PATCH.md",
+    "MODEL_LEDGER_G2_MIROFISH.json",
+    "SENSENOVA_TO_G2_RUNBOOK.md",
+    "DECISION_CARD_SCHEMA.json",
+    "STATUS.json"
+  ],
+  "inbox_event": "/root/workspace/agent_inbox/mirofish_kewu_mvp.jsonl"
+}

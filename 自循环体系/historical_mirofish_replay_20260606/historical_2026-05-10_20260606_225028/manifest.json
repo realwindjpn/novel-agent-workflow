@@ -1,0 +1,47 @@
+{
+  "run_id": "historical_2026-05-10_20260606_225028",
+  "day": "2026-05-10",
+  "pack_path": "/root/workspace/科武纪元/自循环体系/historical_mirofish_replay_20260606/historical_2026-05-10_20260606_225028/MIROFISH_HISTORICAL_FEED_PACK.md",
+  "selected_count": 9,
+  "selected_cards": [
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-10/素材卡_AI儿童玩具_成人模型与儿童安全失配.md",
+      "title": "素材卡：AI儿童玩具的成人模型失配与监管真空"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-10/素材卡_AI术语表_写作科普口径.md",
+      "title": "素材卡：AI术语表与写作科普口径"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-10/素材卡_DealTeamSix_国防采购私营谈判队.md",
+      "title": "素材卡：Deal Team Six与国防采购私营谈判队"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-10/素材卡_GM驾驶数据隐私_车机遥测变现.md",
+      "title": "素材卡：GM驾驶数据隐私和车机遥测变现"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-10/素材卡_Nvidia_400亿AI投资_循环资本.md",
+      "title": "素材卡：Nvidia 400亿美元AI股权投资"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-10/素材卡_中科院近代物理所_50MeV质子微束装置.md",
+      "title": "素材卡：50MeV质子微束装置与深空辐射效应"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-10/素材卡_乌克兰UGV地面机器人_5万台扩产.md",
+      "title": "素材卡：乌克兰地面无人车（UGV）大规模扩产"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-10/素材卡_量子比特可移动_代尔夫特_QuTech.md",
+      "title": "素材卡：量子比特可移动制造突破"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-10/素材卡_霍尔木兹海峡封锁_击伤伊朗油轮.md",
+      "title": "素材卡：美军封锁霍尔木兹海峡·击伤伊朗油轮"
+    }
+  ],
+  "skipped": [],
+  "status": "FEED_PACK_READY",
+  "created_at": "2026-06-06T22:50:28"
+}

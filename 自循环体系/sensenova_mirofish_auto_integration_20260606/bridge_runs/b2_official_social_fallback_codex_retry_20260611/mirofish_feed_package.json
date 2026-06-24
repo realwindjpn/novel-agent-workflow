@@ -1,0 +1,119 @@
+{
+  "schema": "sensenova_mirofish_feed_package_v1",
+  "created_at": "2026-06-11T00:48:18",
+  "source_run_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/b2_official_social_fallback_codex_retry_20260611",
+  "source_pipeline_state": {
+    "run_id": "b2_official_social_fallback_codex_retry_20260611",
+    "status": "running",
+    "valid_content_cards": 0,
+    "query_plan_cards": 0,
+    "body_fetch_success": 7,
+    "card_pass_count": 0
+  },
+  "policy": {
+    "query_plan_excluded": true,
+    "formal_cards_written": false,
+    "production_runner_modified": false,
+    "outline_text_txt_draft_modified": false
+  },
+  "valid_input_count": 8,
+  "skipped_count": 12,
+  "skip_reason_counts": {
+    "body_clean_too_short": 2,
+    "http_403|jina_timeout": 1,
+    "stale_domestic_article": 1,
+    "low_value_expo_or_conference": 1,
+    "low_value_policy_or_commentary": 1,
+    "malformed_search_title": 2,
+    "query_plan_no_body": 4
+  },
+  "stale_domestic_blocked_count": 1,
+  "skipped": [
+    {
+      "candidate_id": "080248b6fa436508",
+      "title": "Artemis III NASA announcement highlights: Luca Parmitano assigned as pilot",
+      "url": "https://www.esa.int/ESA_Multimedia/Videos/2026/06/Artemis_III_NASA_announcement_highlights_Luca_Parmitano_assigned_as_pilot",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "BODY_CLEAN_TOO_SHORT"
+    },
+    {
+      "candidate_id": "f17ffd1d4c23f97a",
+      "title": "Luca Parmitano on Artemis III selection",
+      "url": "https://www.esa.int/ESA_Multimedia/Videos/2026/06/Luca_Parmitano_on_Artemis_III_selection",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "BODY_CLEAN_TOO_SHORT"
+    },
+    {
+      "candidate_id": "2636f97a8755fe93",
+      "title": "We’re back: Proba-3 ready for more science",
+      "url": "https://www.esa.int/Enabling_Support/Space_Engineering_Technology/We_re_back_Proba-3_ready_for_more_science",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "HTTP_403|JINA_TIMEOUT"
+    },
+    {
+      "candidate_id": "c40531_40208988_345b110a31f26417",
+      "title": "c40531 40208988",
+      "url": "http://theory.people.com.cn/n1/2024/0403/c40531-40208988.html",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "STALE_DOMESTIC_ARTICLE"
+    },
+    {
+      "candidate_id": "c1004_40732291_21564c63da264999",
+      "title": "c1004 40732291",
+      "url": "http://finance.people.com.cn/n1/2026/0602/c1004-40732291.html",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "LOW_VALUE_EXPO_OR_CONFERENCE"
+    },
+    {
+      "candidate_id": "c_715e1f10b1311588",
+      "title": "c",
+      "url": "http://www.xinhuanet.com/finance/20260215/0783f8b9f59c42b2a760fb2d7d02e4f6/c.html",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "LOW_VALUE_POLICY_OR_COMMENTARY"
+    },
+    {
+      "candidate_id": "c_2b9912af04ac3c30",
+      "title": "c",
+      "url": "https://www.xinhuanet.com/20260526/e3f7378fc89649059c677dba8656cf57/c.html",
+      "status": "DISTILLED",
+      "reason": "malformed_search_title"
+    },
+    {
+      "candidate_id": "c_22a66a4cc21d1697",
+      "title": "c",
+      "url": "http://jjckb.xinhuanet.com/20260525/fd99535eb20e405abe59d5661a334581/c.html",
+      "status": "DISTILLED",
+      "reason": "malformed_search_title"
+    },
+    {
+      "candidate_id": "QP_cctv_com__先进制造_7e87c831428e4964",
+      "title": "[QP:cctv.com] 先进制造",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cctv_com__query_plan_bb0d5336fc69a780",
+      "title": "[QP:cctv.com] query_plan",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cctv_com__人工智能_半导体_算力_a747c907e3c53120",
+      "title": "[QP:cctv.com] 人工智能 半导体 算力",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cctv_com__新材料_能源_动力装备_eb8aca1a8c1109a7",
+      "title": "[QP:cctv.com] 新材料 能源 动力装备",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    }
+  ],
+  "decision_cards_path": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/b2_official_social_fallback_codex_retry_20260611/decision_cards.json",
+  "conversion_tasks_path": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/b2_official_social_fallback_codex_retry_20260611/card_conversion_tasks.json"
+}

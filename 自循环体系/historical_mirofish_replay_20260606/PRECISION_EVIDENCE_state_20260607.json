@@ -1,0 +1,428 @@
+{
+  "meta": {
+    "generated_at": "2026-06-07",
+    "agent": "澄砚·科武素材补证",
+    "boundary": "只采证据/整理；不改大纲/正文/TXT/草稿箱",
+    "inputs": [
+      "MIROFISH_HIGH_GAIN_BATCH_20260606.md",
+      "MIROFISH_HIGH_GAIN_GPT55_REVIEW_20260606.md",
+      "SENSENOVA_PRECISION_QUERIES_20260606.md"
+    ]
+  },
+  "priority_directions": ["distributed_industrial_resilience", "ugv_unmanned_ground_systems", "european_defence_autonomy"],
+  "candidate_verdicts": [
+    {
+      "rank": 1,
+      "topic": "分布式工业体系韧性",
+      "verdict": "NEED_MORE_PRIMARY",
+      "key_change": "乌克兰官方+CSIS证词确认产能爆增/丹麦模式；未找到72h恢复/6年补库/省级独立指挥链的智库primary"
+    },
+    {
+      "rank": 2,
+      "topic": "欧洲防务自主路线",
+      "verdict": "ACCEPT",
+      "key_change": "EU白皮书2030+IRIS²签约+ESSI架构+EURODRONE合同，证据链完整"
+    },
+    {
+      "rank": 3,
+      "topic": "乌克兰UGV大规模扩产",
+      "verdict": "ACCEPT_AFTER_EVIDENCE",
+      "key_change": "25k/50k/9k任务/22k任务/纯无人占领阵地有DefenseNews+JPost+United24交叉验证；伤亡减30%无primary标NO_PRIMARY_SOURCE"
+    },
+    {
+      "rank": 4,
+      "topic": "土耳其Yıldırımhan远程导弹",
+      "verdict": "NEED_FETCH_BODY",
+      "key_change": "本次未执行搜索，顺延"
+    },
+    {
+      "rank": 5,
+      "topic": "中国Agent政策",
+      "verdict": "NEED_FETCH_BODY",
+      "key_change": "本次未执行搜索，顺延"
+    },
+    {
+      "rank": 6,
+      "topic": "QuTech量子比特移动制造",
+      "verdict": "ACCEPT",
+      "key_change": "DOI级primary已有，本次未重复补"
+    },
+    {
+      "rank": 7,
+      "topic": "霍尔木兹封锁/油轮击伤",
+      "verdict": "NEED_FETCH_BODY",
+      "key_change": "本次未执行搜索，顺延"
+    },
+    {
+      "rank": 8,
+      "topic": "OpenAI非营利转营利治理",
+      "verdict": "NEED_FETCH_BODY",
+      "key_change": "本次未执行搜索，顺延"
+    },
+    {
+      "rank": 9,
+      "topic": "AI儿童玩具监管真空",
+      "verdict": "NEED_FETCH_BODY",
+      "key_change": "本次未执行搜索，顺延"
+    },
+    {
+      "rank": 10,
+      "topic": "GM驾驶数据隐私",
+      "verdict": "NEED_FETCH_BODY",
+      "key_change": "本次未执行搜索，顺延"
+    }
+  ],
+  "evidence_detail": [
+    {
+      "id": "EVID-1A",
+      "topic": "distributed_industrial_resilience",
+      "url": "https://www.rnbo.gov.ua/en/Diialnist/7360.html?PRINT=",
+      "source_type": "PRIMARY/官方",
+      "source_name": "乌克兰国家安全和国防委员会(NSDC)官方新闻稿",
+      "date": "2026-01-19",
+      "event_core": {
+        "capacity_2026_usd_billion": 55,
+        "growth_since_invasion_factor": 55,
+        "annual_increase_usd_billion": 20,
+        "key_claim": "唯一在持续大规模炮击下积极发展国防工业的国家"
+      },
+      "mappable_variables": ["工业韧性", "民转军", "极端条件下产能扩张"],
+      "accpetable": "PARTIAL",
+      "accept_notes": "产能数据可直接用；72h恢复/6年补库/省级指挥链仍需primary"
+    },
+    {
+      "id": "EVID-1B",
+      "topic": "distributed_industrial_resilience",
+      "url": "https://www.csis.org/analysis/production-procurement-how-europe-and-ukraine-are-transforming-defense-supply-chains",
+      "source_type": "PRIMARY/智库/国会证词",
+      "source_name": "CSIS Congressional Testimony (Kateryna Bondar)",
+      "date": "2025-12-10",
+      "event_core": {
+        "capacity_2022_usd_billion": 1,
+        "capacity_early_2024_usd_billion": 20,
+        "capacity_june_2025_usd_billion": 35,
+        "utilization_rate": "1/3",
+        "danish_model_2025_usd_billion": 6,
+        "danish_model_2026_usd_billion_expected": 10
+      },
+      "mappable_variables": ["产能≠战斗力", "外部资金注入本土制造商", "分布式采购网络"],
+      "accpetable": "YES",
+      "accept_notes": "产能缺口和外部资金注入均为硬数据"
+    },
+    {
+      "id": "EVID-1C",
+      "topic": "distributed_industrial_resilience",
+      "url": "http://s3.us-east-1.amazonaws.com/files.cnas.org/documents/Defense_Defense-Industrial-Base_2025-04-02_vFinal.pdf",
+      "source_type": "PRIMARY/智库/PDF",
+      "source_name": "CNAS - From Production Lines to Front Lines",
+      "date": "2025-04-02",
+      "event_core": {
+        "status": "METADATA_ONLY",
+        "authors": ["Becca Wasser", "Philip Sheers"],
+        "theme": "振兴美国防工业基础以应对未来大国冲突"
+      },
+      "mappable_variables": ["待抓取正文后确认"],
+      "accpetable": "NEED_FETCH_BODY",
+      "accept_notes": "PDF正文未抓取，无法确认是否含分布式制造/民转军/72h恢复等数字"
+    },
+    {
+      "id": "EVID-1D",
+      "topic": "distributed_industrial_resilience",
+      "url": "https://cepa.org/comprehensive-reports/unleashing-defense-innovation",
+      "source_type": "PRIMARY/智库",
+      "source_name": "CEPA - Unleashing Defense Innovation",
+      "date": "2026",
+      "event_core": {
+        "key_quote": "21世纪战场被20世纪防务架构供养",
+        "ukraine_model": "战场创新驱动范例：无人机/电子战/自主系统/快速原型/扁平组织",
+        "europe_weakness": "慢采购/碎片化/有限产能/弹药不足/新兴技术投资不足",
+        "recommendation": "制度化跨平台/数据/物流/C2互操作性"
+      },
+      "mappable_variables": ["欧洲碎片化vs乌克兰分散创新", "铁幕集中体系脆弱性"],
+      "accpetable": "YES",
+      "accept_notes": "属于欧洲防务自主的互证，不直接补分布式工业韧性的primary数字"
+    },
+    {
+      "id": "EVID-2A",
+      "topic": "ugv_unmanned_ground_systems",
+      "url": "https://www.defensenews.com/unmanned/2026/04/24/ukraine-to-field-25000-ground-robots-in-push-to-replace-soldiers-for-frontline-logistics",
+      "source_type": "SECONDARY+/专业媒体",
+      "source_name": "Defense News (Katie Livingstone)",
+      "date": "2026-04-24",
+      "event_core": {
+        "ugv_contract_h1_2026": 25000,
+        "goal_frontline_logistics": "100%机器人化",
+        "missions_march_2026": 9000,
+        "missions_last_3_months": 22000,
+        "budget_hryvnia_billion_since_jan": 14,
+        "budget_usd_million_since_jan": 330,
+        "systems_delivered_since_jan": 181000,
+        "brave1_ground_drone_companies": 300,
+        "brave1_grants": 175,
+        "first_unmanned_capture_position": true,
+        "bizon_l_payload_kg": 300,
+        "bizon_l_range_km": 50
+      },
+      "mappable_variables": ["白盾UGV群", "群体智能→算法暴力", "主角团边缘AI反制", "黑市逆向工程"],
+      "accpetable": "YES",
+      "accept_notes": "数字经专业媒体+部长/总统/CEO多方引用，交叉验证度高"
+    },
+    {
+      "id": "EVID-2B",
+      "topic": "ugv_unmanned_ground_systems",
+      "url": "https://www.jpost.com/defense-and-tech/article-893608",
+      "source_type": "SECONDARY+/专业媒体",
+      "source_name": "Jerusalem Post (Anna Ahronheim)",
+      "date": "2026-04",
+      "event_core": {
+        "ugv_contract_h1_2026": 25000,
+        "goal_frontline_logistics": "100%机器人化",
+        "missions_march_2026": 9000,
+        "missions_last_3_months": 22000,
+        "units_using_ugv_late_2025": 67,
+        "units_using_ugv_spring_2026": 167,
+        "contracts_signed": 19,
+        "contracts_value_hryvnia_billion": 11,
+        "contracts_value_usd_million": 250,
+        "brave1_companies": 280,
+        "brave1_solutions": 550,
+        "brave1_grants": 175,
+        "dedicated_center_ugf_within_uaf": true
+      },
+      "mappable_variables": ["UGV使用单位2.5倍增长", "制度化的算法暴力基础设施"],
+      "accpetable": "YES",
+      "accept_notes": "与Defense News交叉验证，增强可信度"
+    },
+    {
+      "id": "EVID-2C",
+      "topic": "ugv_unmanned_ground_systems",
+      "url": "https://united24media.com/world/ukraines-ground-robots-are-becoming-battlefield-platforms-and-procurement-is-about-to-surge-19106",
+      "source_type": "SECONDARY+/官方媒体",
+      "source_name": "United24 Media + UCDI CEO Ihor Fedirko",
+      "date": "2026-05-22",
+      "event_core": {
+        "ugv_contract_h1_2026": "nearly 25000",
+        "evolution": "单用途工具→多用途战场平台",
+        "payloads": ["电子战", "电情", "雷达", "迫击炮", "导弹", "遥控武器站", "装甲医疗舱", "机械臂"],
+        "kill_zone_km": "10-15",
+        "draft_law_vat_exemption": "No.15259",
+        "vat_exemption_benefit": "同等预算多买约20% UGV"
+      },
+      "mappable_variables": ["平台化/模块化升级", "税制摩擦映射制度层细节"],
+      "accpetable": "YES",
+      "accept_notes": "官方媒体+产业协会CEO"
+    },
+    {
+      "id": "EVID-2D-MISSING",
+      "topic": "ugv_unmanned_ground_systems",
+      "url": null,
+      "source_type": "NO_PRIMARY_SOURCE",
+      "source_name": null,
+      "date": null,
+      "event_core": {
+        "claim": "伤亡减30%",
+        "status": "NOT_FOUND_IN_PRIMARY_OR_SECONDARY_PLUS"
+      },
+      "mappable_variables": [],
+      "accpetable": "NO",
+      "accept_notes": "Defense News/JPost/United24均未提及；可能来自其他二级转述或估算，本轮未找到primary"
+    },
+    {
+      "id": "EVID-3A",
+      "topic": "european_defence_autonomy",
+      "url": "https://defence-industry-space.ec.europa.eu/eu-defence-industry/white-paper-european-defence-readiness-2030_en",
+      "source_type": "PRIMARY/官方文件",
+      "source_name": "European Commission - White Paper for European Defence – Readiness 2030",
+      "date": "2025-03-19",
+      "event_core": {
+        "companion_plan": "ReArm Europe Plan / Readiness 2030",
+        "flagship_projects": ["Eastern Flank Watch", "European Drone Defence Initiative", "European Air Shield", "European Space Shield"],
+        "financial_instrument": "SAFE",
+        "safe_priority_areas": ["导弹防御", "无人机", "网络安全"],
+        "fiscal_mechanism": "Stability and Growth Pact 国家逃逸条款",
+        "collaborative_procurement_target": "40% (EDIS)"
+      },
+      "mappable_variables": ["欧洲半自主状态", "铁幕C2控制权威胁", "主角团第三选项"],
+      "accpetable": "YES",
+      "accept_notes": "官方文件，层级最高"
+    },
+    {
+      "id": "EVID-3B",
+      "topic": "european_defence_autonomy",
+      "url": "https://defence-industry-space.ec.europa.eu/document/download/513de692-d08c-40cc-80c3-cb6611ace178_en?filename=EU-Defence-Industry-Transformation-Roadmap.pdf",
+      "source_type": "PRIMARY/官方文件/PDF",
+      "source_name": "European Commission - EU Defence Industry Transformation Roadmap",
+      "date": "2025",
+      "event_core": {
+        "three_objectives": [
+          "连接防务与深科技社区→加速颠覆性方案",
+          "加速先进技术融入成员国军事能力",
+          "通过颠覆性工业先进制造增强欧洲防务产能"
+        ],
+        "ukraine_experience": "EU Defence Innovation Office in Kyiv 升级为 EU Defence Industry Office"
+      },
+      "mappable_variables": ["欧洲版分布式制造", "乌克兰经验制度化"],
+      "accpetable": "YES",
+      "accept_notes": "官方PDF"
+    },
+    {
+      "id": "EVID-3C",
+      "topic": "european_defence_autonomy",
+      "url": "https://spacenews.com/europe-signs-contracts-for-iris%C2%B2-constellation",
+      "source_type": "PRIMARY/官方+产业",
+      "source_name": "SpaceNews报道EC+ESA与SpaceRISE签约",
+      "date": "2024-12-16",
+      "event_core": {
+        "program": "IRIS²",
+        "full_name": "Infrastructure for Resilience, Interconnectivity and Security by Satellite",
+        "total_cost_euro_billion": 10.6,
+        "satellites_count": 290,
+        "service_entry": "2031年初",
+        "contracts_through": 2036,
+        "launches_ariane_64": 13,
+        "funding_eu_euro_billion": 6,
+        "funding_esa_euro_million": 550,
+        "funding_industry_euro_billion": 4.1,
+        "architecture": "MEO 18颗(8000km) + LEO High 264颗(1200km) + LEO Low 10+颗(400-750km)",
+        "key_quotes": [
+          "Kubilius: 我们不能承受过于依赖欧盟外国家或公司",
+          "Aschbacher: 增强韧性与自治"
+        ]
+      },
+      "mappable_variables": ["欧洲版Starlink时间表", "算法主权/降低对美依赖"],
+      "accpetable": "YES",
+      "accept_notes": "官方签约+产业报告，时间线硬"
+    },
+    {
+      "id": "EVID-3D",
+      "topic": "european_defence_autonomy",
+      "url": "https://thedefensepost.com/2026/04/11/european-sky-shield-initiative-guide",
+      "source_type": "SECONDARY+/专业媒体",
+      "source_name": "The Defense Post (Bea Castañeda)",
+      "date": "2026-04-11",
+      "event_core": {
+        "program": "ESSI",
+        "full_name": "European Sky Shield Initiative",
+        "nature": "集成雷达/导弹拦截器/C2/传感器的协调网络",
+        "layers": ["远程(弹道导弹/高端巡航导弹)", "中程(大面积/关键基础设施)", "短程/点防御(无人机/低空威胁)"],
+        "participants": ["德国", "波兰", "捷克", "斯洛文尼亚", "荷兰", "罗马尼亚", "其他"],
+        "mou_signatories": "10国NATO防长",
+        "operational_picture": "统一跨境空情图",
+        "relationship_to_nato": "互补而非竞争"
+      },
+      "mappable_variables": ["欧洲C2自主", "统一跨境指挥", "铁幕失去控制权风险"],
+      "accpetable": "YES",
+      "accept_notes": "专业媒体对公开倡议的综述，架构可信"
+    },
+    {
+      "id": "EVID-3E",
+      "topic": "european_defence_autonomy",
+      "url": "https://sldinfo.com/2022/03/the-eurodrone-program-moves-ahead-february-2022",
+      "source_type": "PRIMARY/官方采购机构",
+      "source_name": "OCCAR - Eurodrone合同签约",
+      "date": "2022-02-24",
+      "event_core": {
+        "contract_value_euro_billion": 7.1,
+        "prime_contractor": "Airbus Defence and Space",
+        "backing_governments": ["法国", "德国", "西班牙", "意大利"],
+        "type": "中高空长航时无人机(MALE UAS)",
+        "first_flight_expected": "2027年中",
+        "delivery_expected": "2028+",
+        "observer_state": "印度",
+        "feature": "可在非隔离空域飞行(民用空域兼容)"
+      },
+      "mappable_variables": ["欧洲无人机主权ISR/打击能力", "时间表映射延迟风险"],
+      "accpetable": "YES",
+      "accept_notes": "OCCAR官方合同，硬时间线"
+    },
+    {
+      "id": "EVID-3F",
+      "topic": "european_defence_autonomy",
+      "url": "https://www.rusi.org/explore-our-research/publications/emerging-insights/european-digital-defence-priorities-uncertain-world",
+      "source_type": "PRIMARY/智库",
+      "source_name": "RUSI - European Digital Defence Priorities in an Uncertain World (Noah Sylvia)",
+      "date": "2026",
+      "event_core": {
+        "countries_analyzed": ["英国", "法国", "德国", "波兰", "西班牙"],
+        "key_themes": ["主权", "互操作性", "遗留系统整合", "数字素养", "组织障碍"],
+        "conclusion": "欧洲军队数字转型复杂，成功程度不一，挑战显著"
+      },
+      "mappable_variables": ["欧洲C2缺口", "互操作性/遗留系统障碍", "半自主张力"],
+      "accpetable": "YES",
+      "accept_notes": "分析性智库报告，非硬数字但架构可信"
+    }
+  ],
+  "missing_items": [
+    {
+      "claim": "72小时恢复 vs 6年补库",
+      "original_source": "MiroFish自媒体C",
+      "status": "NO_PRIMARY_SOURCE",
+      "searched_in": ["RUSI", "IISS", "CNAS", "CSIS", "乌克兰官方", "中文gov源"],
+      "notes": "自媒体声称，未在任何智库/官方/学术源中找到匹配"
+    },
+    {
+      "claim": "省级独立指挥链",
+      "original_source": "MiroFish自媒体C",
+      "status": "NO_PRIMARY_SOURCE",
+      "searched_in": ["RUSI", "IISS", "CNAS", "CSIS", "乌克兰官方", "中文gov源"],
+      "notes": "同上"
+    },
+    {
+      "claim": "UGV伤亡减30%",
+      "original_source": "MiroFish/Defense News(primary标注)",
+      "status": "NO_PRIMARY_SOURCE",
+      "searched_in": ["Defense News全文", "Jerusalem Post全文", "United24全文"],
+      "notes": "Defense News原文未含此数字；JPost/United24亦未提及"
+    }
+  ],
+  "deferred_items": [
+    {
+      "topic": "土耳其Yıldırımhan远程导弹",
+      "reason": "非三类优先"
+    },
+    {
+      "topic": "中国Agent政策",
+      "reason": "非三类优先，中文政策源需独立搜索轮次"
+    },
+    {
+      "topic": "霍尔木兹封锁/油轮击伤",
+      "reason": "GPT55已判弱；非三类优先"
+    },
+    {
+      "topic": "OpenAI非营利转营利治理",
+      "reason": "非三类优先，法律文件搜索需独立轮次"
+    },
+    {
+      "topic": "AI儿童玩具监管真空",
+      "reason": "非三类优先"
+    },
+    {
+      "topic": "GM驾驶数据隐私",
+      "reason": "非三类优先"
+    },
+    {
+      "topic": "量子/后量子密码(P2-01~03)",
+      "reason": "QuTech已有primary；其余顺延"
+    }
+  ],
+  "quality_summary": {
+    "distributed_industrial_resilience": {
+      "primary_count": 2,
+      "secondary_plus_count": 2,
+      "still_missing_primary": 2,
+      "grade": "B+"
+    },
+    "ugv_unmanned_ground_systems": {
+      "primary_count": 0,
+      "secondary_plus_count": 3,
+      "still_missing_primary": 1,
+      "grade": "B+"
+    },
+    "european_defence_autonomy": {
+      "primary_count": 4,
+      "secondary_plus_count": 2,
+      "still_missing_primary": 0,
+      "grade": "A-"
+    }
+  }
+}

@@ -1,0 +1,543 @@
+[
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260611_cc8c00b817",
+    "source_url": "https://www.nasa.gov/technology/tech-transfer-spinoffs/nasa-equips-astronauts-industry-with-robotic-intelligence",
+    "title": "NASA Equips Astronauts, Industry with Robotic Intelligence",
+    "captured_at": "2026-06-11T01:48:20",
+    "source_group": "overseas",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/b2_wechat_collector_query_bing_fix_20260611/cards/NASA_Equips_Astronauts__Industry_with_Robotic_Inte.md",
+    "evidence_complete": false,
+    "duplicate_check": {
+      "duplicate": true,
+      "reason": "TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY"
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "主控",
+          "reaction": "归档备查；不进入G2/G3。",
+          "wiki_ref": "时事素材/归档"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "space_chain",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "low"
+        }
+      ],
+      "chapter_hooks": [],
+      "outline_delta_candidate": {
+        "type": "red_line",
+        "target_chapter": 0,
+        "proposed_addition": "",
+        "not_proposed": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY"
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": false,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "ARCHIVE_WITH_REASON",
+    "disposition_reason": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-06-11T01:48:20",
+    "bridge_policy": "dry_run_no_formal_card_no_index_no_rag_write"
+  },
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260611_27bed3fdae",
+    "source_url": "https://www.nasa.gov/image-article/train-ride-to-nasa-kennedy-for-artemis-iii-booster-segments",
+    "title": "Train Ride to NASA Kennedy for Artemis III Booster Segments",
+    "captured_at": "2026-06-11T01:48:20",
+    "source_group": "overseas",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/b2_wechat_collector_query_bing_fix_20260611/cards/Train_Ride_to_NASA_Kennedy_for_Artemis_III_Booster.md",
+    "evidence_complete": true,
+    "duplicate_check": {
+      "duplicate": false,
+      "reason": ""
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "联邦/白盾体系",
+          "reaction": "把「Train Ride to NASA Kennedy for A」作为技术或制度压力测试变量，而非剧情事实照搬。",
+          "wiki_ref": "wiki/factions"
+        },
+        {
+          "force": "主角团/工程线",
+          "reaction": "只吸收可测反馈、失败模式、成本约束；不写成万能外挂。",
+          "wiki_ref": "wiki/characters"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "space_chain",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "medium"
+        }
+      ],
+      "chapter_hooks": [
+        {
+          "hook_id": "ch156_15790985",
+          "description": "地月/深空/通信链路素材，宜入章节准备红线，不直接改大纲。 来源题名：Train Ride to NASA Kennedy for Artemis III Booster Segments",
+          "suitable_chapters": [
+            156
+          ],
+          "reversal": "仅作细节/变量，不直接改变既有章节功能。"
+        }
+      ],
+      "outline_delta_candidate": {
+        "type": "red_line",
+        "target_chapter": 156,
+        "proposed_addition": "",
+        "not_proposed": "地月/深空/通信链路素材，宜入章节准备红线，不直接改大纲。"
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": false,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "CHAPTER_PREP_ONLY",
+    "disposition_reason": "地月/深空/通信链路素材，宜入章节准备红线，不直接改大纲。",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-06-11T01:48:20",
+    "bridge_policy": "dry_run_no_formal_card_no_index_no_rag_write"
+  },
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260611_ea6b18a0c1",
+    "source_url": "https://www.esa.int/Science_Exploration/Space_Science/ESA_adopts_galactic_archaeology_mission_Arrakihs",
+    "title": "ESA adopts galactic archaeology mission Arrakihs",
+    "captured_at": "2026-06-11T01:48:20",
+    "source_group": "overseas",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/b2_wechat_collector_query_bing_fix_20260611/cards/ESA_adopts_galactic_archaeology_mission_Arrakihs.md",
+    "evidence_complete": true,
+    "duplicate_check": {
+      "duplicate": false,
+      "reason": ""
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "主控",
+          "reaction": "归档备查；不进入G2/G3。",
+          "wiki_ref": "时事素材/归档"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "low_kewu_relevance",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "low"
+        }
+      ],
+      "chapter_hooks": [],
+      "outline_delta_candidate": {
+        "type": "red_line",
+        "target_chapter": 0,
+        "proposed_addition": "",
+        "not_proposed": "与当前算力主权、地月争夺、群体智能或军事制度主线因果链不足。"
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": false,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "ARCHIVE_WITH_REASON",
+    "disposition_reason": "与当前算力主权、地月争夺、群体智能或军事制度主线因果链不足。",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-06-11T01:48:20",
+    "bridge_policy": "dry_run_no_formal_card_no_index_no_rag_write"
+  },
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260611_d090301e59",
+    "source_url": "https://www.esa.int/Science_Exploration/Human_and_Robotic_Exploration/ESA_astronaut_Luca_Parmitano_joins_NASA_s_Artemis_III_mission_as_pilot",
+    "title": "ESA astronaut Luca Parmitano joins NASA’s Artemis III mission as pilot",
+    "captured_at": "2026-06-11T01:48:20",
+    "source_group": "overseas",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/b2_wechat_collector_query_bing_fix_20260611/cards/ESA_astronaut_Luca_Parmitano_joins_NASA_s_Artemis.md",
+    "evidence_complete": false,
+    "duplicate_check": {
+      "duplicate": true,
+      "reason": "TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY"
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "主控",
+          "reaction": "归档备查；不进入G2/G3。",
+          "wiki_ref": "时事素材/归档"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "space_chain",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "low"
+        }
+      ],
+      "chapter_hooks": [],
+      "outline_delta_candidate": {
+        "type": "red_line",
+        "target_chapter": 0,
+        "proposed_addition": "",
+        "not_proposed": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY"
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": false,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "ARCHIVE_WITH_REASON",
+    "disposition_reason": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-06-11T01:48:20",
+    "bridge_policy": "dry_run_no_formal_card_no_index_no_rag_write"
+  },
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260611_7d0bebf0c1",
+    "source_url": "https://www.esa.int/Enabling_Support/Space_Engineering_Technology/We_re_back_Proba-3_ready_for_more_science",
+    "title": "We’re back: Proba-3 ready for more science",
+    "captured_at": "2026-06-11T01:48:20",
+    "source_group": "overseas",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/b2_wechat_collector_query_bing_fix_20260611/cards/We_re_back__Proba-3_ready_for_more_science.md",
+    "evidence_complete": false,
+    "duplicate_check": {
+      "duplicate": true,
+      "reason": "TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY"
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "主控",
+          "reaction": "归档备查；不进入G2/G3。",
+          "wiki_ref": "时事素材/归档"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "low_kewu_relevance",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "low"
+        }
+      ],
+      "chapter_hooks": [],
+      "outline_delta_candidate": {
+        "type": "red_line",
+        "target_chapter": 0,
+        "proposed_addition": "",
+        "not_proposed": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY"
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": false,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "ARCHIVE_WITH_REASON",
+    "disposition_reason": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-06-11T01:48:20",
+    "bridge_policy": "dry_run_no_formal_card_no_index_no_rag_write"
+  },
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260611_28c24f2add",
+    "source_url": "https://www.nature.com/articles/s41586-026-10629-x",
+    "title": "Whole-genome duplication shaped cell-type evolution in the vertebrate brain",
+    "captured_at": "2026-06-11T01:48:20",
+    "source_group": "overseas",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/b2_wechat_collector_query_bing_fix_20260611/cards/Whole-genome_duplication_shaped_cell-type_evolutio.md",
+    "evidence_complete": true,
+    "duplicate_check": {
+      "duplicate": false,
+      "reason": ""
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "联邦/白盾体系",
+          "reaction": "把「Whole-genome duplication shaped 」作为技术或制度压力测试变量，而非剧情事实照搬。",
+          "wiki_ref": "wiki/factions"
+        },
+        {
+          "force": "主角团/工程线",
+          "reaction": "只吸收可测反馈、失败模式、成本约束；不写成万能外挂。",
+          "wiki_ref": "wiki/characters"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "bio_governance",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "medium"
+        }
+      ],
+      "chapter_hooks": [
+        {
+          "hook_id": "ch359_5402b847",
+          "description": "生物伦理/人才争夺/科研治理素材，可作后续章节准备。 来源题名：Whole-genome duplication shaped cell-type evolution in the vertebrate brain",
+          "suitable_chapters": [
+            359
+          ],
+          "reversal": "仅作细节/变量，不直接改变既有章节功能。"
+        }
+      ],
+      "outline_delta_candidate": {
+        "type": "red_line",
+        "target_chapter": 359,
+        "proposed_addition": "",
+        "not_proposed": "生物伦理/人才争夺/科研治理素材，可作后续章节准备。"
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": false,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "CHAPTER_PREP_ONLY",
+    "disposition_reason": "生物伦理/人才争夺/科研治理素材，可作后续章节准备。",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-06-11T01:48:20",
+    "bridge_policy": "dry_run_no_formal_card_no_index_no_rag_write"
+  },
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260611_1152496bed",
+    "source_url": "https://app.xinhuanet.com/news/article.html?articleId=2026053045842f8efb86497b9ab4d3ca90d7425a",
+    "title": "article",
+    "captured_at": "2026-06-11T01:48:20",
+    "source_group": "domestic",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/b2_wechat_collector_query_bing_fix_20260611/cards/article.md",
+    "evidence_complete": true,
+    "duplicate_check": {
+      "duplicate": false,
+      "reason": ""
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "主控",
+          "reaction": "归档备查；不进入G2/G3。",
+          "wiki_ref": "时事素材/归档"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "low_kewu_relevance",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "low"
+        }
+      ],
+      "chapter_hooks": [],
+      "outline_delta_candidate": {
+        "type": "red_line",
+        "target_chapter": 0,
+        "proposed_addition": "",
+        "not_proposed": "与当前算力主权、地月争夺、群体智能或军事制度主线因果链不足。"
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": false,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "ARCHIVE_WITH_REASON",
+    "disposition_reason": "与当前算力主权、地月争夺、群体智能或军事制度主线因果链不足。",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-06-11T01:48:20",
+    "bridge_policy": "dry_run_no_formal_card_no_index_no_rag_write"
+  },
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260611_cefd75b4e6",
+    "source_url": "https://app.xinhuanet.com/news/article.html?articleId=ff4dd8219220db43267c6724ec97e17f",
+    "title": "article",
+    "captured_at": "2026-06-11T01:48:20",
+    "source_group": "domestic",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/b2_wechat_collector_query_bing_fix_20260611/cards/article.md",
+    "evidence_complete": true,
+    "duplicate_check": {
+      "duplicate": false,
+      "reason": ""
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "主控",
+          "reaction": "归档备查；不进入G2/G3。",
+          "wiki_ref": "时事素材/归档"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "low_kewu_relevance",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "low"
+        }
+      ],
+      "chapter_hooks": [],
+      "outline_delta_candidate": {
+        "type": "red_line",
+        "target_chapter": 0,
+        "proposed_addition": "",
+        "not_proposed": "与当前算力主权、地月争夺、群体智能或军事制度主线因果链不足。"
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": false,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "ARCHIVE_WITH_REASON",
+    "disposition_reason": "与当前算力主权、地月争夺、群体智能或军事制度主线因果链不足。",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-06-11T01:48:20",
+    "bridge_policy": "dry_run_no_formal_card_no_index_no_rag_write"
+  },
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260611_9a3f7c2423",
+    "source_url": "https://news.cctv.com/2025/05/14/ARTI8rM6SSvqbeYAGxx68ipD250514.shtml",
+    "title": "ARTI8rM6SSvqbeYAGxx68ipD250514",
+    "captured_at": "2026-06-11T01:48:20",
+    "source_group": "domestic",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/b2_wechat_collector_query_bing_fix_20260611/cards/ARTI8rM6SSvqbeYAGxx68ipD250514.md",
+    "evidence_complete": true,
+    "duplicate_check": {
+      "duplicate": false,
+      "reason": ""
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "主控",
+          "reaction": "归档备查；不进入G2/G3。",
+          "wiki_ref": "时事素材/归档"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "low_kewu_relevance",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "low"
+        }
+      ],
+      "chapter_hooks": [],
+      "outline_delta_candidate": {
+        "type": "red_line",
+        "target_chapter": 0,
+        "proposed_addition": "",
+        "not_proposed": "与当前算力主权、地月争夺、群体智能或军事制度主线因果链不足。"
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": false,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "ARCHIVE_WITH_REASON",
+    "disposition_reason": "与当前算力主权、地月争夺、群体智能或军事制度主线因果链不足。",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-06-11T01:48:20",
+    "bridge_policy": "dry_run_no_formal_card_no_index_no_rag_write"
+  }
+]

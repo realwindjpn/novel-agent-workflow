@@ -1,0 +1,459 @@
+[
+  {
+    "schema_version": "decision_card_v1",
+    "material_id": "455ae18dc90ad434",
+    "source_url": "https://www.nature.com/articles/d41586-026-01774-4",
+    "title": "AI in science recruitment: friend or foe? Join our free webinar",
+    "captured_at": "2026-06-04T19:47:47",
+    "source_type": "overseas_official",
+    "evidence": {
+      "has_url": true,
+      "has_body_text": true,
+      "fact_kernel": "Nature Careers举办免费60分钟网络研讨会，探讨AI在科学招聘中的利弊：AI可用于润色简历/撰写求职信/筛选候选人，但存在局限与风险。"
+    },
+    "mirofish_projection": {
+      "force_reactions": [],
+      "chain_conflicts": [],
+      "chapter_hooks": [],
+      "outline_delta_candidate": null,
+      "anti_patterns": [
+        "不可将Nature品牌权威性错误映射为小说科技权威"
+      ]
+    },
+    "recommended_disposition": "ARCHIVE_WITH_REASON",
+    "final_disposition": {
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "AI招聘工具研讨会与科武纪元科幻/军事/太空主题无叙事接口。素材为职业指导类内容，不涉及技术突破、冲突链或世界观要素。",
+      "decided_by": "mirofish_preprocess_v1",
+      "decided_at": "2026-06-04T19:55:00",
+      "archive_reason": "AI招聘工具研讨会与科武纪元科幻/军事/太空主题无叙事接口。素材为职业指导类内容，不涉及技术突破、冲突链或世界观要素。",
+      "mismatch_dimension": "no_story_value",
+      "possible_revisit_condition": "若后续章节涉及AI伦理/自动化取代人类岗位的社会议题，可回看。"
+    }
+  },
+  {
+    "schema_version": "decision_card_v1",
+    "material_id": "05727679c48057f9",
+    "source_url": "https://science.nasa.gov/earth/earth-observatory/a-moonlit-earth-as-seen-from-artemis-ii",
+    "title": "A Moonlit Earth as Seen From Artemis II",
+    "captured_at": "2026-06-04T19:46:04",
+    "source_type": "overseas_official",
+    "evidence": {
+      "has_url": true,
+      "has_body_text": true,
+      "fact_kernel": "Artemis II宇航员在前往月球途中拍摄地球照片，以新颖视角呈现地球在太空中的位置。"
+    },
+    "mirofish_projection": {
+      "force_reactions": [],
+      "chain_conflicts": [],
+      "chapter_hooks": [
+        {
+          "hook_type": "scene_detail",
+          "description": "太空场景中宇航员回望地球的视觉描写素材"
+        }
+      ],
+      "outline_delta_candidate": null,
+      "anti_patterns": [
+        "不可直接照搬NASA公开照片描述，需转化为小说叙事语言"
+      ]
+    },
+    "recommended_disposition": "CHAPTER_PREP_ONLY",
+    "final_disposition": {
+      "status": "CHAPTER_PREP_ONLY",
+      "reason": "描写宇航员视角的太空场景时，可引用'从月球方向回望地球'的视觉细节。",
+      "decided_by": "mirofish_preprocess_v1",
+      "decided_at": "2026-06-04T19:55:00",
+      "target_chapters": [],
+      "usage_scene": "描写宇航员视角的太空场景时，可引用'从月球方向回望地球'的视觉细节。"
+    }
+  },
+  {
+    "schema_version": "decision_card_v1",
+    "material_id": "99b58a71f0a3d75a",
+    "source_url": "https://www.esa.int/Science_Exploration/Human_and_Robotic_Exploration/ExoMars_rover_targets_vast_bed_of_clay_in_search_for_life",
+    "title": "ExoMars rover targets vast bed of clay in search for life",
+    "captured_at": "2026-06-04T19:47:10",
+    "source_type": "overseas_official",
+    "evidence": {
+      "has_url": true,
+      "has_body_text": true,
+      "fact_kernel": "ESA研究发现ExoMars Rosalind Franklin火星车着陆区Oxia Planum的粘土层分布远超预估，约40亿年前可能被数千米深海洋覆盖；粘土矿物需液态水形成，暗示火星曾更湿润宜居。"
+    },
+    "mirofish_projection": {
+      "force_reactions": [],
+      "chain_conflicts": [],
+      "chapter_hooks": [
+        {
+          "hook_type": "science_anchor",
+          "description": "火星宜居性与古海洋假说，可用于行星科学讨论"
+        },
+        {
+          "hook_type": "mission_reference",
+          "description": "ExoMars Rosalind Franklin火星车任务细节"
+        }
+      ],
+      "outline_delta_candidate": null,
+      "anti_patterns": [
+        "不可将ESA发现直接等同于小说中已证实的火星殖民设定"
+      ]
+    },
+    "recommended_disposition": "CHAPTER_PREP_ONLY",
+    "final_disposition": {
+      "status": "CHAPTER_PREP_ONLY",
+      "reason": "涉及火星探索、地外生命搜寻、行星宜居性讨论的章节中作为科学锚点。",
+      "decided_by": "mirofish_preprocess_v1",
+      "decided_at": "2026-06-04T19:55:00",
+      "target_chapters": [],
+      "usage_scene": "涉及火星探索、地外生命搜寻、行星宜居性讨论的章节中作为科学锚点。"
+    }
+  },
+  {
+    "schema_version": "decision_card_v1",
+    "material_id": "fec47407fe7a7202",
+    "source_url": "https://science.nasa.gov/photojournal/international-sea-level-satellite-observes-el-nino-precursor",
+    "title": "International Sea Level Satellite Observes El Niño Precursor",
+    "captured_at": "2026-06-04T19:46:21",
+    "source_type": "overseas_official",
+    "evidence": {
+      "has_url": true,
+      "has_body_text": true,
+      "fact_kernel": "Sentinel-6卫星2026年3-5月观测到暖开尔文波从西太平洋向东移动至南美沿海，为厄尔尼诺前兆信号。"
+    },
+    "mirofish_projection": {
+      "force_reactions": [],
+      "chain_conflicts": [],
+      "chapter_hooks": [],
+      "outline_delta_candidate": null,
+      "anti_patterns": []
+    },
+    "recommended_disposition": "ARCHIVE_WITH_REASON",
+    "final_disposition": {
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "气候观测数据与科武纪元科幻/军事/太空叙事无直接接口。厄尔尼诺为地球气象现象，不涉及太空/军事/科技竞争主线。",
+      "decided_by": "mirofish_preprocess_v1",
+      "decided_at": "2026-06-04T19:55:00",
+      "archive_reason": "气候观测数据与科武纪元科幻/军事/太空叙事无直接接口。厄尔尼诺为地球气象现象，不涉及太空/军事/科技竞争主线。",
+      "mismatch_dimension": "no_story_value",
+      "possible_revisit_condition": "若后续章节涉及地球气候危机/环境战争背景设定，可回看。"
+    }
+  },
+  {
+    "schema_version": "decision_card_v1",
+    "material_id": "eafa934b0c9554c8",
+    "source_url": "https://www.nasa.gov/image-article/journey-to-the-center-of-the-virgo-cluster",
+    "title": "Journey to the Center of the Virgo Cluster",
+    "captured_at": "2026-06-04T19:46:37",
+    "source_type": "overseas_official",
+    "evidence": {
+      "has_url": true,
+      "has_body_text": true,
+      "fact_kernel": "Hubble望远镜2026年5月29日发布M88星系图像，该螺旋星系距地球约6300万光年，位于室女座星系团。"
+    },
+    "mirofish_projection": {
+      "force_reactions": [],
+      "chain_conflicts": [],
+      "chapter_hooks": [],
+      "outline_delta_candidate": null,
+      "anti_patterns": []
+    },
+    "recommended_disposition": "ARCHIVE_WITH_REASON",
+    "final_disposition": {
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "纯天文观测图像发布，无故事价值。不涉及太空探索行动、技术突破或冲突事件。",
+      "decided_by": "mirofish_preprocess_v1",
+      "decided_at": "2026-06-04T19:55:00",
+      "archive_reason": "纯天文观测图像发布，无故事价值。不涉及太空探索行动、技术突破或冲突事件。",
+      "mismatch_dimension": "no_story_value",
+      "possible_revisit_condition": "若小说涉及深空观测/天文台场景，可作为背景描写参考。"
+    }
+  },
+  {
+    "schema_version": "decision_card_v1",
+    "material_id": "a09d60e7bc19e166",
+    "source_url": "https://www.nasa.gov/centers-and-facilities/stennis/reservoir-drained-to-upgrade-water-system",
+    "title": "NASA Drains 66-Million-Gallon Reservoir to Upgrade Critical Water System",
+    "captured_at": "2026-06-04T19:46:54",
+    "source_type": "overseas_official",
+    "evidence": {
+      "has_url": true,
+      "has_body_text": true,
+      "fact_kernel": "2026年5月NASA Stennis太空中心排空6600万加仑水库至历史最低水位，升级高压工业水设施（HPIWF），用于火箭发动机测试。"
+    },
+    "mirofish_projection": {
+      "force_reactions": [],
+      "chain_conflicts": [],
+      "chapter_hooks": [],
+      "outline_delta_candidate": null,
+      "anti_patterns": []
+    },
+    "recommended_disposition": "ARCHIVE_WITH_REASON",
+    "final_disposition": {
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "NASA地面基础设施维护，无太空探索/军事/科技竞争叙事价值。纯工程运维类新闻。",
+      "decided_by": "mirofish_preprocess_v1",
+      "decided_at": "2026-06-04T19:55:00",
+      "archive_reason": "NASA地面基础设施维护，无太空探索/军事/科技竞争叙事价值。纯工程运维类新闻。",
+      "mismatch_dimension": "no_story_value",
+      "possible_revisit_condition": "若小说涉及火箭测试基地后勤保障细节，可回看。"
+    }
+  },
+  {
+    "schema_version": "decision_card_v1",
+    "material_id": "df495f7947d7a64d",
+    "source_url": "https://www.esa.int/ESA_Multimedia/Videos/2026/05/This_Month_at_ESA_May_2026",
+    "title": "This Month at ESA: May 2026",
+    "captured_at": "2026-06-04T19:47:31",
+    "source_type": "overseas_official",
+    "evidence": {
+      "has_url": true,
+      "has_body_text": true,
+      "fact_kernel": "ESA 2026年5月月度视频：小行星飞掠、火星着陆测试、Webb/Hubble新发现、宇航员Sophie Adenot从轨道拍摄流星。"
+    },
+    "mirofish_projection": {
+      "force_reactions": [],
+      "chain_conflicts": [],
+      "chapter_hooks": [],
+      "outline_delta_candidate": null,
+      "anti_patterns": [
+        "不可将月度汇总视频当作单一事件引用"
+      ]
+    },
+    "recommended_disposition": "ARCHIVE_WITH_REASON",
+    "final_disposition": {
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "ESA月度综合视频，信息密度低，无单一可引用事实核。各子项（小行星/Webb/Hubble）需单独采集才有价值。",
+      "decided_by": "mirofish_preprocess_v1",
+      "decided_at": "2026-06-04T19:55:00",
+      "archive_reason": "ESA月度综合视频，信息密度低，无单一可引用事实核。各子项（小行星/Webb/Hubble）需单独采集才有价值。",
+      "mismatch_dimension": "weak_fact",
+      "possible_revisit_condition": "若需ESA月度活动概览作为背景参考，可重新提取各子项。"
+    }
+  },
+  {
+    "schema_version": "decision_card_v1",
+    "material_id": "cctv_com_quantum_27e81663",
+    "source_url": "https://news.cctv.com/2025/09/21/ARTIsDIZPQJx7agYgKGXRf93250921.shtml",
+    "title": "什么是量子科技？都有哪些应用？一文了解",
+    "captured_at": "2026-06-04T19:50:27",
+    "source_type": "domestic_official",
+    "evidence": {
+      "has_url": true,
+      "has_body_text": true,
+      "fact_kernel": "央视2025年9月量子科技综合报道：(1)祖冲之三号504比特超导量子计算机刷新全球纪录；(2)纳米双光子工厂制备99.4%保真度量子纠缠光源；(3)300公里级量子直接通信网络；(4)0.5纳米级原子量子传感器；(5)合肥量子大道60+企业集聚；(6)全球首座量子应用示范变电站。"
+    },
+    "mirofish_projection": {
+      "force_reactions": [],
+      "chain_conflicts": [],
+      "chapter_hooks": [
+        {
+          "hook_type": "tech_competition",
+          "description": "量子计算优越性竞赛——祖冲之三号504比特"
+        },
+        {
+          "hook_type": "surveillance_tech",
+          "description": "原子级量子传感器——0.5纳米精度"
+        },
+        {
+          "hook_type": "secure_comm",
+          "description": "量子通信网络——300公里级高安全通信"
+        },
+        {
+          "hook_type": "industry_cluster",
+          "description": "合肥量子大道——高科技产业集聚"
+        }
+      ],
+      "outline_delta_candidate": null,
+      "anti_patterns": [
+        "不可将2025年数据直接当作2026年最新进展",
+        "量子技术应用仍在探索阶段，不可描写为已成熟商用"
+      ]
+    },
+    "recommended_disposition": "CHAPTER_PREP_ONLY",
+    "final_disposition": {
+      "status": "CHAPTER_PREP_ONLY",
+      "reason": "涉及量子计算/量子通信/量子传感/高科技产业集群的章节中，作为技术细节锚点。可用于科技竞赛线、信息战线、或高科技基础设施描写。",
+      "decided_by": "mirofish_preprocess_v1",
+      "decided_at": "2026-06-04T19:55:00",
+      "target_chapters": [],
+      "usage_scene": "涉及量子计算/量子通信/量子传感/高科技产业集群的章节中，作为技术细节锚点。可用于科技竞赛线、信息战线、或高科技基础设施描写。"
+    }
+  },
+  {
+    "schema_version": "decision_card_v1",
+    "material_id": "cctv_com_tech_a75921dc",
+    "source_url": "https://news.cctv.com/tech/",
+    "title": "我国在生物材料国际标准化工作实现领跑",
+    "captured_at": "2026-06-04T19:48:04",
+    "source_type": "domestic_official",
+    "evidence": {
+      "has_url": true,
+      "has_body_text": true,
+      "fact_kernel": "我国专家牵头提出《外科植入物 重组胶原蛋白》《外科植入物 丝素蛋白》两项国际标准提案获批立项，填补外科植入物领域生物基材料国际标准空白。"
+    },
+    "mirofish_projection": {
+      "force_reactions": [],
+      "chain_conflicts": [],
+      "chapter_hooks": [],
+      "outline_delta_candidate": null,
+      "anti_patterns": []
+    },
+    "recommended_disposition": "ARCHIVE_WITH_REASON",
+    "final_disposition": {
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "生物材料标准化属于医疗器械领域，与科武纪元科幻/军事/太空/科技竞争主题无叙事接口。",
+      "decided_by": "mirofish_preprocess_v1",
+      "decided_at": "2026-06-04T19:55:00",
+      "archive_reason": "生物材料标准化属于医疗器械领域，与科武纪元科幻/军事/太空/科技竞争主题无叙事接口。",
+      "mismatch_dimension": "no_story_value",
+      "possible_revisit_condition": "若小说涉及生物增强/人体改造技术线，可回看。"
+    }
+  },
+  {
+    "schema_version": "decision_card_v1",
+    "material_id": "cmse_gov_cn_8e64a8ca",
+    "source_url": "https://www.cmse.gov.cn/",
+    "title": "神舟二十一号/二十二号载人飞行任务",
+    "captured_at": "2026-06-04T19:50:09",
+    "source_type": "domestic_official",
+    "evidence": {
+      "has_url": true,
+      "has_body_text": true,
+      "fact_kernel": "2026年5月29日神舟二十二号返回舱在东风着陆场成功着陆；神舟二十一号航天员张陆、武飞、张洪章安全出舱；5月30日乘组平安抵京。中国空间站轨道参数2026年6月3日更新。"
+    },
+    "mirofish_projection": {
+      "force_reactions": [],
+      "chain_conflicts": [],
+      "chapter_hooks": [
+        {
+          "hook_type": "mission_reference",
+          "description": "中国载人航天返回任务流程——着陆/出舱/抵京"
+        },
+        {
+          "hook_type": "character_anchor",
+          "description": "航天员姓名可作为现实锚点"
+        }
+      ],
+      "outline_delta_candidate": null,
+      "anti_patterns": [
+        "不可直接使用真实航天员姓名作为小说角色",
+        "需注意与小说虚构航天体系的边界"
+      ]
+    },
+    "recommended_disposition": "CHAPTER_PREP_ONLY",
+    "final_disposition": {
+      "status": "CHAPTER_PREP_ONLY",
+      "reason": "涉及载人航天/空间站/航天员返回任务的章节中，作为时事锚点和细节来源。",
+      "decided_by": "mirofish_preprocess_v1",
+      "decided_at": "2026-06-04T19:55:00",
+      "target_chapters": [],
+      "usage_scene": "涉及载人航天/空间站/航天员返回任务的章节中，作为时事锚点和细节来源。"
+    }
+  },
+  {
+    "schema_version": "decision_card_v1",
+    "material_id": "huanqiu_mil_528f14e0",
+    "source_url": "https://mil.huanqiu.com/",
+    "title": "环球网军事频道热点汇总",
+    "captured_at": "2026-06-04T19:49:01",
+    "source_type": "domestic_official",
+    "evidence": {
+      "has_url": true,
+      "has_body_text": true,
+      "fact_kernel": "2026年6月4日环球网军事热点：(1)美伊冲突升级——伊朗外长称若以色列侵略贝鲁特将重新开战，美众议院叫停对伊军事行动；(2)俄核潜艇训练发射巡航导弹；(3)中国海警台湾岛以东执法巡查；(4)南天门计划最新进展；(5)印度拟20亿美元采购军用无人机；(6)黎以同意有条件停火。"
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "美国",
+          "reaction": "众议院叫停对伊军事行动，行政与立法分支分歧"
+        },
+        {
+          "force": "伊朗",
+          "reaction": "外长强硬表态，威胁重新开战"
+        },
+        {
+          "force": "俄罗斯",
+          "reaction": "核潜艇发射巡航导弹，展示水下打击能力"
+        },
+        {
+          "force": "印度",
+          "reaction": "拟20亿美元采购军用无人机"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": "中东冲突升级",
+          "conflict": "美以vs伊朗/真主党，多方博弈"
+        },
+        {
+          "chain": "台海",
+          "conflict": "中国海警台东执法巡查"
+        }
+      ],
+      "chapter_hooks": [
+        {
+          "hook_type": "geopolitical_backdrop",
+          "description": "中东多线冲突地缘背景"
+        },
+        {
+          "hook_type": "drone_arms_trade",
+          "description": "印度20亿美元无人机采购——无人机军贸"
+        },
+        {
+          "hook_type": "naval_capability",
+          "description": "俄核潜艇巡航导弹发射——水下打击能力"
+        },
+        {
+          "hook_type": "space_military_project",
+          "description": "南天门计划最新进展"
+        }
+      ],
+      "outline_delta_candidate": null,
+      "anti_patterns": [
+        "不可将新闻标题直接搬入小说对话",
+        "地缘冲突细节需转化为小说世界观语境"
+      ]
+    },
+    "recommended_disposition": "CHAPTER_PREP_ONLY",
+    "final_disposition": {
+      "status": "CHAPTER_PREP_ONLY",
+      "reason": "涉及地缘冲突/军事动态/无人机军购/中美博弈的章节中，作为时事锚点。中东冲突线、无人机军贸线均可引用。",
+      "decided_by": "mirofish_preprocess_v1",
+      "decided_at": "2026-06-04T19:55:00",
+      "target_chapters": [],
+      "usage_scene": "涉及地缘冲突/军事动态/无人机军购/中美博弈的章节中，作为时事锚点。中东冲突线、无人机军贸线均可引用。"
+    }
+  },
+  {
+    "schema_version": "decision_card_v1",
+    "material_id": "nasa_artemis_b138b5bf",
+    "source_url": "https://www.nasa.gov/humans-in-space/artemis/",
+    "title": "NASA Artemis计划官方页面",
+    "captured_at": "2026-06-04T19:50:50",
+    "source_type": "overseas_official",
+    "evidence": {
+      "has_url": true,
+      "has_body_text": true,
+      "fact_kernel": "NASA Artemis计划官方页面汇总：Moon to Mars路线；近期动态包括Roman Space Telescope主镜最后检查、X-59超音速首飞准备、2026年6月观星指南。"
+    },
+    "mirofish_projection": {
+      "force_reactions": [],
+      "chain_conflicts": [],
+      "chapter_hooks": [],
+      "outline_delta_candidate": null,
+      "anti_patterns": [
+        "不可将汇总页当作单一事件来源"
+      ]
+    },
+    "recommended_disposition": "ARCHIVE_WITH_REASON",
+    "final_disposition": {
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "Artemis计划官方汇总页，无单一新闻事件。各子项（Roman望远镜/X-59）需单独采集才有叙事价值。页面本身为导航索引，非事实报道。",
+      "decided_by": "mirofish_preprocess_v1",
+      "decided_at": "2026-06-04T19:55:00",
+      "archive_reason": "Artemis计划官方汇总页，无单一新闻事件。各子项（Roman望远镜/X-59）需单独采集才有叙事价值。页面本身为导航索引，非事实报道。",
+      "mismatch_dimension": "weak_fact",
+      "possible_revisit_condition": "若需Artemis计划整体背景或具体子任务细节，应单独采集。"
+    }
+  }
+]

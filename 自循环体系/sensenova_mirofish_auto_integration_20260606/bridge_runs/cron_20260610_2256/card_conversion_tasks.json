@@ -1,0 +1,74 @@
+[
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260610_7b087574f8",
+    "title": "Flight Dynamics Research Facility Characteristics",
+    "source_url": "https://www.nasa.gov/directorates/armd/aetc/fdrf-characteristics",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260610_2256/cards/Flight_Dynamics_Research_Facility_Characteristics.md",
+    "target_chapter_hint": 217,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_RAG",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_RAG_jsonl"
+    ],
+    "not_done_in_dry_run": true
+  },
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260610_d5c878ae84",
+    "title": "Cleaner air and prosperity can go hand in hand",
+    "source_url": "https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Sentinel-5P/Cleaner_air_and_prosperity_can_go_hand_in_hand",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260610_2256/cards/Cleaner_air_and_prosperity_can_go_hand_in_hand.md",
+    "target_chapter_hint": 156,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_RAG",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_RAG_jsonl"
+    ],
+    "not_done_in_dry_run": true
+  },
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260610_c96398bed2",
+    "title": "How I use AI to turn failed drugs into new medicines",
+    "source_url": "https://www.nature.com/articles/d41586-026-01626-1",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260610_2256/cards/How_I_use_AI_to_turn_failed_drugs_into_new_medicin.md",
+    "target_chapter_hint": 359,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_RAG",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_RAG_jsonl"
+    ],
+    "not_done_in_dry_run": true
+  },
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260610_1152496bed",
+    "title": "article",
+    "source_url": "https://app.xinhuanet.com/news/article.html?articleId=2026053045842f8efb86497b9ab4d3ca90d7425a",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260610_2256/cards/article.md",
+    "target_chapter_hint": 156,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_RAG",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_RAG_jsonl"
+    ],
+    "not_done_in_dry_run": true
+  }
+]

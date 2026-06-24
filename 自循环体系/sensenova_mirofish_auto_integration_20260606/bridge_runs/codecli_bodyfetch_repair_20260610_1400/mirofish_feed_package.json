@@ -1,0 +1,135 @@
+{
+  "schema": "sensenova_mirofish_feed_package_v1",
+  "created_at": "2026-06-10T14:07:32",
+  "source_run_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/codecli_bodyfetch_repair_20260610_1400",
+  "source_pipeline_state": {
+    "run_id": "codecli_bodyfetch_repair_20260610_1400",
+    "status": "partial",
+    "valid_content_cards": 3,
+    "query_plan_cards": 14,
+    "body_fetch_success": 3,
+    "card_pass_count": 3
+  },
+  "policy": {
+    "query_plan_excluded": true,
+    "formal_cards_written": false,
+    "production_runner_modified": false,
+    "outline_text_txt_draft_modified": false
+  },
+  "valid_input_count": 3,
+  "skipped_count": 15,
+  "skip_reason_counts": {
+    "summary_not_body_evidence": 1,
+    "query_plan_no_body": 14
+  },
+  "stale_domestic_blocked_count": 0,
+  "skipped": [
+    {
+      "candidate_id": "47dd5a478d610c6e",
+      "title": "June 2026 Satellite Puzzler",
+      "url": "https://science.nasa.gov/earth/earth-observatory/june-2026-satellite-puzzler",
+      "status": "SUMMARY_ONLY",
+      "reason": "summary_not_body_evidence"
+    },
+    {
+      "candidate_id": "QP_cnsa_gov_cn__月球_深空_探测工程_20303b7b884d5ac0",
+      "title": "[QP:cnsa.gov.cn] 月球 深空 探测工程",
+      "url": "",
+      "status": "OFFICIAL_QUERY_PLAN",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cnsa_gov_cn__航天_科技_探测_cf2955ec4106227b",
+      "title": "[QP:cnsa.gov.cn] 航天 科技 探测",
+      "url": "",
+      "status": "OFFICIAL_QUERY_PLAN",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_unknown__微博热榜_科技_航天_b48c56527da45192",
+      "title": "[QP:unknown] 微博热榜 科技 航天",
+      "url": "",
+      "status": "DISCOVERY_PENDING",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_people_com_cn__科技_创新_08cfab04cf7e2e80",
+      "title": "[QP:people.com.cn] 科技 创新",
+      "url": "",
+      "status": "OFFICIAL_QUERY_PLAN",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_unknown__Twitter_space_technology_95943bdcf6413b74",
+      "title": "[QP:unknown] Twitter space technology",
+      "url": "",
+      "status": "DISCOVERY_PENDING",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_people_com_cn__先进制造_产业升级_c8214bb2d0af889f",
+      "title": "[QP:people.com.cn] 先进制造 产业升级",
+      "url": "",
+      "status": "OFFICIAL_QUERY_PLAN",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_people_com_cn__人工智能_半导体_算力_771fc2ff8426a320",
+      "title": "[QP:people.com.cn] 人工智能 半导体 算力",
+      "url": "",
+      "status": "OFFICIAL_QUERY_PLAN",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_unknown__知乎热榜_科技_半导体_2b418337da655f15",
+      "title": "[QP:unknown] 知乎热榜 科技 半导体",
+      "url": "",
+      "status": "DISCOVERY_PENDING",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_xinhuanet_com__先进制造_2aff1a0f7bd02c77",
+      "title": "[QP:xinhuanet.com] 先进制造",
+      "url": "",
+      "status": "OFFICIAL_QUERY_PLAN",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_unknown__reddit_technology_defense_c055c54c756f12b1",
+      "title": "[QP:unknown] reddit technology defense",
+      "url": "",
+      "status": "DISCOVERY_PENDING",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_unknown__B站热门_科技_航天_0debe177ed399684",
+      "title": "[QP:unknown] B站热门 科技 航天",
+      "url": "",
+      "status": "DISCOVERY_PENDING",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_unknown__Hacker_News_AI_eb85b797bf93b074",
+      "title": "[QP:unknown] Hacker News AI",
+      "url": "",
+      "status": "DISCOVERY_PENDING",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_unknown__百度热搜_科技_航天_804cc43648b34058",
+      "title": "[QP:unknown] 百度热搜 科技 航天",
+      "url": "",
+      "status": "DISCOVERY_PENDING",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_unknown__ResetEra_technology_defense_5d879f5c09affc2a",
+      "title": "[QP:unknown] ResetEra technology defense",
+      "url": "",
+      "status": "DISCOVERY_PENDING",
+      "reason": "query_plan_no_body"
+    }
+  ],
+  "decision_cards_path": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/codecli_bodyfetch_repair_20260610_1400/decision_cards.json",
+  "conversion_tasks_path": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/codecli_bodyfetch_repair_20260610_1400/card_conversion_tasks.json"
+}

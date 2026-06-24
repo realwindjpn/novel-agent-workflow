@@ -1,0 +1,49 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""Shared DEAI role gate text for 科武纪元.
+
+This module is prompt text only. It lets author/editor/reader use the same
+hard gates instead of each role passing with vague "AI味不重" language.
+"""
+from __future__ import annotations
+
+DEAI_ROLE_GATE = """
+## 去AI硬闸（作者/编辑/读者共用）
+
+### A. 作者位：写作前必须内化
+- 先写环境压力→人物动作→仪表/身体反馈→判断→代价；禁止先解释概念。
+- 技术/制度/战术信息必须落到：谁操作、屏幕/设备怎么反馈、谁签字/担责、消耗什么资源、失败会怎样。
+- 禁止连续或高密度使用“不是……而是……”。反差改成动作冲突、结果落差、利益冲突或现场反馈。
+- 禁止正文说明书式枚举：`1/2/3/4`、`一是/二是/三是/四是`、`第一/第二/第三/第四`。任务拆分必须改成动作链。
+- 禁止角色说出章节元信息：`下一章`、`第X章`、`第X卷`、`第二卷后半段`、`这条线会牵引后续篇章`。
+- 禁报告腔/论文腔/会议纪要腔：`本质上`、`换句话说`、`这意味着`、`分为几个层面/维度/路径/机制`。
+- 禁鸡汤式收束：路、山、雾、命运、时代、洪流、齿轮、风暴、重量开始显现等抽象感慨。章末只能给可见变化。
+
+### B. 编辑DEAI：不可笼统PASS
+报告必须输出：
+- `DEAI_EDITOR_PASS` 或 `DEAI_EDITOR_FAIL`
+- `NOT_BUT_COUNT`、`ENUMERATION_COUNT`、`META_INFO_COUNT`、`REPORT_TONE_COUNT`
+- 每一类命中必须给行号、原句、判定、删除/保留理由。
+- 任一章出现第四面墙元信息（下一章/第二卷/后续篇章等）= 必须 FAIL。
+- 出现密集说明、分层标签、对称定义收束、公文口播，除非逐条证明为自然对白/必要战术口令，否则 FAIL。
+
+### C. 读者DEAI：按听书体验审
+报告必须输出：
+- `DEAI_READER_PASS` 或 `DEAI_READER_FAIL`
+- 追读意愿1-5、听书出戏句、卡顿段、角色口吻趋同点。
+- “AI味不重/轻微总结腔可接受/会议感可接受”不得算PASS；必须给保留理由。
+- 听感硬闸：连续定义句、枚举句、总结句、宏观感慨比阅读更刺耳，应从严。
+
+### D. 扫描工具
+写后必须运行：
+`python3 /root/workspace/科武纪元/工具脚本/kewu_deai_hard_gate_scan.py <候选稿路径>`
+扫描只排序和标记，不自动改文；命中进入编辑/读者证据。
+""".strip()
+
+
+def get_deai_role_gate() -> str:
+    return DEAI_ROLE_GATE
+
+
+if __name__ == '__main__':
+    print(DEAI_ROLE_GATE)

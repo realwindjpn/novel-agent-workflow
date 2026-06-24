@@ -1,0 +1,36 @@
+{
+  "run_id": "historical_2026-05-31_20260607_003051",
+  "day": "2026-05-31",
+  "pack_path": "/root/workspace/科武纪元/自循环体系/historical_mirofish_replay_20260606/historical_2026-05-31_20260607_003051/MIROFISH_HISTORICAL_FEED_PACK.md",
+  "selected_count": 2,
+  "selected_cards": [
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-31/素材卡_阿尔忒弥斯2号任务核心级集成–完成！_NASA中文_20260531_2234.md",
+      "title": "素材卡：阿尔忒弥斯2号任务核心级集成–完成！ | NASA中文"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-31/素材卡_阿尔忒弥斯计划_-_卫星百科，很认真的中文航天百科_-_灰机wiki_20260531_2234.md",
+      "title": "素材卡：阿尔忒弥斯计划 - 卫星百科，很认真的中文航天百科 - 灰机wiki"
+    }
+  ],
+  "skipped": [
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-31/素材卡_如需正文转素材卡，请主控标记_`[CARD_PENDING]`_并附具体章节需求。_20260531_1701.md",
+      "reason": "noise_or_pending"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-31/素材卡_所有`[CARD_PENDING]`条目（如量子密钥切换场景）无事实内容，_不转卡_，仅归档。_20260531_1701.md",
+      "reason": "noise_or_pending"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-31/素材卡_边界声明_：本报告仅做采集_蒸馏_分类_调用建议，不涉及大纲调整_正文修改_精修章节_投稿建议。如需正文转素材卡，请主控标记`[CARD_P_20260531_0802.md",
+      "reason": "noise_or_pending"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-31/素材卡_量子密钥切换场景（`[CARD_PENDING]`无事实内容，等待主控补充第381章需求）_20260531_1632.md",
+      "reason": "noise_or_pending"
+    }
+  ],
+  "status": "FEED_PACK_READY",
+  "created_at": "2026-06-07T00:30:51"
+}

@@ -1,0 +1,40 @@
+{
+  "run_id": "historical_2026-05-30_20260607_001820",
+  "day": "2026-05-30",
+  "pack_path": "/root/workspace/科武纪元/自循环体系/historical_mirofish_replay_20260606/historical_2026-05-30_20260607_001820/MIROFISH_HISTORICAL_FEED_PACK.md",
+  "selected_count": 3,
+  "selected_cards": [
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-30/素材卡_New_Landsat_Science_Team_Holds_First_In-Person_Meeting_20260530_0732.md",
+      "title": "素材卡：New Landsat Science Team Holds First In-Person Meeting"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-30/素材卡_Painting_the_Growing_Season_in_the_Maize_Triangle_20260530_0732.md",
+      "title": "素材卡：Painting the Growing Season in the Maize Triangle"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-30/素材卡_Webb_reveals_black_hole_that_formed_before_its_galaxy_20260530_0215.md",
+      "title": "素材卡：Webb reveals black hole that formed before its galaxy"
+    }
+  ],
+  "skipped": [
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-30/素材卡_[CARD_PENDING]_量子密钥切换场景_20260530_1806.md",
+      "reason": "noise_or_pending"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-30/素材卡_本报告仅做采集_蒸馏_分类_调用建议，_不涉及大纲调整_正文修改_精修章节_投稿建议_。如需正文转素材卡，请主控标记`[CARD_PENDI_20260530_0215.md",
+      "reason": "noise_or_pending"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-30/素材卡_本轮`CARD_PENDING`条目_均无具体事实内容_，仅为系统提示或_需求占位符_。_20260530_2123.md",
+      "reason": "noise_or_pending"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-30/素材卡_量子缺口_（score=114）暂可依靠已有QKD工程卡和`[CARD_PENDING]`需求驱动，优先级稍后。_20260530_1806.md",
+      "reason": "noise_or_pending"
+    }
+  ],
+  "status": "FEED_PACK_READY",
+  "created_at": "2026-06-07T00:18:20"
+}

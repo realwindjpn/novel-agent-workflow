@@ -1,0 +1,55 @@
+{
+  "run_id": "historical_2026-05-18_20260606_231740",
+  "day": "2026-05-18",
+  "pack_path": "/root/workspace/科武纪元/自循环体系/historical_mirofish_replay_20260606/historical_2026-05-18_20260606_231740/MIROFISH_HISTORICAL_FEED_PACK.md",
+  "selected_count": 11,
+  "selected_cards": [
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-18/待转卡_中美会谈后续_H200零交付_台湾红线_20260518.md",
+      "title": "待转卡：中美会谈后续·H200零交付与台湾红线补证"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-18/素材卡_Barakah核电站无人机袭击_霍尔木兹外溢_20260518.md",
+      "title": "素材卡：Barakah核电站无人机袭击与霍尔木兹外溢"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-18/素材卡_Barracuda500M_Anduril巡航导弹交易_20260518.md",
+      "title": "素材卡：Barracuda-500M巡航导弹·Anduril大规模采购"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-18/素材卡_CFTC_AI监控预测市场内幕交易_20260518.md",
+      "title": "素材卡：CFTC用AI监控预测市场内幕交易"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-18/素材卡_Elon_Musk_OpenAI审判_信任危机_20260518.md",
+      "title": "素材卡：Elon Musk诉OpenAI审判——AI信任危机"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-18/素材卡_NVIDIA芯片走私_Enforcement_20260518.md",
+      "title": "素材卡：NVIDIA芯片走私与出口管制执法"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-18/素材卡_NewScientist_量子计算三要点_量子计算_20260518.md",
+      "title": "素材卡：量子计算三要点——专家解读"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-18/素材卡_月球核反应堆_NASA_DOE_MOU_20260518.md",
+      "title": "素材卡：月球核裂变表面功率计划（NASA/DOE MOU）"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-18/素材卡_火星通信延迟_光速屏障与自主权_20260518.md",
+      "title": "素材卡：火星通信延迟·光速屏障与自主权"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-18/素材卡_量子密钥分发_62英里DIQKD突破_20260518.md",
+      "title": "素材卡：量子密钥分发（DI-QKD）62英里突破"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-18/素材卡_量子计算机三要点_量子计算_20260518.md",
+      "title": "素材卡：量子计算机三要点（专家科普）"
+    }
+  ],
+  "skipped": [],
+  "status": "FEED_PACK_READY",
+  "created_at": "2026-06-06T23:17:40"
+}

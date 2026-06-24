@@ -1,0 +1,102 @@
+{
+  "run_id": "mirofish_high_gain_gpt55_review_20260606",
+  "generated_at": "2026-06-07T00:55:00",
+  "reviewer": "gpt-5.5/freemodel route",
+  "boundary": "read_only_no_body_outline_txt_draftbox_changes",
+  "inputs": [
+    "/root/workspace/科武纪元/自循环体系/historical_mirofish_replay_20260606/MIROFISH_HIGH_GAIN_BATCH_20260606.md",
+    "/root/workspace/科武纪元/自循环体系/historical_mirofish_replay_20260606/mirofish_high_gain_state_20260606.json",
+    "/root/workspace/科武纪元/审核记录/自循环体系会议_20260606_1814/G2B_2029_horizon_mirofish_decision.md",
+    "/root/workspace/科武纪元/自循环体系/historical_mirofish_replay_20260606/MiroFish素材融入口径修正_500章总盘_20260606.md"
+  ],
+  "outputs": [
+    "/root/workspace/科武纪元/自循环体系/historical_mirofish_replay_20260606/MIROFISH_HIGH_GAIN_GPT55_REVIEW_20260606.md",
+    "/root/workspace/科武纪元/自循环体系/historical_mirofish_replay_20260606/mirofish_high_gain_gpt55_review_state_20260606.json",
+    "/root/workspace/科武纪元/自循环体系/historical_mirofish_replay_20260606/SENSENOVA_PRECISION_QUERIES_20260606.md"
+  ],
+  "top10_decisions": [
+    {
+      "rank": 1,
+      "title": "分布式工业体系韧性与打不垮的制造网络",
+      "decision": "ACCEPT_AFTER_EVIDENCE",
+      "strength_review": "strong_potential_evidence_C",
+      "next_action": "P0 supplement RUSI/IISS/CNAS/CSIS/official sources before OUTLINE_PATCH"
+    },
+    {
+      "rank": 2,
+      "title": "欧洲防务自主路线",
+      "decision": "ACCEPT",
+      "strength_review": "strong",
+      "next_action": "keep OUTLINE_PATCH candidate; supplement IRIS2/ESSI/EURODRONE/OCCAR timeline"
+    },
+    {
+      "rank": 3,
+      "title": "乌克兰UGV大规模扩产",
+      "decision": "ACCEPT_AFTER_EVIDENCE",
+      "strength_review": "strong_scene_secondary_plus_needs_official_digits",
+      "next_action": "trace Defense News figures to Ukraine MoD/Brave1/Army of Drones"
+    },
+    {
+      "rank": 4,
+      "title": "土耳其Yıldırımhan远程导弹",
+      "decision": "ACCEPT_AFTER_EVIDENCE",
+      "strength_review": "medium",
+      "next_action": "supplement official test/range/propellant evidence"
+    },
+    {
+      "rank": 5,
+      "title": "中国首部Agent政策",
+      "decision": "ACCEPT_AFTER_EVIDENCE",
+      "strength_review": "medium_high_potential_evidence_C",
+      "next_action": "supplement CAC/MIIT/Gov.cn/CAICT primary policy text"
+    },
+    {
+      "rank": 6,
+      "title": "QuTech量子比特可移动制造突破",
+      "decision": "ACCEPT",
+      "strength_review": "medium_primary_complete",
+      "next_action": "directly use in chapter 381 prep; no duplicate supplement needed"
+    },
+    {
+      "rank": 7,
+      "title": "美军封锁霍尔木兹海峡·击伤伊朗油轮",
+      "decision": "DOWNGRADE",
+      "strength_review": "weak_to_medium_unverified_narrative",
+      "next_action": "archive unless Reuters/AP/official confirmation found"
+    },
+    {
+      "rank": 8,
+      "title": "OpenAI非营利转营利治理",
+      "decision": "ACCEPT_AFTER_EVIDENCE",
+      "strength_review": "medium_high_potential_evidence_C",
+      "next_action": "supplement CourtListener/court/SEC primary filings"
+    },
+    {
+      "rank": 9,
+      "title": "AI儿童玩具监管真空",
+      "decision": "ACCEPT_AFTER_EVIDENCE",
+      "strength_review": "medium",
+      "next_action": "supplement MIIT/SAMR/consumer report/product privacy evidence"
+    },
+    {
+      "rank": 10,
+      "title": "GM驾驶数据隐私和车机遥测变现",
+      "decision": "ACCEPT_AFTER_EVIDENCE",
+      "strength_review": "medium",
+      "next_action": "supplement FTC final order and California AG/court settlement"
+    }
+  ],
+  "special_checks": {
+    "distributed_industrial_resilience": "strong_story_value_but_not_strong_evidence_yet_ACCEPT_AFTER_EVIDENCE",
+    "european_defence_autonomy": "strong_and_sufficient_ACCEPT",
+    "ugv_scale_up": "strong_story_value_but_secondary_source_digit_backtrace_needed_ACCEPT_AFTER_EVIDENCE"
+  },
+  "query_counts": {
+    "P0": 12,
+    "P1": 8,
+    "P2": 3,
+    "total": 23
+  },
+  "immutable": true,
+  "no_project_files_modified_beyond_review_outputs": true
+}

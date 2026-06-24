@@ -1,0 +1,50 @@
+{
+  "schema": "manual_mirofish_feed_package_v1",
+  "created_at": "2026-06-07T07:56:25+08:00",
+  "source": "user_qq_card_bilibili_miniapp + web_extract",
+  "policy": {
+    "manual_feed": true,
+    "formal_cards_written": false,
+    "outline_text_txt_draft_modified": false,
+    "draftbox_modified": false
+  },
+  "valid_input_count": 1,
+  "materials": [
+    {
+      "material_id": "manual_20260607_9908aaa600",
+      "title": "Token越来越贵？别慌！算力网已在来的路上",
+      "source_url": "https://www.chinanews.com.cn/cj/2026/05-15/10622025.shtml",
+      "source_group": "domestic",
+      "source_type": "official_media_repost",
+      "verification_status": "secondary_plus_needs_primary_policy",
+      "source_card_path": "/root/workspace/科武纪元/自循环体系/manual_mirofish_feeds_20260607/raw_Token算力网_中新网_20260607.md",
+      "evidence_complete": false,
+      "core_facts": [
+        "2026年3月我国日均Token调用量超过140万亿，较2024年初增长1000多倍",
+        "腾讯云部分AI模型价格涨幅超过400%；阿里云3-4月连续三次调价",
+        "国务院常务会议将算力网与水网、新型电网、新一代通信网等并列规划建设",
+        "十五五规划提出构建多层次算力设施体系和全国一体化算力网",
+        "六张网及相关领域年度投资预计超过7万亿"
+      ],
+      "fiction_variables": [
+        "A 算法主权",
+        "秩序/熵减：基础设施配给",
+        "算力成本压力",
+        "中小团队AI准入门槛",
+        "国家级调度网络"
+      ],
+      "target_chapters": [
+        "135-160",
+        "221-300",
+        "301-500"
+      ],
+      "recommended_disposition": "CHAPTER_PREP_ONLY",
+      "upgrade_condition": "补到国务院/国家数据局/工信部/十五五原文后，可交G2裁为OUTLINE_PATCH候选",
+      "anti_patterns": [
+        "不得把央视/中新网转述中的价格数字直接写成政策原文",
+        "不得写成算力网一建成Token必然降价",
+        "不得忽略电力/延迟/调度公平/配给审核成本"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "run_id": "historical_2026-05-28_20260607_001820",
+  "day": "2026-05-28",
+  "pack_path": "/root/workspace/科武纪元/自循环体系/historical_mirofish_replay_20260606/historical_2026-05-28_20260607_001820/MIROFISH_HISTORICAL_FEED_PACK.md",
+  "selected_count": 1,
+  "selected_cards": [
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-28/素材卡_Webinar_6_17_Discover,_Access,_and_Task_Commercial_Data_with_NASA’s_Sa_20260528_1645.md",
+      "title": "素材卡：Webinar 6/17: Discover, Access, and Task Commercial Data with NASA’s Satelli"
+    }
+  ],
+  "skipped": [
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-28/素材卡_`[CARD_PENDING]_量子密钥切换场景`_→_需主控补充具体章节需求_，否则仅归档_20260528_0548.md",
+      "reason": "noise_or_pending"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-28/素材卡_`[CARD_PENDING]_量子密钥切换场景`：_需主控补充具体章节需求_（如_第381章需量子密钥切换场景_），否则仅归档不转卡_20260528_1809.md",
+      "reason": "noise_or_pending"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-28/素材卡_执行提示_：主控若需正文转素材卡，请标记`[CARD_PENDING]`并附_具体章节需求_，否则仅归档不转卡。_20260528_1809.md",
+      "reason": "noise_or_pending"
+    }
+  ],
+  "status": "FEED_PACK_READY",
+  "created_at": "2026-06-07T00:18:20"
+}

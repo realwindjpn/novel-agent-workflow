@@ -1,0 +1,77 @@
+{
+  "schema_version": "g3_state_v1",
+  "batch_id": "cron_20260604_1942",
+  "status": "DONE",
+  "current_phase": "G3_PREP_COMPLETE",
+  "prep_count": 5,
+  "archive_count": 7,
+  "outline_patch_count": 0,
+  "prep_cards": [
+    {
+      "material_id": "05727679c48057f9",
+      "title": "Artemis II地球照片",
+      "target_chapter_domain": "359+",
+      "needs_recollection": false
+    },
+    {
+      "material_id": "99b58a71f0a3d75a",
+      "title": "ExoMars粘土层发现",
+      "target_chapter_domain": "370+",
+      "needs_recollection": false
+    },
+    {
+      "material_id": "cctv_com_quantum_27e81663",
+      "title": "量子科技综合",
+      "target_chapter_domain": "261/381",
+      "needs_recollection": true,
+      "recollection_reason": "2025年综述需追2026新纪录"
+    },
+    {
+      "material_id": "cmse_gov_cn_8e64a8ca",
+      "title": "神舟二十一号/二十二号任务",
+      "target_chapter_domain": "359+",
+      "needs_recollection": false
+    },
+    {
+      "material_id": "huanqiu_mil_528f14e0",
+      "title": "环球网军事热点汇总",
+      "target_chapter_domain": "当前上传线",
+      "needs_recollection": true,
+      "recollection_reason": "汇总页须逐条追源（中东/南天门/印度无人机）"
+    }
+  ],
+  "archived_cards": [
+    {"material_id": "455ae18dc90ad434", "title": "AI科学招聘研讨会", "dimension": "no_story_value"},
+    {"material_id": "fec47407fe7a7202", "title": "厄尔尼诺前兆", "dimension": "no_story_value"},
+    {"material_id": "eafa934b0c9554c8", "title": "M88星系图像", "dimension": "no_story_value"},
+    {"material_id": "a09d60e7bc19e166", "title": "NASA水库维护", "dimension": "no_story_value"},
+    {"material_id": "df495f7947d7a64d", "title": "ESA月度视频", "dimension": "weak_fact"},
+    {"material_id": "cctv_com_tech_a75921dc", "title": "生物材料标准化", "dimension": "no_story_value"},
+    {"material_id": "nasa_artemis_b138b5bf", "title": "Artemis汇总页", "dimension": "weak_fact"}
+  ],
+  "recollection_list": [
+    {"priority": "P0", "direction": "2026量子新纪录", "sources": "Nature/Science/IEEE/CCTV科技", "target_chapters": "261/381"},
+    {"priority": "P0", "direction": "中东冲突具体事件链", "sources": "Reuters/AP/新华社/环球军事", "target_chapters": "当前上传线"},
+    {"priority": "P1", "direction": "南天门计划单独进展", "sources": "军网/央视军事/国防科工局", "target_chapters": "359+"},
+    {"priority": "P1", "direction": "印度无人机军购细节", "sources": "环球军事/Defense News/简氏", "target_chapters": "当前上传线"}
+  ],
+  "six_role_verdict": {
+    "author_mimo": "PASS - 无需大纲修改",
+    "science_zai": "PASS - OUTLINE_PATCH=0为结构性结果",
+    "reader_agnes": "PASS - 量子/军事卡须补采",
+    "editor_codebuddy": "PASS - 量子/南天门不构成大纲变更",
+    "military": "PASS - 南天门为进展型非里程碑型",
+    "chair_mimo": "PASS - 六席一致"
+  },
+  "boundary_enforced": {
+    "no_outline_edit": true,
+    "no_chapter_edit": true,
+    "no_txt_generation": true,
+    "no_tomato_upload": true,
+    "no_git_commit": true,
+    "no_wiki_edit": true
+  },
+  "output_path": "/root/workspace/科武纪元/自循环体系/G2_mirofish_upgrade_20260604/G3_1942_prep/G3_prep_pack_1942.md",
+  "next_action": "补采P0项（量子新纪录/中东事件链）→ 准备包交付作者精修引用",
+  "updated_at": "2026-06-04T20:15:00"
+}

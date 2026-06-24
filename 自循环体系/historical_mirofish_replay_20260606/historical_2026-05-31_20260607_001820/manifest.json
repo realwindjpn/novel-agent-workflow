@@ -1,0 +1,64 @@
+{
+  "run_id": "historical_2026-05-31_20260607_001820",
+  "day": "2026-05-31",
+  "pack_path": "/root/workspace/科武纪元/自循环体系/historical_mirofish_replay_20260606/historical_2026-05-31_20260607_001820/MIROFISH_HISTORICAL_FEED_PACK.md",
+  "selected_count": 12,
+  "selected_cards": [
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-31/素材卡_Artemis人物访谈_20260531_0802.md",
+      "title": "素材卡：Artemis人物访谈"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-31/素材卡_Author_Correction_US_oil_and_gas_system_emissions_from_nearly_one_mill_20260531_1817.md",
+      "title": "素材卡：Author Correction: US oil and gas system emissions from nearly one million a"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-31/素材卡_Curiosity_Blog,_Sols_4900-4907_20260531_1632.md",
+      "title": "素材卡：Curiosity Blog, Sols 4900-4907"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-31/素材卡_ESA_at_GLOBSEC_2026_20260531_1817.md",
+      "title": "素材卡：ESA at GLOBSEC 2026"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-31/素材卡_ESA’s_Prodex_programme_brings_scientific_research_to_space_20260531_1817.md",
+      "title": "素材卡：ESA’s Prodex programme brings scientific research to space"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-31/素材卡_Hubble_Spies_Faint_Irregular_Galaxy_20260531_0802.md",
+      "title": "素材卡：Hubble Spies Faint Irregular Galaxy"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-31/素材卡_IEEE芯片设计文章_20260531_0251.md",
+      "title": "素材卡：IEEE芯片设计文章"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-31/素材卡_I_Am_Artemis_Daniel_Stubbs_20260531_1105.md",
+      "title": "素材卡：I Am Artemis: Daniel Stubbs"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-31/素材卡_MTG-I2_embarks_on_journey_to_Europe’s_Spaceport_20260531_1817.md",
+      "title": "素材卡：MTG-I2 embarks on journey to Europe’s Spaceport"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-31/素材卡_NASA_Astronaut_Andrew_Morgan_Retires_20260531_1632.md",
+      "title": "素材卡：NASA Astronaut Andrew Morgan Retires"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-31/素材卡_NASA_Awards_Contract_for_Johnson_Space_Center_Infrastructure_20260531_1105.md",
+      "title": "素材卡：NASA Awards Contract for Johnson Space Center Infrastructure"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-31/素材卡_NASA_Hosts_SpaceX_Crew-11_Astronauts_for_Public_Event_at_Headquarters_20260531_1105.md",
+      "title": "素材卡：NASA Hosts SpaceX Crew-11 Astronauts for Public Event at Headquarters"
+    }
+  ],
+  "skipped": [
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-31/素材卡_CARD_PENDING_：无事实内容，不安排正文转卡，仅归档。_20260531_1701.md",
+      "reason": "noise_or_pending"
+    }
+  ],
+  "status": "FEED_PACK_READY",
+  "created_at": "2026-06-07T00:18:20"
+}

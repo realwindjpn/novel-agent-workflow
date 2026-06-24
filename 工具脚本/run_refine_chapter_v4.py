@@ -148,6 +148,8 @@ meta = {
     189: ('频率展宽', '【V8.12.2方舟协议现实账单】方舟协议不是纯信息揭示，要受芯片、电力、接口、许可证、供应链窗口牵制；文明级备份也有现实账单。保留父亲/女娲/戴森球主线。', '方舟真相受现实窗口牵制，牵引火星线索', '补芯片/电力/接口/许可证/供应链窗口；把方舟协议写成可执行账单和延迟窗口，不写成宏观说明', '火星线索'),
     221: ('远岸账号', '【V8.12.2共管协议/交换表】共管争夺从所有权升级到训练接口、调度协议、月面中继、救援规则；技术筹码落到芯片、稀土、能源、云接口、日志留存权。', '规则权争夺升级，牵引暗线浮现', '补H200/磁材/能源/云接口/训练接口/日志留存权等交换表；写到账单、接口、条款和工程动作，不重写第95', '暗线浮现'),
     223: ('内战爆发', '铁幕在欧陆发动全面反击，多国陷入内战；白盾部队被安全幕僚越级调度执行城市封控与抓捕。【V8.12.2】补AI视频众包工坊机制：任务池、模板、水印、付款链、转发时间戳；审计冻结和证书轮换拖慢抓捕与救援。', '内战双方都声称拥有对抗外部威胁的终极武器；白盾是失控执法工具', '写清白盾越级调度机制、城市封控代价、AI视频众包黑产链；不写现实国名对骂', '公司真相'),
+    157: ('调整', '月球背面遗迹确认后，赵刚调整任务优先级：遗迹研究压过资源开发与铁幕侦察；五人小队被迫在七十二小时内同时维持遗迹、铁幕与生存资源三线。', '遗迹像被林星辰经脉唤醒，地下低频持续变强，牵引下一章登月决心与进遗迹行动', '写清任务调整、七十二小时第二批着陆窗口、氧耗/电力/排班压力、遗迹材料与共振数据；保留谢云警戒与林星辰经脉共振，不写成宏观报告', '登月决心'),
+    158: ('登月决心', '月球第一个夜晚，林星辰在极端温差与遗迹低频中触碰地下信息，确认经脉与遗迹存在双向回应，并决定进入遗迹。', '林星辰提交进遗迹路线，三百秒接应约定成立，下一章进入遗迹探索', '写清月球夜昼温差、意识触碰信号、心率/散热/共振数据、赵刚五百米限制、队友分工和三百秒接应；清理wikilink与章节元信息，避免玄学化', '遗迹探索'),
     226: ('政治联盟', '【V8.12.2政治联盟/审计框架】联盟不是表态，要落到执法权、拘押权、日志留存权、AI透明度审计、火星探索权与技术节点控制权分歧。', '联盟条款牵引火星计划', '补执法权、拘押权、日志留存权、AI透明度审计框架；交换表落到条款、接口、审计权限，不写口号', '火星计划'),
 }
 if ch not in meta:
@@ -231,6 +233,79 @@ wiki_section = f'\n## Wiki知识库\n{wiki_text}' if wiki_text else ''
 ev_section = f'\n## RTK证据包摘要\n{ev_text[:2000]}' if ev_text else ''
 mem_section = f'\n## 上章记忆卡\n{mem_text}' if mem_text else ''
 
+# ─── 去AI角色硬闸（作者/编辑/读者共用） ───
+try:
+    import importlib.util
+    _deai_path = proj / '工具脚本' / 'kewu_deai_role_gate.py'
+    _spec = importlib.util.spec_from_file_location('kewu_deai_role_gate', _deai_path)
+    _mod = importlib.util.module_from_spec(_spec)
+    _spec.loader.exec_module(_mod)  # type: ignore[union-attr]
+    deai_role_gate = _mod.get_deai_role_gate()
+except Exception:
+    deai_role_gate = '''## 去AI硬闸
+- 禁连续“不是……而是……”概念定义；改成动作/反馈/代价。
+- 禁正文说明书式枚举：1/2/3/4、一是二是三是四是、第一第二第三第四。
+- 禁角色说章节元信息：下一章、第X章、第X卷、后续篇章。
+- 编辑/读者DEAI必须给行号、命中数、删除/保留理由；笼统PASS无效。'''
+
+AUTHOR_DEAI_HARD_TYPES = {'META_INFO_HARD', 'NOT_BUT_HARD', 'NUM_ENUM_HARD', 'CN_ENUM_HARD'}
+
+
+def scan_author_deai_candidate(candidate_text):
+    """Deterministic author-side DEAI scan before any candidate writeback."""
+    try:
+        import importlib.util
+        _scan_path = proj / '工具脚本' / 'kewu_deai_hard_gate_scan.py'
+        _scan_spec = importlib.util.spec_from_file_location('kewu_deai_hard_gate_scan', _scan_path)
+        _scan_mod = importlib.util.module_from_spec(_scan_spec)
+        _scan_spec.loader.exec_module(_scan_mod)  # type: ignore[union-attr]
+        patterns = _scan_mod.PATTERNS
+    except Exception:
+        patterns = {
+            'NOT_BUT_HARD': re.compile(r'不是[^。！？\n]{0,100}而是'),
+            'NUM_ENUM_HARD': re.compile(r'(^|[。！？\n]\s*)\d{1,2}[、.．：:]'),
+            'CN_ENUM_HARD': re.compile(r'(^|[。！？\n]\s*)[一二三四五六七八九十][、.．：:]'),
+            'META_INFO_HARD': re.compile(r'(下一章|第\d+章|第[一二三四五六七八九十]+章|第\d+卷|第[一二三四五六七八九十]+卷|后续篇章|第二卷后半段)'),
+        }
+    hits = []
+    counts = {typ: 0 for typ in patterns}
+    for i, line in enumerate(candidate_text.splitlines(), 1):
+        if not line.strip():
+            continue
+        for typ, pat in patterns.items():
+            if typ == 'META_INFO_HARD' and re.match(r'^#{0,6}\s*第\d+章\s+', line.strip()):
+                continue
+            if pat.search(line):
+                counts[typ] = counts.get(typ, 0) + 1
+                hits.append({'line': i, 'type': typ, 'text': line.strip()[:260]})
+    return counts, hits
+
+
+def enforce_author_deai_candidate(candidate_text):
+    counts, hits = scan_author_deai_candidate(candidate_text)
+    hard_counts = {typ: counts.get(typ, 0) for typ in AUTHOR_DEAI_HARD_TYPES}
+    if any(hard_counts.values()):
+        fail_dir = proj / '审核记录' / '运行留痕'
+        fail_dir.mkdir(parents=True, exist_ok=True)
+        fail_path = fail_dir / f'第{ch}章_author_deai_hard_fail.json'
+        fail_path.write_text(json.dumps({
+            'chapter': ch,
+            'verdict': 'AUTHOR_DEAI_HARD_FAIL',
+            'hard_counts': hard_counts,
+            'hits': [h for h in hits if h['type'] in AUTHOR_DEAI_HARD_TYPES],
+            'blocked_writeback': True,
+        }, ensure_ascii=False, indent=2), encoding='utf-8')
+        print(json.dumps({
+            'chapter': ch,
+            'verdict': 'AUTHOR_DEAI_HARD_FAIL',
+            'hard_counts': hard_counts,
+            'evidence': str(fail_path),
+            'temp_file_written': False,
+            'final_pass': False,
+        }, ensure_ascii=False))
+        raise SystemExit('AUTHOR_DEAI_HARD_FAIL')
+    return counts, hits
+
 # ─── 1. 写前审核 ───
 def call(role, prompt, suffix='pre', timeout=260):
     """调用角色审核，写入 raw/第{ch}_{role}_{suffix}.json"""
@@ -250,7 +325,9 @@ base_card = f'''# 第{ch}章精修任务卡V3.1
 - 技术名词必须"差评君风格"科普化：先生活类比再给术语（训练=教大学生/推理=上班，量子纠错=KTV消音器，ASIC=专项运动员）。先讲"是什么/怎么用/战术意义"，再给参数。严禁堆砌ASIC/CUDA等学术缩写，用"推理芯片/专用芯片"。
 - 去AI味铁律：禁"仿佛/微微/缓缓/意味着/意识到/不禁/不由得"。角色对话加口癖/犹豫/语法错误，不说完美台词。
 - 作家风格OS：去AI味只是底线；每场戏必须有环境压力、行动链、反馈链、代价；技术点落到操作/仪表/身体/成本。
-- **铁律：正文和对话中禁止出现"第X章""第X卷"等章节编号。**
+- **铁律：正文和对话中禁止出现"第X章""第X卷""下一章""后续篇章"等章节元信息。**
+
+{deai_role_gate}
 '''
 
 pre_common = f'''任务: 先审原版第{ch}章，给作者精修意见。输出≤500字，必须含"修改清单"。
@@ -322,9 +399,12 @@ author_prompt = f'''你是《科武纪元》作者。按精修任务卡V3.1改�
 *** 章末钩子（必须显性提及）：{hook}，牵引"{next_ch}"。
 
 *** 穿帮铁律：
-- 正文和对话中**绝对禁止**出现"第X章""第X卷"等章节编号
-- 角色不可能知道自己在第几章，这是写作元信息
+- 正文和对话中**绝对禁止**出现"第X章""第X卷""下一章""后续篇章"等章节元信息
+- 角色不可能知道自己在第几章，也不可能知道“下一章/后续篇章”的存在
 - 违规视为不合格，必须重写
+
+*** 作者去AI硬闸：
+{deai_role_gate}
 
 首行：第{ch}章 {title}
 末行：（本章完）
@@ -365,7 +445,6 @@ new = '\n'.join(lines) + '\n'
 for old, repl in {'意识到':'察觉', '意味着':'说明', '仿佛':'', '不禁':'', '微微':'', '淡淡':'', '缓缓':'', '宛如':'像'}.items():
     new = new.replace(old, repl)
 
-out.write_text(new, encoding='utf-8')
 cn = len(re.findall(r'[\u4e00-\u9fff]', new))
 
 # ─── 字数不足补写 ───
@@ -403,15 +482,26 @@ if cn < 3000:
         else:
             lines[-1] = '（本章完）'
         new = '\n'.join(lines) + '\n'
-        out.write_text(new, encoding='utf-8')
         cn = len(re.findall(r'[\u4e00-\u9fff]', new))
+
+author_deai_counts, author_deai_hits = enforce_author_deai_candidate(new)
+out.write_text(new, encoding='utf-8')
 
 nhead, ntail = new[:900], new[-1100:]
 
-# ─── 3. 写后快筛门禁（粗截看整体体感） ───
+# ─── 3. 写后快筛门禁（粗截看整体体感 + DEAI硬闸） ───
 post = f'''任务: 写后快筛第{ch}章。只判断整体体感，不替代RTK最终门禁。输出必须含英文 PASS 或 FAIL；若有必改/硬伤/不宜进入下一章则 FAIL。
+
+硬性要求：
+- 必须按下方去AI硬闸审，不得写“AI味不重/整体可接受”后直接PASS。
+- 发现“下一章/第X卷/后续篇章”等章节元信息，必须FAIL。
+- 发现密集“不是……而是……”、说明书式枚举、公文口播、鸡汤收束，必须给行号和保留/删除理由。
+
 任务卡:
 {base_card}
+
+{deai_role_gate}
+
 {kb_section[:1500]}
 {role_drift_section[:1500]}
 首段:
@@ -419,43 +509,59 @@ post = f'''任务: 写后快筛第{ch}章。只判断整体体感，不替代RTK
 章末:
 {ntail}
 '''
-editor_post = call('editor', '角色: 网文编辑\n关注: 整体结构/风格/是否明显跑偏。\n' + post, suffix='editor_post_v3')
-reader_post = call('reader', '角色: 普通网文读者\n关注: 是否顺、是否水、AI味（禁"仿佛/微微/缓缓/意味着/意识到/不禁/不由得"）、想不想看下一章、技术解释是否用了生活类比。\n' + post, suffix='reader_post_v3')
+editor_post = call('editor', '角色: 网文编辑 + DEAI编辑门禁\n输出必须含 DEAI_EDITOR_PASS 或 DEAI_EDITOR_FAIL，并含 NOT_BUT_COUNT / ENUMERATION_COUNT / META_INFO_COUNT / REPORT_TONE_COUNT。若缺字段，视为FAIL。\n关注: 整体结构/风格/是否明显跑偏/是否可写回。\n' + post, suffix='editor_post_v3')
+reader_post = call('reader', '角色: 普通网文读者 + DEAI读者门禁\n输出必须含 DEAI_READER_PASS 或 DEAI_READER_FAIL；必须按听书体验标出听感出戏句、卡顿段、追读意愿1-5。若缺字段，视为FAIL。\n关注: 是否顺、是否水、AI味、会议PPT感、角色口吻、想不想看下一章。\n' + post, suffix='reader_post_v3')
 
-def passed(raw):
-    """Trust 'ok' field from orchestrate_review.py JSON; fallback to content scan"""
-    try:
-        data = json.loads(raw)
-        if data.get('ok') is True:
-            return True, 'ok=true'
-        if data.get('ok') is False:
-            return False, 'ok=false'
-    except:
-        pass
+def passed(raw, role_hint=''):
+    """Content-aware gate verdict.
+
+    V4 used to trust ok=true too much. For DEAI roles, ok=true only means the
+    model returned text; PASS requires explicit DEAI_*_PASS and no FAIL.
+    """
     content = ''
+    ok = None
     try:
         data = json.loads(raw)
-        content = data.get('content', '')
-    except:
-        pass
+        ok = data.get('ok')
+        content = data.get('content', '') or ''
+        if ok is False:
+            return False, 'ok=false'
+    except Exception:
+        content = raw or ''
     if not content:
         return False, 'empty content'
+    if role_hint == 'editor':
+        required = ['DEAI_EDITOR_PASS', 'NOT_BUT_COUNT', 'ENUMERATION_COUNT', 'META_INFO_COUNT', 'REPORT_TONE_COUNT']
+        if ('DEAI_EDITOR_FAIL' in content) or (('FAIL' in content) and ('DEAI_EDITOR_PASS' not in content)):
+            return False, 'DEAI_EDITOR_FAIL/content FAIL'
+        missing = [x for x in required if x not in content]
+        if missing:
+            return False, 'missing editor DEAI fields: ' + ','.join(missing)
+        return True, 'DEAI_EDITOR_PASS with fields'
+    if role_hint == 'reader':
+        required = ['DEAI_READER_PASS', '追读', '听感']
+        if ('DEAI_READER_FAIL' in content) or (('FAIL' in content) and ('DEAI_READER_PASS' not in content)):
+            return False, 'DEAI_READER_FAIL/content FAIL'
+        missing = [x for x in required if x not in content]
+        if missing:
+            return False, 'missing reader DEAI fields: ' + ','.join(missing)
+        return True, 'DEAI_READER_PASS with fields'
     has_pass = 'PASS' in content
     has_fail = 'FAIL' in content
     if has_pass and not has_fail:
         return True, 'PASS in content'
     if has_fail:
         return False, 'FAIL in content'
-    if has_pass:
-        return True, 'PASS in content'
+    if ok is True and has_pass:
+        return True, 'ok=true + PASS'
     return False, 'no PASS in content'
 
 def verdict_from(raw):
     """compatibility wrapper"""
     return passed(raw)
 
-ep, ep_reason = verdict_from(editor_post)
-rp, rp_reason = verdict_from(reader_post)
+ep, ep_reason = passed(editor_post, 'editor')
+rp, rp_reason = passed(reader_post, 'reader')
 
 # ─── 4. 改后RTK证据包（模型输入前置压缩） ───
 # 作者改写后重建证据包：只把证据包送入最终门禁，正文保真保存在文件中
@@ -486,11 +592,12 @@ tail_500 = new[-500:]
 hook_found = any(kw in tail_500 for kw in all_kw)
 
 # ─── 最终判定 ───
-final = ep and rp and rep and rrp and cn >= 3000 and hook_found
+author_deai_hard_clear = all(author_deai_counts.get(typ, 0) == 0 for typ in AUTHOR_DEAI_HARD_TYPES)
+final = ep and rp and rep and rrp and cn >= 3000 and hook_found and author_deai_hard_clear
 final_pass = final
 eg_passed = rep  # RTK编辑门禁结果
 rg_passed = rrp  # RTK读者门禁结果
-meta_leak_found = False
+meta_leak_found = author_deai_counts.get('META_INFO_HARD', 0) > 0
 
 # ─── 5. 写入审核记录 ───
 rec = f'''# 第{ch}章 六角色外审记录 V4
@@ -516,6 +623,7 @@ rec = f'''# 第{ch}章 六角色外审记录 V4
 - 上章记忆卡：{'已注入' if mem_text else '未找到'}
 - Wikilink关联：{len(all_links)} 条
 - 章末钩子检测：{'✓' if hook_found else '✗ 未找到'}
+- 作者确定性DEAI硬闸：{'✓' if author_deai_hard_clear else '✗'} {json.dumps({k: author_deai_counts.get(k, 0) for k in sorted(AUTHOR_DEAI_HARD_TYPES)}, ensure_ascii=False)}
 
 ## 原始输出
 - 编辑写前：raw/第{ch}_editor_pre_v3.json
@@ -543,7 +651,8 @@ print(json.dumps({
     'author_model': model,
     'author_base_url': base_url,
     'editor_pass': ep, 'reader_pass': rp,
-    'meta_leak': False,
+    'meta_leak': meta_leak_found,
+    'author_deai_hard_clear': author_deai_hard_clear,
     'evidence_gate': eg_passed,
     'reader_evidence_gate': rg_passed,
     'kb_cards': kb_card_list,

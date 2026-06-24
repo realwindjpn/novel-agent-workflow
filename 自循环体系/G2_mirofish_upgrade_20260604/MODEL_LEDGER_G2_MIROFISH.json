@@ -1,0 +1,159 @@
+{
+  "schema_version": "g2_mirofish_model_ledger_v1",
+  "status": "READY_FOR_SKYCLAW_REVIEW",
+  "created_at": "2026-06-04T19:42:00+08:00",
+  "route_request": {
+    "provider": "freemodel",
+    "model": "gpt-5.5"
+  },
+  "roles": [
+    {
+      "role": "MiroFish预处理",
+      "owner": "MiMo/GPT5.5",
+      "preferred_routes": [
+        {
+          "provider": "xiaomi",
+          "model": "mimo-v2.5-pro"
+        },
+        {
+          "provider": "freemodel",
+          "model": "gpt-5.5"
+        }
+      ],
+      "input": "SenseNova valid content cards + outline/wiki read-only",
+      "output": "decision_cards",
+      "boundary": "只产预处理卡，不裁决，不改大纲正文"
+    },
+    {
+      "role": "G2主席",
+      "owner": "六角色会议主席",
+      "preferred_routes": [
+        {
+          "provider": "freemodel",
+          "model": "gpt-5.5"
+        },
+        {
+          "provider": "byeapi",
+          "model": "gpt-5.5"
+        }
+      ],
+      "input": "decision_cards + role votes",
+      "output": "三态总裁决",
+      "boundary": "只产候选，OUTLINE_PATCH需用户确认后才可apply"
+    },
+    {
+      "role": "作者席",
+      "owner": "六角色",
+      "preferred_routes": [
+        {
+          "provider": "xiaomi",
+          "model": "mimo-v2.5-pro"
+        }
+      ],
+      "input": "decision_cards",
+      "output": "角色OS/章节钩子可用性",
+      "boundary": "不写正文"
+    },
+    {
+      "role": "编辑席",
+      "owner": "六角色",
+      "preferred_routes": [
+        {
+          "provider": "freemodel",
+          "model": "gpt-5.5"
+        },
+        {
+          "provider": "byeapi",
+          "model": "gpt-5.5"
+        }
+      ],
+      "input": "decision_cards",
+      "output": "大纲结构与去AI风险裁决",
+      "boundary": "不替主席最终汇总"
+    },
+    {
+      "role": "读者席",
+      "owner": "六角色",
+      "preferred_routes": [
+        {
+          "provider": "freemodel",
+          "model": "gpt-5.5"
+        },
+        {
+          "provider": "aixiaobai",
+          "model": "gpt-5.5"
+        }
+      ],
+      "input": "decision_cards",
+      "output": "读感/期待/混乱风险",
+      "boundary": "MiMo不得作闭环读者自审"
+    },
+    {
+      "role": "科学顾问",
+      "owner": "六角色",
+      "preferred_routes": [
+        {
+          "provider": "glm1",
+          "model": "glm-5.1"
+        },
+        {
+          "provider": "zai",
+          "model": "glm-5.1"
+        }
+      ],
+      "input": "science/tech materials",
+      "output": "科学红线与技术可用性",
+      "boundary": "不写剧情"
+    },
+    {
+      "role": "军事顾问",
+      "owner": "六角色",
+      "preferred_routes": [
+        {
+          "provider": "glm2",
+          "model": "glm-5.1"
+        },
+        {
+          "provider": "zai",
+          "model": "glm-5.1"
+        }
+      ],
+      "input": "military/policy materials",
+      "output": "军事逻辑与授权链风险",
+      "boundary": "不写剧情"
+    },
+    {
+      "role": "SkyClaw巡查",
+      "owner": "SkyClaw",
+      "preferred_routes": [
+        {
+          "provider": "skyclaw",
+          "model": "skywork-ai/skyclaw-v1"
+        }
+      ],
+      "input": "all outputs + state + inbox",
+      "output": "PASS/FAIL/NEED_CONTROLLER",
+      "boundary": "巡查与异常提醒，不做终验，不改正式文件"
+    },
+    {
+      "role": "主控终验",
+      "owner": "主控",
+      "preferred_routes": [
+        {
+          "provider": "cpa",
+          "model": "gpt-5.5"
+        }
+      ],
+      "input": "SkyClaw审查 + 产物",
+      "output": "READY/FAIL与下一步",
+      "boundary": "不写正文，不替代子模型返修，不直接apply大纲"
+    }
+  ],
+  "fallback_policy": "GPT5.5席位 freemodel→byeapi→aixiaobai→hikari；MiMo Pro慢则mimo-v2.5；Qwen/alibaba禁用。",
+  "verification": [
+    "素材数=三态总数",
+    "无NOTE_ONLY",
+    "无正式大纲/正文/TXT/Wiki/RAG/cron/job改动",
+    "inbox有G2_PATCH_READY"
+  ]
+}

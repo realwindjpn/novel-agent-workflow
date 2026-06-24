@@ -1,0 +1,39 @@
+{
+  "run_id": "historical_2026-06-01_20260607_003051",
+  "day": "2026-06-01",
+  "pack_path": "/root/workspace/科武纪元/自循环体系/historical_mirofish_replay_20260606/historical_2026-06-01_20260607_003051/MIROFISH_HISTORICAL_FEED_PACK.md",
+  "selected_count": 7,
+  "selected_cards": [
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-06-01/素材卡_Gravity_Waves_From_Super_Typhoon_Sinlaku_20260601_2230.md",
+      "title": "素材卡：Gravity Waves From Super Typhoon Sinlaku"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-06-01/素材卡_Nature_20260601_2230.md",
+      "title": "素材卡：Nature"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-06-01/素材卡_Space_Out_This_Summer_with_Variety_of_NASA_STEM_Activities_20260601_2230.md",
+      "title": "素材卡：Space Out This Summer with Variety of NASA STEM Activities"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-06-01/素材卡_This_DIY_Bipedal_Robot_Used_Pneumatic_“Air-Muscles”_Instead_of_Motors_20260601_1311.md",
+      "title": "素材卡：This DIY Bipedal Robot Used Pneumatic “Air-Muscles” Instead of Motors"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-06-01/素材卡_【新华社】嫦娥六号样品刷新认知_首次揭示月背演化与巨型_..._20260601_2230.md",
+      "title": "素材卡：【新华社】嫦娥六号样品刷新认知 首次揭示月背演化与巨型 ..."
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-06-01/素材卡_民用无人驾驶航空器综合管理平台（UOM）_20260601_1306.md",
+      "title": "素材卡：民用无人驾驶航空器综合管理平台（UOM）"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-06-01/素材卡_民用无人驾驶航空器综合管理平台（UOM）_20260601_1311.md",
+      "title": "素材卡：民用无人驾驶航空器综合管理平台（UOM）"
+    }
+  ],
+  "skipped": [],
+  "status": "FEED_PACK_READY",
+  "created_at": "2026-06-07T00:30:51"
+}

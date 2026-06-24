@@ -1,0 +1,36 @@
+{
+  "run_id": "historical_2026-05-22_20260606_233218",
+  "day": "2026-05-22",
+  "pack_path": "/root/workspace/科武纪元/自循环体系/historical_mirofish_replay_20260606/historical_2026-05-22_20260606_233218/MIROFISH_HISTORICAL_FEED_PACK.md",
+  "selected_count": 3,
+  "selected_cards": [
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-22/素材卡_能落地的请留下，讲故事的请离场_20260522_1736.md",
+      "title": "素材卡：能落地的请留下，讲故事的请离场"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-22/素材卡_让好项目，更早被看见_20260522_1736.md",
+      "title": "素材卡：让好项目，更早被看见"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-22/素材卡_让智能体看见世界：CV_×_AI_Agent_的行业场景新实践_2026AI_Partner·北京亦庄AI+产业大会_20260522_1734.md",
+      "title": "素材卡：让智能体看见世界：CV × AI Agent 的行业场景新实践| 2026AI Partner·北京亦庄AI+产业大会"
+    }
+  ],
+  "skipped": [
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-22/素材卡_素材卡_不重复处理已归档的_`CARD_PENDING`_流程标记_20260521_2003.md_20260522_0110.md",
+      "reason": "noise_or_pending"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-22/素材卡_素材卡_所有_`CARD_PENDING`_均为流程标记文件，无正文可抽_20260521_2003.md_20260522_0110.md",
+      "reason": "noise_or_pending"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-22/素材卡_素材卡_本批_`CARD_PENDING`_均为流程标记，_无需主控抽正文_20260521_2003.md_20260522_0110.md",
+      "reason": "noise_or_pending"
+    }
+  ],
+  "status": "FEED_PACK_READY",
+  "created_at": "2026-06-06T23:32:18"
+}

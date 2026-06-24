@@ -1,0 +1,31 @@
+{
+  "run_id": "historical_2026-05-08_20260606_215007",
+  "day": "2026-05-08",
+  "pack_path": "/root/workspace/科武纪元/自循环体系/historical_mirofish_replay_20260606/historical_2026-05-08_20260606_215007/MIROFISH_HISTORICAL_FEED_PACK.md",
+  "selected_count": 5,
+  "selected_cards": [
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-08/素材卡_土耳其6000公里导弹_液体推进剂_国产化.md",
+      "title": "素材卡：土耳其Yıldırımhan远程导弹：6000公里、3吨战斗部与推进剂国产化"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-08/素材卡_欧洲防务自主_500亿欧_C2_Drone_Starlink.md",
+      "title": "素材卡：欧洲防务自主路线：每年500亿欧、C2系统、无人机与欧洲版Starlink"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-08/素材卡_番茄平台稿费福利_全勤星火规则.md",
+      "title": "素材卡：番茄平台稿费福利与全勤星火规则"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-08/素材卡_美军无人机操作员训练_蜂群与OODA压缩.md",
+      "title": "素材卡：美军无人机操作员训练、蜂群与OODA压缩"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-08/素材卡_量子计算最大分子模拟_混合量子经典管线.md",
+      "title": "素材卡：量子计算最大分子模拟与混合量子-经典管线"
+    }
+  ],
+  "skipped": [],
+  "status": "FEED_PACK_READY",
+  "created_at": "2026-06-06T21:50:07"
+}

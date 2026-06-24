@@ -1,0 +1,39 @@
+{
+  "run_id": "historical_2026-05-11_20260606_225028",
+  "day": "2026-05-11",
+  "pack_path": "/root/workspace/科武纪元/自循环体系/historical_mirofish_replay_20260606/historical_2026-05-11_20260606_225028/MIROFISH_HISTORICAL_FEED_PACK.md",
+  "selected_count": 7,
+  "selected_cards": [
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-11/素材卡_Deal_Team_Six采购队.md",
+      "title": "素材卡：Deal Team Six采购队"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-11/素材卡_RNA遗传与表观遗传.md",
+      "title": "素材卡：RNA遗传与表观遗传"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-11/素材卡_xAI与Anthropic合作.md",
+      "title": "素材卡：xAI与Anthropic合作"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-11/素材卡_光帆星际推进（Metajets）.md",
+      "title": "素材卡：光帆星际推进（Metajets）"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-11/素材卡_印度语音AI落地.md",
+      "title": "素材卡：印度语音AI落地"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-11/素材卡_可移动量子比特制造.md",
+      "title": "素材卡：可移动量子比特制造"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-11/素材卡_机器人数据主权_Config_20260511.md",
+      "title": "素材卡：机器人数据主权与Config模式"
+    }
+  ],
+  "skipped": [],
+  "status": "FEED_PACK_READY",
+  "created_at": "2026-06-06T22:50:28"
+}

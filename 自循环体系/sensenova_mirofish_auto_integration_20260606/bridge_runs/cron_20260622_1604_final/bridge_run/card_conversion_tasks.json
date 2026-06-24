@@ -1,0 +1,110 @@
+[
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260622_be80164f88",
+    "title": "Tropical Storm Arthur",
+    "source_url": "https://science.nasa.gov/earth/earth-observatory/tropical-storm-arthur",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1604/cards/Tropical_Storm_Arthur_0f87b922.md",
+    "target_chapter_hint": 156,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_Wiki",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_Wiki"
+    ],
+    "not_done_in_dry_run": true
+  },
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260622_04603fde78",
+    "title": "Galileo signal updated for internet-of-things use",
+    "source_url": "https://www.esa.int/Applications/Satellite_navigation/Galileo/Galileo_signal_updated_for_internet-of-things_use",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1604/cards/Galileo_signal_updated_for_internet-of-things_use_f5f4f561.md",
+    "target_chapter_hint": 156,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_Wiki",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_Wiki"
+    ],
+    "not_done_in_dry_run": true
+  },
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260622_448998536d",
+    "title": "科学家让活细胞成像既全又清",
+    "source_url": "https://news.cctv.com/2026/06/22/ARTIZPIxDC4mgWxyNv9fFYQa260622.shtml",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1604/cards/科学家让活细胞成像既全又清_f973765f.md",
+    "target_chapter_hint": 359,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_Wiki",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_Wiki"
+    ],
+    "not_done_in_dry_run": true
+  },
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260622_d375a2c349",
+    "title": "央地共建粤港澳大湾区国际科技创新中心工作推进会在广州召开",
+    "source_url": "https://www.most.gov.cn/kjbgz/202606/t20260618_196809.html",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1604/cards/央地共建粤港澳大湾区国际科技创新中心工作推进会在广州召开_739d880d.md",
+    "target_chapter_hint": 125,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_Wiki",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_Wiki"
+    ],
+    "not_done_in_dry_run": true
+  },
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260622_1bd3184ff2",
+    "title": "两部门部署在全国开展2026年“全民反诈在行动”集中宣传月活动",
+    "source_url": "https://news.cctv.com/2026/06/10/ARTImWdyfJZtw95kmOJgdob2260610.shtml",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1604/cards/两部门部署在全国开展2026年_全民反诈在行动_集中宣传月活动_b0575c12.md",
+    "target_chapter_hint": 125,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_Wiki",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_Wiki"
+    ],
+    "not_done_in_dry_run": true
+  },
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260622_7a7d718505",
+    "title": "高质量数据集建设激活人工智能发展新动能",
+    "source_url": "http://finance.people.com.cn/n1/2026/0529/c1004-40729991.html",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1604/cards/高质量数据集建设激活人工智能发展新动能_46f2f8ed.md",
+    "target_chapter_hint": 156,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_Wiki",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_Wiki"
+    ],
+    "not_done_in_dry_run": true
+  }
+]

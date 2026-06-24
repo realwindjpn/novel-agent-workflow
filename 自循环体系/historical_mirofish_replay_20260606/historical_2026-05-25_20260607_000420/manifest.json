@@ -1,0 +1,27 @@
+{
+  "run_id": "historical_2026-05-25_20260607_000420",
+  "day": "2026-05-25",
+  "pack_path": "/root/workspace/科武纪元/自循环体系/historical_mirofish_replay_20260606/historical_2026-05-25_20260607_000420/MIROFISH_HISTORICAL_FEED_PACK.md",
+  "selected_count": 4,
+  "selected_cards": [
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-25/素材卡_AI_with_Model-Based_Design_Virtual_Sensor_Modeling_20260525_2041.md",
+      "title": "素材卡：AI with Model-Based Design: Virtual Sensor Modeling"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-25/素材卡_NTIRE_2026_Rip_Current_Detection_and_Segmentation_(RipDetSeg)_Challeng_20260525_0527.md",
+      "title": "素材卡：NTIRE 2026 Rip Current Detection and Segmentation (RipDetSeg) Challenge Repo"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-25/素材卡_NTIRE_2026_The_Second_Challenge_on_Day_and_Night_Raindrop_Removal_for__20260525_0021.md",
+      "title": "素材卡：NTIRE 2026 The Second Challenge on Day and Night Raindrop Removal for Dual-F"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-25/素材卡_✅_已采：DefenseNews_TechCrunch_ArsTechnica（RSS已过滤低相关）_20260525_0527.md",
+      "title": "素材卡：✅ 已采：DefenseNews/TechCrunch/ArsTechnica（RSS已过滤低相关）"
+    }
+  ],
+  "skipped": [],
+  "status": "FEED_PACK_READY",
+  "created_at": "2026-06-07T00:04:20"
+}

@@ -1,0 +1,55 @@
+{
+  "run_id": "historical_2026-05-12_20260606_225028",
+  "day": "2026-05-12",
+  "pack_path": "/root/workspace/科武纪元/自循环体系/historical_mirofish_replay_20260606/historical_2026-05-12_20260606_225028/MIROFISH_HISTORICAL_FEED_PACK.md",
+  "selected_count": 11,
+  "selected_cards": [
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-12/素材卡_linux_dirty_frag_20260512.md",
+      "title": "素材卡：Linux Dirty Frag本地提权漏洞冲击容器与服务器"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-12/素材卡_nhs_source_code_ai_hacking_20260512.md",
+      "title": "素材卡：NHS因AI黑客风险计划隐藏开源代码引发反弹"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-12/素材卡_ukraine_russia_ceasefire_failed_20260512.md",
+      "title": "素材卡：俄乌三日停火仍持续交战与无人机炮火"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-12/素材卡_us_navy_foreign_shipbuilding_20260512.md",
+      "title": "素材卡：美海军研究海外造舰以缓解本土劳动力瓶颈"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-12/素材卡_军事AI_蜂群_UGV编队规模_杀伤链延迟_人在环授权_20260512.md",
+      "title": "素材卡：军事AI/蜂群_UGV编队规模/杀伤链延迟/人在环授权"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-12/素材卡_军事AI_蜂群_反蜂群定向能有效距离_空域安全_20260512.md",
+      "title": "素材卡：军事AI/蜂群_反蜂群定向能有效距离/空域安全"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-12/素材卡_月球_深空工程_月面基地辐射屏蔽厚度_剂量约束_20260512.md",
+      "title": "素材卡：月球/深空工程_月面基地辐射屏蔽厚度/剂量约束"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-12/素材卡_月球_深空工程_火星ISRU产氧_能耗_规模化约束_20260512.md",
+      "title": "素材卡：月球/深空工程_火星ISRU产氧/能耗/规模化约束"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-12/素材卡_生物技术_遗传战_基因编辑脱靶检测流程_失败模式_20260512.md",
+      "title": "素材卡：生物技术/遗传战_基因编辑脱靶检测流程/失败模式"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-12/素材卡_生物技术_遗传战_脑机接口延迟_闭环反馈参数_20260512.md",
+      "title": "素材卡：生物技术/遗传战_脑机接口延迟/闭环反馈参数"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-12/素材卡_苏联科学megastructures照片_大科学工程_20260512.md",
+      "title": "素材卡：苏联科学megastructures照片/大科学工程"
+    }
+  ],
+  "skipped": [],
+  "status": "FEED_PACK_READY",
+  "created_at": "2026-06-06T22:50:28"
+}

@@ -1,98 +1,128 @@
 # MiroFish feed-to-card bridge dry-run report
 
-- created_at: 2026-06-09T00:08:59
-- source_run_dir: /root/workspace/科武纪元/学习记录/SenseNova分段任务化/prod_verify_domestic_hotfix_20260608_225908
+- created_at: 2026-06-22T21:11:38
+- source_run_dir: /root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932
 - dry_run: True
 - production_runner_modified: NO
 - formal_cards_written: NO
 - outline_text_txt_draft_modified: NO
-- valid_input_count: 19
-- skipped_count: 51
-- disposition_counts: {"OUTLINE_PATCH": 2, "CHAPTER_PREP_ONLY": 11, "ARCHIVE_WITH_REASON": 6}
-- conversion_task_count: 11
+- expert_gate_pass: True
+- expert_voice_card_count: 0
+- source_card_count: 5
+- fresh_news_card_count: 5
+- valid_input_count: 5
+- skipped_count: 99
+- body_fetch_evidence_count: 11
+- skip_reason_counts: {"duplicate_url": 5, "http_403|jina_timeout": 2, "not_article_page_url": 1, "duplicate_within_run": 4, "summary_not_body_evidence": 1, "missing_body_path": 20, "already_in_previous_bridge_run": 1, "stale_domestic_article": 1, "low_value_policy_theory_source": 1, "low_value_expo_or_conference": 1, "query_plan_no_body": 62}
+- stale_domestic_blocked_count: 1
+- p0_missing: True
+- disposition_counts: {"OUTLINE_PATCH": 0, "CHAPTER_PREP_ONLY": 0, "ARCHIVE_WITH_REASON": 5}
+- conversion_task_count: 0
 
 ## Outputs
 
-- /root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_run/mirofish_feed_package.json
-- /root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_run/decision_cards.json
-- /root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_run/card_conversion_tasks.json
+- /root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260622_1932/mirofish_feed_package.json
+- /root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260622_1932/decision_cards.json
+- /root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260622_1932/card_conversion_tasks.json
 
 ## Disposition table
 
 | disposition | material_id | title | reason |
 |---|---|---|---|
-| CHAPTER_PREP_ONLY | 20260609_189df018fa | 发展新质生产力是推动高质量发展的内在要求和重要着力点 - 时政 | 政策框架/概念文只作制度语境准备，不直接升为OUTLINE_PATCH。 |
-| CHAPTER_PREP_ONLY | 20260609_c2ef339ce5 | 着力打造京津冀世界级先进制造业集群 - 理论- 人民网 | 生物伦理/人才争夺/科研治理素材，可作后续章节准备。 |
-| OUTLINE_PATCH | 20260609_3916dd5444 | 要像人類一樣聰明 AI先得突破算力極限 | 与算法/算力/技术主权主线直接相关，交G2裁决是否写入备注层。 |
-| CHAPTER_PREP_ONLY | 20260609_55b749ffda | 新质生产力的内涵特征和发展重点 - 新华网 | 政策框架/概念文只作制度语境准备，不直接升为OUTLINE_PATCH。 |
-| CHAPTER_PREP_ONLY | 20260609_d2419b4711 | 牢牢把握产业革命大趋势 - 新华网 | 政策框架/概念文只作制度语境准备，不直接升为OUTLINE_PATCH。 |
-| CHAPTER_PREP_ONLY | 20260609_d184279482 | 诺安基金邓心怡：国内机器人行业有望迎来产业高速发展窗口期-经济参考网 _ 新华社《经济参考报》官方网站 | 生物伦理/人才争夺/科研治理素材，可作后续章节准备。 |
-| CHAPTER_PREP_ONLY | 20260609_0089cfd1a9 | 市场最前沿｜逐空而上！低空经济加速启航万亿新赛道 - 新华网 | 高机动平台与感知/噪声治理可作军事制度细节层。 |
-| CHAPTER_PREP_ONLY | 20260609_d2926e2496 | “嫦娥二号”在700万公里深空成功探测小行星 - 新华时政 - 新华网 | 地月/深空/通信链路素材，宜入章节准备红线，不直接改大纲。 |
-| CHAPTER_PREP_ONLY | 20260609_5cc6ef174a | 新质生产力加快培育 释放高质量发展新动能_新闻频道_央视网(cctv.com) | 地月/深空/通信链路素材，宜入章节准备红线，不直接改大纲。 |
-| OUTLINE_PATCH | 20260609_5ec0319d8b | 努力成为世界主要科学中心和创新高地_新闻频道_央视网(cctv.com) | 与算法/算力/技术主权主线直接相关，交G2裁决是否写入备注层。 |
-| ARCHIVE_WITH_REASON | 20260609_46489de369 | NASA’s X-59 Aircraft Flies Supersonic for First Time | 重复或已入库：SOURCE_URL_ALREADY_IN_INDEX_OR_CARD |
-| ARCHIVE_WITH_REASON | 20260609_7615a28737 | NASA Announces Winners of 2026 University Innovation Competition | 重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY |
-| ARCHIVE_WITH_REASON | 20260609_7d54703422 | NASA’s Artemis II Moon Mission Research Continues on Earth | 重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY |
-| CHAPTER_PREP_ONLY | 20260609_96eb526832 | NASA Satellites Help Map Ocean Nutrient Stress | 地月/深空/通信链路素材，宜入章节准备红线，不直接改大纲。 |
-| ARCHIVE_WITH_REASON | 20260609_ac410b5036 | NASA Concludes Antenna Mishap Investigation, Releases Report | 重复或已入库：SOURCE_URL_ALREADY_IN_INDEX_OR_CARD |
-| CHAPTER_PREP_ONLY | 20260609_03f6eed164 | ESA at ILA Berlin International Airshow 2026 | 地月/深空/通信链路素材，宜入章节准备红线，不直接改大纲。 |
-| CHAPTER_PREP_ONLY | 20260609_e98ca3c005 | AI is taking on antibiotic resistance — here’s how | 生物伦理/人才争夺/科研治理素材，可作后续章节准备。 |
-| ARCHIVE_WITH_REASON | 20260609_e3d5484787 | Nuclear-fusion firm says plant will deliver electricity to grid – but big questi | 重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY |
-| ARCHIVE_WITH_REASON | 20260609_874e6e7b14 | Sustainability or dystopia? What past patterns tell us about where society is he | 重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY |
+| ARCHIVE_WITH_REASON | 20260622_1d6480597f | NASA Mission to Study Space Weather Impacts of Earth’s Atmosphere | 重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY |
+| ARCHIVE_WITH_REASON | 20260622_52c249b390 | NASA Awards Contract for Commercial Satellite Data Acquisition | 重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY |
+| ARCHIVE_WITH_REASON | 20260622_6350dc298a | Desert Field Test With NASA Advanced Rover Prototype | 重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY |
+| ARCHIVE_WITH_REASON | 20260622_8160e14528 | 俄罗斯核聚变专家中国行活动成功举办 | 重复或已入库：SOURCE_URL_ALREADY_IN_INDEX_OR_CARD |
+| ARCHIVE_WITH_REASON | 20260622_497225b562 | Statement on the US government directive to suspend access to Fable 5 and Mythos | 重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY |
+
+## Missing Cards by Tier
+
+| tier | missing_card_ids |
+|---|---|
+| P0 | 46f2f8ed8146dd8f |
+| UNKNOWN | 0f87b92216fda77e, 739d880d3e439921, b0575c12905ca69e, f5f4f56121883f39, f973765f307079e8 |
 
 ## Skipped
 
 | title | source status | reason |
 |---|---|---|
-| [QP:cctv.com] 人工智能 半导体 算力 | OFFICIAL_QUERY_PLAN | query_plan_no_body |
-| [QP:cctv.com] 新材料 能源 动力装备 | OFFICIAL_QUERY_PLAN | query_plan_no_body |
-| [QP:cctv.com] 航天 深空 探测 | OFFICIAL_QUERY_PLAN | query_plan_no_body |
-| [QP:huanqiu.com] 科技 国防 航天 | OFFICIAL_QUERY_PLAN | query_plan_no_body |
-| [QP:huanqiu.com] 地缘 科技 产业链 | OFFICIAL_QUERY_PLAN | query_plan_no_body |
-| [QP:guancha.cn] 半导体 出口管制 产业链 | OFFICIAL_QUERY_PLAN | query_plan_no_body |
-| [QP:guancha.cn] 航天 军事 科技 | OFFICIAL_QUERY_PLAN | query_plan_no_body |
-| [QP:miit.gov.cn] 新型工业化 先进制造 产业链 | OFFICIAL_QUERY_PLAN | query_plan_no_body |
-| [QP:miit.gov.cn] 人工智能 半导体 算力 | OFFICIAL_QUERY_PLAN | query_plan_no_body |
-| [QP:mod.gov.cn] 科技 国防 无人机 | OFFICIAL_QUERY_PLAN | query_plan_no_body |
-| [QP:mod.gov.cn] 航天 网络 信息化 | OFFICIAL_QUERY_PLAN | query_plan_no_body |
-| [QP:most.gov.cn] query_plan | OFFICIAL_QUERY_PLAN | query_plan_no_body |
-| [QP:most.gov.cn] 人工智能 量子 新材料 | OFFICIAL_QUERY_PLAN | query_plan_no_body |
-| [QP:cnsa.gov.cn] 月球 深空 探测工程 | OFFICIAL_QUERY_PLAN | query_plan_no_body |
-| [QP:cnsa.gov.cn] 航天 科技 探测 | OFFICIAL_QUERY_PLAN | query_plan_no_body |
-| [QP:cas.cn] 科技突破 重大进展 | OFFICIAL_QUERY_PLAN | query_plan_no_body |
-| [QP:cas.cn] 人工智能 量子 新材料 | OFFICIAL_QUERY_PLAN | query_plan_no_body |
-| [QP:cas.cn] 航天 深空 机器人 | OFFICIAL_QUERY_PLAN | query_plan_no_body |
-| [QP:iop.cas.cn] 量子 材料 能源 | OFFICIAL_QUERY_PLAN | query_plan_no_body |
-| [QP:cac.gov.cn] 人工智能 治理 数据 | OFFICIAL_QUERY_PLAN | query_plan_no_body |
-| [QP:cac.gov.cn] 网络安全 数据安全 生成式人工智能 | OFFICIAL_QUERY_PLAN | query_plan_no_body |
-| ESA and EBRD to advance Earth observation for development and impact finance | BODY_FETCH_FAIL | TIMEOUT |
-| [QP:stdaily.com] query_plan | DISCOVERY_PENDING | query_plan_no_body |
-| [QP:stdaily.com] 新材料 先进制造 能源 | DISCOVERY_PENDING | query_plan_no_body |
-| [QP:stdaily.com] 人工智能 机器人 量子 | DISCOVERY_PENDING | query_plan_no_body |
-| [QP:unknown] 微博热榜 科技 航天 | DISCOVERY_PENDING | query_plan_no_body |
-| [QP:unknown] 知乎热榜 科技 半导体 | DISCOVERY_PENDING | query_plan_no_body |
-| [QP:unknown] B站热门 科技 航天 | DISCOVERY_PENDING | query_plan_no_body |
-| [QP:unknown] 百度热搜 科技 航天 | DISCOVERY_PENDING | query_plan_no_body |
-| [QP:unknown] 小红书热榜 科技 AI | DISCOVERY_PENDING | query_plan_no_body |
-| [QP:nasa.gov] Artemis lunar program | OFFICIAL_QUERY_PLAN | query_plan_no_body |
-| [QP:esa.int] lunar exploration deep | OFFICIAL_QUERY_PLAN | query_plan_no_body |
-| [QP:darpa.mil] autonomous systems drone | OFFICIAL_QUERY_PLAN | query_plan_no_body |
-| [QP:defense.gov] drone swarm military | OFFICIAL_QUERY_PLAN | query_plan_no_body |
-| [QP:energy.gov] quantum energy research | OFFICIAL_QUERY_PLAN | query_plan_no_body |
-| [QP:noaa.gov] satellite climate ocean | OFFICIAL_QUERY_PLAN | query_plan_no_body |
-| [QP:pubmed.ncbi.nlm.nih.gov] brain computer interface | OFFICIAL_QUERY_PLAN | query_plan_no_body |
-| [QP:arxiv.org] quantum computing | OFFICIAL_QUERY_PLAN | query_plan_no_body |
-| [QP:arxiv.org] AI safety robotics | OFFICIAL_QUERY_PLAN | query_plan_no_body |
-| [QP:openalex.org] quantum computing AI | OFFICIAL_QUERY_PLAN | query_plan_no_body |
-| [QP:nature.com] quantum computing AI | OFFICIAL_QUERY_PLAN | query_plan_no_body |
-| [QP:science.org] quantum AI energy | OFFICIAL_QUERY_PLAN | query_plan_no_body |
-| [QP:ieee.org] AI chips robotics | OFFICIAL_QUERY_PLAN | query_plan_no_body |
-| [QP:bis.gov] export control semiconductors | OFFICIAL_QUERY_PLAN | query_plan_no_body |
-| [QP:semiconductors.org] semiconductor industry chips | OFFICIAL_QUERY_PLAN | query_plan_no_body |
-| [QP:unknown] Twitter space technology | DISCOVERY_PENDING | query_plan_no_body |
-| [QP:unknown] reddit technology defense | DISCOVERY_PENDING | query_plan_no_body |
-| [QP:unknown] Hacker News AI | DISCOVERY_PENDING | query_plan_no_body |
-| [QP:unknown] ResetEra technology defense | DISCOVERY_PENDING | query_plan_no_body |
-| [QP:unknown] YouTube official channel | DISCOVERY_PENDING | query_plan_no_body |
-| [QP:unknown] public discord announcement | DISCOVERY_PENDING | query_plan_no_body |
+| Tropical Storm Arthur | SKIP_DUPLICATE | DUPLICATE_URL |
+| The Voice in Orbit | Talking to Astronauts in Space | ESA Explores #20 | BODY_FETCH_FAIL | HTTP_403|JINA_TIMEOUT |
+| Galileo signal updated for internet-of-things use | SKIP_DUPLICATE | DUPLICATE_URL |
+| 科学家让活细胞成像既全又清 | SKIP_DUPLICATE | DUPLICATE_URL |
+| “AI桂林”文旅大模型正式上线 “AI桂林”文旅大模型在第22届中国—东盟博览会正式上线。这是桂林市与人民网深度合作开发的首个聚焦打造“世界级旅游城市”的全域智 | BODY_FETCH_FAIL | NOT_ARTICLE_PAGE_URL |
+| 央地共建粤港澳大湾区国际科技创新中心工作推进会在广州召开 | SKIP_DUPLICATE | DUPLICATE_URL |
+| NASA Mission to Study Space Weather Impacts of Earth’s Atmosphere | DISTILLED | duplicate_within_run |
+| NASA Awards Contract for Commercial Satellite Data Acquisition | DISTILLED | duplicate_within_run |
+| Desert Field Test With NASA Advanced Rover Prototype | DISTILLED | duplicate_within_run |
+| εpsilon | BODY_FETCH_FAIL | HTTP_403|JINA_TIMEOUT |
+| Galileo signal updated for internet-of-things use | SKIP_DUPLICATE | duplicate_within_run |
+| Announcements Jun 11, 2026 Introducing Claude Corps We’re launching Claude Corps | SUMMARY_ONLY | summary_not_body_evidence |
+| emerging resilience in the semiconductor supply chain | NEED_FETCH_BODY | missing_body_path |
+| g7 leaders statement ai prosperity | NEED_FETCH_BODY | missing_body_path |
+| g7 leaders statement on ai for prosperity | NEED_FETCH_BODY | missing_body_path |
+| index | NEED_FETCH_BODY | missing_body_path |
+| g7 energy and environment ministers meeting energy and artificial intelligence | NEED_FETCH_BODY | missing_body_path |
+| president donald j trump attends the 51st g7 summit in kananaskis alberta canada | NEED_FETCH_BODY | missing_body_path |
+| president trump attends g7 summit in canada | NEED_FETCH_BODY | missing_body_path |
+| president donald j trump attends the 51st g7 summit in kananaskis alberta canada | NEED_FETCH_BODY | missing_body_path |
+| claude fable 5 mythos 5 | NEED_FETCH_BODY | missing_body_path |
+| 两部门部署在全国开展2026年“全民反诈在行动”集中宣传月活动 | SKIP_DUPLICATE | DUPLICATE_URL |
+| 高质量数据集建设激活人工智能发展新动能 | DISTILLED | already_in_previous_bridge_run |
+| 250617 ai | NEED_FETCH_BODY | missing_body_path |
+| 122184547496875278 | NEED_FETCH_BODY | missing_body_path |
+| inside g7 environment energy | NEED_FETCH_BODY | missing_body_path |
+| 1140358111469901 | NEED_FETCH_BODY | missing_body_path |
+| 122137343534723345 | NEED_FETCH_BODY | missing_body_path |
+| 1271398617891201 | NEED_FETCH_BODY | missing_body_path |
+| iran war day 115 lebanon truce appears to hold as switzerland talks end | NEED_FETCH_BODY | missing_body_path |
+| trump brokered ceasefire agreement contact with israel iran white house official | NEED_FETCH_BODY | missing_body_path |
+| model deprecations | NEED_FETCH_BODY | missing_body_path |
+| anthropic claude model deprecations on june 15 2026 | NEED_FETCH_BODY | missing_body_path |
+| claude sonnet 4 opus 4 deprecation migration guide | NEED_FETCH_BODY | missing_body_path |
+| c1024 40247782 | BODY_FETCH_FAIL | STALE_DOMESTIC_ARTICLE |
+| c40531 40625089 | BODY_FETCH_FAIL | LOW_VALUE_POLICY_THEORY_SOURCE |
+| c1004 40732291 | BODY_FETCH_FAIL | LOW_VALUE_EXPO_OR_CONFERENCE |
+| [QP:xinhuanet.com] 先进制造 | QUERY_PLAN_NO_BODY_NOT_CARDABLE | query_plan_no_body |
+| [QP:xinhuanet.com] query_plan | QUERY_PLAN_NO_BODY_NOT_CARDABLE | query_plan_no_body |
+| [QP:xinhuanet.com] 人工智能 半导体 算力 | QUERY_PLAN_NO_BODY_NOT_CARDABLE | query_plan_no_body |
+| [QP:xinhuanet.com] 新材料 能源 动力装备 | QUERY_PLAN_NO_BODY_NOT_CARDABLE | query_plan_no_body |
+| [QP:xinhuanet.com] 航天 深空 探测 | QUERY_PLAN_NO_BODY_NOT_CARDABLE | query_plan_no_body |
+| [QP:cctv.com] 先进制造 | QUERY_PLAN_NO_BODY_NOT_CARDABLE | query_plan_no_body |
+| [QP:cctv.com] query_plan | QUERY_PLAN_NO_BODY_NOT_CARDABLE | query_plan_no_body |
+| [QP:cctv.com] 人工智能 半导体 算力 | QUERY_PLAN_NO_BODY_NOT_CARDABLE | query_plan_no_body |
+| [QP:cctv.com] 新材料 能源 动力装备 | QUERY_PLAN_NO_BODY_NOT_CARDABLE | query_plan_no_body |
+| [QP:cctv.com] 航天 深空 探测 | QUERY_PLAN_NO_BODY_NOT_CARDABLE | query_plan_no_body |
+| [QP:stdaily.com] query_plan | QUERY_PLAN_NO_BODY_NOT_CARDABLE | query_plan_no_body |
+| [QP:stdaily.com] 新材料 先进制造 能源 | QUERY_PLAN_NO_BODY_NOT_CARDABLE | query_plan_no_body |
+| [QP:stdaily.com] 人工智能 机器人 量子 | QUERY_PLAN_NO_BODY_NOT_CARDABLE | query_plan_no_body |
+| [QP:huanqiu.com] 科技 国防 航天 | QUERY_PLAN_NO_BODY_NOT_CARDABLE | query_plan_no_body |
+| [QP:huanqiu.com] 地缘 科技 产业链 | QUERY_PLAN_NO_BODY_NOT_CARDABLE | query_plan_no_body |
+| [QP:guancha.cn] 半导体 出口管制 产业链 | QUERY_PLAN_NO_BODY_NOT_CARDABLE | query_plan_no_body |
+| [QP:guancha.cn] 航天 军事 科技 | QUERY_PLAN_NO_BODY_NOT_CARDABLE | query_plan_no_body |
+| [QP:miit.gov.cn] 新型工业化 先进制造 产业链 | QUERY_PLAN_NO_BODY_NOT_CARDABLE | query_plan_no_body |
+| [QP:miit.gov.cn] 人工智能 半导体 算力 | QUERY_PLAN_NO_BODY_NOT_CARDABLE | query_plan_no_body |
+| [QP:mod.gov.cn] 科技 国防 无人机 | QUERY_PLAN_NO_BODY_NOT_CARDABLE | query_plan_no_body |
+| [QP:mod.gov.cn] 航天 网络 信息化 | QUERY_PLAN_NO_BODY_NOT_CARDABLE | query_plan_no_body |
+| [QP:most.gov.cn] query_plan | QUERY_PLAN_NO_BODY_NOT_CARDABLE | query_plan_no_body |
+| [QP:most.gov.cn] 人工智能 量子 新材料 | QUERY_PLAN_NO_BODY_NOT_CARDABLE | query_plan_no_body |
+| [QP:cnsa.gov.cn] 月球 深空 探测工程 | QUERY_PLAN_NO_BODY_NOT_CARDABLE | query_plan_no_body |
+| [QP:cnsa.gov.cn] 航天 科技 探测 | QUERY_PLAN_NO_BODY_NOT_CARDABLE | query_plan_no_body |
+| [QP:cas.cn] 科技突破 重大进展 | QUERY_PLAN_NO_BODY_NOT_CARDABLE | query_plan_no_body |
+| [QP:cas.cn] 人工智能 量子 新材料 | QUERY_PLAN_NO_BODY_NOT_CARDABLE | query_plan_no_body |
+| [QP:cas.cn] 航天 深空 机器人 | QUERY_PLAN_NO_BODY_NOT_CARDABLE | query_plan_no_body |
+| [QP:iop.cas.cn] 量子 材料 能源 | QUERY_PLAN_NO_BODY_NOT_CARDABLE | query_plan_no_body |
+| [QP:cac.gov.cn] 人工智能 治理 数据 | QUERY_PLAN_NO_BODY_NOT_CARDABLE | query_plan_no_body |
+| [QP:cac.gov.cn] 网络安全 数据安全 生成式人工智能 | QUERY_PLAN_NO_BODY_NOT_CARDABLE | query_plan_no_body |
+| [QP:nasa.gov] Artemis lunar program | QUERY_PLAN_NO_BODY_NOT_CARDABLE | query_plan_no_body |
+| [QP:esa.int] lunar exploration deep | QUERY_PLAN_NO_BODY_NOT_CARDABLE | query_plan_no_body |
+| [QP:darpa.mil] autonomous systems drone | QUERY_PLAN_NO_BODY_NOT_CARDABLE | query_plan_no_body |
+| [QP:defense.gov] drone swarm military | QUERY_PLAN_NO_BODY_NOT_CARDABLE | query_plan_no_body |
+| [QP:energy.gov] quantum energy research | QUERY_PLAN_NO_BODY_NOT_CARDABLE | query_plan_no_body |
+| [QP:noaa.gov] satellite climate ocean | QUERY_PLAN_NO_BODY_NOT_CARDABLE | query_plan_no_body |
+| [QP:pubmed.ncbi.nlm.nih.gov] brain computer interface | QUERY_PLAN_NO_BODY_NOT_CARDABLE | query_plan_no_body |
+| [QP:arxiv.org] quantum computing | QUERY_PLAN_NO_BODY_NOT_CARDABLE | query_plan_no_body |
+| [QP:arxiv.org] AI safety robotics | QUERY_PLAN_NO_BODY_NOT_CARDABLE | query_plan_no_body |
+| [QP:openalex.org] quantum computing AI | QUERY_PLAN_NO_BODY_NOT_CARDABLE | query_plan_no_body |
+| [QP:nature.com] quantum computing AI | QUERY_PLAN_NO_BODY_NOT_CARDABLE | query_plan_no_body |
+| [QP:science.org] quantum AI energy | QUERY_PLAN_NO_BODY_NOT_CARDABLE | query_plan_no_body |

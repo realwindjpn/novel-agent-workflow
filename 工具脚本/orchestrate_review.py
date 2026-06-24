@@ -27,7 +27,7 @@ CONFIG = Path('/root/.hermes/config.yaml')
 
 ROLE_CONFIG = {
     'editor': {'provider': 'custom-43-135-181-17-8080', 'model': 'gpt-5.5', 'api_key': 'sk-proxy-key-20260421', 'base_url': 'http://43.135.181.17:8080/v1'},
-    'reader': {'provider': 'minimax-cn', 'model': 'MiniMax-M2.7', 'key_env': 'MINIMAX_CN_API_KEY', 'base_url': 'https://api.minimaxi.com/v1'},
+    'reader': {'provider': 'hs', 'model': 'MiniMax-M3', 'key_env': 'HS_API_KEY', 'base_url': os.environ.get('HS_BASE_URL', '')},
     'military': {'provider': 'alibaba', 'model': 'qwen3.6-plus', 'key_env': 'DASHSCOPE_API_KEY', 'base_url': 'https://coding.dashscope.aliyuncs.com/v1'},
     'science': {'provider': 'zai', 'model': 'glm-5.1', 'key_env': 'ZAI_API_KEY', 'base_url': 'https://open.bigmodel.cn/api/coding/paas/v4'},
     'master': {'provider': 'zai', 'model': 'glm-5.1', 'key_env': 'ZAI_API_KEY', 'base_url': 'https://open.bigmodel.cn/api/coding/paas/v4'},

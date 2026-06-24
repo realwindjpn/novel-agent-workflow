@@ -1,724 +1,225 @@
 [
   {
     "$schema": "decision_card_v1_bridge_20260606",
-    "material_id": "20260609_189df018fa",
-    "source_url": "http://politics.people.com.cn/n1/2024/0531/c1024-40247782.html",
-    "title": "发展新质生产力是推动高质量发展的内在要求和重要着力点 - 时政",
-    "captured_at": "2026-06-09T00:08:59",
-    "source_group": "domestic",
-    "source_type": "official",
-    "verification_status": "official_verified",
-    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/prod_verify_domestic_hotfix_20260608_225908/cards/发展新质生产力是推动高质量发展的内在要求和重要着力点_-_时政.md",
-    "evidence_complete": true,
-    "duplicate_check": {
-      "duplicate": false,
-      "reason": ""
-    },
-    "mirofish_projection": {
-      "force_reactions": [
-        {
-          "force": "联邦/白盾体系",
-          "reaction": "把「发展新质生产力是推动高质量发展的内在要求和重要着力点 - 时政」作为技术或制度压力测试变量，而非剧情事实照搬。",
-          "wiki_ref": "wiki/factions"
-        },
-        {
-          "force": "主角团/工程线",
-          "reaction": "只吸收可测反馈、失败模式、成本约束；不写成万能外挂。",
-          "wiki_ref": "wiki/characters"
-        }
-      ],
-      "chain_conflicts": [
-        {
-          "chain": [
-            "domestic_policy_context",
-            "authority_filter",
-            "kewu_relevance"
-          ],
-          "time_anchor": "latest_sensenova_run",
-          "intensity": "medium"
-        }
-      ],
-      "chapter_hooks": [
-        {
-          "hook_id": "ch125_81e96a98",
-          "description": "政策框架/概念文只作制度语境准备，不直接升为OUTLINE_PATCH。 来源题名：发展新质生产力是推动高质量发展的内在要求和重要着力点 - 时政",
-          "suitable_chapters": [
-            125
-          ],
-          "reversal": "仅作细节/变量，不直接改变既有章节功能。"
-        }
-      ],
-      "outline_delta_candidate": {
-        "type": "red_line",
-        "target_chapter": 125,
-        "proposed_addition": "",
-        "not_proposed": "政策框架/概念文只作制度语境准备，不直接升为OUTLINE_PATCH。"
-      },
-      "anti_patterns": [
-        "不得把query_plan当有效素材",
-        "不得无URL/无正文伪造素材卡",
-        "不得直接改大纲/正文/TXT/草稿箱"
-      ],
-      "six_role_recommendation": {
-        "needed": false,
-        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
-      }
-    },
-    "disposition": "CHAPTER_PREP_ONLY",
-    "disposition_reason": "政策框架/概念文只作制度语境准备，不直接升为OUTLINE_PATCH。",
-    "disposition_by": "deterministic_bridge_20260606",
-    "disposition_at": "2026-06-09T00:08:59",
-    "bridge_policy": "dry_run_no_formal_card_no_index_no_rag_write"
-  },
-  {
-    "$schema": "decision_card_v1_bridge_20260606",
-    "material_id": "20260609_c2ef339ce5",
-    "source_url": "http://theory.people.com.cn/n1/2023/1117/c40531-40120265.html",
-    "title": "着力打造京津冀世界级先进制造业集群 - 理论- 人民网",
-    "captured_at": "2026-06-09T00:08:59",
-    "source_group": "domestic",
-    "source_type": "official",
-    "verification_status": "official_verified",
-    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/prod_verify_domestic_hotfix_20260608_225908/cards/着力打造京津冀世界级先进制造业集群_-_理论-_人民网.md",
-    "evidence_complete": true,
-    "duplicate_check": {
-      "duplicate": false,
-      "reason": ""
-    },
-    "mirofish_projection": {
-      "force_reactions": [
-        {
-          "force": "联邦/白盾体系",
-          "reaction": "把「着力打造京津冀世界级先进制造业集群 - 理论- 人民网」作为技术或制度压力测试变量，而非剧情事实照搬。",
-          "wiki_ref": "wiki/factions"
-        },
-        {
-          "force": "主角团/工程线",
-          "reaction": "只吸收可测反馈、失败模式、成本约束；不写成万能外挂。",
-          "wiki_ref": "wiki/characters"
-        }
-      ],
-      "chain_conflicts": [
-        {
-          "chain": [
-            "bio_governance",
-            "authority_filter",
-            "kewu_relevance"
-          ],
-          "time_anchor": "latest_sensenova_run",
-          "intensity": "medium"
-        }
-      ],
-      "chapter_hooks": [
-        {
-          "hook_id": "ch359_1d5219b3",
-          "description": "生物伦理/人才争夺/科研治理素材，可作后续章节准备。 来源题名：着力打造京津冀世界级先进制造业集群 - 理论- 人民网",
-          "suitable_chapters": [
-            359
-          ],
-          "reversal": "仅作细节/变量，不直接改变既有章节功能。"
-        }
-      ],
-      "outline_delta_candidate": {
-        "type": "red_line",
-        "target_chapter": 359,
-        "proposed_addition": "",
-        "not_proposed": "生物伦理/人才争夺/科研治理素材，可作后续章节准备。"
-      },
-      "anti_patterns": [
-        "不得把query_plan当有效素材",
-        "不得无URL/无正文伪造素材卡",
-        "不得直接改大纲/正文/TXT/草稿箱"
-      ],
-      "six_role_recommendation": {
-        "needed": false,
-        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
-      }
-    },
-    "disposition": "CHAPTER_PREP_ONLY",
-    "disposition_reason": "生物伦理/人才争夺/科研治理素材，可作后续章节准备。",
-    "disposition_by": "deterministic_bridge_20260606",
-    "disposition_at": "2026-06-09T00:08:59",
-    "bridge_policy": "dry_run_no_formal_card_no_index_no_rag_write"
-  },
-  {
-    "$schema": "decision_card_v1_bridge_20260606",
-    "material_id": "20260609_3916dd5444",
-    "source_url": "http://hlj.people.com.cn/BIG5/n2/2020/0114/c387763-33714558.html",
-    "title": "要像人類一樣聰明 AI先得突破算力極限",
-    "captured_at": "2026-06-09T00:08:59",
-    "source_group": "domestic",
-    "source_type": "official",
-    "verification_status": "official_verified",
-    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/prod_verify_domestic_hotfix_20260608_225908/cards/要像人類一樣聰明_AI先得突破算力極限.md",
-    "evidence_complete": true,
-    "duplicate_check": {
-      "duplicate": false,
-      "reason": ""
-    },
-    "mirofish_projection": {
-      "force_reactions": [
-        {
-          "force": "联邦/白盾体系",
-          "reaction": "把「要像人類一樣聰明 AI先得突破算力極限」作为技术或制度压力测试变量，而非剧情事实照搬。",
-          "wiki_ref": "wiki/factions"
-        },
-        {
-          "force": "主角团/工程线",
-          "reaction": "只吸收可测反馈、失败模式、成本约束；不写成万能外挂。",
-          "wiki_ref": "wiki/characters"
-        }
-      ],
-      "chain_conflicts": [
-        {
-          "chain": [
-            "compute_sovereignty",
-            "authority_filter",
-            "kewu_relevance"
-          ],
-          "time_anchor": "latest_sensenova_run",
-          "intensity": "medium"
-        }
-      ],
-      "chapter_hooks": [
-        {
-          "hook_id": "ch95_e48cfaab",
-          "description": "与算法/算力/技术主权主线直接相关，交G2裁决是否写入备注层。 来源题名：要像人類一樣聰明 AI先得突破算力極限",
-          "suitable_chapters": [
-            95
-          ],
-          "reversal": "仅作细节/变量，不直接改变既有章节功能。"
-        }
-      ],
-      "outline_delta_candidate": {
-        "type": "note_layer",
-        "target_chapter": 95,
-        "proposed_addition": "与算法/算力/技术主权主线直接相关，交G2裁决是否写入备注层。",
-        "not_proposed": ""
-      },
-      "anti_patterns": [
-        "不得把query_plan当有效素材",
-        "不得无URL/无正文伪造素材卡",
-        "不得直接改大纲/正文/TXT/草稿箱"
-      ],
-      "six_role_recommendation": {
-        "needed": true,
-        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
-      }
-    },
-    "disposition": "OUTLINE_PATCH",
-    "disposition_reason": "与算法/算力/技术主权主线直接相关，交G2裁决是否写入备注层。",
-    "disposition_by": "deterministic_bridge_20260606",
-    "disposition_at": "2026-06-09T00:08:59",
-    "bridge_policy": "dry_run_no_formal_card_no_index_no_rag_write"
-  },
-  {
-    "$schema": "decision_card_v1_bridge_20260606",
-    "material_id": "20260609_55b749ffda",
-    "source_url": "http://www.xinhuanet.com/politics/20240301/ec9c1f5a8ab748fab5f74c59d3fe5862/c.html",
-    "title": "新质生产力的内涵特征和发展重点 - 新华网",
-    "captured_at": "2026-06-09T00:08:59",
-    "source_group": "domestic",
-    "source_type": "official",
-    "verification_status": "official_verified",
-    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/prod_verify_domestic_hotfix_20260608_225908/cards/新质生产力的内涵特征和发展重点_-_新华网.md",
-    "evidence_complete": true,
-    "duplicate_check": {
-      "duplicate": false,
-      "reason": ""
-    },
-    "mirofish_projection": {
-      "force_reactions": [
-        {
-          "force": "联邦/白盾体系",
-          "reaction": "把「新质生产力的内涵特征和发展重点 - 新华网」作为技术或制度压力测试变量，而非剧情事实照搬。",
-          "wiki_ref": "wiki/factions"
-        },
-        {
-          "force": "主角团/工程线",
-          "reaction": "只吸收可测反馈、失败模式、成本约束；不写成万能外挂。",
-          "wiki_ref": "wiki/characters"
-        }
-      ],
-      "chain_conflicts": [
-        {
-          "chain": [
-            "domestic_policy_context",
-            "authority_filter",
-            "kewu_relevance"
-          ],
-          "time_anchor": "latest_sensenova_run",
-          "intensity": "medium"
-        }
-      ],
-      "chapter_hooks": [
-        {
-          "hook_id": "ch125_ff187b4c",
-          "description": "政策框架/概念文只作制度语境准备，不直接升为OUTLINE_PATCH。 来源题名：新质生产力的内涵特征和发展重点 - 新华网",
-          "suitable_chapters": [
-            125
-          ],
-          "reversal": "仅作细节/变量，不直接改变既有章节功能。"
-        }
-      ],
-      "outline_delta_candidate": {
-        "type": "red_line",
-        "target_chapter": 125,
-        "proposed_addition": "",
-        "not_proposed": "政策框架/概念文只作制度语境准备，不直接升为OUTLINE_PATCH。"
-      },
-      "anti_patterns": [
-        "不得把query_plan当有效素材",
-        "不得无URL/无正文伪造素材卡",
-        "不得直接改大纲/正文/TXT/草稿箱"
-      ],
-      "six_role_recommendation": {
-        "needed": false,
-        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
-      }
-    },
-    "disposition": "CHAPTER_PREP_ONLY",
-    "disposition_reason": "政策框架/概念文只作制度语境准备，不直接升为OUTLINE_PATCH。",
-    "disposition_by": "deterministic_bridge_20260606",
-    "disposition_at": "2026-06-09T00:08:59",
-    "bridge_policy": "dry_run_no_formal_card_no_index_no_rag_write"
-  },
-  {
-    "$schema": "decision_card_v1_bridge_20260606",
-    "material_id": "20260609_d2419b4711",
-    "source_url": "http://news.xinhuanet.com/politics/2016-03/02/c_128765346.htm",
-    "title": "牢牢把握产业革命大趋势 - 新华网",
-    "captured_at": "2026-06-09T00:08:59",
-    "source_group": "domestic",
-    "source_type": "official",
-    "verification_status": "official_verified",
-    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/prod_verify_domestic_hotfix_20260608_225908/cards/牢牢把握产业革命大趋势_-_新华网.md",
-    "evidence_complete": true,
-    "duplicate_check": {
-      "duplicate": false,
-      "reason": ""
-    },
-    "mirofish_projection": {
-      "force_reactions": [
-        {
-          "force": "联邦/白盾体系",
-          "reaction": "把「牢牢把握产业革命大趋势 - 新华网」作为技术或制度压力测试变量，而非剧情事实照搬。",
-          "wiki_ref": "wiki/factions"
-        },
-        {
-          "force": "主角团/工程线",
-          "reaction": "只吸收可测反馈、失败模式、成本约束；不写成万能外挂。",
-          "wiki_ref": "wiki/characters"
-        }
-      ],
-      "chain_conflicts": [
-        {
-          "chain": [
-            "domestic_policy_context",
-            "authority_filter",
-            "kewu_relevance"
-          ],
-          "time_anchor": "latest_sensenova_run",
-          "intensity": "medium"
-        }
-      ],
-      "chapter_hooks": [
-        {
-          "hook_id": "ch125_8636b5e8",
-          "description": "政策框架/概念文只作制度语境准备，不直接升为OUTLINE_PATCH。 来源题名：牢牢把握产业革命大趋势 - 新华网",
-          "suitable_chapters": [
-            125
-          ],
-          "reversal": "仅作细节/变量，不直接改变既有章节功能。"
-        }
-      ],
-      "outline_delta_candidate": {
-        "type": "red_line",
-        "target_chapter": 125,
-        "proposed_addition": "",
-        "not_proposed": "政策框架/概念文只作制度语境准备，不直接升为OUTLINE_PATCH。"
-      },
-      "anti_patterns": [
-        "不得把query_plan当有效素材",
-        "不得无URL/无正文伪造素材卡",
-        "不得直接改大纲/正文/TXT/草稿箱"
-      ],
-      "six_role_recommendation": {
-        "needed": false,
-        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
-      }
-    },
-    "disposition": "CHAPTER_PREP_ONLY",
-    "disposition_reason": "政策框架/概念文只作制度语境准备，不直接升为OUTLINE_PATCH。",
-    "disposition_by": "deterministic_bridge_20260606",
-    "disposition_at": "2026-06-09T00:08:59",
-    "bridge_policy": "dry_run_no_formal_card_no_index_no_rag_write"
-  },
-  {
-    "$schema": "decision_card_v1_bridge_20260606",
-    "material_id": "20260609_d184279482",
-    "source_url": "http://jjckb.xinhuanet.com/20250220/177b6f445b2a4ba2a285c63b4c62f0f2/c.html",
-    "title": "诺安基金邓心怡：国内机器人行业有望迎来产业高速发展窗口期-经济参考网 _ 新华社《经济参考报》官方网站",
-    "captured_at": "2026-06-09T00:08:59",
-    "source_group": "domestic",
-    "source_type": "official",
-    "verification_status": "official_verified",
-    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/prod_verify_domestic_hotfix_20260608_225908/cards/诺安基金邓心怡_国内机器人行业有望迎来产业高速发展窗口期-经济参考网___新华社_经济参考报_官方网.md",
-    "evidence_complete": true,
-    "duplicate_check": {
-      "duplicate": false,
-      "reason": ""
-    },
-    "mirofish_projection": {
-      "force_reactions": [
-        {
-          "force": "联邦/白盾体系",
-          "reaction": "把「诺安基金邓心怡：国内机器人行业有望迎来产业高速发展窗口期-经济参」作为技术或制度压力测试变量，而非剧情事实照搬。",
-          "wiki_ref": "wiki/factions"
-        },
-        {
-          "force": "主角团/工程线",
-          "reaction": "只吸收可测反馈、失败模式、成本约束；不写成万能外挂。",
-          "wiki_ref": "wiki/characters"
-        }
-      ],
-      "chain_conflicts": [
-        {
-          "chain": [
-            "bio_governance",
-            "authority_filter",
-            "kewu_relevance"
-          ],
-          "time_anchor": "latest_sensenova_run",
-          "intensity": "medium"
-        }
-      ],
-      "chapter_hooks": [
-        {
-          "hook_id": "ch359_c45d4058",
-          "description": "生物伦理/人才争夺/科研治理素材，可作后续章节准备。 来源题名：诺安基金邓心怡：国内机器人行业有望迎来产业高速发展窗口期-经济参考网 _ 新华社《经济参考报》官方网站",
-          "suitable_chapters": [
-            359
-          ],
-          "reversal": "仅作细节/变量，不直接改变既有章节功能。"
-        }
-      ],
-      "outline_delta_candidate": {
-        "type": "red_line",
-        "target_chapter": 359,
-        "proposed_addition": "",
-        "not_proposed": "生物伦理/人才争夺/科研治理素材，可作后续章节准备。"
-      },
-      "anti_patterns": [
-        "不得把query_plan当有效素材",
-        "不得无URL/无正文伪造素材卡",
-        "不得直接改大纲/正文/TXT/草稿箱"
-      ],
-      "six_role_recommendation": {
-        "needed": false,
-        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
-      }
-    },
-    "disposition": "CHAPTER_PREP_ONLY",
-    "disposition_reason": "生物伦理/人才争夺/科研治理素材，可作后续章节准备。",
-    "disposition_by": "deterministic_bridge_20260606",
-    "disposition_at": "2026-06-09T00:08:59",
-    "bridge_policy": "dry_run_no_formal_card_no_index_no_rag_write"
-  },
-  {
-    "$schema": "decision_card_v1_bridge_20260606",
-    "material_id": "20260609_0089cfd1a9",
-    "source_url": "http://www.xinhuanet.com/20251222/15fef6ce60024e5aac0226a0d88924a1/c.html",
-    "title": "市场最前沿｜逐空而上！低空经济加速启航万亿新赛道 - 新华网",
-    "captured_at": "2026-06-09T00:08:59",
-    "source_group": "domestic",
-    "source_type": "official",
-    "verification_status": "official_verified",
-    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/prod_verify_domestic_hotfix_20260608_225908/cards/市场最前沿_逐空而上_低空经济加速启航万亿新赛道_-_新华网.md",
-    "evidence_complete": true,
-    "duplicate_check": {
-      "duplicate": false,
-      "reason": ""
-    },
-    "mirofish_projection": {
-      "force_reactions": [
-        {
-          "force": "联邦/白盾体系",
-          "reaction": "把「市场最前沿｜逐空而上！低空经济加速启航万亿新赛道 - 新华网」作为技术或制度压力测试变量，而非剧情事实照搬。",
-          "wiki_ref": "wiki/factions"
-        },
-        {
-          "force": "主角团/工程线",
-          "reaction": "只吸收可测反馈、失败模式、成本约束；不写成万能外挂。",
-          "wiki_ref": "wiki/characters"
-        }
-      ],
-      "chain_conflicts": [
-        {
-          "chain": [
-            "military_platform",
-            "authority_filter",
-            "kewu_relevance"
-          ],
-          "time_anchor": "latest_sensenova_run",
-          "intensity": "medium"
-        }
-      ],
-      "chapter_hooks": [
-        {
-          "hook_id": "ch217_2e5055d8",
-          "description": "高机动平台与感知/噪声治理可作军事制度细节层。 来源题名：市场最前沿｜逐空而上！低空经济加速启航万亿新赛道 - 新华网",
-          "suitable_chapters": [
-            217
-          ],
-          "reversal": "仅作细节/变量，不直接改变既有章节功能。"
-        }
-      ],
-      "outline_delta_candidate": {
-        "type": "red_line",
-        "target_chapter": 217,
-        "proposed_addition": "",
-        "not_proposed": "高机动平台与感知/噪声治理可作军事制度细节层。"
-      },
-      "anti_patterns": [
-        "不得把query_plan当有效素材",
-        "不得无URL/无正文伪造素材卡",
-        "不得直接改大纲/正文/TXT/草稿箱"
-      ],
-      "six_role_recommendation": {
-        "needed": false,
-        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
-      }
-    },
-    "disposition": "CHAPTER_PREP_ONLY",
-    "disposition_reason": "高机动平台与感知/噪声治理可作军事制度细节层。",
-    "disposition_by": "deterministic_bridge_20260606",
-    "disposition_at": "2026-06-09T00:08:59",
-    "bridge_policy": "dry_run_no_formal_card_no_index_no_rag_write"
-  },
-  {
-    "$schema": "decision_card_v1_bridge_20260606",
-    "material_id": "20260609_d2926e2496",
-    "source_url": "http://www.xinhuanet.com/politics/2012-12/15/c_124099234.htm",
-    "title": "“嫦娥二号”在700万公里深空成功探测小行星 - 新华时政 - 新华网",
-    "captured_at": "2026-06-09T00:08:59",
-    "source_group": "domestic",
-    "source_type": "official",
-    "verification_status": "official_verified",
-    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/prod_verify_domestic_hotfix_20260608_225908/cards/嫦娥二号_在700万公里深空成功探测小行星_-_新华时政_-_新华网.md",
-    "evidence_complete": true,
-    "duplicate_check": {
-      "duplicate": false,
-      "reason": ""
-    },
-    "mirofish_projection": {
-      "force_reactions": [
-        {
-          "force": "联邦/白盾体系",
-          "reaction": "把「“嫦娥二号”在700万公里深空成功探测小行星 - 新华时政 - 」作为技术或制度压力测试变量，而非剧情事实照搬。",
-          "wiki_ref": "wiki/factions"
-        },
-        {
-          "force": "主角团/工程线",
-          "reaction": "只吸收可测反馈、失败模式、成本约束；不写成万能外挂。",
-          "wiki_ref": "wiki/characters"
-        }
-      ],
-      "chain_conflicts": [
-        {
-          "chain": [
-            "space_chain",
-            "authority_filter",
-            "kewu_relevance"
-          ],
-          "time_anchor": "latest_sensenova_run",
-          "intensity": "medium"
-        }
-      ],
-      "chapter_hooks": [
-        {
-          "hook_id": "ch156_254a5b9e",
-          "description": "地月/深空/通信链路素材，宜入章节准备红线，不直接改大纲。 来源题名：“嫦娥二号”在700万公里深空成功探测小行星 - 新华时政 - 新华网",
-          "suitable_chapters": [
-            156
-          ],
-          "reversal": "仅作细节/变量，不直接改变既有章节功能。"
-        }
-      ],
-      "outline_delta_candidate": {
-        "type": "red_line",
-        "target_chapter": 156,
-        "proposed_addition": "",
-        "not_proposed": "地月/深空/通信链路素材，宜入章节准备红线，不直接改大纲。"
-      },
-      "anti_patterns": [
-        "不得把query_plan当有效素材",
-        "不得无URL/无正文伪造素材卡",
-        "不得直接改大纲/正文/TXT/草稿箱"
-      ],
-      "six_role_recommendation": {
-        "needed": false,
-        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
-      }
-    },
-    "disposition": "CHAPTER_PREP_ONLY",
-    "disposition_reason": "地月/深空/通信链路素材，宜入章节准备红线，不直接改大纲。",
-    "disposition_by": "deterministic_bridge_20260606",
-    "disposition_at": "2026-06-09T00:08:59",
-    "bridge_policy": "dry_run_no_formal_card_no_index_no_rag_write"
-  },
-  {
-    "$schema": "decision_card_v1_bridge_20260606",
-    "material_id": "20260609_5cc6ef174a",
-    "source_url": "https://news.cctv.com/2024/03/15/ARTI5f0l7td8AffCDHjbL9EI240315.shtml",
-    "title": "新质生产力加快培育 释放高质量发展新动能_新闻频道_央视网(cctv.com)",
-    "captured_at": "2026-06-09T00:08:59",
-    "source_group": "domestic",
-    "source_type": "official",
-    "verification_status": "official_verified",
-    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/prod_verify_domestic_hotfix_20260608_225908/cards/新质生产力加快培育_释放高质量发展新动能_新闻频道_央视网_cctv_com.md",
-    "evidence_complete": true,
-    "duplicate_check": {
-      "duplicate": false,
-      "reason": ""
-    },
-    "mirofish_projection": {
-      "force_reactions": [
-        {
-          "force": "联邦/白盾体系",
-          "reaction": "把「新质生产力加快培育 释放高质量发展新动能_新闻频道_央视网(cc」作为技术或制度压力测试变量，而非剧情事实照搬。",
-          "wiki_ref": "wiki/factions"
-        },
-        {
-          "force": "主角团/工程线",
-          "reaction": "只吸收可测反馈、失败模式、成本约束；不写成万能外挂。",
-          "wiki_ref": "wiki/characters"
-        }
-      ],
-      "chain_conflicts": [
-        {
-          "chain": [
-            "space_chain",
-            "authority_filter",
-            "kewu_relevance"
-          ],
-          "time_anchor": "latest_sensenova_run",
-          "intensity": "medium"
-        }
-      ],
-      "chapter_hooks": [
-        {
-          "hook_id": "ch156_a7aa0bc8",
-          "description": "地月/深空/通信链路素材，宜入章节准备红线，不直接改大纲。 来源题名：新质生产力加快培育 释放高质量发展新动能_新闻频道_央视网(cctv.com)",
-          "suitable_chapters": [
-            156
-          ],
-          "reversal": "仅作细节/变量，不直接改变既有章节功能。"
-        }
-      ],
-      "outline_delta_candidate": {
-        "type": "red_line",
-        "target_chapter": 156,
-        "proposed_addition": "",
-        "not_proposed": "地月/深空/通信链路素材，宜入章节准备红线，不直接改大纲。"
-      },
-      "anti_patterns": [
-        "不得把query_plan当有效素材",
-        "不得无URL/无正文伪造素材卡",
-        "不得直接改大纲/正文/TXT/草稿箱"
-      ],
-      "six_role_recommendation": {
-        "needed": false,
-        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
-      }
-    },
-    "disposition": "CHAPTER_PREP_ONLY",
-    "disposition_reason": "地月/深空/通信链路素材，宜入章节准备红线，不直接改大纲。",
-    "disposition_by": "deterministic_bridge_20260606",
-    "disposition_at": "2026-06-09T00:08:59",
-    "bridge_policy": "dry_run_no_formal_card_no_index_no_rag_write"
-  },
-  {
-    "$schema": "decision_card_v1_bridge_20260606",
-    "material_id": "20260609_5ec0319d8b",
-    "source_url": "https://news.cctv.com/2021/03/15/ARTIQ9x3nQkBNs6HKMSPTPPO210315.shtml",
-    "title": "努力成为世界主要科学中心和创新高地_新闻频道_央视网(cctv.com)",
-    "captured_at": "2026-06-09T00:08:59",
-    "source_group": "domestic",
-    "source_type": "official",
-    "verification_status": "official_verified",
-    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/prod_verify_domestic_hotfix_20260608_225908/cards/努力成为世界主要科学中心和创新高地_新闻频道_央视网_cctv_com.md",
-    "evidence_complete": true,
-    "duplicate_check": {
-      "duplicate": false,
-      "reason": ""
-    },
-    "mirofish_projection": {
-      "force_reactions": [
-        {
-          "force": "联邦/白盾体系",
-          "reaction": "把「努力成为世界主要科学中心和创新高地_新闻频道_央视网(cctv.」作为技术或制度压力测试变量，而非剧情事实照搬。",
-          "wiki_ref": "wiki/factions"
-        },
-        {
-          "force": "主角团/工程线",
-          "reaction": "只吸收可测反馈、失败模式、成本约束；不写成万能外挂。",
-          "wiki_ref": "wiki/characters"
-        }
-      ],
-      "chain_conflicts": [
-        {
-          "chain": [
-            "compute_sovereignty",
-            "authority_filter",
-            "kewu_relevance"
-          ],
-          "time_anchor": "latest_sensenova_run",
-          "intensity": "medium"
-        }
-      ],
-      "chapter_hooks": [
-        {
-          "hook_id": "ch95_f46b8610",
-          "description": "与算法/算力/技术主权主线直接相关，交G2裁决是否写入备注层。 来源题名：努力成为世界主要科学中心和创新高地_新闻频道_央视网(cctv.com)",
-          "suitable_chapters": [
-            95
-          ],
-          "reversal": "仅作细节/变量，不直接改变既有章节功能。"
-        }
-      ],
-      "outline_delta_candidate": {
-        "type": "note_layer",
-        "target_chapter": 95,
-        "proposed_addition": "与算法/算力/技术主权主线直接相关，交G2裁决是否写入备注层。",
-        "not_proposed": ""
-      },
-      "anti_patterns": [
-        "不得把query_plan当有效素材",
-        "不得无URL/无正文伪造素材卡",
-        "不得直接改大纲/正文/TXT/草稿箱"
-      ],
-      "six_role_recommendation": {
-        "needed": true,
-        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
-      }
-    },
-    "disposition": "OUTLINE_PATCH",
-    "disposition_reason": "与算法/算力/技术主权主线直接相关，交G2裁决是否写入备注层。",
-    "disposition_by": "deterministic_bridge_20260606",
-    "disposition_at": "2026-06-09T00:08:59",
-    "bridge_policy": "dry_run_no_formal_card_no_index_no_rag_write"
-  },
-  {
-    "$schema": "decision_card_v1_bridge_20260606",
-    "material_id": "20260609_46489de369",
-    "source_url": "https://www.nasa.gov/aeronautics/x-59-first-supersonic-flight",
-    "title": "NASA’s X-59 Aircraft Flies Supersonic for First Time",
-    "captured_at": "2026-06-09T00:08:59",
+    "material_id": "20260622_1d6480597f",
+    "source_url": "https://www.nasa.gov/news-release/nasa-mission-to-study-space-weather-impacts-of-earths-atmosphere",
+    "title": "NASA Mission to Study Space Weather Impacts of Earth’s Atmosphere",
+    "captured_at": "2026-06-22T21:11:38",
     "source_group": "overseas",
     "source_type": "official",
     "verification_status": "official_verified",
-    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/prod_verify_domestic_hotfix_20260608_225908/cards/NASA__8217_s_X-59_Aircraft_Flies_Supersonic_for_Fi.md",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/cards/NASA_Mission_to_Study_Space_Weather_Impacts_of_Ear_aeff2f9d.md",
+    "body_fetch_evidence": {
+      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/raw/body_fetch_report.json",
+      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/raw/bodies/NASA_Mission_to_Study_Space_Weather_Impa_aeff2f9d74fa9a8a.txt",
+      "candidate_id": "aeff2f9d74fa9a8a",
+      "status": "BODY_FETCHED",
+      "counts_as_body_success": true,
+      "source_role": "primary_official",
+      "source_confidence": ""
+    },
+    "title_body_mismatch": false,
+    "evidence_complete": false,
+    "duplicate_check": {
+      "duplicate": true,
+      "reason": "TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY"
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "主控",
+          "reaction": "归档备查；不进入G2/G3。",
+          "wiki_ref": "时事素材/归档"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "space_chain",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "low"
+        }
+      ],
+      "chapter_hooks": [],
+      "outline_delta_candidate": {
+        "type": "red_line",
+        "target_chapter": 0,
+        "proposed_addition": "",
+        "not_proposed": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY"
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": false,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "ARCHIVE_WITH_REASON",
+    "disposition_reason": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-06-22T21:11:38",
+    "bridge_policy": "dry_run_no_formal_card_no_index_no_wiki_write"
+  },
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260622_52c249b390",
+    "source_url": "https://www.nasa.gov/news-release/nasa-awards-contract-for-commercial-satellite-data-acquisition",
+    "title": "NASA Awards Contract for Commercial Satellite Data Acquisition",
+    "captured_at": "2026-06-22T21:11:38",
+    "source_group": "overseas",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/cards/NASA_Awards_Contract_for_Commercial_Satellite_Data_3d519a02.md",
+    "body_fetch_evidence": {
+      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/raw/body_fetch_report.json",
+      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/raw/bodies/NASA_Awards_Contract_for_Commercial_Sate_3d519a02c1734807.txt",
+      "candidate_id": "3d519a02c1734807",
+      "status": "BODY_FETCHED",
+      "counts_as_body_success": true,
+      "source_role": "primary_official",
+      "source_confidence": ""
+    },
+    "title_body_mismatch": false,
+    "evidence_complete": false,
+    "duplicate_check": {
+      "duplicate": true,
+      "reason": "TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY"
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "主控",
+          "reaction": "归档备查；不进入G2/G3。",
+          "wiki_ref": "时事素材/归档"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "earth_observation",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "low"
+        }
+      ],
+      "chapter_hooks": [],
+      "outline_delta_candidate": {
+        "type": "red_line",
+        "target_chapter": 0,
+        "proposed_addition": "",
+        "not_proposed": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY"
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": false,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "ARCHIVE_WITH_REASON",
+    "disposition_reason": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-06-22T21:11:38",
+    "bridge_policy": "dry_run_no_formal_card_no_index_no_wiki_write"
+  },
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260622_6350dc298a",
+    "source_url": "https://science.nasa.gov/photojournal/desert-field-test-with-nasa-advanced-rover-prototype",
+    "title": "Desert Field Test With NASA Advanced Rover Prototype",
+    "captured_at": "2026-06-22T21:11:38",
+    "source_group": "overseas",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/cards/Desert_Field_Test_With_NASA_Advanced_Rover_Prototy_8715446b.md",
+    "body_fetch_evidence": {
+      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/raw/body_fetch_report.json",
+      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/raw/bodies/Desert_Field_Test_With_NASA_Advanced_Rov_8715446b835c83ea.txt",
+      "candidate_id": "8715446b835c83ea",
+      "status": "BODY_FETCHED",
+      "counts_as_body_success": true,
+      "source_role": "primary_official",
+      "source_confidence": ""
+    },
+    "title_body_mismatch": true,
+    "evidence_complete": false,
+    "duplicate_check": {
+      "duplicate": true,
+      "reason": "TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY"
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "主控",
+          "reaction": "归档备查；不进入G2/G3。",
+          "wiki_ref": "时事素材/归档"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "space_chain",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "low"
+        }
+      ],
+      "chapter_hooks": [],
+      "outline_delta_candidate": {
+        "type": "red_line",
+        "target_chapter": 0,
+        "proposed_addition": "",
+        "not_proposed": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY"
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": false,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "ARCHIVE_WITH_REASON",
+    "disposition_reason": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-06-22T21:11:38",
+    "bridge_policy": "dry_run_no_formal_card_no_index_no_wiki_write"
+  },
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260622_8160e14528",
+    "source_url": "https://www.most.gov.cn/kjbgz/202606/t20260616_196788.html",
+    "title": "俄罗斯核聚变专家中国行活动成功举办",
+    "captured_at": "2026-06-22T21:11:38",
+    "source_group": "domestic",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/cards/俄罗斯核聚变专家中国行活动成功举办_274bdaa2.md",
+    "body_fetch_evidence": {
+      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/raw/body_fetch_report.json",
+      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/raw/bodies/俄罗斯核聚变专家中国行活动成功举办_274bdaa24b59ba50.txt",
+      "candidate_id": "274bdaa24b59ba50",
+      "status": "BODY_FETCHED",
+      "counts_as_body_success": true,
+      "source_role": "primary_official",
+      "source_confidence": ""
+    },
+    "title_body_mismatch": false,
     "evidence_complete": false,
     "duplicate_check": {
       "duplicate": true,
@@ -735,7 +236,7 @@
       "chain_conflicts": [
         {
           "chain": [
-            "space_chain",
+            "domestic_official_brief",
             "authority_filter",
             "kewu_relevance"
           ],
@@ -763,19 +264,29 @@
     "disposition": "ARCHIVE_WITH_REASON",
     "disposition_reason": "重复或已入库：SOURCE_URL_ALREADY_IN_INDEX_OR_CARD",
     "disposition_by": "deterministic_bridge_20260606",
-    "disposition_at": "2026-06-09T00:08:59",
-    "bridge_policy": "dry_run_no_formal_card_no_index_no_rag_write"
+    "disposition_at": "2026-06-22T21:11:38",
+    "bridge_policy": "dry_run_no_formal_card_no_index_no_wiki_write"
   },
   {
     "$schema": "decision_card_v1_bridge_20260606",
-    "material_id": "20260609_7615a28737",
-    "source_url": "https://www.nasa.gov/directorates/stmd/prizes-challenges-crowdsourcing-program/center-of-excellence-for-collaborative-innovation-coeci/nasa-announces-winners-of-2026-university-innovation-competition",
-    "title": "NASA Announces Winners of 2026 University Innovation Competition",
-    "captured_at": "2026-06-09T00:08:59",
+    "material_id": "20260622_497225b562",
+    "source_url": "https://www.anthropic.com/news/fable-mythos-access",
+    "title": "Statement on the US government directive to suspend access to Fable 5 and Mythos 5 Announcements Jun 12, 2026 The US government has issued an export control directive to suspend al",
+    "captured_at": "2026-06-22T21:11:38",
     "source_group": "overseas",
     "source_type": "official",
     "verification_status": "official_verified",
-    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/prod_verify_domestic_hotfix_20260608_225908/cards/NASA_Announces_Winners_of_2026_University_Innovati.md",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/cards/Statement_on_the_US_government_directive_to_suspen_00131728.md",
+    "body_fetch_evidence": {
+      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/raw/body_fetch_report.json",
+      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/raw/bodies/Statement_on_the_US_government_directive_001317287cdd9d97.txt",
+      "candidate_id": "001317287cdd9d97",
+      "status": "BODY_FETCHED",
+      "counts_as_body_success": true,
+      "source_role": "primary_official",
+      "source_confidence": ""
+    },
+    "title_body_mismatch": true,
     "evidence_complete": false,
     "duplicate_check": {
       "duplicate": true,
@@ -792,7 +303,7 @@
       "chain_conflicts": [
         {
           "chain": [
-            "space_chain",
+            "expo_event",
             "authority_filter",
             "kewu_relevance"
           ],
@@ -820,448 +331,7 @@
     "disposition": "ARCHIVE_WITH_REASON",
     "disposition_reason": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY",
     "disposition_by": "deterministic_bridge_20260606",
-    "disposition_at": "2026-06-09T00:08:59",
-    "bridge_policy": "dry_run_no_formal_card_no_index_no_rag_write"
-  },
-  {
-    "$schema": "decision_card_v1_bridge_20260606",
-    "material_id": "20260609_7d54703422",
-    "source_url": "https://science.nasa.gov/missions/artemis/artemis-2/nasas-artemis-ii-moon-mission-research-continues-on-earth",
-    "title": "NASA’s Artemis II Moon Mission Research Continues on Earth",
-    "captured_at": "2026-06-09T00:08:59",
-    "source_group": "overseas",
-    "source_type": "official",
-    "verification_status": "official_verified",
-    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/prod_verify_domestic_hotfix_20260608_225908/cards/NASA_s_Artemis_II_Moon_Mission_Research_Continues.md",
-    "evidence_complete": false,
-    "duplicate_check": {
-      "duplicate": true,
-      "reason": "TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY"
-    },
-    "mirofish_projection": {
-      "force_reactions": [
-        {
-          "force": "主控",
-          "reaction": "归档备查；不进入G2/G3。",
-          "wiki_ref": "时事素材/归档"
-        }
-      ],
-      "chain_conflicts": [
-        {
-          "chain": [
-            "space_chain",
-            "authority_filter",
-            "kewu_relevance"
-          ],
-          "time_anchor": "latest_sensenova_run",
-          "intensity": "low"
-        }
-      ],
-      "chapter_hooks": [],
-      "outline_delta_candidate": {
-        "type": "red_line",
-        "target_chapter": 0,
-        "proposed_addition": "",
-        "not_proposed": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY"
-      },
-      "anti_patterns": [
-        "不得把query_plan当有效素材",
-        "不得无URL/无正文伪造素材卡",
-        "不得直接改大纲/正文/TXT/草稿箱"
-      ],
-      "six_role_recommendation": {
-        "needed": false,
-        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
-      }
-    },
-    "disposition": "ARCHIVE_WITH_REASON",
-    "disposition_reason": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY",
-    "disposition_by": "deterministic_bridge_20260606",
-    "disposition_at": "2026-06-09T00:08:59",
-    "bridge_policy": "dry_run_no_formal_card_no_index_no_rag_write"
-  },
-  {
-    "$schema": "decision_card_v1_bridge_20260606",
-    "material_id": "20260609_96eb526832",
-    "source_url": "https://science.nasa.gov/earth/ocean-nutrient-stress",
-    "title": "NASA Satellites Help Map Ocean Nutrient Stress",
-    "captured_at": "2026-06-09T00:08:59",
-    "source_group": "overseas",
-    "source_type": "official",
-    "verification_status": "official_verified",
-    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/prod_verify_domestic_hotfix_20260608_225908/cards/NASA_Satellites_Help_Map_Ocean_Nutrient_Stress.md",
-    "evidence_complete": true,
-    "duplicate_check": {
-      "duplicate": false,
-      "reason": ""
-    },
-    "mirofish_projection": {
-      "force_reactions": [
-        {
-          "force": "联邦/白盾体系",
-          "reaction": "把「NASA Satellites Help Map Ocean N」作为技术或制度压力测试变量，而非剧情事实照搬。",
-          "wiki_ref": "wiki/factions"
-        },
-        {
-          "force": "主角团/工程线",
-          "reaction": "只吸收可测反馈、失败模式、成本约束；不写成万能外挂。",
-          "wiki_ref": "wiki/characters"
-        }
-      ],
-      "chain_conflicts": [
-        {
-          "chain": [
-            "space_chain",
-            "authority_filter",
-            "kewu_relevance"
-          ],
-          "time_anchor": "latest_sensenova_run",
-          "intensity": "medium"
-        }
-      ],
-      "chapter_hooks": [
-        {
-          "hook_id": "ch156_2e3656a5",
-          "description": "地月/深空/通信链路素材，宜入章节准备红线，不直接改大纲。 来源题名：NASA Satellites Help Map Ocean Nutrient Stress",
-          "suitable_chapters": [
-            156
-          ],
-          "reversal": "仅作细节/变量，不直接改变既有章节功能。"
-        }
-      ],
-      "outline_delta_candidate": {
-        "type": "red_line",
-        "target_chapter": 156,
-        "proposed_addition": "",
-        "not_proposed": "地月/深空/通信链路素材，宜入章节准备红线，不直接改大纲。"
-      },
-      "anti_patterns": [
-        "不得把query_plan当有效素材",
-        "不得无URL/无正文伪造素材卡",
-        "不得直接改大纲/正文/TXT/草稿箱"
-      ],
-      "six_role_recommendation": {
-        "needed": false,
-        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
-      }
-    },
-    "disposition": "CHAPTER_PREP_ONLY",
-    "disposition_reason": "地月/深空/通信链路素材，宜入章节准备红线，不直接改大纲。",
-    "disposition_by": "deterministic_bridge_20260606",
-    "disposition_at": "2026-06-09T00:08:59",
-    "bridge_policy": "dry_run_no_formal_card_no_index_no_rag_write"
-  },
-  {
-    "$schema": "decision_card_v1_bridge_20260606",
-    "material_id": "20260609_ac410b5036",
-    "source_url": "https://www.nasa.gov/directorates/somd/space-communications-navigation-program/nasa-concludes-antenna-mishap-investigation-releases-report",
-    "title": "NASA Concludes Antenna Mishap Investigation, Releases Report",
-    "captured_at": "2026-06-09T00:08:59",
-    "source_group": "overseas",
-    "source_type": "official",
-    "verification_status": "official_verified",
-    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/prod_verify_domestic_hotfix_20260608_225908/cards/NASA_Concludes_Antenna_Mishap_Investigation__Relea.md",
-    "evidence_complete": false,
-    "duplicate_check": {
-      "duplicate": true,
-      "reason": "SOURCE_URL_ALREADY_IN_INDEX_OR_CARD"
-    },
-    "mirofish_projection": {
-      "force_reactions": [
-        {
-          "force": "主控",
-          "reaction": "归档备查；不进入G2/G3。",
-          "wiki_ref": "时事素材/归档"
-        }
-      ],
-      "chain_conflicts": [
-        {
-          "chain": [
-            "space_chain",
-            "authority_filter",
-            "kewu_relevance"
-          ],
-          "time_anchor": "latest_sensenova_run",
-          "intensity": "low"
-        }
-      ],
-      "chapter_hooks": [],
-      "outline_delta_candidate": {
-        "type": "red_line",
-        "target_chapter": 0,
-        "proposed_addition": "",
-        "not_proposed": "重复或已入库：SOURCE_URL_ALREADY_IN_INDEX_OR_CARD"
-      },
-      "anti_patterns": [
-        "不得把query_plan当有效素材",
-        "不得无URL/无正文伪造素材卡",
-        "不得直接改大纲/正文/TXT/草稿箱"
-      ],
-      "six_role_recommendation": {
-        "needed": false,
-        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
-      }
-    },
-    "disposition": "ARCHIVE_WITH_REASON",
-    "disposition_reason": "重复或已入库：SOURCE_URL_ALREADY_IN_INDEX_OR_CARD",
-    "disposition_by": "deterministic_bridge_20260606",
-    "disposition_at": "2026-06-09T00:08:59",
-    "bridge_policy": "dry_run_no_formal_card_no_index_no_rag_write"
-  },
-  {
-    "$schema": "decision_card_v1_bridge_20260606",
-    "material_id": "20260609_03f6eed164",
-    "source_url": "https://www.esa.int/About_Us/Corporate_news/ESA_at_ILA_Berlin_International_Airshow_2026",
-    "title": "ESA at ILA Berlin International Airshow 2026",
-    "captured_at": "2026-06-09T00:08:59",
-    "source_group": "overseas",
-    "source_type": "official",
-    "verification_status": "official_verified",
-    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/prod_verify_domestic_hotfix_20260608_225908/cards/ESA_at_ILA_Berlin_International_Airshow_2026.md",
-    "evidence_complete": true,
-    "duplicate_check": {
-      "duplicate": false,
-      "reason": ""
-    },
-    "mirofish_projection": {
-      "force_reactions": [
-        {
-          "force": "联邦/白盾体系",
-          "reaction": "把「ESA at ILA Berlin International 」作为技术或制度压力测试变量，而非剧情事实照搬。",
-          "wiki_ref": "wiki/factions"
-        },
-        {
-          "force": "主角团/工程线",
-          "reaction": "只吸收可测反馈、失败模式、成本约束；不写成万能外挂。",
-          "wiki_ref": "wiki/characters"
-        }
-      ],
-      "chain_conflicts": [
-        {
-          "chain": [
-            "space_chain",
-            "authority_filter",
-            "kewu_relevance"
-          ],
-          "time_anchor": "latest_sensenova_run",
-          "intensity": "medium"
-        }
-      ],
-      "chapter_hooks": [
-        {
-          "hook_id": "ch156_d71c1ec3",
-          "description": "地月/深空/通信链路素材，宜入章节准备红线，不直接改大纲。 来源题名：ESA at ILA Berlin International Airshow 2026",
-          "suitable_chapters": [
-            156
-          ],
-          "reversal": "仅作细节/变量，不直接改变既有章节功能。"
-        }
-      ],
-      "outline_delta_candidate": {
-        "type": "red_line",
-        "target_chapter": 156,
-        "proposed_addition": "",
-        "not_proposed": "地月/深空/通信链路素材，宜入章节准备红线，不直接改大纲。"
-      },
-      "anti_patterns": [
-        "不得把query_plan当有效素材",
-        "不得无URL/无正文伪造素材卡",
-        "不得直接改大纲/正文/TXT/草稿箱"
-      ],
-      "six_role_recommendation": {
-        "needed": false,
-        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
-      }
-    },
-    "disposition": "CHAPTER_PREP_ONLY",
-    "disposition_reason": "地月/深空/通信链路素材，宜入章节准备红线，不直接改大纲。",
-    "disposition_by": "deterministic_bridge_20260606",
-    "disposition_at": "2026-06-09T00:08:59",
-    "bridge_policy": "dry_run_no_formal_card_no_index_no_rag_write"
-  },
-  {
-    "$schema": "decision_card_v1_bridge_20260606",
-    "material_id": "20260609_e98ca3c005",
-    "source_url": "https://www.nature.com/articles/d41586-026-01818-9",
-    "title": "AI is taking on antibiotic resistance — here’s how",
-    "captured_at": "2026-06-09T00:08:59",
-    "source_group": "overseas",
-    "source_type": "official",
-    "verification_status": "official_verified",
-    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/prod_verify_domestic_hotfix_20260608_225908/cards/AI_is_taking_on_antibiotic_resistance___here_s_how.md",
-    "evidence_complete": true,
-    "duplicate_check": {
-      "duplicate": false,
-      "reason": ""
-    },
-    "mirofish_projection": {
-      "force_reactions": [
-        {
-          "force": "联邦/白盾体系",
-          "reaction": "把「AI is taking on antibiotic resis」作为技术或制度压力测试变量，而非剧情事实照搬。",
-          "wiki_ref": "wiki/factions"
-        },
-        {
-          "force": "主角团/工程线",
-          "reaction": "只吸收可测反馈、失败模式、成本约束；不写成万能外挂。",
-          "wiki_ref": "wiki/characters"
-        }
-      ],
-      "chain_conflicts": [
-        {
-          "chain": [
-            "bio_governance",
-            "authority_filter",
-            "kewu_relevance"
-          ],
-          "time_anchor": "latest_sensenova_run",
-          "intensity": "medium"
-        }
-      ],
-      "chapter_hooks": [
-        {
-          "hook_id": "ch359_210cbc41",
-          "description": "生物伦理/人才争夺/科研治理素材，可作后续章节准备。 来源题名：AI is taking on antibiotic resistance — here’s how",
-          "suitable_chapters": [
-            359
-          ],
-          "reversal": "仅作细节/变量，不直接改变既有章节功能。"
-        }
-      ],
-      "outline_delta_candidate": {
-        "type": "red_line",
-        "target_chapter": 359,
-        "proposed_addition": "",
-        "not_proposed": "生物伦理/人才争夺/科研治理素材，可作后续章节准备。"
-      },
-      "anti_patterns": [
-        "不得把query_plan当有效素材",
-        "不得无URL/无正文伪造素材卡",
-        "不得直接改大纲/正文/TXT/草稿箱"
-      ],
-      "six_role_recommendation": {
-        "needed": false,
-        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
-      }
-    },
-    "disposition": "CHAPTER_PREP_ONLY",
-    "disposition_reason": "生物伦理/人才争夺/科研治理素材，可作后续章节准备。",
-    "disposition_by": "deterministic_bridge_20260606",
-    "disposition_at": "2026-06-09T00:08:59",
-    "bridge_policy": "dry_run_no_formal_card_no_index_no_rag_write"
-  },
-  {
-    "$schema": "decision_card_v1_bridge_20260606",
-    "material_id": "20260609_e3d5484787",
-    "source_url": "https://www.nature.com/articles/d41586-026-01795-z",
-    "title": "Nuclear-fusion firm says plant will deliver electricity to grid – but big questions remain",
-    "captured_at": "2026-06-09T00:08:59",
-    "source_group": "overseas",
-    "source_type": "official",
-    "verification_status": "official_verified",
-    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/prod_verify_domestic_hotfix_20260608_225908/cards/Nuclear-fusion_firm_says_plant_will_deliver_electr.md",
-    "evidence_complete": false,
-    "duplicate_check": {
-      "duplicate": true,
-      "reason": "TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY"
-    },
-    "mirofish_projection": {
-      "force_reactions": [
-        {
-          "force": "主控",
-          "reaction": "归档备查；不进入G2/G3。",
-          "wiki_ref": "时事素材/归档"
-        }
-      ],
-      "chain_conflicts": [
-        {
-          "chain": [
-            "low_kewu_relevance",
-            "authority_filter",
-            "kewu_relevance"
-          ],
-          "time_anchor": "latest_sensenova_run",
-          "intensity": "low"
-        }
-      ],
-      "chapter_hooks": [],
-      "outline_delta_candidate": {
-        "type": "red_line",
-        "target_chapter": 0,
-        "proposed_addition": "",
-        "not_proposed": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY"
-      },
-      "anti_patterns": [
-        "不得把query_plan当有效素材",
-        "不得无URL/无正文伪造素材卡",
-        "不得直接改大纲/正文/TXT/草稿箱"
-      ],
-      "six_role_recommendation": {
-        "needed": false,
-        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
-      }
-    },
-    "disposition": "ARCHIVE_WITH_REASON",
-    "disposition_reason": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY",
-    "disposition_by": "deterministic_bridge_20260606",
-    "disposition_at": "2026-06-09T00:08:59",
-    "bridge_policy": "dry_run_no_formal_card_no_index_no_rag_write"
-  },
-  {
-    "$schema": "decision_card_v1_bridge_20260606",
-    "material_id": "20260609_874e6e7b14",
-    "source_url": "https://www.nature.com/articles/d41586-026-01821-0",
-    "title": "Sustainability or dystopia? What past patterns tell us about where society is heading",
-    "captured_at": "2026-06-09T00:08:59",
-    "source_group": "overseas",
-    "source_type": "official",
-    "verification_status": "official_verified",
-    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/prod_verify_domestic_hotfix_20260608_225908/cards/Sustainability_or_dystopia__What_past_patterns_tel.md",
-    "evidence_complete": false,
-    "duplicate_check": {
-      "duplicate": true,
-      "reason": "TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY"
-    },
-    "mirofish_projection": {
-      "force_reactions": [
-        {
-          "force": "主控",
-          "reaction": "归档备查；不进入G2/G3。",
-          "wiki_ref": "时事素材/归档"
-        }
-      ],
-      "chain_conflicts": [
-        {
-          "chain": [
-            "low_kewu_relevance",
-            "authority_filter",
-            "kewu_relevance"
-          ],
-          "time_anchor": "latest_sensenova_run",
-          "intensity": "low"
-        }
-      ],
-      "chapter_hooks": [],
-      "outline_delta_candidate": {
-        "type": "red_line",
-        "target_chapter": 0,
-        "proposed_addition": "",
-        "not_proposed": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY"
-      },
-      "anti_patterns": [
-        "不得把query_plan当有效素材",
-        "不得无URL/无正文伪造素材卡",
-        "不得直接改大纲/正文/TXT/草稿箱"
-      ],
-      "six_role_recommendation": {
-        "needed": false,
-        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
-      }
-    },
-    "disposition": "ARCHIVE_WITH_REASON",
-    "disposition_reason": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY",
-    "disposition_by": "deterministic_bridge_20260606",
-    "disposition_at": "2026-06-09T00:08:59",
-    "bridge_policy": "dry_run_no_formal_card_no_index_no_rag_write"
+    "disposition_at": "2026-06-22T21:11:38",
+    "bridge_policy": "dry_run_no_formal_card_no_index_no_wiki_write"
   }
 ]

@@ -1,0 +1,59 @@
+{
+  "run_id": "historical_2026-05-08_20260606_204955",
+  "day": "2026-05-08",
+  "pack_path": "/root/workspace/科武纪元/自循环体系/historical_mirofish_replay_20260606/historical_2026-05-08_20260606_204955/MIROFISH_HISTORICAL_FEED_PACK.md",
+  "selected_count": 12,
+  "selected_cards": [
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-08/素材卡_DHS_DNA数据库_抗议者_算法暴力.md",
+      "title": "素材卡：DHS抗议者DNA采集诉讼：生物数据、抗议威慑与算法暴力"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-08/素材卡_Mozilla_AI漏洞挖掘_271个Firefox漏洞_AgentHarness.md",
+      "title": "素材卡：Mozilla AI辅助漏洞挖掘：271个Firefox漏洞与Agent Harness"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-08/素材卡_NHS隐藏开源代码_AI安全与封闭系统熵增.md",
+      "title": "素材卡：NHS隐藏开源代码、AI安全与封闭系统熵增"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-08/素材卡_OpenAI实时语音API_人机协同入口.md",
+      "title": "素材卡：OpenAI实时语音API与人机协同入口"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-08/素材卡_RSS候选_Backlash_builds_over_NHS_plan_to_hide_source_code_from_AI_ha.md",
+      "title": "素材卡：Backlash builds over NHS plan to hide source code from AI hacking risk"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-08/素材卡_RSS候选_DHS_can_t_create_vast_DNA_database_to_track_ICE_critics_laws.md",
+      "title": "素材卡：DHS can’t create vast DNA database to track ICE critics, lawsuit says"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-08/素材卡_RSS候选_Google_unveils_screenless_Fitbit_Air_and_Google_Health_app_t.md",
+      "title": "素材卡：Google unveils screenless Fitbit Air and Google Health app to replace Fitbit"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-08/素材卡_RSS候选_Kodiak_AI_raises_100M_at_a_steep_discount_sending_its_stock.md",
+      "title": "素材卡：Kodiak AI raises $100M at a steep discount, sending its stock tumbling 37%"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-08/素材卡_RSS候选_Mozilla_says_271_vulnerabilities_found_by_Mythos_have_almost.md",
+      "title": "素材卡：Mozilla says 271 vulnerabilities found by Mythos have \"almost no false posit"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-08/素材卡_RSS候选_NHS_England_rushes_to_hide_software_over_AI_hacking_fears.md",
+      "title": "素材卡：NHS England rushes to hide software over AI hacking fears"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-08/素材卡_RSS候选_OpenAI_launches_new_voice_intelligence_features_in_its_API.md",
+      "title": "素材卡：OpenAI launches new voice intelligence features in its API"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-08/素材卡_RSS候选_Quantum_computers_simulated_their_biggest_molecule_yet_with.md",
+      "title": "素材卡：Quantum computers simulated their biggest molecule yet – with help"
+    }
+  ],
+  "skipped": [],
+  "status": "FEED_PACK_READY",
+  "created_at": "2026-06-06T20:49:55"
+}

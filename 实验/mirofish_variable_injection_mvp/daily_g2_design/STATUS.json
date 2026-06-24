@@ -1,0 +1,28 @@
+{
+  "task": "DAILY_G2_DESIGN",
+  "status": "DESIGN_DONE",
+  "conclusion": "部分能",
+  "version": "1.0",
+  "created_at": "2026-06-04T23:50:00",
+  "root_causes": [
+    "素材到大纲转化路径缺失（主因40%）",
+    "会议门槛过保守（25%）",
+    "缺少强制处置卡（20%）",
+    "缺少大纲delta输出要求（15%）"
+  ],
+  "design_files": [
+    "MIROFISH_DAILY_G2_DESIGN.md"
+  ],
+  "pending_steps": [
+    "SkyClaw审核",
+    "decision_card模板+脚本",
+    "0604素材试跑",
+    "质量评审",
+    "G2会议prompt改造",
+    "首次正式运行",
+    "吸收裁决"
+  ],
+  "next_action": "等主控确认后派SkyClaw审核本设计",
+  "blocked": false,
+  "blocker": null
+}

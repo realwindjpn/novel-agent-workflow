@@ -1,0 +1,38 @@
+[
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260615_ca5285edae",
+    "title": "神舟二十三号乘组工作Vlog“更新”",
+    "source_url": "https://news.cctv.com/2026/06/14/ARTIDPcZYK6AAfAGkr46gNq5260614.shtml",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260615_0248/cards/神舟二十三号乘组工作Vlog_更新_1f5bb901.md",
+    "target_chapter_hint": 156,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_RAG",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_RAG_jsonl"
+    ],
+    "not_done_in_dry_run": true
+  },
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260615_1b25e50899",
+    "title": "科技部党组书记、部长阴和俊出席“构建科技大宣传格局 讲好中国科技创新故事”座谈会并讲话",
+    "source_url": "https://www.most.gov.cn/kjbgz/202606/t20260610_196777.html",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260615_0248/cards/科技部党组书记_部长阴和俊出席_构建科技大宣传格局_讲好中国科技创新故事_座谈会并讲话_8d1c95ed.md",
+    "target_chapter_hint": 125,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_RAG",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_RAG_jsonl"
+    ],
+    "not_done_in_dry_run": true
+  }
+]

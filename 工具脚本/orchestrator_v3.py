@@ -9,12 +9,13 @@
   中科院 → crawl4ai列表 + 浏览器正文
   物理所 → crawl4ai 列表+正文
   热点   → 百度热搜 + B站热门
+  微博   → requests + 正则提取正文
   英文RSS→ urllib 并行抓取
 
 RTK压缩：所有结果写文件，只返回统计摘要。
 
 用法：python3 orchestrator_v3.py [模式]
-  模式: all / wechat / bili / guancha / cas / iop / hot / rss / cpj
+  模式: all / wechat / bili / weibo / guancha / cas / iop / hot / rss / cpj
 
 采集源配置：微信URL从配置文件读取，其他按关键词自动搜。
 """
@@ -43,6 +44,7 @@ BILI_COOKIE = "/root/.hermes/bilibili_cookies.txt"
 # 采集源配置（用户可在此添加微信链接）
 CONFIG = {
     "cpj_wechat": [],  # 差评君微信文章URL，用户转发后填入
+    "weibo_urls": [],  # 微博文章URL，格式: https://weibo.com/detail/{id}
     "bili_keywords": [
         "量子计算 科普",
         "核聚变 EAST",
@@ -201,6 +203,209 @@ def crawl_wechat(url, output_path=None):
     except Exception as e:
         return False, 0, str(e)
 
+# ========== 微博采集 ==========
+
+WEIBO_COOKIE = "/root/.hermes/weibo_cookies.txt"
+
+def parse_weibo_cookies():
+    """解析Netscape格式微博cookie"""
+    if not os.path.exists(WEIBO_COOKIE):
+        return {}
+    cookies = {}
+    with open(WEIBO_COOKIE) as f:
+        for line in f:
+            line = line.strip()
+            if not line or (line.startswith('#') and not line.startswith('#HttpOnly_')):
+                continue
+            if line.startswith('#HttpOnly_'):
+                line = line[10:]
+            parts = line.split('\t')
+            if len(parts) >= 7:
+                cookies[parts[5]] = parts[6]
+    return cookies
+
+def crawl_weibo(url, output_path=None):
+    """微博文章抓取（cookie注入 + 移动API降级）"""
+    weibo_cookies = parse_weibo_cookies()
+    cookie_str = '; '.join(f"{k}={v}" for k, v in weibo_cookies.items())
+    has_cookies = bool(weibo_cookies)
+
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 Mobile/15E148',
+        'Accept': 'text/html,application/xhtml+xml',
+        'Accept-Language': 'zh-CN,zh;q=0.9',
+    }
+    if has_cookies:
+        headers['Cookie'] = cookie_str
+
+    raw = ''
+    fail_reason = ''
+
+    # 策略0：尝试weibo.com AJAX API（桌面端，需cookie）
+    mid = ''
+    m_mid = re.search(r'detail/(\d+)', url)
+    if m_mid:
+        mid = m_mid.group(1)
+    if not mid:
+        m_mid2 = re.search(r'/(\d{10,})', url)
+        if m_mid2:
+            mid = m_mid2.group(1)
+
+    if mid and has_cookies:
+        try:
+            api_url = f"https://weibo.com/ajax/statuses/show?id={mid}"
+            api_headers = {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/125 Safari/537.36',
+                'Accept': 'application/json',
+                'Cookie': cookie_str,
+                'X-Requested-With': 'XMLHttpRequest',
+                'Referer': f'https://weibo.com/detail/{mid}',
+            }
+            if 'XSRF-TOKEN' in weibo_cookies:
+                api_headers['X-XSRF-TOKEN'] = weibo_cookies['XSRF-TOKEN']
+            api_req = urllib.request.Request(api_url, headers=api_headers)
+            api_resp = urllib.request.urlopen(api_req, timeout=15)
+            api_data = json.loads(api_resp.read())
+
+            if api_data.get('ok') == 1 and 'text' in api_data:
+                text_raw = api_data.get('text', '')
+                title_raw = api_data.get('status_title', '') or api_data.get('page_info', {}).get('page_title', '')
+
+                text = re.sub(r'<br\s*/?>', '\n', text_raw, flags=re.I)
+                text = re.sub(r'<[^>]+>', '', text)
+                text = html.unescape(text)
+                lines = [x.strip() for x in text.splitlines() if x.strip()]
+                text = '\n'.join(lines)
+
+                if not title_raw:
+                    title_raw = '微博'
+                title = html.unescape(re.sub(r'<[^>]+>', '', title_raw)).strip()
+
+                if len(text) >= 10:
+                    if output_path:
+                        out = Path(output_path)
+                    else:
+                        safe_title = title[:30].replace('/', '_').replace('\\', '_')
+                        out = RAW_DIR / f"weibo_{safe_title}.md"
+                    out.parent.mkdir(parents=True, exist_ok=True)
+                    out.write_text(f'# {title}\n\n原文：{url}\n\n---\n\n{text}', encoding='utf-8')
+                    return True, len(text), title
+            else:
+                fail_reason = f"AJAX API: ok={api_data.get('ok')} msg={api_data.get('message','')[:60]}"
+        except Exception as e:
+            fail_reason = f"AJAX API失败: {e}"
+
+    # 策略1：尝试m.weibo.cn移动API
+    if mid:
+        try:
+            api_url = f"https://m.weibo.cn/statuses/show?id={mid}"
+            api_headers = {
+                'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 Mobile/15E148',
+                'Accept': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest',
+            }
+            api_req = urllib.request.Request(api_url, headers=api_headers)
+            api_resp = urllib.request.urlopen(api_req, timeout=15)
+            api_data = json.loads(api_resp.read())
+
+            if api_data.get('ok') == 1:
+                status = api_data.get('data', {})
+                text_raw = status.get('text', '')
+                title_raw = status.get('status_title', '') or status.get('page_info', {}).get('page_title', '')
+
+                text = re.sub(r'<br\s*/?>', '\n', text_raw, flags=re.I)
+                text = re.sub(r'<[^>]+>', '', text)
+                text = html.unescape(text)
+                lines = [x.strip() for x in text.splitlines() if x.strip()]
+                text = '\n'.join(lines)
+
+                if not title_raw:
+                    title_raw = '微博'
+                title = html.unescape(re.sub(r'<[^>]+>', '', title_raw)).strip()
+
+                if len(text) >= 10:
+                    if output_path:
+                        out = Path(output_path)
+                    else:
+                        safe_title = title[:30].replace('/', '_').replace('\\', '_')
+                        out = RAW_DIR / f"weibo_{safe_title}.md"
+                    out.parent.mkdir(parents=True, exist_ok=True)
+                    out.write_text(f'# {title}\n\n原文：{url}\n\n---\n\n{text}', encoding='utf-8')
+                    return True, len(text), title
+            else:
+                if not fail_reason:
+                    fail_reason = f"移动API: ok={api_data.get('ok')} msg={api_data.get('msg','')[:60]}"
+        except Exception as e:
+            if not fail_reason:
+                fail_reason = f"移动API失败: {e}"
+
+    # 策略2：直接页面fetch（cookie注入）
+    try:
+        r = urllib.request.urlopen(
+            urllib.request.Request(url, headers=headers), timeout=30
+        )
+        raw = r.read().decode('utf-8', errors='replace')
+    except Exception as e:
+        if not fail_reason:
+            fail_reason = f"页面请求失败: {e}"
+
+    text = ''
+    title = ''
+
+    if raw:
+        # 从嵌入JSON中提取 status.text
+        m_json = re.search(r'"status"\s*:\s*\{[^}]*"text"\s*:\s*"((?:[^"\\]|\\.)*)"', raw, re.S)
+        if m_json:
+            try:
+                text = json.loads('"' + m_json.group(1) + '"')
+            except Exception:
+                text = m_json.group(1)
+
+        # 从HTML正文标签提取
+        if not text or len(text) < 30:
+            mc = re.search(r'<div[^>]*class="[^"]*wbpro-feed-content[^"]*"[^>]*>(.*?)</div>', raw, re.S|re.I)
+            if mc:
+                text = mc.group(1)
+
+        # 标题
+        m_title = re.search(r'"status_title"\s*:\s*"((?:[^"\\]|\\.)*)"', raw)
+        if m_title:
+            title = m_title.group(1)
+        if not title:
+            m_title2 = re.search(r'<title[^>]*>(.*?)</title>', raw, re.S|re.I)
+            title = html.unescape(re.sub('<.*?>', '', m_title2.group(1))).strip() if m_title2 else '微博文章'
+
+        # 清洗HTML
+        if '<' in text:
+            text = re.sub(r'<br\s*/?>', '\n', text, flags=re.I)
+            text = re.sub(r'</(p|div|span)>', '\n', text, flags=re.I)
+            text = re.sub(r'<script.*?</script>|<style.*?</style>', '', text, flags=re.S|re.I)
+            text = html.unescape(re.sub(r'<[^>]+>', '', text))
+
+        lines = [x.strip() for x in text.splitlines() if x.strip()]
+        text = '\n'.join(lines)
+
+    if len(text) < 20:
+        if not fail_reason:
+            # 分析页面内容给出失败原因
+            if 'passport' in raw.lower() or 'login' in raw.lower():
+                fail_reason = '页面要求登录（cookie可能过期或不够）'
+            elif 'Sina Visitor' in raw or 'visitor' in raw.lower()[:500]:
+                fail_reason = 'Sina访客系统拦截'
+            else:
+                fail_reason = f'正文过短({len(text)}字)，cookie={has_cookies}，页面长度={len(raw)}'
+        return False, 0, f'微博提取失败: {fail_reason}'
+
+    if output_path:
+        out = Path(output_path)
+    else:
+        safe_title = title[:30].replace('/', '_').replace('\\', '_')
+        out = RAW_DIR / f"weibo_{safe_title}.md"
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(f'# {title}\n\n原文：{url}\n\n---\n\n{text}', encoding='utf-8')
+
+    return True, len(text), title
+
 # ========== B站采集（chinese-expert-research）==========
 
 def parse_bili_cookies():
@@ -220,29 +425,93 @@ def parse_bili_cookies():
                 cookies[parts[5]] = parts[6]
     return cookies
 
+def check_bili_cookie_expiry():
+    """检查B站cookie文件是否过期（>30天）"""
+    if not os.path.exists(BILI_COOKIE):
+        return
+    try:
+        mtime = os.path.getmtime(BILI_COOKIE)
+        age_days = (time.time() - mtime) / 86400
+        if age_days > 30:
+            log(f"⚠️ B站cookie已过期（{int(age_days)}天未更新），请手动刷新：")
+            log(f"   hermes config set bilibili_cookies 或手动更新 {BILI_COOKIE}")
+    except OSError:
+        pass
+
+class WbiSigner:
+    """Bilibili WBI 签名（纯 stdlib，基于 /x/web-interface/nav 返回的 wbi_img）"""
+    _MIXIN_KEY_ENC_TAB = [
+        46,47,18,2,53,8,23,32,15,50,10,31,58,3,45,35,
+        27,43,5,49,33,9,42,19,29,28,14,39,12,38,41,13,
+        37,48,7,16,24,55,40,61,26,17,0,1,60,51,30,4,
+        22,25,54,21,56,59,6,63,57,62,11,36,20,34,44,52,
+    ]
+
+    def __init__(self, cookies):
+        self.cookies = cookies
+
+    def _get_mixin_key(self, raw: str) -> str:
+        return ''.join(raw[i] for i in self._MIXIN_KEY_ENC_TAB)[:32]
+
+    def get_signed_params(self, params: dict) -> dict:
+        cookie_str = '; '.join(f"{k}={v}" for k, v in self.cookies.items())
+        req = urllib.request.Request(
+            'https://api.bilibili.com/x/web-interface/nav',
+            headers={
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+                'Cookie': cookie_str,
+                'Referer': 'https://www.bilibili.com',
+            }
+        )
+        try:
+            resp = urllib.request.urlopen(req, timeout=10)
+            nav = json.loads(resp.read())
+            wbi_img = nav['data']['wbi_img']
+            img_key = wbi_img['img_url'].rsplit('/', 1)[-1].split('.')[0]
+            sub_key = wbi_img['sub_url'].rsplit('/', 1)[-1].split('.')[0]
+        except Exception as e:
+            log(f"  WBI nav 获取失败: {e}")
+            return params
+
+        mixin_key = self._get_mixin_key(img_key + sub_key)
+        params['wts'] = int(time.time())
+        filtered = {k: ''.join(c for c in str(v) if c not in "!'()*") for k, v in sorted(params.items())}
+        query = '&'.join(f'{k}={v}' for k, v in filtered.items())
+        params['w_rid'] = hashlib.md5((query + mixin_key).encode()).hexdigest()
+        return params
+
 def search_bilibili(keywords):
-    """B站API搜索视频"""
+    """B站API搜索视频（WBI签名）"""
+    check_bili_cookie_expiry()
     cookies = parse_bili_cookies()
     if not cookies:
         log("  B站cookie不存在")
         return []
     
     cookie_str = '; '.join(f"{k}={v}" for k, v in cookies.items())
+    signer = WbiSigner(cookies)
     results = []
     
-    for kw in keywords:
+    for kw in keywords[:3]:
         try:
-            url = f"https://api.bilibili.com/x/web-interface/search/type?search_type=video&keyword={quote(kw)}&page=1"
+            params = {
+                'search_type': 'video',
+                'keyword': kw,
+                'page': '1',
+            }
+            signed = signer.get_signed_params(params)
+            qs = '&'.join(f"{k}={quote(str(v))}" for k, v in signed.items())
+            url = f"https://api.bilibili.com/x/web-interface/wbi/search/type?{qs}"
             req = urllib.request.Request(url)
-            req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36')
+            req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36')
             req.add_header('Cookie', cookie_str)
-            req.add_header('Referer', 'https://www.bilibili.com')
+            req.add_header('Referer', 'https://search.bilibili.com/video?keyword=' + quote(kw))
             
-            resp = urllib.request.urlopen(req, timeout=10)
+            resp = urllib.request.urlopen(req, timeout=15)
             data = json.loads(resp.read())
             
             if data.get('code') == 0:
-                videos = data['data'].get('result', [])[:5]
+                videos = data.get('data', {}).get('result', [])[:5]
                 for v in videos:
                     results.append({
                         "title": re.sub(r'<[^>]+>', '', v.get('title', '')),
@@ -250,7 +519,10 @@ def search_bilibili(keywords):
                         "author": v.get('author', ''),
                         "keyword": kw,
                     })
-            time.sleep(1)
+                log(f"  B站搜索 [{kw}]: {len(videos)}个结果")
+            else:
+                log(f"  B站搜索 [{kw}]: code={data.get('code')} msg={data.get('message','')[:80]}")
+            time.sleep(1.5)
         except Exception as e:
             log(f"  B站搜索失败 [{kw}]: {e}")
     
@@ -636,7 +908,17 @@ def main():
             
             with open(OUT_DIR / "bili_videos.json", 'w', encoding='utf-8') as f:
                 json.dump(videos[:20], f, ensure_ascii=False, indent=2)
-    
+
+    if mode in ("all", "weibo"):
+        log("\n=== 微博文章 ===")
+        urls = CONFIG["weibo_urls"]
+        if urls:
+            for i, url in enumerate(urls):
+                ok, size, title = crawl_weibo(url)
+                stats[f"微博_{i+1}"] = f"{'成功' if ok else '失败'} {title[:20]} ({size}字)"
+        else:
+            stats["微博"] = "等待用户提供微博文章链接"
+
     if mode in ("all", "guancha"):
         log("\n=== 观察者网专栏 ===")
         for name, url in CONFIG["guancha_authors"].items():

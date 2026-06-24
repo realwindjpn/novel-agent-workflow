@@ -24,7 +24,7 @@ NEW = BASE / '新版'
 TXT = BASE / '已投稿'
 BACKUP_ROOT = BASE / '审核记录' / '上传TXT完备门禁'
 
-DEFAULT_NOTE = '本章已按上传前门禁完成正文清洁与作者说拆分。感谢继续追读，后续会把技术线和人物线继续压实。'
+DEFAULT_NOTE = '本章技术要点与创作意图待补充。'
 
 
 def clean_md_to_txt(md: str) -> str:
@@ -32,11 +32,19 @@ def clean_md_to_txt(md: str) -> str:
     s = re.sub(r'^---\n[\s\S]*?\n---\n', '', s, count=1)
     s = re.sub(r'^#\s*', '', s, flags=re.M)
     s = re.sub(r'\[\[([^\]|]+)(?:\|[^\]]+)?\]\]', r'\1', s)
-    s = re.sub(r'\*\*(.*?)\*\*', r'\1', s)
     s = re.sub(r'`([^`]+)`', r'\1', s)
-    if '作者有话说：' in s:
-        s = s.split('作者有话说：', 1)[0]
+    s = normalize_author_note_marker(s)
+    s = re.sub(r'\*\*(.*?)\*\*', r'\1', s)
     return s.strip() + '\n'
+
+
+def normalize_author_note_marker(s: str) -> str:
+    """Normalize common Markdown author-note headings to Fanqie marker."""
+    s = re.sub(r'^\s*[-—]{3,}\s*$', '', s, flags=re.M)
+    s = re.sub(r'^\s*\*\*\s*作者有话说\s*\*\*\s*$', '作者有话说：', s, flags=re.M)
+    s = re.sub(r'^\s*#+\s*作者有话说\s*$', '作者有话说：', s, flags=re.M)
+    s = re.sub(r'^\s*作者有话说\s*$', '作者有话说：', s, flags=re.M)
+    return s
 
 
 def split_txt(s: str) -> tuple[str, str]:
@@ -112,7 +120,9 @@ def check_one(ch: int, write: bool, note_text: str | None, backup_dir: Path) -> 
     if not note.strip():
         note = (note_text or DEFAULT_NOTE).strip()
         changed = True
-    note = re.sub(r'^(作者有话说[:：]\s*)+', '', note.strip()).strip()
+        if not note_text:
+            issues.append('note_uses_default')
+    note = re.sub(r'^(作者有话说[:：]\\s*)+', '', note.strip()).strip()
     if len(note) > 300:
         issues.append(f'note_too_long:{len(note)}')
     if not note:

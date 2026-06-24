@@ -1,0 +1,19 @@
+{
+  "run_id": "historical_2026-05-15_20260606_230711",
+  "day": "2026-05-15",
+  "pack_path": "/root/workspace/科武纪元/自循环体系/historical_mirofish_replay_20260606/historical_2026-05-15_20260606_230711/MIROFISH_HISTORICAL_FEED_PACK.md",
+  "selected_count": 2,
+  "selected_cards": [
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-15/素材卡_议员促本土造船_海军探索海外供应商_供应链_20260515.md",
+      "title": "素材卡：议员促本土造船·海军探索海外供应商·供应链制度"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-15/素材卡_量子计算机专家解读_3个关键认知_量子计算_20260515.md",
+      "title": "素材卡：量子计算机专家解读·三个关键认知·非万能破解器"
+    }
+  ],
+  "skipped": [],
+  "status": "FEED_PACK_READY",
+  "created_at": "2026-06-06T23:07:11"
+}

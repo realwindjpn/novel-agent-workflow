@@ -1,0 +1,60 @@
+{
+  "run_id": "historical_2026-05-29_20260607_001820",
+  "day": "2026-05-29",
+  "pack_path": "/root/workspace/科武纪元/自循环体系/historical_mirofish_replay_20260606/historical_2026-05-29_20260607_001820/MIROFISH_HISTORICAL_FEED_PACK.md",
+  "selected_count": 7,
+  "selected_cards": [
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-29/素材卡_A_Shift_in_What’s_Shaping_U.S._Landscapes_20260529_2341.md",
+      "title": "素材卡：A Shift in What’s Shaping U.S. Landscapes"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-29/素材卡_Growing_Stem_Cells_in_Space_to_Improve_Cancer_and_Disease_Treatments_20260529_2058.md",
+      "title": "素材卡：Growing Stem Cells in Space to Improve Cancer and Disease Treatments"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-29/素材卡_How_NASA_Uses_Light_to_Detect_Waste_From_Mines_20260529_2058.md",
+      "title": "素材卡：How NASA Uses Light to Detect Waste From Mines"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-29/素材卡_NASA_Artemis_III船员公告_20260529_2341.md",
+      "title": "素材卡：NASA Artemis III船员公告"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-29/素材卡_NASA_Artemis_III船员公告_：✅_值得转卡（关联第359章_人才争夺_，需提取船员背景与政治博弈细节）_20260529_2341.md",
+      "title": "素材卡：**NASA Artemis III船员公告**：✅ 值得转卡（关联第359章\"人才争夺\"，需提取船员背景与政治博弈细节）"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-29/素材卡_NASA_Develops_Sensor_to_Improve_Firefighter_Safety_20260529_2341.md",
+      "title": "素材卡：NASA Develops Sensor to Improve Firefighter Safety"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-29/素材卡_NASA’s_Roman_Mission_Preps_to_Unveil_New_Populations_of_Faraway_Worlds_20260529_2058.md",
+      "title": "素材卡：NASA’s Roman Mission Preps to Unveil New Populations of Faraway Worlds"
+    }
+  ],
+  "skipped": [
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-29/素材卡_[CARD_PENDING]`_量子密钥切换场景_20260529_1542.md",
+      "reason": "noise_or_pending"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-29/素材卡_`[CARD_PENDING]_量子密钥切换场景`_：需主控补充具体章节需求（如“第381章需量子密钥切换场景”），否则仅归档不转卡。_20260529_1542.md",
+      "reason": "noise_or_pending"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-29/素材卡_执行提示_：主控若需正文转素材卡，请标记`[CARD_PENDING]`并附具体章节需求，否则仅归档不转卡。_20260529_1542.md",
+      "reason": "noise_or_pending"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-29/素材卡_边界提醒_：本报告仅做采集_蒸馏_分类_调用建议，不涉及大纲调整_正文修改_精修章节_投稿建议。如需正文转素材卡，请主控标记`[CARD_P_20260529_1542.md",
+      "reason": "noise_or_pending"
+    },
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-05-29/素材卡_边界提醒_：本报告仅做采集_蒸馏_分类_调用建议，不涉及大纲调整_正文修改_精修章节_投稿建议。如需正文转素材卡，请主控标记`[CARD_P_20260529_2058.md",
+      "reason": "noise_or_pending"
+    }
+  ],
+  "status": "FEED_PACK_READY",
+  "created_at": "2026-06-07T00:18:20"
+}

@@ -1,0 +1,485 @@
+{
+  "schema": "sensenova_mirofish_feed_package_v1",
+  "created_at": "2026-06-15T03:00:49",
+  "source_run_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260615_0248",
+  "mirofish_input_gate": {
+    "status": "ALLOW_MIROFISH_INPUT",
+    "reason": "",
+    "status_hint": "after_card_distill",
+    "valid_content_cards": 7,
+    "body_valid_cards": 16,
+    "story_value_cards": 7,
+    "low_story_value_cards": 9,
+    "mirofish_ready_cards": 7,
+    "p0_p1_story_value_cards": 7,
+    "material_relevance_status": "PASS",
+    "domestic_body_success": 6,
+    "body_fetch_success": 16,
+    "body_files_written": 15,
+    "body_fetch_success_metric": "raw/bodies/*.txt with BODY_FETCHED report item",
+    "story_value_threshold": {
+      "story_value_cards_min": 3,
+      "p0_p1_story_value_cards_min": 1,
+      "body_only_path_rejected": true
+    },
+    "bridge_mirofish_cron_recoverable": true
+  },
+  "mirofish_input_gate_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260615_0248/raw/mirofish_input_gate.json",
+  "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260615_0248/raw/body_fetch_report.json",
+  "raw_bodies_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260615_0248/raw/bodies",
+  "source_pipeline_state": {
+    "run_id": "cron_20260615_0248",
+    "status": "done",
+    "valid_content_cards": 7,
+    "query_plan_cards": 0,
+    "body_fetch_success": 16,
+    "card_pass_count": 16
+  },
+  "policy": {
+    "query_plan_excluded": true,
+    "formal_cards_written": false,
+    "production_runner_modified": false,
+    "outline_text_txt_draft_modified": false,
+    "body_success_requires_raw_bodies_txt": true
+  },
+  "valid_input_count": 8,
+  "skipped_count": 60,
+  "skip_reason_counts": {
+    "already_in_previous_bridge_run": 5,
+    "not_article_page_url": 1,
+    "duplicate_within_run": 4,
+    "missing_body_path": 1,
+    "malformed_search_title": 2,
+    "low_value_policy_theory_source": 1,
+    "low_value_expo_or_conference": 1,
+    "stale_domestic_article": 1,
+    "query_plan_no_body": 44
+  },
+  "body_fetch_evidence_count": 15,
+  "body_fetch_evidence_key_count": 30,
+  "stale_domestic_blocked_count": 1,
+  "skipped": [
+    {
+      "candidate_id": "23055983bfc01127",
+      "title": "Earth from Space: Buenos Aires",
+      "url": "https://www.esa.int/ESA_Multimedia/Images/2026/06/Earth_from_Space_Buenos_Aires",
+      "status": "DISTILLED",
+      "reason": "already_in_previous_bridge_run"
+    },
+    {
+      "candidate_id": "6ba66c7dba01e49f",
+      "title": "I advise the Vatican and the UN on AI — don’t dismiss the Pope’s message as theology",
+      "url": "https://www.nature.com/articles/d41586-026-01876-z",
+      "status": "DISTILLED",
+      "reason": "already_in_previous_bridge_run"
+    },
+    {
+      "candidate_id": "f277cceb29ba146c",
+      "title": "Humans outperform AI at this highly rigorous mathematics test",
+      "url": "https://www.nature.com/articles/d41586-026-01888-9",
+      "status": "DISTILLED",
+      "reason": "already_in_previous_bridge_run"
+    },
+    {
+      "candidate_id": "97105b9433c2ebcb",
+      "title": "“AI桂林”文旅大模型正式上线 “AI桂林”文旅大模型在第22届中国—东盟博览会正式上线。这是桂林市与人民网深度合作开发的首个聚焦打造“世界级旅游城市”的全域智慧文旅大模型。 了解详情 →",
+      "url": "http://tech.people.com.cn/detail.html",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "NOT_ARTICLE_PAGE_URL"
+    },
+    {
+      "candidate_id": "c2f1284842554b55",
+      "title": "Hubble Sees Swarm of Galaxies",
+      "url": "https://science.nasa.gov/missions/hubble/hubble-sees-swarm-of-galaxies",
+      "status": "DISTILLED",
+      "reason": "duplicate_within_run"
+    },
+    {
+      "candidate_id": "0cf76e456e781fc9",
+      "title": "Conversations in the sky: Galileo’s intersatellite links tested",
+      "url": "https://www.esa.int/Applications/Satellite_navigation/Conversations_in_the_sky_Galileo_s_intersatellite_links_tested",
+      "status": "SUMMARY_ONLY",
+      "reason": "duplicate_within_run"
+    },
+    {
+      "candidate_id": "6ba66c7dba01e49f",
+      "title": "I advise the Vatican and the UN on AI — don’t dismiss the Pope’s message as theology",
+      "url": "https://www.nature.com/articles/d41586-026-01876-z",
+      "status": "NEED_FETCH_BODY",
+      "reason": "duplicate_within_run"
+    },
+    {
+      "candidate_id": "f277cceb29ba146c",
+      "title": "Humans outperform AI at this highly rigorous mathematics test",
+      "url": "https://www.nature.com/articles/d41586-026-01888-9",
+      "status": "NEED_FETCH_BODY",
+      "reason": "duplicate_within_run"
+    },
+    {
+      "candidate_id": "78314b92b567a8a9",
+      "title": "emerging resilience in the semiconductor supply chain",
+      "url": "https://www.semiconductors.org/emerging-resilience-in-the-semiconductor-supply-chain",
+      "status": "NEED_FETCH_BODY",
+      "reason": "missing_body_path"
+    },
+    {
+      "candidate_id": "b0575c12905ca69e",
+      "title": "两部门部署在全国开展2026年“全民反诈在行动”集中宣传月活动",
+      "url": "https://news.cctv.com/2026/06/10/ARTImWdyfJZtw95kmOJgdob2260610.shtml",
+      "status": "DISTILLED",
+      "reason": "already_in_previous_bridge_run"
+    },
+    {
+      "candidate_id": "46f2f8ed8146dd8f",
+      "title": "高质量数据集建设激活人工智能发展新动能",
+      "url": "http://finance.people.com.cn/n1/2026/0529/c1004-40729991.html",
+      "status": "DISTILLED",
+      "reason": "already_in_previous_bridge_run"
+    },
+    {
+      "candidate_id": "c64094_40247809_b483b37152c480d6",
+      "title": "c64094 40247809",
+      "url": "http://cpc.people.com.cn/n1/2024/0531/c64094-40247809.html",
+      "status": "DISTILLED",
+      "reason": "malformed_search_title"
+    },
+    {
+      "candidate_id": "c40531_40521652_6e2aaacb1328ead0",
+      "title": "c40531 40521652",
+      "url": "http://theory.people.com.cn/n1/2025/0715/c40531-40521652.html",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "LOW_VALUE_POLICY_THEORY_SOURCE"
+    },
+    {
+      "candidate_id": "c1004_40732291_21564c63da264999",
+      "title": "c1004 40732291",
+      "url": "http://finance.people.com.cn/n1/2026/0602/c1004-40732291.html",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "LOW_VALUE_EXPO_OR_CONFERENCE"
+    },
+    {
+      "candidate_id": "c_5b35174c990444c5",
+      "title": "c",
+      "url": "http://www.xinhuanet.com/tech/20240222/a75bd974691f43f2817b9b2cbec5e9be/c.html",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "STALE_DOMESTIC_ARTICLE"
+    },
+    {
+      "candidate_id": "c_4deecdbf5cafbb10",
+      "title": "c",
+      "url": "http://www.xinhuanet.com/politics/leaders/20260530/b0f862ad5de64120a352f27f5d484bb3/c.html",
+      "status": "DISTILLED",
+      "reason": "malformed_search_title"
+    },
+    {
+      "candidate_id": "QP_xinhuanet_com__人工智能_半导体_算力_e6ec010eef4d43ec",
+      "title": "[QP:xinhuanet.com] 人工智能 半导体 算力",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_xinhuanet_com__新材料_能源_动力装备_33b97f3c1c479b83",
+      "title": "[QP:xinhuanet.com] 新材料 能源 动力装备",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_xinhuanet_com__航天_深空_探测_0468e441b9d10da2",
+      "title": "[QP:xinhuanet.com] 航天 深空 探测",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cctv_com__先进制造_7e87c831428e4964",
+      "title": "[QP:cctv.com] 先进制造",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cctv_com__query_plan_bb0d5336fc69a780",
+      "title": "[QP:cctv.com] query_plan",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cctv_com__人工智能_半导体_算力_a747c907e3c53120",
+      "title": "[QP:cctv.com] 人工智能 半导体 算力",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cctv_com__新材料_能源_动力装备_eb8aca1a8c1109a7",
+      "title": "[QP:cctv.com] 新材料 能源 动力装备",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cctv_com__航天_深空_探测_78c50ef2068c234e",
+      "title": "[QP:cctv.com] 航天 深空 探测",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_stdaily_com__query_plan_e7e97758b7061b25",
+      "title": "[QP:stdaily.com] query_plan",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_stdaily_com__新材料_先进制造_能源_1e33a24c15ea7197",
+      "title": "[QP:stdaily.com] 新材料 先进制造 能源",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_stdaily_com__人工智能_机器人_量子_b78f9c8f77c64371",
+      "title": "[QP:stdaily.com] 人工智能 机器人 量子",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_huanqiu_com__科技_国防_航天_b8ade137ef0e228c",
+      "title": "[QP:huanqiu.com] 科技 国防 航天",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_huanqiu_com__地缘_科技_产业链_76479a3fda63046e",
+      "title": "[QP:huanqiu.com] 地缘 科技 产业链",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_guancha_cn__半导体_出口管制_产业链_e65ec3ec54b2524e",
+      "title": "[QP:guancha.cn] 半导体 出口管制 产业链",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_guancha_cn__航天_军事_科技_22aa3cd6aed9f773",
+      "title": "[QP:guancha.cn] 航天 军事 科技",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_miit_gov_cn__新型工业化_先进制造_产业链_57f373f9f8e545f4",
+      "title": "[QP:miit.gov.cn] 新型工业化 先进制造 产业链",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_miit_gov_cn__人工智能_半导体_算力_33f2b8e5a4e172d5",
+      "title": "[QP:miit.gov.cn] 人工智能 半导体 算力",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_mod_gov_cn__科技_国防_无人机_a023db994eaccf58",
+      "title": "[QP:mod.gov.cn] 科技 国防 无人机",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_mod_gov_cn__航天_网络_信息化_507094a2c08c6e18",
+      "title": "[QP:mod.gov.cn] 航天 网络 信息化",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_most_gov_cn__query_plan_7b22d1f8c24da32e",
+      "title": "[QP:most.gov.cn] query_plan",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_most_gov_cn__人工智能_量子_新材料_560b4a6aa25151d7",
+      "title": "[QP:most.gov.cn] 人工智能 量子 新材料",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cnsa_gov_cn__月球_深空_探测工程_20303b7b884d5ac0",
+      "title": "[QP:cnsa.gov.cn] 月球 深空 探测工程",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cnsa_gov_cn__航天_科技_探测_cf2955ec4106227b",
+      "title": "[QP:cnsa.gov.cn] 航天 科技 探测",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cas_cn__科技突破_重大进展_05d228606419c44d",
+      "title": "[QP:cas.cn] 科技突破 重大进展",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cas_cn__人工智能_量子_新材料_c58a3607244415fd",
+      "title": "[QP:cas.cn] 人工智能 量子 新材料",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cas_cn__航天_深空_机器人_7ea1cbe5f0a40dbb",
+      "title": "[QP:cas.cn] 航天 深空 机器人",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_iop_cas_cn__量子_材料_能源_c5aec814225aed6f",
+      "title": "[QP:iop.cas.cn] 量子 材料 能源",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cac_gov_cn__人工智能_治理_数据_6e4102c607c44cc1",
+      "title": "[QP:cac.gov.cn] 人工智能 治理 数据",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cac_gov_cn__网络安全_数据安全_生成式人工智能_ec83078b973194f8",
+      "title": "[QP:cac.gov.cn] 网络安全 数据安全 生成式人工智能",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_nasa_gov__Artemis_lunar_program_5280907ed00de3bf",
+      "title": "[QP:nasa.gov] Artemis lunar program",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_esa_int__lunar_exploration_deep_d5c7a04dafc49a93",
+      "title": "[QP:esa.int] lunar exploration deep",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_darpa_mil__autonomous_systems_drone_b92f5eb6d0ecaf49",
+      "title": "[QP:darpa.mil] autonomous systems drone",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_defense_gov__drone_swarm_military_3386c3c86d65e361",
+      "title": "[QP:defense.gov] drone swarm military",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_energy_gov__quantum_energy_research_078ec664e34007f2",
+      "title": "[QP:energy.gov] quantum energy research",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_noaa_gov__satellite_climate_ocean_f41db89017aca1dd",
+      "title": "[QP:noaa.gov] satellite climate ocean",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_pubmed_ncbi_nlm_nih_gov__brain_computer_i_e12ff3e03a5f79c5",
+      "title": "[QP:pubmed.ncbi.nlm.nih.gov] brain computer interface",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_arxiv_org__quantum_computing_94fde7d15ecd98ff",
+      "title": "[QP:arxiv.org] quantum computing",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_arxiv_org__AI_safety_robotics_a4988c3fa07a226f",
+      "title": "[QP:arxiv.org] AI safety robotics",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_openalex_org__quantum_computing_AI_0e7d3417e9a776fe",
+      "title": "[QP:openalex.org] quantum computing AI",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_nature_com__quantum_computing_AI_1fc7e5443e28b9bd",
+      "title": "[QP:nature.com] quantum computing AI",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_science_org__quantum_AI_energy_b2d0d330ae9ba9ee",
+      "title": "[QP:science.org] quantum AI energy",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_ieee_org__AI_chips_robotics_97d6f9830620498a",
+      "title": "[QP:ieee.org] AI chips robotics",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_bis_gov__export_control_semiconductors_39ca2d7d901d69d2",
+      "title": "[QP:bis.gov] export control semiconductors",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_semiconductors_org__semiconductor_industr_c37fa121bae6a837",
+      "title": "[QP:semiconductors.org] semiconductor industry chips",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    }
+  ],
+  "decision_cards_path": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260615_0248/decision_cards.json",
+  "conversion_tasks_path": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260615_0248/card_conversion_tasks.json"
+}

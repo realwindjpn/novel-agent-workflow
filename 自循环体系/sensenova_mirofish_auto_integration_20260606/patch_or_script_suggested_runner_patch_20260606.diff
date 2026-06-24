@@ -1,0 +1,40 @@
+*** Begin Patch
+*** Update File: /root/workspace/scripts/sensenova_split_pipeline_runner.py
+@@
+ def stage_card_review(ctx: PipelineContext) -> dict:
+     ...
+     return state
++
++def stage_mirofish_feed_to_card(ctx: PipelineContext) -> dict:
++    """Suggested integration point only.
++    Call external bridge after card_review and before report_qq.
++    The bridge must exclude query_plan / no URL items and write only run_dir artifacts
++    until production apply is explicitly authorized.
++    """
++    import subprocess, sys
++    task_name = 'mirofish_feed_to_card'
++    state = ctx.init_task_state('G', task_name, 900)
++    ctx.start_task(task_name, state)
++    bridge = '/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/scripts/mirofish_feed_to_card_bridge_20260606.py'
++    proc = subprocess.run([sys.executable, bridge, '--dry-run', '--run-dir', str(ctx.run_dir), '--out-dir', str(ctx.run_dir / 'mirofish_feed_to_card')], text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=900)
++    state['items_total'] = 1
++    state['items_done'] = 1 if proc.returncode == 0 else 0
++    state['items_failed'] = 0 if proc.returncode == 0 else 1
++    if proc.returncode != 0:
++        state['failure_tags'].append('MIROFISH_BRIDGE_FAIL')
++        state['errors'].append(proc.stderr[-1000:])
++    state['outputs'] = [str(ctx.run_dir / 'mirofish_feed_to_card')]
++    ctx.finish_task(task_name, state, 'done' if proc.returncode == 0 else 'partial')
++    return state
+@@
+     stages = [
+         ('A', 'collect_sources', stage_collect_sources),
+         ('B', 'p0_current_events', stage_p0_current_events),
+         ('B2', 'body_fetch', lambda ctx: stage_body_fetch(ctx, disable=disable_body_fetch, limit=body_fetch_limit)),
+         ('C', 'book_learning', stage_book_learning),
+         ('D', 'card_distill', stage_card_distill),
+         ('E', 'card_review', stage_card_review),
++        ('G', 'mirofish_feed_to_card', stage_mirofish_feed_to_card),
+         ('F', 'report_qq', stage_report_qq),
+     ]
+*** End Patch

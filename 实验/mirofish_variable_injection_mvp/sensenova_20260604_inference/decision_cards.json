@@ -1,0 +1,554 @@
+[
+  {
+    "material_id": "20260604_artemis_moonlit_057276",
+    "source": "https://science.nasa.gov/earth/earth-observatory/a-moonlit-earth-as-seen-from-artemis-ii",
+    "title": "A Moonlit Earth as Seen From Artemis II",
+    "evidence": "card_3ce1bbfc820ad75b.json, body_len=10922, CARD_PASS, official_verified",
+    "variable": "Artemis载人绕月进展-公众对太空探索的浪漫化想象窗口",
+    "force_reactions": [
+      {
+        "force": "南天门",
+        "reaction": "Artemis II推进月面竞赛时间表，南天门须加速月面部署以争夺先到先得叙事权"
+      },
+      {
+        "force": "铁幕联盟",
+        "reaction": "联邦太空预算因公众支持水涨船高，铁幕须同步加码或转向破坏性手段"
+      },
+      {
+        "force": "星穹探索公司",
+        "reaction": "Artemis合同为星穹提供新商业窗口，可借公众热情推动私有化月面设施"
+      }
+    ],
+    "chain_conflicts": [
+      {
+        "chain": [
+          "Artemis II照片引发公众热潮",
+          "联邦月面预算追加",
+          "铁幕被迫加速月面反制",
+          "月面绞肉机提前触发"
+        ],
+        "time_anchor": "第370-373章(第八卷)",
+        "intensity": "medium"
+      },
+      {
+        "chain": [
+          "公众浪漫化太空vs工程现实落差",
+          "舆论压力要求速胜",
+          "仓促登月决策导致月面安全事故"
+        ],
+        "time_anchor": "第371章(月面绞肉机)",
+        "intensity": "high"
+      }
+    ],
+    "chapter_hooks": [
+      {
+        "hook_id": "H001",
+        "description": "Artemis照片在小说世界引发公众对月面任务的浪漫化想象，与第371章月面绞肉机的残酷现实形成反差",
+        "suitable_chapters": [
+          371,
+          373
+        ],
+        "reversal": "照片越美，死伤越刺眼"
+      }
+    ],
+    "outline_delta_candidate": {
+      "type": "note_layer",
+      "target_chapter": 371,
+      "proposed_addition": "月面绞肉机开篇可叠加公众期待vs工程现实落差备注层",
+      "not_proposed": "不改主线推进，不增新事件"
+    },
+    "anti_patterns": [
+      "不得线性因果照片=舆论胜利",
+      "不得简化为照片=航天支持",
+      "不得让主角团因照片改变战略"
+    ],
+    "character_os_shift": "无直接角色OS变化。可作环境氛围素材",
+    "disposition": "CHAPTER_PREP_ONLY",
+    "disposition_reason": "V8.12已覆盖地月规则竞赛主线(第156/169/221章)，本素材仅可作氛围反差层嵌入",
+    "confidence": 0.75
+  },
+  {
+    "material_id": "20260604_elnino_precursor_fec474",
+    "source": "https://science.nasa.gov/photojournal/international-sea-level-satellite-observes-el-nino-precursor",
+    "title": "International Sea Level Satellite Observes El Nino Precursor",
+    "evidence": "card_9396d556a9676ef7.json, body_len=7523, CARD_PASS, official_verified",
+    "variable": "El Nino前兆-极端气候对太空供应链间接冲击",
+    "force_reactions": [
+      {
+        "force": "南天门",
+        "reaction": "El Nino引发极端天气可能影响地面发射窗口和太平洋物流"
+      },
+      {
+        "force": "铁幕联盟",
+        "reaction": "可利用极端天气制造供应链叙事压力"
+      }
+    ],
+    "chain_conflicts": [
+      {
+        "chain": [
+          "El Nino加剧极端天气",
+          "太平洋物流受阻",
+          "氦-3运输延迟"
+        ],
+        "time_anchor": "第206-208章(归途)",
+        "intensity": "low"
+      }
+    ],
+    "chapter_hooks": [
+      {
+        "hook_id": "H002",
+        "description": "El Nino导致的极端天气可作归途环境背景",
+        "suitable_chapters": [
+          206,
+          207
+        ],
+        "reversal": "从太空回来看到的不是和平是更乱的地球"
+      }
+    ],
+    "outline_delta_candidate": null,
+    "anti_patterns": [
+      "不得把El Nino写成铁幕阴谋",
+      "不得让主角团因此改变战略"
+    ],
+    "character_os_shift": "无",
+    "disposition": "ARCHIVE_WITH_REASON",
+    "disposition_reason": "与小说核心冲突(算力主权/月面争夺/铁幕对抗)关联度极低",
+    "confidence": 0.3
+  },
+  {
+    "material_id": "20260604_virgo_cluster_m88_eafa93",
+    "source": "https://www.nasa.gov/image-article/journey-to-the-center-of-the-virgo-cluster",
+    "title": "Journey to the Center of the Virgo Cluster (M88)",
+    "evidence": "card_afb6f4a8f13dc120.json, body_len=5359, CARD_PASS, official_verified",
+    "variable": "Hubble深空图像-纯天文视觉素材",
+    "force_reactions": [],
+    "chain_conflicts": [],
+    "chapter_hooks": [],
+    "outline_delta_candidate": null,
+    "anti_patterns": [
+      "不得硬塞深空信号-M88是6300万光年外星系与来客方舟协议无关"
+    ],
+    "character_os_shift": "无",
+    "disposition": "ARCHIVE_WITH_REASON",
+    "disposition_reason": "纯天文图像新闻，无事实核可转化为小说事件。6300万光年尺度与地月-火星叙事不匹配",
+    "confidence": 0.1
+  },
+  {
+    "material_id": "20260604_nasa_stennis_water_a09d60",
+    "source": "https://www.nasa.gov/centers-and-facilities/stennis/reservoir-drained-to-upgrade-water-system",
+    "title": "NASA Drains 66-Million-Gallon Reservoir to Upgrade Critical Water System",
+    "evidence": "card_8a4063b6ab575a21.json, body_len=10292, CARD_PASS, official_verified",
+    "variable": "NASA地面测试设施基础设施维护-后勤视角",
+    "force_reactions": [
+      {
+        "force": "星穹探索公司",
+        "reaction": "NASA设施老化暴露太空基础设施脆弱性，星穹可论证私有化效率"
+      }
+    ],
+    "chain_conflicts": [
+      {
+        "chain": [
+          "NASA地面设施老化",
+          "预算被Artemis吸走",
+          "基础设施维护降级"
+        ],
+        "time_anchor": "背景层",
+        "intensity": "low"
+      }
+    ],
+    "chapter_hooks": [
+      {
+        "hook_id": "H003",
+        "description": "66百万加仑蓄水池场景感-可作公司疑云中联邦vs星穹基础设施对比",
+        "suitable_chapters": [
+          212
+        ],
+        "reversal": "联邦的水管vs星穹的算法哪个更脆弱"
+      }
+    ],
+    "outline_delta_candidate": null,
+    "anti_patterns": [
+      "不得把蓄水池维修写成军事事故"
+    ],
+    "character_os_shift": "无",
+    "disposition": "ARCHIVE_WITH_REASON",
+    "disposition_reason": "后勤基础设施新闻，与核心冲突无直接因果链",
+    "confidence": 0.2
+  },
+  {
+    "material_id": "20260604_esa_monthly_may_df495f",
+    "source": "https://www.esa.int/ESA_Multimedia/Videos/2026/05/This_Month_at_ESA_May_2026",
+    "title": "This Month at ESA: May 2026",
+    "evidence": "card_9dad17a71119fe05.json, body_len=1791, CARD_PASS, official_verified",
+    "variable": "ESA月度汇总-多任务并行",
+    "force_reactions": [
+      {
+        "force": "欧陆分支",
+        "reaction": "ESA活跃度显示欧陆太空独立性增强可能削弱铁幕对欧陆控制"
+      }
+    ],
+    "chain_conflicts": [
+      {
+        "chain": [
+          "ESA独立推进多项任务",
+          "欧陆太空自主叙事增强",
+          "铁幕欧陆分支分歧加剧"
+        ],
+        "time_anchor": "第223章附近",
+        "intensity": "low"
+      }
+    ],
+    "chapter_hooks": [
+      {
+        "hook_id": "H004",
+        "description": "ESA与游戏公司合作科幻游戏Aphelion-太空成为流行文化素材",
+        "suitable_chapters": [
+          358
+        ],
+        "reversal": "游戏让太空变得酷也让太空变得廉价"
+      }
+    ],
+    "outline_delta_candidate": null,
+    "anti_patterns": [
+      "不得把ESA月报当重大新闻"
+    ],
+    "character_os_shift": "无",
+    "disposition": "ARCHIVE_WITH_REASON",
+    "disposition_reason": "ESA月报为常规汇总，无单一重大事件可转化。V8.12已覆盖欧陆分支第223章分歧",
+    "confidence": 0.25
+  },
+  {
+    "material_id": "20260604_batagaika_crater_17bd13",
+    "source": "https://www.esa.int/ESA_Multimedia/Images/2026/05/Earth_from_Space_Batagaika_Crater",
+    "title": "Earth from Space: Batagaika Crater",
+    "evidence": "card_5d984524b40b9cc3.json, body_len=2694, CARD_PASS, official_verified",
+    "variable": "西伯利亚冻土塌陷坑-气候变化物理证据",
+    "force_reactions": [
+      {
+        "force": "南天门",
+        "reaction": "冻土融化加速气候恶化能源转型紧迫性升高"
+      },
+      {
+        "force": "铁幕联盟",
+        "reaction": "可利用气候危机叙事推动集中管控论"
+      }
+    ],
+    "chain_conflicts": [
+      {
+        "chain": [
+          "冻土坑年增30米",
+          "甲烷正反馈",
+          "气候数据被武器化",
+          "能源政策争夺加剧"
+        ],
+        "time_anchor": "第358章(舆论战场)",
+        "intensity": "medium"
+      }
+    ],
+    "chapter_hooks": [
+      {
+        "hook_id": "H005",
+        "description": "冻土坑视觉冲击可作舆论战素材：铁幕用卫星图证明地球在自我毁灭",
+        "suitable_chapters": [
+          358
+        ],
+        "reversal": "地球在塌你们还在看星星"
+      }
+    ],
+    "outline_delta_candidate": {
+      "type": "propaganda素材",
+      "target_chapter": 358,
+      "proposed_addition": "第358章舆论战中可引用冻土类卫星图作人类连地球都救不了的视觉证据",
+      "not_proposed": "不改主线仅作素材库参考"
+    },
+    "anti_patterns": [
+      "不得把冻土塌陷写成铁幕武器",
+      "不得过度科普冻土机制"
+    ],
+    "character_os_shift": "无",
+    "disposition": "CHAPTER_PREP_ONLY",
+    "disposition_reason": "气候变化视觉素材可作舆论战场景细节但不触发大纲变更",
+    "confidence": 0.4
+  },
+  {
+    "material_id": "20260604_ai_science_recruitment_455ae1",
+    "source": "https://www.nature.com/articles/d41586-026-01774-4",
+    "title": "AI in science recruitment: friend or foe?",
+    "evidence": "card_a03234cb70263fb4.json, body_len=6379, CARD_PASS, official_verified",
+    "variable": "AI渗透科学招聘-算法选择科学家趋势",
+    "force_reactions": [
+      {
+        "force": "铁幕联盟",
+        "reaction": "AI筛选科学家等同于用算法筛选下一代思想"
+      },
+      {
+        "force": "星穹探索公司",
+        "reaction": "星穹可用AI招聘工具大规模挖角全球人才"
+      }
+    ],
+    "chain_conflicts": [
+      {
+        "chain": [
+          "AI筛选科学家简历",
+          "算法偏见导致特定国籍被排除",
+          "人才流动被AI控制=新型技术封锁"
+        ],
+        "time_anchor": "第359章(人才争夺)",
+        "intensity": "medium"
+      }
+    ],
+    "chapter_hooks": [
+      {
+        "hook_id": "H006",
+        "description": "第359章人才争夺中铁幕通过AI招聘系统控制人才流向",
+        "suitable_chapters": [
+          359
+        ],
+        "reversal": "AI不是中立工具是新型筛选器"
+      }
+    ],
+    "outline_delta_candidate": {
+      "type": "event_layer",
+      "target_chapter": 359,
+      "proposed_addition": "第359章可叠加AI招聘武器化细节：铁幕控制学术招聘平台AI筛选算法",
+      "not_proposed": "不改主线仅叠加AI工具层细节"
+    },
+    "anti_patterns": [
+      "不得写AI=坏的简单二元论",
+      "不得让主角团花大量篇幅讨论AI招聘伦理"
+    ],
+    "character_os_shift": "无",
+    "disposition": "CHAPTER_PREP_ONLY",
+    "disposition_reason": "AI招聘武器化与第359章人才争夺有叙事关联可叠加为细节层，但V8大纲已明确铁幕挖角量子物理学家主线",
+    "confidence": 0.55
+  },
+  {
+    "material_id": "20260604_cnsa_553e68",
+    "source": "https://www.cnsa.gov.cn/",
+    "title": "国家航天局官网要闻聚合",
+    "evidence": "card_2d91965bb96c4a00.json, body_len=3110, CARD_PASS, official_verified",
+    "variable": "CNSA多条实时航天动态-卫星互联网/载人航天/新型火箭/深空探测",
+    "force_reactions": [
+      {
+        "force": "南天门",
+        "reaction": "卫星互联网手机直连=南天门通信网络现实原型；长征十二号乙首飞=运力储备信号"
+      },
+      {
+        "force": "铁幕联盟",
+        "reaction": "中国航天高频发射密度令铁幕压力加大"
+      },
+      {
+        "force": "算力黑市",
+        "reaction": "卫星互联网直连手机技术可能催生新分布式算力节点绕过地面封锁"
+      }
+    ],
+    "chain_conflicts": [
+      {
+        "chain": [
+          "卫星互联网手机直连试验成功",
+          "地面基站不再是唯一通信入口",
+          "铁幕通信封锁策略部分失效",
+          "算力黑市获得新传输通道"
+        ],
+        "time_anchor": "第95章(算力对决)",
+        "intensity": "high"
+      },
+      {
+        "chain": [
+          "神舟换班常态化+样品返回",
+          "载人航天常态化",
+          "月面基地时间表加速"
+        ],
+        "time_anchor": "第156-169章",
+        "intensity": "high"
+      },
+      {
+        "chain": [
+          "长征十二号乙首飞第647次",
+          "新构型火箭=新运力",
+          "太空部署密度提升"
+        ],
+        "time_anchor": "第206-208章",
+        "intensity": "medium"
+      }
+    ],
+    "chapter_hooks": [
+      {
+        "hook_id": "H007",
+        "description": "卫星互联网手机直连技术-映射为算力对决中备用通信通道：铁幕切断地面网络时卫星直连成为算力黑市新生命线",
+        "suitable_chapters": [
+          95,
+          216
+        ],
+        "reversal": "你以为断了网就赢了信号从天上来"
+      },
+      {
+        "hook_id": "H008",
+        "description": "神舟换班常态化-映射为重返月球前训练窗口叙事：载人航天不再是壮举是日常作业但月面作业仍然要命",
+        "suitable_chapters": [
+          156,
+          169
+        ],
+        "reversal": "常态化不等于安全化"
+      },
+      {
+        "hook_id": "H009",
+        "description": "长征十二号乙首飞-映射为运力冗余叙事：他们不是在发射火箭是在流水线生产入轨能力",
+        "suitable_chapters": [
+          206,
+          306
+        ],
+        "reversal": "量产不是平庸是战略纵深"
+      }
+    ],
+    "outline_delta_candidate": {
+      "type": "tech_layer_reinforcement",
+      "target_chapter": 95,
+      "proposed_addition": "第95章算力对决可补强卫星互联网作为备用通信通道技术细节：铁幕切断地面网络时卫星直连手机技术为算力黑市提供绕过封锁新路径。与V8.12算力主权链第95章残缺阵列训练形成算力+通信双轨突破",
+      "not_proposed": "不改主线算力对决已有完整事件链，叠加通信技术层"
+    },
+    "anti_patterns": [
+      "不得把CNSA新闻直接写进小说须转化",
+      "不得写中国火箭第647次发射须虚化",
+      "不得让神舟换班成为主角团直接经历除非大纲已有"
+    ],
+    "character_os_shift": "方宁可能对卫星互联网直连技术产生工程兴趣",
+    "disposition": "OUTLINE_PATCH",
+    "disposition_reason": "卫星互联网手机直连与算力主权链(V8.12已覆盖第95章)高度相关，可作为通信层绕过封锁技术细节叠加。载人航天常态化与第156章重返月球时间线吻合",
+    "confidence": 0.8
+  },
+  {
+    "material_id": "20260604_huanqiu_mil_528f14",
+    "source": "https://mil.huanqiu.com/",
+    "title": "环球网军事频道热点聚合",
+    "evidence": "card_ed2ba32e340841ff.json, body_len=1342, CARD_PASS, official_verified",
+    "variable": "国际军事热点-中东战事/俄乌/美伊/中国海警/南天门进展",
+    "force_reactions": [
+      {
+        "force": "铁幕联盟",
+        "reaction": "中东多线战事消耗西方军事资源和注意力，铁幕可趁机在太空算力领域加速"
+      },
+      {
+        "force": "白盾部队",
+        "reaction": "美众议院叫停对伊军事行动=联邦内部军事授权争议的现实映射，白盾扩权政治土壤"
+      },
+      {
+        "force": "南天门",
+        "reaction": "中国海警巡查+南天门计划进展曝光=叙事压力管理"
+      }
+    ],
+    "chain_conflicts": [
+      {
+        "chain": [
+          "中东多线战事消耗西方资源",
+          "铁幕趁机太空算力加速",
+          "月面争夺时间窗口被压缩"
+        ],
+        "time_anchor": "第306-307章(铁幕升起)",
+        "intensity": "high"
+      },
+      {
+        "chain": [
+          "美众议院叫停军事行动",
+          "联邦内部军事授权裂痕",
+          "白盾类机构趁机扩权"
+        ],
+        "time_anchor": "第217章(白盾扩编)",
+        "intensity": "high"
+      }
+    ],
+    "chapter_hooks": [
+      {
+        "hook_id": "H010",
+        "description": "中东多线战事=铁幕全球战略分散注意力工具：铁幕故意在中东制造代理人冲突消耗联邦军事资源为太空行动争取时间窗口",
+        "suitable_chapters": [
+          306,
+          307
+        ],
+        "reversal": "战争不在你关注的地方爆发"
+      },
+      {
+        "hook_id": "H011",
+        "description": "美众议院叫停军事行动=白盾扩权催化剂：国会不批我们就用不需要国会批的机构",
+        "suitable_chapters": [
+          217,
+          223
+        ],
+        "reversal": "民主程序空白处是准军事机构温床"
+      }
+    ],
+    "outline_delta_candidate": {
+      "type": "conflict_layer",
+      "target_chapter": 217,
+      "proposed_addition": "第217章白盾扩编可叠加联邦内部军事授权争议现实映射：国会叫停海外军事行动后白盾类机构获得绕过国会灰色授权窗口。与V8.12白盾扩编条目形成授权空白到准军事填补因果链",
+      "not_proposed": "不改主线白盾扩编已有大纲，叠加政治授权层细节"
+    },
+    "anti_patterns": [
+      "不得把现实军事冲突直接写进小说须抽象化",
+      "不得写中国海警=南天门",
+      "不得让南天门计划现实新闻影响小说叙事"
+    ],
+    "character_os_shift": "赵刚可能因联邦军事授权争议对白盾扩权产生警觉",
+    "disposition": "OUTLINE_PATCH",
+    "disposition_reason": "中东多线战事+联邦内部军事授权争议与白盾扩编主线(第217/223章)高度相关。美众议院叫停军事行动是白盾灰色授权的现实催化剂",
+    "confidence": 0.75
+  },
+  {
+    "material_id": "20260604_nasa_artemis_hub_b138b5",
+    "source": "https://www.nasa.gov/humans-in-space/artemis/",
+    "title": "NASA Artemis Program Hub Page",
+    "evidence": "card_98379b13d1c15d26.json, body_len=14743, CARD_PASS, official_verified",
+    "variable": "Artemis计划总览-Moon to Mars战略时间线",
+    "force_reactions": [
+      {
+        "force": "南天门",
+        "reaction": "Artemis时间线是南天门直接对标对象，谁先建立月面持续存在谁拥有存在即权益规则优势"
+      },
+      {
+        "force": "铁幕联盟",
+        "reaction": "Artemis是联邦太空霸权旗舰项目，铁幕须在同等时间窗口内建立竞争性月面存在"
+      },
+      {
+        "force": "星穹探索公司",
+        "reaction": "Artemis合同是星穹核心收入+政治资本，延期=现金流危机"
+      }
+    ],
+    "chain_conflicts": [
+      {
+        "chain": [
+          "Artemis载人绕月推进",
+          "月面时间窗口收窄",
+          "南天门被迫加速",
+          "双方月面部署碰撞风险升高"
+        ],
+        "time_anchor": "第156-169章",
+        "intensity": "high"
+      }
+    ],
+    "chapter_hooks": [
+      {
+        "hook_id": "H013",
+        "description": "Artemis Moon to Mars阶梯式推进逻辑-映射为第156章重返月球战略讨论：不是一次壮举是建立月球门户到月面基地到深空跳板基础设施链",
+        "suitable_chapters": [
+          156,
+          169
+        ],
+        "reversal": "登月不是终点是起点但起点后面每一步都要命"
+      }
+    ],
+    "outline_delta_candidate": {
+      "type": "strategic_layer",
+      "target_chapter": 156,
+      "proposed_addition": "第156章可叠加阶梯式推进战略讨论：Moon to Mars逻辑不是一次壮举是建立基础设施链",
+      "not_proposed": "不改主线重返月球已有大纲，叠加战略讨论层"
+    },
+    "anti_patterns": [
+      "不得把Artemis Hub页当新闻它是项目介绍",
+      "不得让Artemis时间线直接决定小说时间线"
+    ],
+    "character_os_shift": "无",
+    "disposition": "CHAPTER_PREP_ONLY",
+    "disposition_reason": "Artemis计划总览为背景信息，V8.6已覆盖地月规则竞赛(第156/169/221章)，可作第156章写作时战略参考但不触发新大纲变更",
+    "confidence": 0.6
+  }
+]

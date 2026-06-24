@@ -1,24 +1,27 @@
 {
-  "version": "2026-06-09.agent-reach-absorption-v1",
-  "purpose": "SenseNova/科武素材采集信息源路由矩阵。吸收 Agent-Reach 的 channel/doctor 思路，但不安装第三方包。",
+  "version": "2026-06-21.mimo-diagnosis-v1",
+  "purpose": "SenseNova/科武素材采集信息源路由矩阵。吸收 Agent-Reach 的 channel/doctor 思路，但不安装第三方包。2026-06-21 修复：添加 domain_route_overrides，解决 anti-bot/API/RSS 域名被错误路由到 light_crawler（requests-only）的问题。",
   "principles": [
     "先专用通道，后通用网页，最后浏览器/人工接力",
     "discovery 只作线索，正式卡必须反查 primary/official/academic",
     "正文抓取失败必须记录 failure_tag，不得伪装成有效素材",
-    "模型只做蒸馏/审卡/映射，不替代抓取"
+    "模型只做蒸馏/审卡/映射，不替代抓取",
+    "anti-bot 域名（403/407）必须跳过 light/requests 直走 browser/crawl4ai",
+    "API-only 域名（openalex 等）不得走 HTML 抓取，须走 anysearch_extract",
+    "RSS 源必须走 rss 路由，不得走 light/html"
   ],
   "routes": {
     "official_webpage": {
       "examples": ["gov.cn", "xinhuanet.com", "people.com.cn", "cctv.com", "cnsa.gov.cn", "nasa.gov", "esa.int"],
-      "fast_path": ["requests_body_fetch", "article_search", "tavily_api_fallback"],
-      "fallback": ["jina_reader", "web_extract", "browser_dom", "official_rss_or_site_search"],
+      "fast_path": ["light", "browser", "crawl4ai"],
+      "fallback": ["jina_reader", "web_extract", "official_rss_or_site_search"],
       "valid_for_card": true,
       "failure_tags": ["NO_OFFICIAL_HIT", "INDEX_OR_CHANNEL_URL", "BODY_TOO_SHORT", "CONNECTION_ERROR", "STALE_DOMESTIC_ARTICLE"]
     },
     "academic_paper": {
       "examples": ["arxiv", "pubmed", "openalex", "nature", "science", "ieee"],
-      "fast_path": ["opencli_or_api", "rss", "official_search"],
-      "fallback": ["doi_landing_page", "jina_reader", "web_extract", "browser_dom"],
+      "fast_path": ["anysearch_extract", "light", "browser"],
+      "fallback": ["doi_landing_page", "jina_reader", "web_extract"],
       "valid_for_card": true,
       "failure_tags": ["NO_ABSTRACT", "PAYWALL_REQUIRED", "NO_PRIMARY_SOURCE"]
     },
@@ -39,8 +42,8 @@
     },
     "rss_feed": {
       "examples": ["NASA RSS", "ESA RSS", "Nature RSS", "SIA RSS"],
-      "fast_path": ["feedparser_or_builtin_rss"],
-      "fallback": ["homepage_search", "article_search", "jina_reader"],
+      "fast_path": ["rss"],
+      "fallback": ["homepage_search", "light", "jina_reader"],
       "valid_for_card": "only_after_body_fetch",
       "failure_tags": ["RSS_NO_LINK", "RSS_STALE", "BODY_FETCH_FAIL"]
     },
@@ -65,13 +68,266 @@
       "valid_for_card": false,
       "postprocess": "舆情/discovery，不作 primary fact。",
       "failure_tags": ["LOGIN_REQUIRED", "ANTI_BOT", "DISCOVERY_ONLY"]
+    },
+    "expert_public_view": {
+      "examples": ["沈逸公开文章/公开视频/访谈", "高志凯公开文章/公开视频/访谈"],
+      "fast_path": ["direct_public_url_body_fetch", "official_social_or_platform_reader", "authority_repost_body_fetch"],
+      "fallback": ["AnySearch/Bing discovery", "browser_dom", "manual_review"],
+      "valid_for_card": "only_after_public_url_and_body_or_transcript",
+      "postprocess": "生成 expert_voice_cards；P0/P1策略扰动进入 p0_p1_expert_cards；MiroFish 前必须 expert_gate_pass=true。搜索摘要只能作 discovery，不得冒充原文或专家建议。",
+      "required_experts": ["沈逸", "高志凯"],
+      "output_fields": ["expert_voice_cards", "p0_p1_expert_cards", "expert_gate_pass"],
+      "failure_tags": [
+        "EXPERT_SOURCE_NO_PRIMARY_HIT",
+        "EXPERT_SOURCE_BODY_BLOCKED",
+        "EXPERT_GATE_INSUFFICIENT",
+        "EXPERT_SOURCE_SEARCH_SUMMARY_ONLY"
+      ]
     }
+  },
+  "domain_route_overrides": {
+    "_doc": "按域名覆盖路由策略。pipeline runner 的 collection_route_for_candidate() 会优先查此表。sources 是 collect_web.py 的 --source 值有序列表。",
+    "spacex.com": {
+      "sources": ["browser", "crawl4ai"],
+      "skip_light": true,
+      "reason": "HTTP_403_anti_bot",
+      "observed_error": "403 Forbidden on requests-based fetch"
+    },
+    "defense.gov": {
+      "sources": ["browser", "crawl4ai"],
+      "skip_light": true,
+      "reason": "HTTP_403_anti_bot",
+      "observed_error": "403 Forbidden on requests-based fetch"
+    },
+    "nih.gov": {
+      "sources": ["browser", "crawl4ai"],
+      "skip_light": true,
+      "reason": "HTTP_403_anti_bot",
+      "observed_error": "403 Forbidden on requests-based fetch"
+    },
+    "consilium.europa.eu": {
+      "sources": ["browser", "crawl4ai"],
+      "skip_light": true,
+      "reason": "HTTP_403_anti_bot",
+      "observed_error": "403 Forbidden on requests-based fetch"
+    },
+    "openai.com": {
+      "sources": ["browser", "crawl4ai"],
+      "skip_light": true,
+      "reason": "HTTP_403_anti_bot",
+      "observed_error": "403 Forbidden on requests-based fetch"
+    },
+    "state.gov": {
+      "sources": ["browser", "crawl4ai"],
+      "skip_light": true,
+      "reason": "HTTP_407_proxy_auth",
+      "observed_error": "407 Proxy Authentication Required"
+    },
+    "g7.canada.ca": {
+      "sources": ["browser", "crawl4ai"],
+      "skip_light": true,
+      "reason": "CONNECTION_ERROR_TLS",
+      "observed_error": "Connection error / TLS instability"
+    },
+    "canada.ca": {
+      "sources": ["browser", "crawl4ai"],
+      "skip_light": true,
+      "reason": "TIMEOUT",
+      "observed_error": "Request timeout on direct fetch"
+    },
+    "anthropic.com": {
+      "sources": ["browser", "crawl4ai", "light"],
+      "skip_light": false,
+      "reason": "SPDY_dynamic_page",
+      "observed_error": "May serve dynamic content requiring JS rendering"
+    },
+    "whitehouse.gov": {
+      "sources": ["browser", "crawl4ai", "light"],
+      "skip_light": false,
+      "reason": "dynamic_page",
+      "observed_error": "May serve dynamic content"
+    },
+    "cnsa.gov.cn": {
+      "sources": ["light", "browser", "crawl4ai"],
+      "skip_light": false,
+      "reason": "TLS_instability_intermittent",
+      "observed_error": "Intermittent connection/TLS errors; retry with browser if light fails"
+    },
+    "openalex.org": {
+      "sources": ["anysearch_extract", "light"],
+      "skip_light": true,
+      "reason": "API_only_no_HTML_body",
+      "observed_error": "openalex.org/works is an API endpoint, not an HTML page; returns JSON not article body"
+    },
+    "rss.arxiv.org": {
+      "sources": ["rss"],
+      "skip_light": true,
+      "reason": "RSS_feed_endpoint",
+      "observed_error": "RSS endpoint returns XML feed, not HTML article; must use RSS parser"
+    },
+    "arxiv.org": {
+      "sources": ["light", "browser"],
+      "skip_light": false,
+      "reason": "abstract_page_needs_requests",
+      "observed_error": "arXiv abstract pages serve HTML; requests-based fetch should work for abstracts"
+    },
+    "nature.com": {
+      "sources": ["light", "browser"],
+      "skip_light": false,
+      "reason": "article_page",
+      "observed_error": "Nature article pages generally work with requests"
+    },
+    "science.org": {
+      "sources": ["light", "browser"],
+      "skip_light": false,
+      "reason": "article_page",
+      "observed_error": "Science article pages generally work with requests"
+    },
+    "energy.gov": {
+      "sources": ["light", "browser", "crawl4ai"],
+      "skip_light": false,
+      "reason": "HTTP_404_stale_listing_url",
+      "observed_error": "Listing URL path changed; need URL discovery to find current article pages"
+    },
+    "stdaily.com": {
+      "sources": ["light", "browser"],
+      "skip_light": false,
+      "reason": "HTTP_404_stale_index_url",
+      "observed_error": "Index page URL expired/changed; need updated URL or article discovery"
+    },
+    "news.cn": {
+      "sources": ["light", "browser"],
+      "skip_light": false,
+      "reason": "HTTP_404_stale_topic_page",
+      "observed_error": "Topic page URL expired; need article URL discovery"
+    },
+    "news.cctv.com": {
+      "sources": ["light", "browser"],
+      "skip_light": false,
+      "reason": "HTTP_404_stale_topic_page",
+      "observed_error": "Topic page URL expired; need article URL discovery"
+    },
+    "esa.int": {
+      "sources": ["light", "browser"],
+      "skip_light": false,
+      "reason": "article_page",
+      "observed_error": "ESA article pages generally work with requests"
+    },
+    "nasa.gov": {
+      "sources": ["light", "browser"],
+      "skip_light": false,
+      "reason": "article_page",
+      "observed_error": "NASA article pages generally work with requests; use RSS for feed"
+    },
+    "noaa.gov": {
+      "sources": ["light", "browser"],
+      "skip_light": false,
+      "reason": "article_page",
+      "observed_error": "NOAA pages generally work with requests"
+    },
+    "treasury.gov": {
+      "sources": ["light", "browser"],
+      "skip_light": false,
+      "reason": "article_page",
+      "observed_error": "Treasury pages generally work with requests"
+    },
+    "home.treasury.gov": {
+      "sources": ["light", "browser"],
+      "skip_light": false,
+      "reason": "article_page",
+      "observed_error": "Treasury pages generally work with requests"
+    },
+    "status.anthropic.com": {
+      "sources": ["rss"],
+      "skip_light": true,
+      "reason": "RSS_feed_endpoint",
+      "observed_error": "Status page provides RSS feed"
+    },
+    "baidu.com": {
+    "sources": ["browser", "crawl4ai"],
+    "skip_light": true,
+    "reason": "HTTP_403_anti_bot",
+    "observed_error": "Baidu blocks non-browser requests with 403"
+    },
+    "sohu.com": {
+    "sources": ["browser", "crawl4ai"],
+    "skip_light": true,
+    "reason": "HTTP_403_anti_bot",
+    "observed_error": "Sohu blocks non-browser requests with 403"
+    },
+    "ifeng.com": {
+    "sources": ["browser", "crawl4ai"],
+    "skip_light": true,
+    "reason": "HTTP_403_anti_bot",
+    "observed_error": "iFeng blocks non-browser requests with 403"
+    },
+    "sina.com": {
+    "sources": ["browser", "crawl4ai"],
+    "skip_light": true,
+    "reason": "HTTP_403_anti_bot",
+    "observed_error": "Sina blocks non-browser requests with 403"
+    },
+    "163.com": {
+    "sources": ["browser", "crawl4ai"],
+    "skip_light": true,
+    "reason": "HTTP_403_anti_bot",
+    "observed_error": "163/NetEase blocks non-browser requests"
+    },
+    "qq.com": {
+    "sources": ["browser", "crawl4ai"],
+    "skip_light": true,
+    "reason": "HTTP_403_anti_bot",
+    "observed_error": "QQ/Tencent blocks non-browser requests"
+    },
+    "toutiao.com": {
+    "sources": ["browser", "crawl4ai"],
+    "skip_light": true,
+    "reason": "HTTP_403_anti_bot",
+    "observed_error": "Toutiao blocks non-browser requests"
+    },
+    "36kr.com": {
+    "sources": ["browser", "crawl4ai"],
+    "skip_light": true,
+    "reason": "HTTP_403_anti_bot",
+    "observed_error": "36Kr blocks non-browser requests"
+    },
+    "huxiu.com": {
+    "sources": ["browser", "crawl4ai"],
+    "skip_light": true,
+    "reason": "HTTP_403_anti_bot",
+    "observed_error": "Huxiu blocks non-browser requests"
+    }
+    },
+  "auto_route_fix": {
+    "_doc": "collect_web.py auto_route() 应增加的域名感知逻辑。当 auto_route 返回 'light' 时，应先检查域名是否在 anti_bot_domains 列表中，是则返回 'browser'。",
+    "anti_bot_domains": [
+      "spacex.com", "defense.gov", "nih.gov", "consilium.europa.eu",
+      "openai.com", "state.gov", "g7.canada.ca", "canada.ca",
+      "baidu.com", "sohu.com", "ifeng.com", "sina.com", "163.com",
+      "qq.com", "toutiao.com", "36kr.com", "huxiu.com"
+    ],
+    "api_only_domains": [
+      "openalex.org", "rss.arxiv.org"
+    ],
+    "rss_domains": [
+      "rss.arxiv.org", "status.anthropic.com"
+    ],
+    "recommended_auto_route_logic": "1) RSS keyword/domain → 'rss'; 2) openalex → 'anysearch_extract'; 3) anti_bot_domain → 'browser'; 4) wechat/bili/weibo → platform-specific; 5) default → 'light'"
+  },
+  "route_matrix_fix": {
+    "_doc": "pipeline runner COLLECT_WEB_ROUTE_MATRIX 的修复建议。当前 known_url=['auto','light','browser','crawl4ai'] 中 auto 内部已走 light，light 步骤冗余。且 auto 返回≥100字节的错误页 HTML 会被误判为成功，阻止升级到 browser/crawl4ai。",
+    "old_known_url": ["auto", "light", "browser", "crawl4ai"],
+    "new_known_url": ["light", "browser", "crawl4ai"],
+    "rationale": "移除 auto（auto→light_crawler 等效于 light），避免冗余调用。light 失败后直接升级到 browser，再用 crawl4ai 兜底。",
+    "success_threshold_fix": "collect_body_via_route_matrix() 中的 len(body.strip()) >= 100 阈值过低。错误页 HTML/导航 chrome 通常 200-500 字符。建议：(1) 对 anti_bot 域名跳过 light 直走 browser；(2) 对 light 返回的 body 增加内容质量检查（非纯链接/导航）；(3) 或提高阈值至 300（与 MIN_VALID_CONTENT_BODY_CHARS 一致）。"
   },
   "doctor_checks": [
     "check command existence: yt-dlp, gh, python collectors",
     "check cookies: /root/.hermes/bilibili_cookies.txt when B站字幕 required",
     "check env: TAVILY_API_KEY for article_search fallback",
     "check sample fetch: one official webpage, one RSS, one BVID if available, one WeChat url if provided",
-    "report channel as OK/WARN/FAIL with next action"
+    "report channel as OK/WARN/FAIL with next action",
+    "check anti_bot_domains: verify browser route available (light_crawler browser mode or crawl4ai-skill)",
+    "check domain_route_overrides: verify each override domain maps to an installed collector"
   ]
 }

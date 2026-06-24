@@ -1,0 +1,91 @@
+{
+  "$schema": "decision_card_v1_manual_20260607",
+  "material_id": "manual_20260607_9908aaa600",
+  "source_url": "https://www.chinanews.com.cn/cj/2026/05-15/10622025.shtml",
+  "title": "Token越来越贵？别慌！算力网已在来的路上",
+  "captured_at": "2026-06-07T07:56:25+08:00",
+  "source_group": "domestic",
+  "source_type": "official_media_repost",
+  "verification_status": "secondary_plus_needs_primary_policy",
+  "source_card_path": "/root/workspace/科武纪元/自循环体系/manual_mirofish_feeds_20260607/raw_Token算力网_中新网_20260607.md",
+  "evidence_complete": false,
+  "duplicate_check": {
+    "duplicate": false,
+    "reason": ""
+  },
+  "mirofish_projection": {
+    "force_reactions": [
+      {
+        "force": "主角团/中小团队",
+        "reaction": "Token成本上涨迫使团队压缩推理次数、拆分任务、排队等算力券；算力不再是抽象资源，而是账单/额度/时延。"
+      },
+      {
+        "force": "白盾/监管体系",
+        "reaction": "把算力网作为基础设施入口，借调度、价格、准入与审计掌握AI应用边界。"
+      },
+      {
+        "force": "星穹/黑市",
+        "reaction": "商业算力涨价与公共算力配给并存，催生绕配额、抢低价节点、租壳Token套餐等灰色链。"
+      },
+      {
+        "force": "铁幕/欧陆",
+        "reaction": "把算力基础设施视作新型电网，围绕跨境调度、延迟、主权云与电力约束形成摩擦。"
+      }
+    ],
+    "chain_conflicts": [
+      {
+        "chain": [
+          "token_cost_pressure",
+          "national_compute_grid",
+          "algorithm_sovereignty",
+          "infrastructure_allocation"
+        ],
+        "time_anchor": "2026-2029",
+        "intensity": "high"
+      }
+    ],
+    "chapter_hooks": [
+      {
+        "hook_id": "ch135_160_compute_quota",
+        "description": "AI应用团队拿到算力券后仍要排队，关键模型推理被迫降采样，方宁看到“算力普惠”背后的调度优先级。",
+        "suitable_chapters": [
+          135,
+          136,
+          156
+        ],
+        "reversal": "算力变便宜不是无成本，而是成本转化为排队、准入、审计。"
+      },
+      {
+        "hook_id": "ch221_300_compute_grid_control",
+        "description": "算力网像电网，某阵营通过调度规则让对手训练任务在低优先级节点上排队，形成非军事封锁。",
+        "suitable_chapters": [
+          221,
+          223,
+          306,
+          307
+        ],
+        "reversal": "封锁不是断网，是让你的任务永远排在后面。"
+      }
+    ],
+    "outline_delta_candidate": {
+      "type": "prep_then_possible_outline_patch",
+      "target_chapter": 156,
+      "proposed_addition": "算力网/算力券/Token套餐作为算法主权基础设施变量：算力普惠伴随调度权、审计权和价格权。",
+      "not_proposed": "缺国务院/国家数据局/工信部原始政策文本，先不直接改大纲。"
+    },
+    "anti_patterns": [
+      "不得写成政策宣传稿",
+      "不得把普惠等同免费",
+      "不得忽略电网/绿电/延迟/数据合规约束"
+    ],
+    "six_role_recommendation": {
+      "needed": true,
+      "reason": "若补到primary政策源，可进G2/六角色裁定是否升OUTLINE_PATCH；当前先CHAPTER_PREP_ONLY。"
+    }
+  },
+  "disposition": "CHAPTER_PREP_ONLY",
+  "disposition_reason": "算力网直接连接算法主权与算力配给，但当前证据为官方媒体转述，缺政策原文；先喂入MiroFish准备包，待补证后再升格。",
+  "disposition_by": "controller_manual_feed_20260607",
+  "disposition_at": "2026-06-07T07:56:25+08:00",
+  "bridge_policy": "manual_feed_no_outline_no_text_no_txt_no_draftbox_write"
+}

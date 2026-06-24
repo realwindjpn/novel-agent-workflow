@@ -1,0 +1,26 @@
+{
+  "schema": "sensenova_mirofish_feed_package_v1",
+  "created_at": "2026-06-10T14:04:40",
+  "source_run_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/verify_bodyfetch_after_patch_20260610_1148",
+  "source_pipeline_state": {
+    "run_id": "verify_bodyfetch_after_patch_20260610_1148",
+    "status": "partial",
+    "valid_content_cards": 0,
+    "query_plan_cards": 0,
+    "body_fetch_success": 1,
+    "card_pass_count": 0
+  },
+  "policy": {
+    "query_plan_excluded": true,
+    "formal_cards_written": false,
+    "production_runner_modified": false,
+    "outline_text_txt_draft_modified": false
+  },
+  "valid_input_count": 0,
+  "skipped_count": 0,
+  "skip_reason_counts": {},
+  "stale_domestic_blocked_count": 0,
+  "skipped": [],
+  "decision_cards_path": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/verify_bodyfetch_after_patch_20260610_1148/decision_cards.json",
+  "conversion_tasks_path": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/verify_bodyfetch_after_patch_20260610_1148/card_conversion_tasks.json"
+}

@@ -1,0 +1,15 @@
+{
+  "run_id": "historical_2026-06-05_20260607_003052",
+  "day": "2026-06-05",
+  "pack_path": "/root/workspace/科武纪元/自循环体系/historical_mirofish_replay_20260606/historical_2026-06-05_20260607_003052/MIROFISH_HISTORICAL_FEED_PACK.md",
+  "selected_count": 1,
+  "selected_cards": [
+    {
+      "path": "/root/workspace/科武纪元/时事素材/素材卡/2026-06-05/素材卡_轴向磁通电机_PGH高性能磁钢_20260605.md",
+      "title": "素材卡：轴向磁通电机PGH高性能磁钢与电驱量产"
+    }
+  ],
+  "skipped": [],
+  "status": "FEED_PACK_READY",
+  "created_at": "2026-06-07T00:30:52"
+}

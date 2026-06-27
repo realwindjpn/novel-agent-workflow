@@ -124,6 +124,10 @@ def update_wiki(chapter: int, meta: dict = None) -> bool:
         if m:
             sections[sec_name] = m.group(1).strip()
 
+    # Full Text must always mirror the current 新版 source. Preserving the old
+    # section caused stale wiki bodies after chapter rewrites.
+    sections.pop('Full Text', None)
+
     # Update meta if provided
     if meta:
         if 'function' in meta:

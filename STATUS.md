@@ -930,3 +930,4 @@
 - 残留：跟踪表未找到第176章，Tracking=0，后续补表。
 - 报告：/root/workspace/任务运行态/20260627_kewu_upload176/FINAL_CLOSE_REPORT.md
 - 2026-06-28 00:33 | 修复标题解析并重同步176《首战预警》Wiki；补录上传线139-176跟踪表
+- 2026-06-28 00:35 | 修复Wiki Full Text保旧文bug并重同步176正文

@@ -23,7 +23,7 @@ BOOK_ID = '7628216044850531352'
 BOOK_NAME_ENC = '%E7%A7%91%E6%AD%A6%E7%BA%AA%E5%85%83%EF%BC%9A%E6%88%91%E5%9C%A8%E6%9C%AB%E4%B8%96%E4%BF%AE%E4%BB%99'
 DRAFT_URL = f'https://fanqienovel.com/main/writer/chapter-manage/{BOOK_ID}&{BOOK_NAME_ENC}?type=2'
 DEFAULT_SESSION = 'fanqie'
-DEFAULT_VOLUME = '第二卷：烽火'
+DEFAULT_VOLUME = None
 DEFAULT_STATE = Path('/root/workspace/browser_profiles/fanqie/fanqie_state.json')
 
 
@@ -73,6 +73,31 @@ def js_eval(session: str, js: str, timeout: int = 60, state_path: Path | None = 
         return out
 
 
+def infer_volume(project_dir: Path, chapter: int) -> str:
+    outline = project_dir / '科武纪元大纲 V8_完整版.md'
+    if not outline.exists():
+        raise FileNotFoundError(outline)
+    text = outline.read_text(encoding='utf-8')
+    volumes = []
+    for line in text.splitlines():
+        # 大纲可能带有 rg/nl 风格的行号前缀：`266|第169章 | 第四卷·登月 | ...`
+        row = re.sub(r'^\s*\d+\|', '', line).strip()
+        if not re.match(rf'^第{chapter}章\s*\|', row):
+            continue
+        parts = [part.strip() for part in row.split('|')]
+        if len(parts) < 2:
+            continue
+        volume = parts[1].replace('·', '：')
+        if volume:
+            volumes.append(volume)
+    volumes = list(dict.fromkeys(volumes))
+    if not volumes:
+        raise ValueError(f'大纲未找到第{chapter}章分卷')
+    if len(volumes) > 1:
+        raise ValueError(f'大纲第{chapter}章分卷不唯一: {volumes}')
+    return volumes[0]
+
+
 def parse_chapter(project_dir: Path, chapter: int):
     txt = project_dir / '已投稿' / f'第{chapter}章.txt'
     if not txt.exists():
@@ -107,22 +132,30 @@ def parse_chapter(project_dir: Path, chapter: int):
 def ensure_volume(session: str, volume_name: str, state_path: Path | None = None):
     js = """
 (() => {
- const cur = document.querySelector('.publish-header-volume-name')?.innerText || '';
- const header = Array.from(document.querySelectorAll('*')).map(e=>(e.innerText||e.textContent||'').trim()).find(t=>t.includes('科武纪元') && t.includes('第二卷')) || '';
- return {current: cur || (header.includes('第二卷') ? '第二卷：烽火' : ''), header};
+ const explicit = document.querySelector('.publish-header-volume-name')?.innerText || '';
+ const maintain = document.querySelector('.publish-maintain-volume')?.innerText || '';
+ const m = maintain.match(/第[一二三四五六七八九十]+卷[：:].+/);
+ const current = explicit || (m ? m[0].replace(/:/g, '：') : '');
+ return {current, explicit, maintain};
 })()
 """
     cur = js_eval(session, js, state_path=state_path)
     if isinstance(cur, dict) and cur.get('current') == volume_name:
         return cur
-    try:
-        ab(session, "click '.publish-header-volume-wrap'", timeout=30, state_path=state_path)
-    except Exception:
+    clicked = False
+    for selector in ['.publish-header-volume-wrap', '.publish-maintain-volume', '.publish-maintain']:
+        try:
+            ab(session, f"click '{selector}'", timeout=30, state_path=state_path)
+            clicked = True
+            break
+        except Exception:
+            continue
+    if not clicked:
         # 番茄发布页偶尔改版，header 只显示文本无旧class；若页面文本已在目标卷，直接继续。
         cur = js_eval(session, js, state_path=state_path)
         if isinstance(cur, dict) and cur.get('current') == volume_name:
             return cur
-        raise
+        raise RuntimeError(f'分卷入口未找到: {cur}')
     time.sleep(0.8)
     js2 = f"""
 (() => {{
@@ -305,7 +338,7 @@ def main():
     ap.add_argument('--chapter', type=int, required=True)
     ap.add_argument('--project-dir', type=Path, default=PROJECT_DIR)
     ap.add_argument('--session', default=DEFAULT_SESSION)
-    ap.add_argument('--volume', default=DEFAULT_VOLUME)
+    ap.add_argument('--volume', default=DEFAULT_VOLUME, help='目标分卷；默认按大纲第N章行推断')
     ap.add_argument('--state', type=Path, default=DEFAULT_STATE, help='持久化 auth state JSON；默认 /root/workspace/browser_profiles/fanqie/fanqie_state.json')
     ap.add_argument('--check-login', action='store_true', help='只验证作家后台登录态；成功后保存state')
     ap.add_argument('--execute', action='store_true', help='实际操作番茄后台；默认只解析检查')
@@ -324,7 +357,9 @@ def main():
             raise RuntimeError('上传TXT完备门禁失败，请先运行 ensure_fanqie_upload_txt_ready.py --write 修复：\n' + gate.stdout)
 
     data = parse_chapter(args.project_dir, args.chapter)
-    print(json.dumps({k: v for k, v in data.items() if k not in ('body','note')} | {'note': data['note']}, ensure_ascii=False, indent=2))
+    explicit_volume = args.volume.strip() if args.volume else ''
+    volume = explicit_volume or infer_volume(args.project_dir, args.chapter)
+    print(json.dumps({k: v for k, v in data.items() if k not in ('body','note')} | {'note': data['note'], 'volume': volume}, ensure_ascii=False, indent=2))
     if not args.execute:
         print('DRY_RUN_OK')
         return
@@ -349,8 +384,8 @@ def main():
         if not isinstance(clicked, dict) or not clicked.get('ok'):
             raise RuntimeError(f'新建草稿失败: {clicked}')
         time.sleep(3)
-    ensure_volume(args.session, args.volume, state_path=args.state)
-    fill = fill_main(args.session, data, args.volume, state_path=args.state)
+    ensure_volume(args.session, volume, state_path=args.state)
+    fill = fill_main(args.session, data, volume, state_path=args.state)
     note = add_author_note(args.session, data['note'], state_path=args.state)
     final = save_and_verify(args.session, data, state_path=args.state)
     # 上传成功后自动同步 sync_kewu

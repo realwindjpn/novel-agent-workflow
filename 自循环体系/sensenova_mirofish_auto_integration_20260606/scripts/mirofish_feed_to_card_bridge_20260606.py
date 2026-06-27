@@ -170,6 +170,15 @@ def is_meeting_release_without_tech_data(body: str) -> bool:
 
 
 def missing_cards_by_tier(run_dir: Path, decision_cards: list[dict[str, Any]], state: dict[str, Any]) -> dict[str, list[str]]:
+    """Return high-tier distilled items that should have a bridge decision but do not.
+
+    This gate must not scan every raw/bodies/*.txt file.  A run may contain raw
+    bodies that were intentionally skipped before bridge decisions (duplicate,
+    stale, navigation, summary-only, already indexed).  Treating those raw files
+    as missing decision cards creates false P0/P1 blockers and stalls G1→G2.
+    Only non-duplicate, valid card_distill_plan items are expected to receive a
+    decision card.
+    """
     decision_ids = {str(dc.get('material_id') or '').strip() for dc in decision_cards if isinstance(dc, dict)}
     decision_ids |= {
         str((dc.get('body_fetch_evidence') or {}).get('candidate_id') or '').strip()
@@ -177,31 +186,39 @@ def missing_cards_by_tier(run_dir: Path, decision_cards: list[dict[str, Any]], s
         if isinstance(dc, dict) and isinstance(dc.get('body_fetch_evidence'), dict)
     }
     decision_ids = {item for item in decision_ids if item}
-    pipeline_items = []
-    if isinstance(state.get('items'), list):
-        pipeline_items.extend(state.get('items') or [])
     plan = load_json(run_dir / 'cards' / 'card_distill_plan.json', {}) or {}
-    if isinstance(plan, dict) and isinstance(plan.get('items'), list):
-        pipeline_items.extend(plan.get('items') or [])
-    tier_by_id: dict[str, str] = {}
-    for item in pipeline_items:
+    plan_items = plan.get('items') if isinstance(plan, dict) else []
+    expected_ids_by_tier: dict[str, list[str]] = {}
+    for item in plan_items or []:
         if not isinstance(item, dict):
+            continue
+        status = str(item.get('status') or '').upper()
+        if status in {'SKIP_DUPLICATE', 'SUMMARY_ONLY', 'NEED_FETCH_BODY', 'BODY_FETCH_FAIL', 'CARD_REVIEW_FAIL'}:
+            continue
+        if item.get('counts_as_valid_content_card') is not True:
+            continue
+        card_path = Path(str(item.get('card') or ''))
+        body_path = Path(str(item.get('body_path') or ''))
+        if not card_path.exists() or not body_path.exists():
+            continue
+        # Cross-run duplicate / already-indexed items may be intentionally
+        # archived or skipped.  If their source URL is already in indexes, they
+        # must not block a clean bridge pass.
+        dup, _dup_reason = is_duplicate(item, load_dedupe_text())
+        if dup:
             continue
         story_value = item.get('story_value_classification') if isinstance(item.get('story_value_classification'), dict) else {}
         tier = str(item.get('story_tier') or item.get('tier') or story_value.get('story_tier') or '').upper()
-        for key_name in ('material_id', 'candidate_id', 'id'):
-            key = str(item.get(key_name) or '').strip()
-            if key:
-                tier_by_id[key] = tier
-
-    missing: dict[str, list[str]] = {}
-    for body_path in raw_body_files(run_dir):
-        body_stem = body_path.stem
-        if any(card_id and card_id in body_stem for card_id in decision_ids):
+        if tier not in {'P0', 'P1'}:
             continue
-        matched_id = next((card_id for card_id in tier_by_id if card_id and card_id in body_stem), body_stem)
-        tier = tier_by_id.get(matched_id, 'UNKNOWN') or 'UNKNOWN'
-        missing.setdefault(tier, []).append(matched_id)
+        key = str(item.get('candidate_id') or item.get('material_id') or item.get('id') or '').strip()
+        if key:
+            expected_ids_by_tier.setdefault(tier, []).append(key)
+    missing: dict[str, list[str]] = {}
+    for tier, ids in expected_ids_by_tier.items():
+        for key in ids:
+            if not any(decision_id and decision_id in key or key in decision_id for decision_id in decision_ids):
+                missing.setdefault(tier, []).append(key)
     return {tier: sorted(set(ids)) for tier, ids in sorted(missing.items()) if ids}
 
 

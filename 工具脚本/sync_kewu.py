@@ -42,6 +42,21 @@ def cn_count(text: str) -> int:
     return len(re.findall(r'[\u4e00-\u9fff]', text))
 
 
+def extract_title(text: str, chapter: int) -> str:
+    """Extract title from Markdown heading or plain first line."""
+    title_match = re.search(r'^#\s+(.+)', text, re.MULTILINE)
+    if title_match:
+        return title_match.group(1).strip()
+    for line in text.splitlines():
+        row = line.strip()
+        if not row:
+            continue
+        if row.startswith(f'第{chapter}章'):
+            return row
+        break
+    return f'第{chapter}章'
+
+
 def extract_entities(text: str) -> tuple[list, list]:
     """从正文提取人名和关键概念（简单关键词匹配）"""
     # 已知人物
@@ -76,8 +91,7 @@ def update_wiki(chapter: int, meta: dict = None) -> bool:
         existing = ''
 
     # Build frontmatter
-    title_match = re.search(r'^#\s+(.+)', text, re.MULTILINE)
-    title = title_match.group(1) if title_match else f'第{chapter}章'
+    title = extract_title(text, chapter)
 
     lines = [
         '---',
@@ -160,8 +174,7 @@ def update_vector_memory(chapter: int) -> bool:
 
         text = src.read_text(encoding='utf-8')
         entities, concepts = extract_entities(text)
-        title_match = re.search(r'^#\s+(.+)', text, re.MULTILINE)
-        title = title_match.group(1) if title_match else f'第{chapter}章'
+        title = extract_title(text, chapter)
 
         # Store summary (first 2000 chars + entity/concept metadata)
         summary = text[:2000]

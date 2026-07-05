@@ -1,3 +1,32 @@
+
+## 2026-07-04 16:41｜队列断点接管与清账
+- 状态: QUEUE_CONSUMED_PARTIAL_FIXED
+- 已清: 0257/0343/0644 G2_REQUIRED；0944/1244/1544 CHAPTER_PREP_ONLY。
+- 处理: G2批处理终裁不改纲；Aeolus-2准备包已存在；CCTV远程手术仅标题级降归档。
+- archive: /root/workspace/agent_inbox/archive/controller_action_queue_closed_20260704_164123.jsonl
+- 新增消费器: /root/.hermes/scripts/kewu_selfcycle_chapter_prep_consumer.py
+- 残留: 需验证 cron 手跑静默、队列无同类残留。
+
+
+## 2026-07-04 15:02 2026-07-04 G2积压合并终裁
+- 四轮G2/准备包积压已合并裁决：`G2_FINAL_DONE_NO_OUTLINE_PATCH`。
+- 不改 latest 大纲；MiroFish 对量子大道/PACE 的 OUTLINE_PATCH 判为过判。
+- 已回写 Aeolus-2 准备包：`/root/workspace/科武纪元/章节准备包/2026-07-04_Aeolus2_气象遥感侦察代价/CHAPTER_PREP_PACKAGE.md`。
+- 证据：`/root/workspace/任务运行态/20260704_kewu_g2_batch_0257_0343_0644_1244/G2_FINAL_VERDICT.md`。
+- 边界：未写正文、未生成TXT、未保存草稿箱。
+
+## 2026-07-01 03:15 全日素材池对账（SenseNova 0042 + KOL sidecar_0247）
+- 全日素材池已对账：SenseNova `cron_20260701_0042` + KOL `sidecar_20260701_0247`。
+- 裁决：OUTLINE_PATCH=0 / CHAPTER_PREP_ONLY=0 / ARCHIVE_WITH_REASON=16。
+- KOL 4条半导体产业链/贸易管制信号全部归档（无新剧情变量）。
+- 不改大纲、不改正文、不写TXT、不上传。
+- 证据：`/root/workspace/任务运行态/20260701_0042_kewu_selfcycle/TODAY_MATERIAL_POOL_RECONCILE.md`
+
+## 2026-06-28 07:38 KOL 雷达 sidecar 0654 接管裁决
+- 接管器已回收 `KOL_RADAR_SIDECAR_DONE`：`sidecar_20260628_0654`，body_fetched=6，platform_signal=5。
+- 裁决：`NO_OUTLINE_PATCH / CHAPTER_PREP_ONLY / FACT_CHECK_REQUIRED`；不触发G2改纲，不阻塞上传线。
+- 证据：`/root/workspace/任务运行态/20260627_kewu_selfcycle_codex_mirofish/STATUS.md`；源摘要 `/root/workspace/科武纪元/学习记录/平台号观点雷达/runs/sidecar_20260628_0654/radar_v2_summary.md`。
+
 ## 2026-06-26 18:58 今日全量素材G2重裁
 - 今日G2融纲：旧 `NOTE_ONLY/NO_OUTLINE_PATCH` 因漏算15:35 run撤回；按全日6轮SenseNova、19张唯一卡重裁。
 - 已落大纲备注层：Fable5/Mythos5外国人访问暂停、Claude Tag团队协作AI；不升版本号、不重排章号、不改正文/已投稿TXT。
@@ -931,3 +960,213 @@
 - 报告：/root/workspace/任务运行态/20260627_kewu_upload176/FINAL_CLOSE_REPORT.md
 - 2026-06-28 00:33 | 修复标题解析并重同步176《首战预警》Wiki；补录上传线139-176跟踪表
 - 2026-06-28 00:35 | 修复Wiki Full Text保旧文bug并重同步176正文
+
+## 2026-06-28 00:36 跟踪表与Wiki补强
+- 主表补录：上传线139-176共38章，按TXT/Wiki/STATUS/WAL/报告证据分级标注。
+- 根因修复：`sync_kewu.py` 标题解析支持无`#`纯文本首行；Wiki `Full Text` 不再保留旧正文，强制镜像当前`新版/第N章.md`。
+- 已重同步：第176章Wiki正文由旧《炎凰》修为《首战预警》；Vector/STATUS/WAL/跟踪表同步完成。
+- 备份：`备份/20260628_tracking_backfill_before_139_176.md`。
+- 残留：141/142/151/152/165/166/169-175 草稿箱后台日志仍需回查，表内已保守标“状态待复核”。
+
+## 2026-06-28 01:04 KOL雷达0052接管
+- 输入：sidecar_20260628_0052；body_fetched=9，platform_signal=6。
+- 接管器纠偏：该事件应为KOL_RADAR_SIDECAR_DONE，不是PARTIAL；已修active takeover分类。
+- G2快裁：OUTLINE_PATCH=NO；CHAPTER_PREP_ONLY=YES；FACT_CHECK_REQUIRED=YES；BLOCK_177=NO。
+- 177上传线：不阻塞。
+- 裁决报告：/root/workspace/任务运行态/20260627_kewu_selfcycle_codex_mirofish/KOL_0052_TAKEOVER_DECISION.md
+
+## 2026-06-28 01:29 夜间KOL→MiroFish转卡并账
+- 状态：DONE_TRIAGE_NO_BLOCK_177。
+- 输入：sidecar_20260628_0052；body_fetched=9，platform_signal=6，feed_cards=6。
+- 三线：CodexCLI主跑；M3/GLM5.2后备均完成。
+- 裁决：OUTLINE_PATCH=NO；CHAPTER_PREP_ONLY=YES；FACT_CHECK_REQUIRED=YES；BLOCK_177=NO。
+- 残留：BIS/AI芯片出口管制条目需回核 BIS/Federal Register 一手源，未正式转卡。
+- 报告：/root/workspace/任务运行态/20260628_kewu_night_codex_kol_mirofish/FINAL_MERGED_REPORT.md
+- 2026-06-29 20:03 | sync ch177 uploadline repair1
+
+## 2026-06-29 20:07 第177章《太空战斗新模式》草稿箱闭环
+- 状态：DONE_DRAFT_SAVED_NOT_PUBLISHED；仅保存草稿箱，未发布。
+- 草稿箱列表命中：第177章 太空战斗新模式，3001字，第四卷：登月。
+- TXT门禁：番茄口径3001；作者有话说71字。
+- 复审：编辑DEAI PASS；科学结构 PASS；读者 PASS；军事 PASS。
+- 同步：sync_kewu=SYNC_OK；Wiki/伏笔索引/角色势力钩子索引/STATUS/WAL已更新。
+- 残留：跟踪表未找到第177章，Tracking=0。
+- 报告：/root/workspace/任务运行态/20260628_kewu_upload177/FINAL_CLOSE_REPORT.md
+- 2026-06-29 20:06 | 同步章节 177
+- 2026-06-29 23:17 | 同步章节 178
+- 2026-06-29 23:23 | 同步章节 178
+- 2026-06-29 23:31 | 同步章节 178
+- 2026-07-01 11:59 | 同步章节 179
+- 2026-07-01 16:44 | 同步章节 180
+- 2026-07-01 22:03 | 同步章节 181
+- 2026-07-02 13:03 | 同步章节 182
+
+## 2026-07-02 20:15｜新版目录大纲对齐执行
+- 状态: PARTIAL_SAFE_APPLIED
+- 审计: /root/workspace/任务运行态/20260702_kewu_full_outline_alignment/OUTLINE_ALIGNMENT_AUDIT.md
+- 执行: /root/workspace/任务运行态/20260702_kewu_full_outline_alignment/APPLIED_ALIGNMENT_OPS.md
+- 复验: /root/workspace/任务运行态/20260702_kewu_full_outline_alignment/POST_APPLY_VERIFY.md
+- 备份: /root/workspace/任务运行态/20260702_kewu_full_outline_alignment/backup_before_apply
+- 结果: 已安全改题/移号7项；203/205归位；183缺稿，184可用；余下低置信不盲改。
+
+## 2026-07-02 20:17｜G2大纲补丁已落
+- 状态: OUTLINE_PATCH_APPLIED
+- 证据: /root/workspace/任务运行态/20260702_kewu_selfcycle_1940_force_start/OUTLINE_PATCH_APPLIED_20260702_1940.md
+- 范围: 顶部备注层 + 第183/184章备注；未改正文/TXT。
+
+## 2026-07-02 20:18｜G3准备包已派
+- 状态: RUNNING
+- 准备包席: kewu_g3_prep_after_alignment_gpt55_20260702
+- 门禁审查席: kewu_g3_gate_review_after_alignment_glm52_20260702
+- 证据: /root/workspace/任务运行态/20260702_kewu_g3_g4_after_alignment/TASK.md
+
+## 2026-07-02 21:12｜G4候选与预审已派
+- 状态: RUNNING
+- 作者席: kewu_g4_author_183184_mimo_20260702
+- 编辑预审: kewu_g4_editor_preflight_183184_gpt55_20260702
+- 科军预审: kewu_g4_scimil_preflight_183184_glm52_20260702
+- 证据: /root/workspace/任务运行态/20260702_kewu_g4_183184_after_g3/TASK.md
+
+## 2026-07-02 21:40｜作者候选已回，五席复审已派
+- 状态: REVIEW_RUNNING
+- 作者席: xiaomi/mimo-v2.5-pro 完成。
+- 机检: controller_machine_gate.md；183约5883汉字，命中4处 NOT_BUT 风险与17处序数词/条款词，需审席判定是否正文硬伤或条款表述。
+- 五席: editor/reader/science/military 已派；待结构终审。
+- 边界: 未五席PASS前不写回、不TXT、不上传。
+
+## 2026-07-02 22:24｜接管五审回收
+- 状态: PARTIAL_REVIEW
+- 已过: EDITOR_PASS(aiceming/gpt-5.5), READER_PASS(futureppo/grok-4.3), MILITARY_PASS(chun/glm-5.2)。
+- 路由失败: SCIENCE 429(aerolink/opus), STRUCTURE 429(hs/M3)。
+- 当前动作: 立即换线补跑 science/structure；失败席不作PASS证据。
+- 残留: science_review.md 与 structure_final_gate.md。
+
+## 2026-07-02 23:12｜科学救援回收+P2修复
+- 状态: FINAL_GATE_RUNNING
+- 科学席: SCIENCE_PASS_WITH_FIXES(chun/glm-5.2)。
+- 已修: author_candidate_183.md 将“柴油发电机”改为“燃料电池堆在全功率输出”。
+- 终审: kewu_g4_structure_gate_final_183184_20260702 正在运行。
+- 边界: 等 STRUCTURE_PASS 后才写回/TXT；未放行上传。
+
+## 2026-07-02 23:38｜按用户指定改用 routerpark Opus 4-8
+- 状态: OPUS48_FINAL_GATE_DISPATCHED
+- provider/model: routerpark_claude_opus_4_8 / claude-opus-4-8。
+- child: kewu_g4_structure_gate_final_routerpark_opus48_20260702。
+- 目标产物: output/structure_final_gate_opus48.md。
+- 边界: 只终审，不写回、不TXT、不上传。
+
+## 2026-07-03 01:05｜写回+TXT完成
+- 183写回: /root/workspace/科武纪元/新版/第183章.md (5880汉字)
+- 184补丁已应用: /root/workspace/科武纪元/新版/第184章.md
+- TXT: /root/workspace/科武纪元/已投稿/第183章.txt (5880汉字)
+- TXT: /root/workspace/科武纪元/已投稿/第184章.txt (6691汉字)
+- 上传: 未执行，等用户确认。
+- 2026-07-03 01:08 | 同步章节 183
+- 2026-07-03 01:09 | 同步章节 184
+
+## 2026-07-03 01:09｜自循环闭环 — 183/184上传番茄草稿箱
+- 183《太极破围》: saved=true, 6543字, 第四卷:登月, Wiki已同步
+- 184《月背算法战》: saved=false(草稿已存在), 9266字, 第四卷:登月, Wiki已同步
+- 草稿箱列表确认: 两章均在列
+- 状态: DRAFT_SAVED_NOT_PUBLISHED
+- 全流程: G1素材→G2融纲→G3准备包→G4作者→五席复审→写回→TXT→草稿箱
+
+## 2026-07-03 01:13｜六线并行派工
+### 1. PSM修复（图库+课件对应）
+- child: psm_codexcli_repair_20260703
+- provider: aiceming/gpt-5.5 → chun/glm-5.2 → ds4pro
+- 任务包: /root/workspace/任务运行态/20260703_psm_yuyang_maintenance/TASK.md
+
+### 2. 有样网站维护（样式/残留/流程）
+- child: yuyang_site_codexcli_maintenance_20260703
+- provider: aiceming/gpt-5.5 → chun/glm-5.2 → hs/M3
+- 任务包: /root/workspace/任务运行态/20260703_yuyang_site_maintenance/TASK.md
+
+### 3. 采集技能落地+执行
+- child: collection_skill_codexcli_landing_20260703
+- provider: chun/glm-5.2 → aiceming/gpt-5.5 → ds4pro
+- 任务包: /root/workspace/任务运行态/20260703_collection_skill_landing/TASK.md
+
+### 4. KOL蒸馏+MiroFish转化
+- child: kol_mirofish_grok_distillation_20260703
+- provider: futureppo/grok-4.3 → aiceming/gpt-5.5 → chun/glm-5.2
+- 任务包: /root/workspace/任务运行态/20260703_kol_mirofish_distillation/TASK.md
+
+### 状态: 四线运行中，等回调
+
+## 2026-07-03 01:29｜PSM CodexCLI回收
+- 状态: CODEXCLI_PASS_NO_CODE_CHANGE
+- 真CodexCLI: proc_d43cdb07ab61 exit=0。
+- 报告: output/codexcli_report.md。
+- 结论: 现有代码已覆盖图库/Agnes真生图链路、课程任务与课件对应、/psm前缀。
+- 主控复验: py_compile PASS；tests/test_app.py 45 passed。
+- 剩余: GPT池审查仍在跑；不作阻塞。
+
+
+## 2026-07-03 01:33｜主控接管深度采集
+
+### 触发
+- CodexCLI 采集线 exit=1。
+- 原因: SharedChat Codex 并发锁 `Only one Codex conversation can run at a time`。
+- 不算内容失败；已按接管规则由主控用采集技能补跑。
+
+### 深度采集结果
+- 输入URL: 9项。
+- crawl4ai成功: 8项。
+- 失败/部分: 1项。
+- 证据目录:
+  - `/root/workspace/任务运行态/20260703_collection_skill_landing/crawler_evidence/deep_fetch/`
+  - `/root/workspace/任务运行态/20260703_collection_skill_landing/crawler_evidence/deep_fetch_quantum/`
+
+### 状态
+- collection_skill: LANDED_PARTIAL_TO_DONE_EVIDENCE
+- anysearch: DISCOVERY_ONLY 已补深抓。
+- Firecrawl: 仍需 FIRECRAWL_API_KEY，非阻塞。
+- 2026-07-03 22:42 | 同步章节 185
+
+## 2026-07-03 22:44｜第185章草稿箱闭环
+- 状态: DONE_DRAFT_SAVED_NOT_PUBLISHED
+- 章节: 第185章《首战胜利》
+- 字数: 番茄列表 11641
+- 证据: 番茄 saved=true；列表命中；sync_kewu=SYNC_OK
+- 文件: 新版/第185章.md；已投稿/第185章.txt
+- 边界: 未发布。
+- 2026-07-04 02:22 | 同步章节 186
+
+## 2026-07-04 02:22｜186草稿箱闭环
+- 状态: DRAFT_SAVED_NOT_PUBLISHED
+- 复审: output/five_review_186_repair2.md 首行 PASS，可写回/可生成TXT。
+- 写回: /root/workspace/科武纪元/新版/第186章.md
+- TXT: /root/workspace/科武纪元/已投稿/第186章.txt
+- TXT门禁: ensure_fanqie_upload_txt_ready.py --chapter 186 PASS；fanqie_body_chars=4788；note_len=177。
+- 草稿箱: fanqie_draft_upload_chapter.py --chapter 186 --execute PASS；saved=true；listing命中“第186章 战后重建”；word=4788；volume=第四卷：登月。
+- 同步: sync_kewu SYNC_OK；Wiki/伏笔/角色索引/STATUS/WAL 已更新；跟踪表未找到第186章为残留非阻塞。
+- 发布边界: 已保存草稿箱，未正式发布。
+- 2026-07-04 02:28 | 同步章节 186
+
+## 2026-07-04 02:29｜186最终补账完成
+- 状态: DONE_DRAFT_SAVED_NOT_PUBLISHED
+- 草稿箱: 已保存并列表命中，第186章 战后重建，4788字，第四卷：登月。
+- TXT门禁: PASS，fanqie_body_chars=4788，note_len=177。
+- 跟踪表: 小说综合跟踪表已补第186章闭环行。
+- sync_kewu: Wiki=1 Vector=1 Tracking=1 Foreshadow=1 CharThread=1 Status=1 Git=0，已无“跟踪表未找到第186章”。
+- 边界: 未正式发布；未git提交。
+
+## 2026-07-04 03:17｜主控验收
+- 状态: PASS
+- 证据: KOL body_fetched=18 cards=18; SenseNova=done gate=ALLOW_MIROFISH_INPUT; bridge=DRY_RUN_DONE valid_input=9 decision_cards=9; combined_cards=27.
+- 边界: 未写小说正文；未启动187作者；SenseNova bridge为dry-run，未正式写素材卡/INDEX/Wiki。
+- 下一步: 需G2多模型融纲裁决 OUTLINE_PATCH=2 与 CHAPTER_PREP_ONLY=1 是否落备注层/准备包。
+- 2026-07-05 10:00 | 同步章节 187
+- 2026-07-05 10:00 | 同步章节 188
+
+## 2026-07-05 10:04:52｜187/188草稿箱闭环
+- 状态: DONE_DRAFT_SAVED_NOT_PUBLISHED
+- 第187章《算力中心落成》: 草稿箱列表命中，3937字，第四卷：登月。
+- 第188章《脉冲解密》: 草稿箱列表命中，3225字，第四卷：登月。
+- 流程: 作者稿→五席审核→科学返修→定向科学复审PASS→写回新版→TXT_READY→草稿箱保存→sync_kewu。
+- 边界: 未正式发布；未git提交。
+- 任务包: /root/workspace/任务运行态/20260704_kewu_upload187188_after_news_takeover
+- 2026-07-05 11:07 | 同步章节 189
+- 2026-07-05 11:07 | 同步章节 190
+- 2026-07-05 11:08 | 定向复审PASS+返修闭环+草稿箱已保存

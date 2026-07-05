@@ -1,0 +1,661 @@
+[
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260703_03323aa936",
+    "source_url": "https://www.nasa.gov/general/nasas-artemis-ii-breaks-agency-streaming-record",
+    "title": "NASA’s Artemis II Breaks Agency Streaming Record",
+    "captured_at": "2026-07-03T16:09:43",
+    "source_group": "overseas",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260703_1543/cards/NASA_s_Artemis_II_Breaks_Agency_Streaming_Record_4253450e.md",
+    "body_fetch_evidence": {
+      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260703_1543/raw/body_fetch_report.json",
+      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260703_1543/raw/bodies/NASA_s_Artemis_II_Breaks_Agency_Streamin_4253450e6fe56653.txt",
+      "candidate_id": "4253450e6fe56653",
+      "status": "BODY_FETCHED",
+      "counts_as_body_success": true,
+      "source_role": "primary_official",
+      "source_confidence": ""
+    },
+    "title_body_mismatch": true,
+    "evidence_complete": false,
+    "duplicate_check": {
+      "duplicate": true,
+      "reason": "TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY"
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "主控",
+          "reaction": "归档备查；不进入G2/G3。",
+          "wiki_ref": "时事素材/归档"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "space_chain",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "low"
+        }
+      ],
+      "chapter_hooks": [],
+      "outline_delta_candidate": {
+        "type": "red_line",
+        "target_chapter": 0,
+        "proposed_addition": "",
+        "not_proposed": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY"
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": false,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "ARCHIVE_WITH_REASON",
+    "disposition_reason": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-07-03T16:09:43",
+    "bridge_policy": "bridge_artifacts_only_no_production_write"
+  },
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260703_75e31417c3",
+    "source_url": "https://science.nasa.gov/solar-system/whats-up-july-2026-skywatching-tips-from-nasa",
+    "title": "What’s Up: July 2026 Skywatching Tips from NASA",
+    "captured_at": "2026-07-03T16:09:43",
+    "source_group": "overseas",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260703_1543/cards/What_s_Up__July_2026_Skywatching_Tips_from_NASA_c3769d48.md",
+    "body_fetch_evidence": {
+      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260703_1543/raw/body_fetch_report.json",
+      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260703_1543/raw/bodies/What_s_Up__July_2026_Skywatching_Tips_fr_c3769d48116cf157.txt",
+      "candidate_id": "c3769d48116cf157",
+      "status": "BODY_FETCHED",
+      "counts_as_body_success": true,
+      "source_role": "primary_official",
+      "source_confidence": ""
+    },
+    "title_body_mismatch": true,
+    "evidence_complete": false,
+    "duplicate_check": {
+      "duplicate": true,
+      "reason": "TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY"
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "主控",
+          "reaction": "归档备查；不进入G2/G3。",
+          "wiki_ref": "时事素材/归档"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "space_chain",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "low"
+        }
+      ],
+      "chapter_hooks": [],
+      "outline_delta_candidate": {
+        "type": "red_line",
+        "target_chapter": 0,
+        "proposed_addition": "",
+        "not_proposed": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY"
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": false,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "ARCHIVE_WITH_REASON",
+    "disposition_reason": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-07-03T16:09:43",
+    "bridge_policy": "bridge_artifacts_only_no_production_write"
+  },
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260703_32d4abbdd0",
+    "source_url": "https://www.nasa.gov/humans-in-space/nasa-seeks-volunteers-for-new-yearlong-simulated-moon-mars-mission",
+    "title": "NASA Seeks Volunteers for New Yearlong Simulated Moon, Mars Mission",
+    "captured_at": "2026-07-03T16:09:43",
+    "source_group": "overseas",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260703_1543/cards/NASA_Seeks_Volunteers_for_New_Yearlong_Simulated_M_2eb33e55.md",
+    "body_fetch_evidence": {
+      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260703_1543/raw/body_fetch_report.json",
+      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260703_1543/raw/bodies/NASA_Seeks_Volunteers_for_New_Yearlong_S_2eb33e55404cdf98.txt",
+      "candidate_id": "2eb33e55404cdf98",
+      "status": "BODY_FETCHED",
+      "counts_as_body_success": true,
+      "source_role": "primary_official",
+      "source_confidence": ""
+    },
+    "title_body_mismatch": true,
+    "evidence_complete": false,
+    "duplicate_check": {
+      "duplicate": true,
+      "reason": "TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY"
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "主控",
+          "reaction": "归档备查；不进入G2/G3。",
+          "wiki_ref": "时事素材/归档"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "space_chain",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "low"
+        }
+      ],
+      "chapter_hooks": [],
+      "outline_delta_candidate": {
+        "type": "red_line",
+        "target_chapter": 0,
+        "proposed_addition": "",
+        "not_proposed": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY"
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": false,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "ARCHIVE_WITH_REASON",
+    "disposition_reason": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-07-03T16:09:43",
+    "bridge_policy": "bridge_artifacts_only_no_production_write"
+  },
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260703_2a8a9c7788",
+    "source_url": "https://www.esa.int/Applications/Observing_the_Earth/Meteorological_missions/Authorisation_paves_the_way_for_Aeolus-2_wind_mission",
+    "title": "Authorisation paves the way for Aeolus-2 wind mission",
+    "captured_at": "2026-07-03T16:09:43",
+    "source_group": "overseas",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260703_1543/cards/Authorisation_paves_the_way_for_Aeolus-2_wind_miss_2b101355.md",
+    "body_fetch_evidence": {
+      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260703_1543/raw/body_fetch_report.json",
+      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260703_1543/raw/bodies/Authorisation_paves_the_way_for_Aeolus-2_2b101355942dfcf9.txt",
+      "candidate_id": "2b101355942dfcf9",
+      "status": "BODY_FETCHED",
+      "counts_as_body_success": true,
+      "source_role": "primary_official",
+      "source_confidence": ""
+    },
+    "title_body_mismatch": true,
+    "evidence_complete": true,
+    "duplicate_check": {
+      "duplicate": false,
+      "reason": ""
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "联邦/白盾体系",
+          "reaction": "把「Authorisation paves the way for 」作为技术或制度压力测试变量，而非剧情事实照搬。",
+          "wiki_ref": "wiki/factions"
+        },
+        {
+          "force": "主角团/工程线",
+          "reaction": "只吸收可测反馈、失败模式、成本约束；不写成万能外挂。",
+          "wiki_ref": "wiki/characters"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "space_chain",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "medium"
+        }
+      ],
+      "chapter_hooks": [
+        {
+          "hook_id": "ch156_09213b64",
+          "description": "地月/深空/通信链路素材，宜入章节准备红线，不直接改大纲。 来源题名：Authorisation paves the way for Aeolus-2 wind mission",
+          "suitable_chapters": [
+            156
+          ],
+          "reversal": "仅作细节/变量，不直接改变既有章节功能。"
+        }
+      ],
+      "outline_delta_candidate": {
+        "type": "red_line",
+        "target_chapter": 156,
+        "proposed_addition": "",
+        "not_proposed": "地月/深空/通信链路素材，宜入章节准备红线，不直接改大纲。"
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": false,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "CHAPTER_PREP_ONLY",
+    "disposition_reason": "地月/深空/通信链路素材，宜入章节准备红线，不直接改大纲。",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-07-03T16:09:43",
+    "bridge_policy": "bridge_artifacts_only_no_production_write"
+  },
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260703_c93eabdf5f",
+    "source_url": "https://www.nature.com/articles/s41586-026-10844-6",
+    "title": "Electrodeposited self-assembled molecules for perovskite photovoltaics",
+    "captured_at": "2026-07-03T16:09:43",
+    "source_group": "overseas",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260703_1543/cards/Electrodeposited_self-assembled_molecules_for_pero_d0cf8af3.md",
+    "body_fetch_evidence": {
+      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260703_1543/raw/body_fetch_report.json",
+      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260703_1543/raw/bodies/Electrodeposited_self-assembled_molecule_d0cf8af3dce31006.txt",
+      "candidate_id": "d0cf8af3dce31006",
+      "status": "BODY_FETCHED",
+      "counts_as_body_success": true,
+      "source_role": "primary_official",
+      "source_confidence": ""
+    },
+    "title_body_mismatch": false,
+    "evidence_complete": true,
+    "duplicate_check": {
+      "duplicate": false,
+      "reason": ""
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "主控",
+          "reaction": "归档备查；不进入G2/G3。",
+          "wiki_ref": "时事素材/归档"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "low_kewu_relevance",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "low"
+        }
+      ],
+      "chapter_hooks": [],
+      "outline_delta_candidate": {
+        "type": "red_line",
+        "target_chapter": 0,
+        "proposed_addition": "",
+        "not_proposed": "与当前算力主权、地月争夺、群体智能或军事制度主线因果链不足。"
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": false,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "ARCHIVE_WITH_REASON",
+    "disposition_reason": "与当前算力主权、地月争夺、群体智能或军事制度主线因果链不足。",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-07-03T16:09:43",
+    "bridge_policy": "bridge_artifacts_only_no_production_write"
+  },
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260703_9971dcd749",
+    "source_url": "https://news.cctv.com/2026/07/03/ARTIzGxt5QPdHgSjxF17XE5E260703.shtml",
+    "title": "量子大道：产业协同 “链”起未来",
+    "captured_at": "2026-07-03T16:09:43",
+    "source_group": "domestic",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260703_1543/cards/量子大道_产业协同__链_起未来_63ac7a73.md",
+    "body_fetch_evidence": {
+      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260703_1543/raw/body_fetch_report.json",
+      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260703_1543/raw/bodies/量子大道_产业协同__链_起未来_63ac7a73d95cdca2.txt",
+      "candidate_id": "63ac7a73d95cdca2",
+      "status": "BODY_FETCHED",
+      "counts_as_body_success": true,
+      "source_role": "primary_official",
+      "source_confidence": ""
+    },
+    "title_body_mismatch": false,
+    "evidence_complete": true,
+    "duplicate_check": {
+      "duplicate": false,
+      "reason": ""
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "联邦/白盾体系",
+          "reaction": "把「量子大道：产业协同 “链”起未来」作为技术或制度压力测试变量，而非剧情事实照搬。",
+          "wiki_ref": "wiki/factions"
+        },
+        {
+          "force": "主角团/工程线",
+          "reaction": "只吸收可测反馈、失败模式、成本约束；不写成万能外挂。",
+          "wiki_ref": "wiki/characters"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "compute_sovereignty",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "medium"
+        }
+      ],
+      "chapter_hooks": [
+        {
+          "hook_id": "ch95_46d182c0",
+          "description": "与算法/算力/技术主权主线直接相关，交G2裁决是否写入备注层。 来源题名：量子大道：产业协同 “链”起未来",
+          "suitable_chapters": [
+            95
+          ],
+          "reversal": "仅作细节/变量，不直接改变既有章节功能。"
+        }
+      ],
+      "outline_delta_candidate": {
+        "type": "note_layer",
+        "target_chapter": 95,
+        "proposed_addition": "与算法/算力/技术主权主线直接相关，交G2裁决是否写入备注层。",
+        "not_proposed": ""
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": true,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "OUTLINE_PATCH",
+    "disposition_reason": "与算法/算力/技术主权主线直接相关，交G2裁决是否写入备注层。",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-07-03T16:09:43",
+    "bridge_policy": "bridge_artifacts_only_no_production_write"
+  },
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260703_2ac1aaee7b",
+    "source_url": "https://arxiv.org/abs/2607.01306",
+    "title": "PACE: A Neuro-Symbolic Framework for Plausible and Actionable Counterfactual Explanations",
+    "captured_at": "2026-07-03T16:09:43",
+    "source_group": "overseas",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260703_1543/cards/PACE__A_Neuro-Symbolic_Framework_for_Plausible_and_e2b5fdb8.md",
+    "body_fetch_evidence": {
+      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260703_1543/raw/body_fetch_report.json",
+      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260703_1543/raw/bodies/PACE__A_Neuro-Symbolic_Framework_for_Pla_e2b5fdb85ea009e0.txt",
+      "candidate_id": "e2b5fdb85ea009e0",
+      "status": "BODY_FETCHED",
+      "counts_as_body_success": true,
+      "source_role": "primary_official",
+      "source_confidence": ""
+    },
+    "title_body_mismatch": true,
+    "evidence_complete": true,
+    "duplicate_check": {
+      "duplicate": false,
+      "reason": ""
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "联邦/白盾体系",
+          "reaction": "把「PACE: A Neuro-Symbolic Framework」作为技术或制度压力测试变量，而非剧情事实照搬。",
+          "wiki_ref": "wiki/factions"
+        },
+        {
+          "force": "主角团/工程线",
+          "reaction": "只吸收可测反馈、失败模式、成本约束；不写成万能外挂。",
+          "wiki_ref": "wiki/characters"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "compute_sovereignty",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "medium"
+        }
+      ],
+      "chapter_hooks": [
+        {
+          "hook_id": "ch95_b08db370",
+          "description": "与算法/算力/技术主权主线直接相关，交G2裁决是否写入备注层。 来源题名：PACE: A Neuro-Symbolic Framework for Plausible and Actionable Counterfactual Explanations",
+          "suitable_chapters": [
+            95
+          ],
+          "reversal": "仅作细节/变量，不直接改变既有章节功能。"
+        }
+      ],
+      "outline_delta_candidate": {
+        "type": "note_layer",
+        "target_chapter": 95,
+        "proposed_addition": "与算法/算力/技术主权主线直接相关，交G2裁决是否写入备注层。",
+        "not_proposed": ""
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": true,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "OUTLINE_PATCH",
+    "disposition_reason": "与算法/算力/技术主权主线直接相关，交G2裁决是否写入备注层。",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-07-03T16:09:43",
+    "bridge_policy": "bridge_artifacts_only_no_production_write"
+  },
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260703_18fb258c53",
+    "source_url": "https://www.pm.gc.ca/en/news/statements/2025/06/17/g7-leaders-statement-ai-prosperity",
+    "title": "g7 leaders statement ai prosperity",
+    "captured_at": "2026-07-03T16:09:43",
+    "source_group": "overseas",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260703_1543/cards/g7_leaders_statement_ai_prosperity_45415559.md",
+    "body_fetch_evidence": {
+      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260703_1543/raw/body_fetch_report.json",
+      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260703_1543/raw/bodies/g7_leaders_statement_ai_prosperity_454155592be3ca2c.txt",
+      "candidate_id": "454155592be3ca2c",
+      "status": "BODY_FETCHED",
+      "counts_as_body_success": true,
+      "source_role": "primary_official",
+      "source_confidence": ""
+    },
+    "title_body_mismatch": false,
+    "evidence_complete": true,
+    "duplicate_check": {
+      "duplicate": false,
+      "reason": ""
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "联邦/白盾体系",
+          "reaction": "把「g7 leaders statement ai prosperi」作为技术或制度压力测试变量，而非剧情事实照搬。",
+          "wiki_ref": "wiki/factions"
+        },
+        {
+          "force": "主角团/工程线",
+          "reaction": "只吸收可测反馈、失败模式、成本约束；不写成万能外挂。",
+          "wiki_ref": "wiki/characters"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "compute_sovereignty",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "medium"
+        }
+      ],
+      "chapter_hooks": [
+        {
+          "hook_id": "ch95_6f83d9bf",
+          "description": "与算法/算力/技术主权主线直接相关，交G2裁决是否写入备注层。 来源题名：g7 leaders statement ai prosperity",
+          "suitable_chapters": [
+            95
+          ],
+          "reversal": "仅作细节/变量，不直接改变既有章节功能。"
+        }
+      ],
+      "outline_delta_candidate": {
+        "type": "note_layer",
+        "target_chapter": 95,
+        "proposed_addition": "与算法/算力/技术主权主线直接相关，交G2裁决是否写入备注层。",
+        "not_proposed": ""
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": true,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "OUTLINE_PATCH",
+    "disposition_reason": "与算法/算力/技术主权主线直接相关，交G2裁决是否写入备注层。",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-07-03T16:09:43",
+    "bridge_policy": "bridge_artifacts_only_no_production_write"
+  },
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260703_7a7d718505",
+    "source_url": "http://finance.people.com.cn/n1/2026/0529/c1004-40729991.html",
+    "title": "高质量数据集建设激活人工智能发展新动能",
+    "captured_at": "2026-07-03T16:09:43",
+    "source_group": "domestic",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260703_1543/cards/高质量数据集建设激活人工智能发展新动能_46f2f8ed.md",
+    "body_fetch_evidence": {
+      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260703_1543/raw/body_fetch_report.json",
+      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260703_1543/raw/bodies/高质量数据集建设激活人工智能发展新动能_46f2f8ed8146dd8f.txt",
+      "candidate_id": "46f2f8ed8146dd8f",
+      "status": "BODY_FETCHED",
+      "counts_as_body_success": true,
+      "source_role": "primary_official",
+      "source_confidence": ""
+    },
+    "title_body_mismatch": false,
+    "evidence_complete": false,
+    "duplicate_check": {
+      "duplicate": true,
+      "reason": "SOURCE_URL_ALREADY_IN_INDEX_OR_CARD"
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "主控",
+          "reaction": "归档备查；不进入G2/G3。",
+          "wiki_ref": "时事素材/归档"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "compute_sovereignty",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "low"
+        }
+      ],
+      "chapter_hooks": [],
+      "outline_delta_candidate": {
+        "type": "red_line",
+        "target_chapter": 0,
+        "proposed_addition": "",
+        "not_proposed": "重复或已入库：SOURCE_URL_ALREADY_IN_INDEX_OR_CARD"
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": false,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "ARCHIVE_WITH_REASON",
+    "disposition_reason": "重复或已入库：SOURCE_URL_ALREADY_IN_INDEX_OR_CARD",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-07-03T16:09:43",
+    "bridge_policy": "bridge_artifacts_only_no_production_write"
+  }
+]

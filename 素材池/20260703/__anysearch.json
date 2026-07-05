@@ -1,0 +1,36 @@
+{
+  "status": "partial",
+  "source": "anysearch-local",
+  "route": "anysearch",
+  "failure_tag": "DISCOVERY_ONLY",
+  "count": 3,
+  "data": [
+    {
+      "url": "https://zh.wikipedia.org/wiki/%E8%A3%BD%E7%A8%8B",
+      "title": "- **URL**: https://zh.wikipedia.org/wiki/%E8%A3%BD%E7%A8%8B",
+      "source": "anysearch_text"
+    },
+    {
+      "url": "https://www.tsmc.com/schinese/dedicatedFoundry/technology/logic",
+      "title": "- **URL**: https://www.tsmc.com/schinese/dedicatedFoundry/technology/logic",
+      "source": "anysearch_text"
+    },
+    {
+      "url": "https://xueqiu.com/7465618909/294056807",
+      "title": "- **URL**: https://xueqiu.com/7465618909/294056807",
+      "source": "anysearch_text"
+    }
+  ],
+  "meta": {
+    "cli": "/root/workspace/IMA素材/external_skills/anysearch-skill_20260604/repo/scripts/anysearch_cli.py",
+    "parse": "text_fallback",
+    "privacy": "public_query_only",
+    "not_truth_source": true,
+    "discovery_only": true,
+    "failure_tag": "DISCOVERY_ONLY"
+  },
+  "files": [],
+  "error": null,
+  "stderr": "",
+  "timestamp": "2026-07-03T01:28:11"
+}

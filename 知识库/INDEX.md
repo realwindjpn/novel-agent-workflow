@@ -58,6 +58,10 @@
 | [地火轨道通信](深空工程/素材卡_地火轨道通信延迟.md) | 霍曼窗口26个月、延迟3-22分钟、天问200天 | 沉默22分钟、窗口期争夺 | CNSA/NASA |
 | [旅行者号终局](深空工程/素材卡_旅行者号即将终结_深空工程_20260514.md) | 约240亿千米、2012穿越日球层顶、LECP关闭、核电池衰减 | 深空探测器老化、通信优先级、长期任务降级 | 中科院物理所/NASA |
 | [NASA月球基地最新进展](深空工程/素材卡_NASA月球基地最新进展_20260625.md) | 6月30日线上更新；着陆器模块任务授标；月面长期存在 | 第174-177月基建设线；标准/供应链/授标冲突 | NASA 2026-06-25 |
+| [Mapping Earth’s Observations, featuring Betsy Ford](../章节准备包/2026-07-01_ch156_遥感盲区_深空链路/CHAPTER_PREP_PACKAGE.md#20260701_b8bad3d0e0mapping-earths-observations-featuring-betsy-ford) | 地球观测系统工程、遥感盲区、侦察代价、信息架构约束 | 第156章准备包；hook_id=ch156_2de9e1dc；不改大纲 | NASA 2026-07-01 bridge |
+| [Time to say goodbye to Sentinel-1A](../章节准备包/2026-07-01_ch156_遥感盲区_深空链路/CHAPTER_PREP_PACKAGE.md#20260701_81c6620920time-to-say-goodbye-to-sentinel-1a) | Sentinel-1A 12年服役、SAR全天候成像、退役接力、长期任务降级 | 第156章准备包；hook_id=ch156_55883de3；不改大纲 | ESA 2026-07-01 bridge |
+| [εpsilon](../章节准备包/2026-07-01_ch156_遥感盲区_深空链路/CHAPTER_PREP_PACKAGE.md#20260701_4aa720227bepsilon) | ISS九个月任务、Crew-12、跨机构载人任务、链路/人体适应变量 | 第156章准备包；hook_id=ch156_d7ad0705；不改大纲 | ESA 2026-07-01 bridge |
+| [全池补议：月面技术簇与芯片贸易注脚](../章节准备包/2026-07-01_full_pool_supplement/月面技术簇_芯片贸易注脚包.md) | NASA月面ECLSS/长期技术征询、NextSTEP-3A去重、AI治理/半导体/贸易管制KOL注脚 | G2补议裁决：CHAPTER_PREP_ONLY；OUTLINE_PATCH=0；KOL×4入注脚包 | 2026-07-01 G2全池补议 |
 
 ## 深空指挥线（新增 2026-05-03）
 

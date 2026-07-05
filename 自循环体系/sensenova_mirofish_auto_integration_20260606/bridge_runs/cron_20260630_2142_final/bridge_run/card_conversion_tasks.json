@@ -1,0 +1,56 @@
+[
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260701_b8bad3d0e0",
+    "title": "Mapping Earth’s Observations, featuring Betsy Ford",
+    "source_url": "https://www.nasa.gov/general/mapping-earths-observations-featuring-betsy-ford",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260630_2142/cards/Mapping_Earth__8217_s_Observations__featuring_Bets_eb4074ec.md",
+    "target_chapter_hint": 156,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_Wiki",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_Wiki"
+    ],
+    "not_done_in_dry_run": true
+  },
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260701_81c6620920",
+    "title": "Time to say goodbye to Sentinel-1A",
+    "source_url": "https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Sentinel-1/Time_to_say_goodbye_to_Sentinel-1A",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260630_2142/cards/Time_to_say_goodbye_to_Sentinel-1A_eb8360d6.md",
+    "target_chapter_hint": 156,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_Wiki",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_Wiki"
+    ],
+    "not_done_in_dry_run": true
+  },
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260701_4aa720227b",
+    "title": "εpsilon",
+    "source_url": "https://www.esa.int/Science_Exploration/Human_and_Robotic_Exploration/epsilon",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260630_2142/cards/εpsilon_1860e34c.md",
+    "target_chapter_hint": 156,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_Wiki",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_Wiki"
+    ],
+    "not_done_in_dry_run": true
+  }
+]

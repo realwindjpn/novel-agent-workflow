@@ -1,0 +1,38 @@
+[
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260705_2a8a9c7788",
+    "title": "Authorisation paves the way for Aeolus-2 wind mission",
+    "source_url": "https://www.esa.int/Applications/Observing_the_Earth/Meteorological_missions/Authorisation_paves_the_way_for_Aeolus-2_wind_mission",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260705_0344/cards/Authorisation_paves_the_way_for_Aeolus-2_wind_miss_2b101355.md",
+    "target_chapter_hint": 156,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_Wiki",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_Wiki"
+    ],
+    "not_done_in_dry_run": true
+  },
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260705_0ee4ecac3b",
+    "title": "跨越山海 远程机器人手术连通千里医患",
+    "source_url": "https://news.cctv.com/2026/07/04/ARTImkXOxsnqRmud4mSMlYcc260704.shtml",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260705_0344/cards/跨越山海_远程机器人手术连通千里医患_2c9ec3b6.md",
+    "target_chapter_hint": 156,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_Wiki",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_Wiki"
+    ],
+    "not_done_in_dry_run": true
+  }
+]

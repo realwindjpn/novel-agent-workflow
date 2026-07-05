@@ -1,21 +1,21 @@
 {
   "schema": "sensenova_mirofish_feed_package_v1",
-  "created_at": "2026-06-22T21:11:38",
-  "source_run_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932",
+  "created_at": "2026-07-01T07:13:59",
+  "source_run_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643",
   "mirofish_input_gate": {
     "status": "ALLOW_MIROFISH_INPUT",
     "reason": "",
     "status_hint": "after_card_distill",
-    "valid_content_cards": 7,
-    "body_valid_cards": 9,
-    "story_value_cards": 7,
+    "valid_content_cards": 8,
+    "body_valid_cards": 10,
+    "story_value_cards": 8,
     "low_story_value_cards": 2,
-    "mirofish_ready_cards": 7,
-    "p0_p1_story_value_cards": 7,
+    "mirofish_ready_cards": 8,
+    "p0_p1_story_value_cards": 8,
     "material_relevance_status": "PASS",
-    "domestic_body_success": 5,
-    "body_fetch_success": 15,
-    "body_files_written": 11,
+    "domestic_body_success": 6,
+    "body_fetch_success": 16,
+    "body_files_written": 12,
     "body_fetch_success_metric": "raw/bodies/*.txt with BODY_FETCHED report item",
     "story_value_threshold": {
       "story_value_cards_min": 3,
@@ -24,31 +24,37 @@
     },
     "bridge_mirofish_cron_recoverable": true
   },
-  "mirofish_input_gate_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/raw/mirofish_input_gate.json",
+  "mirofish_input_gate_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/raw/mirofish_input_gate.json",
   "expert_gate_report": {
-    "valid_content_cards": 7,
-    "p0_p1_story_value_cards": 7,
-    "mirofish_ready_cards": 7,
+    "status": "ALLOW_MIROFISH_INPUT",
     "expert_gate_pass": true,
-    "derived_from": "mirofish_input_gate.json",
-    "note": "Auto-derived for bridge compatibility (P3 fix)"
+    "valid_content_cards": 8,
+    "failure_tags": [],
+    "reason": "",
+    "source": "derived_from_mirofish_input_gate",
+    "expert_gate_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/raw/expert_gate_report.json",
+    "mirofish_input_gate_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/raw/mirofish_input_gate.json",
+    "required_experts": [
+      "沈逸",
+      "高志凯"
+    ]
   },
-  "expert_gate_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/raw/expert_gate_report.json",
+  "expert_gate_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/raw/expert_gate_report.json",
   "expert_voice_cards": [],
   "expert_voice_card_count": 0,
   "source_cards": [
     {
-      "material_id": "20260622_1d6480597f",
-      "title": "NASA Mission to Study Space Weather Impacts of Earth’s Atmosphere",
-      "url": "https://www.nasa.gov/news-release/nasa-mission-to-study-space-weather-impacts-of-earths-atmosphere",
-      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/cards/NASA_Mission_to_Study_Space_Weather_Impacts_of_Ear_aeff2f9d.md",
+      "material_id": "20260701_ef42fb623e",
+      "title": "La NASA adjudica nuevas misiones científicas para Base Lunar y adelanta nuevas oportunidades",
+      "url": "https://www.nasa.gov/news-release/la-nasa-adjudica-nuevas-misiones-cientificas-para-base-lunar-y-adelanta-nuevas-oportunidades",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/cards/La_NASA_adjudica_nuevas_misiones_científicas_para_f47c23da.md",
       "source_group": "overseas",
       "source_type": "official",
       "verification_status": "official_verified",
       "body_fetch_evidence": {
-        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/raw/body_fetch_report.json",
-        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/raw/bodies/NASA_Mission_to_Study_Space_Weather_Impa_aeff2f9d74fa9a8a.txt",
-        "candidate_id": "aeff2f9d74fa9a8a",
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/raw/bodies/La_NASA_adjudica_nuevas_misiones_científ_f47c23da5a3c7631.txt",
+        "candidate_id": "f47c23da5a3c7631",
         "status": "BODY_FETCHED",
         "counts_as_body_success": true,
         "source_role": "primary_official",
@@ -60,17 +66,17 @@
       "story_axis": ""
     },
     {
-      "material_id": "20260622_52c249b390",
-      "title": "NASA Awards Contract for Commercial Satellite Data Acquisition",
-      "url": "https://www.nasa.gov/news-release/nasa-awards-contract-for-commercial-satellite-data-acquisition",
-      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/cards/NASA_Awards_Contract_for_Commercial_Satellite_Data_3d519a02.md",
+      "material_id": "20260701_3aaa313f9a",
+      "title": "NextSTEP-3 B: Moon Base Demonstrations",
+      "url": "https://www.nasa.gov/general/nextstep-3-b-moon-base-demonstrations",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/cards/NextSTEP-3_B__Moon_Base_Demonstrations_d04ca1c0.md",
       "source_group": "overseas",
       "source_type": "official",
       "verification_status": "official_verified",
       "body_fetch_evidence": {
-        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/raw/body_fetch_report.json",
-        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/raw/bodies/NASA_Awards_Contract_for_Commercial_Sate_3d519a02c1734807.txt",
-        "candidate_id": "3d519a02c1734807",
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/raw/bodies/NextSTEP-3_B__Moon_Base_Demonstrations_d04ca1c0f7dcf54b.txt",
+        "candidate_id": "d04ca1c0f7dcf54b",
         "status": "BODY_FETCHED",
         "counts_as_body_success": true,
         "source_role": "primary_official",
@@ -82,17 +88,17 @@
       "story_axis": ""
     },
     {
-      "material_id": "20260622_6350dc298a",
-      "title": "Desert Field Test With NASA Advanced Rover Prototype",
-      "url": "https://science.nasa.gov/photojournal/desert-field-test-with-nasa-advanced-rover-prototype",
-      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/cards/Desert_Field_Test_With_NASA_Advanced_Rover_Prototy_8715446b.md",
+      "material_id": "20260701_f72d191efe",
+      "title": "NASA Awards More Moon Base Science, Previews New Opportunities",
+      "url": "https://www.nasa.gov/news-release/nasa-awards-more-moon-base-science-previews-new-opportunities",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/cards/NASA_Awards_More_Moon_Base_Science__Previews_New_O_11b184ff.md",
       "source_group": "overseas",
       "source_type": "official",
       "verification_status": "official_verified",
       "body_fetch_evidence": {
-        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/raw/body_fetch_report.json",
-        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/raw/bodies/Desert_Field_Test_With_NASA_Advanced_Rov_8715446b835c83ea.txt",
-        "candidate_id": "8715446b835c83ea",
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/raw/bodies/NASA_Awards_More_Moon_Base_Science__Prev_11b184ff0bb43927.txt",
+        "candidate_id": "11b184ff0bb43927",
         "status": "BODY_FETCHED",
         "counts_as_body_success": true,
         "source_role": "primary_official",
@@ -104,17 +110,17 @@
       "story_axis": ""
     },
     {
-      "material_id": "20260622_8160e14528",
-      "title": "俄罗斯核聚变专家中国行活动成功举办",
-      "url": "https://www.most.gov.cn/kjbgz/202606/t20260616_196788.html",
-      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/cards/俄罗斯核聚变专家中国行活动成功举办_274bdaa2.md",
+      "material_id": "20260701_d977200ade",
+      "title": "关于2025年人工智能应用典型案例入选名单的公示",
+      "url": "https://www.miit.gov.cn/jgsj/kjs/gzdt/art/2026/art_2bf762c3d3be4f5593e80e3e3abd95f9.html",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/cards/关于2025年人工智能应用典型案例入选名单的公示_1200a361.md",
       "source_group": "domestic",
       "source_type": "official",
       "verification_status": "official_verified",
       "body_fetch_evidence": {
-        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/raw/body_fetch_report.json",
-        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/raw/bodies/俄罗斯核聚变专家中国行活动成功举办_274bdaa24b59ba50.txt",
-        "candidate_id": "274bdaa24b59ba50",
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/raw/bodies/关于2025年人工智能应用典型案例入选名单的公示_1200a36161fd76b3.txt",
+        "candidate_id": "1200a36161fd76b3",
         "status": "BODY_FETCHED",
         "counts_as_body_success": true,
         "source_role": "primary_official",
@@ -126,42 +132,64 @@
       "story_axis": ""
     },
     {
-      "material_id": "20260622_497225b562",
-      "title": "Statement on the US government directive to suspend access to Fable 5 and Mythos 5 Announcements Jun 12, 2026 The US government has issued an export control directive to suspend al",
-      "url": "https://www.anthropic.com/news/fable-mythos-access",
-      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/cards/Statement_on_the_US_government_directive_to_suspen_00131728.md",
-      "source_group": "overseas",
+      "material_id": "20260701_0d2d0a4c9b",
+      "title": "工业和信息化部办公厅关于公布2025年度工业和信息化质量提升与品牌建设典型案例名单的通知",
+      "url": "https://www.miit.gov.cn/jgsj/kjs/gzdt/art/2026/art_bc6fa4304a0040ccb1446e68ec8eec48.html",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/cards/工业和信息化部办公厅关于公布2025年度工业和信息化质量提升与品牌建设典型案例名单的通知_0a7e8c7a.md",
+      "source_group": "domestic",
       "source_type": "official",
       "verification_status": "official_verified",
       "body_fetch_evidence": {
-        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/raw/body_fetch_report.json",
-        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/raw/bodies/Statement_on_the_US_government_directive_001317287cdd9d97.txt",
-        "candidate_id": "001317287cdd9d97",
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/raw/bodies/工业和信息化部办公厅关于公布2025年度工业和信息化质量提升与品牌建设典型案例名_0a7e8c7a4d63b419.txt",
+        "candidate_id": "0a7e8c7a4d63b419",
         "status": "BODY_FETCHED",
         "counts_as_body_success": true,
         "source_role": "primary_official",
         "source_confidence": ""
       },
       "evidence_complete": false,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": ""
+    },
+    {
+      "material_id": "20260701_bf6e20dd8d",
+      "title": "科技部副部长林新访问马来西亚、老挝并出席中马政府间科技创新合作联委会、中老政府间科技合作联委会和中国—东盟科技创新合作联委会会议",
+      "url": "https://www.most.gov.cn/kjbgz/202606/t20260629_196855.html",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/cards/科技部副部长林新访问马来西亚_老挝并出席中马政府间科技创新合作联委会_中老政府间科技合作联委会和中国_0812bf96.md",
+      "source_group": "domestic",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/raw/bodies/科技部副部长林新访问马来西亚_老挝并出席中马政府间科技创新合作联委会_中老政府间_0812bf96ccd925da.txt",
+        "candidate_id": "0812bf96ccd925da",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": ""
+      },
+      "evidence_complete": true,
       "disposition": "ARCHIVE_WITH_REASON",
       "chapter_hint": 0,
       "story_axis": ""
     }
   ],
-  "source_card_count": 5,
+  "source_card_count": 6,
   "fresh_news_cards": [
     {
-      "material_id": "20260622_1d6480597f",
-      "title": "NASA Mission to Study Space Weather Impacts of Earth’s Atmosphere",
-      "url": "https://www.nasa.gov/news-release/nasa-mission-to-study-space-weather-impacts-of-earths-atmosphere",
-      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/cards/NASA_Mission_to_Study_Space_Weather_Impacts_of_Ear_aeff2f9d.md",
+      "material_id": "20260701_ef42fb623e",
+      "title": "La NASA adjudica nuevas misiones científicas para Base Lunar y adelanta nuevas oportunidades",
+      "url": "https://www.nasa.gov/news-release/la-nasa-adjudica-nuevas-misiones-cientificas-para-base-lunar-y-adelanta-nuevas-oportunidades",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/cards/La_NASA_adjudica_nuevas_misiones_científicas_para_f47c23da.md",
       "source_group": "overseas",
       "source_type": "official",
       "verification_status": "official_verified",
       "body_fetch_evidence": {
-        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/raw/body_fetch_report.json",
-        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/raw/bodies/NASA_Mission_to_Study_Space_Weather_Impa_aeff2f9d74fa9a8a.txt",
-        "candidate_id": "aeff2f9d74fa9a8a",
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/raw/bodies/La_NASA_adjudica_nuevas_misiones_científ_f47c23da5a3c7631.txt",
+        "candidate_id": "f47c23da5a3c7631",
         "status": "BODY_FETCHED",
         "counts_as_body_success": true,
         "source_role": "primary_official",
@@ -175,17 +203,17 @@
       "bridge_retained": true
     },
     {
-      "material_id": "20260622_52c249b390",
-      "title": "NASA Awards Contract for Commercial Satellite Data Acquisition",
-      "url": "https://www.nasa.gov/news-release/nasa-awards-contract-for-commercial-satellite-data-acquisition",
-      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/cards/NASA_Awards_Contract_for_Commercial_Satellite_Data_3d519a02.md",
+      "material_id": "20260701_3aaa313f9a",
+      "title": "NextSTEP-3 B: Moon Base Demonstrations",
+      "url": "https://www.nasa.gov/general/nextstep-3-b-moon-base-demonstrations",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/cards/NextSTEP-3_B__Moon_Base_Demonstrations_d04ca1c0.md",
       "source_group": "overseas",
       "source_type": "official",
       "verification_status": "official_verified",
       "body_fetch_evidence": {
-        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/raw/body_fetch_report.json",
-        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/raw/bodies/NASA_Awards_Contract_for_Commercial_Sate_3d519a02c1734807.txt",
-        "candidate_id": "3d519a02c1734807",
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/raw/bodies/NextSTEP-3_B__Moon_Base_Demonstrations_d04ca1c0f7dcf54b.txt",
+        "candidate_id": "d04ca1c0f7dcf54b",
         "status": "BODY_FETCHED",
         "counts_as_body_success": true,
         "source_role": "primary_official",
@@ -199,17 +227,17 @@
       "bridge_retained": true
     },
     {
-      "material_id": "20260622_6350dc298a",
-      "title": "Desert Field Test With NASA Advanced Rover Prototype",
-      "url": "https://science.nasa.gov/photojournal/desert-field-test-with-nasa-advanced-rover-prototype",
-      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/cards/Desert_Field_Test_With_NASA_Advanced_Rover_Prototy_8715446b.md",
+      "material_id": "20260701_f72d191efe",
+      "title": "NASA Awards More Moon Base Science, Previews New Opportunities",
+      "url": "https://www.nasa.gov/news-release/nasa-awards-more-moon-base-science-previews-new-opportunities",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/cards/NASA_Awards_More_Moon_Base_Science__Previews_New_O_11b184ff.md",
       "source_group": "overseas",
       "source_type": "official",
       "verification_status": "official_verified",
       "body_fetch_evidence": {
-        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/raw/body_fetch_report.json",
-        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/raw/bodies/Desert_Field_Test_With_NASA_Advanced_Rov_8715446b835c83ea.txt",
-        "candidate_id": "8715446b835c83ea",
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/raw/bodies/NASA_Awards_More_Moon_Base_Science__Prev_11b184ff0bb43927.txt",
+        "candidate_id": "11b184ff0bb43927",
         "status": "BODY_FETCHED",
         "counts_as_body_success": true,
         "source_role": "primary_official",
@@ -223,17 +251,17 @@
       "bridge_retained": true
     },
     {
-      "material_id": "20260622_8160e14528",
-      "title": "俄罗斯核聚变专家中国行活动成功举办",
-      "url": "https://www.most.gov.cn/kjbgz/202606/t20260616_196788.html",
-      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/cards/俄罗斯核聚变专家中国行活动成功举办_274bdaa2.md",
+      "material_id": "20260701_d977200ade",
+      "title": "关于2025年人工智能应用典型案例入选名单的公示",
+      "url": "https://www.miit.gov.cn/jgsj/kjs/gzdt/art/2026/art_2bf762c3d3be4f5593e80e3e3abd95f9.html",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/cards/关于2025年人工智能应用典型案例入选名单的公示_1200a361.md",
       "source_group": "domestic",
       "source_type": "official",
       "verification_status": "official_verified",
       "body_fetch_evidence": {
-        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/raw/body_fetch_report.json",
-        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/raw/bodies/俄罗斯核聚变专家中国行活动成功举办_274bdaa24b59ba50.txt",
-        "candidate_id": "274bdaa24b59ba50",
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/raw/bodies/关于2025年人工智能应用典型案例入选名单的公示_1200a36161fd76b3.txt",
+        "candidate_id": "1200a36161fd76b3",
         "status": "BODY_FETCHED",
         "counts_as_body_success": true,
         "source_role": "primary_official",
@@ -247,23 +275,47 @@
       "bridge_retained": true
     },
     {
-      "material_id": "20260622_497225b562",
-      "title": "Statement on the US government directive to suspend access to Fable 5 and Mythos 5 Announcements Jun 12, 2026 The US government has issued an export control directive to suspend al",
-      "url": "https://www.anthropic.com/news/fable-mythos-access",
-      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/cards/Statement_on_the_US_government_directive_to_suspen_00131728.md",
-      "source_group": "overseas",
+      "material_id": "20260701_0d2d0a4c9b",
+      "title": "工业和信息化部办公厅关于公布2025年度工业和信息化质量提升与品牌建设典型案例名单的通知",
+      "url": "https://www.miit.gov.cn/jgsj/kjs/gzdt/art/2026/art_bc6fa4304a0040ccb1446e68ec8eec48.html",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/cards/工业和信息化部办公厅关于公布2025年度工业和信息化质量提升与品牌建设典型案例名单的通知_0a7e8c7a.md",
+      "source_group": "domestic",
       "source_type": "official",
       "verification_status": "official_verified",
       "body_fetch_evidence": {
-        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/raw/body_fetch_report.json",
-        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/raw/bodies/Statement_on_the_US_government_directive_001317287cdd9d97.txt",
-        "candidate_id": "001317287cdd9d97",
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/raw/bodies/工业和信息化部办公厅关于公布2025年度工业和信息化质量提升与品牌建设典型案例名_0a7e8c7a4d63b419.txt",
+        "candidate_id": "0a7e8c7a4d63b419",
         "status": "BODY_FETCHED",
         "counts_as_body_success": true,
         "source_role": "primary_official",
         "source_confidence": ""
       },
       "evidence_complete": false,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": "",
+      "card_family": "fresh_news_card",
+      "bridge_retained": true
+    },
+    {
+      "material_id": "20260701_bf6e20dd8d",
+      "title": "科技部副部长林新访问马来西亚、老挝并出席中马政府间科技创新合作联委会、中老政府间科技合作联委会和中国—东盟科技创新合作联委会会议",
+      "url": "https://www.most.gov.cn/kjbgz/202606/t20260629_196855.html",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/cards/科技部副部长林新访问马来西亚_老挝并出席中马政府间科技创新合作联委会_中老政府间科技合作联委会和中国_0812bf96.md",
+      "source_group": "domestic",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/raw/bodies/科技部副部长林新访问马来西亚_老挝并出席中马政府间科技创新合作联委会_中老政府间_0812bf96ccd925da.txt",
+        "candidate_id": "0812bf96ccd925da",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": ""
+      },
+      "evidence_complete": true,
       "disposition": "ARCHIVE_WITH_REASON",
       "chapter_hint": 0,
       "story_axis": "",
@@ -271,16 +323,16 @@
       "bridge_retained": true
     }
   ],
-  "fresh_news_card_count": 5,
-  "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/raw/body_fetch_report.json",
-  "raw_bodies_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260622_1932/raw/bodies",
+  "fresh_news_card_count": 6,
+  "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/raw/body_fetch_report.json",
+  "raw_bodies_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/raw/bodies",
   "source_pipeline_state": {
-    "run_id": "cron_20260622_1932",
-    "status": "done",
-    "valid_content_cards": 7,
+    "run_id": "cron_20260701_0643",
+    "status": "partial",
+    "valid_content_cards": 8,
     "query_plan_cards": 0,
-    "body_fetch_success": 15,
-    "card_pass_count": 9
+    "body_fetch_success": 16,
+    "card_pass_count": 11
   },
   "policy": {
     "query_plan_excluded": true,
@@ -290,70 +342,58 @@
     "body_success_requires_raw_bodies_txt": true,
     "expert_gate_required_before_mirofish": true
   },
-  "valid_input_count": 5,
-  "skipped_count": 99,
+  "valid_input_count": 6,
+  "skipped_count": 106,
   "skip_reason_counts": {
-    "duplicate_url": 5,
-    "http_403|jina_timeout": 2,
+    "already_in_previous_bridge_run": 2,
+    "duplicate_url": 4,
+    "body_clean_too_short": 1,
+    "body_too_short_link_only": 1,
     "not_article_page_url": 1,
-    "duplicate_within_run": 4,
-    "summary_not_body_evidence": 1,
-    "missing_body_path": 20,
-    "already_in_previous_bridge_run": 1,
+    "duplicate_within_run": 5,
+    "summary_not_body_evidence": 5,
+    "missing_body_path": 22,
     "stale_domestic_article": 1,
     "low_value_policy_theory_source": 1,
     "low_value_expo_or_conference": 1,
     "query_plan_no_body": 62
   },
-  "body_fetch_evidence_count": 11,
-  "body_fetch_evidence_key_count": 22,
+  "body_fetch_evidence_count": 12,
+  "body_fetch_evidence_key_count": 24,
   "stale_domestic_blocked_count": 1,
-  "missing_cards_by_tier": {
-    "P0": [
-      "46f2f8ed8146dd8f"
-    ],
-    "UNKNOWN": [
-      "0f87b92216fda77e",
-      "739d880d3e439921",
-      "b0575c12905ca69e",
-      "f5f4f56121883f39",
-      "f973765f307079e8"
-    ]
-  },
-  "p0_missing": true,
-  "p0_missing_cards": [
-    "46f2f8ed8146dd8f"
-  ],
+  "missing_cards_by_tier": {},
+  "p0_missing": false,
+  "p0_missing_cards": [],
   "p1_missing_cards": [],
-  "p0_p1_gate_blocked": true,
+  "p0_p1_gate_blocked": false,
   "skipped": [
     {
-      "candidate_id": "0f87b92216fda77e",
-      "title": "Tropical Storm Arthur",
-      "url": "https://science.nasa.gov/earth/earth-observatory/tropical-storm-arthur",
+      "candidate_id": "49f0ec270aa537b6",
+      "title": "Starry Chandelier Cluster",
+      "url": "https://www.nasa.gov/image-article/starry-chandelier-cluster",
+      "status": "DISTILLED",
+      "reason": "already_in_previous_bridge_run"
+    },
+    {
+      "candidate_id": "eb8360d69ae9b0e6",
+      "title": "Time to say goodbye to Sentinel-1A",
+      "url": "https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Sentinel-1/Time_to_say_goodbye_to_Sentinel-1A",
       "status": "SKIP_DUPLICATE",
       "reason": "DUPLICATE_URL"
     },
     {
-      "candidate_id": "13cd23c66a31beb9",
-      "title": "The Voice in Orbit | Talking to Astronauts in Space | ESA Explores #20",
-      "url": "https://www.esa.int/ESA_Multimedia/Videos/2026/06/The_Voice_in_Orbit_Talking_to_Astronauts_in_Space_ESA_Explores_20",
+      "candidate_id": "65af499978feb4bb",
+      "title": "This Month at ESA: June 2026",
+      "url": "https://www.esa.int/ESA_Multimedia/Videos/2026/06/This_Month_at_ESA_June_2026",
       "status": "BODY_FETCH_FAIL",
-      "reason": "HTTP_403|JINA_TIMEOUT"
+      "reason": "BODY_CLEAN_TOO_SHORT"
     },
     {
-      "candidate_id": "f5f4f56121883f39",
-      "title": "Galileo signal updated for internet-of-things use",
-      "url": "https://www.esa.int/Applications/Satellite_navigation/Galileo/Galileo_signal_updated_for_internet-of-things_use",
-      "status": "SKIP_DUPLICATE",
-      "reason": "DUPLICATE_URL"
-    },
-    {
-      "candidate_id": "f973765f307079e8",
-      "title": "科学家让活细胞成像既全又清",
-      "url": "https://news.cctv.com/2026/06/22/ARTIZPIxDC4mgWxyNv9fFYQa260622.shtml",
-      "status": "SKIP_DUPLICATE",
-      "reason": "DUPLICATE_URL"
+      "candidate_id": "6d405b7fd98fccdb",
+      "title": "一组数据带你看懂“十五五”能源强国新图景",
+      "url": "https://news.cctv.com/2026/07/01/ARTIjw2SJyTm3ZRE6PtHUE7z260630.shtml",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "BODY_TOO_SHORT_LINK_ONLY"
     },
     {
       "candidate_id": "97105b9433c2ebcb",
@@ -370,23 +410,23 @@
       "reason": "DUPLICATE_URL"
     },
     {
-      "candidate_id": "aeff2f9d74fa9a8a",
-      "title": "NASA Mission to Study Space Weather Impacts of Earth’s Atmosphere",
-      "url": "https://www.nasa.gov/news-release/nasa-mission-to-study-space-weather-impacts-of-earths-atmosphere",
+      "candidate_id": "f47c23da5a3c7631",
+      "title": "La NASA adjudica nuevas misiones científicas para Base Lunar y adelanta nuevas oportunidades",
+      "url": "https://www.nasa.gov/news-release/la-nasa-adjudica-nuevas-misiones-cientificas-para-base-lunar-y-adelanta-nuevas-oportunidades",
       "status": "DISTILLED",
       "reason": "duplicate_within_run"
     },
     {
-      "candidate_id": "3d519a02c1734807",
-      "title": "NASA Awards Contract for Commercial Satellite Data Acquisition",
-      "url": "https://www.nasa.gov/news-release/nasa-awards-contract-for-commercial-satellite-data-acquisition",
+      "candidate_id": "d04ca1c0f7dcf54b",
+      "title": "NextSTEP-3 B: Moon Base Demonstrations",
+      "url": "https://www.nasa.gov/general/nextstep-3-b-moon-base-demonstrations",
       "status": "DISTILLED",
       "reason": "duplicate_within_run"
     },
     {
-      "candidate_id": "8715446b835c83ea",
-      "title": "Desert Field Test With NASA Advanced Rover Prototype",
-      "url": "https://science.nasa.gov/photojournal/desert-field-test-with-nasa-advanced-rover-prototype",
+      "candidate_id": "11b184ff0bb43927",
+      "title": "NASA Awards More Moon Base Science, Previews New Opportunities",
+      "url": "https://www.nasa.gov/news-release/nasa-awards-more-moon-base-science-previews-new-opportunities",
       "status": "DISTILLED",
       "reason": "duplicate_within_run"
     },
@@ -394,27 +434,62 @@
       "candidate_id": "1860e34ccbc6d3a6",
       "title": "εpsilon",
       "url": "https://www.esa.int/Science_Exploration/Human_and_Robotic_Exploration/epsilon",
-      "status": "BODY_FETCH_FAIL",
-      "reason": "HTTP_403|JINA_TIMEOUT"
+      "status": "SKIP_DUPLICATE",
+      "reason": "DUPLICATE_URL"
     },
     {
-      "candidate_id": "f5f4f56121883f39",
-      "title": "Galileo signal updated for internet-of-things use",
-      "url": "https://www.esa.int/Applications/Satellite_navigation/Galileo/Galileo_signal_updated_for_internet-of-things_use",
+      "candidate_id": "eb8360d69ae9b0e6",
+      "title": "Time to say goodbye to Sentinel-1A",
+      "url": "https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Sentinel-1/Time_to_say_goodbye_to_Sentinel-1A",
       "status": "SKIP_DUPLICATE",
       "reason": "duplicate_within_run"
     },
     {
-      "candidate_id": "72c805579f21b6e8",
-      "title": "Announcements Jun 11, 2026 Introducing Claude Corps We’re launching Claude Corps, a national fellowship program for people early in their careers who are passionate about extending",
-      "url": "https://www.anthropic.com/news/claude-corps",
+      "candidate_id": "65af499978feb4bb",
+      "title": "This Month at ESA: June 2026",
+      "url": "https://www.esa.int/ESA_Multimedia/Videos/2026/06/This_Month_at_ESA_June_2026",
+      "status": "SUMMARY_ONLY",
+      "reason": "duplicate_within_run"
+    },
+    {
+      "candidate_id": "7b3c24dfac624489",
+      "title": "Dartmouth’s AI summer and what came next",
+      "url": "https://www.science.org/doi/abs/10.1126/science.aei0476",
       "status": "SUMMARY_ONLY",
       "reason": "summary_not_body_evidence"
     },
     {
-      "candidate_id": "78314b92b567a8a9",
-      "title": "emerging resilience in the semiconductor supply chain",
-      "url": "https://www.semiconductors.org/emerging-resilience-in-the-semiconductor-supply-chain",
+      "candidate_id": "20c0eff6a70c41ac",
+      "title": "AI-Model Network: Concept, Current State and Future",
+      "url": "https://arxiv.org/abs/2606.27382",
+      "status": "SUMMARY_ONLY",
+      "reason": "summary_not_body_evidence"
+    },
+    {
+      "candidate_id": "914cb64673f5c1e7",
+      "title": "DysLexLens: A Low-Resource LLM Framework for Analysing Dyslexic Learners Insights from Online Forums",
+      "url": "https://arxiv.org/abs/2606.27619",
+      "status": "SUMMARY_ONLY",
+      "reason": "summary_not_body_evidence"
+    },
+    {
+      "candidate_id": "001317287cdd9d97",
+      "title": "Statement on the US government directive to suspend access to Fable 5 and Mythos 5 Announcements Jun 12, 2026 The US government has issued an export control directive to suspend al",
+      "url": "https://www.anthropic.com/news/fable-mythos-access",
+      "status": "SUMMARY_ONLY",
+      "reason": "summary_not_body_evidence"
+    },
+    {
+      "candidate_id": "4307222bc7e5f2e4",
+      "title": "Product Jun 30, 2026 Introducing Claude Sonnet 5 Sonnet 5 delivers frontier performance across coding, agents, and professional work at scale.",
+      "url": "https://www.anthropic.com/news/claude-sonnet-5",
+      "status": "SUMMARY_ONLY",
+      "reason": "summary_not_body_evidence"
+    },
+    {
+      "candidate_id": "64321220dffaf0bc",
+      "title": "strengthening the global semiconductor supply chain in an uncertain era",
+      "url": "https://www.semiconductors.org/strengthening-the-global-semiconductor-supply-chain-in-an-uncertain-era",
       "status": "NEED_FETCH_BODY",
       "reason": "missing_body_path"
     },
@@ -422,6 +497,13 @@
       "candidate_id": "454155592be3ca2c",
       "title": "g7 leaders statement ai prosperity",
       "url": "https://www.pm.gc.ca/en/news/statements/2025/06/17/g7-leaders-statement-ai-prosperity",
+      "status": "NEED_FETCH_BODY",
+      "reason": "missing_body_path"
+    },
+    {
+      "candidate_id": "a9340f929e3fcb26",
+      "title": "g7 energy and environment ministers meeting energy and artificial intelligence",
+      "url": "https://www.canada.ca/en/natural-resources-canada/news/2025/10/g7-energy-and-environment-ministers-meeting--energy-and-artificial-intelligence.html",
       "status": "NEED_FETCH_BODY",
       "reason": "missing_body_path"
     },
@@ -440,13 +522,6 @@
       "reason": "missing_body_path"
     },
     {
-      "candidate_id": "a9340f929e3fcb26",
-      "title": "g7 energy and environment ministers meeting energy and artificial intelligence",
-      "url": "https://www.canada.ca/en/natural-resources-canada/news/2025/10/g7-energy-and-environment-ministers-meeting--energy-and-artificial-intelligence.html",
-      "status": "NEED_FETCH_BODY",
-      "reason": "missing_body_path"
-    },
-    {
       "candidate_id": "c08ccdff8a1962b0",
       "title": "president donald j trump attends the 51st g7 summit in kananaskis alberta canada",
       "url": "https://www.whitehouse.gov/videos/president-donald-j-trump-attends-the-51st-g7-summit-in-kananaskis-alberta-canada",
@@ -454,23 +529,9 @@
       "reason": "missing_body_path"
     },
     {
-      "candidate_id": "10d7a1dbc2a1593b",
-      "title": "president trump attends g7 summit in canada",
-      "url": "https://www.whitehouse.gov/gallery/president-trump-attends-g7-summit-in-canada",
-      "status": "NEED_FETCH_BODY",
-      "reason": "missing_body_path"
-    },
-    {
       "candidate_id": "8ff90574588eaa0b",
       "title": "president donald j trump attends the 51st g7 summit in kananaskis alberta canada",
       "url": "https://www.whitehouse.gov/videos/president-donald-j-trump-attends-the-51st-g7-summit-in-kananaskis-alberta-canada-2",
-      "status": "NEED_FETCH_BODY",
-      "reason": "missing_body_path"
-    },
-    {
-      "candidate_id": "e11fcea9cd94bb20",
-      "title": "claude fable 5 mythos 5",
-      "url": "https://www.anthropic.com/news/claude-fable-5-mythos-5",
       "status": "NEED_FETCH_BODY",
       "reason": "missing_body_path"
     },
@@ -496,23 +557,9 @@
       "reason": "missing_body_path"
     },
     {
-      "candidate_id": "bb89162936f6127d",
-      "title": "122184547496875278",
-      "url": "https://www.facebook.com/CanadianPM/posts/canada-is-diversifying-its-international-partnerships-at-the-2026-g7-leaders-sum/122184547496875278",
-      "status": "NEED_FETCH_BODY",
-      "reason": "missing_body_path"
-    },
-    {
-      "candidate_id": "87be134adef318c8",
-      "title": "inside g7 environment energy",
-      "url": "https://www.iisd.org/inside-g7-environment-energy",
-      "status": "NEED_FETCH_BODY",
-      "reason": "missing_body_path"
-    },
-    {
-      "candidate_id": "17e326667c649395",
-      "title": "1140358111469901",
-      "url": "https://www.facebook.com/G7/videos/three-days-until-the-g7-leaders-summit-in-kananaskis-alberta-the-priorities-for-/1140358111469901",
+      "candidate_id": "93a90845946a919e",
+      "title": "1022261090060174",
+      "url": "https://www.facebook.com/G7/posts/three-days-until-the-g7-leaders-summit-in-kananaskis-alberta-the-priorities-for-/1022261090060174",
       "status": "NEED_FETCH_BODY",
       "reason": "missing_body_path"
     },
@@ -524,23 +571,65 @@
       "reason": "missing_body_path"
     },
     {
-      "candidate_id": "bbfed3a153a676a2",
-      "title": "1271398617891201",
-      "url": "https://www.facebook.com/WhiteHouse/videos/president-donald-j-trump-attends-the-51st-g7-summit-in-kananaskis-alberta-canada/1271398617891201",
+      "candidate_id": "5d4ab12a55850c53",
+      "title": "51st G7 summit",
+      "url": "https://en.wikipedia.org/wiki/51st_G7_summit",
       "status": "NEED_FETCH_BODY",
       "reason": "missing_body_path"
     },
     {
-      "candidate_id": "a1f09e7e2163cd17",
-      "title": "iran war day 115 lebanon truce appears to hold as switzerland talks end",
-      "url": "https://www.aljazeera.com/news/2026/6/22/iran-war-day-115-lebanon-truce-appears-to-hold-as-switzerland-talks-end",
+      "candidate_id": "168d5b19d423c0c9",
+      "title": "iran war us trump strikes ceasefire lebanon israel",
+      "url": "https://www.cbsnews.com/live-updates/iran-war-us-trump-strikes-ceasefire-lebanon-israel",
       "status": "NEED_FETCH_BODY",
       "reason": "missing_body_path"
     },
     {
-      "candidate_id": "fda34446455efc0d",
-      "title": "trump brokered ceasefire agreement contact with israel iran white house official",
-      "url": "https://www.reuters.com/world/middle-east/trump-brokered-ceasefire-agreement-contact-with-israel-iran-white-house-official-2025-06-23",
+      "candidate_id": "d853429765ac5dfa",
+      "title": "trump iran war ceasefire violations hormuz control",
+      "url": "https://www.csmonitor.com/World/Middle-East/2026/0629/trump-iran-war-ceasefire-violations-hormuz-control",
+      "status": "NEED_FETCH_BODY",
+      "reason": "missing_body_path"
+    },
+    {
+      "candidate_id": "ff3b88f759606ddf",
+      "title": "iran us ceasefire hezbollah israel 12 june 2026 7085e386e1c40ee6cfe634210970143f",
+      "url": "https://apnews.com/article/iran-us-ceasefire-hezbollah-israel-12-june-2026-7085e386e1c40ee6cfe634210970143f",
+      "status": "NEED_FETCH_BODY",
+      "reason": "missing_body_path"
+    },
+    {
+      "candidate_id": "07913352ab13a6af",
+      "title": "israel says iran violating ceasefire trump announced will respond with force",
+      "url": "https://www.cbsnews.com/news/israel-says-iran-violating-ceasefire-trump-announced-will-respond-with-force",
+      "status": "NEED_FETCH_BODY",
+      "reason": "missing_body_path"
+    },
+    {
+      "candidate_id": "d6be651eba5aacad",
+      "title": "watch live white house holds briefing as trump agrees to two week ceasefire in i",
+      "url": "https://www.pbs.org/newshour/politics/watch-live-white-house-holds-briefing-as-trump-agrees-to-two-week-ceasefire-in-iran-war",
+      "status": "NEED_FETCH_BODY",
+      "reason": "missing_body_path"
+    },
+    {
+      "candidate_id": "653a87b0b02ca895",
+      "title": "story",
+      "url": "https://abcnews.com/Politics/white-house-iran-backed-trump-agreeing-ceasefire/story",
+      "status": "NEED_FETCH_BODY",
+      "reason": "missing_body_path"
+    },
+    {
+      "candidate_id": "37416d3ca823c65a",
+      "title": "Twelve Day War ceasefire",
+      "url": "https://en.wikipedia.org/wiki/Twelve-Day_War_ceasefire",
+      "status": "NEED_FETCH_BODY",
+      "reason": "missing_body_path"
+    },
+    {
+      "candidate_id": "64eb527f39589ce3",
+      "title": "20250624 伊朗 以色列停火协议生效",
+      "url": "https://www.rfi.fr/cn/%E4%B8%AD%E4%B8%9C/20250624-%E4%BC%8A%E6%9C%97-%E4%BB%A5%E8%89%B2%E5%88%97%E5%81%9C%E7%81%AB%E5%8D%8F%E8%AE%AE%E7%94%9F%E6%95%88",
       "status": "NEED_FETCH_BODY",
       "reason": "missing_body_path"
     },
@@ -552,16 +641,16 @@
       "reason": "missing_body_path"
     },
     {
-      "candidate_id": "513b1993b8f05ba7",
+      "candidate_id": "943adcb1a32e860e",
       "title": "anthropic claude model deprecations on june 15 2026",
-      "url": "https://help.make.com/anthropic-claude-model-deprecations-on-june-15-2026",
+      "url": "https://developers.make.com/white-label-documentation/release-notes/anthropic-claude-model-deprecations-on-june-15-2026",
       "status": "NEED_FETCH_BODY",
       "reason": "missing_body_path"
     },
     {
-      "candidate_id": "ad7fd5f7388df8b8",
-      "title": "claude sonnet 4 opus 4 deprecation migration guide",
-      "url": "https://www.mindstudio.ai/blog/claude-sonnet-4-opus-4-deprecation-migration-guide",
+      "candidate_id": "bde950d27d88e2e0",
+      "title": "us blocks foreign access anthropics most advanced ai models axios reports 2026 0",
+      "url": "https://www.reuters.com/technology/us-blocks-foreign-access-anthropics-most-advanced-ai-models-axios-reports-2026-06-13",
       "status": "NEED_FETCH_BODY",
       "reason": "missing_body_path"
     },
@@ -573,16 +662,16 @@
       "reason": "STALE_DOMESTIC_ARTICLE"
     },
     {
-      "candidate_id": "c40531_40625089_f1190d8b69b74a49",
-      "title": "c40531 40625089",
-      "url": "http://theory.people.com.cn/n1/2025/1216/c40531-40625089.html",
+      "candidate_id": "c40531_40710030_8b40b7b9e466bb47",
+      "title": "c40531 40710030",
+      "url": "http://theory.people.com.cn/n1/2026/0428/c40531-40710030.html",
       "status": "BODY_FETCH_FAIL",
       "reason": "LOW_VALUE_POLICY_THEORY_SOURCE"
     },
     {
-      "candidate_id": "c1004_40732291_21564c63da264999",
-      "title": "c1004 40732291",
-      "url": "http://finance.people.com.cn/n1/2026/0602/c1004-40732291.html",
+      "candidate_id": "c1002_40687061_2a356a679b0fb028",
+      "title": "c1002 40687061",
+      "url": "https://world.people.com.cn/n1/2026/0323/c1002-40687061.html",
       "status": "BODY_FETCH_FAIL",
       "reason": "LOW_VALUE_EXPO_OR_CONFERENCE"
     },
@@ -1021,7 +1110,7 @@
       "reason": "query_plan_no_body"
     }
   ],
-  "decision_cards_path": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260622_1932/decision_cards.json",
-  "conversion_tasks_path": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260622_1932/card_conversion_tasks.json",
+  "decision_cards_path": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260701_0643/decision_cards.json",
+  "conversion_tasks_path": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260701_0643/card_conversion_tasks.json",
   "cross_run_dedupe_path": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_run/processed_signatures.json"
 }

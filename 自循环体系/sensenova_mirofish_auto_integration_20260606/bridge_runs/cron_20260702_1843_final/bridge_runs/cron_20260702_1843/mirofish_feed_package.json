@@ -1,0 +1,1107 @@
+{
+  "schema": "sensenova_mirofish_feed_package_v1",
+  "created_at": "2026-07-02T19:02:26",
+  "source_run_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843",
+  "mirofish_input_gate": {
+    "status": "ALLOW_MIROFISH_INPUT",
+    "reason": "",
+    "status_hint": "after_card_distill",
+    "valid_content_cards": 8,
+    "body_valid_cards": 11,
+    "story_value_cards": 8,
+    "low_story_value_cards": 3,
+    "mirofish_ready_cards": 8,
+    "p0_p1_story_value_cards": 8,
+    "material_relevance_status": "PASS",
+    "domestic_body_success": 5,
+    "body_fetch_success": 15,
+    "body_files_written": 12,
+    "body_fetch_success_metric": "raw/bodies/*.txt with BODY_FETCHED report item",
+    "story_value_threshold": {
+      "story_value_cards_min": 3,
+      "p0_p1_story_value_cards_min": 1,
+      "body_only_path_rejected": true
+    },
+    "bridge_mirofish_cron_recoverable": true
+  },
+  "mirofish_input_gate_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/raw/mirofish_input_gate.json",
+  "expert_gate_report": {
+    "status": "ALLOW_MIROFISH_INPUT",
+    "expert_gate_pass": true,
+    "valid_content_cards": 8,
+    "failure_tags": [],
+    "reason": "",
+    "source": "derived_from_mirofish_input_gate",
+    "expert_gate_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/raw/expert_gate_report.json",
+    "mirofish_input_gate_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/raw/mirofish_input_gate.json",
+    "required_experts": [
+      "沈逸",
+      "高志凯"
+    ]
+  },
+  "expert_gate_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/raw/expert_gate_report.json",
+  "expert_voice_cards": [],
+  "expert_voice_card_count": 0,
+  "source_cards": [
+    {
+      "material_id": "20260702_75e31417c3",
+      "title": "What’s Up: July 2026 Skywatching Tips from NASA",
+      "url": "https://science.nasa.gov/solar-system/whats-up-july-2026-skywatching-tips-from-nasa",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/cards/What_s_Up__July_2026_Skywatching_Tips_from_NASA_c3769d48.md",
+      "source_group": "overseas",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/raw/bodies/What_s_Up__July_2026_Skywatching_Tips_fr_c3769d48116cf157.txt",
+        "candidate_id": "c3769d48116cf157",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": ""
+      },
+      "evidence_complete": false,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": ""
+    },
+    {
+      "material_id": "20260702_32d4abbdd0",
+      "title": "NASA Seeks Volunteers for New Yearlong Simulated Moon, Mars Mission",
+      "url": "https://www.nasa.gov/humans-in-space/nasa-seeks-volunteers-for-new-yearlong-simulated-moon-mars-mission",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/cards/NASA_Seeks_Volunteers_for_New_Yearlong_Simulated_M_2eb33e55.md",
+      "source_group": "overseas",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/raw/bodies/NASA_Seeks_Volunteers_for_New_Yearlong_S_2eb33e55404cdf98.txt",
+        "candidate_id": "2eb33e55404cdf98",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": ""
+      },
+      "evidence_complete": false,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": ""
+    },
+    {
+      "material_id": "20260702_64be161c54",
+      "title": "LINK Spacecraft Set for Mission to Boost NASA’s Swift Observatory",
+      "url": "https://www.nasa.gov/image-article/link-spacecraft-set-for-mission-to-boost-nasas-swift-observatory",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/cards/LINK_Spacecraft_Set_for_Mission_to_Boost_NASA_s_Sw_f101a5b0.md",
+      "source_group": "overseas",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/raw/bodies/LINK_Spacecraft_Set_for_Mission_to_Boost_f101a5b0a5b63f2c.txt",
+        "candidate_id": "f101a5b0a5b63f2c",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": ""
+      },
+      "evidence_complete": false,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": ""
+    },
+    {
+      "material_id": "20260702_2a8a9c7788",
+      "title": "Authorisation paves the way for Aeolus-2 wind mission",
+      "url": "https://www.esa.int/Applications/Observing_the_Earth/Meteorological_missions/Authorisation_paves_the_way_for_Aeolus-2_wind_mission",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/cards/Authorisation_paves_the_way_for_Aeolus-2_wind_miss_2b101355.md",
+      "source_group": "overseas",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/raw/bodies/Authorisation_paves_the_way_for_Aeolus-2_2b101355942dfcf9.txt",
+        "candidate_id": "2b101355942dfcf9",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": ""
+      },
+      "evidence_complete": true,
+      "disposition": "CHAPTER_PREP_ONLY",
+      "chapter_hint": 0,
+      "story_axis": ""
+    },
+    {
+      "material_id": "20260702_6c4d162cf4",
+      "title": "我国成功发射海洋二号E卫星",
+      "url": "https://news.cctv.com/2026/07/02/ARTI89pPTMiqWyZ5M1KHF8F8260702.shtml",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/cards/我国成功发射海洋二号E卫星_19cc20d8.md",
+      "source_group": "domestic",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/raw/bodies/我国成功发射海洋二号E卫星_19cc20d873884dd1.txt",
+        "candidate_id": "19cc20d873884dd1",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": ""
+      },
+      "evidence_complete": true,
+      "disposition": "CHAPTER_PREP_ONLY",
+      "chapter_hint": 0,
+      "story_axis": ""
+    },
+    {
+      "material_id": "20260702_8cef64f63e",
+      "title": "Constructive Alignment: Governing Preference Dynamics in Human-AI Interaction",
+      "url": "https://arxiv.org/abs/2607.00001",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/cards/Constructive_Alignment__Governing_Preference_Dynam_e94f0e6a.md",
+      "source_group": "overseas",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/raw/bodies/Constructive_Alignment__Governing_Prefer_e94f0e6a1eab8769.txt",
+        "candidate_id": "e94f0e6a1eab8769",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": ""
+      },
+      "evidence_complete": false,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": ""
+    },
+    {
+      "material_id": "20260702_35012ff3e3",
+      "title": "RareDxR1: Autonomous Medical Reasoning for Rare Disease Diagnosis Beyond Human Annotation",
+      "url": "https://arxiv.org/abs/2607.00147",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/cards/RareDxR1__Autonomous_Medical_Reasoning_for_Rare_Di_e12ea79c.md",
+      "source_group": "overseas",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/raw/bodies/RareDxR1__Autonomous_Medical_Reasoning_f_e12ea79cb40504ef.txt",
+        "candidate_id": "e12ea79cb40504ef",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": ""
+      },
+      "evidence_complete": false,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": ""
+    },
+    {
+      "material_id": "20260702_7a7d718505",
+      "title": "高质量数据集建设激活人工智能发展新动能",
+      "url": "http://finance.people.com.cn/n1/2026/0529/c1004-40729991.html",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/cards/高质量数据集建设激活人工智能发展新动能_46f2f8ed.md",
+      "source_group": "domestic",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/raw/bodies/高质量数据集建设激活人工智能发展新动能_46f2f8ed8146dd8f.txt",
+        "candidate_id": "46f2f8ed8146dd8f",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": ""
+      },
+      "evidence_complete": false,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": ""
+    }
+  ],
+  "source_card_count": 8,
+  "fresh_news_cards": [
+    {
+      "material_id": "20260702_75e31417c3",
+      "title": "What’s Up: July 2026 Skywatching Tips from NASA",
+      "url": "https://science.nasa.gov/solar-system/whats-up-july-2026-skywatching-tips-from-nasa",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/cards/What_s_Up__July_2026_Skywatching_Tips_from_NASA_c3769d48.md",
+      "source_group": "overseas",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/raw/bodies/What_s_Up__July_2026_Skywatching_Tips_fr_c3769d48116cf157.txt",
+        "candidate_id": "c3769d48116cf157",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": ""
+      },
+      "evidence_complete": false,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": "",
+      "card_family": "fresh_news_card",
+      "bridge_retained": true
+    },
+    {
+      "material_id": "20260702_32d4abbdd0",
+      "title": "NASA Seeks Volunteers for New Yearlong Simulated Moon, Mars Mission",
+      "url": "https://www.nasa.gov/humans-in-space/nasa-seeks-volunteers-for-new-yearlong-simulated-moon-mars-mission",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/cards/NASA_Seeks_Volunteers_for_New_Yearlong_Simulated_M_2eb33e55.md",
+      "source_group": "overseas",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/raw/bodies/NASA_Seeks_Volunteers_for_New_Yearlong_S_2eb33e55404cdf98.txt",
+        "candidate_id": "2eb33e55404cdf98",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": ""
+      },
+      "evidence_complete": false,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": "",
+      "card_family": "fresh_news_card",
+      "bridge_retained": true
+    },
+    {
+      "material_id": "20260702_64be161c54",
+      "title": "LINK Spacecraft Set for Mission to Boost NASA’s Swift Observatory",
+      "url": "https://www.nasa.gov/image-article/link-spacecraft-set-for-mission-to-boost-nasas-swift-observatory",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/cards/LINK_Spacecraft_Set_for_Mission_to_Boost_NASA_s_Sw_f101a5b0.md",
+      "source_group": "overseas",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/raw/bodies/LINK_Spacecraft_Set_for_Mission_to_Boost_f101a5b0a5b63f2c.txt",
+        "candidate_id": "f101a5b0a5b63f2c",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": ""
+      },
+      "evidence_complete": false,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": "",
+      "card_family": "fresh_news_card",
+      "bridge_retained": true
+    },
+    {
+      "material_id": "20260702_2a8a9c7788",
+      "title": "Authorisation paves the way for Aeolus-2 wind mission",
+      "url": "https://www.esa.int/Applications/Observing_the_Earth/Meteorological_missions/Authorisation_paves_the_way_for_Aeolus-2_wind_mission",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/cards/Authorisation_paves_the_way_for_Aeolus-2_wind_miss_2b101355.md",
+      "source_group": "overseas",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/raw/bodies/Authorisation_paves_the_way_for_Aeolus-2_2b101355942dfcf9.txt",
+        "candidate_id": "2b101355942dfcf9",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": ""
+      },
+      "evidence_complete": true,
+      "disposition": "CHAPTER_PREP_ONLY",
+      "chapter_hint": 0,
+      "story_axis": "",
+      "card_family": "fresh_news_card",
+      "bridge_retained": true
+    },
+    {
+      "material_id": "20260702_6c4d162cf4",
+      "title": "我国成功发射海洋二号E卫星",
+      "url": "https://news.cctv.com/2026/07/02/ARTI89pPTMiqWyZ5M1KHF8F8260702.shtml",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/cards/我国成功发射海洋二号E卫星_19cc20d8.md",
+      "source_group": "domestic",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/raw/bodies/我国成功发射海洋二号E卫星_19cc20d873884dd1.txt",
+        "candidate_id": "19cc20d873884dd1",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": ""
+      },
+      "evidence_complete": true,
+      "disposition": "CHAPTER_PREP_ONLY",
+      "chapter_hint": 0,
+      "story_axis": "",
+      "card_family": "fresh_news_card",
+      "bridge_retained": true
+    },
+    {
+      "material_id": "20260702_8cef64f63e",
+      "title": "Constructive Alignment: Governing Preference Dynamics in Human-AI Interaction",
+      "url": "https://arxiv.org/abs/2607.00001",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/cards/Constructive_Alignment__Governing_Preference_Dynam_e94f0e6a.md",
+      "source_group": "overseas",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/raw/bodies/Constructive_Alignment__Governing_Prefer_e94f0e6a1eab8769.txt",
+        "candidate_id": "e94f0e6a1eab8769",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": ""
+      },
+      "evidence_complete": false,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": "",
+      "card_family": "fresh_news_card",
+      "bridge_retained": true
+    },
+    {
+      "material_id": "20260702_35012ff3e3",
+      "title": "RareDxR1: Autonomous Medical Reasoning for Rare Disease Diagnosis Beyond Human Annotation",
+      "url": "https://arxiv.org/abs/2607.00147",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/cards/RareDxR1__Autonomous_Medical_Reasoning_for_Rare_Di_e12ea79c.md",
+      "source_group": "overseas",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/raw/bodies/RareDxR1__Autonomous_Medical_Reasoning_f_e12ea79cb40504ef.txt",
+        "candidate_id": "e12ea79cb40504ef",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": ""
+      },
+      "evidence_complete": false,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": "",
+      "card_family": "fresh_news_card",
+      "bridge_retained": true
+    },
+    {
+      "material_id": "20260702_7a7d718505",
+      "title": "高质量数据集建设激活人工智能发展新动能",
+      "url": "http://finance.people.com.cn/n1/2026/0529/c1004-40729991.html",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/cards/高质量数据集建设激活人工智能发展新动能_46f2f8ed.md",
+      "source_group": "domestic",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/raw/bodies/高质量数据集建设激活人工智能发展新动能_46f2f8ed8146dd8f.txt",
+        "candidate_id": "46f2f8ed8146dd8f",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": ""
+      },
+      "evidence_complete": false,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": "",
+      "card_family": "fresh_news_card",
+      "bridge_retained": true
+    }
+  ],
+  "fresh_news_card_count": 8,
+  "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/raw/body_fetch_report.json",
+  "raw_bodies_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260702_1843/raw/bodies",
+  "source_pipeline_state": {
+    "run_id": "cron_20260702_1843",
+    "status": "done",
+    "valid_content_cards": 8,
+    "query_plan_cards": 0,
+    "body_fetch_success": 15,
+    "card_pass_count": 12
+  },
+  "policy": {
+    "query_plan_excluded": true,
+    "formal_cards_written": false,
+    "production_runner_modified": false,
+    "outline_text_txt_draft_modified": false,
+    "body_success_requires_raw_bodies_txt": true,
+    "expert_gate_required_before_mirofish": true
+  },
+  "valid_input_count": 8,
+  "skipped_count": 91,
+  "skip_reason_counts": {
+    "not_article_page_url": 1,
+    "duplicate_url": 3,
+    "duplicate_within_run": 3,
+    "http_403|jina_timeout": 1,
+    "missing_body_path": 18,
+    "stale_domestic_article": 1,
+    "low_value_policy_theory_source": 1,
+    "low_value_expo_or_conference": 1,
+    "malformed_search_title": 1,
+    "query_plan_no_body": 61
+  },
+  "body_fetch_evidence_count": 12,
+  "body_fetch_evidence_key_count": 24,
+  "stale_domestic_blocked_count": 1,
+  "missing_cards_by_tier": {
+    "P1": [
+      "c_b0c99c5d13a0e3d7"
+    ]
+  },
+  "p0_missing": false,
+  "p0_missing_cards": [],
+  "p1_missing_cards": [
+    "c_b0c99c5d13a0e3d7"
+  ],
+  "p0_p1_gate_blocked": true,
+  "skipped": [
+    {
+      "candidate_id": "97105b9433c2ebcb",
+      "title": "“AI桂林”文旅大模型正式上线 “AI桂林”文旅大模型在第22届中国—东盟博览会正式上线。这是桂林市与人民网深度合作开发的首个聚焦打造“世界级旅游城市”的全域智慧文旅大模型。 了解详情 →",
+      "url": "http://tech.people.com.cn/detail.html",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "NOT_ARTICLE_PAGE_URL"
+    },
+    {
+      "candidate_id": "739d880d3e439921",
+      "title": "央地共建粤港澳大湾区国际科技创新中心工作推进会在广州召开",
+      "url": "https://www.most.gov.cn/kjbgz/202606/t20260618_196809.html",
+      "status": "SKIP_DUPLICATE",
+      "reason": "DUPLICATE_URL"
+    },
+    {
+      "candidate_id": "c3769d48116cf157",
+      "title": "What’s Up: July 2026 Skywatching Tips from NASA",
+      "url": "https://science.nasa.gov/solar-system/whats-up-july-2026-skywatching-tips-from-nasa",
+      "status": "DISTILLED",
+      "reason": "duplicate_within_run"
+    },
+    {
+      "candidate_id": "2eb33e55404cdf98",
+      "title": "NASA Seeks Volunteers for New Yearlong Simulated Moon, Mars Mission",
+      "url": "https://www.nasa.gov/humans-in-space/nasa-seeks-volunteers-for-new-yearlong-simulated-moon-mars-mission",
+      "status": "DISTILLED",
+      "reason": "duplicate_within_run"
+    },
+    {
+      "candidate_id": "f101a5b0a5b63f2c",
+      "title": "LINK Spacecraft Set for Mission to Boost NASA’s Swift Observatory",
+      "url": "https://www.nasa.gov/image-article/link-spacecraft-set-for-mission-to-boost-nasas-swift-observatory",
+      "status": "DISTILLED",
+      "reason": "duplicate_within_run"
+    },
+    {
+      "candidate_id": "1860e34ccbc6d3a6",
+      "title": "εpsilon",
+      "url": "https://www.esa.int/Science_Exploration/Human_and_Robotic_Exploration/epsilon",
+      "status": "SKIP_DUPLICATE",
+      "reason": "DUPLICATE_URL"
+    },
+    {
+      "candidate_id": "7b3c24dfac624489",
+      "title": "Dartmouth’s AI summer and what came next",
+      "url": "https://www.science.org/doi/abs/10.1126/science.aei0476",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "HTTP_403|JINA_TIMEOUT"
+    },
+    {
+      "candidate_id": "d8c364c647a00562",
+      "title": "bis guidance may 31 2026",
+      "url": "https://media.bis.gov/media/documents/bis-guidance-may-31-2026.pdf",
+      "status": "NEED_FETCH_BODY",
+      "reason": "missing_body_path"
+    },
+    {
+      "candidate_id": "64321220dffaf0bc",
+      "title": "strengthening the global semiconductor supply chain in an uncertain era",
+      "url": "https://www.semiconductors.org/strengthening-the-global-semiconductor-supply-chain-in-an-uncertain-era",
+      "status": "NEED_FETCH_BODY",
+      "reason": "missing_body_path"
+    },
+    {
+      "candidate_id": "454155592be3ca2c",
+      "title": "g7 leaders statement ai prosperity",
+      "url": "https://www.pm.gc.ca/en/news/statements/2025/06/17/g7-leaders-statement-ai-prosperity",
+      "status": "NEED_FETCH_BODY",
+      "reason": "missing_body_path"
+    },
+    {
+      "candidate_id": "a9340f929e3fcb26",
+      "title": "g7 energy and environment ministers meeting energy and artificial intelligence",
+      "url": "https://www.canada.ca/en/natural-resources-canada/news/2025/10/g7-energy-and-environment-ministers-meeting--energy-and-artificial-intelligence.html",
+      "status": "NEED_FETCH_BODY",
+      "reason": "missing_body_path"
+    },
+    {
+      "candidate_id": "ea1b045cb477957d",
+      "title": "chairs summary",
+      "url": "https://g7.canada.ca/en/news-and-media/news/chairs-summary",
+      "status": "NEED_FETCH_BODY",
+      "reason": "missing_body_path"
+    },
+    {
+      "candidate_id": "5701d17a600872a4",
+      "title": "index",
+      "url": "https://www.international.gc.ca/world-monde/international_relations-relations_internationales/g7/index.aspx",
+      "status": "NEED_FETCH_BODY",
+      "reason": "missing_body_path"
+    },
+    {
+      "candidate_id": "c08ccdff8a1962b0",
+      "title": "president donald j trump attends the 51st g7 summit in kananaskis alberta canada",
+      "url": "https://www.whitehouse.gov/videos/president-donald-j-trump-attends-the-51st-g7-summit-in-kananaskis-alberta-canada",
+      "status": "NEED_FETCH_BODY",
+      "reason": "missing_body_path"
+    },
+    {
+      "candidate_id": "0bdf2c98782ae452",
+      "title": "president trump participates in an official greeting with g7 leaders",
+      "url": "https://www.whitehouse.gov/videos/president-trump-participates-in-an-official-greeting-with-g7-leaders",
+      "status": "NEED_FETCH_BODY",
+      "reason": "missing_body_path"
+    },
+    {
+      "candidate_id": "8ff90574588eaa0b",
+      "title": "president donald j trump attends the 51st g7 summit in kananaskis alberta canada",
+      "url": "https://www.whitehouse.gov/videos/president-donald-j-trump-attends-the-51st-g7-summit-in-kananaskis-alberta-canada-2",
+      "status": "NEED_FETCH_BODY",
+      "reason": "missing_body_path"
+    },
+    {
+      "candidate_id": "d454aec07fcda210",
+      "title": "president trump breaks down the iran deal to close out the g7 summit in evian fr",
+      "url": "https://www.whitehouse.gov/videos/president-trump-breaks-down-the-iran-deal-to-close-out-the-g7-summit-in-evian-france",
+      "status": "NEED_FETCH_BODY",
+      "reason": "missing_body_path"
+    },
+    {
+      "candidate_id": "b0575c12905ca69e",
+      "title": "两部门部署在全国开展2026年“全民反诈在行动”集中宣传月活动",
+      "url": "https://news.cctv.com/2026/06/10/ARTImWdyfJZtw95kmOJgdob2260610.shtml",
+      "status": "SKIP_DUPLICATE",
+      "reason": "DUPLICATE_URL"
+    },
+    {
+      "candidate_id": "d4085bdc03a1691d",
+      "title": "250617 ai",
+      "url": "https://www.g7.utoronto.ca/summit/2025kananaskis/250617-ai.html",
+      "status": "NEED_FETCH_BODY",
+      "reason": "missing_body_path"
+    },
+    {
+      "candidate_id": "93a90845946a919e",
+      "title": "1022261090060174",
+      "url": "https://www.facebook.com/G7/posts/three-days-until-the-g7-leaders-summit-in-kananaskis-alberta-the-priorities-for-/1022261090060174",
+      "status": "NEED_FETCH_BODY",
+      "reason": "missing_body_path"
+    },
+    {
+      "candidate_id": "0293a8b82ddf3415",
+      "title": "122137343534723345",
+      "url": "https://www.facebook.com/WhiteHouse/posts/president-donald-j-trump-at-the-g7-summit-in-kananaskis-/122137343534723345",
+      "status": "NEED_FETCH_BODY",
+      "reason": "missing_body_path"
+    },
+    {
+      "candidate_id": "0c1b0a398e8a9250",
+      "title": "20260701 us iran doha talks end without breakthrough strait of hormuz",
+      "url": "https://www.france24.com/en/middle-east/20260701-us-iran-doha-talks-end-without-breakthrough-strait-of-hormuz",
+      "status": "NEED_FETCH_BODY",
+      "reason": "missing_body_path"
+    },
+    {
+      "candidate_id": "07913352ab13a6af",
+      "title": "israel says iran violating ceasefire trump announced will respond with force",
+      "url": "https://www.cbsnews.com/news/israel-says-iran-violating-ceasefire-trump-announced-will-respond-with-force",
+      "status": "NEED_FETCH_BODY",
+      "reason": "missing_body_path"
+    },
+    {
+      "candidate_id": "d6be651eba5aacad",
+      "title": "watch live white house holds briefing as trump agrees to two week ceasefire in i",
+      "url": "https://www.pbs.org/newshour/politics/watch-live-white-house-holds-briefing-as-trump-agrees-to-two-week-ceasefire-in-iran-war",
+      "status": "NEED_FETCH_BODY",
+      "reason": "missing_body_path"
+    },
+    {
+      "candidate_id": "653a87b0b02ca895",
+      "title": "story",
+      "url": "https://abcnews.com/Politics/white-house-iran-backed-trump-agreeing-ceasefire/story",
+      "status": "NEED_FETCH_BODY",
+      "reason": "missing_body_path"
+    },
+    {
+      "candidate_id": "f8f727bc57414a8e",
+      "title": "20260701 特朗普称美伊会谈 进展顺利 伊朗宣布多哈技术谈判结束",
+      "url": "https://www.rfi.fr/cn/%E4%B8%AD%E5%9B%BD/20260701-%E7%89%B9%E6%9C%97%E6%99%AE%E7%A7%B0%E7%BE%8E%E4%BC%8A%E4%BC%9A%E8%B0%88-%E8%BF%9B%E5%B1%95%E9%A1%BA%E5%88%A9-%E4%BC%8A%E6%9C%97%E5%AE%A3%E5%B8%83%E5%A4%9A%E5%93%88%E6%8A%80%E6%9C%AF%E8%B0%88%E5%88%A4%E7%BB%93%E6%9D%9F",
+      "status": "NEED_FETCH_BODY",
+      "reason": "missing_body_path"
+    },
+    {
+      "candidate_id": "c1024_40247782_d6c60e51c6d3719f",
+      "title": "c1024 40247782",
+      "url": "http://politics.people.com.cn/n1/2024/0531/c1024-40247782.html",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "STALE_DOMESTIC_ARTICLE"
+    },
+    {
+      "candidate_id": "c40531_40521652_6e2aaacb1328ead0",
+      "title": "c40531 40521652",
+      "url": "http://theory.people.com.cn/n1/2025/0715/c40531-40521652.html",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "LOW_VALUE_POLICY_THEORY_SOURCE"
+    },
+    {
+      "candidate_id": "c1004_40732291_21564c63da264999",
+      "title": "c1004 40732291",
+      "url": "http://finance.people.com.cn/n1/2026/0602/c1004-40732291.html",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "LOW_VALUE_EXPO_OR_CONFERENCE"
+    },
+    {
+      "candidate_id": "c_b0c99c5d13a0e3d7",
+      "title": "c",
+      "url": "http://www.xinhuanet.com/politics/20240408/8bc532ab704342298e2edecf5f0a038c/c.html",
+      "status": "DISTILLED",
+      "reason": "malformed_search_title"
+    },
+    {
+      "candidate_id": "QP_xinhuanet_com__query_plan_078c5e9fe3d7a912",
+      "title": "[QP:xinhuanet.com] query_plan",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_xinhuanet_com__人工智能_半导体_算力_e6ec010eef4d43ec",
+      "title": "[QP:xinhuanet.com] 人工智能 半导体 算力",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_xinhuanet_com__新材料_能源_动力装备_33b97f3c1c479b83",
+      "title": "[QP:xinhuanet.com] 新材料 能源 动力装备",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_xinhuanet_com__航天_深空_探测_0468e441b9d10da2",
+      "title": "[QP:xinhuanet.com] 航天 深空 探测",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cctv_com__先进制造_7e87c831428e4964",
+      "title": "[QP:cctv.com] 先进制造",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cctv_com__query_plan_bb0d5336fc69a780",
+      "title": "[QP:cctv.com] query_plan",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cctv_com__人工智能_半导体_算力_a747c907e3c53120",
+      "title": "[QP:cctv.com] 人工智能 半导体 算力",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cctv_com__新材料_能源_动力装备_eb8aca1a8c1109a7",
+      "title": "[QP:cctv.com] 新材料 能源 动力装备",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cctv_com__航天_深空_探测_78c50ef2068c234e",
+      "title": "[QP:cctv.com] 航天 深空 探测",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_stdaily_com__query_plan_e7e97758b7061b25",
+      "title": "[QP:stdaily.com] query_plan",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_stdaily_com__新材料_先进制造_能源_1e33a24c15ea7197",
+      "title": "[QP:stdaily.com] 新材料 先进制造 能源",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_stdaily_com__人工智能_机器人_量子_b78f9c8f77c64371",
+      "title": "[QP:stdaily.com] 人工智能 机器人 量子",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_huanqiu_com__科技_国防_航天_b8ade137ef0e228c",
+      "title": "[QP:huanqiu.com] 科技 国防 航天",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_huanqiu_com__地缘_科技_产业链_76479a3fda63046e",
+      "title": "[QP:huanqiu.com] 地缘 科技 产业链",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_guancha_cn__半导体_出口管制_产业链_e65ec3ec54b2524e",
+      "title": "[QP:guancha.cn] 半导体 出口管制 产业链",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_guancha_cn__航天_军事_科技_22aa3cd6aed9f773",
+      "title": "[QP:guancha.cn] 航天 军事 科技",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_miit_gov_cn__新型工业化_先进制造_产业链_57f373f9f8e545f4",
+      "title": "[QP:miit.gov.cn] 新型工业化 先进制造 产业链",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_miit_gov_cn__人工智能_半导体_算力_33f2b8e5a4e172d5",
+      "title": "[QP:miit.gov.cn] 人工智能 半导体 算力",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_mod_gov_cn__科技_国防_无人机_a023db994eaccf58",
+      "title": "[QP:mod.gov.cn] 科技 国防 无人机",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_mod_gov_cn__航天_网络_信息化_507094a2c08c6e18",
+      "title": "[QP:mod.gov.cn] 航天 网络 信息化",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_most_gov_cn__query_plan_7b22d1f8c24da32e",
+      "title": "[QP:most.gov.cn] query_plan",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_most_gov_cn__人工智能_量子_新材料_560b4a6aa25151d7",
+      "title": "[QP:most.gov.cn] 人工智能 量子 新材料",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cnsa_gov_cn__月球_深空_探测工程_20303b7b884d5ac0",
+      "title": "[QP:cnsa.gov.cn] 月球 深空 探测工程",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cnsa_gov_cn__航天_科技_探测_cf2955ec4106227b",
+      "title": "[QP:cnsa.gov.cn] 航天 科技 探测",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cas_cn__科技突破_重大进展_05d228606419c44d",
+      "title": "[QP:cas.cn] 科技突破 重大进展",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cas_cn__人工智能_量子_新材料_c58a3607244415fd",
+      "title": "[QP:cas.cn] 人工智能 量子 新材料",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cas_cn__航天_深空_机器人_7ea1cbe5f0a40dbb",
+      "title": "[QP:cas.cn] 航天 深空 机器人",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_iop_cas_cn__量子_材料_能源_c5aec814225aed6f",
+      "title": "[QP:iop.cas.cn] 量子 材料 能源",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cac_gov_cn__人工智能_治理_数据_6e4102c607c44cc1",
+      "title": "[QP:cac.gov.cn] 人工智能 治理 数据",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cac_gov_cn__网络安全_数据安全_生成式人工智能_ec83078b973194f8",
+      "title": "[QP:cac.gov.cn] 网络安全 数据安全 生成式人工智能",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_nasa_gov__Artemis_lunar_program_5280907ed00de3bf",
+      "title": "[QP:nasa.gov] Artemis lunar program",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_esa_int__lunar_exploration_deep_d5c7a04dafc49a93",
+      "title": "[QP:esa.int] lunar exploration deep",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_darpa_mil__autonomous_systems_drone_b92f5eb6d0ecaf49",
+      "title": "[QP:darpa.mil] autonomous systems drone",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_defense_gov__drone_swarm_military_3386c3c86d65e361",
+      "title": "[QP:defense.gov] drone swarm military",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_energy_gov__quantum_energy_research_078ec664e34007f2",
+      "title": "[QP:energy.gov] quantum energy research",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_noaa_gov__satellite_climate_ocean_f41db89017aca1dd",
+      "title": "[QP:noaa.gov] satellite climate ocean",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_pubmed_ncbi_nlm_nih_gov__brain_computer_i_e12ff3e03a5f79c5",
+      "title": "[QP:pubmed.ncbi.nlm.nih.gov] brain computer interface",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_arxiv_org__quantum_computing_94fde7d15ecd98ff",
+      "title": "[QP:arxiv.org] quantum computing",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_arxiv_org__AI_safety_robotics_a4988c3fa07a226f",
+      "title": "[QP:arxiv.org] AI safety robotics",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_openalex_org__quantum_computing_AI_0e7d3417e9a776fe",
+      "title": "[QP:openalex.org] quantum computing AI",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_nature_com__quantum_computing_AI_1fc7e5443e28b9bd",
+      "title": "[QP:nature.com] quantum computing AI",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_science_org__quantum_AI_energy_b2d0d330ae9ba9ee",
+      "title": "[QP:science.org] quantum AI energy",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_ieee_org__AI_chips_robotics_97d6f9830620498a",
+      "title": "[QP:ieee.org] AI chips robotics",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_bis_gov__export_control_semiconductors_39ca2d7d901d69d2",
+      "title": "[QP:bis.gov] export control semiconductors",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_semiconductors_org__semiconductor_industr_c37fa121bae6a837",
+      "title": "[QP:semiconductors.org] semiconductor industry chips",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_g7_canada_ca__G7_Summit_Kananaskis_dd191e1d0205c641",
+      "title": "[QP:g7.canada.ca] G7 Summit Kananaskis",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_g7_canada_ca__Group_of_Seven_1b1923adb322e07e",
+      "title": "[QP:g7.canada.ca] Group of Seven",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_canada_ca__G7_Summit_Kananaskis_f506cc16b9b1d085",
+      "title": "[QP:canada.ca] G7 Summit Kananaskis",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_international_gc_ca__G7_summit_Canada_06647f143574724e",
+      "title": "[QP:international.gc.ca] G7 summit Canada",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_whitehouse_gov__G7_Summit_Kananaskis_8074eab53cd5f181",
+      "title": "[QP:whitehouse.gov] G7 Summit Kananaskis",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_whitehouse_gov__Group_of_Seven_e087eebd6ca1eb94",
+      "title": "[QP:whitehouse.gov] Group of Seven",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_consilium_europa_eu__G7_Summit_Kananaskis_f5c805bd000d841c",
+      "title": "[QP:consilium.europa.eu] G7 Summit Kananaskis",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_consilium_europa_eu__Group_of_Seven_1046ea450400016a",
+      "title": "[QP:consilium.europa.eu] Group of Seven",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_state_gov__ceasefire_Iran_Israel_0f55a66b4180fd62",
+      "title": "[QP:state.gov] ceasefire Iran Israel",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_state_gov__treaty_ceasefire_official_4599e8f7bcdf2c3b",
+      "title": "[QP:state.gov] treaty ceasefire official",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_treasury_gov__sanctions_Iran_technology_a1e7e961933b03c9",
+      "title": "[QP:treasury.gov] sanctions Iran technology",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_treasury_gov__sanctions_export_controls_15a665d244b9c907",
+      "title": "[QP:treasury.gov] sanctions export controls",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_anthropic_com__Claude_model_disabled_f2f2d5cce38e3767",
+      "title": "[QP:anthropic.com] Claude model disabled",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_anthropic_com__model_availability_Claude_1ca730ffaeb55ec3",
+      "title": "[QP:anthropic.com] model availability Claude",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_status_anthropic_com__Claude_model_availa_940d0420ce115d4f",
+      "title": "[QP:status.anthropic.com] Claude model availability",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_openai_com__model_availability_deprecated_8d66dd0bfda19707",
+      "title": "[QP:openai.com] model availability deprecated",
+      "url": "",
+      "status": "QUERY_PLAN_NO_BODY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    }
+  ],
+  "decision_cards_path": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260702_1843_final/bridge_runs/cron_20260702_1843/decision_cards.json",
+  "conversion_tasks_path": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260702_1843_final/bridge_runs/cron_20260702_1843/card_conversion_tasks.json",
+  "cross_run_dedupe_path": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260702_1843_final/bridge_run/processed_signatures.json"
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260701_e3cc0413b0",
+    "title": "The space under",
+    "source_url": "https://www.esa.int/Science_Exploration/Human_and_Robotic_Exploration/The_space_under",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_2143/cards/The_space_under_9119a53a.md",
+    "target_chapter_hint": 156,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_Wiki",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_Wiki"
+    ],
+    "not_done_in_dry_run": true
+  },
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260701_9b15b8b314",
+    "title": "从科创中心看未来产业 科技成果实现从1到10的突破",
+    "source_url": "https://news.cctv.com/2026/07/01/ARTI7r5vchk6ZLHbdkJUwXI1260701.shtml",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_2143/cards/从科创中心看未来产业_科技成果实现从1到10的突破_fb695249.md",
+    "target_chapter_hint": 156,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_Wiki",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_Wiki"
+    ],
+    "not_done_in_dry_run": true
+  }
+]

@@ -1,0 +1,781 @@
+[
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260701_f41f104d04",
+    "source_url": "https://www.nasa.gov/news-release/nasa-sba-announce-new-initiative-to-scale-american-space-economy",
+    "title": "NASA, SBA Announce New Initiative to Scale American Space Economy",
+    "captured_at": "2026-07-01T00:06:20",
+    "source_group": "overseas",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260630_2142/cards/NASA__SBA_Announce_New_Initiative_to_Scale_America_53be88b1.md",
+    "body_fetch_evidence": {
+      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260630_2142/raw/body_fetch_report.json",
+      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260630_2142/raw/bodies/NASA__SBA_Announce_New_Initiative_to_Sca_53be88b1cd074788.txt",
+      "candidate_id": "53be88b1cd074788",
+      "status": "BODY_FETCHED",
+      "counts_as_body_success": true,
+      "source_role": "primary_official",
+      "source_confidence": ""
+    },
+    "title_body_mismatch": false,
+    "evidence_complete": false,
+    "duplicate_check": {
+      "duplicate": true,
+      "reason": "TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY"
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "主控",
+          "reaction": "归档备查；不进入G2/G3。",
+          "wiki_ref": "时事素材/归档"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "space_chain",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "low"
+        }
+      ],
+      "chapter_hooks": [],
+      "outline_delta_candidate": {
+        "type": "red_line",
+        "target_chapter": 0,
+        "proposed_addition": "",
+        "not_proposed": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY"
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": false,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "ARCHIVE_WITH_REASON",
+    "disposition_reason": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-07-01T00:06:20",
+    "bridge_policy": "bridge_artifacts_only_no_production_write"
+  },
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260701_258e3198e8",
+    "source_url": "https://www.nasa.gov/image-article/nasa-astronaut-chris-williams-preps-for-spacewalk",
+    "title": "NASA Astronaut Chris Williams Preps for Spacewalk",
+    "captured_at": "2026-07-01T00:06:20",
+    "source_group": "overseas",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260630_2142/cards/NASA_Astronaut_Chris_Williams_Preps_for_Spacewalk_db982efc.md",
+    "body_fetch_evidence": {
+      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260630_2142/raw/body_fetch_report.json",
+      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260630_2142/raw/bodies/NASA_Astronaut_Chris_Williams_Preps_for_db982efcc54de96b.txt",
+      "candidate_id": "db982efcc54de96b",
+      "status": "BODY_FETCHED",
+      "counts_as_body_success": true,
+      "source_role": "primary_official",
+      "source_confidence": ""
+    },
+    "title_body_mismatch": false,
+    "evidence_complete": false,
+    "duplicate_check": {
+      "duplicate": true,
+      "reason": "TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY"
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "主控",
+          "reaction": "归档备查；不进入G2/G3。",
+          "wiki_ref": "时事素材/归档"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "space_chain",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "low"
+        }
+      ],
+      "chapter_hooks": [],
+      "outline_delta_candidate": {
+        "type": "red_line",
+        "target_chapter": 0,
+        "proposed_addition": "",
+        "not_proposed": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY"
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": false,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "ARCHIVE_WITH_REASON",
+    "disposition_reason": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-07-01T00:06:20",
+    "bridge_policy": "bridge_artifacts_only_no_production_write"
+  },
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260701_b8bad3d0e0",
+    "source_url": "https://www.nasa.gov/general/mapping-earths-observations-featuring-betsy-ford",
+    "title": "Mapping Earth’s Observations, featuring Betsy Ford",
+    "captured_at": "2026-07-01T00:06:20",
+    "source_group": "overseas",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260630_2142/cards/Mapping_Earth__8217_s_Observations__featuring_Bets_eb4074ec.md",
+    "body_fetch_evidence": {
+      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260630_2142/raw/body_fetch_report.json",
+      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260630_2142/raw/bodies/Mapping_Earth_s_Observations__featuring_eb4074eca6fbe1ce.txt",
+      "candidate_id": "eb4074eca6fbe1ce",
+      "status": "BODY_FETCHED",
+      "counts_as_body_success": true,
+      "source_role": "primary_official",
+      "source_confidence": ""
+    },
+    "title_body_mismatch": true,
+    "evidence_complete": true,
+    "duplicate_check": {
+      "duplicate": false,
+      "reason": ""
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "联邦/白盾体系",
+          "reaction": "把「Mapping Earth’s Observations, fe」作为技术或制度压力测试变量，而非剧情事实照搬。",
+          "wiki_ref": "wiki/factions"
+        },
+        {
+          "force": "主角团/工程线",
+          "reaction": "只吸收可测反馈、失败模式、成本约束；不写成万能外挂。",
+          "wiki_ref": "wiki/characters"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "earth_observation",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "medium"
+        }
+      ],
+      "chapter_hooks": [
+        {
+          "hook_id": "ch156_2de9e1dc",
+          "description": "气象/地球观测素材，可作章节准备包中的遥感盲区/侦察代价参考；非地月深空链。 来源题名：Mapping Earth’s Observations, featuring Betsy Ford",
+          "suitable_chapters": [
+            156
+          ],
+          "reversal": "仅作细节/变量，不直接改变既有章节功能。"
+        }
+      ],
+      "outline_delta_candidate": {
+        "type": "red_line",
+        "target_chapter": 156,
+        "proposed_addition": "",
+        "not_proposed": "气象/地球观测素材，可作章节准备包中的遥感盲区/侦察代价参考；非地月深空链。"
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": false,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "CHAPTER_PREP_ONLY",
+    "disposition_reason": "气象/地球观测素材，可作章节准备包中的遥感盲区/侦察代价参考；非地月深空链。",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-07-01T00:06:20",
+    "bridge_policy": "bridge_artifacts_only_no_production_write"
+  },
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260701_81c6620920",
+    "source_url": "https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Sentinel-1/Time_to_say_goodbye_to_Sentinel-1A",
+    "title": "Time to say goodbye to Sentinel-1A",
+    "captured_at": "2026-07-01T00:06:20",
+    "source_group": "overseas",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260630_2142/cards/Time_to_say_goodbye_to_Sentinel-1A_eb8360d6.md",
+    "body_fetch_evidence": {
+      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260630_2142/raw/body_fetch_report.json",
+      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260630_2142/raw/bodies/Time_to_say_goodbye_to_Sentinel-1A_eb8360d69ae9b0e6.txt",
+      "candidate_id": "eb8360d69ae9b0e6",
+      "status": "BODY_FETCHED",
+      "counts_as_body_success": true,
+      "source_role": "primary_official",
+      "source_confidence": ""
+    },
+    "title_body_mismatch": true,
+    "evidence_complete": true,
+    "duplicate_check": {
+      "duplicate": false,
+      "reason": ""
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "联邦/白盾体系",
+          "reaction": "把「Time to say goodbye to Sentinel-」作为技术或制度压力测试变量，而非剧情事实照搬。",
+          "wiki_ref": "wiki/factions"
+        },
+        {
+          "force": "主角团/工程线",
+          "reaction": "只吸收可测反馈、失败模式、成本约束；不写成万能外挂。",
+          "wiki_ref": "wiki/characters"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "earth_observation",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "medium"
+        }
+      ],
+      "chapter_hooks": [
+        {
+          "hook_id": "ch156_55883de3",
+          "description": "气象/地球观测素材，可作章节准备包中的遥感盲区/侦察代价参考；非地月深空链。 来源题名：Time to say goodbye to Sentinel-1A",
+          "suitable_chapters": [
+            156
+          ],
+          "reversal": "仅作细节/变量，不直接改变既有章节功能。"
+        }
+      ],
+      "outline_delta_candidate": {
+        "type": "red_line",
+        "target_chapter": 156,
+        "proposed_addition": "",
+        "not_proposed": "气象/地球观测素材，可作章节准备包中的遥感盲区/侦察代价参考；非地月深空链。"
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": false,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "CHAPTER_PREP_ONLY",
+    "disposition_reason": "气象/地球观测素材，可作章节准备包中的遥感盲区/侦察代价参考；非地月深空链。",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-07-01T00:06:20",
+    "bridge_policy": "bridge_artifacts_only_no_production_write"
+  },
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260701_33575977e0",
+    "source_url": "https://www.nature.com/articles/d41586-026-01980-0",
+    "title": "Can Rwanda sustain its rise in science and technology? Here’s what can help",
+    "captured_at": "2026-07-01T00:06:20",
+    "source_group": "overseas",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260630_2142/cards/Can_Rwanda_sustain_its_rise_in_science_and_technol_7359f9bc.md",
+    "body_fetch_evidence": {
+      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260630_2142/raw/body_fetch_report.json",
+      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260630_2142/raw/bodies/Can_Rwanda_sustain_its_rise_in_science_a_7359f9bc252b3804.txt",
+      "candidate_id": "7359f9bc252b3804",
+      "status": "BODY_FETCHED",
+      "counts_as_body_success": true,
+      "source_role": "primary_official",
+      "source_confidence": ""
+    },
+    "title_body_mismatch": false,
+    "evidence_complete": false,
+    "duplicate_check": {
+      "duplicate": true,
+      "reason": "TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY"
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "主控",
+          "reaction": "归档备查；不进入G2/G3。",
+          "wiki_ref": "时事素材/归档"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "low_kewu_relevance",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "low"
+        }
+      ],
+      "chapter_hooks": [],
+      "outline_delta_candidate": {
+        "type": "red_line",
+        "target_chapter": 0,
+        "proposed_addition": "",
+        "not_proposed": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY"
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": false,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "ARCHIVE_WITH_REASON",
+    "disposition_reason": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-07-01T00:06:20",
+    "bridge_policy": "bridge_artifacts_only_no_production_write"
+  },
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260701_756440f29d",
+    "source_url": "https://www.nature.com/articles/d41586-026-01873-2",
+    "title": "AI systems devise hypotheses and ways to test them",
+    "captured_at": "2026-07-01T00:06:20",
+    "source_group": "overseas",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260630_2142/cards/AI_systems_devise_hypotheses_and_ways_to_test_them_ee7381a1.md",
+    "body_fetch_evidence": {
+      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260630_2142/raw/body_fetch_report.json",
+      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260630_2142/raw/bodies/AI_systems_devise_hypotheses_and_ways_to_ee7381a15b42ba7c.txt",
+      "candidate_id": "ee7381a15b42ba7c",
+      "status": "BODY_FETCHED",
+      "counts_as_body_success": true,
+      "source_role": "primary_official",
+      "source_confidence": ""
+    },
+    "title_body_mismatch": false,
+    "evidence_complete": false,
+    "duplicate_check": {
+      "duplicate": true,
+      "reason": "TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY"
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "主控",
+          "reaction": "归档备查；不进入G2/G3。",
+          "wiki_ref": "时事素材/归档"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "bio_governance",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "low"
+        }
+      ],
+      "chapter_hooks": [],
+      "outline_delta_candidate": {
+        "type": "red_line",
+        "target_chapter": 0,
+        "proposed_addition": "",
+        "not_proposed": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY"
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": false,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "ARCHIVE_WITH_REASON",
+    "disposition_reason": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-07-01T00:06:20",
+    "bridge_policy": "bridge_artifacts_only_no_production_write"
+  },
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260701_d977200ade",
+    "source_url": "https://www.miit.gov.cn/jgsj/kjs/gzdt/art/2026/art_2bf762c3d3be4f5593e80e3e3abd95f9.html",
+    "title": "关于2025年人工智能应用典型案例入选名单的公示",
+    "captured_at": "2026-07-01T00:06:20",
+    "source_group": "domestic",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260630_2142/cards/关于2025年人工智能应用典型案例入选名单的公示_1200a361.md",
+    "body_fetch_evidence": {
+      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260630_2142/raw/body_fetch_report.json",
+      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260630_2142/raw/bodies/关于2025年人工智能应用典型案例入选名单的公示_1200a36161fd76b3.txt",
+      "candidate_id": "1200a36161fd76b3",
+      "status": "BODY_FETCHED",
+      "counts_as_body_success": true,
+      "source_role": "primary_official",
+      "source_confidence": ""
+    },
+    "title_body_mismatch": false,
+    "evidence_complete": false,
+    "duplicate_check": {
+      "duplicate": true,
+      "reason": "SOURCE_URL_ALREADY_IN_INDEX_OR_CARD"
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "主控",
+          "reaction": "归档备查；不进入G2/G3。",
+          "wiki_ref": "时事素材/归档"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "compute_sovereignty",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "low"
+        }
+      ],
+      "chapter_hooks": [],
+      "outline_delta_candidate": {
+        "type": "red_line",
+        "target_chapter": 0,
+        "proposed_addition": "",
+        "not_proposed": "重复或已入库：SOURCE_URL_ALREADY_IN_INDEX_OR_CARD"
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": false,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "ARCHIVE_WITH_REASON",
+    "disposition_reason": "重复或已入库：SOURCE_URL_ALREADY_IN_INDEX_OR_CARD",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-07-01T00:06:20",
+    "bridge_policy": "bridge_artifacts_only_no_production_write"
+  },
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260701_0d2d0a4c9b",
+    "source_url": "https://www.miit.gov.cn/jgsj/kjs/gzdt/art/2026/art_bc6fa4304a0040ccb1446e68ec8eec48.html",
+    "title": "工业和信息化部办公厅关于公布2025年度工业和信息化质量提升与品牌建设典型案例名单的通知",
+    "captured_at": "2026-07-01T00:06:20",
+    "source_group": "domestic",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260630_2142/cards/工业和信息化部办公厅关于公布2025年度工业和信息化质量提升与品牌建设典型案例名单的通知_0a7e8c7a.md",
+    "body_fetch_evidence": {
+      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260630_2142/raw/body_fetch_report.json",
+      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260630_2142/raw/bodies/工业和信息化部办公厅关于公布2025年度工业和信息化质量提升与品牌建设典型案例名_0a7e8c7a4d63b419.txt",
+      "candidate_id": "0a7e8c7a4d63b419",
+      "status": "BODY_FETCHED",
+      "counts_as_body_success": true,
+      "source_role": "primary_official",
+      "source_confidence": ""
+    },
+    "title_body_mismatch": false,
+    "evidence_complete": false,
+    "duplicate_check": {
+      "duplicate": true,
+      "reason": "SOURCE_URL_ALREADY_IN_INDEX_OR_CARD"
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "主控",
+          "reaction": "归档备查；不进入G2/G3。",
+          "wiki_ref": "时事素材/归档"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "compute_sovereignty",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "low"
+        }
+      ],
+      "chapter_hooks": [],
+      "outline_delta_candidate": {
+        "type": "red_line",
+        "target_chapter": 0,
+        "proposed_addition": "",
+        "not_proposed": "重复或已入库：SOURCE_URL_ALREADY_IN_INDEX_OR_CARD"
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": false,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "ARCHIVE_WITH_REASON",
+    "disposition_reason": "重复或已入库：SOURCE_URL_ALREADY_IN_INDEX_OR_CARD",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-07-01T00:06:20",
+    "bridge_policy": "bridge_artifacts_only_no_production_write"
+  },
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260701_bf6e20dd8d",
+    "source_url": "https://www.most.gov.cn/kjbgz/202606/t20260629_196855.html",
+    "title": "科技部副部长林新访问马来西亚、老挝并出席中马政府间科技创新合作联委会、中老政府间科技合作联委会和中国—东盟科技创新合作联委会会议",
+    "captured_at": "2026-07-01T00:06:20",
+    "source_group": "domestic",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260630_2142/cards/科技部副部长林新访问马来西亚_老挝并出席中马政府间科技创新合作联委会_中老政府间科技合作联委会和中国_0812bf96.md",
+    "body_fetch_evidence": {
+      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260630_2142/raw/body_fetch_report.json",
+      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260630_2142/raw/bodies/科技部副部长林新访问马来西亚_老挝并出席中马政府间科技创新合作联委会_中老政府间_0812bf96ccd925da.txt",
+      "candidate_id": "0812bf96ccd925da",
+      "status": "BODY_FETCHED",
+      "counts_as_body_success": true,
+      "source_role": "primary_official",
+      "source_confidence": ""
+    },
+    "title_body_mismatch": false,
+    "evidence_complete": true,
+    "duplicate_check": {
+      "duplicate": false,
+      "reason": ""
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "主控",
+          "reaction": "归档备查；不进入G2/G3。",
+          "wiki_ref": "时事素材/归档"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "low_kewu_relevance",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "low"
+        }
+      ],
+      "chapter_hooks": [],
+      "outline_delta_candidate": {
+        "type": "red_line",
+        "target_chapter": 0,
+        "proposed_addition": "",
+        "not_proposed": "与当前算力主权、地月争夺、群体智能或军事制度主线因果链不足。"
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": false,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "ARCHIVE_WITH_REASON",
+    "disposition_reason": "与当前算力主权、地月争夺、群体智能或军事制度主线因果链不足。",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-07-01T00:06:20",
+    "bridge_policy": "bridge_artifacts_only_no_production_write"
+  },
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260701_4aa720227b",
+    "source_url": "https://www.esa.int/Science_Exploration/Human_and_Robotic_Exploration/epsilon",
+    "title": "εpsilon",
+    "captured_at": "2026-07-01T00:06:20",
+    "source_group": "overseas",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260630_2142/cards/εpsilon_1860e34c.md",
+    "body_fetch_evidence": {
+      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260630_2142/raw/body_fetch_report.json",
+      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260630_2142/raw/bodies/εpsilon_1860e34ccbc6d3a6.txt",
+      "candidate_id": "1860e34ccbc6d3a6",
+      "status": "BODY_FETCHED",
+      "counts_as_body_success": true,
+      "source_role": "primary_official",
+      "source_confidence": ""
+    },
+    "title_body_mismatch": true,
+    "evidence_complete": true,
+    "duplicate_check": {
+      "duplicate": false,
+      "reason": ""
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "联邦/白盾体系",
+          "reaction": "把「εpsilon」作为技术或制度压力测试变量，而非剧情事实照搬。",
+          "wiki_ref": "wiki/factions"
+        },
+        {
+          "force": "主角团/工程线",
+          "reaction": "只吸收可测反馈、失败模式、成本约束；不写成万能外挂。",
+          "wiki_ref": "wiki/characters"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "space_chain",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "medium"
+        }
+      ],
+      "chapter_hooks": [
+        {
+          "hook_id": "ch156_d7ad0705",
+          "description": "地月/深空/通信链路素材，宜入章节准备红线，不直接改大纲。 来源题名：εpsilon",
+          "suitable_chapters": [
+            156
+          ],
+          "reversal": "仅作细节/变量，不直接改变既有章节功能。"
+        }
+      ],
+      "outline_delta_candidate": {
+        "type": "red_line",
+        "target_chapter": 156,
+        "proposed_addition": "",
+        "not_proposed": "地月/深空/通信链路素材，宜入章节准备红线，不直接改大纲。"
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": false,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "CHAPTER_PREP_ONLY",
+    "disposition_reason": "地月/深空/通信链路素材，宜入章节准备红线，不直接改大纲。",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-07-01T00:06:20",
+    "bridge_policy": "bridge_artifacts_only_no_production_write"
+  },
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260701_7a7d718505",
+    "source_url": "http://finance.people.com.cn/n1/2026/0529/c1004-40729991.html",
+    "title": "高质量数据集建设激活人工智能发展新动能",
+    "captured_at": "2026-07-01T00:06:20",
+    "source_group": "domestic",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260630_2142/cards/高质量数据集建设激活人工智能发展新动能_46f2f8ed.md",
+    "body_fetch_evidence": {
+      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260630_2142/raw/body_fetch_report.json",
+      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260630_2142/raw/bodies/高质量数据集建设激活人工智能发展新动能_46f2f8ed8146dd8f.txt",
+      "candidate_id": "46f2f8ed8146dd8f",
+      "status": "BODY_FETCHED",
+      "counts_as_body_success": true,
+      "source_role": "primary_official",
+      "source_confidence": ""
+    },
+    "title_body_mismatch": false,
+    "evidence_complete": false,
+    "duplicate_check": {
+      "duplicate": true,
+      "reason": "SOURCE_URL_ALREADY_IN_INDEX_OR_CARD"
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "主控",
+          "reaction": "归档备查；不进入G2/G3。",
+          "wiki_ref": "时事素材/归档"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "space_chain",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "low"
+        }
+      ],
+      "chapter_hooks": [],
+      "outline_delta_candidate": {
+        "type": "red_line",
+        "target_chapter": 0,
+        "proposed_addition": "",
+        "not_proposed": "重复或已入库：SOURCE_URL_ALREADY_IN_INDEX_OR_CARD"
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": false,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "ARCHIVE_WITH_REASON",
+    "disposition_reason": "重复或已入库：SOURCE_URL_ALREADY_IN_INDEX_OR_CARD",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-07-01T00:06:20",
+    "bridge_policy": "bridge_artifacts_only_no_production_write"
+  }
+]

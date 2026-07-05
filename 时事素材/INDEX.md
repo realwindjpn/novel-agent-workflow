@@ -278,3 +278,12 @@
 | 日期 | 主题 | 领域 | 原文 | 素材卡 | 可用方向 |
 |---|---|---|---|---|---|
 | 2026-06-25 | NASA月球基地最新进展 | 深空工程/月面基地/基础设施 | `时事素材/原文备份/2026-06-25/原文_NASA月球基地最新进展_20260625.md` | `时事素材/素材卡/2026-06-25/素材卡_NASA月球基地最新进展_20260625.md` | CHAPTER_PREP_ONLY：第174-177及后续月基建设线；不改大纲；第173不强行注入。 |
+
+## SenseNova→MiroFish 章节准备包 2026-07-01
+
+| 日期 | 主题 | 领域 | 原文 | 素材卡 | 可用方向 |
+|---|---|---|---|---|---|
+| 2026-07-01 | Mapping Earth’s Observations, featuring Betsy Ford | 深空工程/遥感/侦察代价 | https://www.nasa.gov/general/mapping-earths-observations-featuring-betsy-ford | `章节准备包/2026-07-01_ch156_遥感盲区_深空链路/CHAPTER_PREP_PACKAGE.md#20260701_b8bad3d0e0mapping-earths-observations-featuring-betsy-ford` | 第156章准备包；CHAPTER_PREP_ONLY；hook_id=ch156_2de9e1dc |
+| 2026-07-01 | Time to say goodbye to Sentinel-1A | 深空工程/遥感/长期任务降级 | https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Sentinel-1/Time_to_say_goodbye_to_Sentinel-1A | `章节准备包/2026-07-01_ch156_遥感盲区_深空链路/CHAPTER_PREP_PACKAGE.md#20260701_81c6620920time-to-say-goodbye-to-sentinel-1a` | 第156章准备包；CHAPTER_PREP_ONLY；hook_id=ch156_55883de3 |
+| 2026-07-01 | εpsilon | 深空工程/载人任务/通信链路 | https://www.esa.int/Science_Exploration/Human_and_Robotic_Exploration/epsilon | `章节准备包/2026-07-01_ch156_遥感盲区_深空链路/CHAPTER_PREP_PACKAGE.md#20260701_4aa720227bepsilon` | 第156章准备包；CHAPTER_PREP_ONLY；hook_id=ch156_d7ad0705 |
+| 2026-07-01 | 全池补议：月面技术簇与芯片贸易注脚 | G2全池补议/月面/ECLSS/芯片/贸易 | `任务运行态/20260630_night_kewu_sensenova_kol_mirofish/TODAY_MATERIAL_POOL_RECONCILE.md` | `章节准备包/2026-07-01_full_pool_supplement/月面技术簇_芯片贸易注脚包.md` | CHAPTER_PREP_ONLY：0f5e301cec、c1db3a3e60、KOL×4；64ef26a20f并入去重；不改大纲 |

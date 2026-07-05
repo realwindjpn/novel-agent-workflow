@@ -1,0 +1,36 @@
+{
+  "status": "partial",
+  "source": "anysearch-local",
+  "route": "anysearch",
+  "failure_tag": "DISCOVERY_ONLY",
+  "count": 3,
+  "data": [
+    {
+      "url": "https://www.ibm.com/cn-zh/think/topics/ai-governance",
+      "title": "- **URL**: https://www.ibm.com/cn-zh/think/topics/ai-governance",
+      "source": "anysearch_text"
+    },
+    {
+      "url": "https://www.gov.cn/yaowen/liebiao/202507/content_7033929.htm",
+      "title": "- **URL**: https://www.gov.cn/yaowen/liebiao/202507/content_7033929.htm",
+      "source": "anysearch_text"
+    },
+    {
+      "url": "https://www.gov.cn/",
+      "title": "- 人工智能全球治理行动计划（全文）__中国政府网 https://www.gov.cn/ # 人工智能全球治理行动计划（全文） 2025-07-26 12:54 来源： 新华社 字号：默认 大 超大 | 打印 | 新华社上海7月26日电 7月26日，2025世界人工智能大会暨人工智能全球治理高级别会议发表《人工智能全球治理行动计划》。全文如下： 人工智能全球治理行动计划 人工智能是人类发展的新领",
+      "source": "anysearch_text"
+    }
+  ],
+  "meta": {
+    "cli": "/root/workspace/IMA素材/external_skills/anysearch-skill_20260604/repo/scripts/anysearch_cli.py",
+    "parse": "text_fallback",
+    "privacy": "public_query_only",
+    "not_truth_source": true,
+    "discovery_only": true,
+    "failure_tag": "DISCOVERY_ONLY"
+  },
+  "files": [],
+  "error": null,
+  "stderr": "",
+  "timestamp": "2026-07-03T01:28:06"
+}

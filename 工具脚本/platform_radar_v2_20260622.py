@@ -50,6 +50,7 @@ SIGNAL_KW = [
 NON_ARTICLE_URL_PATTERNS = [
     r'/search\?', r'/search$', r'/tag/', r'/channel/', r'/account/',
     r'space\.bilibili\.com/\d+/?$', r'm\.bilibili\.com/search\?',
+    r'search\.bilibili\.com',
     r'weibo\.com/\d+/?$', r'weibo\.com/u/\d+/?$',
     r'weibo\.com/[A-Za-z0-9_\-]+/?$',
     r'h5\.video\.weibo\.com/',
@@ -162,6 +163,32 @@ def discover_collect_web_search(query: str, platform: str, max_items: int = 3, t
         body = item.get('body', item.get('excerpt', ''))
         if url:
             hits.append({'title': title or '', 'url': url, 'body': body or ''})
+    return hits
+
+
+def discover_bilibili_site_search(query: str, max_results: int = 3, timeout: int = 20) -> list[dict]:
+    """B站站内搜索fallback。用于KOL标题热点，弥补AnySearch/ddgs不稳定。"""
+    import urllib.parse, urllib.request, re as _re
+    url = 'https://search.bilibili.com/all?keyword=' + urllib.parse.quote(query)
+    try:
+        req = urllib.request.Request(url, headers={
+            'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36',
+            'Referer': 'https://www.bilibili.com/',
+        })
+        html = urllib.request.urlopen(req, timeout=timeout).read().decode('utf-8', 'ignore')
+    except Exception:
+        return []
+    hits = []
+    seen = set()
+    # Prefer direct video links embedded in search HTML.
+    for m in _re.finditer(r'(?:https?:)?//www\.bilibili\.com/video/(BV[0-9A-Za-z]+)', html):
+        bvid = m.group(1)
+        if bvid in seen:
+            continue
+        seen.add(bvid)
+        hits.append({'title': query, 'url': f'https://www.bilibili.com/video/{bvid}/', 'body': ''})
+        if len(hits) >= max_results:
+            break
     return hits
 
 
@@ -325,7 +352,11 @@ def discover_weibo_mobile(query: str, max_results: int = 3, timeout: int = 20) -
 def discover_for_account(account: dict, platform: str, timeout_sec: int, limit_per_platform: int = 3) -> list[dict]:
     """对单个account+platform，多路由发现URL。"""
     name = account['name']
-    kws = account.get('keywords', [])[:2]
+    raw_kws = account.get('keywords', [])
+    # 2026-06-28: KOL漏抓纠偏。B站/微博热点常由新增关键词命中，不能只取前2个老关键词。
+    # 仍限制总数，避免query过宽/过长。
+    kw_limit = 8 if platform in ('bilibili', 'weibo') else 4
+    kws = raw_kws[:kw_limit]
     # 清理query：去重复词、特殊字符
     kw_str = ' '.join(dict.fromkeys(kws))  # 去重保序
     site_map = {
@@ -350,6 +381,30 @@ def discover_for_account(account: dict, platform: str, timeout_sec: int, limit_p
                 h['_route'] = route
                 all_hits.append(h)
 
+    # Route 0: explicit Bilibili space from watchlist (most reliable for fixed UP)
+    if platform == 'bilibili' and account.get('bilibili_space'):
+        try:
+            space_url = account['bilibili_space'].rstrip('/') + '/video'
+            rc, out, err = run_cmd([
+                'yt-dlp', '--no-update', '--cookies', '/root/.hermes/bilibili_cookies.txt',
+                '--user-agent', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36',
+                '--referer', account['bilibili_space'].rstrip('/') + '/',
+                '--flat-playlist', '--dump-json', '--playlist-end', str(limit_per_platform), space_url
+            ], timeout=60)
+            if rc == 0 and out.strip():
+                space_hits = []
+                for line in out.splitlines():
+                    try:
+                        meta = json.loads(line)
+                    except Exception:
+                        continue
+                    bv = meta.get('id') or ''
+                    if bv.startswith('BV'):
+                        space_hits.append({'title': meta.get('title') or f'{name} B站视频 {bv}', 'url': f'https://www.bilibili.com/video/{bv}/', 'body': ''})
+                _add(space_hits, 'bilibili_space_yt_dlp')
+        except Exception:
+            pass
+
     # Route 1: collect_web platform-aware (wechat_search最优先)
     if platform == 'wechat':
         cw_hits = discover_collect_web_search(f'{name} {" ".join(kws)}', 'wechat', limit_per_platform, 30)
@@ -365,6 +420,13 @@ def discover_for_account(account: dict, platform: str, timeout_sec: int, limit_p
     as_query = re.sub(r'[/／]', ' ', as_query).strip()
     as_hits = discover_anysearch(as_query, limit_per_platform, 20)
     _add(as_hits, 'anysearch')
+
+    # Route 2a: Bilibili site search for each high-value keyword. AnySearch often misses fresh B站 videos.
+    if platform == 'bilibili' and kws:
+        for kw in kws[:8]:
+            bq = f'{name} {kw}'
+            bi_hits = discover_bilibili_site_search(bq, limit_per_platform, 20)
+            _add(bi_hits, 'bilibili_site_search')
 
     # Route 2b: Filter out off-domain URLs (anysearch may return cross-platform results)
     weibo_domains = ('weibo.com', 'm.weibo.cn', 'weibo.cn', 'h5.video.weibo.com')
@@ -714,17 +776,53 @@ def material_policy_tag(item: dict) -> str:
 #  D. MiroFish Feed Package
 # ══════════════════════════════════════════
 
+def _infer_chapter_target(it: dict) -> str:
+    text = (it.get('title', '') + ' ' + it.get('evidence', '') + ' ' + it.get('viewpoint_inference', '')).lower()
+    if any(k in text for k in ['芯片', '半导体', '出口管制', 'gpu', 'a100', 'h100', '算力']):
+        return '芯片/算力封锁线；贸易管制；工业链压力素材'
+    if any(k in text for k in ['ai', '人工智能', '数据集', '治理']):
+        return 'AI治理与数据资源；智能体/算法基础设施素材'
+    if any(k in text for k in ['中美', '关税', '反制', '制裁', '特朗普']):
+        return '中美博弈；外部压力与产业动员素材'
+    if any(k in text for k in ['航天', '月球', 'space', 'nasa']):
+        return '航天/空间工程素材'
+    return 'CHAPTER_PREP_ONLY；待G1/G2人工映射'
+
+
+def _infer_confidence_score(it: dict) -> float:
+    score = 0.35
+    if it.get('body_status') == 'fetched':
+        score += 0.25
+    if it.get('material_policy') == 'PLATFORM_SIGNAL':
+        score += 0.2
+    if it.get('published_at'):
+        score += 0.1
+    if it.get('platform') in ('wechat', 'bilibili', 'weibo', 'zhihu'):
+        score += 0.05
+    return round(min(score, 0.9), 2)
+
+
 def build_mirofish_package(items: list[dict]) -> dict:
-    """将discovery items转为MiroFish入口格式。"""
+    """将discovery items转为MiroFish入口格式。
+
+    Feed纳入条件：body_status 为 'fetched' 或有 excerpt 的条目
+    （evidence >= 15 chars），排除主页/空间页/搜索页和 NOISE。
+    """
     cards = []
     for it in items:
         if it.get('material_policy') == 'NOISE':
             continue
-        if it.get('body_status') != 'fetched':
+        # Feed纳入：body_fetched 或有 excerpt
+        _bs = it.get('body_status', '')
+        _has_excerpt = bool(it.get('evidence', '') and len(it['evidence']) > 15)
+        if _bs == 'fetched':
+            pass
+        elif _bs == 'excerpt_only' and _has_excerpt:
+            pass
+        else:
             continue
+        # 排除非文章URL（主页/空间/搜索页）
         if is_non_article_url(it.get('url', '')):
-            continue
-        if not evidence_is_body(it.get('evidence', '')):
             continue
         # Platform-URL domain consistency
         _url = it.get('url', '').lower()
@@ -740,18 +838,23 @@ def build_mirofish_package(items: list[dict]) -> dict:
         cards.append({
             'source_expert': f"{it['account']}@{it['platform']}",
             'source_reference': it.get('url', ''),
+            # ── 显式顶层字段（从 discovery item 补齐）──
+            'url': it.get('url', ''),
+            'source': it.get('account', ''),
+            'platform': it.get('platform', ''),
             'title': it.get('title', ''),
             'content_excerpt': it.get('evidence', '')[:300],
             'analysis_angle': it.get('viewpoint_inference', ''),
-            'chapter_target': '',  # 待模型填
-            'confidence_score': 0,  # 待模型评
+            'chapter_target': _infer_chapter_target(it),
+            'confidence_score': _infer_confidence_score(it),
             'published_at': it.get('published_at', ''),
             'source_route': it.get('source_route', ''),
             'discovery_status': it.get('discovery_status', ''),
+            'body_status': _bs,
         })
     return {
         'created_at': now_iso(),
-        'schema_version': 'mirofish_feed_v1',
+        'schema_version': 'mirofish_feed_v2',
         'total_cards': len(cards),
         'cards': cards,
     }

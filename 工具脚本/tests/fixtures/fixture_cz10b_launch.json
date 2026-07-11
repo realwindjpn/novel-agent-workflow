@@ -1,0 +1,16 @@
+{
+  "account": "中国航天科技集团",
+  "platform": "weibo",
+  "query": "长征 运载火箭",
+  "url": "https://weibo.com/1234567890/cz10b_launch_20260710",
+  "title": "长征十号乙运载火箭首飞成功！一级火箭网系捕获可控回收，中国可重复使用火箭技术取得里程碑突破",
+  "author": "中国航天科技集团",
+  "published_at": "2026-07-10",
+  "source_route": "weibo_mobile_api",
+  "discovery_status": "discovered",
+  "body_status": "fetched",
+  "evidence": "2026年7月10日12时15分，长征十号乙运载火箭在文昌航天发射场成功首飞。火箭一级采用垂直返回+网系捕获方案，成功实现可控回收。此次任务是中国可重复使用运载火箭技术的里程碑式突破。",
+  "viewpoint_inference": "",
+  "material_policy": "",
+  "failure_tag": ""
+}

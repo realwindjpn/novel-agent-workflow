@@ -68,7 +68,14 @@ def js_eval(session: str, js: str, timeout: int = 60, state_path: Path | None = 
     finally:
         Path(path).unlink(missing_ok=True)
     try:
-        return json.loads(out)
+        value = json.loads(out)
+        # agent-browser 某些版本会把 eval 的 JSON 再包一层字符串。
+        if isinstance(value, str):
+            try:
+                return json.loads(value)
+            except Exception:
+                pass
+        return value
     except Exception:
         return out
 

@@ -1,0 +1,16 @@
+{
+  "account": "差评君",
+  "platform": "bilibili",
+  "query": "差评君 科技",
+  "url": "https://www.bilibili.com/video/BV1g1surge01/",
+  "title": "【差评君】宇树G1机器人完成活体手术，Nature论文背后的技术突破",
+  "author": "差评君",
+  "published_at": "2026-07-10",
+  "source_route": "anysearch",
+  "discovery_status": "discovered",
+  "body_status": "fetched",
+  "evidence": "2026年7月10日，宇树G1人形机器人在Nature发表论文，完成了首例活体猪胆囊精准微创手术。机器人通过具身智能系统实现了亚毫米级操作精度，标志着具身智能在手术机器人领域的重大突破。",
+  "viewpoint_inference": "",
+  "material_policy": "",
+  "failure_tag": ""
+}

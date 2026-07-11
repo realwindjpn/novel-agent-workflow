@@ -1,0 +1,16 @@
+{
+  "account": "差评君",
+  "platform": "bilibili",
+  "query": "差评君 科技",
+  "url": "https://www.bilibili.com/video/BV1old2025test/",
+  "title": "【差评君】2025年年度芯片盘点，半导体产业链全景",
+  "author": "差评君",
+  "published_at": "2025-01-15",
+  "source_route": "anysearch",
+  "discovery_status": "discovered",
+  "body_status": "fetched",
+  "evidence": "2025年1月15日，差评君盘点了全球半导体产业链的年度变化，涉及芯片出口管制、AI算力等话题。",
+  "viewpoint_inference": "半导体产业链",
+  "material_policy": "",
+  "failure_tag": ""
+}

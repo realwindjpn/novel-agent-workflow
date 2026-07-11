@@ -1,4 +1,24 @@
 
+## 2026-07-10 14:19｜第193—196章发布确认
+- 用户已明确确认第193、194、195、196章均已发布。
+- 当前线上最新章：第196章《背面深入》。
+- 下一上传线：第197章、第198章。
+- 任务证据：`/root/workspace/任务运行态/20260708_kewu_upload193194/PUBLISH_CONFIRMATION_20260710.md`、`/root/workspace/任务运行态/20260709_kewu_upload195196/PUBLISH_CONFIRMATION_20260710.md`。
+
+## 2026-07-09 13:20｜G2融纲确认轮（cron_20260709_1246）
+- 5/6席有效（Grok超时300s）
+- 裁决：NOTE_ONLY×2（QANTIS POMDP=NOTE_ONLY 3:2否决PATCH; SageMath LLM=NOTE_ONLY 4:1否决PATCH）；CHAPTER_PREP_ONLY×2维持；ARCHIVE×7维持
+- 不改大纲/备注层/正文/已投稿TXT
+- 产物：`任务运行态/20260709_kewu_g2_dispatch_required/output/G2_FINAL.md`
+
+## 2026-07-05 11:09｜ch189/ch190 上传线闭环
+- 状态: DRAFT_SAVED_NOT_PUBLISHED
+- ch189《方舟真相》: 五席→返修→定向复审→写回→TXT(4878字)→草稿箱saved=true
+- ch190《火星线索》: 五席→返修→定向复审→写回→TXT(4100字)→草稿箱saved=true
+- 定向复审: ch189编辑PASS/读者FAIL(钩子建议); ch190编辑PASS/读者PASS/军事PASS
+- 任务包: /root/workspace/任务运行态/20260705_kewu_upload189190_selfcycle/
+- 下一步: 用户点发布
+
 ## 2026-07-04 16:41｜队列断点接管与清账
 - 状态: QUEUE_CONSUMED_PARTIAL_FIXED
 - 已清: 0257/0343/0644 G2_REQUIRED；0944/1244/1544 CHAPTER_PREP_ONLY。
@@ -1170,3 +1190,23 @@
 - 2026-07-05 11:07 | 同步章节 189
 - 2026-07-05 11:07 | 同步章节 190
 - 2026-07-05 11:08 | 定向复审PASS+返修闭环+草稿箱已保存
+- 2026-07-05 23:46 | 同步章节 191
+- 2026-07-05 23:46 | 同步章节 192
+
+## 2026-07-05 23:47｜ch191/ch192 新章上传线闭环
+- 状态: DRAFT_SAVED_NOT_PUBLISHED
+- ch191《材料突破》: 终审PASS；TXT门禁PASS；草稿箱列表4444字。
+- ch192《太虚步法雏形》: 终审PASS；TXT门禁PASS；草稿箱列表5023字。
+- 任务包: /root/workspace/任务运行态/20260705_kewu_upload191192_newchapter
+- 边界: 未发布。
+
+## 2026-07-07 21:31 CST｜KOL 雷达 sidecar 2118 接管裁决
+- 接管器已回收 `KOL_RADAR_SIDECAR_DONE`：`sidecar_20260707_2118`，body_fetched=9，platform_signal=5，feed cards=8，errors=0。
+- 裁决：`CHAPTER_PREP_ONLY / FACT_CHECK_REQUIRED`；不触发G2改纲，不阻塞上传线。
+- 上传线口径仍为：189-192 已草稿箱，待用户番茄后台手动发布。
+- 2026-07-09 00:48 | 同步章节 193
+- 2026-07-09 00:51 | 同步章节 194
+- 2026-07-10 10:01 | 同步章节 195
+- 2026-07-10 10:01 | 同步章节 196
+- 2026-07-11 08:30 | 同步章节 197
+- 2026-07-11 08:31 | ch198 repair2 PASS + TXT + draftbox saved

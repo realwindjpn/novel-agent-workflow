@@ -34,7 +34,7 @@ EMPTY_ITEM = {
     'title': '', 'author': '', 'published_at': '',
     'source_route': '', 'discovery_status': '', 'body_status': '',
     'evidence': '', 'viewpoint_inference': '', 'material_policy': '',
-    'failure_tag': '',
+    'failure_tag': '', 'domain_id': '', 'domain_name': '',
 }
 
 NOISE_TERMS = [
@@ -45,6 +45,21 @@ NOISE_TERMS = [
 SIGNAL_KW = [
     'ai', '人工智能', '芯片', '半导体', '中美', '地缘', '科技',
     '量子', '航天', '出口管制', '产业链', '数据安全', '互联网',
+    # P0: 科技突破关键词扩展（修正G1手术误判NOISE）
+    '手术', '机器人', '首飞', '回收', '长征', '运载火箭', '商业航天',
+    '重复使用', '活体', '精准', '微创', '外骨骼', '仿生', '具身智能',
+    '可控回收', '垂直返回', '可复用', '网系捕获',
+    # Domain expansion: 9-domain coverage for Dyson tree
+    # 生物
+    '基因编辑', '脑机接口', '生物技术', '生命科学', '合成生物学', '神经科学',
+    # 航空
+    '战斗机', '航空发动机', '六代机', '无人机', 'C919', '运20',
+    # 材料
+    '超导', '新材料', '碳纤维', '纳米', '稀土', '碳基材料',
+    # 能源
+    '可控核聚变', '核聚变', 'ITER', '储能', '光伏', '氢能', '碳中和',
+    # 军事（扩展）
+    '导弹', '国防', '军备', '航母', '潜艇',
 ]
 
 NON_ARTICLE_URL_PATTERNS = [
@@ -80,6 +95,84 @@ def sha12(s: str) -> str:
 
 def now_iso() -> str:
     return datetime.datetime.now().isoformat(timespec='seconds')
+
+
+# ── P0 freshness gate ──
+def _parse_relative_date(text: str) -> str:
+    """Parse Weibo/Chinese relative time strings to ISO date.
+    Returns '' if unparseable.
+    """
+    now = datetime.date.today()
+    if not text:
+        return ''
+    t = text.strip().lower()
+    # "昨天", "前天", "X天前", "X小时前"
+    m = re.search(r'(\d+)\s*(?:天前|天以前|days?\s*ago)', t)
+    if m:
+        return (now - datetime.timedelta(days=int(m.group(1)))).isoformat()
+    if '昨天' in t or 'yesterday' in t:
+        return (now - datetime.timedelta(days=1)).isoformat()
+    if '前天' in t:
+        return (now - datetime.timedelta(days=2)).isoformat()
+    m = re.search(r'(\d+)\s*(?:小时前|hours?\s*ago)', t)
+    if m:
+        return now.isoformat()
+    # Explicit ISO / YYYY-MM-DD / YYYY.MM.DD / YYYY/MM/DD
+    m = re.search(r'(20\d{2})[.\-/](\d{1,2})[.\-/](\d{1,2})', t)
+    if m:
+        return f'{m.group(1)}-{int(m.group(2)):02d}-{int(m.group(3)):02d}'
+    # YYYY年MM月DD日
+    m = re.search(r'(20\d{2})年(\d{1,2})月(\d{1,2})日?', t)
+    if m:
+        return f'{m.group(1)}-{int(m.group(2)):02d}-{int(m.group(3)):02d}'
+    # YYYY年 (only year, no month)
+    m = re.search(r'(20\d{2})年', t)
+    if m:
+        return f'{m.group(1)}-01-01'
+    return ''
+
+
+def is_stale_kol_item(item: dict, max_age_days: int = 7) -> tuple[bool, str]:
+    """Check freshness. Returns (is_stale, reason_tag).
+
+    Rules:
+      1. Has published_at → parse; >max_age_days → STALE_KOL_ARTICLE
+      2. No published_at but evidence has year clue (e.g. "2024年", "2025年")
+         and year < current year → DATE_OLD_YEAR
+      3. No date at all → DATE_UNKNOWN (not stale, but lower confidence)
+    """
+    pub = (item.get('published_at') or '').strip()
+    evidence = (item.get('evidence') or '') + ' ' + (item.get('title') or '')
+
+    # Try published_at first
+    if pub:
+        parsed = _parse_relative_date(pub)
+        if not parsed:
+            # try raw ISO
+            parsed = pub[:10] if re.match(r'20\d{2}-\d{2}-\d{2}', pub) else ''
+        if parsed:
+            try:
+                pub_date = datetime.date.fromisoformat(parsed)
+                age = (datetime.date.today() - pub_date).days
+                if age > max_age_days:
+                    return True, 'STALE_KOL_ARTICLE'
+                if pub_date.year < datetime.date.today().year:
+                    return True, 'DATE_OLD_YEAR'
+            except (ValueError, TypeError):
+                pass
+
+    # Scan evidence/title for year clues
+    year_matches = re.findall(r'(20\d{2})年', evidence)
+    if year_matches:
+        max_old_year = max(int(y) for y in year_matches)
+        if max_old_year < datetime.date.today().year:
+            return True, 'DATE_OLD_YEAR'
+
+    # No date info at all
+    if not pub:
+        return False, 'DATE_UNKNOWN'
+
+    return False, ''
 
 
 def run_cmd(cmd: list[str], timeout: int = 30) -> tuple[int, str, str]:
@@ -210,43 +303,6 @@ def discover_ddgs(query: str, max_results: int = 3, timeout: int = 8) -> list[di
 
 
 
-def _resolve_weibo_uid(name: str, cookie_str: str) -> str:
-    """Resolve weibo username to UID via s.weibo.com user search."""
-    import urllib.request, urllib.parse
-    UA = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
-    q = urllib.parse.quote(name)
-    url = f'https://s.weibo.com/user?q={q}&Refer=weibo_user'
-    try:
-        req = urllib.request.Request(url, headers={
-            'User-Agent': UA, 'Cookie': cookie_str,
-            'Accept': 'text/html', 'Referer': 'https://weibo.com/',
-        })
-        resp = urllib.request.urlopen(req, timeout=15)
-        raw = resp.read().decode('utf-8', 'ignore')
-        # Extract UIDs from /u/NNNN links
-        uids = re.findall(r'/u/(\d{8,12})', raw)
-        if uids:
-            # Verify first candidate via profile API
-            for uid in dict.fromkeys(uids):  # dedupe preserving order
-                api = f'https://weibo.com/ajax/profile/info?uid={uid}'
-                req2 = urllib.request.Request(api, headers={
-                    'User-Agent': UA, 'Cookie': cookie_str,
-                    'Referer': f'https://weibo.com/u/{uid}',
-                })
-                try:
-                    resp2 = urllib.request.urlopen(req2, timeout=8)
-                    data = json.loads(resp2.read().decode('utf-8', 'ignore'))
-                    user = data.get('data', {}).get('user', {})
-                    screen_name = user.get('screen_name', '')
-                    followers = user.get('followers_count', 0)
-                    # Must match name and have significant following
-                    if (name in screen_name or screen_name in name) and followers > 10000:
-                        return uid
-                except Exception:
-                    continue
-    except Exception:
-        pass
-    return ''
 
 
 def _resolve_weibo_uid(name: str, cookie_str: str) -> str:
@@ -747,6 +803,28 @@ def infer_viewpoint(item: dict) -> str:
         '半导体': '半导体产业链', '中美': '中美博弈', '地缘': '地缘政治',
         '科技': '科技前沿', '量子': '量子科技', '航天': '航天探索',
         '出口管制': '贸易管制', '产业链': '产业链重构', '数据安全': '数据安全',
+        # P0: 科技突破/航天扩展
+        '手术': '科技突破', '机器人': '具身智能/机器人', '首飞': '航天探索',
+        '回收': '航天探索', '长征': '航天探索', '运载火箭': '航天探索',
+        '商业航天': '航天探索', '重复使用': '航天探索', '活体': '科技突破',
+        '精准': '科技突破', '微创': '科技突破', '外骨骼': '具身智能/机器人',
+        '仿生': '具身智能/机器人', '具身智能': '具身智能/机器人',
+        '可控回收': '航天探索', '垂直返回': '航天探索', '可复用': '航天探索',
+        # Domain expansion: 生物
+        '基因编辑': '生物科技', '脑机接口': '生物科技', '生物技术': '生物科技',
+        '生命科学': '生物科技', '合成生物学': '生物科技', '神经科学': '生物科技',
+        # Domain expansion: 航空
+        '战斗机': '航空工业', '航空发动机': '航空工业', '六代机': '航空工业',
+        'C919': '航空工业', '运20': '航空工业', '无人机': '航空/军事',
+        # Domain expansion: 材料
+        '超导': '材料科学', '新材料': '材料科学', '碳纤维': '材料科学',
+        '纳米': '材料科学', '稀土': '材料科学', '碳基材料': '材料科学',
+        # Domain expansion: 能源
+        '可控核聚变': '能源前沿', '核聚变': '能源前沿', 'ITER': '能源前沿',
+        '储能': '能源前沿', '光伏': '能源前沿', '氢能': '能源前沿', '碳中和': '能源前沿',
+        # Domain expansion: 军事
+        '导弹': '军事装备', '国防': '军事装备', '军备': '军事装备',
+        '航母': '军事装备', '潜艇': '军事装备',
     }
     for kw, tag in topic_map.items():
         if kw in text and tag not in tags:
@@ -760,7 +838,11 @@ def material_policy_tag(item: dict) -> str:
     text = (item.get('title', '') + ' ' + item.get('evidence', '')).lower()
     if item['account'].lower() in text:
         score += 2
-    if any(k in text for k in SIGNAL_KW):
+    # P0: count keyword hits, not just presence — 2+ hits = strong signal
+    kw_hits = sum(1 for k in SIGNAL_KW if k in text)
+    if kw_hits >= 2:
+        score += 3
+    elif kw_hits >= 1:
         score += 2
     if any(t in text for t in NOISE_TERMS):
         score -= 3
@@ -790,6 +872,9 @@ def _infer_chapter_target(it: dict) -> str:
 
 
 def _infer_confidence_score(it: dict) -> float:
+    # P0: stale items get 0.0
+    if it.get('failure_tag') in ('STALE_KOL_ARTICLE', 'DATE_OLD_YEAR'):
+        return 0.0
     score = 0.35
     if it.get('body_status') == 'fetched':
         score += 0.25
@@ -799,6 +884,9 @@ def _infer_confidence_score(it: dict) -> float:
         score += 0.1
     if it.get('platform') in ('wechat', 'bilibili', 'weibo', 'zhihu'):
         score += 0.05
+    # P0: DATE_UNKNOWN → lower ceiling
+    if it.get('failure_tag') == 'DATE_UNKNOWN':
+        score = min(score, 0.55)
     return round(min(score, 0.9), 2)
 
 
@@ -882,12 +970,30 @@ def main():
     mirofish_path = out_dir / 'platform_mirofish_feed_package.json'
     body_report_path = out_dir / 'body_fetch_report.json'
 
-    # load watchlist
+    # load watchlist (domain-slot v1 or legacy flat format)
     if not WATCH.exists():
         print(f'ERROR: watchlist not found: {WATCH}', file=sys.stderr)
         sys.exit(1)
     watch = json.loads(WATCH.read_text(encoding='utf-8'))
-    accounts = watch['accounts']
+
+    # Flatten domain-slot format → accounts list with domain_id tag
+    if 'domains' in watch:
+        accounts = []
+        domain_map = {}  # domain_id → list of account names
+        for dom in watch['domains']:
+            did = dom['domain_id']
+            domain_map[did] = []
+            for acc in dom['accounts']:
+                acc_flat = dict(acc)
+                acc_flat['domain_id'] = did
+                acc_flat['domain_name'] = dom['domain_name']
+                accounts.append(acc_flat)
+                domain_map[did].append(acc['name'])
+    else:
+        # Legacy flat format fallback
+        accounts = watch['accounts']
+        domain_map = {}
+
     if args.limit > 0:
         accounts = accounts[:args.limit]
 
@@ -955,6 +1061,9 @@ def main():
                 item['source_route'] = h.get('_route', 'unknown')
                 item['discovery_status'] = 'discovered'
                 item['failure_tag'] = ''
+                # Tag with domain_id from watchlist
+                item['domain_id'] = acc.get('domain_id', '')
+                item['domain_name'] = acc.get('domain_name', '')
 
                 # score for noise filter
                 sc = score_item(name, plat, h)
@@ -1050,7 +1159,15 @@ def main():
     for it in all_items:
         if it.get('viewpoint_inference', '') in ('', '待模型审'):
             it['viewpoint_inference'] = infer_viewpoint(it)
-        it['material_policy'] = material_policy_tag(it)
+        # P0: freshness gate — must run BEFORE material_policy_tag
+        stale, reason = is_stale_kol_item(it, max_age_days=7)
+        if stale:
+            it['material_policy'] = 'NOISE'
+            it['failure_tag'] = reason
+        else:
+            if reason == 'DATE_UNKNOWN':
+                it['failure_tag'] = 'DATE_UNKNOWN'
+            it['material_policy'] = material_policy_tag(it)
 
     # ── D. Save platform_discovery.json ──
     stats = {
@@ -1064,6 +1181,9 @@ def main():
         'platform_signal': sum(1 for i in all_items if i.get('material_policy') == 'PLATFORM_SIGNAL'),
         'discovery_only': sum(1 for i in all_items if i.get('material_policy') == 'DISCOVERY_ONLY'),
         'noise': sum(1 for i in all_items if i.get('material_policy') == 'NOISE'),
+        # P0: freshness stats
+        'stale_filtered': sum(1 for i in all_items if i.get('failure_tag') in ('STALE_KOL_ARTICLE', 'DATE_OLD_YEAR')),
+        'date_unknown': sum(1 for i in all_items if i.get('failure_tag') == 'DATE_UNKNOWN'),
     }
 
     discovery_doc = {
@@ -1085,7 +1205,84 @@ def main():
     body_report_path.write_text(json.dumps(body_report, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     print(f'[body_report] attempts={body_report["attempts"]} success={body_report["success"]} fail={body_report["fail"]} skipped={body_report["skipped_non_article"]} → {body_report_path}')
 
-    # ── E. MiroFish Feed Package ──
+    # ── E. Domain Coverage Gate (replaces old sidecar health gate) ──
+    # Track results per domain
+    domain_results = {}  # domain_id → set of account names with results
+    accounts_with_results = set()
+    for it in all_items:
+        if it.get('material_policy') in ('PLATFORM_SIGNAL', 'DISCOVERY_ONLY'):
+            acc_name = it.get('account', '')
+            accounts_with_results.add(acc_name)
+            did = it.get('domain_id', '')
+            if did:
+                domain_results.setdefault(did, set()).add(acc_name)
+            else:
+                # Legacy: infer domain from account→domain_map
+                for d_id, acc_names in domain_map.items():
+                    if acc_name in acc_names:
+                        domain_results.setdefault(d_id, set()).add(acc_name)
+
+    total_accounts = len(accounts)
+    domains_with_results = len(domain_results)
+    total_domains = len(domain_map) if domain_map else 1
+
+    stale_platform = sum(
+        1 for i in all_items
+        if i.get('material_policy') == 'PLATFORM_SIGNAL'
+        and i.get('failure_tag') in ('STALE_KOL_ARTICLE', 'DATE_OLD_YEAR')
+    )
+
+    # Domain coverage gate: 9-domain Dyson tree
+    coverage_gate = watch.get('ingest_rules', {}).get('domain_coverage_gate', {})
+    min_domains = coverage_gate.get('min_domains_with_results', 2)
+    min_accounts_total = coverage_gate.get('min_accounts_with_results_total', 3)
+
+    # Determine health status
+    failure_tags = []
+    if domains_with_results < min_domains:
+        failure_tags.append(f'DOMAINS_ONLY_{domains_with_results}_of_{total_domains}')
+    if len(accounts_with_results) < min_accounts_total:
+        failure_tags.append(f'ACCOUNTS_ONLY_{len(accounts_with_results)}_WITH_RESULTS')
+    if stale_platform > 0:
+        failure_tags.append(f'STALE_PLATFORM={stale_platform}')
+
+    silent_domains = [did for did in domain_map if did not in domain_results]
+
+    if failure_tags:
+        sidecar_health = 'PARTIAL'
+        sidecar_health_reason = '; '.join(failure_tags)
+        # Inject into ACTION_QUEUE
+        action_queue_entry = {
+            'type': 'KOL_DOMAIN_COVERAGE_GAP',
+            'created_at': now_iso(),
+            'failure_tags': failure_tags,
+            'silent_domains': silent_domains,
+            'domains_with_results': list(domain_results.keys()),
+            'accounts_with_results': list(accounts_with_results),
+        }
+        action_queue_path = out_dir / 'action_queue.jsonl'
+        with open(action_queue_path, 'a', encoding='utf-8') as aqf:
+            aqf.write(json.dumps(action_queue_entry, ensure_ascii=False) + '\n')
+        print(f'[ACTION_QUEUE] {sidecar_health_reason}')
+    elif stale_platform > 0:
+        sidecar_health = 'ACTION'
+        sidecar_health_reason = f'stale_PLATFORM={stale_platform} > 0'
+    else:
+        sidecar_health = 'HEALTHY'
+        sidecar_health_reason = ''
+
+    stats['coverage_pct'] = round(100 * len(accounts_with_results) / total_accounts) if total_accounts else 0
+    stats['stale_platform'] = stale_platform
+    stats['accounts_with_results'] = len(accounts_with_results)
+    stats['domains_total'] = total_domains
+    stats['domains_with_results'] = domains_with_results
+    stats['silent_domains'] = silent_domains
+    stats['domain_coverage_detail'] = {did: len(accs) for did, accs in domain_results.items()}
+    stats['sidecar_health'] = sidecar_health
+    stats['sidecar_health_reason'] = sidecar_health_reason
+    print(f'[health_gate] domains={domains_with_results}/{total_domains} accounts={len(accounts_with_results)}/{total_accounts} stale_PLATFORM={stale_platform} → {sidecar_health}')
+
+    # ── E2. MiroFish Feed Package ──
     if not args.dry_run_mirofish:
         mf = build_mirofish_package(all_items)
         mirofish_path.parent.mkdir(parents=True, exist_ok=True)
@@ -1109,6 +1306,13 @@ def main():
         f'- discovery_only: {stats["discovery_only"]}',
         f'- noise: {stats["noise"]}',
         f'- errors: {stats["errors"]}',
+        f'- stale_filtered: {stats.get("stale_filtered", 0)}',
+        f'- date_unknown: {stats.get("date_unknown", 0)}',
+        f'- coverage_pct: {stats.get("coverage_pct", 0)}%',
+        f'- domains_with_results: {stats.get("domains_with_results", 0)}/{stats.get("domains_total", 0)}',
+        f'- silent_domains: {", ".join(stats.get("silent_domains", [])) or "none"}',
+        f'- sidecar_health: **{stats.get("sidecar_health", "N/A")}**',
+        f'- sidecar_health_reason: {stats.get("sidecar_health_reason", "")}',
         '',
         '## 平台信号',
     ]

@@ -22,12 +22,19 @@ PROJECT = Path('/root/workspace/科武纪元')
 DEFAULT_DIRS = [PROJECT / '已投稿', PROJECT / '新版']
 
 PATTERNS = {
-    'NOT_BUT_HARD': re.compile(r'不是[^。！？\n]{0,100}而是'),
+    'NOT_BUT_HARD': re.compile(r'(不是[^。！？\n]{0,100}而是|并非[^。！？\n]{0,100}而是|不在于[^。！？\n]{0,100}而在于|不只是[^。！？\n]{0,100}更是|不仅[^。！？\n]{0,100}(还|更)|与其[^。！？\n]{0,100}不如)'),
     'NUM_ENUM_HARD': re.compile(r'(^|[。！？\n]\s*)\d{1,2}[、.．：:]'),
     'CN_ENUM_HARD': re.compile(r'(^|[。！？\n]\s*)[一二三四五六七八九十][、.．：:]'),
     'META_INFO_HARD': re.compile(r'(下一章|第\d+章|第[一二三四五六七八九十]+章|第\d+卷|第[一二三四五六七八九十]+卷|后续篇章|第二卷后半段)'),
-    'REPORT_TONE_SOFT': re.compile(r'(公文|汇报|本质上|换句话说|这意味着|分为|层面|维度|路径|机制|核心是|更重要的是|首先|其次|最后)'),
-    'LAYER_LABEL_SOFT': re.compile(r'(首先|其次|最后|第一|第二|第三|一方面|另一方面|核心是|本质是|意味着|换句话说|更重要的是)'),
+    'COMMAND_OPENING_HARD': re.compile(r'(别急着[^。！？\n]{0,40}先|先别[^。！？\n]{0,40}先|别[^。！？\n]{0,40}先|顺序别反了|别搞反了|记住这句话)'),
+    'LECTURE_COLON_HARD': re.compile(r'(我的结论是：|原因很简单：|重点是：|分成三类：|更重要的是：)'),
+    'FAKE_INSIGHT_SOFT': re.compile(r'(真正|其实|本质上|说白了|归根结底|更重要的是|这说明|这背后|结果有点出乎意料|核心是|关键是|这意味着)'),
+    'VAGUE_REFERENT_SOFT': re.compile(r'(这个东西|这些东西|这件事|这一类|几个方向)'),
+    'TENSE_MISMATCH_SOFT': re.compile(r'(我会用|我会先|我接下来会用|下一步我会用)'),
+    'VAGUE_COMPARISON_SOFT': re.compile(r'(更适合|更像|更自然|更高级)'),
+    'SLOGAN_ENDING_SOFT': re.compile(r'(能力飞轮|上下文燃料|时代分水岭|新的分水岭|作者痕迹|把判断盖住|差距会突然变得很难看|差距会被迅速拉开)'),
+    'REPORT_TONE_SOFT': re.compile(r'(公文|汇报|换句话说|分为|层面|维度|路径|机制|首先|其次|最后)'),
+    'LAYER_LABEL_SOFT': re.compile(r'(首先|其次|最后|第一|第二|第三|一方面|另一方面|宏观上|中观上|微观上|战略层|战术层|操作层)'),
 }
 
 WEIGHTS = {
@@ -35,6 +42,13 @@ WEIGHTS = {
     'NUM_ENUM_HARD': 5,
     'CN_ENUM_HARD': 5,
     'META_INFO_HARD': 9,
+    'COMMAND_OPENING_HARD': 5,
+    'LECTURE_COLON_HARD': 5,
+    'FAKE_INSIGHT_SOFT': 2,
+    'VAGUE_REFERENT_SOFT': 1,
+    'TENSE_MISMATCH_SOFT': 2,
+    'VAGUE_COMPARISON_SOFT': 1,
+    'SLOGAN_ENDING_SOFT': 2,
     'REPORT_TONE_SOFT': 2,
     'LAYER_LABEL_SOFT': 1,
 }
@@ -62,8 +76,8 @@ def scan_file(path: Path) -> dict:
         if not line.strip():
             continue
         for typ, pat in PATTERNS.items():
-            # 标题行“第X章 标题”是合法格式，不算章节元信息。
-            if typ == 'META_INFO_HARD' and i == 1 and re.match(r'^第\d+章\s+', line.strip()):
+            # 标题行“第X章 标题”/“# 第X章 标题”是合法格式，不算章节元信息。
+            if typ == 'META_INFO_HARD' and i == 1 and re.match(r'^#?\s*第\d+章\s+', line.strip()):
                 continue
             if pat.search(line):
                 hits.append({'line': i, 'type': typ, 'text': line.strip()[:260]})

@@ -1,4 +1,19 @@
 
+
+## 2026-07-12 01:48｜正式生产补跑与下游消费
+- 动作：打开社媒助手隔离Chrome中的B站戴森球主题页；正式跑KOL九域雷达；对SenseNova `cron_20260712_0110` 执行正式MiroFish Bridge；执行material_bus_ingest、queue_runner、orchestrator。
+- 结果：KOL 9/9域HEALTHY，35张MiroFish候选；素材总线新增30张；SenseNova Bridge 4张决策卡（0改纲/1准备包/3归档）；相关队列均ACK，未ACK科武ACTION=0。
+- 证据：`学习记录/平台号观点雷达/runs/sidecar_20260712_0140/`、`自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260712_0110_final/`、`/root/workspace/素材总线/kewu/dashboard.md`。
+
+## 2026-07-12 00:48｜素材采集双线审计修复与生产回放
+- 任务：审计并实跑 SenseNova 主线、KOL/平台号雷达线；接入社媒助手 Chrome CDP 9224 作为安全补充采集能力。
+- 代码修复：`kewu_domain_scorer.py` 增 latest 大纲解析/动态章节映射/戴森门禁；`sensenova_split_pipeline_runner.py` D段无戴森候选归档并输出解析统计；`platform_radar_v2_20260622.py` 接评分器、9域健康矩阵、CDP只读探测与既有平台页可见文本补充；测试同步更新。
+- 验证：deps PASS；py_compile PASS；ontology 110/0；KOL fixture 49/0；SenseNova P0 76/0；domestic body fetch PASS。
+- 生产证据：SenseNova `20260712_002357` 180秒小样只完成A/F，状态PARTIAL；D段门禁回放 `codex_audit_gate_replay_20260712_0042` 解析 latest 383章，2候选=1正式戴森命中+1无戴森归档。
+- KOL证据：9账号样本 `codex_audit_small_20260712_0027` 超时300s，仅写CDP probe；2账号完整小样 `codex_audit_small_20260712_0034` 写 discovery/body/summary/CDP，body_fetched=9，sidecar_health=PARTIAL，domains=1/9，缺失域8，不称HEALTHY。
+- CDP边界：`http://127.0.0.1:9224` 可用，扩展页存在但无公开采集API，平台页0；只读探测，不读Cookie/Token，不导航/互动/发布。
+- 产物：`AUDIT_AND_FIX_REPORT.md`、`PRODUCTION_REPLAY_REPORT.md`。未改正文/大纲/已投稿TXT/草稿箱；未git提交。
+
 ## 2026-07-04 16:41｜队列断点接管与清账
 - 状态: QUEUE_CONSUMED_PARTIAL_FIXED
 - 已清: 0257/0343/0644 G2_REQUIRED；0944/1244/1544 CHAPTER_PREP_ONLY。
@@ -1703,3 +1718,52 @@
 
 ### 2026-07-11 08:31
 - ch198 repair2 PASS + TXT + draftbox saved
+
+### 2026-07-13 18:02
+- 同步章节 199
+
+### 2026-07-13 18:12
+- 同步章节 200
+
+## 2026-07-13 18:24｜第199—200章草稿箱闭环
+- 状态: DONE_DRAFT_SAVED_NOT_PUBLISHED
+- 第199章《算力夺控》: 草稿箱列表命中，4297字，第四卷：登月。
+- 第200章《散热网络》: 草稿箱列表命中，4221字，第四卷：登月。
+- 登录: 用户提供Cookie后恢复；状态档案权限600。
+- 边界: 仅保存草稿箱，未正式发布。
+
+### 2026-07-14 08:52
+- 同步章节 201
+
+### 2026-07-14 11:29
+- 同步章节 202
+
+### 2026-07-14 14:03
+- 同步章节 202
+
+### 2026-07-14 14:05
+- 同步章节 202
+
+### 2026-07-14 19:21
+- 同步章节 203
+
+### 2026-07-14 22:56
+- 同步章节 204
+
+### 2026-07-15 07:01
+- 同步章节 204
+
+### 2026-07-15 07:04
+- 同步章节 204
+
+### 2026-07-16 00:32
+- 同步章节 205
+
+### 2026-07-16 02:03
+- 同步章节 206
+
+### 2026-07-16 02:18
+- 同步章节 206
+
+### 2026-07-16 02:18
+- ch206 repair2 writeback+TXT+草稿箱覆盖(repair1残留草稿待清理)

@@ -219,9 +219,10 @@ for it in items:
                     domain_results.setdefault(d_id, set()).add(acc_name)
 
 domains_with_results = len(domain_results)
-# In fixture: frontier_tech, geopolitics, space, materials, military, energy = 6 domains
+# In fixture: frontier_tech, geopolitics, space, materials, military, energy = 6 domains.
+# This is useful coverage but must not be called HEALTHY under the 9-domain gate.
 if domains_with_results >= 2:
-    ok(f'domain_coverage={domains_with_results}/{len(domain_map)} domains (≥2)')
+    ok(f'domain_coverage={domains_with_results}/{len(domain_map)} domains (fixture partial, not HEALTHY)')
 else:
     fail('domain_coverage', f'only {domains_with_results} domains')
 
@@ -266,7 +267,7 @@ else:
 
 # 4g. Health verdict
 coverage_gate = wl.get('ingest_rules', {}).get('domain_coverage_gate', {})
-min_domains = coverage_gate.get('min_domains_with_results', 2)
+min_domains = len(domain_map)
 min_accounts_total = coverage_gate.get('min_accounts_with_results_total', 3)
 
 failure_tags = []
@@ -277,11 +278,12 @@ if len(accounts_with_results) < min_accounts_total:
 if stale_platform > 0:
     failure_tags.append(f'STALE_PLATFORM={stale_platform}')
 
-if failure_tags:
-    health = 'PARTIAL'
-else:
-    health = 'HEALTHY'
+health = 'PARTIAL' if failure_tags else 'HEALTHY'
 ok(f'sidecar_health={health} (domains={domains_with_results}/{len(domain_map)}, accounts={len(accounts_with_results)}/{total_accounts}, stale_PLATFORM={stale_platform})')
+if domains_with_results < len(domain_map) and health != 'HEALTHY':
+    ok('less than 9/9 domains is not HEALTHY')
+else:
+    fail('9-domain health gate', f'domains={domains_with_results}, health={health}')
 
 
 # ── 5. Watchlist domain-slot structure ──
@@ -293,7 +295,7 @@ domain_names = [d['domain_name'] for d in domains]
 
 # 5a. Must have 9 domains
 expected_domains = ['frontier_tech', 'geopolitics', 'biology', 'space', 'aviation',
-                    'artificial_intelligence', 'military', 'materials', 'energy']
+                    'ai', 'military', 'materials', 'energy']
 for ed in expected_domains:
     if ed in domain_ids:
         ok(f'domain: {ed}')
@@ -384,12 +386,10 @@ if len(fake_accounts) < min_accounts_total:
 else:
     fail('2 accounts PARTIAL', 'should trigger')
 
-# 6c. Sufficient coverage → HEALTHY
+# 6c. Only full 9-domain coverage → HEALTHY
 fake_items_ok = [
-    {'account': 'A', 'domain_id': 'd1', 'material_policy': 'PLATFORM_SIGNAL'},
-    {'account': 'B', 'domain_id': 'd1', 'material_policy': 'PLATFORM_SIGNAL'},
-    {'account': 'C', 'domain_id': 'd2', 'material_policy': 'PLATFORM_SIGNAL'},
-    {'account': 'D', 'domain_id': 'd3', 'material_policy': 'PLATFORM_SIGNAL'},
+    {'account': f'A{i}', 'domain_id': did, 'material_policy': 'PLATFORM_SIGNAL'}
+    for i, did in enumerate(domain_map.keys(), start=1)
 ]
 fake_domain_results_ok = {}
 fake_accounts_ok = set()
@@ -397,7 +397,7 @@ for it in fake_items_ok:
     fake_domain_results_ok.setdefault(it['domain_id'], set()).add(it['account'])
     fake_accounts_ok.add(it['account'])
 if len(fake_domain_results_ok) >= min_domains and len(fake_accounts_ok) >= min_accounts_total:
-    ok('4 accounts 3 domains → HEALTHY')
+    ok('9 domains → HEALTHY')
 else:
     fail('sufficient coverage', f'domains={len(fake_domain_results_ok)}, accounts={len(fake_accounts_ok)}')
 

@@ -1,0 +1,217 @@
+[
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260715_339e857699",
+    "source_url": "https://www.nasa.gov/image-article/nasa-astronaut-anil-menon",
+    "title": "NASA Astronaut Anil Menon",
+    "captured_at": "2026-07-15T02:24:28",
+    "source_group": "overseas",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260715_0210/cards/NASA_Astronaut_Anil_Menon_6c47153b.md",
+    "body_fetch_evidence": {
+      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260715_0210/raw/body_fetch_report.json",
+      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260715_0210/raw/bodies/NASA_Astronaut_Anil_Menon_6c47153b00978645.txt",
+      "candidate_id": "6c47153b00978645",
+      "status": "BODY_FETCHED",
+      "counts_as_body_success": true,
+      "source_role": "primary_official",
+      "source_confidence": ""
+    },
+    "title_body_mismatch": true,
+    "evidence_complete": true,
+    "duplicate_check": {
+      "duplicate": false,
+      "reason": ""
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "主控",
+          "reaction": "归档备查；不进入G2/G3。",
+          "wiki_ref": "时事素材/归档"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "expo_event",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "low"
+        }
+      ],
+      "chapter_hooks": [],
+      "outline_delta_candidate": {
+        "type": "red_line",
+        "target_chapter": 0,
+        "proposed_addition": "",
+        "not_proposed": "展会/航展/博览会文，低技术突破增益，归档。"
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": false,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "ARCHIVE_WITH_REASON",
+    "disposition_reason": "展会/航展/博览会文，低技术突破增益，归档。",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-07-15T02:24:28",
+    "bridge_policy": "bridge_artifacts_only_no_production_write"
+  },
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260715_18d73b0b52",
+    "source_url": "https://www.esa.int/Science_Exploration/Human_and_Robotic_Exploration/Artemis_II_astronauts_visit_ESA",
+    "title": "Artemis II astronauts visit ESA",
+    "captured_at": "2026-07-15T02:24:28",
+    "source_group": "overseas",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260715_0210/cards/Artemis_II_astronauts_visit_ESA_25e7a19b.md",
+    "body_fetch_evidence": {
+      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260715_0210/raw/body_fetch_report.json",
+      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260715_0210/raw/bodies/Artemis_II_astronauts_visit_ESA_25e7a19b80fa89d5.txt",
+      "candidate_id": "25e7a19b80fa89d5",
+      "status": "BODY_FETCHED",
+      "counts_as_body_success": true,
+      "source_role": "primary_official",
+      "source_confidence": ""
+    },
+    "title_body_mismatch": true,
+    "evidence_complete": false,
+    "duplicate_check": {
+      "duplicate": true,
+      "reason": "TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY"
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "主控",
+          "reaction": "归档备查；不进入G2/G3。",
+          "wiki_ref": "时事素材/归档"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "space_chain",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "low"
+        }
+      ],
+      "chapter_hooks": [],
+      "outline_delta_candidate": {
+        "type": "red_line",
+        "target_chapter": 0,
+        "proposed_addition": "",
+        "not_proposed": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY"
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": false,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "ARCHIVE_WITH_REASON",
+    "disposition_reason": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-07-15T02:24:28",
+    "bridge_policy": "bridge_artifacts_only_no_production_write"
+  },
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260715_09cc93c105",
+    "source_url": "https://arxiv.org/abs/2607.09664",
+    "title": "From ML Predictions to Informed Diagnostic Assistance Using the Toulmin Model of Argumentation",
+    "captured_at": "2026-07-15T02:24:28",
+    "source_group": "overseas",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260715_0210/cards/From_ML_Predictions_to_Informed_Diagnostic_Assista_11225207.md",
+    "body_fetch_evidence": {
+      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260715_0210/raw/body_fetch_report.json",
+      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260715_0210/raw/bodies/From_ML_Predictions_to_Informed_Diagnost_112252077fbde269.txt",
+      "candidate_id": "112252077fbde269",
+      "status": "BODY_FETCHED",
+      "counts_as_body_success": true,
+      "source_role": "primary_official",
+      "source_confidence": ""
+    },
+    "title_body_mismatch": true,
+    "evidence_complete": true,
+    "duplicate_check": {
+      "duplicate": false,
+      "reason": ""
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "联邦/白盾体系",
+          "reaction": "把「From ML Predictions to Informed 」作为技术或制度压力测试变量，而非剧情事实照搬。",
+          "wiki_ref": "wiki/factions"
+        },
+        {
+          "force": "主角团/工程线",
+          "reaction": "只吸收可测反馈、失败模式、成本约束；不写成万能外挂。",
+          "wiki_ref": "wiki/characters"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "bio_governance",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "medium"
+        }
+      ],
+      "chapter_hooks": [
+        {
+          "hook_id": "ch359_bb6015f9",
+          "description": "生物伦理/人才争夺/科研治理素材，可作后续章节准备。 来源题名：From ML Predictions to Informed Diagnostic Assistance Using the Toulmin Model of Argumentation",
+          "suitable_chapters": [
+            359
+          ],
+          "reversal": "仅作细节/变量，不直接改变既有章节功能。"
+        }
+      ],
+      "outline_delta_candidate": {
+        "type": "red_line",
+        "target_chapter": 359,
+        "proposed_addition": "",
+        "not_proposed": "生物伦理/人才争夺/科研治理素材，可作后续章节准备。"
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": false,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "CHAPTER_PREP_ONLY",
+    "disposition_reason": "生物伦理/人才争夺/科研治理素材，可作后续章节准备。",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-07-15T02:24:28",
+    "bridge_policy": "bridge_artifacts_only_no_production_write"
+  }
+]

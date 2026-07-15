@@ -1,0 +1,18 @@
+{
+  "updated_at": "2026-07-15T20:26:45",
+  "run_id": "cron_20260715_2010",
+  "run_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260715_2010",
+  "per_run_bridge_dir": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260715_2010_final/bridge_runs/cron_20260715_2010",
+  "valid_input_count": 5,
+  "skipped_count": 121,
+  "disposition_counts": {
+    "OUTLINE_PATCH": 1,
+    "CHAPTER_PREP_ONLY": 1,
+    "ARCHIVE_WITH_REASON": 3
+  },
+  "conversion_task_count": 1,
+  "missing_cards_by_tier": {},
+  "p0_missing": false,
+  "p0_missing_cards": [],
+  "report": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260715_2010_final/DRY_RUN_REPORT.md"
+}

@@ -11,6 +11,8 @@ from __future__ import annotations
 
 import datetime as dt
 import re
+from functools import lru_cache
+from pathlib import Path
 from typing import Any
 
 from kewu_domain_ontology import (
@@ -28,6 +30,8 @@ from kewu_domain_ontology import (
     get_domain_for_keywords,
     is_noise_domain,
 )
+
+DEFAULT_OUTLINE_PATH = Path('/root/workspace/科武纪元/wiki/raw/outline/科武纪元大纲_latest.md')
 
 
 # ═══════════════════════════════════════════════
@@ -112,6 +116,132 @@ def compose_domain_queries(
     return queries
 
 
+# ═══════════════════════════════════════════════
+# 1b. latest 大纲动态解析
+# ═══════════════════════════════════════════════
+
+def _clean_outline_field(value: str) -> str:
+    return re.sub(r'\s+', ' ', value or '').strip(' |｜\t\r\n')
+
+
+def _extract_outline_title(fragment: str) -> str:
+    parts = [_clean_outline_field(p) for p in re.split(r'[|｜]', fragment) if _clean_outline_field(p)]
+    if not parts:
+        return ''
+    if len(parts) >= 2 and ('卷' in parts[0] or re.search(r'第[一二三四五六七八九十百\d]+卷', parts[0])):
+        return parts[1][:80]
+    return parts[0][:80]
+
+
+@lru_cache(maxsize=8)
+def parse_latest_outline(outline_path: str = str(DEFAULT_OUTLINE_PATH)) -> dict[str, Any]:
+    """Parse the current latest outline and return chapter records.
+
+    The outline has historical notes and some table rows containing multiple
+    chapters on one line, so parsing is occurrence-based rather than line-based.
+    """
+    path = Path(outline_path)
+    text = path.read_text(encoding='utf-8', errors='ignore') if path.exists() else ''
+    chapters: dict[int, dict[str, Any]] = {}
+    matches = list(re.finditer(r'第\s*(\d{1,3})\s*章', text))
+    for idx, match in enumerate(matches):
+        chapter = int(match.group(1))
+        next_start = matches[idx + 1].start() if idx + 1 < len(matches) else len(text)
+        line_end = text.find('\n', match.start(), next_start)
+        end = min(x for x in [next_start, line_end if line_end != -1 else next_start] if x >= match.start())
+        fragment = text[match.end():end]
+        title = _extract_outline_title(fragment)
+        context = _clean_outline_field(text[match.start():min(next_start, match.start() + 900)])
+        previous = chapters.get(chapter)
+        if previous and len(previous.get('context', '')) >= len(context):
+            continue
+        chapters[chapter] = {
+            'chapter': chapter,
+            'title': title,
+            'context': context,
+        }
+    return {
+        'outline_path': str(path),
+        'chapter_count': len(chapters),
+        'chapters': chapters,
+    }
+
+
+def outline_parse_stats(outline_path: str = str(DEFAULT_OUTLINE_PATH)) -> dict[str, Any]:
+    parsed = parse_latest_outline(outline_path)
+    return {
+        'outline_path': parsed['outline_path'],
+        'chapter_count': parsed['chapter_count'],
+    }
+
+
+def match_outline_chapters(
+    text: str,
+    domain_ids: list[str] | None = None,
+    outline_path: str = str(DEFAULT_OUTLINE_PATH),
+    limit: int = 8,
+) -> list[dict[str, Any]]:
+    """Match candidate text to latest-outline chapters by ontology terms.
+
+    Static domain chapter lists are used only as a weak fallback after the
+    latest outline has been parsed and verified to contain those chapters.
+    """
+    parsed = parse_latest_outline(outline_path)
+    chapters: dict[int, dict[str, Any]] = parsed.get('chapters', {})
+    blob = (text or '').lower()
+    if not blob or not chapters:
+        return []
+
+    domain_ids = domain_ids or [d for d, _ in get_domain_for_keywords(text)]
+    candidate_terms: list[tuple[str, str]] = []
+    for domain_id in domain_ids:
+        domain = STABLE_DOMAINS.get(domain_id, {})
+        for kw in domain.get('query_keywords', []) + domain.get('tech_institution_chars', []) + domain.get('plot_threads', []):
+            if kw and kw.lower() in blob:
+                candidate_terms.append((domain_id, kw))
+    for node_id, node in DYSON_SPHERE_CAPABILITY_TREE.items():
+        for kw in node.get('keywords', []):
+            if kw and kw.lower() in blob:
+                candidate_terms.append((f'dyson:{node_id}', kw))
+
+    hits: dict[int, dict[str, Any]] = {}
+    for chapter, rec in chapters.items():
+        ctx = f"{rec.get('title', '')} {rec.get('context', '')}".lower()
+        matched_terms = []
+        matched_domains = set()
+        for domain_id, kw in candidate_terms:
+            if kw.lower() in ctx:
+                matched_terms.append(kw)
+                if not domain_id.startswith('dyson:'):
+                    matched_domains.add(domain_id)
+        if matched_terms:
+            hits[chapter] = {
+                'chapter': chapter,
+                'title': rec.get('title', ''),
+                'score': len(set(matched_terms)) * 2 + len(matched_domains),
+                'matched_terms': sorted(set(matched_terms))[:10],
+                'matched_domains': sorted(matched_domains),
+                'mapping_source': 'latest_outline_keyword',
+            }
+
+    # Weak fallback: domain lists are accepted only against parsed latest chapters.
+    for domain_id in domain_ids:
+        domain = STABLE_DOMAINS.get(domain_id, {})
+        for chapter in domain.get('outline_chapters', []):
+            if chapter not in chapters or chapter in hits:
+                continue
+            hits[chapter] = {
+                'chapter': chapter,
+                'title': chapters[chapter].get('title', ''),
+                'score': 0.5,
+                'matched_terms': [],
+                'matched_domains': [domain_id],
+                'mapping_source': 'latest_outline_static_domain_fallback',
+            }
+
+    return sorted(hits.values(), key=lambda h: (-float(h['score']), int(h['chapter'])))[:limit]
+
+
 def generate_followup_queries(entities: dict[str, list[str]], domain_ids: list[str]) -> list[dict[str, Any]]:
     """基于动态抽取的实体生成二次查询。
 
@@ -162,6 +292,7 @@ def generate_followup_queries(entities: dict[str, list[str]], domain_ids: list[s
 def score_item_domain_aware(
     item: dict[str, Any],
     outline_chapter_set: set[int] | None = None,
+    outline_path: str = str(DEFAULT_OUTLINE_PATH),
 ) -> dict[str, Any]:
     """对素材卡进行域感知评分。
 
@@ -182,8 +313,12 @@ def score_item_domain_aware(
     breakdown: dict[str, float] = {}
     domain_hits: list[tuple[str, float]] = []
     outline_hits: list[int] = []
+    outline_match_details: list[dict[str, Any]] = []
     tech_institution_hits: list[str] = []
     character_plot_hits: list[str] = []
+    parsed_outline = parse_latest_outline(outline_path)
+    if outline_chapter_set is None:
+        outline_chapter_set = set(parsed_outline.get('chapters', {}).keys())
 
     # --- 噪声检查（先检查，命中直接返回） ---
     is_noise, noise_reason = is_noise_domain(blob)
@@ -195,6 +330,8 @@ def score_item_domain_aware(
             'noise_flag': True,
             'noise_reason': noise_reason,
             'outline_chapter_hits': [],
+            'outline_match_details': [],
+            'outline_parse': outline_parse_stats(outline_path),
             'tech_institution_hits': [],
             'character_plot_hits': [],
         }
@@ -210,12 +347,15 @@ def score_item_domain_aware(
 
     # --- 大纲章节命中 ---
     if outline_chapter_set:
-        for domain_id, _ in domain_hits:
-            domain = STABLE_DOMAINS.get(domain_id, {})
-            for ch in domain.get('outline_chapters', []):
-                if ch in outline_chapter_set:
-                    if ch not in outline_hits:
-                        outline_hits.append(ch)
+        outline_match_details = match_outline_chapters(
+            blob,
+            [domain_id for domain_id, _ in domain_hits],
+            outline_path=outline_path,
+        )
+        outline_hits = [
+            int(hit['chapter']) for hit in outline_match_details
+            if int(hit['chapter']) in outline_chapter_set
+        ]
     breakdown['outline_chapter_hit'] = min(len(outline_hits), 5.0) * (
         SCORING_WEIGHTS['outline_chapter_hit'] / 5.0
     )
@@ -269,6 +409,8 @@ def score_item_domain_aware(
         'noise_flag': False,
         'noise_reason': '',
         'outline_chapter_hits': outline_hits[:5],
+        'outline_match_details': outline_match_details[:5],
+        'outline_parse': outline_parse_stats(outline_path),
         'tech_institution_hits': tech_institution_hits[:5],
         'character_plot_hits': character_plot_hits[:5],
     }
@@ -404,7 +546,7 @@ def _is_stale_by_date(published_at: str, max_age_days: int) -> bool:
 # 5. 戴森球能力树匹配
 # ═══════════════════════════════════════════════
 
-def match_dyson_tree(text: str) -> list[dict[str, Any]]:
+def match_dyson_tree(text: str, outline_chapter_hits: list[int] | None = None) -> list[dict[str, Any]]:
     """匹配文本与戴森球能力树节点。
 
     Returns:
@@ -413,17 +555,21 @@ def match_dyson_tree(text: str) -> list[dict[str, Any]]:
     text_lower = text.lower()
     matches: list[dict[str, Any]] = []
 
+    outline_chapter_hits = outline_chapter_hits or []
     for node_id, node in DYSON_SPHERE_CAPABILITY_TREE.items():
         kw_hits = [kw for kw in node['keywords'] if kw.lower() in text_lower]
-        if kw_hits:
+        chapter_hits = [ch for ch in outline_chapter_hits if ch in node.get('outline_chapters', [])]
+        if kw_hits or chapter_hits:
             matches.append({
                 'node_id': node_id,
                 'label': node['label'],
                 'level': node['level'],
                 'keyword_hits': kw_hits[:5],
+                'chapter_hits': chapter_hits[:5],
                 'outline_chapters': node.get('outline_chapters', []),
                 'tech_constraints': node.get('tech_constraints', []),
                 'depends_on': node.get('depends_on', []),
+                'match_source': 'keyword' if kw_hits else 'latest_outline_chapter',
             })
 
     return matches
@@ -437,6 +583,7 @@ def score_and_classify_item(
     item: dict[str, Any],
     outline_chapter_set: set[int] | None = None,
     seen_urls: set[str] | None = None,
+    outline_path: str = str(DEFAULT_OUTLINE_PATH),
 ) -> dict[str, Any]:
     """综合评分：域感知 + 降噪 + 实体抽取 + 戴森球匹配 + 去重。
 
@@ -467,16 +614,20 @@ def score_and_classify_item(
             'noise_flag': True,
             'noise_reason': degrade_reason,
             'outline_chapter_hits': [],
+            'outline_match_details': [],
+            'outline_parse': outline_parse_stats(outline_path),
             'tech_institution_hits': [],
             'character_plot_hits': [],
             'dyson_tree_matches': [],
+            'dyson_gate_status': 'ARCHIVE_NO_DYSON_TREE_MATCH',
+            'archive_reason': degrade_reason,
             'entities': {},
             'dedup_flag': False,
             'followup_needed': False,
         }
 
     # 2. 域感知评分
-    score_result = score_item_domain_aware(item, outline_chapter_set)
+    score_result = score_item_domain_aware(item, outline_chapter_set, outline_path=outline_path)
 
     # 3. 去重
     dedup_flag = False
@@ -488,10 +639,15 @@ def score_and_classify_item(
             score_result['breakdown']['dedup_penalty'] = SCORING_WEIGHTS['dedup_penalty']
 
     # 4. 戴森球匹配
-    dyson_matches = match_dyson_tree(blob)
+    dyson_matches = match_dyson_tree(blob, score_result.get('outline_chapter_hits', []))
     if dyson_matches:
-        score_result['total_score'] += 1.0  # 戴森球命中加分
-        score_result['breakdown']['dyson_bonus'] = 1.0
+        score_result['total_score'] += 2.5
+        score_result['breakdown']['dyson_tree_gate'] = 2.5
+        score_result['dyson_gate_status'] = 'PASS_DYSON_TREE'
+        score_result['archive_reason'] = ''
+    else:
+        score_result['dyson_gate_status'] = 'ARCHIVE_NO_DYSON_TREE_MATCH'
+        score_result['archive_reason'] = 'NO_DYSON_TREE_MATCH'
 
     # 5. 实体抽取
     entities = extract_entities(blob)

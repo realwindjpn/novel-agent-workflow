@@ -1,0 +1,20 @@
+[
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260714_09cc93c105",
+    "title": "From ML Predictions to Informed Diagnostic Assistance Using the Toulmin Model of Argumentation",
+    "source_url": "https://arxiv.org/abs/2607.09664",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260714_2010/cards/From_ML_Predictions_to_Informed_Diagnostic_Assista_11225207.md",
+    "target_chapter_hint": 359,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_Wiki",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_Wiki"
+    ],
+    "not_done_in_dry_run": true
+  }
+]

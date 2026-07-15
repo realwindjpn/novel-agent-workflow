@@ -16,6 +16,17 @@
 from __future__ import annotations
 import argparse, datetime, hashlib, json, os, re, subprocess, sys, time
 from pathlib import Path
+from urllib.parse import urlparse
+
+try:
+    import requests
+except Exception:  # pragma: no cover - optional runtime dependency
+    requests = None
+
+try:
+    import websocket
+except Exception:  # pragma: no cover - optional runtime dependency
+    websocket = None
 
 # ── paths ──
 BASE = Path('/root/workspace/科武纪元')
@@ -24,6 +35,22 @@ OUT_BASE = BASE / '学习记录/平台号观点雷达/runs'
 WATCH = BASE / '学习记录/平台号观点雷达/platform_watchlist.json'
 COLLECT_WEB = Path('/root/.hermes/skills/research/web-data-collection-suite/scripts/collect_web.py')
 ANYSEARCH_CLI = Path('/root/workspace/IMA素材/external_skills/anysearch-skill_20260604/repo/scripts/anysearch_cli.py')
+SOCIAL_CDP_URL = os.getenv('KEWU_SOCIAL_CDP_URL', 'http://127.0.0.1:9224').rstrip('/')
+SOCIAL_CDP_ALLOWED_PLATFORMS = {'xiaohongshu', 'douyin', 'bilibili', 'kuaishou', 'tiktok'}
+SOCIAL_CDP_DOMAIN_MAP = {
+    'xiaohongshu': ['xiaohongshu.com', 'xhslink.com'],
+    'douyin': ['douyin.com'],
+    'bilibili': ['bilibili.com'],
+    'kuaishou': ['kuaishou.com'],
+    'tiktok': ['tiktok.com'],
+}
+
+sys.path.insert(0, str(TOOL))
+try:
+    from kewu_domain_scorer import score_and_classify_item, outline_parse_stats
+    _HAS_DOMAIN_SCORER = True
+except Exception:
+    _HAS_DOMAIN_SCORER = False
 
 TODAY = datetime.date.today().isoformat()
 RUN_DIR = OUT_BASE / f'run_{TODAY}_v2'
@@ -95,6 +122,151 @@ def sha12(s: str) -> str:
 
 def now_iso() -> str:
     return datetime.datetime.now().isoformat(timespec='seconds')
+
+
+def _host(url: str) -> str:
+    try:
+        return (urlparse(url).netloc or '').lower().lstrip('www.')
+    except Exception:
+        return ''
+
+
+def _platform_from_url(url: str) -> str:
+    host = _host(url)
+    for platform, domains in SOCIAL_CDP_DOMAIN_MAP.items():
+        if any(host == d or host.endswith('.' + d) for d in domains):
+            return platform
+    return ''
+
+
+def _cdp_json(path: str) -> object:
+    if not requests:
+        raise RuntimeError('requests_unavailable')
+    resp = requests.get(f'{SOCIAL_CDP_URL}{path}', timeout=3)
+    resp.raise_for_status()
+    return resp.json()
+
+
+def _cdp_eval(ws_url: str, expression: str, timeout: int = 3) -> dict:
+    if not websocket:
+        return {'ok': False, 'error': 'websocket_unavailable'}
+    try:
+        ws = websocket.create_connection(ws_url, timeout=timeout)
+        payload = {
+            'id': 1,
+            'method': 'Runtime.evaluate',
+            'params': {'expression': expression, 'returnByValue': True},
+        }
+        ws.send(json.dumps(payload))
+        raw = ws.recv()
+        ws.close()
+        data = json.loads(raw)
+        if data.get('error'):
+            return {'ok': False, 'error': data['error']}
+        return {'ok': True, 'value': data.get('result', {}).get('result', {}).get('value')}
+    except Exception as exc:
+        return {'ok': False, 'error': repr(exc)[:200]}
+
+
+def probe_social_cdp() -> dict:
+    """Probe the already-running social helper Chrome through CDP.
+
+    The probe is intentionally read-only and sanitizes page records. It never
+    requests cookies, localStorage, headers, or extension secrets.
+    """
+    report = {
+        'created_at': now_iso(),
+        'cdp_url': SOCIAL_CDP_URL,
+        'status': 'UNPROBED',
+        'allowed_platforms': sorted(SOCIAL_CDP_ALLOWED_PLATFORMS),
+        'pages': [],
+        'extension_pages': [],
+        'platform_pages': [],
+        'extension_capability': 'UNKNOWN',
+        'body_supplement_policy': 'existing_tab_visible_text_only_no_cookie_no_publish_no_interaction',
+    }
+    try:
+        version = _cdp_json('/json/version')
+        targets = _cdp_json('/json/list')
+        report['browser'] = {
+            'Browser': (version or {}).get('Browser', ''),
+            'Protocol-Version': (version or {}).get('Protocol-Version', ''),
+        }
+    except Exception as exc:
+        report['status'] = 'CDP_UNAVAILABLE'
+        report['blocker'] = repr(exc)[:200]
+        return report
+
+    callable_hits = []
+    for target in targets if isinstance(targets, list) else []:
+        url = str(target.get('url') or '')
+        page = {
+            'id': target.get('id', ''),
+            'type': target.get('type', ''),
+            'title': str(target.get('title') or '')[:120],
+            'url_host': _host(url),
+            'platform': _platform_from_url(url),
+            'is_extension': url.startswith('chrome-extension://'),
+        }
+        report['pages'].append(page)
+        if page['is_extension']:
+            report['extension_pages'].append(page)
+            ws_url = target.get('webSocketDebuggerUrl', '')
+            if ws_url:
+                expr = """(() => {
+                  const keys = Object.keys(window).filter(k => {
+                    if (/^on/i.test(k)) return false;
+                    return /(social|xhs|xiaohongshu|douyin|bilibili|kuaishou|tiktok|assistant|collector)/i.test(k);
+                  }).slice(0, 30);
+                  return {title: document.title, runtime: !!(window.chrome && chrome.runtime), keys};
+                })()"""
+                ev = _cdp_eval(ws_url, expr)
+                if ev.get('ok'):
+                    value = ev.get('value') or {}
+                    callable_hits.append({'target_id': page['id'], 'title': page['title'], 'capability_keys': value.get('keys', []), 'chrome_runtime': value.get('runtime', False)})
+        if page['platform'] in SOCIAL_CDP_ALLOWED_PLATFORMS:
+            report['platform_pages'].append(page)
+
+    report['extension_probe'] = callable_hits
+    has_callable_keys = any(hit.get('capability_keys') for hit in callable_hits)
+    if callable_hits and has_callable_keys:
+        report['extension_capability'] = 'POSSIBLE_WINDOW_API_NEEDS_MANUAL_CONTRACT'
+    elif callable_hits:
+        report['extension_capability'] = 'EXTENSION_PAGE_VISIBLE_NO_PUBLIC_API_DETECTED'
+    else:
+        report['extension_capability'] = 'NO_EXTENSION_TARGET_DETECTED'
+    report['status'] = 'CDP_AVAILABLE'
+    return report
+
+
+def social_cdp_visible_text_for_url(url: str, max_chars: int = 500) -> tuple[str, str]:
+    """Return visible text from an already-open supported platform tab."""
+    if os.getenv('KEWU_DISABLE_SOCIAL_CDP') == '1':
+        return '', 'CDP_DISABLED'
+    platform = _platform_from_url(url)
+    if platform not in SOCIAL_CDP_ALLOWED_PLATFORMS:
+        return '', 'CDP_PLATFORM_NOT_ALLOWED'
+    try:
+        targets = _cdp_json('/json/list')
+    except Exception as exc:
+        return '', f'CDP_UNAVAILABLE:{repr(exc)[:80]}'
+    target_url_norm = (url or '').split('#')[0].rstrip('/')
+    for target in targets if isinstance(targets, list) else []:
+        current_url = str(target.get('url') or '').split('#')[0].rstrip('/')
+        if not current_url or current_url != target_url_norm:
+            continue
+        ws_url = target.get('webSocketDebuggerUrl', '')
+        if not ws_url:
+            return '', 'CDP_NO_WEBSOCKET'
+        expr = f"""(() => {{
+          const text = (document.body && document.body.innerText || '').replace(/\\s+/g, ' ').trim();
+          return text.slice(0, {int(max_chars)});
+        }})()"""
+        ev = _cdp_eval(ws_url, expr)
+        if ev.get('ok') and ev.get('value'):
+            return str(ev['value'])[:max_chars], ''
+        return '', f"CDP_EVAL_FAIL:{ev.get('error', '')}"
+    return '', 'CDP_NO_MATCHING_OPEN_TAB'
 
 
 # ── P0 freshness gate ──
@@ -649,7 +821,10 @@ def fetch_body(url: str, platform: str, timeout: int = 30) -> tuple[str, str]:
                     return text[:500], ''
         except Exception:
             pass
-        return '', 'BILIBILI_FETCH_FAIL'
+        cdp_body, cdp_err = social_cdp_visible_text_for_url(url)
+        if cdp_body and evidence_is_body(cdp_body):
+            return cdp_body[:500], ''
+        return '', f'BILIBILI_FETCH_FAIL|{cdp_err}'
 
     # ── YouTube：yt-dlp → urllib ──
     if 'youtube.com' in url or 'youtu.be' in url:
@@ -671,6 +846,13 @@ def fetch_body(url: str, platform: str, timeout: int = 30) -> tuple[str, str]:
         except Exception:
             pass
         return '', 'YOUTUBE_FETCH_FAIL'
+
+    cdp_platform = _platform_from_url(url)
+    if cdp_platform in {'xiaohongshu', 'douyin', 'kuaishou', 'tiktok'}:
+        cdp_body, cdp_err = social_cdp_visible_text_for_url(url)
+        if cdp_body and evidence_is_body(cdp_body):
+            return cdp_body[:500], ''
+        return '', cdp_err
 
     # ── 微博：mobile API with cookie → collect_web → urllib ──
     if 'weibo.com' in url or 'm.weibo.cn' in url or 'h5.video.weibo.com' in url:
@@ -898,7 +1080,9 @@ def build_mirofish_package(items: list[dict]) -> dict:
     """
     cards = []
     for it in items:
-        if it.get('material_policy') == 'NOISE':
+        if it.get('material_policy') in ('NOISE', 'ARCHIVE_WITH_REASON'):
+            continue
+        if not it.get('dyson_tree_matches'):
             continue
         # Feed纳入：body_fetched 或有 excerpt
         _bs = it.get('body_status', '')
@@ -939,6 +1123,11 @@ def build_mirofish_package(items: list[dict]) -> dict:
             'source_route': it.get('source_route', ''),
             'discovery_status': it.get('discovery_status', ''),
             'body_status': _bs,
+            'source_nature': it.get('source_nature', 'platform_commentary_discovery_not_primary_fact'),
+            'official_crosscheck_required': True,
+            'official_crosscheck_status': it.get('official_crosscheck_status', 'REQUIRED_BEFORE_FORMAL_FACT_CARD'),
+            'outline_chapter_hits': it.get('outline_chapter_hits', []),
+            'dyson_tree_matches': it.get('dyson_tree_matches', []),
         })
     return {
         'created_at': now_iso(),
@@ -961,7 +1150,10 @@ def main():
     ap.add_argument('--limit', type=int, default=0, help='只跑前N个account')
     ap.add_argument('--dry-run-mirofish', action='store_true', help='只产出discovery，不跑MiroFish后段')
     ap.add_argument('--out-dir', type=str, default='', help='输出目录')
+    ap.add_argument('--disable-social-cdp', action='store_true', help='禁用本机社媒助手CDP探测/只读补充')
     args = ap.parse_args()
+    if args.disable_social_cdp:
+        os.environ['KEWU_DISABLE_SOCIAL_CDP'] = '1'
 
     out_dir = Path(args.out_dir) if args.out_dir else RUN_DIR
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -969,6 +1161,10 @@ def main():
     discovery_path = Path(args.discovery_json) if args.discovery_json else out_dir / 'platform_discovery.json'
     mirofish_path = out_dir / 'platform_mirofish_feed_package.json'
     body_report_path = out_dir / 'body_fetch_report.json'
+    social_cdp_path = out_dir / 'social_cdp_probe.json'
+
+    social_cdp_report = {'status': 'DISABLED_BY_FLAG'} if args.disable_social_cdp else probe_social_cdp()
+    social_cdp_path.write_text(json.dumps(social_cdp_report, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
 
     # load watchlist (domain-slot v1 or legacy flat format)
     if not WATCH.exists():
@@ -1019,6 +1215,7 @@ def main():
     all_items: list[dict] = list(existing_items)
     errors: list[dict] = []
     total_queries = 0
+    domain_query_counts: dict[str, int] = {}
 
     platform_aliases = {
         '微信公众号': 'wechat', '公众号': 'wechat',
@@ -1035,6 +1232,8 @@ def main():
             if plat_filter and plat_raw not in plat_filter and plat not in plat_filter:
                 continue
             total_queries += 1
+            if acc.get('domain_id'):
+                domain_query_counts[acc['domain_id']] = domain_query_counts.get(acc['domain_id'], 0) + 1
             print(f'  [{total_queries}] {name} · {plat} ...', end=' ', flush=True)
             t0 = time.time()
             hits = discover_for_account(acc, plat, args.timeout_sec)
@@ -1168,6 +1367,28 @@ def main():
             if reason == 'DATE_UNKNOWN':
                 it['failure_tag'] = 'DATE_UNKNOWN'
             it['material_policy'] = material_policy_tag(it)
+        it['source_nature'] = 'platform_commentary_discovery_not_primary_fact'
+        it['official_crosscheck_required'] = True
+        it['official_crosscheck_status'] = 'REQUIRED_BEFORE_FORMAL_FACT_CARD'
+        if _HAS_DOMAIN_SCORER:
+            scorer_item = {
+                'title': it.get('title', ''),
+                'summary': it.get('evidence', ''),
+                'url': it.get('url', ''),
+                'source_group_key': f"{it.get('platform', '')}_platform_commentary",
+                'source_role': 'secondary',
+                'published_at': it.get('published_at', ''),
+            }
+            domain_score = score_and_classify_item(scorer_item)
+            it['domain_score'] = domain_score
+            if domain_score.get('domain_scores'):
+                it['domain_id_scored'] = domain_score['domain_scores'][0][0]
+            it['outline_chapter_hits'] = domain_score.get('outline_chapter_hits', [])
+            it['dyson_tree_matches'] = domain_score.get('dyson_tree_matches', [])
+            it['dyson_gate_status'] = domain_score.get('dyson_gate_status', '')
+            if it.get('material_policy') in ('PLATFORM_SIGNAL', 'DISCOVERY_ONLY') and not it['dyson_tree_matches']:
+                it['material_policy'] = 'ARCHIVE_WITH_REASON'
+                it['archive_reason'] = domain_score.get('archive_reason') or 'NO_DYSON_TREE_MATCH'
 
     # ── D. Save platform_discovery.json ──
     stats = {
@@ -1181,6 +1402,13 @@ def main():
         'platform_signal': sum(1 for i in all_items if i.get('material_policy') == 'PLATFORM_SIGNAL'),
         'discovery_only': sum(1 for i in all_items if i.get('material_policy') == 'DISCOVERY_ONLY'),
         'noise': sum(1 for i in all_items if i.get('material_policy') == 'NOISE'),
+        'archive_with_reason': sum(1 for i in all_items if i.get('material_policy') == 'ARCHIVE_WITH_REASON'),
+        'dyson_tree_matched': sum(1 for i in all_items if i.get('dyson_tree_matches')),
+        'outline_mapped': sum(1 for i in all_items if i.get('outline_chapter_hits')),
+        'outline_latest': outline_parse_stats() if _HAS_DOMAIN_SCORER else {},
+        'social_cdp_status': social_cdp_report.get('status', 'UNKNOWN'),
+        'social_cdp_extension_capability': social_cdp_report.get('extension_capability', ''),
+        'social_cdp_platform_pages': len(social_cdp_report.get('platform_pages', [])),
         # P0: freshness stats
         'stale_filtered': sum(1 for i in all_items if i.get('failure_tag') in ('STALE_KOL_ARTICLE', 'DATE_OLD_YEAR')),
         'date_unknown': sum(1 for i in all_items if i.get('failure_tag') == 'DATE_UNKNOWN'),
@@ -1208,6 +1436,7 @@ def main():
     # ── E. Domain Coverage Gate (replaces old sidecar health gate) ──
     # Track results per domain
     domain_results = {}  # domain_id → set of account names with results
+    domain_body_success = {}
     accounts_with_results = set()
     for it in all_items:
         if it.get('material_policy') in ('PLATFORM_SIGNAL', 'DISCOVERY_ONLY'):
@@ -1221,6 +1450,10 @@ def main():
                 for d_id, acc_names in domain_map.items():
                     if acc_name in acc_names:
                         domain_results.setdefault(d_id, set()).add(acc_name)
+        if it.get('body_status') == 'fetched':
+            did = it.get('domain_id', '')
+            if did:
+                domain_body_success[did] = domain_body_success.get(did, 0) + 1
 
     total_accounts = len(accounts)
     domains_with_results = len(domain_results)
@@ -1232,9 +1465,22 @@ def main():
         and i.get('failure_tag') in ('STALE_KOL_ARTICLE', 'DATE_OLD_YEAR')
     )
 
-    # Domain coverage gate: 9-domain Dyson tree
+    domain_health = {}
+    for did, acc_names in domain_map.items():
+        configured_accounts = len(acc_names)
+        output_accounts = len(domain_results.get(did, set()))
+        domain_health[did] = {
+            'domain_name': next((d.get('domain_name', '') for d in watch.get('domains', []) if d.get('domain_id') == did), ''),
+            'configured_accounts': configured_accounts,
+            'queries': domain_query_counts.get(did, 0),
+            'output_accounts': output_accounts,
+            'body_success': domain_body_success.get(did, 0),
+            'missing': output_accounts == 0,
+        }
+
+    # Domain coverage gate: all nine domains must be reported; HEALTHY requires 9/9.
     coverage_gate = watch.get('ingest_rules', {}).get('domain_coverage_gate', {})
-    min_domains = coverage_gate.get('min_domains_with_results', 2)
+    min_domains = total_domains
     min_accounts_total = coverage_gate.get('min_accounts_with_results_total', 3)
 
     # Determine health status
@@ -1264,9 +1510,6 @@ def main():
         with open(action_queue_path, 'a', encoding='utf-8') as aqf:
             aqf.write(json.dumps(action_queue_entry, ensure_ascii=False) + '\n')
         print(f'[ACTION_QUEUE] {sidecar_health_reason}')
-    elif stale_platform > 0:
-        sidecar_health = 'ACTION'
-        sidecar_health_reason = f'stale_PLATFORM={stale_platform} > 0'
     else:
         sidecar_health = 'HEALTHY'
         sidecar_health_reason = ''
@@ -1278,6 +1521,8 @@ def main():
     stats['domains_with_results'] = domains_with_results
     stats['silent_domains'] = silent_domains
     stats['domain_coverage_detail'] = {did: len(accs) for did, accs in domain_results.items()}
+    stats['domain_health'] = domain_health
+    stats['domain_queries'] = domain_query_counts
     stats['sidecar_health'] = sidecar_health
     stats['sidecar_health_reason'] = sidecar_health_reason
     print(f'[health_gate] domains={domains_with_results}/{total_domains} accounts={len(accounts_with_results)}/{total_accounts} stale_PLATFORM={stale_platform} → {sidecar_health}')
@@ -1305,6 +1550,14 @@ def main():
         f'- platform_signal: {stats["platform_signal"]}',
         f'- discovery_only: {stats["discovery_only"]}',
         f'- noise: {stats["noise"]}',
+        f'- archive_with_reason: {stats["archive_with_reason"]}',
+        f'- dyson_tree_matched: {stats["dyson_tree_matched"]}',
+        f'- outline_latest_path: {stats.get("outline_latest", {}).get("outline_path", "")}',
+        f'- outline_latest_chapter_count: {stats.get("outline_latest", {}).get("chapter_count", 0)}',
+        f'- outline_mapping_rate: {round(stats["outline_mapped"] / max(1, len(all_items)), 3)}',
+        f'- social_cdp_status: {stats.get("social_cdp_status", "UNKNOWN")}',
+        f'- social_cdp_extension_capability: {stats.get("social_cdp_extension_capability", "")}',
+        f'- social_cdp_platform_pages: {stats.get("social_cdp_platform_pages", 0)}',
         f'- errors: {stats["errors"]}',
         f'- stale_filtered: {stats.get("stale_filtered", 0)}',
         f'- date_unknown: {stats.get("date_unknown", 0)}',
@@ -1313,6 +1566,15 @@ def main():
         f'- silent_domains: {", ".join(stats.get("silent_domains", [])) or "none"}',
         f'- sidecar_health: **{stats.get("sidecar_health", "N/A")}**',
         f'- sidecar_health_reason: {stats.get("sidecar_health_reason", "")}',
+        '',
+        '## 九域健康矩阵',
+        '',
+        '| domain | 配置账户数 | 查询数 | 产出账户数 | 正文成功数 | 缺失 |',
+        '|---|---:|---:|---:|---:|---|',
+    ]
+    for did, row in stats.get('domain_health', {}).items():
+        md.append(f"| {did}/{row.get('domain_name', '')} | {row.get('configured_accounts', 0)} | {row.get('queries', 0)} | {row.get('output_accounts', 0)} | {row.get('body_success', 0)} | {'YES' if row.get('missing') else 'NO'} |")
+    md += [
         '',
         '## 平台信号',
     ]
@@ -1335,6 +1597,7 @@ def main():
         'discovery_json': str(discovery_path),
         'mirofish_json': str(mirofish_path) if not args.dry_run_mirofish else None,
         'summary': str(summary_path),
+        'social_cdp_probe': str(social_cdp_path),
         'stats': stats,
     }, ensure_ascii=False, indent=2))
 

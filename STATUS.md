@@ -1,4 +1,22 @@
 
+
+## 2026-07-12 01:48｜SenseNova+KOL正式生产闭环
+- SenseNova生产run `cron_20260712_0110` 已完成 A/B/B2/C/D/E/F；正式MiroFish Bridge `cron_20260712_0110_final` 完成，4张决策卡：OUTLINE_PATCH=0、CHAPTER_PREP_ONLY=1、ARCHIVE_WITH_REASON=3；准备包VERIFY已ACK。
+- KOL正式run `sidecar_20260712_0140`：58查询、162发现、125正文、九域9/9、戴森命中52、MiroFish候选35、HEALTHY；KOL完成事件已ACK。
+- 素材总线新增30张KOL卡；总卡93，可消费62（KOL 33 / SenseNova 29）；总线PASS。
+- 社媒助手CDP 9224已打开B站“戴森球 算力 能源 航天 科技”平台页；扩展仍无公开API，故社媒正文来源按平台雷达既有采集路由，不虚标为扩展API采集。
+- 统一队列、滚动runner、orchestrator手跑均exit=0；科武相关未ACK ACTION=0。
+- 边界：未改正文/大纲/TXT，未上传、未发布。
+
+## 2026-07-12 00:48｜CodexCLI 素材采集双线审计修复与回放
+- 范围：SenseNova 主采集线、KOL/平台号雷达线、社媒助手 Chrome CDP 9224 只读补充能力。
+- 已修复：latest 大纲动态解析入评分器；戴森球能力树从弱加分升级为正式候选门禁；SenseNova D段输出大纲解析数/映射率/戴森归档；KOL健康门禁改为9/9域才可HEALTHY并输出九域矩阵；CDP只读探测/既有平台页可见文本补充适配层已接入。
+- latest大纲解析：`/root/workspace/科武纪元/wiki/raw/outline/科武纪元大纲_latest.md`，当前解析章节数383。
+- 回放证据：SenseNova生产小样 `学习记录/SenseNova分段任务化/20260712_002357/` 为PARTIAL（180秒内只完成A/F）；D段门禁回放 `学习记录/SenseNova分段任务化/codex_audit_gate_replay_20260712_0042/`，2候选中1正式戴森命中、1无戴森归档。
+- KOL小样：`学习记录/平台号观点雷达/runs/codex_audit_small_20260712_0034/`，queries=4、body_fetched=9、outline_mapped=7/12、dyson_tree_matched=3、archive_with_reason=9、sidecar_health=PARTIAL、domains=1/9，未误报HEALTHY。
+- CDP 9224：可连，Chrome/150.0.7871.115，扩展页3，平台页0，未发现公开采集API；未读取/输出Cookie或Token，未声明社媒采集成功。
+- 报告：`AUDIT_AND_FIX_REPORT.md`、`PRODUCTION_REPLAY_REPORT.md`。边界：未改正文、大纲、已投稿TXT、草稿箱；未发布；未git提交。
+
 ## 2026-07-10 14:19｜第193—196章发布确认
 - 用户已明确确认第193、194、195、196章均已发布。
 - 当前线上最新章：第196章《背面深入》。
@@ -1210,3 +1228,44 @@
 - 2026-07-10 10:01 | 同步章节 196
 - 2026-07-11 08:30 | 同步章节 197
 - 2026-07-11 08:31 | ch198 repair2 PASS + TXT + draftbox saved
+- 2026-07-13 18:02 | 同步章节 199
+- 2026-07-13 18:12 | 同步章节 200
+
+## 2026-07-13 18:24｜第199—200章草稿箱闭环
+- 状态: DONE_DRAFT_SAVED_NOT_PUBLISHED
+- 第199章《算力夺控》: 草稿箱列表命中，4297字，第四卷：登月。
+- 第200章《散热网络》: 草稿箱列表命中，4221字，第四卷：登月。
+- 登录: 用户提供Cookie后恢复；状态档案权限600。
+- 边界: 仅保存草稿箱，未正式发布。
+- 2026-07-14 08:52 | 同步章节 201
+- 2026-07-14 11:29 | 同步章节 202
+- 2026-07-14 14:03 | 同步章节 202
+- 2026-07-14 14:05 | 同步章节 202
+- 2026-07-14 19:21 | 同步章节 203
+- 2026-07-14 22:56 | 同步章节 204
+
+## 2026-07-14 22:56｜第204章草稿箱闭环
+- 状态: DONE_DRAFT_SAVED_NOT_PUBLISHED
+- 任务包: /root/workspace/任务运行态/20260714_kewu_upload204
+- 边界: 保存草稿箱，未发布。
+- 2026-07-15 07:01 | 同步章节 204
+
+## 2026-07-15 07:01｜第204章草稿箱闭环
+- 状态: DONE_DRAFT_SAVED_NOT_PUBLISHED
+- 任务包: /root/workspace/任务运行态/20260714_kewu_upload204
+- 边界: 保存草稿箱，未发布。
+- 2026-07-15 07:04 | 同步章节 204
+- 2026-07-16 00:32 | 同步章节 205
+
+## 2026-07-16 00:32｜第205章草稿箱闭环
+- 状态: DONE_DRAFT_SAVED_NOT_PUBLISHED
+- 任务包: /root/workspace/任务运行态/20260714_kewu_upload205
+- 边界: 保存草稿箱，未发布。
+- 2026-07-16 02:03 | 同步章节 206
+
+## 2026-07-16 02:03｜第206章草稿箱闭环
+- 状态: DONE_DRAFT_SAVED_NOT_PUBLISHED
+- 任务包: /root/workspace/任务运行态/20260716_kewu_upload206
+- 边界: 保存草稿箱，未发布。
+- 2026-07-16 02:18 | 同步章节 206
+- 2026-07-16 02:18 | ch206 repair2 writeback+TXT+草稿箱覆盖(repair1残留草稿待清理)

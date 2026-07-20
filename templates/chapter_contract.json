@@ -1,0 +1,28 @@
+{
+  "schema_version": 2,
+  "chapter": 1,
+  "title": "Example",
+  "goal": "State the chapter function in one sentence.",
+  "must_include": [],
+  "must_not_include": [],
+  "continuity_inputs": {
+    "characters_present": [],
+    "objects_in_play": [],
+    "knowledge_state": {},
+    "time_markers": []
+  },
+  "three_event_chain": ["", "", ""],
+  "central_choice_and_cost": {"choice": "", "cost": ""},
+  "end_state": "",
+  "open_hook": "",
+  "forbidden_drift": [],
+  "success_criteria": [],
+  "asset_cards_used": {
+    "characters": [],
+    "scenes": [],
+    "objects": [],
+    "concepts": []
+  },
+  "segment_plan": [],
+  "status": "ISSUED"
+}

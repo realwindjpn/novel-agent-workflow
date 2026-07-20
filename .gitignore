@@ -1,0 +1,19 @@
+__pycache__/
+*.py[cod]
+.venv/
+.venv-ci/
+dist/
+build/
+*.egg-info/
+.coverage
+.pytest_cache/
+.novel-workflow/
+.smoke-tmp/
+.env
+*.key
+*.pem
+
+# Internal working files not for public release
+WAL.md
+SECURITY_RELEASE_CHECKLIST.md
+output/

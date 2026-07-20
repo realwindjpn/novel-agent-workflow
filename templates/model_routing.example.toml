@@ -1,0 +1,78 @@
+# Provider-neutral model routing for novel-agent-workflow.
+#
+# This is a STARTER TEMPLATE. Copy it to your project as model_routing.toml
+# and edit it. This file stores ONLY the NAMES of environment variables that
+# hold API keys, never the key values themselves. A literal secret value is
+# a release blocker and will be rejected at parse time.
+#
+# The core workflow (novel-workflow init/idea/outline/draft/review/release)
+# never reads this file and never imports the model adapter. This layer is
+# strictly opt-in: it exists to help you bind AI providers to the six roles
+# when you want automated drafting or review assistance.
+#
+# Rules:
+#   - You choose every provider/model. This repository ships no preferred,
+#     private, or production model route.
+#   - One model may serve several roles, or each role may use a different
+#     model. If one model serves several roles, give each invocation a distinct
+#     provenance identifier when recording author/editor/reader evidence.
+#   - api_key_env must be an UPPER_SNAKE environment variable NAME.
+#   - A candidate needs either base_url (OpenAI-compatible HTTP adapter) or
+#     command (custom command adapter), never both.
+#   - base_url must not be an absolute private home path.
+#   - author/editor/reader are required core roles.
+#   - Put at least two candidates on every non-optional role if an unattended
+#     run must survive one route outage. A single candidate is runnable but is
+#     reported as READY_SINGLE_ROUTE / AT_RISK by route-plan.
+#   - Optional input/output prices are USER-SUPPLIED estimates in currency per
+#     one million tokens. Omit them when unknown; the budget command will show
+#     token totals and report monetary cost as unknown instead of guessing.
+#   - Capabilities are hard-filter promises. Declare "tools" only when the
+#     configured adapter can actually execute tools for that candidate.
+#   - Consultants (military, science, history, law, medicine, linguistics)
+#     are optional. They are included in a plan ONLY when the genre/outline
+#     risk asks for them. Military and science are never global defaults.
+
+smoke_prompt = "Reply with one original, self-contained sentence about a remote relay station."
+default_timeout = 20.0
+min_semantic_len = 8
+
+[author]
+candidates = [
+  { provider = "provider-a", model = "author-model", api_key_env = "NOVEL_AUTHOR_KEY", base_url = "https://api.example.test/v1", timeout = 20.0, capabilities = ["text", "reasoning", "long_context", "tools"], max_context_tokens = 128000, health = "healthy", confidence = 0.8, daily_quota_remaining = 20, input_cost_per_million = 0.0, output_cost_per_million = 0.0 },
+  { provider = "provider-b", model = "author-model-fb", api_key_env = "NOVEL_AUTHOR_FB_KEY", base_url = "https://api.example.test/v1", capabilities = ["text", "reasoning"], max_context_tokens = 64000, health = "rate_limited", confidence = 0.6, daily_quota_remaining = 5, input_cost_per_million = 0.0, output_cost_per_million = 0.0 },
+]
+
+[editor]
+candidates = [
+  { provider = "provider-a", model = "editor-model", api_key_env = "NOVEL_EDITOR_KEY", base_url = "https://api.example.test/v1", capabilities = ["text"] },
+]
+
+[reader]
+candidates = [
+  { provider = "provider-a", model = "reader-model", api_key_env = "NOVEL_READER_KEY", base_url = "https://api.example.test/v1", capabilities = ["text"] },
+]
+
+# Single-model alternative: use the same provider/model/api_key_env/base_url
+# values in author, editor, and reader. Role routing permits this; evidence
+# independence is enforced by distinct execution/provenance labels, not by
+# requiring different model names.
+
+# Consultants are OPTIONAL. Uncomment and edit to enable. A consultant is
+# only included in a plan when `model route-plan --genre ... --risk ...`
+# selects it.
+
+# [military]
+# candidates = [
+#   { provider = "provider-a", model = "mil-model", api_key_env = "NOVEL_MIL_KEY", command = "scripts/mil_adapter.sh" },
+# ]
+
+# [science]
+# candidates = [
+#   { provider = "provider-a", model = "sci-model", api_key_env = "NOVEL_SCI_KEY", base_url = "https://api.example.test/v1" },
+# ]
+
+# [history]
+# candidates = [
+#   { provider = "provider-a", model = "hist-model", api_key_env = "NOVEL_HIST_KEY", base_url = "https://api.example.test/v1" },
+# ]

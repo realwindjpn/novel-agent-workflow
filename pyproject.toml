@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "novel-agent-workflow"
+version = "0.2.0"
+description = "A file-first six-role workflow for beginner-friendly long-form fiction development."
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "Apache-2.0"}
+authors = [{name = "Novel Agent Workflow Contributors"}]
+dependencies = []
+
+[project.scripts]
+novel-workflow = "novel_workflow.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

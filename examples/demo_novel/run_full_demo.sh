@@ -31,9 +31,13 @@ cd "$DEST"
 
 # --- 1. init + idea ---
 "$PY" -m novel_workflow.cli init "$DEST" --title "The Silent Relay" >/dev/null
+# Concept review hard-requires the full 15-field structured intake. Build the
+# fictional intake from the core helper (single source of truth) so this demo
+# never drifts out of sync with the intake field contract.
+INTERVIEW="$("$PY" -c "import json; from novel_workflow.core import complete_intake_example; print(json.dumps(complete_intake_example()))")"
 "$PY" -m novel_workflow.cli idea "$DEST" \
   --summary "A repair crew hears an impossible signal." \
-  --interview '{"protagonist":"repair lead","stakes":"truth may cost safe orbit"}' >/dev/null
+  --interview "$INTERVIEW" >/dev/null
 
 # --- 2. concept review ---
 printf '# Concept Review\nPASS\n' > concept-review.md

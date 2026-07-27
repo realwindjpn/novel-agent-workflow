@@ -82,6 +82,50 @@ OUTLINE_LEVELS = ("master", "volume", "chapter")
 
 SCHEMA_VERSION = 2
 
+# Limits block. Every field has an engine-side default; users can override
+# per-project via ``workflow.json["limits"]``. The single read entry point
+# is ``load_limits(root)`` -- the MCP server, the CLI, and the web runner
+# all consume the same merged dict, so boundaries cannot drift across
+# surfaces. State-file jails (workflow.json / .novel-workflow/**) and the
+# ``non_interactive = "deny"`` invariant are NOT configurable here; they
+# are engine rules, not limits.
+DEFAULT_LIMITS: dict[str, int] = {
+    "max_artifact_bytes": 1_048_576,      # 1 MiB per artifact write
+    "max_read_bytes": 1_048_576,          # 1 MiB per artifact read
+    "max_events_jsonl_bytes": 10_485_760, # 10 MiB cap on tailing events.jsonl
+    "max_chapters": 500,                  # refuse to issue past this count
+}
+
+
+def load_limits(root: Path) -> dict[str, int]:
+    """Return the merged limits for ``root``.
+
+    Reads ``workflow.json["limits"]`` when present and valid; missing
+    fields, non-integer values, non-positive integers, or a missing
+    ``workflow.json`` all fall back to the matching ``DEFAULT_LIMITS``
+    entry. Unknown keys in the user block are ignored so a future
+    ``limits`` field added by a different tool cannot accidentally
+    disable an engine guard.
+    """
+    merged: dict[str, int] = dict(DEFAULT_LIMITS)
+    wf = root / "workflow.json"
+    if not wf.exists():
+        return merged
+    try:
+        data = json.loads(wf.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return merged
+    user_limits = data.get("limits") if isinstance(data, dict) else None
+    if not isinstance(user_limits, dict):
+        return merged
+    for key, default in DEFAULT_LIMITS.items():
+        if key in user_limits:
+            value = user_limits[key]
+            if isinstance(value, int) and not isinstance(value, bool) and value > 0:
+                merged[key] = value
+    return merged
+
+
 # Structured intake is deliberately genre-neutral. Values may be strings,
 # lists, or mappings, but every section must carry a substantive answer before
 # concept review. The workflow asks for decisions; it never fills them from a
@@ -414,6 +458,7 @@ def init_project(root: Path, title: str) -> dict:
         "bible": {"status": "PENDING", "artifact": None},
         "idea": None,
         "chapters": {},
+        "limits": dict(DEFAULT_LIMITS),
     }
     _save_project(root, proj)
     append_event(root, {"type": "PROJECT_INITIALIZED", "title": title})
@@ -653,6 +698,11 @@ def issue_chapter(root: Path, chapter: int, title: str, goal: str, contract: dic
     state_path = _chapter_state_path(root, chapter)
     if state_path.exists():
         raise ValueError(f"chapter {chapter} already exists")
+    if len(proj.get("chapters", {})) >= load_limits(root)["max_chapters"]:
+        raise ValueError(
+            f"max_chapters ({load_limits(root)['max_chapters']}) reached; "
+            "issue refused"
+        )
     c = {
         "schema_version": SCHEMA_VERSION,
         "chapter": chapter,

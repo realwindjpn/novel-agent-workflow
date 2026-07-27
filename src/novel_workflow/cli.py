@@ -31,6 +31,7 @@ from .core import (
     validate_chapter,
     validate_project,
 )
+from . import _visual
 
 
 def emit(data: object) -> None:
@@ -47,7 +48,7 @@ def main(argv=None) -> int:
 
     a = sub.add_parser("init"); a.add_argument("path"); a.add_argument("--title", required=True)
     a = sub.add_parser("idea"); a.add_argument("path"); a.add_argument("--summary", required=True); a.add_argument("--interview", default="{}")
-    a = sub.add_parser("intake-check"); a.add_argument("path"); a.add_argument("--interview", default="")
+    a = sub.add_parser("intake-check"); a.add_argument("path"); a.add_argument("--interview", default=""); a.add_argument("--human", action="store_true")
     a = sub.add_parser("concept-review"); a.add_argument("path"); a.add_argument("verdict"); a.add_argument("--artifact", required=True); a.add_argument("--reviewer", required=True)
     a = sub.add_parser("concept-repair"); a.add_argument("path"); a.add_argument("--summary", default=""); a.add_argument("--interview", default="{}"); a.add_argument("verdict"); a.add_argument("--artifact", required=True); a.add_argument("--reviewer", required=True)
     a = sub.add_parser("bible"); a.add_argument("path"); a.add_argument("--artifact", required=True)
@@ -60,18 +61,23 @@ def main(argv=None) -> int:
     a = sub.add_parser("review"); a.add_argument("path"); a.add_argument("chapter", type=int); a.add_argument("gate", choices=CHAPTER_GATES); a.add_argument("verdict"); a.add_argument("--artifact", required=True); a.add_argument("--reviewer", required=True); a.add_argument("--reason", default="")
     a = sub.add_parser("repair"); a.add_argument("path"); a.add_argument("chapter", type=int); a.add_argument("--artifact", required=True); a.add_argument("--affected", nargs="+", required=True)
     a = sub.add_parser("release"); a.add_argument("path"); a.add_argument("chapter", type=int)
-    a = sub.add_parser("status"); a.add_argument("path"); a.add_argument("--chapter", type=int, default=None)
-    a = sub.add_parser("check"); a.add_argument("path"); a.add_argument("--security", action="store_true")
-    a = sub.add_parser("roles"); a.add_argument("path")
-    a = sub.add_parser("chapters"); a.add_argument("path")
+    a = sub.add_parser("status"); a.add_argument("path"); a.add_argument("--chapter", type=int, default=None); a.add_argument("--human", action="store_true")
+    a = sub.add_parser("check"); a.add_argument("path"); a.add_argument("--security", action="store_true"); a.add_argument("--human", action="store_true")
+    a = sub.add_parser("roles"); a.add_argument("path"); a.add_argument("--human", action="store_true")
+    a = sub.add_parser("chapters"); a.add_argument("path"); a.add_argument("--human", action="store_true")
 
     # Opt-in model routing layer. Core workflow stays no-network; this only
     # registers the subcommands. The model_cli module imports model_adapter,
     # which is stdlib-only and never imported by core.
     from . import model_cli
     model_cli.register(sub)
+    from . import mcp_server
+    mcp_server.register(sub)
 
     ns = p.parse_args(argv)
+    if ns.command == "mcp":
+        from . import mcp_server
+        return mcp_server.cmd_serve(ns)
     if getattr(ns, "_model_handler", None) is not None:
         return model_cli.run(ns)
     root = _proj_path(ns)
@@ -90,7 +96,10 @@ def main(argv=None) -> int:
                     raise ValueError("no recorded idea; pass --interview JSON or run idea first")
                 interview = load_json(idea_path).get("interview", {})
             report = analyze_intake(interview)
-            emit(report)
+            if getattr(ns, "human", False):
+                print(_visual.render_intake(report))
+            else:
+                emit(report)
             return 0 if report["status"] == "COMPLETE" else 1
         elif ns.command == "concept-review":
             emit(review_concept(root, ns.verdict, ns.artifact, ns.reviewer))
@@ -126,7 +135,10 @@ def main(argv=None) -> int:
                     st = load_json(sp)
                     result["chapter"] = st
                     result["chapter_errors"] = validate_chapter(st)
-            emit(result)
+            if getattr(ns, "human", False):
+                print(_visual.render_status(result))
+            else:
+                emit(result)
         elif ns.command == "check":
             states: dict[str, list[str]] = {}
             nw = root / ".novel-workflow"
@@ -136,13 +148,25 @@ def main(argv=None) -> int:
             proj = load_json(root / "workflow.json")
             proj_errors = validate_project(proj)
             findings = security_scan(root) if ns.security else []
-            emit({"project_errors": proj_errors, "chapter_errors": states, "security_findings": findings})
+            result = {"project_errors": proj_errors, "chapter_errors": states, "security_findings": findings}
+            if getattr(ns, "human", False):
+                print(_visual.render_check(result))
+            else:
+                emit(result)
             return 1 if proj_errors or any(states.values()) or findings else 0
         elif ns.command == "roles":
             from .core import ROLE_CHARTER
-            emit({"roles": list(SIX_ROLES), "charter": ROLE_CHARTER})
+            result = {"roles": list(SIX_ROLES), "charter": ROLE_CHARTER}
+            if getattr(ns, "human", False):
+                print(_visual.render_roles(result))
+            else:
+                emit(result)
         elif ns.command == "chapters":
-            emit({"chapters": list_chapters(root)})
+            result = {"chapters": list_chapters(root)}
+            if getattr(ns, "human", False):
+                print(_visual.render_chapters(result))
+            else:
+                emit(result)
         return 0
     except (OSError, ValueError, json.JSONDecodeError) as exc:
         emit({"error": str(exc)})

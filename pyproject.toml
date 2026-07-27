@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "novel-agent-workflow"
-version = "0.2.0"
+version = "0.3.0"
 description = "A file-first six-role workflow for beginner-friendly long-form fiction development."
 readme = "README.md"
 requires-python = ">=3.11"

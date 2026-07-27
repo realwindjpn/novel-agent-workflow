@@ -71,8 +71,13 @@ def main(argv=None) -> int:
     # which is stdlib-only and never imported by core.
     from . import model_cli
     model_cli.register(sub)
+    from . import mcp_server
+    mcp_server.register(sub)
 
     ns = p.parse_args(argv)
+    if ns.command == "mcp":
+        from . import mcp_server
+        return mcp_server.cmd_serve(ns)
     if getattr(ns, "_model_handler", None) is not None:
         return model_cli.run(ns)
     root = _proj_path(ns)

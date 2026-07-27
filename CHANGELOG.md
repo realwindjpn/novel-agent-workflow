@@ -8,6 +8,15 @@
   records, dynamic consultant selection, HTTP-compatible and command adapters.
 - Added `model init-config`, `model smoke`, `model route-plan`, and
   `model model-ledger` CLI commands plus tests and public templates.
+- Added an embedded, zero-dependency stdio MCP server (`novel-workflow mcp`):
+  hand-rolled JSON-RPC 2.0 over newline-delimited frames, dual-channel errors
+  (business `isError:true` vs protocol JSON-RPC errors), 21 state-machine tools,
+  3 resources (state / events / chapter state), 6 prompts (one per role with
+  evidence-contract text), single-source `workflow.json["limits"]` block
+  shared by CLI / MCP / web runner via `core.load_limits()`, and a project
+  jail that funnels `workflow.json` and `.novel-workflow/**` through
+  state-machine tools only. See `docs/MCP.md` for the design and a CLI
+  transcript.
 
 ## 0.2.0
 

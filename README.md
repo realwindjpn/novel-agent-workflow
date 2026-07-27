@@ -5,7 +5,7 @@
 [![CI](https://github.com/realwindjpn/novel-agent-workflow/actions/workflows/ci.yml/badge.svg)](https://github.com/realwindjpn/novel-agent-workflow/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/license-Apache_2.0-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.11%2B-blue.svg)](pyproject.toml)
-[![Version](https://img.shields.io/badge/version-0.2.0-blue.svg)](pyproject.toml)
+[![Version](https://img.shields.io/badge/version-0.3.0-blue.svg)](pyproject.toml)
 [![Runtime deps](https://img.shields.io/badge/runtime_deps-0-green.svg)](pyproject.toml)
 
 A file-first, tool-neutral, gate-driven workflow for taking a fiction idea from first spark to reviewed outline and chapter issue.
@@ -142,6 +142,54 @@ novel-workflow issue demo 1 --title "First Signal" --goal "Introduce the dispute
 ```
 
 See `docs/BEGINNER_GUIDE.md` for a full draft/review/release walkthrough.
+
+## MCP server (Model Context Protocol)
+
+An embedded, zero-dependency stdio MCP server ships in the same package. The
+core workflow stays file-first and tool-neutral; the MCP surface is a thin
+adapter that hands the state machine to any MCP-aware agent.
+
+```bash
+# Talk to the server over stdin/stdout (newline-delimited JSON-RPC 2.0).
+echo '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"demo"}}}' \
+  | novel-workflow mcp
+```
+
+The server exposes:
+
+- **21 state-machine tools** — one per public CLI command (`init`, `idea`,
+  `concept-review`, `bible`, `outline-write`, `outline-review`, `outline-repair`,
+  `outline-lock`, `issue`, `draft`, `review`, `repair`, `release`, `status`,
+  `intake-check`, `prewrite`, `lock-check`, `read-artifact`, `write-artifact`,
+  `read-chapter`, `events`), each with a full JSON Schema and the same
+  evidence contract the CLI enforces.
+- **3 resources** — `novel://state` (live `workflow.json`), `novel://events`
+  (append-only JSONL tail), `novel://chapter/{n}` (per-chapter gate status).
+- **6 prompts** — one per role (`controller`, `author`, `editor`, `reader`,
+  `military_consultant`, `science_consultant`) with the role's evidence
+  contract embedded in the prompt text so the agent cannot accidentally
+  skip the contract.
+- **Dual-channel errors** — protocol errors (parse / unknown method / missing
+  params) come back as JSON-RPC errors with standard codes `-32700 / -32601 /
+  -32602 / -32603`; business errors (gate not met, role:identifier
+  collision, illegal transition) come back as a normal response with
+  `isError: true` and a redacted message. Agents can branch on the channel.
+- **Project jail** — `write-artifact` and `read-artifact` cannot touch
+  `workflow.json` or `.novel-workflow/**`. Those files are only reachable
+  through the state-machine tools, so the agent cannot bypass the state
+  machine by writing state files directly.
+- **Single-source limits** — `workflow.json["limits"]` (with defaults in
+  `core.DEFAULT_LIMITS` and the unique read entry `core.load_limits()`) is
+  shared by CLI, MCP, and the web runner. There is no second copy.
+- **`initialize.instructions` injection** — the server returns a six-role
+  philosophy text on initialize so the agent inherits the same discipline
+  the CLI would have applied.
+
+Full design, wire protocol, tool/resource/prompt catalogs, and a CLI
+transcript live in [`docs/MCP.md`](docs/MCP.md). Tests are in
+`tests/test_mcp_server.py` (31 cases covering protocol negotiation, the
+dual-channel error model, the project jail, the full state-machine path
+from idea to release, and `max_chapters` enforcement).
 
 ## Optional model routing
 

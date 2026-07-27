@@ -1,5 +1,11 @@
 
 
+## 2026-07-26 15:05｜G1全日对账与前沿校正
+- 0100/0400/0700/1000/1300五轮按material_id去重为6张：OUTLINE_PATCH=0、CHAPTER_PREP_ONLY=1、ARCHIVE_WITH_REASON=5；裁决 `G2_SKIPPED_NO_QUALIFIED_INPUT`。
+- 权威读回确认219/220、221/222均已保存番茄草稿箱且未发布；下一候选223/224。
+- 223源稿《内战爆发》对纲；224源稿《排查》与大纲《公司真相》不符，标SOURCE_MISMATCH，后续须按大纲重写。
+- 边界：未改大纲/正文/TXT，未操作草稿箱，未发布。证据：`/root/workspace/任务运行态/20260726_kewu_selfcycle_manual_resume/`。
+
 ## 2026-07-12 01:48｜SenseNova+KOL正式生产闭环
 - SenseNova生产run `cron_20260712_0110` 已完成 A/B/B2/C/D/E/F；正式MiroFish Bridge `cron_20260712_0110_final` 完成，4张决策卡：OUTLINE_PATCH=0、CHAPTER_PREP_ONLY=1、ARCHIVE_WITH_REASON=3；准备包VERIFY已ACK。
 - KOL正式run `sidecar_20260712_0140`：58查询、162发现、125正文、九域9/9、戴森命中52、MiroFish候选35、HEALTHY；KOL完成事件已ACK。
@@ -1333,3 +1339,15 @@
 - 222《暗线浮现》五席同SHA PASS，番茄3894字；草稿箱列表命中。
 - 双章新版/TXT/Wiki/跟踪表已同步；分卷第五卷：归途；未发布。
 - 证据：`/root/workspace/任务运行态/20260725_kewu_selfcycle_221222/CLOSEOUT_REPORT.md`。
+- 2026-07-27 02:38 | 同步章节 223
+- 2026-07-27 03:12 | 同步章节 224
+- 2026-07-27 03:12 | 同步章节 224
+- 2026-07-27 03:20 | 同步章节 223
+- 2026-07-27 03:20 | 同步章节 224
+- 2026-07-27 05:05 | 同步章节 223
+- 2026-07-27 05:25 | 同步章节 223
+- 2026-07-27 05:26 | 同步章节 224
+- 2026-07-27 19:59 | selfcycle 225 226 writeback txt ready
+- 2026-07-27 20:00 | selfcycle 225 226 tracking patched
+- 2026-07-27 20:01 | 同步章节 225
+- 2026-07-27 20:02 | 同步章节 226

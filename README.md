@@ -2,6 +2,12 @@
 
 [中文](docs/README.zh-CN.md) · [Beginner Guide](docs/BEGINNER_GUIDE.md)
 
+[![CI](https://github.com/realwindjpn/novel-agent-workflow/actions/workflows/ci.yml/badge.svg)](https://github.com/realwindjpn/novel-agent-workflow/actions/workflows/ci.yml)
+[![License](https://img.shields.io/badge/license-Apache_2.0-blue.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/python-3.11%2B-blue.svg)](pyproject.toml)
+[![Version](https://img.shields.io/badge/version-0.2.0-blue.svg)](pyproject.toml)
+[![Runtime deps](https://img.shields.io/badge/runtime_deps-0-green.svg)](pyproject.toml)
+
 A file-first, tool-neutral, gate-driven workflow for taking a fiction idea from first spark to reviewed outline and chapter issue.
 
 This project does **not** promise one-click novels. It provides contracts, role separation, review evidence, recovery state, and release gates for humans, local tools, or AI agents.
@@ -10,7 +16,24 @@ This project does **not** promise one-click novels. It provides contracts, role 
 
 Beginner path:
 
-`idea interview → concept review/repair → story bible → master outline review/repair → volume outline review/repair → chapter outline review/repair → outline all-PASS → chapter issue → author draft → independent reviews → repair/re-review → release receipt`
+```mermaid
+flowchart LR
+  A[idea interview] --> B[concept review / repair]
+  B --> C[story bible]
+  C --> D[master outline]
+  D --> E[volume outline]
+  E --> F[chapter outline]
+  F --> G{all outline PASS?}
+  G -- no --> D
+  G -- yes --> H[outline lock]
+  H --> I[issue chapter]
+  I --> J[author draft]
+  J --> K[independent reviews]
+  K --> L{all gates PASS?}
+  L -- no --> M[repair]
+  M --> J
+  L -- yes --> N[release receipt]
+```
 
 A chapter cannot be issued until every outline level is `PASS` and the outline is locked.
 
@@ -38,6 +61,32 @@ Required chapter gates are:
 - `science`: PASS, FAIL, or SKIP_WITH_REASON with written reason.
 
 When a repair changes a draft, affected gates reset to `PENDING`; stale release receipts are removed and the affected gates must be reviewed again.
+
+## Human-friendly terminal output (opt-in)
+
+Every command emits machine-readable JSON by default so scripts, tests, and the optional model-routing HUD keep working. For interactive use, append `--human` to inspection commands to get a colored, scannable summary. Color is auto-disabled when stdout is piped, when `NO_COLOR` is set, or when `TERM=dumb`, so CI logs and pipe-friendly automation stay clean.
+
+```text
+$ novel-workflow status demo --chapter 1 --human
+── project · The Silent Relay ──────────────────────────────────────────────
+
+  stage:        OUTLINE_LOCKED
+  errors:       none
+
+── chapter · #1 ──────────────────────────────────────────────────────────
+
+  chapter:      #1 — First Signal
+  status:       ● READY
+  author:       author:noa
+  editor:       ✓ PASS  editor:mal
+  reader:       ✓ PASS  reader:jun
+  military:     – SKIP  military:bea  — No applicable content this chapter.
+  science:      – SKIP  science:kim  — No applicable content this chapter.
+  errors:       none
+  next:         novel-workflow release <project> 1
+```
+
+`--human` is opt-in on `status`, `check`, `chapters`, `roles`, and `intake-check`. The renderer lives in `src/novel_workflow/_visual.py`: pure stdlib, `NO_COLOR`-aware, and never embeds provider or model names in style codes. See `tests/test_visual.py` for the no-TTY and `NO_COLOR` guarantees.
 
 ## Quick start
 

@@ -1,11 +1,15 @@
 from __future__ import annotations
 
+import io
 import socket
 import sys
 import tempfile
+import threading
 import time
 import unittest
+from contextlib import redirect_stderr, redirect_stdout
 from pathlib import Path
+from unittest import mock
 
 from scripts import launch_web
 
@@ -154,6 +158,136 @@ class TunnelProcessTests(unittest.TestCase):
         tunnel.close()
         tunnel.close()
         self.assertIsNotNone(tunnel.process.poll())
+
+
+class LauncherOrchestrationTests(unittest.TestCase):
+    def setUp(self):
+        self._tmp = tempfile.TemporaryDirectory()
+        self.root = Path(self._tmp.name)
+        web = self.root / "web"
+        web.mkdir()
+        (web / "index.html").write_text(
+            "<title>novel-workflow Live Runner</title>", encoding="utf-8"
+        )
+
+    def tearDown(self):
+        self._tmp.cleanup()
+
+    def _fake_tunnel(self):
+        return launch_web.start_output_process(
+            [
+                sys.executable,
+                "-u",
+                "-c",
+                "import time; "
+                "print('https://orchestration-test.trycloudflare.com', flush=True); "
+                "time.sleep(60)",
+            ],
+            assign_windows_job=False,
+        )
+
+    def _run_app(self, app):
+        with redirect_stdout(io.StringIO()), redirect_stderr(io.StringIO()):
+            return app.run()
+
+    def test_success_waits_for_tunnel_then_opens_local_browser(self):
+        stop = threading.Event()
+        opened = []
+
+        def open_browser(url):
+            opened.append(url)
+            stop.set()
+            return True
+
+        app = launch_web.Launcher(
+            launch_web.LauncherConfig(port=0, open_browser=True),
+            root=self.root,
+            cloudflared=Path("cloudflared"),
+            tunnel_factory=lambda executable, local_url: self._fake_tunnel(),
+            public_probe=lambda url, marker=None: True,
+            browser_open=open_browser,
+            stop_event=stop,
+        )
+        self.assertEqual(self._run_app(app), 0)
+        self.assertEqual(len(opened), 1)
+        self.assertTrue(opened[0].startswith("http://localhost:"))
+        self.assertFalse(app.resources_open)
+
+    def test_no_browser_suppresses_browser_open(self):
+        stop = threading.Event()
+        stop.set()
+        browser = mock.Mock(return_value=True)
+        app = launch_web.Launcher(
+            launch_web.LauncherConfig(port=0, open_browser=False),
+            root=self.root,
+            cloudflared=Path("cloudflared"),
+            tunnel_factory=lambda executable, local_url: self._fake_tunnel(),
+            public_probe=lambda url, marker=None: True,
+            browser_open=browser,
+            stop_event=stop,
+        )
+        self.assertEqual(self._run_app(app), 0)
+        browser.assert_not_called()
+
+    def test_browser_failure_is_non_fatal(self):
+        stop = threading.Event()
+        stop.set()
+        app = launch_web.Launcher(
+            launch_web.LauncherConfig(port=0, open_browser=True),
+            root=self.root,
+            cloudflared=Path("cloudflared"),
+            tunnel_factory=lambda executable, local_url: self._fake_tunnel(),
+            public_probe=lambda url, marker=None: True,
+            browser_open=lambda url: False,
+            stop_event=stop,
+        )
+        self.assertEqual(self._run_app(app), 0)
+
+    def test_browser_exception_is_non_fatal(self):
+        stop = threading.Event()
+        stop.set()
+
+        def fail_browser(url):
+            raise OSError("browser unavailable")
+
+        app = launch_web.Launcher(
+            launch_web.LauncherConfig(port=0, open_browser=True),
+            root=self.root,
+            cloudflared=Path("cloudflared"),
+            tunnel_factory=lambda executable, local_url: self._fake_tunnel(),
+            public_probe=lambda url, marker=None: True,
+            browser_open=fail_browser,
+            stop_event=stop,
+        )
+        self.assertEqual(self._run_app(app), 0)
+
+    def test_local_readiness_failure_never_starts_tunnel_and_cleans_up(self):
+        tunnel_factory = mock.Mock()
+        app = launch_web.Launcher(
+            launch_web.LauncherConfig(port=0, open_browser=False),
+            root=self.root,
+            cloudflared=Path("cloudflared"),
+            tunnel_factory=tunnel_factory,
+            local_probe=lambda url, marker=None: False,
+            local_timeout=0.02,
+        )
+        with self.assertRaisesRegex(launch_web.LauncherError, "Timed out"):
+            self._run_app(app)
+        tunnel_factory.assert_not_called()
+        self.assertFalse(app.resources_open)
+
+    def test_public_readiness_failure_cleans_up_everything(self):
+        app = launch_web.Launcher(
+            launch_web.LauncherConfig(port=0, open_browser=False),
+            root=self.root,
+            cloudflared=Path("cloudflared"),
+            tunnel_factory=lambda executable, local_url: self._fake_tunnel(),
+            public_probe=lambda url, marker=None: False,
+            public_timeout=0.02,
+        )
+        with self.assertRaisesRegex(launch_web.LauncherError, "Timed out"):
+            self._run_app(app)
+        self.assertFalse(app.resources_open)
 
 
 if __name__ == "__main__":

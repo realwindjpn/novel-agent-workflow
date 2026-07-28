@@ -3,18 +3,22 @@
 from __future__ import annotations
 
 import argparse
+import atexit
 import ctypes
 import functools
 import os
 import queue
 import re
 import shutil
+import signal
 import socket
 import subprocess
+import sys
 import threading
 import time
 import urllib.error
 import urllib.request
+import webbrowser
 from collections import deque
 from ctypes import wintypes
 from dataclasses import dataclass, field
@@ -336,3 +340,160 @@ def wait_for_tunnel_url(
                 f"(code={tunnel.process.returncode}): {detail}"
             )
     raise LauncherError("Timed out waiting for a Cloudflare public URL.")
+
+
+@dataclass
+class LauncherResources:
+    server: ThreadingHTTPServer | None = None
+    server_thread: threading.Thread | None = None
+    tunnel: ManagedProcess | None = None
+    _closed: bool = False
+
+    @property
+    def open(self) -> bool:
+        return not self._closed and (self.server is not None or self.tunnel is not None)
+
+    def close(self) -> None:
+        if self._closed:
+            return
+        self._closed = True
+        if self.tunnel is not None:
+            self.tunnel.close()
+        if self.server is not None:
+            self.server.shutdown()
+            self.server.server_close()
+        if self.server_thread is not None:
+            self.server_thread.join(timeout=2)
+
+
+class Launcher:
+    def __init__(
+        self,
+        config: LauncherConfig,
+        *,
+        root: Path | None = None,
+        cloudflared: Path | None = None,
+        tunnel_factory: Callable[[Path, str], ManagedProcess] = start_tunnel,
+        local_probe: HttpProbe = probe_http,
+        public_probe: HttpProbe = probe_http,
+        browser_open: Callable[[str], bool] = webbrowser.open,
+        stop_event: threading.Event | None = None,
+        local_timeout: float = 10,
+        tunnel_timeout: float = 30,
+        public_timeout: float = 30,
+    ):
+        self.config = config
+        self.root = root or repository_root()
+        self.cloudflared = cloudflared
+        self.tunnel_factory = tunnel_factory
+        self.local_probe = local_probe
+        self.public_probe = public_probe
+        self.browser_open = browser_open
+        self.stop_event = stop_event or threading.Event()
+        self.local_timeout = local_timeout
+        self.tunnel_timeout = tunnel_timeout
+        self.public_timeout = public_timeout
+        self.resources = LauncherResources()
+
+    @property
+    def resources_open(self) -> bool:
+        return self.resources.open
+
+    def _print_ready(self, local_url: str, public_url: str) -> None:
+        print("\n[就绪] 网页端与临时穿透均已启动")
+        print(f"[本地] {local_url}")
+        print(f"[穿透] {public_url}")
+        print("[警告] 任何获得公网链接的人都可以访问此页面。")
+        print("[退出] 按 Ctrl+C 或关闭此窗口即可停止全部服务。\n")
+
+    def run(self) -> int:
+        web_root = validate_web_root(self.root)
+        executable = self.cloudflared or find_cloudflared()
+        if self.config.port:
+            ensure_port_available(HOST, self.config.port)
+        try:
+            print("[检查] 启动本地网页与 Cloudflare 临时穿透…")
+            server, server_thread = start_http_server(
+                web_root,
+                HOST,
+                self.config.port,
+            )
+            self.resources.server = server
+            self.resources.server_thread = server_thread
+            actual_port = int(server.server_address[1])
+            local_health_url = f"http://{HOST}:{actual_port}/"
+            local_browser_url = f"http://localhost:{actual_port}/"
+            wait_until_ready(
+                local_health_url,
+                timeout=self.local_timeout,
+                probe=self.local_probe,
+                marker="novel-workflow",
+            )
+            print(f"[本地] 已就绪: {local_browser_url}")
+
+            self.resources.tunnel = self.tunnel_factory(
+                executable,
+                local_health_url,
+            )
+            public_url = wait_for_tunnel_url(
+                self.resources.tunnel,
+                timeout=self.tunnel_timeout,
+                on_line=lambda line: print(f"[穿透] {line}"),
+            )
+            wait_until_ready(
+                public_url,
+                timeout=self.public_timeout,
+                probe=self.public_probe,
+            )
+            self._print_ready(local_browser_url, public_url)
+
+            if self.config.open_browser:
+                try:
+                    if not self.browser_open(local_browser_url):
+                        print(
+                            f"[警告] 浏览器未自动打开，请手动访问 {local_browser_url}"
+                        )
+                except Exception as exc:
+                    print(
+                        f"[警告] 浏览器打开失败: {exc}; "
+                        f"请手动访问 {local_browser_url}"
+                    )
+
+            while not self.stop_event.wait(0.25):
+                if self.resources.tunnel.process.poll() is not None:
+                    raise LauncherError(
+                        "cloudflared 已意外退出 "
+                        f"(code={self.resources.tunnel.process.returncode})。"
+                    )
+            return 0
+        finally:
+            print("[退出] 正在停止本地服务与穿透…")
+            self.resources.close()
+
+
+def main(argv: Sequence[str] | None = None) -> int:
+    config = parse_args(argv)
+    app = Launcher(config)
+    atexit.register(app.resources.close)
+
+    def request_stop(signum: int, frame: object) -> None:
+        app.stop_event.set()
+
+    for sig_name in ("SIGTERM", "SIGBREAK"):
+        sig = getattr(signal, sig_name, None)
+        if sig is not None:
+            signal.signal(sig, request_stop)
+    try:
+        return app.run()
+    except KeyboardInterrupt:
+        app.stop_event.set()
+        return 0
+    except LauncherError as exc:
+        print(f"[失败] {exc}", file=sys.stderr)
+        return 1
+    finally:
+        app.resources.close()
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

@@ -68,9 +68,27 @@ optional LLM settings (see below).
   When the key is absent, unreachable, or returns an error, the runner
   silently falls back to the rule-based intent engine.
 
-## Local preview
+## One-click local + Quick Tunnel start (Windows)
 
-The folder is fully static; any HTTP server works:
+From the repository root, double-click `一键启动.cmd`. The launcher:
+
+1. serves this directory on `127.0.0.1:8080`;
+2. starts `cloudflared` with a zero-login Quick Tunnel;
+3. verifies both the local and temporary public endpoints;
+4. opens `http://localhost:8080` in the default browser;
+5. prints the random `https://….trycloudflare.com` URL;
+6. stops the HTTP server and tunnel when Ctrl+C is pressed or the window closes.
+
+Prerequisites are Python 3.11+ and `cloudflared` on PATH. The temporary public
+URL is unauthenticated: anyone with the URL can access the runner until the
+launcher stops. The URL changes on every run.
+
+```powershell
+.\一键启动.cmd --port 9090
+.\一键启动.cmd --no-browser
+```
+
+For a local-only manual preview, any static HTTP server still works:
 
 ```bash
 cd web

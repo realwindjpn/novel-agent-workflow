@@ -226,7 +226,30 @@ cards). An optional LLM BYOK layer is opt-in: when no key is set, or
 the chosen endpoint is unreachable, the runner falls back silently to
 the rule-based intent engine — no degraded state, no half-promises.
 
-Local preview (any static server works):
+### Windows one-click start (local + temporary public URL)
+
+With Python 3.11+ and
+[`cloudflared`](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/downloads/)
+installed, double-click:
+
+```text
+一键启动.cmd
+```
+
+The launcher starts the SPA on `http://localhost:8080`, creates a random
+`https://….trycloudflare.com` Quick Tunnel, waits for both endpoints, and then
+opens the local page automatically. The public URL is temporary and has no
+login protection: anyone with the link can access the page while the launcher
+is running. Press Ctrl+C or close the launcher window to stop both services.
+
+Optional command-line use:
+
+```powershell
+.\一键启动.cmd --port 9090
+.\一键启动.cmd --no-browser
+```
+
+Manual local-only fallback (any static server works):
 
 ```bash
 cd web

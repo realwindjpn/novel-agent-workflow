@@ -29,6 +29,20 @@ class LauncherPrimitiveTests(unittest.TestCase):
     def test_parse_quick_tunnel_url_rejects_unrelated_url(self):
         self.assertIsNone(launch_web.parse_quick_tunnel_url("https://example.com"))
 
+    def test_parse_quick_tunnel_url_rejects_host_suffix(self):
+        self.assertIsNone(
+            launch_web.parse_quick_tunnel_url(
+                "https://valid.trycloudflare.com.evil.example"
+            )
+        )
+
+    def test_parse_quick_tunnel_url_rejects_user_info_suffix(self):
+        self.assertIsNone(
+            launch_web.parse_quick_tunnel_url(
+                "https://valid.trycloudflare.com@evil.example"
+            )
+        )
+
     def test_validate_web_root(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

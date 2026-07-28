@@ -14,7 +14,7 @@ from typing import Callable, Sequence
 HOST = "127.0.0.1"
 DEFAULT_PORT = 8080
 QUICK_TUNNEL_RE = re.compile(
-    r"https://[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.trycloudflare\.com",
+    r"https://[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.trycloudflare\.com(?=$|[\s/?#:])",
     re.IGNORECASE,
 )
 

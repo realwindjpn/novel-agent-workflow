@@ -39,6 +39,10 @@ class LauncherError(RuntimeError):
     """A user-actionable launcher failure."""
 
 
+class LauncherStopped(Exception):
+    """The user requested a clean stop while startup was still in progress."""
+
+
 @dataclass(frozen=True)
 class LauncherConfig:
     port: int = DEFAULT_PORT
@@ -139,9 +143,12 @@ def wait_until_ready(
     probe: HttpProbe = probe_http,
     marker: str | None = None,
     interval: float = 0.2,
+    stop_event: threading.Event | None = None,
 ) -> None:
     deadline = time.monotonic() + timeout
     while time.monotonic() < deadline:
+        if stop_event is not None and stop_event.is_set():
+            raise LauncherStopped
         if probe(url, marker):
             return
         time.sleep(interval)
@@ -318,9 +325,12 @@ def wait_for_tunnel_url(
     *,
     timeout: float,
     on_line: Callable[[str], None] | None = None,
+    stop_event: threading.Event | None = None,
 ) -> str:
     deadline = time.monotonic() + timeout
     while time.monotonic() < deadline:
+        if stop_event is not None and stop_event.is_set():
+            raise LauncherStopped
         try:
             remaining = max(0.01, deadline - time.monotonic())
             line = tunnel.lines.get(timeout=min(0.2, remaining))
@@ -380,7 +390,7 @@ class Launcher:
         stop_event: threading.Event | None = None,
         local_timeout: float = 10,
         tunnel_timeout: float = 30,
-        public_timeout: float = 30,
+        public_timeout: float = 60,
     ):
         self.config = config
         self.root = root or repository_root()
@@ -428,6 +438,7 @@ class Launcher:
                 timeout=self.local_timeout,
                 probe=self.local_probe,
                 marker="novel-workflow",
+                stop_event=self.stop_event,
             )
             print(f"[本地] 已就绪: {local_browser_url}")
 
@@ -439,11 +450,13 @@ class Launcher:
                 self.resources.tunnel,
                 timeout=self.tunnel_timeout,
                 on_line=lambda line: print(f"[穿透] {line}"),
+                stop_event=self.stop_event,
             )
             wait_until_ready(
                 public_url,
                 timeout=self.public_timeout,
                 probe=self.public_probe,
+                stop_event=self.stop_event,
             )
             self._print_ready(local_browser_url, public_url)
 
@@ -479,7 +492,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     def request_stop(signum: int, frame: object) -> None:
         app.stop_event.set()
 
-    for sig_name in ("SIGTERM", "SIGBREAK"):
+    for sig_name in ("SIGINT", "SIGTERM", "SIGBREAK"):
         sig = getattr(signal, sig_name, None)
         if sig is not None:
             signal.signal(sig, request_stop)
@@ -487,6 +500,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         return app.run()
     except KeyboardInterrupt:
         app.stop_event.set()
+        return 0
+    except LauncherStopped:
         return 0
     except LauncherError as exc:
         print(f"[失败] {exc}", file=sys.stderr)
@@ -496,4 +511,10 @@ def main(argv: Sequence[str] | None = None) -> int:
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    exit_code = main()
+    if exit_code and os.environ.get("BOOKWORKFLOW_PAUSE_ON_ERROR"):
+        try:
+            input("按回车键关闭此窗口…")
+        except (EOFError, KeyboardInterrupt):
+            pass
+    raise SystemExit(exit_code)

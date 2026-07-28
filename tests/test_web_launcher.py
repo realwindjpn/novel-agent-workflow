@@ -124,6 +124,17 @@ class HttpServerTests(unittest.TestCase):
             )
         self.assertLess(time.monotonic() - started, 0.5)
 
+    def test_wait_until_ready_honors_stop_event(self):
+        stop = threading.Event()
+        stop.set()
+        with self.assertRaises(launch_web.LauncherStopped):
+            launch_web.wait_until_ready(
+                "http://local.test",
+                timeout=30,
+                probe=lambda url, marker=None: False,
+                stop_event=stop,
+            )
+
 
 class TunnelProcessTests(unittest.TestCase):
     def _python_process(self, code: str):
@@ -215,14 +226,18 @@ class LauncherOrchestrationTests(unittest.TestCase):
 
     def test_no_browser_suppresses_browser_open(self):
         stop = threading.Event()
-        stop.set()
         browser = mock.Mock(return_value=True)
+
+        def ready_public(url, marker=None):
+            stop.set()
+            return True
+
         app = launch_web.Launcher(
             launch_web.LauncherConfig(port=0, open_browser=False),
             root=self.root,
             cloudflared=Path("cloudflared"),
             tunnel_factory=lambda executable, local_url: self._fake_tunnel(),
-            public_probe=lambda url, marker=None: True,
+            public_probe=ready_public,
             browser_open=browser,
             stop_event=stop,
         )
@@ -231,13 +246,17 @@ class LauncherOrchestrationTests(unittest.TestCase):
 
     def test_browser_failure_is_non_fatal(self):
         stop = threading.Event()
-        stop.set()
+
+        def ready_public(url, marker=None):
+            stop.set()
+            return True
+
         app = launch_web.Launcher(
             launch_web.LauncherConfig(port=0, open_browser=True),
             root=self.root,
             cloudflared=Path("cloudflared"),
             tunnel_factory=lambda executable, local_url: self._fake_tunnel(),
-            public_probe=lambda url, marker=None: True,
+            public_probe=ready_public,
             browser_open=lambda url: False,
             stop_event=stop,
         )
@@ -245,7 +264,10 @@ class LauncherOrchestrationTests(unittest.TestCase):
 
     def test_browser_exception_is_non_fatal(self):
         stop = threading.Event()
-        stop.set()
+
+        def ready_public(url, marker=None):
+            stop.set()
+            return True
 
         def fail_browser(url):
             raise OSError("browser unavailable")
@@ -255,7 +277,7 @@ class LauncherOrchestrationTests(unittest.TestCase):
             root=self.root,
             cloudflared=Path("cloudflared"),
             tunnel_factory=lambda executable, local_url: self._fake_tunnel(),
-            public_probe=lambda url, marker=None: True,
+            public_probe=ready_public,
             browser_open=fail_browser,
             stop_event=stop,
         )

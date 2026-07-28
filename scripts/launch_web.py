@@ -3,12 +3,18 @@
 from __future__ import annotations
 
 import argparse
+import functools
 import re
 import shutil
 import socket
+import threading
+import time
+import urllib.error
+import urllib.request
 from dataclasses import dataclass
+from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from typing import Callable, Sequence
+from typing import Callable, Protocol, Sequence
 
 
 HOST = "127.0.0.1"
@@ -77,3 +83,56 @@ def ensure_port_available(host: str, port: int) -> None:
             raise LauncherError(
                 f"Port {port} is already in use; close the occupying process or use --port."
             ) from exc
+
+
+class HttpProbe(Protocol):
+    def __call__(self, url: str, marker: str | None = None) -> bool: ...
+
+
+class QuietStaticHandler(SimpleHTTPRequestHandler):
+    def log_message(self, format: str, *args: object) -> None:
+        return
+
+
+def start_http_server(
+    web_root: Path,
+    host: str,
+    port: int,
+) -> tuple[ThreadingHTTPServer, threading.Thread]:
+    handler = functools.partial(QuietStaticHandler, directory=str(web_root))
+    server = ThreadingHTTPServer((host, port), handler)
+    server.daemon_threads = True
+    thread = threading.Thread(
+        target=server.serve_forever,
+        name="novel-workflow-http",
+        daemon=True,
+    )
+    thread.start()
+    return server, thread
+
+
+def probe_http(url: str, marker: str | None = None) -> bool:
+    try:
+        with urllib.request.urlopen(url, timeout=1) as response:
+            if response.status < 200 or response.status >= 400:
+                return False
+            body = response.read(256 * 1024).decode("utf-8", errors="replace")
+            return marker is None or marker in body
+    except (OSError, urllib.error.URLError, ValueError):
+        return False
+
+
+def wait_until_ready(
+    url: str,
+    *,
+    timeout: float,
+    probe: HttpProbe = probe_http,
+    marker: str | None = None,
+    interval: float = 0.2,
+) -> None:
+    deadline = time.monotonic() + timeout
+    while time.monotonic() < deadline:
+        if probe(url, marker):
+            return
+        time.sleep(interval)
+    raise LauncherError(f"Timed out waiting for endpoint: {url}")

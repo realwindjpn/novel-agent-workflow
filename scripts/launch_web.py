@@ -3,15 +3,21 @@
 from __future__ import annotations
 
 import argparse
+import ctypes
 import functools
+import os
+import queue
 import re
 import shutil
 import socket
+import subprocess
 import threading
 import time
 import urllib.error
 import urllib.request
-from dataclasses import dataclass
+from collections import deque
+from ctypes import wintypes
+from dataclasses import dataclass, field
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from typing import Callable, Protocol, Sequence
@@ -136,3 +142,197 @@ def wait_until_ready(
             return
         time.sleep(interval)
     raise LauncherError(f"Timed out waiting for endpoint: {url}")
+
+
+JOB_OBJECT_EXTENDED_LIMIT_INFORMATION_CLASS = 9
+JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE = 0x00002000
+
+
+class _IoCounters(ctypes.Structure):
+    _fields_ = [
+        ("ReadOperationCount", ctypes.c_ulonglong),
+        ("WriteOperationCount", ctypes.c_ulonglong),
+        ("OtherOperationCount", ctypes.c_ulonglong),
+        ("ReadTransferCount", ctypes.c_ulonglong),
+        ("WriteTransferCount", ctypes.c_ulonglong),
+        ("OtherTransferCount", ctypes.c_ulonglong),
+    ]
+
+
+class _BasicLimitInformation(ctypes.Structure):
+    _fields_ = [
+        ("PerProcessUserTimeLimit", ctypes.c_longlong),
+        ("PerJobUserTimeLimit", ctypes.c_longlong),
+        ("LimitFlags", wintypes.DWORD),
+        ("MinimumWorkingSetSize", ctypes.c_size_t),
+        ("MaximumWorkingSetSize", ctypes.c_size_t),
+        ("ActiveProcessLimit", wintypes.DWORD),
+        ("Affinity", ctypes.c_size_t),
+        ("PriorityClass", wintypes.DWORD),
+        ("SchedulingClass", wintypes.DWORD),
+    ]
+
+
+class _ExtendedLimitInformation(ctypes.Structure):
+    _fields_ = [
+        ("BasicLimitInformation", _BasicLimitInformation),
+        ("IoInfo", _IoCounters),
+        ("ProcessMemoryLimit", ctypes.c_size_t),
+        ("JobMemoryLimit", ctypes.c_size_t),
+        ("PeakProcessMemoryUsed", ctypes.c_size_t),
+        ("PeakJobMemoryUsed", ctypes.c_size_t),
+    ]
+
+
+class WindowsJob:
+    def __init__(self, process: subprocess.Popen[str]):
+        self._handle: int | None = None
+        if os.name != "nt":
+            return
+        kernel32 = ctypes.WinDLL("kernel32", use_last_error=True)
+        kernel32.CreateJobObjectW.restype = wintypes.HANDLE
+        kernel32.SetInformationJobObject.argtypes = [
+            wintypes.HANDLE,
+            ctypes.c_int,
+            ctypes.c_void_p,
+            wintypes.DWORD,
+        ]
+        kernel32.AssignProcessToJobObject.argtypes = [
+            wintypes.HANDLE,
+            wintypes.HANDLE,
+        ]
+        kernel32.CloseHandle.argtypes = [wintypes.HANDLE]
+        handle = kernel32.CreateJobObjectW(None, None)
+        if not handle:
+            raise LauncherError("Cannot create the Windows cleanup job object.")
+        info = _ExtendedLimitInformation()
+        info.BasicLimitInformation.LimitFlags = JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE
+        if not kernel32.SetInformationJobObject(
+            handle,
+            JOB_OBJECT_EXTENDED_LIMIT_INFORMATION_CLASS,
+            ctypes.byref(info),
+            ctypes.sizeof(info),
+        ):
+            kernel32.CloseHandle(handle)
+            raise LauncherError("Cannot configure the Windows cleanup job object.")
+        if not kernel32.AssignProcessToJobObject(
+            handle,
+            wintypes.HANDLE(process._handle),
+        ):
+            kernel32.CloseHandle(handle)
+            raise LauncherError("Cannot add cloudflared to the Windows cleanup job.")
+        self._handle = int(handle)
+
+    def close(self) -> None:
+        if self._handle is None or os.name != "nt":
+            return
+        kernel32 = ctypes.WinDLL("kernel32", use_last_error=True)
+        kernel32.CloseHandle.argtypes = [wintypes.HANDLE]
+        kernel32.CloseHandle(wintypes.HANDLE(self._handle))
+        self._handle = None
+
+
+@dataclass
+class ManagedProcess:
+    process: subprocess.Popen[str]
+    lines: queue.Queue[str]
+    recent: deque[str] = field(default_factory=lambda: deque(maxlen=20))
+    job: WindowsJob | None = None
+    _closed: bool = False
+
+    def close(self) -> None:
+        if self._closed:
+            return
+        self._closed = True
+        if self.process.poll() is None:
+            self.process.terminate()
+            try:
+                self.process.wait(timeout=3)
+            except subprocess.TimeoutExpired:
+                self.process.kill()
+                self.process.wait(timeout=3)
+        if self.process.stdout is not None:
+            self.process.stdout.close()
+        if self.job is not None:
+            self.job.close()
+
+
+def _pump_output(stream: object, lines: queue.Queue[str]) -> None:
+    if stream is None:
+        return
+    for raw in stream:
+        lines.put(str(raw).rstrip("\r\n"))
+
+
+def start_output_process(
+    command: Sequence[str],
+    *,
+    assign_windows_job: bool = True,
+) -> ManagedProcess:
+    creationflags = subprocess.CREATE_NEW_PROCESS_GROUP if os.name == "nt" else 0
+    process = subprocess.Popen(
+        list(command),
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+        encoding="utf-8",
+        errors="replace",
+        bufsize=1,
+        creationflags=creationflags,
+    )
+    lines: queue.Queue[str] = queue.Queue()
+    threading.Thread(
+        target=_pump_output,
+        args=(process.stdout, lines),
+        name="cloudflared-output",
+        daemon=True,
+    ).start()
+    managed = ManagedProcess(process=process, lines=lines)
+    try:
+        if assign_windows_job:
+            managed.job = WindowsJob(process)
+    except Exception:
+        managed.close()
+        raise
+    return managed
+
+
+def start_tunnel(executable: Path, local_url: str) -> ManagedProcess:
+    return start_output_process(
+        [
+            str(executable),
+            "tunnel",
+            "--url",
+            local_url,
+            "--no-autoupdate",
+        ]
+    )
+
+
+def wait_for_tunnel_url(
+    tunnel: ManagedProcess,
+    *,
+    timeout: float,
+    on_line: Callable[[str], None] | None = None,
+) -> str:
+    deadline = time.monotonic() + timeout
+    while time.monotonic() < deadline:
+        try:
+            remaining = max(0.01, deadline - time.monotonic())
+            line = tunnel.lines.get(timeout=min(0.2, remaining))
+        except queue.Empty:
+            line = ""
+        if line:
+            tunnel.recent.append(line)
+            if on_line is not None:
+                on_line(line)
+            found = parse_quick_tunnel_url(line)
+            if found:
+                return found
+        if tunnel.process.poll() is not None and tunnel.lines.empty():
+            detail = " | ".join(tunnel.recent) or "no output"
+            raise LauncherError(
+                "cloudflared exited early before creating a public URL "
+                f"(code={tunnel.process.returncode}): {detail}"
+            )
+    raise LauncherError("Timed out waiting for a Cloudflare public URL.")

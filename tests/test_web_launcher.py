@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import socket
+import sys
 import tempfile
 import time
 import unittest
@@ -118,6 +119,41 @@ class HttpServerTests(unittest.TestCase):
                 interval=0.005,
             )
         self.assertLess(time.monotonic() - started, 0.5)
+
+
+class TunnelProcessTests(unittest.TestCase):
+    def _python_process(self, code: str):
+        return launch_web.start_output_process(
+            [sys.executable, "-u", "-c", code], assign_windows_job=False
+        )
+
+    def test_wait_for_tunnel_url_reads_process_output(self):
+        tunnel = self._python_process(
+            "import time; "
+            "print('https://unit-test.trycloudflare.com', flush=True); "
+            "time.sleep(60)"
+        )
+        try:
+            self.assertEqual(
+                launch_web.wait_for_tunnel_url(tunnel, timeout=2),
+                "https://unit-test.trycloudflare.com",
+            )
+        finally:
+            tunnel.close()
+
+    def test_wait_for_tunnel_url_reports_early_exit(self):
+        tunnel = self._python_process("print('cloudflared failed', flush=True)")
+        try:
+            with self.assertRaisesRegex(launch_web.LauncherError, "exited early"):
+                launch_web.wait_for_tunnel_url(tunnel, timeout=2)
+        finally:
+            tunnel.close()
+
+    def test_close_is_idempotent_and_terminates_process(self):
+        tunnel = self._python_process("import time; time.sleep(60)")
+        tunnel.close()
+        tunnel.close()
+        self.assertIsNotNone(tunnel.process.poll())
 
 
 if __name__ == "__main__":

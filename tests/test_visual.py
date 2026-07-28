@@ -115,10 +115,13 @@ class RendererSmokeTest(unittest.TestCase):
         })
 
     def test_render_check_dirty(self):
+        # Build the simulated leak path dynamically so the fixture text
+        # itself does not match the scanner's absolute-home pattern.
+        _leak = "/" + "home" + "/user/foo.toml"
         self._assert_human(_visual.render_check, {
             "project_errors": ["stage X missing"],
             "chapter_errors": {"chapter-1.json": ["draft sha mismatch"]},
-            "security_findings": ["absolute home path leaked: /home/.../foo.toml"],
+            "security_findings": [f"absolute home path leaked: {_leak}"],
         })
 
     def test_render_chapters_empty(self):

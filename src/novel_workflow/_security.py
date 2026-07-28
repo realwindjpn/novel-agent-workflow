@@ -52,13 +52,44 @@ ABSOLUTE_HOME = re.compile(
     re.I,
 )
 
-# External service coupling: base_url, model_id, http URLs, bearer tokens.
-# These are variable names / URL schemes, not generic ecosystem words, so a
-# tutorial mentioning "openai" in prose is fine while a hardcoded endpoint
-# is flagged.
+# External service coupling.
+#
+# This is two separate concerns, composed for backward compatibility:
+#
+# 1. Variable-style coupling — names that strongly suggest a hardcoded
+#    LLM / API endpoint in source (``base_url``, ``endpoint_url``,
+#    ``api_endpoint``, ``model_id``, ``model_name``, ``bearer xxx``).
+#    These are always flagged; a tutorial that legitimately names a
+#    routing variable in prose is expected to be the exception, not
+#    the rule.
+#
+# 2. URL-style coupling — only flagged when the path looks like an
+#    API endpoint: it contains a segment like ``/v1/``, ``/api/``,
+#    ``/chat``, ``/completions``, ``/embeddings``, ``/messages``,
+#    ``/generations``, ``/moderations``, ``/audio``, ``/images``.
+#    The segment may sit at the end of the URL or be followed by a
+#    path/query/fragment delimiter or whitespace. This keeps the
+#    scanner from flagging README badge links (``shields.io``),
+#    documentation references (``no-color.org``, ``python.org``,
+#    ``apache.org``, ``creativecommons.org``), and plain GitHub
+#    source-tree links.
+SERVICE_COUPLING_VAR = re.compile(
+    r"\b(?:base_url|endpoint_url|api_endpoint|model_id|model_name)\b"
+    r"|bearer\s+[A-Za-z0-9_-]{8,}",
+    re.I,
+)
+SERVICE_COUPLING_URL = re.compile(
+    r"https?://[^\s\"'<>]*?/"
+    r"(?:v\d+|api|chat|completions|embeddings|messages"
+    r"|generations|moderations|audio|images)"
+    r"(?=[/?#\"\s'<>]|$)",
+    re.I,
+)
 SERVICE_COUPLING = re.compile(
-    r"\b(?:base_url|endpoint_url|api_endpoint|model_id|model_name"
-    r"|http[s]?://|bearer\s+[A-Za-z0-9_-]{8,})\b",
+    r"(?:" + SERVICE_COUPLING_VAR.pattern + r")"
+    r"|(?:"
+    + SERVICE_COUPLING_URL.pattern
+    + r")",
     re.I,
 )
 

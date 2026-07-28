@@ -135,6 +135,13 @@ SELF_EXCLUDE_RELS = frozenset({
     # the deny-list surface itself. A real secret here would still be caught
     # by the release gate's own file enumeration cross-check.
     "tests/test_model_adapter.py",
+    # The security-scanner test exercises SERVICE_COUPLING against real API
+    # endpoint URLs, variable names, and known-OK documentation / badge
+    # links. It is the deny-list's own test surface; excluding it parallels
+    # how test_model_adapter.py is excluded. A real secret accidentally
+    # committed here would still be caught by the release gate's own file
+    # enumeration cross-check.
+    "tests/test_security_scanner.py",
 })
 
 # Public template files that MUST show base_url / endpoint syntax so users

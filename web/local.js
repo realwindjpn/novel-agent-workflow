@@ -614,20 +614,20 @@
       return Promise.resolve({
         code: 1,
         out: "",
-        err: "鏈湴鏂颁功鍒涘缓鍣ㄥ皻鏈氨缁紝璇锋墦寮€涔﹀簱闈㈡澘鍚庨噸璇曘€?"
+        err: "本地新书创建器尚未就绪，请打开书库面板后重试。"
       });
     }
     return Promise.resolve()
       .then(function () { return projectCreator(title); })
       .then(function (result) {
         if (result && typeof result.code === "number") return result;
-        return { code: 1, out: "", err: "鏈湴鏂颁功鍒涘缓鍣ㄨ繑鍥炰簡鏃犳晥缁撴灉銆?" };
+        return { code: 1, out: "", err: "本地新书创建器返回了无效结果。" };
       })
       .catch(function (error) {
         return {
           code: 1,
           out: "",
-          err: "鏂颁功鍒涘缓澶辫触锛?" + ((error && error.message) || error)
+          err: "新书创建失败：" + ((error && error.message) || error)
         };
       });
   }

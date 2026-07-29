@@ -322,26 +322,26 @@ test("local init delegates to the registered project creator and skips MCP", asy
   const calls = [];
   NWL.setProjectCreator(async (title) => {
     calls.push(title);
-    return { code: 0, out: "琛€杩筥20260729", err: "" };
+    return { code: 0, out: "已创建并打开：血迹_20260729", err: "" };
   });
 
   const result = await NWL.runSmart(
-    {}, ["init", "demo", "--title", "琛€杩?"], false
+    {}, ["init", "demo", "--title", "血迹"], false
   );
 
-  assert.deepEqual(calls, ["琛€杩?"]);
+  assert.deepEqual(calls, ["血迹"]);
   assert.equal(result.code, 0);
-  assert.match(result.out, /琛€杩筥20260729/);
+  assert.match(result.out, /血迹_20260729/);
   assert.equal(result.err, "");
 });
 
 test("local init reports a setup error when no project creator is registered", async () => {
   const NWL = loadLocal({ apiBase: "/api/local", token: "abc" });
   const result = await NWL.runSmart(
-    {}, ["init", "demo", "--title", "琛€杩?"], false
+    {}, ["init", "demo", "--title", "血迹"], false
   );
   assert.equal(result.code, 1);
-  assert.match(result.err, /鏂颁功鍒涘缓鍣?/);
+  assert.match(result.err, /新书创建器/);
 });
 
 test("local init converts project-creator rejection to a transport result", async () => {
@@ -350,7 +350,7 @@ test("local init converts project-creator rejection to a transport result", asyn
     throw new Error("create failed");
   });
   const result = await NWL.runSmart(
-    {}, ["init", "demo", "--title", "琛€杩?"], false
+    {}, ["init", "demo", "--title", "血迹"], false
   );
   assert.equal(result.code, 1);
   assert.match(result.err, /create failed/);

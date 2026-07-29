@@ -144,6 +144,13 @@ engines and have different persistence guarantees.
   round-trip. The local API reads only the catalog and a bounded file
   snapshot directly.
 
+In local white-language mode, starting a new book routes `init` through the
+library creator first. The page creates and activates the dated book directory,
+then continues with its MCP child; it never sends `init` to a missing or
+previously active book. Same-title requests pause for the same open/create-copy/
+cancel decision used by the library panel. Existing books are displayed as
+selectable cards with Chinese workflow status labels.
+
 ### What the local API enforces
 
 | Concern              | Behaviour                                                                                              |

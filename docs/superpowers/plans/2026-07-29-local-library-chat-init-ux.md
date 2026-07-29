@@ -828,7 +828,8 @@ the public badge reads `公网演示 · 浏览器内存`. Check the local API pa
 PowerShell:
 
 ```powershell
-curl.exe -sS -o NUL -w "%{http_code}" http://127.0.0.1:8081/api/local/capabilities
+$localApiPath = "/api/local/capabilities"
+curl.exe -sS -o NUL -w "%{http_code}" "http://127.0.0.1:8081$localApiPath"
 ```
 
 Expected: HTTP `404`; public mode continues its in-memory Pyodide/replay path.

@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Fixed local white-language new-book creation so `init` creates and activates
+  a library project instead of failing with `transport: no active book`; the
+  local library chooser now uses accessible Chinese-status book cards.
 - Added provider-neutral, opt-in model routing with TOML configuration and
   environment-only key names.
 - Added fresh preflight semantic smoke, fallback allocation, redacted failure

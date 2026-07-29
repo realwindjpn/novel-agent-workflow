@@ -161,7 +161,8 @@
         title: title,
         content: content,
         source_turn_ids: sourceTurnIds || [],
-        ts: ports.clock()
+        status: "trial",
+        created_at: ports.clock()
       };
       return ports.storage.writeDraft(draft).then(function () {
         state = "idle";
@@ -187,15 +188,22 @@
      * the actual argv carries the full 15-field intake for the CLI.
      */
     function formalIdeaPlan(proposal) {
+      var summary = proposal.summary || proposal.preview;
       var intake = proposal.intake || {};
-      var summary = proposal.summary || "";
       return {
         kind: "custom",
-        intent: "将已确认创意编译为 novel-workflow idea 命令",
-        explain: proposal.preview || summary,
+        intent: "采用创意方案",
+        explain: "把已确认的自然语言方案写入正式工作流。",
         cmdDisplay: "novel-workflow idea . --summary <已确认方案> --interview <内部结构化创意>",
         argv: ["idea", ".", "--summary", summary, "--interview", JSON.stringify(intake)],
-        intake: true
+        setup: {},
+        source: "creative-compiler",
+        proposalId: proposal.id,
+        intake: true,
+        resultSummary: function (ok, result) {
+          if (ok) return "创意方案已写入正式工作流。";
+          return "写入失败：" + ((result && result.err) || "未知错误");
+        }
       };
     }
 

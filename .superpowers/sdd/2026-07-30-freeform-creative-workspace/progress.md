@@ -14,7 +14,12 @@ Branch: codex/local-mcp-library-plan
 - tests/js/test_llm_adapter.mjs: 14 tests covering all three calls + error types
 - INTAKE_KEYS (15 fields) matching core.py INTAKE_FIELD_KEYS
 
-## Task 7 — freeform creative controller (pending commit)
+## Task 8 — compile confirmed proposals + formal gate (pending commit)
+- Aligned formalIdeaPlan with plan spec: added setup, source, proposalId,
+  resultSummary; intent="采用创意方案"
+- Trial draft format: added status="trial", created_at field
+- Tests already in test_creative_chat.mjs (6 tests for Task 8), all pass
+- offerExternalPlan in chat.js renders plan card as second confirmation
 - web/creative-chat.js: createController(ports) with state machine
   (idle → responding → compiling → proposal → committing → error)
 - Autonomy detection regex, non-blocking readiness check

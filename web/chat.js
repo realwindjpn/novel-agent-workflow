@@ -790,7 +790,18 @@
     chatInput.focus();
   });
 
-  window.NWC = { setMode: setMode, refresh: refreshStateSummary };
+  /* Creative workspace bridge: when the creative controller compiles a
+   * confirmed proposal into a formal idea plan, it calls offerExternalPlan
+   * to render it as a plan card (second confirmation gate). The user must
+   * click "执行" before the plan actually runs via NWB.runSmart. */
+  function offerExternalPlan(plan) {
+    setMode("white");
+    assistantHtml("创意已确认，编译为正式命令——请确认后执行：");
+    var d = planCard(plan);
+    pending = { kind: "plan", plan: plan, div: d };
+  }
+
+  window.NWC = { setMode: setMode, refresh: refreshStateSummary, offerExternalPlan: offerExternalPlan };
 
   /* v4: wire up the LLM settings popover + badge (llm.js's IIFE has
    * already registered window.NWL by the time chat.js runs, since

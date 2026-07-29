@@ -113,7 +113,10 @@
     font-family: var(--mono); overflow: hidden;
   }
   .lib-dialog::backdrop { background: #02070ddd; backdrop-filter: blur(4px); }
-  .lib-dialog-inner { padding: 22px; display: grid; gap: 16px; overflow: auto; }
+  .lib-dialog-inner {
+    max-height: min(780px, calc(100vh - 28px));
+    padding: 22px; display: grid; gap: 16px; overflow: auto;
+  }
   .lib-dialog-head { display: flex; align-items: center; gap: 12px; }
   .lib-dialog-head h2 { margin: 2px 0 0; font-size: 18px; letter-spacing: .04em; }
   .lib-dialog-head .spacer { flex: 1; }

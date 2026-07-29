@@ -21,6 +21,26 @@ from scripts.launch_web import (
 from scripts.local_mcp_bridge import LibrarySession
 
 
+class WebLibraryPanelAssetTests(unittest.TestCase):
+    def setUp(self):
+        self.html = (
+            Path(__file__).resolve().parents[1] / "web" / "index.html"
+        ).read_text(encoding="utf-8")
+
+    def test_library_panel_uses_cards_and_a_disabled_primary_action(self):
+        self.assertIn('id="lib-books" class="lib-book-list"', self.html)
+        self.assertIn('role="listbox"', self.html)
+        self.assertNotIn('<select id="lib-books"', self.html)
+        self.assertIn('id="lib-count"', self.html)
+        self.assertIn('id="lib-path-display"', self.html)
+        self.assertIn('id="lib-open" disabled', self.html)
+
+    def test_library_path_controls_live_in_a_disclosure(self):
+        self.assertIn('id="lib-location"', self.html)
+        self.assertIn('<summary>', self.html)
+        self.assertIn('书库位置', self.html)
+
+
 class LauncherPrimitiveTests(unittest.TestCase):
     def test_parse_args_defaults(self):
         config = launch_web.parse_args([])

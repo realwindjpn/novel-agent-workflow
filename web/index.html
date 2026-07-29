@@ -107,31 +107,59 @@
   #lib-panel button:hover { color: var(--text, #eee); border-color: var(--text, #eee); }
   body:not(.local-mode) #lib-panel { display: none; }
   .lib-dialog {
-    width: min(560px, calc(100vw - 28px)); color: var(--ink);
-    background: var(--bg2); border: 1px solid var(--edge2); border-radius: 12px;
-    padding: 0; box-shadow: 0 24px 80px #000b; font-family: var(--mono);
+    width: min(680px, calc(100vw - 28px)); max-height: min(780px, calc(100vh - 28px));
+    color: var(--ink); background: #0b1424; border: 1px solid #263756;
+    border-radius: 14px; padding: 0; box-shadow: 0 28px 90px #000d;
+    font-family: var(--mono); overflow: hidden;
   }
-  .lib-dialog::backdrop { background: #02070dcc; backdrop-filter: blur(3px); }
-  .lib-dialog-inner { padding: 18px; display: grid; gap: 14px; }
-  .lib-dialog-head { display: flex; align-items: center; gap: 10px; }
-  .lib-dialog-head h2 { margin: 0; font-size: 15px; letter-spacing: .05em; }
+  .lib-dialog::backdrop { background: #02070ddd; backdrop-filter: blur(4px); }
+  .lib-dialog-inner { padding: 22px; display: grid; gap: 16px; overflow: auto; }
+  .lib-dialog-head { display: flex; align-items: center; gap: 12px; }
+  .lib-dialog-head h2 { margin: 2px 0 0; font-size: 18px; letter-spacing: .04em; }
   .lib-dialog-head .spacer { flex: 1; }
+  .lib-eyebrow { color: var(--signal); font-size: 9px; letter-spacing: .16em; }
+  .lib-count { color: var(--dim); border: 1px solid var(--edge2); border-radius: 999px; padding: 4px 9px; font-size: 10px; }
   .lib-dialog label { display: grid; gap: 6px; color: var(--dim); font-size: 11px; }
-  .lib-dialog input, .lib-dialog select {
-    width: 100%; box-sizing: border-box; background: var(--bg);
-    color: var(--ink); border: 1px solid var(--edge2); border-radius: 7px;
-    padding: 9px 10px; font: 12px/1.4 var(--mono);
+  .lib-dialog input {
+    width: 100%; box-sizing: border-box; background: #07101d; color: var(--ink);
+    border: 1px solid #263756; border-radius: 8px; padding: 10px 12px;
+    font: 12px/1.4 var(--mono); outline: none;
   }
-  .lib-dialog select { min-height: 132px; }
+  .lib-dialog input:focus { border-color: var(--signal); box-shadow: 0 0 0 2px #16d9c21f; }
   .lib-dialog-actions { display: flex; flex-wrap: wrap; gap: 8px; }
   .lib-dialog button {
-    border: 1px solid var(--edge2); border-radius: 7px; padding: 7px 11px;
-    background: transparent; color: var(--ink); font: 11px var(--mono); cursor: pointer;
+    border: 1px solid #2b3c5a; border-radius: 8px; padding: 8px 12px;
+    background: #0d1829; color: var(--ink); font: 11px var(--mono); cursor: pointer;
   }
-  .lib-dialog button.primary { border-color: var(--signal-dim); color: var(--signal); }
-  .lib-dialog button:hover { border-color: var(--faint); }
+  .lib-dialog button:hover:not(:disabled) { border-color: var(--signal); color: var(--signal); }
+  .lib-dialog button:focus-visible { outline: 2px solid var(--signal); outline-offset: 2px; }
+  .lib-dialog button.primary { border-color: #137f78; background: #0b292b; color: #64f0de; }
+  .lib-dialog button:disabled { cursor: not-allowed; opacity: .42; }
+  .lib-location, .lib-section { border: 1px solid #21314d; border-radius: 10px; background: #091321; }
+  .lib-location summary { display: flex; gap: 12px; align-items: center; padding: 12px 14px; cursor: pointer; color: var(--dim); }
+  .lib-location summary code { margin-left: auto; max-width: 66%; overflow: hidden; text-overflow: ellipsis; color: var(--ink); white-space: nowrap; }
+  .lib-location-body { border-top: 1px solid #21314d; padding: 14px; display: grid; gap: 10px; }
+  .lib-section { padding: 14px; display: grid; gap: 12px; }
+  .lib-section-head { display: flex; align-items: baseline; gap: 10px; }
+  .lib-section-head h3 { margin: 0; font-size: 13px; color: var(--ink); }
+  .lib-section-head span { color: var(--dim); font-size: 10px; }
+  .lib-book-list { display: grid; gap: 8px; max-height: 280px; overflow: auto; }
+  .lib-book-card { width: 100%; display: grid; grid-template-columns: 1fr auto; gap: 7px 12px; text-align: left; padding: 12px 13px !important; }
+  .lib-book-card[aria-selected="true"] { border-color: var(--signal); background: #0a2529; box-shadow: inset 3px 0 var(--signal); }
+  .lib-book-title { font-size: 13px; font-weight: 700; color: var(--ink); overflow: hidden; text-overflow: ellipsis; }
+  .lib-book-meta { grid-column: 1 / -1; color: var(--dim); font-size: 10px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .lib-status-chip { align-self: start; border: 1px solid #35506f; border-radius: 999px; padding: 3px 7px; color: #a9c4e8; font-size: 9px; white-space: nowrap; }
+  .lib-primary-action { width: 100%; padding-block: 10px !important; }
+  .lib-create-section { background: linear-gradient(135deg, #0a1726, #0a2026); }
+  .lib-create-row { display: grid; grid-template-columns: 1fr auto; gap: 9px; }
   .lib-dialog-status { min-height: 18px; margin: 0; color: var(--dim); font-size: 11px; }
   .lib-dialog-status.err { color: var(--red); }
+  @media (max-width: 620px) {
+    .lib-dialog-inner { padding: 16px; }
+    .lib-count, .lib-section-head span { display: none; }
+    .lib-location summary code { max-width: 55%; }
+    .lib-create-row { grid-template-columns: 1fr; }
+  }
   .gh-link {
     font-family: var(--mono); font-size: 11px; color: var(--dim);
     text-decoration: none; border: 1px solid var(--edge2); border-radius: 6px;
@@ -727,31 +755,56 @@
   <dialog id="lib-dialog" class="lib-dialog" aria-labelledby="lib-dialog-title">
     <div class="lib-dialog-inner">
       <div class="lib-dialog-head">
-        <h2 id="lib-dialog-title">本地书库</h2><span class="spacer"></span>
+        <div>
+          <span class="lib-eyebrow">LOCAL LIBRARY</span>
+          <h2 id="lib-dialog-title">本地书库</h2>
+        </div>
+        <span id="lib-count" class="lib-count">0 本创作</span>
+        <span class="spacer"></span>
         <button type="button" id="lib-close" aria-label="关闭书库设置">关闭</button>
       </div>
-      <label>书库路径
-        <input id="lib-path" type="text" autocomplete="off" spellcheck="false"
-               placeholder="F:\bookworkflow\book">
-      </label>
-      <div class="lib-dialog-actions">
-        <button type="button" id="lib-apply">应用路径</button>
-        <button type="button" id="lib-browse">选择文件夹</button>
-        <button type="button" id="lib-refresh">读取已有创作</button>
-      </div>
-      <label>已有创作
-        <select id="lib-books" size="6" aria-label="已有创作列表"></select>
-      </label>
-      <div class="lib-dialog-actions">
-        <button type="button" class="primary" id="lib-open">继续选中的创作</button>
-      </div>
-      <label>新建创作
-        <input id="lib-new-title" type="text" autocomplete="off" maxlength="120"
-               placeholder="输入书名">
-      </label>
-      <div class="lib-dialog-actions">
-        <button type="button" class="primary" id="lib-create">创建新书</button>
-      </div>
+
+      <details id="lib-location" class="lib-location">
+        <summary>
+          <span>书库位置</span>
+          <code id="lib-path-display">F:\bookworkflow\book</code>
+        </summary>
+        <div class="lib-location-body">
+          <label>本地绝对路径
+            <input id="lib-path" type="text" autocomplete="off" spellcheck="false"
+                   placeholder="F:\bookworkflow\book">
+          </label>
+          <div class="lib-dialog-actions">
+            <button type="button" id="lib-apply">应用路径</button>
+            <button type="button" id="lib-browse">选择文件夹</button>
+            <button type="button" id="lib-refresh">重新读取</button>
+          </div>
+        </div>
+      </details>
+
+      <section class="lib-section" aria-labelledby="lib-existing-title">
+        <div class="lib-section-head">
+          <h3 id="lib-existing-title">已有创作</h3>
+          <span>选择后再继续，避免误打开</span>
+        </div>
+        <div id="lib-books" class="lib-book-list" role="listbox"
+             aria-label="已有创作列表"></div>
+        <button type="button" class="primary lib-primary-action"
+                id="lib-open" disabled>继续创作</button>
+      </section>
+
+      <section class="lib-section lib-create-section" aria-labelledby="lib-create-title">
+        <div class="lib-section-head">
+          <h3 id="lib-create-title">新建创作</h3>
+          <span>将按书名和日期建立独立目录</span>
+        </div>
+        <div class="lib-create-row">
+          <input id="lib-new-title" type="text" autocomplete="off" maxlength="120"
+                 aria-label="新书书名" placeholder="输入书名，例如：血迹">
+          <button type="button" class="primary" id="lib-create">创建新书</button>
+        </div>
+      </section>
+
       <p id="lib-status" class="lib-dialog-status" role="status"></p>
     </div>
   </dialog>

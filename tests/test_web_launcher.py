@@ -26,6 +26,9 @@ class WebLibraryPanelAssetTests(unittest.TestCase):
         self.html = (
             Path(__file__).resolve().parents[1] / "web" / "index.html"
         ).read_text(encoding="utf-8")
+        self.app_js = (
+            Path(__file__).resolve().parents[1] / "web" / "app.js"
+        ).read_text(encoding="utf-8")
 
     def test_library_panel_uses_cards_and_a_disabled_primary_action(self):
         self.assertIn('id="lib-books" class="lib-book-list"', self.html)
@@ -39,6 +42,14 @@ class WebLibraryPanelAssetTests(unittest.TestCase):
         self.assertIn('id="lib-location"', self.html)
         self.assertIn('<summary>', self.html)
         self.assertIn('书库位置', self.html)
+
+    def test_library_controller_has_chinese_status_and_safe_selection(self):
+        self.assertIn('OUTLINE_LOCKED: "大纲已锁定"', self.app_js)
+        self.assertIn('IDEA: "构思中"', self.app_js)
+        self.assertIn('aria-selected', self.app_js)
+        self.assertIn('selectedBookDirectory', self.app_js)
+        self.assertIn('libOpenBtn.disabled', self.app_js)
+        self.assertIn('正在读取书库', self.app_js)
 
 
 class LauncherPrimitiveTests(unittest.TestCase):

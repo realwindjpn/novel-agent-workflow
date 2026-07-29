@@ -834,6 +834,8 @@
   var libRefreshBtn = document.getElementById("lib-refresh");
   var libBooks = document.getElementById("lib-books");
   var libOpenBtn = document.getElementById("lib-open");
+  var libCount = document.getElementById("lib-count");
+  var libPathDisplay = document.getElementById("lib-path-display");
   var libNewTitle = document.getElementById("lib-new-title");
   var libCreateBtn = document.getElementById("lib-create");
   var libStatus = document.getElementById("lib-status");
@@ -843,6 +845,7 @@
   var createCopyBtn = document.getElementById("lib-create-copy");
   var cancelCollisionBtn = document.getElementById("lib-cancel-collision");
   var pendingCollisionTitle = "";
+  var selectedBookDirectory = "";
   if (localMode) document.body.classList.add("local-mode");
 
   function setLibStatus(text, isError) {
@@ -860,29 +863,90 @@
     if (cap && cap.library) {
       libBookName.title = cap.library;
       if (libPathInput) libPathInput.value = cap.library;
+      if (libPathDisplay) libPathDisplay.textContent = cap.library;
     }
+  }
+
+  var LIB_STAGE_LABELS = {
+    INIT: "已立项",
+    IDEA: "构思中",
+    CONCEPT_APPROVED: "概念已通过",
+    BIBLE_WRITTEN: "世界观已建立",
+    OUTLINE_LOCKED: "大纲已锁定",
+    DRAFTING: "写作中",
+    READY_TO_RELEASE: "待发布",
+    RELEASED: "已有章节发布"
+  };
+
+  function statusLabel(book) {
+    if (book && book.released_chapter_count > 0) return "已有章节发布";
+    return LIB_STAGE_LABELS[(book && book.stage) || ""] || "处理中";
+  }
+
+  function selectBookCard(directory) {
+    selectedBookDirectory = directory || "";
+    var cards = libBooks.querySelectorAll(".lib-book-card");
+    Array.prototype.forEach.call(cards, function (card) {
+      var selected = card.dataset.directory === selectedBookDirectory;
+      card.setAttribute("aria-selected", selected ? "true" : "false");
+    });
+    libOpenBtn.disabled = !selectedBookDirectory;
   }
 
   function renderBookList(result) {
     if (!libBooks) return;
-    libBooks.innerHTML = "";
+    libBooks.replaceChildren();
+    selectedBookDirectory = "";
     var books = (result && (result.books || result.catalog)) || [];
+    if (libCount) libCount.textContent = books.length + " 本创作";
+    if (result && result.library) {
+      libPathInput.value = result.library;
+      libPathDisplay.textContent = result.library;
+    }
     books.forEach(function (book) {
-      var option = document.createElement("option");
-      option.value = book.directory;
-      option.textContent = book.title + " · " + book.stage + " · " +
-        book.chapter_count + " 章 · " + book.directory;
-      libBooks.appendChild(option);
+      var card = document.createElement("button");
+      card.type = "button";
+      card.className = "lib-book-card";
+      card.setAttribute("role", "option");
+      card.setAttribute("aria-selected", "false");
+      card.dataset.directory = book.directory;
+      card.title = "工作流状态：" + (book.stage || "unknown");
+
+      var title = document.createElement("span");
+      title.className = "lib-book-title";
+      title.textContent = book.title || book.directory;
+      var chip = document.createElement("span");
+      chip.className = "lib-status-chip";
+      chip.textContent = statusLabel(book);
+      var meta = document.createElement("span");
+      meta.className = "lib-book-meta";
+      meta.textContent = (book.chapter_count || 0) + " 章 · " + book.directory;
+      card.append(title, chip, meta);
+      libBooks.appendChild(card);
     });
-    if (result && result.library && libPathInput) libPathInput.value = result.library;
-    setLibStatus(books.length ? "读取到 " + books.length + " 本创作。" : "书库为空，可以创建新书。", false);
+    if (books.length === 0) {
+      var empty = document.createElement("div");
+      empty.className = "lib-book-empty";
+      empty.textContent = "这里还没有创作，可以从下方创建第一本书。";
+      libBooks.appendChild(empty);
+    }
+
+    var active = window.NWLocal.capabilities && window.NWLocal.capabilities.active_directory;
+    if (active && books.some(function (book) { return book.directory === active; })) {
+      selectBookCard(active);
+    } else {
+      libOpenBtn.disabled = true;
+    }
+    setLibStatus(books.length ? "已读取 " + books.length + " 本创作。" : "书库为空，可以创建新书。", false);
   }
 
   function loadLibraryDialog() {
+    if (libDialog && !libDialog.open) libDialog.showModal();
+    setLibStatus("正在读取书库……", false);
+    libOpenBtn.disabled = true;
     return window.NWLocal.listBooks().then(function (result) {
       renderBookList(result);
       refreshLibPanel();
-      if (libDialog && !libDialog.open) libDialog.showModal();
       return result;
     });
   }
@@ -920,6 +984,12 @@
     if (!localMode) return;
     loadLibraryDialog().catch(function (e) { setLibStatus((e && e.message) || e, true); });
   });
+  if (libBooks) libBooks.addEventListener("click", function (event) {
+    var card = event.target.closest(".lib-book-card");
+    if (!card || !libBooks.contains(card)) return;
+    selectBookCard(card.dataset.directory);
+    setLibStatus("已选择：" + card.querySelector(".lib-book-title").textContent, false);
+  });
   if (libCloseBtn) libCloseBtn.addEventListener("click", function () { libDialog.close(); });
   if (libRefreshBtn) libRefreshBtn.addEventListener("click", function () {
     window.NWLocal.listBooks().then(renderBookList)
@@ -944,7 +1014,7 @@
     }).catch(function (e) { setLibStatus((e && e.message) || e, true); });
   });
   if (libOpenBtn) libOpenBtn.addEventListener("click", function () {
-    var directory = libBooks.value;
+    var directory = selectedBookDirectory;
     if (!directory) { setLibStatus("请先选择一本已有创作。", true); return; }
     setLibStatus("正在打开……", false);
     window.NWLocal.openBook(directory)

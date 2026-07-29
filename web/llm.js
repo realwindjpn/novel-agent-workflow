@@ -428,6 +428,210 @@
   }
 
   /* ============================================================
+   * v5: separated creative / readiness / compiler model calls
+   * ============================================================ */
+  var INTAKE_KEYS = [
+    "audience", "genre", "target_words", "premise", "world", "protagonist",
+    "supporting_cast", "central_conflict", "stakes", "character_arc", "style",
+    "structure", "ending", "boundaries", "craft_patterns"
+  ];
+
+  function ModelError(code, message, detail) {
+    this.name = "ModelError";
+    this.code = code;
+    this.message = message || code;
+    this.detail = detail || "";
+    if (Error.captureStackTrace) Error.captureStackTrace(this, ModelError);
+  }
+  ModelError.prototype = Object.create(Error.prototype);
+  ModelError.prototype.constructor = ModelError;
+
+  function getCreativeTemperature() {
+    var t = parseFloat(readSetting("creativeTemp", "0.85"));
+    return isNaN(t) ? 0.85 : t;
+  }
+
+  /* Low-level provider request — returns the parsed chat-completion JSON.
+   * Maps configuration, network/CORS, timeout, and HTTP failures to typed
+   * ModelError codes. Never returns a silent fallback. */
+  function requestProvider(messages, options) {
+    options = options || {};
+    if (!getApiKey()) return Promise.reject(new ModelError("not_configured", "未设置 API key"));
+    var base = getBaseUrl();
+    var model = getModel();
+    var url = base + "/chat/completions";
+    var body = {
+      model: model,
+      messages: messages,
+      temperature: options.temperature,
+      max_tokens: options.maxTokens,
+      stream: false
+    };
+    if (options.json && /^https?:\/\/(api\.openai\.com|api\.deepseek\.com|api\.moonshot\.cn|openrouter\.api\.)/.test(base)) {
+      body.response_format = { type: "json_object" };
+    }
+    var ac = window.AbortController ? new window.AbortController() : null;
+    var timer = setTimeout(function () { if (ac) ac.abort(); }, options.timeout || REQUEST_TIMEOUT_MS);
+    return fetch(url, {
+      method: "POST",
+      signal: ac ? ac.signal : undefined,
+      headers: { "Content-Type": "application/json", "Authorization": "Bearer " + getApiKey() },
+      body: JSON.stringify(body)
+    }).then(function (resp) {
+      clearTimeout(timer);
+      if (!resp.ok) {
+        return resp.text().then(function (t) {
+          var e = new ModelError("provider_http", "HTTP " + resp.status + " " + resp.statusText, (t || "").slice(0, 200));
+          e.status = resp.status;
+          throw e;
+        });
+      }
+      return resp.json();
+    }, function (err) {
+      clearTimeout(timer);
+      if (ac && ac.signal && ac.signal.aborted) throw new ModelError("timeout", "请求超时");
+      var msg = (err && err.message) || String(err);
+      if (/cors|failed to fetch|networkerror|load failed/i.test(msg)) throw new ModelError("cors", msg);
+      throw new ModelError("network", msg);
+    });
+  }
+
+  function extractProviderText(payload) {
+    var choice = payload && payload.choices && payload.choices[0];
+    var msg = choice && choice.message;
+    return (msg && (msg.content || msg.text)) || "";
+  }
+
+  function requestText(messages, options) {
+    options = options || {};
+    return requestProvider(messages, options).then(function (payload) {
+      var text = extractProviderText(payload);
+      if (!text || !text.trim()) throw new ModelError("empty_response", "模型返回为空");
+      return text;
+    });
+  }
+
+  function buildCreativeMessages(input) {
+    input = input || {};
+    var ctx = input.context || {};
+    var facts = ctx.facts || {};
+    var turns = ctx.turns || [];
+    var recent = turns.slice(-6).map(function (t) { return "[" + t.role + "] " + t.text; }).join("\n");
+    var sys = [
+      "你是一位资深小说创作搭档。用户在自由创作工作区与你讨论创意。你的回复是自然语言散文，不要输出 JSON、CLI 命令或表单。",
+      "你可以：提出有价值的创作问题；在获得授权后自行选择合理创意方向并说明重要假设；呈现或对比多个方向；质疑或替换尚未确认的想法；生成场景、对话、试写片段。",
+      ctx.book ? "当前书籍：" + ctx.book : "",
+      facts.confirmed && facts.confirmed.length ? "已确认事实：" + facts.confirmed.join("；") : "",
+      facts.boundaries && facts.boundaries.length ? "禁区：" + facts.boundaries.join("；") : "",
+      facts.rejected && facts.rejected.length ? "已被否定的方向：" + facts.rejected.join("；") : "",
+      ctx.summary ? "长期摘要：" + ctx.summary : "",
+      recent ? "最近对话：\n" + recent : "",
+      input.autonomy
+        ? "用户已授权「你来决定」：你可以自行做主选择合理创意方向，必须说明重要假设，不必反复把选择题推回给用户，但不得覆盖已确认事实或突破禁区。"
+        : "用户未授权自主决定，请以讨论和提问为主，必要时给出建议。"
+    ].filter(Boolean).join("\n");
+    return [
+      { role: "system", content: sys },
+      { role: "user", content: input.text || "" }
+    ];
+  }
+
+  function creativeReply(input) {
+    if (!isEnabled()) return Promise.reject(new ModelError("not_configured", "LLM 未启用"));
+    if (!getApiKey()) return Promise.reject(new ModelError("not_configured", "未设置 API key"));
+    var messages = buildCreativeMessages(input);
+    return requestText(messages, {
+      temperature: getCreativeTemperature(), maxTokens: 3000, json: false
+    }).then(function (reply) { return { reply: reply }; });
+  }
+
+  function buildReadinessMessages(input) {
+    input = input || {};
+    var ctx = input.context || {};
+    var turns = ctx.turns || [];
+    var recent = turns.slice(-8).map(function (t) { return "[" + t.role + "] " + t.text; }).join("\n");
+    var sys = [
+      "判断当前自由创作对话是否已经成熟到可以生成一份正式创意方案。只返回严格单行 JSON：{\"ready\":true|false,\"reason\":\"简短理由\"}。",
+      recent ? "最近对话：\n" + recent : "",
+      ctx.summary ? "长期摘要：" + ctx.summary : ""
+    ].filter(Boolean).join("\n");
+    return [
+      { role: "system", content: sys },
+      { role: "user", content: "判断成熟度" }
+    ];
+  }
+
+  function validateReadiness(obj) {
+    if (obj && typeof obj.ready === "boolean") {
+      return { ready: obj.ready, reason: String(obj.reason || "") };
+    }
+    return { ready: false, reason: "" };
+  }
+
+  function assessReadiness(input) {
+    if (!isEnabled() || !getApiKey()) return Promise.resolve({ ready: false, reason: "" });
+    var messages = buildReadinessMessages(input);
+    return requestText(messages, { temperature: 0.1, maxTokens: 300, json: true })
+      .then(extractJson)
+      .then(validateReadiness)
+      .catch(function () { return { ready: false, reason: "" }; });
+  }
+
+  function buildCompilerMessages(input, isRepair) {
+    input = input || {};
+    var ctx = input.context || {};
+    var facts = ctx.facts || {};
+    var turns = ctx.turns || [];
+    var recent = turns.slice(-10).map(function (t) { return "[" + t.role + "] " + t.text; }).join("\n");
+    var fields = INTAKE_KEYS.join(", ");
+    var sys = [
+      "你是结构化编译器。把自由创作对话编译成一份正式创意方案。只返回严格 JSON，包含字段：preview(自然语言预览), summary(一句话), intake(对象，必须包含这 15 个键：" + fields + "), assumptions(数组), uncertainties(数组), draft_refs(数组), source_turn_ids(数组)。",
+      "intake 的每个键必须有实质性内容。autonomy=" + (input.autonomy ? "true" : "false") + "：若为 true，可用合理默认补未明确字段，并在 assumptions 中说明。",
+      ctx.book ? "书籍：" + ctx.book : "",
+      facts.confirmed && facts.confirmed.length ? "已确认事实：" + facts.confirmed.join("；") : "",
+      facts.boundaries && facts.boundaries.length ? "禁区：" + facts.boundaries.join("；") : "",
+      ctx.summary ? "摘要：" + ctx.summary : "",
+      recent ? "对话：\n" + recent : ""
+    ].filter(Boolean).join("\n");
+    if (isRepair) sys += "\n上一次输出校验失败，请修正并重新输出完整 JSON。";
+    return [
+      { role: "system", content: sys },
+      { role: "user", content: "编译创意方案" }
+    ];
+  }
+
+  function validateProposal(parsed, isRepair) {
+    if (!parsed || typeof parsed !== "object") throw new ModelError("parse_error", "编译器返回非对象");
+    if (!parsed.preview || typeof parsed.preview !== "string") throw new ModelError("schema_error", "缺少 preview");
+    var intake = parsed.intake;
+    if (!intake || typeof intake !== "object") throw new ModelError("schema_error", "缺少 intake");
+    var missing = INTAKE_KEYS.filter(function (k) { return !(k in intake) || intake[k] === "" || intake[k] == null; });
+    if (missing.length) {
+      throw new ModelError("schema_error", "intake 缺少字段：" + missing.join(", "));
+    }
+    return parsed;
+  }
+
+  function compileOnce(input, isRepair) {
+    if (!isEnabled() || !getApiKey()) return Promise.reject(new ModelError("not_configured", "未设置 API key"));
+    var messages = buildCompilerMessages(input, isRepair);
+    return requestText(messages, { temperature: 0.1, maxTokens: 2400, json: true })
+      .then(function (text) {
+        try { return extractJson(text); }
+        catch (e) { throw new ModelError("parse_error", e && e.message ? e.message : "编译器返回非 JSON"); }
+      })
+      .then(function (parsed) { return validateProposal(parsed, isRepair); });
+  }
+
+  function compileProposal(input) {
+    return compileOnce(input, false).catch(function (firstError) {
+      if (firstError && firstError.code === "not_configured") throw firstError;
+      // One automatic format/schema repair attempt.
+      return compileOnce(input, true);
+    });
+  }
+
+  /* ============================================================
    * Public surface
    * ============================================================ */
   window.NWL = {
@@ -439,6 +643,11 @@
     DEFAULT_BASE: DEFAULT_BASE,
     DEFAULT_MODEL: DEFAULT_MODEL,
     tryLLM: tryLLM,
+    creativeReply: creativeReply,
+    assessReadiness: assessReadiness,
+    compileProposal: compileProposal,
+    ModelError: ModelError,
+    INTAKE_KEYS: INTAKE_KEYS,
     testConnection: testConnection,
     init: function () {
       ensureSettingsUI();
@@ -472,6 +681,9 @@
       plan.needsCustom = false;
       delete plan.askFor;
       return plan;
-    }
+    },
+    /* Test-only helper to flip the enabled flag without a DOM. */
+    setEnabledForTest: function (on) { writeSetting("enabled", on ? "1" : "0"); }
   };
+  if (typeof module !== "undefined" && module.exports) module.exports = window.NWL;
 })();

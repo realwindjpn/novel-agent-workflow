@@ -14,7 +14,13 @@ Branch: codex/local-mcp-library-plan
 - tests/js/test_llm_adapter.mjs: 14 tests covering all three calls + error types
 - INTAKE_KEYS (15 fields) matching core.py INTAKE_FIELD_KEYS
 
-## Task 9 — redesign white-language surface as creative workspace (pending commit)
+## Task 10 — ZIP download, import preview, recovery UI (pending commit)
+- Export/download: object URL → anchor click → revoke (in app.js)
+- Import: file picker → arrayBuffer → previewImport → importBackup
+- Recovery state: after export with backup-required durability,
+  label changes to "已下载备份，尚未写入本地"
+- Import collision: three explicit choices (merge/copy/cancel)
+- All tests already in test_creative_adapter.mjs and test_creative_chat.mjs
 - Renamed mode tab from "白话" to "自由创作"
 - Added creative workspace UI: durability indicator, drawer toggles (guide/files),
   action buttons (decide/generate/save-draft/export/import), proposal region,

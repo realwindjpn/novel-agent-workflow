@@ -1204,6 +1204,12 @@
       a.href = url; a.download = backup.filename;
       document.body.appendChild(a); a.click(); a.remove();
       URL.revokeObjectURL(url);
+      // If not locally durable, update label to reflect backup downloaded
+      var durability = creativeController._ports.storage.durability();
+      if (durability === "backup-required") {
+        var el = document.getElementById("creative-durability");
+        if (el) { el.textContent = "已下载备份，尚未写入本地"; el.setAttribute("data-state", "backup-required"); }
+      }
     });
   });
   if (importInput) importInput.addEventListener("change", function () {

@@ -1,7 +1,10 @@
 from __future__ import annotations
 
+import io
+import json
 import tempfile
 import unittest
+import zipfile
 from pathlib import Path
 
 from scripts.creative_store import CreativeStore, CreativeStoreError, MAX_TEXT_BYTES
@@ -79,6 +82,48 @@ class CreativeStoreTests(unittest.TestCase):
             store.append_turn({
                 "id": "turn-3", "role": "user", "text": "x" * (MAX_TEXT_BYTES + 1)
             })
+
+    def test_zip_round_trip_restores_session(self) -> None:
+        store = CreativeStore(self.book)
+        store.append_turn({"id": "turn-1", "role": "user", "text": "雨夜追凶"})
+        archive = store.export_zip()
+        restored_book = Path(self.tmp.name) / "restored"
+        restored_book.mkdir()
+        (restored_book / "workflow.json").write_text(
+            '{"title":"恢复书","stage":"IDEA"}', encoding="utf-8"
+        )
+        restored = CreativeStore(restored_book)
+        result = restored.import_zip(archive, "merge")
+        self.assertEqual(result["turn_count"], 1)
+        self.assertEqual(restored.read_session()["turns"][0]["text"], "雨夜追凶")
+
+    def test_zip_rejects_traversal_and_oversized_archives(self) -> None:
+        store = CreativeStore(self.book)
+        raw = io.BytesIO()
+        with zipfile.ZipFile(raw, "w", compression=zipfile.ZIP_STORED) as zf:
+            zf.writestr("../workflow.json", "bad")
+        with self.assertRaisesRegex(CreativeStoreError, "unsafe ZIP path"):
+            store.import_zip(raw.getvalue(), "merge")
+
+    def test_import_merge_deduplicates_turn_ids(self) -> None:
+        store = CreativeStore(self.book)
+        turn = {"id": "turn-1", "role": "user", "text": "保留一次"}
+        store.append_turn(turn)
+        archive = store.export_zip()
+        store.import_zip(archive, "merge")
+        self.assertEqual(len(store.read_session()["turns"]), 1)
+
+    def test_import_copy_preserves_current_and_records_inactive_copy(self) -> None:
+        store = CreativeStore(self.book)
+        store.append_turn({"id": "current", "role": "user", "text": "当前"})
+        source_book = Path(self.tmp.name) / "source"
+        source_book.mkdir()
+        (source_book / "workflow.json").write_text('{}', encoding="utf-8")
+        source = CreativeStore(source_book)
+        source.append_turn({"id": "incoming", "role": "user", "text": "导入"})
+        result = store.import_zip(source.export_zip(), "copy")
+        self.assertEqual(store.read_session()["turns"][0]["id"], "current")
+        self.assertTrue((self.book / "creative" / "imports" / result["copy_id"] / "manifest.json").is_file())
 
 
 if __name__ == "__main__":

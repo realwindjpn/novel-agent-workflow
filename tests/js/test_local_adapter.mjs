@@ -317,6 +317,45 @@ test("NWL.active stays false when token is missing", () => {
   assert.equal(NWL.active, false);
 });
 
+test("local init delegates to the registered project creator and skips MCP", async () => {
+  const NWL = loadLocal({ apiBase: "/api/local", token: "abc" });
+  const calls = [];
+  NWL.setProjectCreator(async (title) => {
+    calls.push(title);
+    return { code: 0, out: "琛€杩筥20260729", err: "" };
+  });
+
+  const result = await NWL.runSmart(
+    {}, ["init", "demo", "--title", "琛€杩?"], false
+  );
+
+  assert.deepEqual(calls, ["琛€杩?"]);
+  assert.equal(result.code, 0);
+  assert.match(result.out, /琛€杩筥20260729/);
+  assert.equal(result.err, "");
+});
+
+test("local init reports a setup error when no project creator is registered", async () => {
+  const NWL = loadLocal({ apiBase: "/api/local", token: "abc" });
+  const result = await NWL.runSmart(
+    {}, ["init", "demo", "--title", "琛€杩?"], false
+  );
+  assert.equal(result.code, 1);
+  assert.match(result.err, /鏂颁功鍒涘缓鍣?/);
+});
+
+test("local init converts project-creator rejection to a transport result", async () => {
+  const NWL = loadLocal({ apiBase: "/api/local", token: "abc" });
+  NWL.setProjectCreator(async () => {
+    throw new Error("create failed");
+  });
+  const result = await NWL.runSmart(
+    {}, ["init", "demo", "--title", "琛€杩?"], false
+  );
+  assert.equal(result.code, 1);
+  assert.match(result.err, /create failed/);
+});
+
 test("browser global is NWLocal and does not collide with llm.js NWL", () => {
   const src = readFileSync(localJsPath, "utf8");
   assert.match(src, /window\.NWLocal\s*=\s*api/);

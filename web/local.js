@@ -603,6 +603,35 @@
     });
   }
 
+  var projectCreator = null;
+
+  function setProjectCreator(fn) {
+    projectCreator = typeof fn === "function" ? fn : null;
+  }
+
+  function runProjectCreator(title) {
+    if (!projectCreator) {
+      return Promise.resolve({
+        code: 1,
+        out: "",
+        err: "鏈湴鏂颁功鍒涘缓鍣ㄥ皻鏈氨缁紝璇锋墦寮€涔﹀簱闈㈡澘鍚庨噸璇曘€?"
+      });
+    }
+    return Promise.resolve()
+      .then(function () { return projectCreator(title); })
+      .then(function (result) {
+        if (result && typeof result.code === "number") return result;
+        return { code: 1, out: "", err: "鏈湴鏂颁功鍒涘缓鍣ㄨ繑鍥炰簡鏃犳晥缁撴灉銆?" };
+      })
+      .catch(function (error) {
+        return {
+          code: 1,
+          out: "",
+          err: "鏂颁功鍒涘缓澶辫触锛?" + ((error && error.message) || error)
+        };
+      });
+  }
+
   function runSmart(setup, argv, intake) {
     if (!active) return Promise.resolve({ code: -1, out: "", err: "local library not active" });
     if (typeof setup === "string") { intake = argv; argv = setup; setup = {}; }
@@ -623,6 +652,9 @@
     }
     if (plan.kind === "empty") {
       return Promise.resolve({ code: 1, out: "", err: "no command" });
+    }
+    if (plan.tool === "init") {
+      return runProjectCreator(plan.arguments.title);
     }
     // Echo to terminal (caller is expected to handle the cmd-line echo
     // themselves; we only echo the result so the local engine matches
@@ -691,6 +723,7 @@
     getTree: getTree,
     getActive: getActive,
     runMcp: runMcp,
+    setProjectCreator: setProjectCreator,
     readState: function () { return stateCache; },
     refreshState: refreshState,
     refreshFiles: refreshFiles,

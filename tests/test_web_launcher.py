@@ -51,6 +51,12 @@ class WebLibraryPanelAssetTests(unittest.TestCase):
         self.assertIn('libOpenBtn.disabled', self.app_js)
         self.assertIn('正在读取书库', self.app_js)
 
+    def test_app_registers_a_collision_aware_project_creator(self):
+        self.assertIn("setProjectCreator", self.app_js)
+        self.assertIn("pendingCollision", self.app_js)
+        self.assertIn("resolveCollisionDecision", self.app_js)
+        self.assertIn("已取消创建新书", self.app_js)
+
 
 class LauncherPrimitiveTests(unittest.TestCase):
     def test_parse_args_defaults(self):

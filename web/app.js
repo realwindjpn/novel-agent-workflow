@@ -844,7 +844,7 @@
   var openLatestBtn = document.getElementById("lib-open-latest");
   var createCopyBtn = document.getElementById("lib-create-copy");
   var cancelCollisionBtn = document.getElementById("lib-cancel-collision");
-  var pendingCollisionTitle = "";
+  var pendingCollision = null;
   var selectedBookDirectory = "";
   if (localMode) document.body.classList.add("local-mode");
 
@@ -961,18 +961,61 @@
       });
   }
 
+  function finishCreatedBook(result) {
+    var directory = result && result.directory ? result.directory : "新创作";
+    return finishBookSwitch("已打开：" + directory).then(function () {
+      if (libNewTitle) libNewTitle.value = "";
+      return result;
+    });
+  }
+
+  function waitForCollisionDecision(title, matches) {
+    if (pendingCollision) {
+      return Promise.reject(new Error("已有一个同名确认正在等待处理。"));
+    }
+    collisionText.textContent = "已有同名创作：" + matches.map(function (item) {
+      return item.directory;
+    }).join("、") + "。请选择继续上次或建立新副本。";
+    collisionDialog.showModal();
+    return new Promise(function (resolve, reject) {
+      pendingCollision = { title: title, resolve: resolve, reject: reject };
+    });
+  }
+
   function createWithDecision(title, decision) {
     setLibStatus("正在创建……", false);
+    libCreateBtn.disabled = true;
     return window.NWLocal.createBook(title, decision).then(function (result) {
       if (result && result.status === "collision") {
-        pendingCollisionTitle = title;
-        var names = (result.matches || []).map(function (m) { return m.directory; });
-        collisionText.textContent = "已有同名创作：" + names.join("、") + "。请选择继续上次或建立新副本。";
-        collisionDialog.showModal();
-        return result;
+        return waitForCollisionDecision(title, result.matches || []);
+      }
+      return finishCreatedBook(result);
+    }).finally(function () {
+      libCreateBtn.disabled = false;
+    });
+  }
+
+  function resolveCollisionDecision(decision) {
+    if (!pendingCollision) return;
+    var pending = pendingCollision;
+    pendingCollision = null;
+    collisionDialog.close();
+    if (!decision) {
+      setLibStatus("已取消创建新书。", false);
+      pending.resolve({ cancelled: true, title: pending.title });
+      return;
+    }
+    createWithDecision(pending.title, decision).then(pending.resolve, pending.reject);
+  }
+
+  function createProjectForCommand(title) {
+    return createWithDecision(title, null).then(function (result) {
+      if (result && result.cancelled) {
+        return { code: 0, out: "已取消创建新书。", err: "" };
       }
       var directory = result && result.directory ? result.directory : title;
-      return finishBookSwitch("已打开：" + directory).then(function () { return result; });
+      if (libDialog && libDialog.open) libDialog.close();
+      return { code: 0, out: "已创建并打开：" + directory, err: "" };
     });
   }
 
@@ -1028,19 +1071,18 @@
       .catch(function (e) { setLibStatus((e && e.message) || e, true); });
   });
   if (openLatestBtn) openLatestBtn.addEventListener("click", function () {
-    collisionDialog.close();
-    createWithDecision(pendingCollisionTitle, "open_latest")
-      .catch(function (e) { setLibStatus((e && e.message) || e, true); });
+    resolveCollisionDecision("open_latest");
   });
   if (createCopyBtn) createCopyBtn.addEventListener("click", function () {
-    collisionDialog.close();
-    createWithDecision(pendingCollisionTitle, "create_new")
-      .catch(function (e) { setLibStatus((e && e.message) || e, true); });
+    resolveCollisionDecision("create_new");
   });
   if (cancelCollisionBtn) cancelCollisionBtn.addEventListener("click", function () {
-    collisionDialog.close(); pendingCollisionTitle = "";
-    setLibStatus("已取消。", false);
+    resolveCollisionDecision(null);
   });
+
+  if (localMode && window.NWLocal) {
+    window.NWLocal.setProjectCreator(createProjectForCommand);
+  }
 
   /* ---------------- boot ---------------- */
   appendLine('<b>RELAY·OS</b> · novel-workflow 网页实跑器', "t-cmd");

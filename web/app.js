@@ -1079,6 +1079,10 @@
   if (cancelCollisionBtn) cancelCollisionBtn.addEventListener("click", function () {
     resolveCollisionDecision(null);
   });
+  if (collisionDialog) collisionDialog.addEventListener("cancel", function (event) {
+    event.preventDefault();
+    resolveCollisionDecision(null);
+  });
 
   if (localMode && window.NWLocal) {
     window.NWLocal.setProjectCreator(createProjectForCommand);

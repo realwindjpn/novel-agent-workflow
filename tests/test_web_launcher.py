@@ -55,6 +55,8 @@ class WebLibraryPanelAssetTests(unittest.TestCase):
         self.assertIn("setProjectCreator", self.app_js)
         self.assertIn("pendingCollision", self.app_js)
         self.assertIn("resolveCollisionDecision", self.app_js)
+        self.assertIn('collisionDialog.addEventListener("cancel"', self.app_js)
+        self.assertIn("event.preventDefault()", self.app_js)
         self.assertIn("已取消创建新书", self.app_js)
 
 

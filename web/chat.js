@@ -429,6 +429,8 @@
         needsCustom: true, customField: "title", intake: false,
         askFor: { field: "title", question: "书名叫什么？" },
         resultSummary: function (ok, r) {
+          var out = (r && r.out) || "";
+          if (ok && out.indexOf("已取消创建新书") !== -1) return "已取消创建新书。";
           return ok ? "项目已立项，workflow.json 落盘。" : ("执行失败：" + ((r && r.err || "").split("\n")[0] || "exit " + (r && r.code)));
         }
       };

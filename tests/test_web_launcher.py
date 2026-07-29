@@ -29,6 +29,9 @@ class WebLibraryPanelAssetTests(unittest.TestCase):
         self.app_js = (
             Path(__file__).resolve().parents[1] / "web" / "app.js"
         ).read_text(encoding="utf-8")
+        self.chat_js = (
+            Path(__file__).resolve().parents[1] / "web" / "chat.js"
+        ).read_text(encoding="utf-8")
 
     def test_library_panel_uses_cards_and_a_disabled_primary_action(self):
         self.assertIn('id="lib-books" class="lib-book-list"', self.html)
@@ -58,6 +61,10 @@ class WebLibraryPanelAssetTests(unittest.TestCase):
         self.assertIn('collisionDialog.addEventListener("cancel"', self.app_js)
         self.assertIn("event.preventDefault()", self.app_js)
         self.assertIn("已取消创建新书", self.app_js)
+
+    def test_chat_init_summary_reports_collision_cancellation(self):
+        self.assertIn('out.indexOf("已取消创建新书")', self.chat_js)
+        self.assertIn('return "已取消创建新书。"', self.chat_js)
 
 
 class LauncherPrimitiveTests(unittest.TestCase):

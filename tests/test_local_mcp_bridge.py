@@ -497,6 +497,8 @@ class LibrarySessionTests(unittest.TestCase):
             session.close()
 
     def test_tree_snapshot_skips_unreadable_children(self):
+        if not _symlink_supported():
+            self.skipTest("symlinks not supported on this platform")
         with tempfile.TemporaryDirectory() as d:
             lib = Path(d)
             book = lib / "broken_20260728"

@@ -286,7 +286,7 @@ that matches the room you are in.
 
 ### What the library is
 
-- Default location: `<repo>/.library` (override with `--library-root <path>`, e.g. `D:\MyBooks`). Each book is one immediate subdirectory containing its own `workflow.json`; symlinks, junctions, and escapes outside the library root are rejected.
+- Default location: `<repo>/book` (`F:\bookworkflow\book` in this checkout; override with `--library-root <path>`, e.g. `D:\MyBooks`). Each book is one immediate subdirectory containing its own `workflow.json`; symlinks, junctions, and escapes outside the library root are rejected.
 - Naming: books created from the page are named `<title>_YYYYMMDD` (the date the directory was reserved). Re-creating the same title bumps the suffix: `验收书_20260728`, then `验收书_20260728(1)`, `验收书_20260728(2)`, … The page prompts you with three options when a collision is detected: *open the latest*, *create a new one*, or *cancel*.
 - Titles go through a Windows-safe normaliser: trailing dots, control chars, and reserved device names (`CON`, `PRN`, …) are rewritten. The picker does not interpolate any user input into the PowerShell source.
 - Reopen: pick the book from the list and the launcher starts a fresh MCP child rooted at that directory. Existing `workflow.json` / `.novel-workflow/*.json` / `chapters/` / `releases/` files are honoured; no migration step is run.

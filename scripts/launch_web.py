@@ -29,6 +29,13 @@ from http.server import BaseHTTPRequestHandler, SimpleHTTPRequestHandler, Thread
 from pathlib import Path
 from typing import Callable, Optional, Protocol, Sequence
 
+# ``一键启动.cmd`` executes this file by path.  In that mode Python puts the
+# scripts directory (not the repository root) on ``sys.path``, so the later
+# ``scripts.local_mcp_bridge`` package import would otherwise fail before the
+# launcher can show a useful status message.
+if __package__ in (None, ""):
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
 
 HOST = "127.0.0.1"
 DEFAULT_PORT = 8080
@@ -285,9 +292,8 @@ class LocalApi:
         if sub == "capabilities" and method == "GET":
             self._serve_capabilities(handler)
             return
-        if not _origin_allowed(
-            handler.headers.get("Origin", ""), self._host, self._port
-        ):
+        origin = handler.headers.get("Origin", "")
+        if origin and not _origin_allowed(origin, self._host, self._port):
             self._send_error(
                 handler, 403, "origin_rejected",
                 "Origin is not allowed for the local API.",
@@ -329,12 +335,18 @@ class LocalApi:
     # -- handlers --------------------------------------------------------
 
     def _serve_capabilities(self, handler: BaseHTTPRequestHandler) -> None:
-        if not _origin_allowed(
+        # Same-origin browser GET requests commonly omit ``Origin``.  The
+        # local index already receives this launch's random token through the
+        # private handler, so accept either proof: a matching Origin (used by
+        # diagnostics/first contact) or the injected token (used by the SPA).
+        origin_ok = _origin_allowed(
             handler.headers.get("Origin", ""), self._host, self._port
-        ):
+        )
+        token_ok = _bearer_or_x_token(handler) == self._token
+        if not (origin_ok or token_ok):
             self._send_error(
                 handler, 403, "origin_rejected",
-                "Origin is not allowed for the local API.",
+                "Origin or local runtime token is required for capabilities.",
             )
             return
         catalog = self._session.catalog()
@@ -596,9 +608,50 @@ def make_local_api_handler(
     build the private port's HTTP server.
     """
 
+    cache_nonce = secrets.token_urlsafe(8)
+
+    def local_index_body() -> bytes:
+        index = (web_root / "index.html").read_text(encoding="utf-8")
+        for asset in (
+            "sources.js", "tape.js", "ansi.js", "explorer.js", "guide.js",
+            "local.js", "app.js", "llm.js", "chat.js",
+        ):
+            index = index.replace(
+                f'src="{asset}"', f'src="{asset}?runtime={cache_nonce}"'
+            )
+        marker = '<script src="local.js"></script>'
+        versioned_marker = f'<script src="local.js?runtime={cache_nonce}"></script>'
+        runtime = json.dumps(
+            {"apiBase": "/api/local", "token": api.token},
+            ensure_ascii=True,
+            separators=(",", ":"),
+        )
+        injected = (
+            f"<script>window.NWL_RUNTIME={runtime};</script>\n{versioned_marker}"
+        )
+        if versioned_marker in index:
+            index = index.replace(versioned_marker, injected, 1)
+        elif marker in index:
+            index = index.replace(marker, injected, 1)
+        else:
+            index = f"<script>window.NWL_RUNTIME={runtime};</script>\n{index}"
+        return index.encode("utf-8")
+
     class _LocalApiHandler(QuietStaticHandler):
         def log_message(self, format: str, *args: object) -> None:
             return
+
+        def _serve_local_index(self, *, include_body: bool) -> None:
+            body = local_index_body()
+            self.send_response(200)
+            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.send_header("Content-Length", str(len(body)))
+            self.send_header("Cache-Control", "no-store")
+            self.send_header("X-Frame-Options", "DENY")
+            self.send_header("Content-Security-Policy", "frame-ancestors 'none'")
+            self.end_headers()
+            if include_body:
+                self.wfile.write(body)
 
         def do_GET(self) -> None:  # type: ignore[override]
             if self.path.startswith(LOCAL_API_PREFIX):
@@ -606,6 +659,9 @@ def make_local_api_handler(
                     api.handle(self, "GET")
                 except Exception as exc:  # pragma: no cover - safety net
                     api._send_error(self, 500, "internal_error", str(exc))
+                return
+            if self.path.split("?", 1)[0] in ("/", "/index.html"):
+                self._serve_local_index(include_body=True)
                 return
             super().do_GET()
 
@@ -621,6 +677,9 @@ def make_local_api_handler(
         def do_HEAD(self) -> None:  # type: ignore[override]
             if self.path.startswith(LOCAL_API_PREFIX):
                 self.send_error(405, "Method Not Allowed")
+                return
+            if self.path.split("?", 1)[0] in ("/", "/index.html"):
+                self._serve_local_index(include_body=False)
                 return
             super().do_HEAD()
 
@@ -953,7 +1012,7 @@ class Launcher:
             return self._library_session
         root = self.config.library_root
         if root is None:
-            root = self.root / ".library"
+            root = self.root / "book"
         if self._library_session_factory is None:
             session = LibrarySession(root)
         else:

@@ -24,8 +24,11 @@
   and disk-writable, public `8081`/Quick Tunnel Pyodide memory-only) with
   token + Origin enforcement and isolated shutdown. `scripts/launch_web.py`
   accepts a headless mode (no `cloudflared`) for sandbox/CI smoke; the
-  browser SPA exposes a `NWL` library adapter and a `library panel` that
-  dispatches to `NWB` for normal workflow operations. See
+  browser SPA exposes a collision-free `NWLocal` library adapter and a
+  library panel for manual path entry, Windows folder selection, reopening,
+  collision-aware creation, and normal `NWB` workflow operations. The default
+  library is `<repo>/book`; MCP artifact writes preserve caller-supplied UTF-8
+  bytes and LF line endings on Windows. See
   `docs/superpowers/specs/2026-07-28-local-mcp-library-design.md`.
 
 ## 0.2.0

@@ -57,7 +57,7 @@ Keep these invariants throughout implementation:
   isolation.
 - Modify `web/index.html`: local-library panel and mode badge; load `local.js`.
 - Modify `web/app.js`: choose MCP local engine before Pyodide and delegate local
-  operations through `NWL`.
+  operations through `NWLocal`.
 - Modify `web/chat.js`: use the active book title/state and duplicate dialog.
 - Modify the stylesheet embedded in `web/index.html`: compact settings panel,
   dialogs, project list, and mode states.
@@ -520,7 +520,7 @@ chapter-path rewriter.
 Expose:
 
 ```javascript
-window.NWL = {
+window.NWLocal = {
   detect: function () {},
   capabilities: function () {},
   setLibrary: function (path) {},
@@ -566,7 +566,7 @@ behavior accessible.
 
 Load `local.js` before `app.js`. At boot:
 
-1. Await `NWL.detect()` for at most 800 ms.
+1. Await `NWLocal.detect()` for at most 800 ms.
 2. On success, select local MCP mode and do not boot Pyodide.
 3. On failure, execute the existing Pyodide/Replay boot unchanged.
 4. When a book opens, call MCP `resources/read novel://state`, `tools/call
@@ -574,7 +574,7 @@ Load `local.js` before `app.js`. At boot:
 5. Populate the existing state cache and explorer, then enable only guide
    actions allowed by the persisted state.
 
-Route existing `NWB.runSmart`, `NWB.readState`, and tree refresh calls to NWL
+Route existing `NWB.runSmart`, `NWB.readState`, and tree refresh calls to NWLocal
 when local mode is active. Keep Replay and LIVE WASM branches byte-compatible
 outside the new dispatch condition.
 

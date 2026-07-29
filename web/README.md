@@ -124,7 +124,7 @@ engines and have different persistence guarantees.
   `127.0.0.1:8080`. The page boots into local mode (no Pyodide fetch) and
   routes every workflow mutation through that child over a
   newline-delimited JSON-RPC channel.
-- The library is a directory you pick. Default is `<repo>/.library`; pass
+- The library is a directory you pick. Default is `<repo>/book`; pass
   `--library-root <path>` to relocate. Each book is one immediate
   subdirectory containing `workflow.json`. Book directories are named
   `<title>_YYYYMMDD[(n)]`; collisions bump the suffix and the page

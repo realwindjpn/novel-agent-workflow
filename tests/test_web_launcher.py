@@ -3,6 +3,7 @@ from __future__ import annotations
 import io
 import json
 import socket
+import subprocess
 import sys
 import tempfile
 import threading
@@ -82,6 +83,34 @@ class LauncherPrimitiveTests(unittest.TestCase):
             port = listener.getsockname()[1]
             with self.assertRaisesRegex(launch_web.LauncherError, str(port)):
                 launch_web.ensure_port_available("127.0.0.1", port)
+
+    def test_direct_script_entrypoint_can_import_bridge(self):
+        script = Path(launch_web.__file__).resolve()
+        proc = subprocess.run(
+            [sys.executable, str(script), "--help"],
+            cwd=script.parents[1],
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            timeout=10,
+        )
+        self.assertEqual(proc.returncode, 0, proc.stderr)
+        self.assertIn("--public-port", proc.stdout)
+
+    def test_default_library_is_repository_book_directory(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            app = launch_web.Launcher(
+                launch_web.LauncherConfig(), root=root,
+                cloudflared=Path("cloudflared"),
+            )
+            session = app._ensure_library_session()
+            try:
+                self.assertEqual(session.library, (root / "book").resolve())
+                self.assertTrue(session.library.is_dir())
+            finally:
+                app.resources.close()
 
 
 class HttpServerTests(unittest.TestCase):
@@ -340,7 +369,9 @@ class LocalApiTests(unittest.TestCase):
         self.web_root = Path(self._tmp.name) / "web"
         self.web_root.mkdir()
         (self.web_root / "index.html").write_text(
-            "<title>novel-workflow Live Runner</title>", encoding="utf-8"
+            '<title>novel-workflow Live Runner</title>'
+            '<script src="local.js"></script>',
+            encoding="utf-8",
         )
         self.library = Path(self._tmp.name) / "library"
         self.library.mkdir()
@@ -416,6 +447,20 @@ class LocalApiTests(unittest.TestCase):
         self.assertEqual(body["catalog"][0]["title"], "demo")
         self.assertFalse(body["has_active_book"])
 
+    def test_local_index_injects_runtime_but_public_index_does_not(self):
+        local_status, local_body = self._request("GET", "/index.html")
+        public_status, public_body = self._request(
+            "GET", "/index.html", port=self.public_port
+        )
+        self.assertEqual(local_status, 200)
+        self.assertIn("window.NWL_RUNTIME", local_body)
+        self.assertIn(self.token, local_body)
+        self.assertIn("local.js?runtime=", local_body)
+        self.assertEqual(public_status, 200)
+        self.assertNotIn("window.NWL_RUNTIME", public_body)
+        self.assertNotIn(self.token, public_body)
+        self.assertNotIn("local.js?runtime=", public_body)
+
     def test_capabilities_rejects_foreign_origin(self):
         status, body = self._request(
             "GET", "/api/local/capabilities",
@@ -428,6 +473,14 @@ class LocalApiTests(unittest.TestCase):
         status, body = self._request("GET", "/api/local/capabilities")
         self.assertEqual(status, 403)
         self.assertEqual(body["error"]["code"], "origin_rejected")
+
+    def test_capabilities_accepts_injected_token_without_origin(self):
+        status, body = self._request(
+            "GET", "/api/local/capabilities",
+            headers={"Authorization": f"Bearer {self.token}"},
+        )
+        self.assertEqual(status, 200)
+        self.assertEqual(body["token"], self.token)
 
     def test_library_requires_token(self):
         status, body = self._request(
@@ -480,6 +533,14 @@ class LocalApiTests(unittest.TestCase):
             },
         )
         self.assertEqual(status, 200)
+
+    def test_authenticated_get_accepts_token_without_origin(self):
+        status, body = self._request(
+            "GET", "/api/local/library",
+            headers={"Authorization": f"Bearer {self.token}"},
+        )
+        self.assertEqual(status, 200)
+        self.assertEqual(body["library"], str(self.library))
         self.assertEqual(len(body["books"]), 1)
 
     def test_open_switches_active_book(self):
@@ -743,13 +804,15 @@ class LocalApiTests(unittest.TestCase):
         self.assertEqual(body["error"]["code"], "bad_request")
 
     def test_set_library_rejects_missing_directory(self):
+        missing = Path(self._tmp.name) / "missing-library"
+        self.assertFalse(missing.exists())
         status, body = self._request(
             "POST", "/api/local/library",
             headers={
                 "Origin": f"http://localhost:{self.port}",
                 "Authorization": f"Bearer {self.token}",
             },
-            body={"path": "/does/not/exist/anywhere"},
+            body={"path": str(missing)},
         )
         self.assertEqual(status, 422)
         self.assertEqual(body["error"]["code"], "unwritable_library")

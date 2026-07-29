@@ -193,7 +193,7 @@ library.
 ### `web/local.js`
 
 The browser-side adapter detects the local bridge before Pyodide boot. If the
-capability request succeeds, it exposes an `NWL` interface for library
+capability request succeeds, it exposes an `NWLocal` interface for library
 settings, project selection, MCP calls, state refresh, tree refresh, and
 workflow command translation. If detection fails or the origin is not
 localhost, the existing Pyodide/Replay path starts unchanged.

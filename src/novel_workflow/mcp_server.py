@@ -196,7 +196,10 @@ def _do_write_artifact(root: Path, args: dict, limits: dict) -> dict:
             f"({limits['max_artifact_bytes']}); write refused"
         )
     target.parent.mkdir(parents=True, exist_ok=True)
-    target.write_text(content, encoding="utf-8")
+    # Preserve the caller's UTF-8 bytes exactly on every platform.  Path.write_text
+    # applies Windows newline translation by default, which made a requested LF
+    # round-trip as CRLF through write_artifact/read_artifact.
+    target.write_bytes(encoded)
     return {
         "content": [
             {

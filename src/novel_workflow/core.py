@@ -226,7 +226,7 @@ def utcnow() -> str:
 def local_today() -> date:
     """Return today's local date for stable, user-visible artifact directory names.
 
-    Artifact directories (chapters/第NNNN章_YYYYMMDD) are a user-facing,
+    Artifact directories (chapters/第NNN章_YYYYMMDD) are a user-facing,
     filesystem-stable contract; using ``date.today()`` keeps them aligned with
     the user's local calendar regardless of where the workflow is run.
     """

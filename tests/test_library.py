@@ -71,7 +71,7 @@ class LibraryTests(unittest.TestCase):
     def test_chapter_artifact_dir_is_relative_and_zero_padded(self):
         self.assertEqual(
             chapter_artifact_dir(7, date(2026, 7, 28)).as_posix(),
-            "chapters/\u7b2c0007\u7ae0_20260728",
+            "chapters/\u7b2c007\u7ae0_20260728",
         )
 
     def test_issue_chapter_persists_artifact_dir_and_workspace(self):
@@ -96,13 +96,13 @@ class LibraryTests(unittest.TestCase):
             with patch.object(nw_core, "local_today", lambda: date(2026, 7, 28)):
                 state = issue_chapter(root, 7, "\u63a5\u53e3", "\u63a5\u53e3\u4f7f\u547d")
             self.assertEqual(
-                state["artifact_dir"], "chapters/\u7b2c0007\u7ae0_20260728"
+                state["artifact_dir"], "chapters/\u7b2c007\u7ae0_20260728"
             )
             self.assertTrue((root / state["artifact_dir"]).is_dir())
             proj = json.loads((root / "workflow.json").read_text(encoding="utf-8"))
             self.assertEqual(
                 proj["chapters"]["7"]["artifact_dir"],
-                "chapters/\u7b2c0007\u7ae0_20260728",
+                "chapters/\u7b2c007\u7ae0_20260728",
             )
 
 

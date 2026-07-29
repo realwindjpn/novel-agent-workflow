@@ -175,7 +175,7 @@ def same_title(entries: list[ProjectEntry], title: str) -> list[ProjectEntry]:
 def chapter_artifact_dir(chapter: int, on_date: Optional[date] = None) -> Path:
     """Return the relative artifact directory used for ``chapter``'s workspace.
 
-    Layout: ``chapters/第NNNN章_YYYYMMDD`` relative to the project root. The
+    Layout: ``chapters/第NNN章_YYYYMMDD`` relative to the project root. The
     ``chapter`` argument must be a positive integer; zero and negative values
     raise ``ValueError`` so callers never silently create a bogus directory.
     """
@@ -185,4 +185,4 @@ def chapter_artifact_dir(chapter: int, on_date: Optional[date] = None) -> Path:
         raise ValueError("chapter must be >= 1")
     if on_date is None:
         on_date = date.today()
-    return Path(f"chapters/\u7b2c{chapter:04d}\u7ae0_{on_date:%Y%m%d}")
+    return Path(f"chapters/\u7b2c{chapter:03d}\u7ae0_{on_date:%Y%m%d}")

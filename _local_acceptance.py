@@ -55,23 +55,25 @@ def http_post(url, body, *, headers=None, timeout=10.0):
         return e.code, dict(e.headers or {}), e.read()
 
 
-def port_free(port: int) -> bool:
+def port_listening(port: int) -> bool:
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
-        # SO_REUSEADDR mirrors the launcher's pre-check; without it, recent
-        # connections in TIME_WAIT make the port look busy even after a
-        # clean server_close().
-        sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        try:
-            sock.bind((HOST, port))
+        sock.settimeout(0.25)
+        return sock.connect_ex((HOST, port)) == 0
+
+
+def wait_port_listening(port: int, timeout: float = 5.0) -> bool:
+    deadline = time.time() + timeout
+    while time.time() < deadline:
+        if port_listening(port):
             return True
-        except OSError:
-            return False
+        time.sleep(0.1)
+    return False
 
 
 def wait_port_free(port: int, timeout: float = 5.0) -> bool:
     deadline = time.time() + timeout
     while time.time() < deadline:
-        if port_free(port):
+        if not port_listening(port):
             return True
         time.sleep(0.1)
     return False
@@ -93,12 +95,10 @@ def main() -> int:
 
         try:
             # Wait for both ports to bind
-            deadline = time.time() + 15
-            while time.time() < deadline:
-                if not port_free(LOCAL_PORT) and not port_free(PUBLIC_PORT):
-                    break
-                time.sleep(0.2)
-            else:
+            if not (
+                wait_port_listening(LOCAL_PORT, timeout=15)
+                and wait_port_listening(PUBLIC_PORT, timeout=15)
+            ):
                 print("FAIL: ports did not bind in time")
                 return 1
 
@@ -128,14 +128,14 @@ def main() -> int:
             )
             print("OK 3. public / serves the SPA")
 
-            # 4. mutation without token = 403
+            # 4. mutation without token = 401 (authentication is missing)
             status, _, _ = http_post(
                 local_url + "/api/local/library",
                 json.dumps({"title": "x"}).encode("utf-8"),
                 headers={"Content-Type": "application/json"},
             )
-            assert status == 403, f"mutation without token status={status}, expected 403"
-            print("OK 4. local mutation without token=403")
+            assert status == 401, f"mutation without token status={status}, expected 401"
+            print("OK 4. local mutation without token=401")
 
             # 5. mutation with wrong origin = 403
             status, _, _ = http_post(

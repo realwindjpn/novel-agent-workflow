@@ -26,10 +26,10 @@
   var btnRunAll = document.getElementById("btn-runall");
 
   // The launcher (scripts/launch_web.py) injects window.NWL_RUNTIME when
-  // serving the SPA from a local port. local.js then exposes window.NWL
-  // and sets NWL.active = true. In that case we skip Pyodide entirely
+  // serving the SPA from a local port. local.js then exposes window.NWLocal
+  // and sets NWLocal.active = true. In that case we skip Pyodide entirely
   // and route every command through the real Python MCP child.
-  var localMode = !!(window.NWL && window.NWL.active);
+  var localMode = !!(window.NWLocal && window.NWLocal.active);
   var mode = localMode ? "local" : "booting";  // booting | local | live | replay
   var pyodide = null;
   var pyReady = null;         // Promise resolving on first boot (or null in local)
@@ -125,7 +125,7 @@
   function refreshState() {
     if (mode === "booting") return Promise.resolve();
     if (mode === "local") {
-      return window.NWL.refreshState().then(function (s) {
+      return window.NWLocal.refreshState().then(function (s) {
         if (s) setStateCache(s);
       }).catch(function () { /* keep previous cache on transient failure */ });
     }
@@ -141,7 +141,7 @@
   }
   async function refreshFiles() {
     if (mode === "local") {
-      try { await window.NWL.refreshFiles(); }
+      try { await window.NWLocal.refreshFiles(); }
       catch (e) { window.NWX.update({}); }
       return refreshState();
     }
@@ -202,7 +202,7 @@
     return Promise.race([chain, hardTimeout]).then(function () {
       mode = "live";
       setBootPhase(100, true);
-      setEngine("live", "LIVE WASM · CPython 3.12");
+      setEngine("live", "公网演示 · 浏览器内存");
       termInput.disabled = false;
       termInput.placeholder = "novel-workflow 真实命令 · help / ls / cat / tree / clear / reset";
       btnRunAll.disabled = false;
@@ -362,7 +362,7 @@
   function fallbackToReplay(reason) {
     mode = "replay";
     setBootPhase(100, true);
-    setEngine("replay", "REPLAY · 引擎不可用");
+    setEngine("replay", "公网演示 · 浏览器内存");
     termInput.disabled = false;
     termInput.placeholder = "回放模式：键入与引导完全一致的真实命令，或敲 help / clear / reset";
     btnRunAll.disabled = false;
@@ -464,7 +464,7 @@
 
   /* ---------------- guide step execution ---------------- */
   window.NWR = {
-    canRun: function () { return mode === "live" || mode === "replay"; },
+    canRun: function () { return mode === "live" || mode === "replay" || mode === "local"; },
     runStep: function (id) {
       var step = window.NWG.byId(id);
       if (!step) return Promise.resolve();
@@ -477,7 +477,9 @@
       }
       window.NWG.setRunning(id);
       return enqueue(function () {
-        return (mode === "live" ? liveRunStep(step) : replayRunStep(step))
+        var runner = mode === "live" ? liveRunStep
+          : (mode === "local" ? localRunStep : replayRunStep);
+        return runner(step)
           .then(function (code) {
             if (code === 0 || code === undefined) window.NWG.setDone(id, true);
             else window.NWG.setError(id);
@@ -497,6 +499,12 @@
             wave.pulse(0.4); return refreshFiles();
           });
         }
+        if (mode === "local") {
+          return window.NWLocal.runSmart({}, ["__reset__"], false).then(function (r) {
+            if (r.err) outBlock(r.err, "err");
+            return refreshFiles();
+          });
+        }
         replayIdx = -1;
         window.NWG.reset();
         window.NWX.reset();
@@ -505,6 +513,22 @@
       });
     }
   };
+
+  function localRunStep(step) {
+    cmdLine("~/relay $", step.display);
+    if (step.id === "init" && stateCache.projectExists) {
+      outBlock("项目已由本地书库初始化，继续后续步骤。\n");
+      return Promise.resolve(0);
+    }
+    return window.NWLocal.runSmart(step.setup || {}, step.argv.slice(), step.id === "idea")
+      .then(function (r) {
+        if (r.out) outBlock(r.out);
+        if (r.err) outBlock(r.err, "err");
+        if (r.code) appendLine(exitBadge(r.code));
+        wave.pulse(r.code ? 0.6 : 1.0);
+        return refreshFiles().then(function () { return r.code; });
+      });
+  }
 
   function liveRunStep(step) {
     cmdLine("~/relay $", step.display);
@@ -619,7 +643,7 @@
   }
 
   function liveReadState() {
-    if (mode === "local") return window.NWL.refreshState();
+    if (mode === "local") return window.NWLocal.refreshState();
     if (mode === "live") return liveEval("nw_read_state()").then(function (s) { return JSON.parse(s); });
     // replay: derive from latest tape step tree
     if (replayIdx < 0) return Promise.resolve({ projectExists: false, project: null, chapters: [] });
@@ -727,7 +751,7 @@
     /* Single command, live OR replay OR local. Queues behind any in-flight run. */
     runSmart: function (setup, argv, intake) {
       if (mode === "booting") return Promise.resolve({ code: -1, out: "", err: "engine booting" });
-      if (mode === "local") return window.NWL.runSmart(setup, argv, intake);
+      if (mode === "local") return window.NWLocal.runSmart(setup, argv, intake);
       return enqueue(function () {
         if (mode === "live") return liveRunCustom(setup || {}, argv || [], !!intake);
         return replayRunArgv(argv || []);
@@ -739,7 +763,7 @@
      * result for convenience. */
     runSeq: function (cmds) {
       if (mode === "booting") return Promise.resolve({ results: [], last: { code: -1, out: "", err: "engine booting" } });
-      if (mode === "local") return window.NWL.runSeq(cmds);
+      if (mode === "local") return window.NWLocal.runSeq(cmds);
       return enqueue(function () {
         var results = [];
         var last = null;
@@ -802,45 +826,150 @@
   var libBookName = document.getElementById("lib-book-name");
   var libPickBtn = document.getElementById("lib-pick");
   var libListBtn = document.getElementById("lib-list");
+  var libDialog = document.getElementById("lib-dialog");
+  var libCloseBtn = document.getElementById("lib-close");
+  var libPathInput = document.getElementById("lib-path");
+  var libApplyBtn = document.getElementById("lib-apply");
+  var libBrowseBtn = document.getElementById("lib-browse");
+  var libRefreshBtn = document.getElementById("lib-refresh");
+  var libBooks = document.getElementById("lib-books");
+  var libOpenBtn = document.getElementById("lib-open");
+  var libNewTitle = document.getElementById("lib-new-title");
+  var libCreateBtn = document.getElementById("lib-create");
+  var libStatus = document.getElementById("lib-status");
+  var collisionDialog = document.getElementById("lib-collision");
+  var collisionText = document.getElementById("lib-collision-text");
+  var openLatestBtn = document.getElementById("lib-open-latest");
+  var createCopyBtn = document.getElementById("lib-create-copy");
+  var cancelCollisionBtn = document.getElementById("lib-cancel-collision");
+  var pendingCollisionTitle = "";
   if (localMode) document.body.classList.add("local-mode");
+
+  function setLibStatus(text, isError) {
+    if (!libStatus) return;
+    libStatus.textContent = text || "";
+    libStatus.classList.toggle("err", !!isError);
+  }
+
   function refreshLibPanel() {
-    if (!window.NWL) return;
-    var cap = window.NWL.capabilities;
+    if (!window.NWLocal) return;
+    var cap = window.NWLocal.capabilities;
     if (cap && cap.active_directory) libBookName.textContent = cap.active_directory;
     else if (cap && cap.library) libBookName.textContent = "(选一本书)";
     else libBookName.textContent = "—";
+    if (cap && cap.library) {
+      libBookName.title = cap.library;
+      if (libPathInput) libPathInput.value = cap.library;
+    }
   }
+
+  function renderBookList(result) {
+    if (!libBooks) return;
+    libBooks.innerHTML = "";
+    var books = (result && (result.books || result.catalog)) || [];
+    books.forEach(function (book) {
+      var option = document.createElement("option");
+      option.value = book.directory;
+      option.textContent = book.title + " · " + book.stage + " · " +
+        book.chapter_count + " 章 · " + book.directory;
+      libBooks.appendChild(option);
+    });
+    if (result && result.library && libPathInput) libPathInput.value = result.library;
+    setLibStatus(books.length ? "读取到 " + books.length + " 本创作。" : "书库为空，可以创建新书。", false);
+  }
+
+  function loadLibraryDialog() {
+    return window.NWLocal.listBooks().then(function (result) {
+      renderBookList(result);
+      refreshLibPanel();
+      if (libDialog && !libDialog.open) libDialog.showModal();
+      return result;
+    });
+  }
+
+  function finishBookSwitch(message) {
+    return window.NWLocal.refreshCapabilities()
+      .then(function () { refreshLibPanel(); return refreshFiles(); })
+      .then(function () { return window.NWLocal.listBooks(); })
+      .then(function (result) {
+        renderBookList(result);
+        setLibStatus(message, false);
+      });
+  }
+
+  function createWithDecision(title, decision) {
+    setLibStatus("正在创建……", false);
+    return window.NWLocal.createBook(title, decision).then(function (result) {
+      if (result && result.status === "collision") {
+        pendingCollisionTitle = title;
+        var names = (result.matches || []).map(function (m) { return m.directory; });
+        collisionText.textContent = "已有同名创作：" + names.join("、") + "。请选择继续上次或建立新副本。";
+        collisionDialog.showModal();
+        return result;
+      }
+      var directory = result && result.directory ? result.directory : title;
+      return finishBookSwitch("已打开：" + directory).then(function () { return result; });
+    });
+  }
+
   if (libPickBtn) libPickBtn.addEventListener("click", function () {
     if (!localMode) return;
-    window.NWL.chooseDirectory()
-      .then(function (r) {
-        if (r && r.selected) {
-          appendLine('<span class="t-cmd">库切换成功：' + window.NWA.escapeHtml(r.library) + "</span>", "ok");
-          refreshLibPanel();
-          return refreshFiles();
-        } else {
-          appendLine('<span class="dim">（取消选择）</span>');
-        }
-      })
-      .catch(function (e) {
-        appendLine('<span class="err">选目录失败：' + window.NWA.escapeHtml((e && e.message) || e) + "</span>");
-      });
+    loadLibraryDialog().catch(function (e) { setLibStatus((e && e.message) || e, true); });
   });
   if (libListBtn) libListBtn.addEventListener("click", function () {
     if (!localMode) return;
-    window.NWL.listBooks()
-      .then(function (r) {
-        var books = r.books || [];
-        var lines = ["# " + r.library, "# 共 " + books.length + " 本书"];
-        books.forEach(function (b) {
-          lines.push("  · " + b.directory + "  (" + b.stage + ", " + b.chapter_count + " 章)");
-        });
-        if (books.length === 0) lines.push("  (空)");
-        outBlock(lines.join("\n"));
-      })
-      .catch(function (e) {
-        appendLine('<span class="err">列表失败：' + window.NWA.escapeHtml((e && e.message) || e) + "</span>");
-      });
+    loadLibraryDialog().catch(function (e) { setLibStatus((e && e.message) || e, true); });
+  });
+  if (libCloseBtn) libCloseBtn.addEventListener("click", function () { libDialog.close(); });
+  if (libRefreshBtn) libRefreshBtn.addEventListener("click", function () {
+    window.NWLocal.listBooks().then(renderBookList)
+      .catch(function (e) { setLibStatus((e && e.message) || e, true); });
+  });
+  if (libApplyBtn) libApplyBtn.addEventListener("click", function () {
+    var path = (libPathInput.value || "").trim();
+    if (!path) { setLibStatus("请输入绝对书库路径。", true); return; }
+    setLibStatus("正在切换书库……", false);
+    window.NWLocal.setLibrary(path)
+      .then(function () { refreshLibPanel(); return window.NWLocal.listBooks(); })
+      .then(renderBookList)
+      .catch(function (e) { setLibStatus((e && e.message) || e, true); });
+  });
+  if (libBrowseBtn) libBrowseBtn.addEventListener("click", function () {
+    setLibStatus("等待 Windows 文件夹选择……", false);
+    window.NWLocal.chooseDirectory().then(function (r) {
+      if (!r || !r.selected) { setLibStatus("已取消选择。", false); return null; }
+      return window.NWLocal.refreshCapabilities().then(function () {
+        refreshLibPanel(); return window.NWLocal.listBooks();
+      }).then(renderBookList);
+    }).catch(function (e) { setLibStatus((e && e.message) || e, true); });
+  });
+  if (libOpenBtn) libOpenBtn.addEventListener("click", function () {
+    var directory = libBooks.value;
+    if (!directory) { setLibStatus("请先选择一本已有创作。", true); return; }
+    setLibStatus("正在打开……", false);
+    window.NWLocal.openBook(directory)
+      .then(function () { return finishBookSwitch("已继续：" + directory); })
+      .catch(function (e) { setLibStatus((e && e.message) || e, true); });
+  });
+  if (libCreateBtn) libCreateBtn.addEventListener("click", function () {
+    var title = (libNewTitle.value || "").trim();
+    if (!title) { setLibStatus("请输入书名。", true); return; }
+    createWithDecision(title, null)
+      .catch(function (e) { setLibStatus((e && e.message) || e, true); });
+  });
+  if (openLatestBtn) openLatestBtn.addEventListener("click", function () {
+    collisionDialog.close();
+    createWithDecision(pendingCollisionTitle, "open_latest")
+      .catch(function (e) { setLibStatus((e && e.message) || e, true); });
+  });
+  if (createCopyBtn) createCopyBtn.addEventListener("click", function () {
+    collisionDialog.close();
+    createWithDecision(pendingCollisionTitle, "create_new")
+      .catch(function (e) { setLibStatus((e && e.message) || e, true); });
+  });
+  if (cancelCollisionBtn) cancelCollisionBtn.addEventListener("click", function () {
+    collisionDialog.close(); pendingCollisionTitle = "";
+    setLibStatus("已取消。", false);
   });
 
   /* ---------------- boot ---------------- */
@@ -850,13 +979,13 @@
     newline();
     setBootPhase(60);
     bootLog("检测到 NWL_RUNTIME，跳过 Pyodide 加载。", true);
-    setEngine("local", "LOCAL · Python MCP 进程");
+    setEngine("local", "本地 MCP · 可写磁盘");
     termInput.disabled = false;
     termInput.placeholder = "本地模式：直接敲 novel-workflow 真实命令（每条命令实跑在你本机）。help / ls / cat / tree / clear";
     btnRunAll.disabled = false;
     filesModeHint.textContent = "文件状态：来自你本机 active book 目录（实时）";
     Promise.resolve()
-      .then(function () { return window.NWL.refreshCapabilities(); })
+      .then(function () { return window.NWLocal.refreshCapabilities(); })
       .then(function () { refreshLibPanel(); return refreshFiles(); })
       .then(function () { setBootPhase(100, true); wave.pulse(1.0); })
       .catch(function (e) {

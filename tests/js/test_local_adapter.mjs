@@ -85,18 +85,18 @@ test("argvToMcp: idea with --interview JSON string parses the object", () => {
   eqObj(r.arguments.interview, { audience: "adult", genre: "fantasy" });
 });
 
-test("argvToMcp: status with --human flag_only sets human:true", () => {
+test("argvToMcp: status drops CLI-only --human before MCP", () => {
   const NWL = loadLocal(null);
   const r = NWL.argvToMcp(["status", "demo", "--human"]);
   assert.equal(r.tool, "status");
-  assert.equal(r.arguments.human, true);
+  assert.equal(r.arguments.human, undefined);
 });
 
 test("argvToMcp: status with --chapter int parses integer", () => {
   const NWL = loadLocal(null);
   const r = NWL.argvToMcp(["status", "demo", "--chapter", "3", "--human"]);
   assert.equal(r.arguments.chapter, 3);
-  assert.equal(r.arguments.human, true);
+  assert.equal(r.arguments.human, undefined);
 });
 
 test("argvToMcp: review with positional [chapter, gate, verdict]", () => {
@@ -192,12 +192,13 @@ test("argvToMcp: outline-lock has no flags beyond path", () => {
   eqObj(r.arguments, { path: "." });
 });
 
-test("argvToMcp: intake-check has no path; interview parses to {}", () => {
+test("argvToMcp: intake-check consumes CLI path but omits it for MCP", () => {
   const NWL = loadLocal(null);
-  const r = NWL.argvToMcp(["intake-check", "--interview", "{}"]);
+  const r = NWL.argvToMcp(["intake-check", "demo", "--interview", "{}", "--human"]);
   assert.equal(r.tool, "intake_check");
   assert.equal(r.arguments.path, undefined);
   eqObj(r.arguments.interview, {});
+  assert.equal(r.arguments.human, undefined);
 });
 
 test("argvToMcp: special markers __reset__ / __ls__ / __cat__ / __tree__ return {kind}", () => {
@@ -225,12 +226,12 @@ test("argvToMcp: unknown --flag throws", () => {
   assert.throws(() => NWL.argvToMcp(["init", "demo", "--title", "X", "--bogus", "Y"]), /bogus/);
 });
 
-test("argvToMcp: check with --security and --human both flag_only", () => {
+test("argvToMcp: check keeps --security and drops CLI-only --human", () => {
   const NWL = loadLocal(null);
   const r = NWL.argvToMcp(["check", "demo", "--security", "--human"]);
   assert.equal(r.tool, "check");
   assert.equal(r.arguments.security, true);
-  assert.equal(r.arguments.human, true);
+  assert.equal(r.arguments.human, undefined);
 });
 
 // ---------------- RPC result normalisation ----------------
@@ -281,6 +282,16 @@ test("normaliseRpcResponse: structuredContent appended as JSON block", () => {
   assert.match(r.out, /"stage":\s*"DRAFTING"/);
 });
 
+test("normaliseRpcResponse: accepts direct MCP result body from local API", () => {
+  const NWL = loadLocal(null);
+  const r = NWL.normaliseRpcResponse({
+    content: [{ type: "text", text: "direct" }],
+    isError: true
+  });
+  assert.equal(r.code, 2);
+  assert.equal(r.err, "direct");
+});
+
 // ---------------- formatCmdLine ----------------
 
 test("formatCmdLine: argv with spaces quotes the value", () => {
@@ -304,4 +315,31 @@ test("NWL.active is true when window.NWL_RUNTIME is injected", () => {
 test("NWL.active stays false when token is missing", () => {
   const NWL = loadLocal({ apiBase: "/api/local" });
   assert.equal(NWL.active, false);
+});
+
+test("browser global is NWLocal and does not collide with llm.js NWL", () => {
+  const src = readFileSync(localJsPath, "utf8");
+  assert.match(src, /window\.NWLocal\s*=\s*api/);
+  assert.doesNotMatch(src, /window\.NWL\s*=\s*api/);
+});
+
+test("chapter setup and artifact arguments are rewritten under artifact_dir", () => {
+  const NWL = loadLocal(null);
+  const prepared = NWL.rewriteChapterArtifacts(
+    { "prewrite.md": "pre", "draft.md": "draft" },
+    {
+      kind: "mcp", tool: "draft",
+      arguments: {
+        path: ".", chapter: 1, prewrite: "prewrite.md",
+        artifact: "draft.md", author: "author:test"
+      }
+    },
+    "chapters/第001章_20260729"
+  );
+  eqObj(prepared.setup, {
+    "chapters/第001章_20260729/prewrite.md": "pre",
+    "chapters/第001章_20260729/draft.md": "draft"
+  });
+  assert.equal(prepared.plan.arguments.prewrite, "chapters/第001章_20260729/prewrite.md");
+  assert.equal(prepared.plan.arguments.artifact, "chapters/第001章_20260729/draft.md");
 });

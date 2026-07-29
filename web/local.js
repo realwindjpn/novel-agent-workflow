@@ -4,15 +4,15 @@
  * is serving the SPA from a local port, it injects
  *   window.NWL_RUNTIME = { apiBase: "/api/local", token: "..." }
  * into index.html. In that case this adapter activates and exposes
- * window.NWL with a small, queue-safe API that mirrors NWB.runSmart /
+ * window.NWLocal with a small, queue-safe API that mirrors NWB.runSmart /
  * NWB.runSeq but routes every call to the real Python MCP child
  * (no Pyodide, no fake replay).
  *
  * When NWL_RUNTIME is missing (e.g. the public 8081 static deploy, or
- * GitHub Pages), the adapter is a complete no-op — NWL.active stays
+ * GitHub Pages), the adapter is a complete no-op — NWLocal.active stays
  * false and NWB / NWC continue to use the Pyodide engine as before.
  *
- * Public surface (window.NWL):
+ * Public surface (window.NWLocal):
  *   active            — boolean
  *   capabilities      — last /api/local/capabilities payload
  *   stateCache        — mirror of the chat.js "project state" shape
@@ -95,9 +95,10 @@
       ]
     },
     "intake-check": {
-      tool: "intake_check", path: null,
+      tool: "intake_check", path: 0, emitPath: false,
       argmap: [
-        { flag: "--interview", key: "interview", parse: parseJson, default: "{}" }
+        { flag: "--interview", key: "interview", parse: parseJson, default: "{}" },
+        { flag: "--human", key: "human", flag_only: true, drop: true }
       ]
     },
     "concept-review": {
@@ -195,23 +196,23 @@
       tool: "status", path: 0,
       argmap: [
         { flag: "--chapter", key: "chapter", parse: parseInt },
-        { flag: "--human", key: "human", flag_only: true }
+        { flag: "--human", key: "human", flag_only: true, drop: true }
       ]
     },
     "check": {
       tool: "check", path: 0,
       argmap: [
         { flag: "--security", key: "security", flag_only: true },
-        { flag: "--human", key: "human", flag_only: true }
+        { flag: "--human", key: "human", flag_only: true, drop: true }
       ]
     },
     "roles": {
-      tool: "roles", path: 0,
-      argmap: [{ flag: "--human", key: "human", flag_only: true }]
+      tool: "roles", path: 0, emitPath: false,
+      argmap: [{ flag: "--human", key: "human", flag_only: true, drop: true }]
     },
     "chapters": {
       tool: "chapters", path: 0,
-      argmap: [{ flag: "--human", key: "human", flag_only: true }]
+      argmap: [{ flag: "--human", key: "human", flag_only: true, drop: true }]
     },
     "prewrite": { tool: "prewrite", path: 0, argmap: [
       { positional: 0, key: "chapter", parse: parseInt, required: true },
@@ -242,7 +243,7 @@
         }
         if (!hit) throw new Error("unknown flag " + tok + " for " + cmd);
         if (hit.flag_only) {
-          args[hit.key] = true;
+          if (!hit.drop) args[hit.key] = true;
         } else if (hit.nargs) {
           var arr = [];
           if (hit.nargs === "+") {
@@ -287,7 +288,7 @@
         slotIdx++;
       }
     }
-    if (spec.path !== null) args.path = ".";
+    if (spec.path !== null && spec.emitPath !== false) args.path = ".";
     // Apply defaults for any argmap entry not yet provided; the default
     // is run through the same parser as a CLI-provided value.
     for (var r = 0; r < spec.argmap.length; r++) {
@@ -322,7 +323,7 @@
       out.err = "[mcp " + (rpc.error.code || "ERR") + "] " + (rpc.error.message || "unknown");
       return out;
     }
-    var r = rpc.result || {};
+    var r = rpc.result || rpc || {};
     var chunks = [];
     if (Array.isArray(r.content)) {
       r.content.forEach(function (c) {
@@ -448,11 +449,16 @@
     ]).then(function (res) {
       var activeInfo = res[0];
       var statusRpc = res[1];
+      var statusResult = statusRpc && statusRpc.result ? statusRpc.result : statusRpc;
       var workflow = null;
-      if (statusRpc && statusRpc.result && Array.isArray(statusRpc.result.content)) {
-        statusRpc.result.content.forEach(function (c) {
+      if (statusResult && Array.isArray(statusResult.content)) {
+        statusResult.content.forEach(function (c) {
           if (c && typeof c.text === "string" && c.text.indexOf("{") >= 0) {
-            try { var j = JSON.parse(c.text); if (j && j.title) workflow = j; } catch (e) {}
+            try {
+              var j = JSON.parse(c.text);
+              if (j && j.project && j.project.title) workflow = j.project;
+              else if (j && j.title) workflow = j;
+            } catch (e) {}
           }
         });
       }
@@ -465,6 +471,7 @@
         // chat summary handles missing chapters as "(none)".
       }
       stateCache = buildStateFromWorkflow(workflow, chapterFiles);
+      if (api) api.stateCache = stateCache;
       return stateCache;
     });
   }
@@ -490,6 +497,7 @@
     if (!active) return Promise.resolve(null);
     return callApi("capabilities").then(function (c) {
       capabilities = c;
+      if (api) api.capabilities = c;
       return c;
     });
   }
@@ -534,6 +542,67 @@
   var queue = Promise.resolve();
   function enqueue(fn) { var p = queue.then(fn); queue = p.catch(function () {}); return p; }
 
+  function rewriteChapterArtifacts(setup, plan, artifactDir) {
+    var rewrittenSetup = {};
+    var pathMap = {};
+    Object.keys(setup || {}).forEach(function (rel) {
+      var next = rel;
+      if (artifactDir && next.indexOf(artifactDir + "/") !== 0) {
+        next = artifactDir + "/" + next.replace(/^chapters\//, "");
+      }
+      pathMap[rel] = next;
+      rewrittenSetup[next] = setup[rel];
+    });
+    var rewrittenPlan = {
+      kind: plan.kind,
+      tool: plan.tool,
+      arguments: Object.assign({}, plan.arguments || {})
+    };
+    ["artifact", "prewrite", "review_artifact"].forEach(function (key) {
+      var value = rewrittenPlan.arguments[key];
+      if (typeof value === "string" && pathMap[value]) {
+        rewrittenPlan.arguments[key] = pathMap[value];
+      }
+    });
+    return { setup: rewrittenSetup, plan: rewrittenPlan };
+  }
+
+  function chapterArtifactDir(chapter) {
+    if (!chapter) return Promise.resolve("");
+    return runMcp("resources/read", { uri: "novel://chapter/" + chapter })
+      .then(function (rpc) {
+        var resourceResult = rpc && rpc.result ? rpc.result : rpc;
+        var contents = resourceResult && resourceResult.contents;
+        if (!Array.isArray(contents) || !contents.length) return "";
+        try {
+          var payload = JSON.parse(contents[0].text || "{}");
+          var state = payload.chapter || payload;
+          return (state && state.artifact_dir) || "";
+        } catch (e) { return ""; }
+      });
+  }
+
+  function prepareSetup(setup, plan) {
+    if (Object.keys(setup || {}).length === 0) return Promise.resolve(plan);
+    var chapter = plan && plan.arguments && plan.arguments.chapter;
+    return chapterArtifactDir(chapter).then(function (artifactDir) {
+      var prepared = rewriteChapterArtifacts(setup, plan, artifactDir);
+      var writes = Promise.resolve();
+      Object.keys(prepared.setup).forEach(function (path) {
+        writes = writes.then(function () {
+          return runMcp("tools/call", {
+            name: "write_artifact",
+            arguments: { path: path, content: prepared.setup[path] }
+          }).then(function (rpc) {
+            var result = normaliseRpcResponse(rpc);
+            if (result.code !== 0) throw new Error(result.err || "write_artifact failed");
+          });
+        });
+      });
+      return writes.then(function () { return prepared.plan; });
+    });
+  }
+
   function runSmart(setup, argv, intake) {
     if (!active) return Promise.resolve({ code: -1, out: "", err: "local library not active" });
     if (typeof setup === "string") { intake = argv; argv = setup; setup = {}; }
@@ -558,7 +627,12 @@
     // Echo to terminal (caller is expected to handle the cmd-line echo
     // themselves; we only echo the result so the local engine matches
     // the live one byte-for-byte from the user's perspective).
-    return runMcp("tools/call", { name: plan.tool, arguments: plan.arguments })
+    return prepareSetup(setup, plan).then(function (preparedPlan) {
+      return runMcp("tools/call", {
+        name: preparedPlan.tool,
+        arguments: preparedPlan.arguments
+      });
+    })
       .then(function (rpc) {
         var r = normaliseRpcResponse(rpc);
         if (r.code === 0) return refreshState().then(function () { return r; });
@@ -623,8 +697,11 @@
     runSmart: runSmart,
     runSeq: runSeq,
     normaliseRpcResponse: normaliseRpcResponse,
+    rewriteChapterArtifacts: rewriteChapterArtifacts,
     formatCmdLine: formatCmdLine
   };
-  if (typeof window !== "undefined") window.NWL = api;
+  // ``window.NWL`` belongs to llm.js (the optional LLM adapter).  Keep the
+  // local MCP bridge on its own global so loading llm.js cannot overwrite it.
+  if (typeof window !== "undefined") window.NWLocal = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;
 })();

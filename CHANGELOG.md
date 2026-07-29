@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+- Added a freeform creative workspace that replaces the rigid command
+  translator with free-form conversation. The model and user discuss story
+  ideas; confirmed proposals are compiled into the formal `idea` command
+  through a two-confirmation gate (accept → plan card → execute). Per-book
+  persistence (local bridge → browser → memory) with ZIP backup/import
+  ensures no creative work is lost. Autonomy phrases ("你来决定") grant the
+  model decision authority. Trial drafts persist without triggering formal
+  chapter creation. Model failures display inline without rule-engine
+  fallback. Creative routes are isolated to the local port.
 - Fixed local white-language new-book creation so `init` creates and activates
   a library project instead of failing with `transport: no active book`; the
   local library chooser now uses accessible Chinese-status book cards.

@@ -60,9 +60,29 @@ optional LLM settings (see below).
   file tree. Live mode actually runs `core.py` + `cli.py` inside Pyodide;
   Replay mode plays back `tape.js` for demos when the WASM engine is
   unavailable.
-- **Plain Chinese (白话)** — natural-language intent layer that maps to the
-  same commands. Write actions go through a confirm-before-execute card so
-  the state-machine gates stay authoritative.
+- **Freeform creation (自由创作)** — a creative workspace that replaces the
+  rigid command translator with free conversation. Talk to the model about
+  your story; when the ideas are confirmed, compile them into the formal
+  `idea` command through a two-confirmation gate. Per-book persistence
+  (local bridge → browser localStorage → in-memory) means you can reload
+  and resume. ZIP backup/export and import ensure no creative work is lost
+  even when local storage fails. Key behaviours:
+  - **Autonomy**: say "你来决定" to grant the model decision authority.
+  - **Proposal compilation**: the model compiles a structured proposal
+    (15-field intake) from the conversation; you see a human-readable
+    preview, never raw JSON.
+  - **Two-confirmation gate**: accepting a proposal offers a formal plan
+    card; clicking "执行" writes to the real project. The controller never
+    touches the core directly.
+  - **Trial drafts**: save scene fragments without triggering formal
+    chapter creation.
+  - **Durability labels**: `local` (written to disk), `browser`
+    (localStorage), `backup-required` (download a ZIP — data is in memory
+    only). After export, the label reads "已下载备份，尚未写入本地".
+  - **Model failure**: errors are displayed inline; the conversation
+    continues without falling back to a rule engine.
+  - **Local/public isolation**: creative routes exist only on the local
+    port (8080); the public port (8081) cannot access them.
 - **LLM BYOK (opt-in)** — bring-your-own-key against any OpenAI-compatible
   endpoint. The key never leaves the browser (stored in `localStorage`).
   When the key is absent, unreachable, or returns an error, the runner

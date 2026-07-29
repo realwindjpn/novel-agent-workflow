@@ -72,34 +72,95 @@ optional LLM settings (see below).
 
 From the repository root, double-click `一键启动.cmd`. The launcher:
 
-1. serves this directory on `127.0.0.1:8080`;
-2. starts `cloudflared` with a zero-login Quick Tunnel;
-3. verifies both the local and temporary public endpoints;
-4. opens `http://localhost:8080` in the default browser;
+1. starts **two** HTTP listeners — a local API-backed server on `127.0.0.1:<port>` (default 8080) and a public static-only server on `127.0.0.1:<public-port>` (default 8081);
+2. spawns a per-book `novel-workflow mcp --root <book>` child on demand and routes all local page mutations through it;
+3. opens `cloudflared` with a zero-login Quick Tunnel that fronts only the public port (8081);
+4. verifies both endpoints and opens `http://localhost:<port>` in the default browser;
 5. prints the random `https://….trycloudflare.com` URL;
-6. stops the HTTP server and tunnel when Ctrl+C is pressed or the window closes.
+6. stops the MCP child, both HTTP servers, and the tunnel when Ctrl+C is pressed or the window closes.
 
-Prerequisites are Python 3.11+ and `cloudflared` on PATH. The temporary public
-URL is unauthenticated: anyone with the URL can access the runner until the
-launcher stops. The URL changes on every run.
+Prerequisites are Python 3.11+ and `cloudflared` on PATH. The temporary
+public URL is unauthenticated and memory-only (it serves the public
+static port, not the local API): anyone with the URL can open the page
+but cannot touch the library or the disk. The URL changes on every run.
 
 ```powershell
-.\一键启动.cmd --port 9090
+.\一键启动.cmd --port 9090 --public-port 9091
+.\一键启动.cmd --library-root D:\MyBooks
 .\一键启动.cmd --no-browser
 ```
 
-For a local-only manual preview, any static HTTP server still works:
+For a local-only manual preview of the public / memory-only surface,
+any static HTTP server still works on port 8081:
 
 ```bash
 cd web
-python3 -m http.server 8080
-# open http://localhost:8080
+python3 -m http.server 8081
+# open http://localhost:8081
 ```
 
-Pyodide fetches Python and packages from jsDelivr on first load (~10s).
-Subsequent loads are cached. If the WASM engine takes more than ~150s to
-respond, the page falls back to Replay mode automatically so you can still
-explore the 22-step flow.
+The local MCP surface (`http://localhost:8080`) **requires the launcher**,
+because it depends on the per-book MCP child and the local API token. A
+plain `python3 -m http.server` on 8080 will load the page but every local
+API request will 403/404.
+
+Pyodide fetches Python and packages from jsDelivr on first load (~10s)
+when the public surface is reached, but it is **not** loaded on the local
+surface: the local engine is the stdio MCP child, not WASM. If the WASM
+engine takes more than ~150s to respond on the public surface, the page
+falls back to Replay mode automatically so you can still explore the
+22-step flow.
+
+## Local MCP mode (the local surface on 8080)
+
+The header on the local page shows the runtime badge **本地 MCP · 可写磁盘**;
+the public page shows **公网演示 · 浏览器内存**. Both run the same SPA
+(`index.html` + the modules listed above), but they use different
+engines and have different persistence guarantees.
+
+### What changes under local MCP
+
+- The launcher starts a real `novel-workflow mcp --root <book>` child on
+  `127.0.0.1:8080`. The page boots into local mode (no Pyodide fetch) and
+  routes every workflow mutation through that child over a
+  newline-delimited JSON-RPC channel.
+- The library is a directory you pick. Default is `<repo>/.library`; pass
+  `--library-root <path>` to relocate. Each book is one immediate
+  subdirectory containing `workflow.json`. Book directories are named
+  `<title>_YYYYMMDD[(n)]`; collisions bump the suffix and the page
+  prompts with *open the latest* / *create a new one* / *cancel*.
+- Picking a library: the `换库` button opens the Windows folder picker
+  (PowerShell STA, fixed script body — no shell interpolation) on
+  Windows, or a manual path input on macOS / Linux. The launcher
+  returns HTTP 501 for the picker route on non-Windows; the manual input
+  keeps working.
+- Chapter workspaces are real directories on disk: the first time you
+  issue chapter N, the page creates `chapters/第NNN章_YYYYMMDD/` next
+  to `workflow.json` (zero-padded to three digits). Subsequent
+  prewrite / draft / review / repair writes from the page land inside
+  that directory. Reopen the launcher and the same chapter directory is
+  picked up automatically — no migration step.
+- Every persisted mutation you see in the SPA is a real MCP `tools/call`
+  round-trip. The local API reads only the catalog and a bounded file
+  snapshot directly.
+
+### What the local API enforces
+
+| Concern              | Behaviour                                                                                              |
+|----------------------|--------------------------------------------------------------------------------------------------------|
+| Endpoint scope       | Only `http://localhost:<port>` and `http://127.0.0.1:<port>` (exact match) can mutate.                 |
+| Token                | 32-byte URL-safe token generated per launch, sent via `X-Library-Token` header.                        |
+| CORS                 | No `Access-Control-Allow-Origin` is sent.                                                              |
+| Public isolation     | The public 8081 server has no `/api/local/*` routes; every such request returns 404.                   |
+| MCP method allowlist | `ping`, `tools/list`, `tools/call`, `resources/list`, `resources/read`, `prompts/list`, `prompts/get`. `initialize` is rejected. |
+| Response ceiling     | 2 MiB per response. File snapshots are bounded per file and per total.                                 |
+| Path jail            | All library / book paths must be absolute, must be inside the configured library root, must not be a symlink that escapes it. |
+| Symlinks             | Catalog discovery ignores symlinks that resolve outside the library.                                   |
+
+The local API never exposes `initialize` because the bridge owns the
+MCP session; the browser can only call the allowlisted methods. Token
+rotation is per launch — the browser reads it from `capabilities` on
+every page load and never persists it.
 
 ## Refreshing the source snapshot
 

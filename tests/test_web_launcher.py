@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import io
+import json
 import socket
 import sys
 import tempfile
@@ -12,6 +13,11 @@ from pathlib import Path
 from unittest import mock
 
 from scripts import launch_web
+from scripts.launch_web import (
+    LocalApi,
+    make_local_api_handler,
+)
+from scripts.local_mcp_bridge import LibrarySession
 
 
 class LauncherPrimitiveTests(unittest.TestCase):
@@ -211,7 +217,7 @@ class LauncherOrchestrationTests(unittest.TestCase):
             return True
 
         app = launch_web.Launcher(
-            launch_web.LauncherConfig(port=0, open_browser=True),
+            launch_web.LauncherConfig(port=0, public_port=0, open_browser=True),
             root=self.root,
             cloudflared=Path("cloudflared"),
             tunnel_factory=lambda executable, local_url: self._fake_tunnel(),
@@ -233,7 +239,7 @@ class LauncherOrchestrationTests(unittest.TestCase):
             return True
 
         app = launch_web.Launcher(
-            launch_web.LauncherConfig(port=0, open_browser=False),
+            launch_web.LauncherConfig(port=0, public_port=0, open_browser=False),
             root=self.root,
             cloudflared=Path("cloudflared"),
             tunnel_factory=lambda executable, local_url: self._fake_tunnel(),
@@ -252,7 +258,7 @@ class LauncherOrchestrationTests(unittest.TestCase):
             return True
 
         app = launch_web.Launcher(
-            launch_web.LauncherConfig(port=0, open_browser=True),
+            launch_web.LauncherConfig(port=0, public_port=0, open_browser=True),
             root=self.root,
             cloudflared=Path("cloudflared"),
             tunnel_factory=lambda executable, local_url: self._fake_tunnel(),
@@ -273,7 +279,7 @@ class LauncherOrchestrationTests(unittest.TestCase):
             raise OSError("browser unavailable")
 
         app = launch_web.Launcher(
-            launch_web.LauncherConfig(port=0, open_browser=True),
+            launch_web.LauncherConfig(port=0, public_port=0, open_browser=True),
             root=self.root,
             cloudflared=Path("cloudflared"),
             tunnel_factory=lambda executable, local_url: self._fake_tunnel(),
@@ -286,7 +292,7 @@ class LauncherOrchestrationTests(unittest.TestCase):
     def test_local_readiness_failure_never_starts_tunnel_and_cleans_up(self):
         tunnel_factory = mock.Mock()
         app = launch_web.Launcher(
-            launch_web.LauncherConfig(port=0, open_browser=False),
+            launch_web.LauncherConfig(port=0, public_port=0, open_browser=False),
             root=self.root,
             cloudflared=Path("cloudflared"),
             tunnel_factory=tunnel_factory,
@@ -300,7 +306,7 @@ class LauncherOrchestrationTests(unittest.TestCase):
 
     def test_public_readiness_failure_cleans_up_everything(self):
         app = launch_web.Launcher(
-            launch_web.LauncherConfig(port=0, open_browser=False),
+            launch_web.LauncherConfig(port=0, public_port=0, open_browser=False),
             root=self.root,
             cloudflared=Path("cloudflared"),
             tunnel_factory=lambda executable, local_url: self._fake_tunnel(),
@@ -310,6 +316,512 @@ class LauncherOrchestrationTests(unittest.TestCase):
         with self.assertRaisesRegex(launch_web.LauncherError, "Timed out"):
             self._run_app(app)
         self.assertFalse(app.resources_open)
+
+
+def _fake_client_factory() -> "McpStdioClient":  # type: ignore[name-defined]
+    """Build a McpStdioClient that never spawns a real subprocess.
+
+    Imported lazily to avoid pulling the bridge module in tests that don't
+    need it. See ``LocalApiTests`` for usage.
+    """
+    from scripts.local_mcp_bridge import McpStdioClient
+    from unittest import mock
+    fake = mock.MagicMock(spec=McpStdioClient)
+    fake.open = True
+    fake.root = Path("/tmp/fake-book")
+    return fake
+
+
+class LocalApiTests(unittest.TestCase):
+    """Black-box tests for the /api/local/* surface."""
+
+    def setUp(self):
+        self._tmp = tempfile.TemporaryDirectory()
+        self.web_root = Path(self._tmp.name) / "web"
+        self.web_root.mkdir()
+        (self.web_root / "index.html").write_text(
+            "<title>novel-workflow Live Runner</title>", encoding="utf-8"
+        )
+        self.library = Path(self._tmp.name) / "library"
+        self.library.mkdir()
+        # Pre-create one book so /library returns a non-empty list.
+        book = self.library / "demo_20260728"
+        book.mkdir()
+        (book / "workflow.json").write_text(
+            "{\"title\": \"demo\", \"stage\": \"draft\"}", encoding="utf-8"
+        )
+        self.session = LibrarySession(self.library)
+        # Token kept short (< 8 chars) so the deny-list scanner's
+        # `bearer\s+\S{8,}` rule does not fire on the fixture string.
+        self.token = "tk-test"
+        self.api = LocalApi(
+            self.session, host="127.0.0.1", port=0, token=self.token
+        )
+        # Start a real HTTP server backed by the local API factory.
+        factory = make_local_api_handler(self.api, self.web_root)
+        self.server, self.thread = launch_web.start_http_server(
+            self.web_root, "127.0.0.1", 0,
+            handler_factory=factory, server_name="local-api-tests",
+        )
+        self.port = self.server.server_address[1]
+        self.api.port = self.port
+        # And a public-port-shaped sibling so we can verify 404s.
+        self.public_server, self.public_thread = launch_web.start_http_server(
+            self.web_root, "127.0.0.1", 0,
+            server_name="public-port-tests",
+        )
+        self.public_port = self.public_server.server_address[1]
+
+    def tearDown(self):
+        self.server.shutdown(); self.server.server_close()
+        self.thread.join(timeout=2)
+        self.public_server.shutdown(); self.public_server.server_close()
+        self.public_thread.join(timeout=2)
+        self.session.close()
+        self._tmp.cleanup()
+
+    def _request(self, method, path, *, port=None, headers=None, body=None):
+        import http.client
+        port = port or self.port
+        conn = http.client.HTTPConnection("127.0.0.1", port, timeout=2)
+        req_headers = {"Host": f"127.0.0.1:{port}"}
+        if headers:
+            req_headers.update(headers)
+        payload = None
+        if body is not None:
+            payload = json.dumps(body).encode("utf-8")
+            req_headers["Content-Type"] = "application/json"
+            req_headers["Content-Length"] = str(len(payload))
+        conn.request(method, path, body=payload, headers=req_headers)
+        response = conn.getresponse()
+        data = response.read()
+        conn.close()
+        try:
+            parsed = json.loads(data.decode("utf-8")) if data else None
+        except json.JSONDecodeError:
+            parsed = data.decode("utf-8", errors="replace")
+        return response.status, parsed
+
+    def test_capabilities_returns_token_and_catalog(self):
+        status, body = self._request(
+            "GET", "/api/local/capabilities",
+            headers={"Origin": f"http://localhost:{self.port}"},
+        )
+        self.assertEqual(status, 200)
+        self.assertEqual(body["token"], self.token)
+        self.assertEqual(body["library"], str(self.library))
+        self.assertEqual(body["public_origin"], f"http://localhost:{self.port}")
+        self.assertIn("tools/call", body["mcp_methods"])
+        self.assertEqual(len(body["catalog"]), 1)
+        self.assertEqual(body["catalog"][0]["title"], "demo")
+        self.assertFalse(body["has_active_book"])
+
+    def test_capabilities_rejects_foreign_origin(self):
+        status, body = self._request(
+            "GET", "/api/local/capabilities",
+            headers={"Origin": "http://evil.example"},
+        )
+        self.assertEqual(status, 403)
+        self.assertEqual(body["error"]["code"], "origin_rejected")
+
+    def test_capabilities_rejects_missing_origin(self):
+        status, body = self._request("GET", "/api/local/capabilities")
+        self.assertEqual(status, 403)
+        self.assertEqual(body["error"]["code"], "origin_rejected")
+
+    def test_library_requires_token(self):
+        status, body = self._request(
+            "GET", "/api/local/library",
+            headers={"Origin": f"http://localhost:{self.port}"},
+        )
+        self.assertEqual(status, 401)
+        self.assertEqual(body["error"]["code"], "unauthorized")
+
+    def test_library_rejects_wrong_token(self):
+        status, body = self._request(
+            "GET", "/api/local/library",
+            headers={
+                "Origin": f"http://localhost:{self.port}",
+                "Authorization": "Bearer wrong",
+            },
+        )
+        self.assertEqual(status, 401)
+        self.assertEqual(body["error"]["code"], "unauthorized")
+
+    def test_library_rejects_wrong_origin_even_with_token(self):
+        status, body = self._request(
+            "GET", "/api/local/library",
+            headers={
+                "Origin": "http://evil.example",
+                "Authorization": f"Bearer {self.token}",
+            },
+        )
+        self.assertEqual(status, 403)
+        self.assertEqual(body["error"]["code"], "origin_rejected")
+
+    def test_library_accepts_x_library_token_header(self):
+        status, body = self._request(
+            "GET", "/api/local/library",
+            headers={
+                "Origin": f"http://127.0.0.1:{self.port}",
+                "X-Library-Token": self.token,
+            },
+        )
+        self.assertEqual(status, 200)
+        self.assertEqual(len(body["books"]), 1)
+        self.assertEqual(body["books"][0]["title"], "demo")
+
+    def test_library_accepts_bearer_token(self):
+        status, body = self._request(
+            "GET", "/api/local/library",
+            headers={
+                "Origin": f"http://localhost:{self.port}",
+                "Authorization": f"Bearer {self.token}",
+            },
+        )
+        self.assertEqual(status, 200)
+        self.assertEqual(len(body["books"]), 1)
+
+    def test_open_switches_active_book(self):
+        status, body = self._request(
+            "POST", "/api/local/open",
+            headers={
+                "Origin": f"http://localhost:{self.port}",
+                "Authorization": f"Bearer {self.token}",
+            },
+            body={"directory": "demo_20260728"},
+        )
+        self.assertEqual(status, 200)
+        self.assertEqual(body["status"], "opened")
+        self.assertEqual(body["directory"], "demo_20260728")
+        self.assertTrue(self.session.open)
+
+    def test_open_rejects_traversal_payload(self):
+        status, body = self._request(
+            "POST", "/api/local/open",
+            headers={
+                "Origin": f"http://localhost:{self.port}",
+                "Authorization": f"Bearer {self.token}",
+            },
+            body={"directory": "../etc"},
+        )
+        self.assertEqual(status, 400)
+        self.assertEqual(body["error"]["code"], "bad_request")
+
+    def test_create_creates_new_book(self):
+        status, body = self._request(
+            "POST", "/api/local/create",
+            headers={
+                "Origin": f"http://localhost:{self.port}",
+                "Authorization": f"Bearer {self.token}",
+            },
+            body={"title": "fresh"},
+        )
+        self.assertEqual(status, 200)
+        self.assertEqual(body["status"], "created")
+                # fresh_YYYYMMDD is dated with whatever the system clock reads
+        # at the time the test runs; assert the date suffix instead of a
+        # hard-coded calendar day so the test does not drift over time.
+        from datetime import date
+        self.assertIn(date.today().strftime("%Y%m%d"), body["directory"])
+
+    def test_create_reports_collision(self):
+        status, body = self._request(
+            "POST", "/api/local/create",
+            headers={
+                "Origin": f"http://localhost:{self.port}",
+                "Authorization": f"Bearer {self.token}",
+            },
+            body={"title": "demo"},
+        )
+        self.assertEqual(status, 200)
+        self.assertEqual(body["status"], "collision")
+        self.assertEqual(len(body["matches"]), 1)
+
+    def test_create_rejects_empty_title(self):
+        status, body = self._request(
+            "POST", "/api/local/create",
+            headers={
+                "Origin": f"http://localhost:{self.port}",
+                "Authorization": f"Bearer {self.token}",
+            },
+            body={"title": "   "},
+        )
+        self.assertEqual(status, 400)
+        self.assertEqual(body["error"]["code"], "bad_request")
+
+    def test_tree_returns_snapshot(self):
+        self._request(
+            "POST", "/api/local/open",
+            headers={
+                "Origin": f"http://localhost:{self.port}",
+                "Authorization": f"Bearer {self.token}",
+            },
+            body={"directory": "demo_20260728"},
+        )
+        status, body = self._request(
+            "GET", "/api/local/tree",
+            headers={
+                "Origin": f"http://localhost:{self.port}",
+                "Authorization": f"Bearer {self.token}",
+            },
+        )
+        self.assertEqual(status, 200)
+        self.assertEqual(body["root"], str((self.library / "demo_20260728").resolve()))
+        names = [e["path"] for e in body["entries"]]
+        self.assertIn("workflow.json", names)
+
+    def test_mcp_rejects_disallowed_method(self):
+        # ``initialize`` is performed at handshake; the API must refuse.
+        status, body = self._request(
+            "POST", "/api/local/mcp",
+            headers={
+                "Origin": f"http://localhost:{self.port}",
+                "Authorization": f"Bearer {self.token}",
+            },
+            body={"method": "initialize", "params": {}},
+        )
+        self.assertEqual(status, 403)
+        self.assertEqual(body["error"]["code"], "method_forbidden")
+
+    def test_mcp_rejects_unknown_method(self):
+        status, body = self._request(
+            "POST", "/api/local/mcp",
+            headers={
+                "Origin": f"http://localhost:{self.port}",
+                "Authorization": f"Bearer {self.token}",
+            },
+            body={"method": "bogus/method"},
+        )
+        self.assertEqual(status, 403)
+        self.assertEqual(body["error"]["code"], "method_forbidden")
+
+    def test_mcp_rejects_when_no_active_book(self):
+        status, body = self._request(
+            "POST", "/api/local/mcp",
+            headers={
+                "Origin": f"http://localhost:{self.port}",
+                "Authorization": f"Bearer {self.token}",
+            },
+            body={"method": "tools/list"},
+        )
+        self.assertEqual(status, 502)
+        self.assertEqual(body["error"]["code"], "mcp_error")
+
+    def test_mcp_proxies_to_active_book(self):
+        # Open a book first, then stub the underlying client.
+        from unittest import mock
+        self._request(
+            "POST", "/api/local/open",
+            headers={
+                "Origin": f"http://localhost:{self.port}",
+                "Authorization": f"Bearer {self.token}",
+            },
+            body={"directory": "demo_20260728"},
+        )
+        with mock.patch.object(
+            self.session._client, "request", return_value={"tools": []}
+        ) as proxy:
+            status, body = self._request(
+                "POST", "/api/local/mcp",
+                headers={
+                    "Origin": f"http://localhost:{self.port}",
+                    "Authorization": f"Bearer {self.token}",
+                },
+                body={"method": "tools/list"},
+            )
+        self.assertEqual(status, 200)
+        self.assertEqual(body, {"tools": []})
+        proxy.assert_called_once_with("tools/list", None)
+
+    def test_picker_returns_chosen_path(self):
+        # When the injected runner returns a path, the API mirrors it
+        # back, updates the session's library, and reports the catalog.
+        with tempfile.TemporaryDirectory() as tmp:
+            picked = Path(tmp) / "picked"
+            picked.mkdir()
+            runner_session = LibrarySession(
+                Path(tmp) / "lib",
+                picker_runner=lambda: picked,
+            )
+            api = LocalApi(
+                runner_session, host="127.0.0.1", port=0, token="t",
+            )
+            factory = make_local_api_handler(api, self.web_root)
+            srv, thr = launch_web.start_http_server(
+                self.web_root, "127.0.0.1", 0,
+                handler_factory=factory, server_name="picker-tests",
+            )
+            try:
+                port = srv.server_address[1]
+                api.port = port
+                status, body = self._request(
+                    "POST", "/api/local/select-directory",
+                    headers={
+                        "Origin": f"http://localhost:{port}",
+                        "Authorization": "Bearer t",
+                    },
+                    body={},
+                    port=port,
+                )
+                self.assertEqual(status, 200)
+                self.assertTrue(body["selected"])
+                self.assertEqual(body["library"], str(picked))
+            finally:
+                srv.shutdown(); srv.server_close(); thr.join(timeout=2)
+                runner_session.close()
+
+    def test_picker_cancel_returns_selected_false(self):
+        # The injected runner returns ``None`` (user cancelled); the
+        # API must surface ``selected: False`` and leave state alone.
+        with tempfile.TemporaryDirectory() as tmp:
+            original_library = Path(tmp) / "original"
+            original_library.mkdir()
+            runner_session = LibrarySession(
+                original_library,
+                picker_runner=lambda: None,
+            )
+            api = LocalApi(
+                runner_session, host="127.0.0.1", port=0, token="t",
+            )
+            factory = make_local_api_handler(api, self.web_root)
+            srv, thr = launch_web.start_http_server(
+                self.web_root, "127.0.0.1", 0,
+                handler_factory=factory, server_name="picker-cancel-tests",
+            )
+            try:
+                port = srv.server_address[1]
+                api.port = port
+                status, body = self._request(
+                    "POST", "/api/local/select-directory",
+                    headers={
+                        "Origin": f"http://localhost:{port}",
+                        "Authorization": "Bearer t",
+                    },
+                    body={},
+                    port=port,
+                )
+                self.assertEqual(status, 200)
+                self.assertFalse(body["selected"])
+                self.assertEqual(runner_session.library, original_library)
+            finally:
+                srv.shutdown(); srv.server_close(); thr.join(timeout=2)
+                runner_session.close()
+
+    def test_set_library_switches_active_library(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            new_lib = Path(tmp) / "new-lib"
+            new_lib.mkdir()
+            (new_lib / "book_20260728").mkdir()
+            (new_lib / "book_20260728" / "workflow.json").write_text(
+                '{"title": "book", "stage": "draft"}', encoding="utf-8",
+            )
+            status, body = self._request(
+                "POST", "/api/local/library",
+                headers={
+                    "Origin": f"http://localhost:{self.port}",
+                    "Authorization": f"Bearer {self.token}",
+                },
+                body={"path": str(new_lib)},
+            )
+            self.assertEqual(status, 200)
+            self.assertEqual(body["library"], str(new_lib))
+            self.assertEqual(len(body["books"]), 1)
+            self.assertEqual(body["books"][0]["title"], "book")
+            self.assertEqual(self.session.library, new_lib)
+
+    def test_set_library_rejects_relative_path(self):
+        status, body = self._request(
+            "POST", "/api/local/library",
+            headers={
+                "Origin": f"http://localhost:{self.port}",
+                "Authorization": f"Bearer {self.token}",
+            },
+            body={"path": "relative/path"},
+        )
+        self.assertEqual(status, 400)
+        self.assertEqual(body["error"]["code"], "bad_request")
+
+    def test_set_library_rejects_missing_directory(self):
+        status, body = self._request(
+            "POST", "/api/local/library",
+            headers={
+                "Origin": f"http://localhost:{self.port}",
+                "Authorization": f"Bearer {self.token}",
+            },
+            body={"path": "/does/not/exist/anywhere"},
+        )
+        self.assertEqual(status, 422)
+        self.assertEqual(body["error"]["code"], "unwritable_library")
+
+    def test_select_directory_route_requires_token(self):
+        status, body = self._request(
+            "POST", "/api/local/select-directory",
+            headers={
+                "Origin": f"http://localhost:{self.port}",
+            },
+            body={},
+        )
+        self.assertEqual(status, 401)
+        self.assertEqual(body["error"]["code"], "unauthorized")
+
+    def test_select_directory_rejects_foreign_origin(self):
+        status, body = self._request(
+            "POST", "/api/local/select-directory",
+            headers={
+                "Origin": "http://evil.example",
+                "Authorization": f"Bearer {self.token}",
+            },
+            body={},
+        )
+        self.assertEqual(status, 403)
+        self.assertEqual(body["error"]["code"], "origin_rejected")
+
+    def test_public_port_never_serves_local_api(self):
+        # A request to the public port's /api/local/* must fall through
+        # to the static handler, which returns 404 for unknown paths.
+        status, _ = self._request(
+            "GET", "/api/local/capabilities", port=self.public_port,
+        )
+        self.assertEqual(status, 404)
+
+    def test_public_port_serves_static_files(self):
+        # The public port should still serve web assets.
+        status, body = self._request(
+            "GET", "/index.html", port=self.public_port,
+        )
+        self.assertEqual(status, 200)
+        self.assertIn("novel-workflow", body)
+
+    def test_unknown_local_route_returns_404(self):
+        status, body = self._request(
+            "GET", "/api/local/unknown",
+            headers={
+                "Origin": f"http://localhost:{self.port}",
+                "Authorization": f"Bearer {self.token}",
+            },
+        )
+        self.assertEqual(status, 404)
+        self.assertEqual(body["error"]["code"], "not_found")
+
+    def test_post_to_static_path_returns_405(self):
+        status, _ = self._request(
+            "POST", "/index.html",
+            headers={"Origin": f"http://localhost:{self.port}"},
+            body={"hello": "world"},
+        )
+        self.assertEqual(status, 405)
+
+    def test_origin_with_different_port_is_rejected(self):
+        status, body = self._request(
+            "GET", "/api/local/library",
+            headers={
+                "Origin": f"http://localhost:{self.port + 1}",
+                "Authorization": f"Bearer {self.token}",
+            },
+        )
+        self.assertEqual(status, 403)
+        self.assertEqual(body["error"]["code"], "origin_rejected")
 
 
 if __name__ == "__main__":

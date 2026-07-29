@@ -25,9 +25,14 @@
   var filesModeHint = document.getElementById("files-mode");
   var btnRunAll = document.getElementById("btn-runall");
 
-  var mode = "booting";       // booting | live | replay
+  // The launcher (scripts/launch_web.py) injects window.NWL_RUNTIME when
+  // serving the SPA from a local port. local.js then exposes window.NWL
+  // and sets NWL.active = true. In that case we skip Pyodide entirely
+  // and route every command through the real Python MCP child.
+  var localMode = !!(window.NWL && window.NWL.active);
+  var mode = localMode ? "local" : "booting";  // booting | local | live | replay
   var pyodide = null;
-  var pyReady = null;         // Promise resolving on first boot
+  var pyReady = null;         // Promise resolving on first boot (or null in local)
   var history = [];
   var histIdx = -1;
   var wave = new window.NWA.Waveform(document.getElementById("wave"));
@@ -119,6 +124,11 @@
   function setStateCache(s) { stateCache = s || { projectExists: false, project: null, chapters: [] }; }
   function refreshState() {
     if (mode === "booting") return Promise.resolve();
+    if (mode === "local") {
+      return window.NWL.refreshState().then(function (s) {
+        if (s) setStateCache(s);
+      }).catch(function () { /* keep previous cache on transient failure */ });
+    }
     if (mode === "live") {
       return liveEval("nw_read_state()").then(function (s) {
         try { setStateCache(JSON.parse(s)); } catch (e) { /* leave stale */ }
@@ -130,6 +140,11 @@
     return Promise.resolve();
   }
   async function refreshFiles() {
+    if (mode === "local") {
+      try { await window.NWL.refreshFiles(); }
+      catch (e) { window.NWX.update({}); }
+      return refreshState();
+    }
     try {
       var treeJson = mode === "live"
         ? await pyodide.runPythonAsync("nw_tree('demo')")
@@ -604,6 +619,7 @@
   }
 
   function liveReadState() {
+    if (mode === "local") return window.NWL.refreshState();
     if (mode === "live") return liveEval("nw_read_state()").then(function (s) { return JSON.parse(s); });
     // replay: derive from latest tape step tree
     if (replayIdx < 0) return Promise.resolve({ projectExists: false, project: null, chapters: [] });
@@ -708,9 +724,10 @@
       if (err) outBlock(err, "err");
       if (code) appendLine(exitBadge(code));
     },
-    /* Single command, live OR replay. Queues behind any in-flight run. */
+    /* Single command, live OR replay OR local. Queues behind any in-flight run. */
     runSmart: function (setup, argv, intake) {
       if (mode === "booting") return Promise.resolve({ code: -1, out: "", err: "engine booting" });
+      if (mode === "local") return window.NWL.runSmart(setup, argv, intake);
       return enqueue(function () {
         if (mode === "live") return liveRunCustom(setup || {}, argv || [], !!intake);
         return replayRunArgv(argv || []);
@@ -722,6 +739,7 @@
      * result for convenience. */
     runSeq: function (cmds) {
       if (mode === "booting") return Promise.resolve({ results: [], last: { code: -1, out: "", err: "engine booting" } });
+      if (mode === "local") return window.NWL.runSeq(cmds);
       return enqueue(function () {
         var results = [];
         var last = null;
@@ -777,17 +795,84 @@
     termInput.focus();
   });
 
+  /* ---------------- library panel (local mode) ---------------- */
+  // In local mode the user can switch the active library directory or
+  // pick a different book from the catalog. Public-mode SPAs (no
+  // NWL_RUNTIME) leave this dormant.
+  var libBookName = document.getElementById("lib-book-name");
+  var libPickBtn = document.getElementById("lib-pick");
+  var libListBtn = document.getElementById("lib-list");
+  if (localMode) document.body.classList.add("local-mode");
+  function refreshLibPanel() {
+    if (!window.NWL) return;
+    var cap = window.NWL.capabilities;
+    if (cap && cap.active_directory) libBookName.textContent = cap.active_directory;
+    else if (cap && cap.library) libBookName.textContent = "(选一本书)";
+    else libBookName.textContent = "—";
+  }
+  if (libPickBtn) libPickBtn.addEventListener("click", function () {
+    if (!localMode) return;
+    window.NWL.chooseDirectory()
+      .then(function (r) {
+        if (r && r.selected) {
+          appendLine('<span class="t-cmd">库切换成功：' + window.NWA.escapeHtml(r.library) + "</span>", "ok");
+          refreshLibPanel();
+          return refreshFiles();
+        } else {
+          appendLine('<span class="dim">（取消选择）</span>');
+        }
+      })
+      .catch(function (e) {
+        appendLine('<span class="err">选目录失败：' + window.NWA.escapeHtml((e && e.message) || e) + "</span>");
+      });
+  });
+  if (libListBtn) libListBtn.addEventListener("click", function () {
+    if (!localMode) return;
+    window.NWL.listBooks()
+      .then(function (r) {
+        var books = r.books || [];
+        var lines = ["# " + r.library, "# 共 " + books.length + " 本书"];
+        books.forEach(function (b) {
+          lines.push("  · " + b.directory + "  (" + b.stage + ", " + b.chapter_count + " 章)");
+        });
+        if (books.length === 0) lines.push("  (空)");
+        outBlock(lines.join("\n"));
+      })
+      .catch(function (e) {
+        appendLine('<span class="err">列表失败：' + window.NWA.escapeHtml((e && e.message) || e) + "</span>");
+      });
+  });
+
   /* ---------------- boot ---------------- */
   appendLine('<b>RELAY·OS</b> · novel-workflow 网页实跑器', "t-cmd");
-  appendLine("—— 浏览器内 WASM CPython 执行仓库原版 Python CLI ——", "dim");
-  newline();
-  setBootPhase(15);
-  bootLog("探测 WASM 引擎 (Pyodide) …", false);
-  setEngine("", "BOOTING · 拉取解释器");
-  pyReady = bootPyodide().catch(function (e) {
-    bootLog("WASM 引擎加载失败：" + (e && e.message || e), false);
-    fallbackToReplay("CDN 不可达或 WASM 加载失败");
-  });
+  if (localMode) {
+    appendLine("—— 本地模式：通过 launcher 直连真实 Python MCP 进程 ——", "dim");
+    newline();
+    setBootPhase(60);
+    bootLog("检测到 NWL_RUNTIME，跳过 Pyodide 加载。", true);
+    setEngine("local", "LOCAL · Python MCP 进程");
+    termInput.disabled = false;
+    termInput.placeholder = "本地模式：直接敲 novel-workflow 真实命令（每条命令实跑在你本机）。help / ls / cat / tree / clear";
+    btnRunAll.disabled = false;
+    filesModeHint.textContent = "文件状态：来自你本机 active book 目录（实时）";
+    Promise.resolve()
+      .then(function () { return window.NWL.refreshCapabilities(); })
+      .then(function () { refreshLibPanel(); return refreshFiles(); })
+      .then(function () { setBootPhase(100, true); wave.pulse(1.0); })
+      .catch(function (e) {
+        bootLog("本地 API 握手失败：" + ((e && e.message) || e), false);
+      });
+  } else {
+    appendLine("—— 浏览器内 WASM CPython 执行仓库原版 Python CLI ——", "dim");
+    newline();
+    setBootPhase(15);
+    bootLog("探测 WASM 引擎 (Pyodide) …", false);
+    setEngine("", "BOOTING · 拉取解释器");
+    pyReady = bootPyodide().catch(function (e) {
+      bootLog("WASM 引擎加载失败：" + (e && e.message || e), false);
+      fallbackToReplay("CDN 不可达或 WASM 加载失败");
+    });
+  }
 
   /* ---------------- v3 · mobile tab switch (≤760px) ---------------- */
   document.body.setAttribute("data-mview", "term");

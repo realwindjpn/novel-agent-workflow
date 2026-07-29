@@ -5,8 +5,8 @@
 The repository has three working surfaces: the Windows CLI, a stdio MCP
 server, and a browser SPA that runs a source snapshot in Pyodide. The CLI and
 MCP server operate on the host filesystem. The SPA currently runs entirely in
-the browser and writes to `/home/pyodide/demo`, so its workflow files disappear
-when the browser runtime is discarded.
+the browser and writes to its in-memory virtual filesystem, so its workflow
+files disappear when the browser runtime is discarded.
 
 The one-click launcher currently serves one static endpoint on
 `127.0.0.1:8080` and sends that same endpoint through a Cloudflare Quick

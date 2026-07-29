@@ -366,6 +366,20 @@ class IllegalTransitionTest(unittest.TestCase):
             errors = validate_chapter(data)
             self.assertTrue(any("RELEASED" in e for e in errors))
 
+    def test_chapter_without_artifact_dir_is_backward_compatible(self):
+        import json
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            _locked_outline(root)
+            _chapter_ready_for_review(root)
+            sp = root / ".novel-workflow" / "chapter-1.json"
+            data = json.loads(sp.read_text(encoding="utf-8"))
+            # Older projects persisted chapters before artifact_dir existed;
+            # validation must remain silent in that case so they keep loading.
+            data.pop("artifact_dir", None)
+            sp.write_text(json.dumps(data), encoding="utf-8")
+            self.assertEqual(validate_chapter(data), [])
+
 
 class ReviewHardGateTest(unittest.TestCase):
     """Hard-gate tests for the PASS review attestation contract.

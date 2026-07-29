@@ -236,25 +236,38 @@ installed, double-click:
 一键启动.cmd
 ```
 
-The launcher starts the SPA on `http://localhost:8080`, creates a random
-`https://….trycloudflare.com` Quick Tunnel, waits for both endpoints, and then
-opens the local page automatically. The public URL is temporary and has no
-login protection: anyone with the link can access the page while the launcher
-is running. Press Ctrl+C or close the launcher window to stop both services.
+The launcher starts **two** HTTP listeners and then opens a random
+`https://….trycloudflare.com` Quick Tunnel that fronts only the public one:
+
+| URL                                | Backend                     | Purpose                                                                              |
+|------------------------------------|-----------------------------|--------------------------------------------------------------------------------------|
+| `http://localhost:8080` (default)  | local API + static SPA      | MCP-backed, **disk-writable**, talks to a per-book `novel-workflow mcp --root` child |
+| `http://localhost:8081` (default)  | static SPA only             | Pyodide, **memory-only** — same UI, no disk writes                                    |
+| `https://….trycloudflare.com`      | reverse-proxies `127.0.0.1:8081` | Temporary public read-only mirror; the local `/api/local/*` routes are 404 here |
+
+Both pages show a runtime badge so you can never confuse the two surfaces:
+**本地 MCP · 可写磁盘** vs **公网演示 · 浏览器内存**. The public URL has no
+login protection: anyone with the link can access the page while the
+launcher is running. Press Ctrl+C or close the launcher window to stop
+both servers and the cloudflared tunnel; the launcher owns shutdown of
+the MCP child, both HTTP servers, and the tunnel.
 
 Optional command-line use:
 
 ```powershell
-.\一键启动.cmd --port 9090
+.\一键启动.cmd --port 9090 --public-port 9091
+.\一键启动.cmd --library-root D:\MyBooks
 .\一键启动.cmd --no-browser
+python3 scripts/launch_web.py --help
 ```
 
-Manual local-only fallback (any static server works):
+Manual local-only fallback (any static server works, but it will be the
+public / memory-only side — the local MCP API needs the launcher):
 
 ```bash
 cd web
-python3 -m http.server 8080
-# open http://localhost:8080
+python3 -m http.server 8081
+# open http://localhost:8081
 ```
 
 Pyodide fetches its own interpreter and packages from a public CDN on
@@ -263,6 +276,56 @@ takes too long to respond, the page falls back to a recorded Replay
 mode so the flow is still explorable. See [`web/README.md`](web/README.md)
 for the file layout, the snapshot refresh contract, and the mode-by-mode
 behavior.
+
+## Local MCP library and persistent workspace
+
+The launcher keeps a **persistent local book library** on your machine and
+serves the page from a real `novel-workflow mcp --root <book>` child process
+(one per active book). Two surfaces share the same code path; pick the one
+that matches the room you are in.
+
+### What the library is
+
+- Default location: `<repo>/.library` (override with `--library-root <path>`, e.g. `D:\MyBooks`). Each book is one immediate subdirectory containing its own `workflow.json`; symlinks, junctions, and escapes outside the library root are rejected.
+- Naming: books created from the page are named `<title>_YYYYMMDD` (the date the directory was reserved). Re-creating the same title bumps the suffix: `验收书_20260728`, then `验收书_20260728(1)`, `验收书_20260728(2)`, … The page prompts you with three options when a collision is detected: *open the latest*, *create a new one*, or *cancel*.
+- Titles go through a Windows-safe normaliser: trailing dots, control chars, and reserved device names (`CON`, `PRN`, …) are rewritten. The picker does not interpolate any user input into the PowerShell source.
+- Reopen: pick the book from the list and the launcher starts a fresh MCP child rooted at that directory. Existing `workflow.json` / `.novel-workflow/*.json` / `chapters/` / `releases/` files are honoured; no migration step is run.
+- Chapter workspaces: the first time you issue a chapter, the page creates `chapters/第NNN章_YYYYMMDD/` next to `workflow.json` (zero-padded to three digits). Subsequent prewrite / draft / review / repair writes from the page land inside that directory. Restart the launcher and the same chapter directory is picked up automatically.
+
+### Two surfaces, one engine
+
+| Mode          | URL                        | Engine    | Disk writes | Use it for                                                |
+|---------------|----------------------------|-----------|-------------|-----------------------------------------------------------|
+| Local MCP     | `http://localhost:8080`    | stdio MCP | **Yes**     | Real writing; persistent across restarts; multi-book      |
+| Public replay | `http://localhost:8081`    | Pyodide   | No          | Demos; sharing a read-only link; reviewing the contract   |
+
+The local port serves `/api/local/*` over a per-launcher token with exact
+origin checks (only `http://localhost:<port>` and `http://127.0.0.1:<port>`
+can mutate state). The public port has no `/api/local/*` routes; any
+request there returns 404. The local API never exposes `initialize` — the
+browser cannot recreate the MCP session, only call allowlisted methods
+(`ping`, `tools/list`, `tools/call`, `resources/list`, `resources/read`,
+`prompts/list`, `prompts/get`).
+
+Every persisted mutation you see in the local SPA is the result of a real
+MCP `tools/call` round-trip. The local API reads the catalog and a bounded
+file snapshot directly, and nothing else.
+
+### Manual controls
+
+- **Pick library**: header `LIBRARY · 换库` button opens the Windows folder picker (PowerShell STA, fixed script body, no shell interpolation) or a manual path input on macOS / Linux. Returned path is validated to be an existing directory.
+- **Create / open**: the book list is read on demand from the configured library root; `读取已有创作` repopulates the list, and `继续创作` switches the active MCP child.
+- **Two MiB ceiling**: every API response is capped at 2 MiB; `workflow.json`, `.novel-workflow/*.json*`, Markdown / text artifacts, and release receipts are the only categories included. Binary or unreadable entries appear as `'<binary>'` without aborting the whole snapshot.
+
+### Shutdown and ownership
+
+Closing the launcher (Ctrl+C, closing the window, or `Launcher.stop()`)
+runs an idempotent `LauncherResources.close()` that stops the local
+session, shuts down both HTTP servers, waits for their threads, and kills
+the cloudflared tunnel. The MCP child is attached to the same Windows
+Job Object as `cloudflared`, so closing the launcher takes the child with
+it. The launcher never touches unrelated `ngrok` processes on your
+machine.
 
 ## Optional model routing
 

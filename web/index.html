@@ -87,6 +87,25 @@
   .engine-badge.live .dot { background: var(--signal); box-shadow: 0 0 8px var(--signal); }
   .engine-badge.replay { color: var(--amber); border-color: #5a4720; }
   .engine-badge.replay .dot { background: var(--amber); }
+  .engine-badge.local { color: var(--iris, #7c5cff); border-color: #4a3a8a; }
+  .engine-badge.local .dot { background: var(--iris, #7c5cff); box-shadow: 0 0 8px var(--iris, #7c5cff); }
+  /* library panel (local mode only) */
+  #lib-panel {
+    display: inline-flex; gap: 6px; align-items: center;
+    font-family: var(--mono); font-size: 11px;
+    padding: 3px 4px 3px 10px; border-radius: 999px;
+    border: 1px solid var(--edge2); color: var(--dim);
+    white-space: nowrap;
+  }
+  #lib-panel .lib-label { color: var(--dim); letter-spacing: 0.06em; }
+  #lib-panel .lib-book { color: var(--text, #eee); font-weight: 600; max-width: 160px; overflow: hidden; text-overflow: ellipsis; }
+  #lib-panel button {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.04em;
+    padding: 3px 8px; border-radius: 6px; cursor: pointer;
+    background: transparent; border: 1px solid var(--edge2); color: var(--dim);
+  }
+  #lib-panel button:hover { color: var(--text, #eee); border-color: var(--text, #eee); }
+  body:not(.local-mode) #lib-panel { display: none; }
   .gh-link {
     font-family: var(--mono); font-size: 11px; color: var(--dim);
     text-decoration: none; border: 1px solid var(--edge2); border-radius: 6px;
@@ -669,6 +688,12 @@
       <button id="mode-whi" role="tab" aria-selected="false"><span class="dot-nl"></span>白话</button>
     </div>
     <button id="llm-gear" type="button" title="LLM 接入设置（白话模式 AI 驱动）" aria-label="LLM 设置">⚙</button>
+    <span id="lib-panel" aria-label="本地书库">
+      <span class="lib-label">LIBRARY</span>
+      <span class="lib-book" id="lib-book-name">—</span>
+      <button type="button" id="lib-pick" title="选择另一个目录作为书库">换库</button>
+      <button type="button" id="lib-list" title="查看库中所有书">列表</button>
+    </span>
     <span class="engine-badge" id="engine-badge"><span class="dot"></span><span id="engine-text">BOOTING</span></span>
     <a class="gh-link" href="https://github.com/realwindjpn/novel-agent-workflow" target="_blank" rel="noopener">realwindjpn/novel-agent-workflow</a>
   </header>
@@ -758,6 +783,7 @@
 <script src="ansi.js"></script>
 <script src="explorer.js"></script>
 <script src="guide.js"></script>
+<script src="local.js"></script>
 <script src="app.js"></script>
 <script src="llm.js"></script>
 <script src="chat.js"></script>

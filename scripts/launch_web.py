@@ -4,11 +4,14 @@ from __future__ import annotations
 
 import argparse
 import atexit
+import base64
 import ctypes
 import functools
+import json
 import os
 import queue
 import re
+import secrets
 import shutil
 import signal
 import socket
@@ -22,17 +25,28 @@ import webbrowser
 from collections import deque
 from ctypes import wintypes
 from dataclasses import dataclass, field
-from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+from http.server import BaseHTTPRequestHandler, SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from typing import Callable, Protocol, Sequence
+from typing import Callable, Optional, Protocol, Sequence
 
 
 HOST = "127.0.0.1"
 DEFAULT_PORT = 8080
+DEFAULT_PUBLIC_PORT = 8081
+LOCAL_API_PREFIX = "/api/local/"
 QUICK_TUNNEL_RE = re.compile(
     r"https://[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.trycloudflare\.com(?=$|[\s/?#:])",
     re.IGNORECASE,
 )
+MCP_METHOD_WHITELIST = frozenset({
+    "ping",
+    "tools/list",
+    "tools/call",
+    "resources/list",
+    "resources/read",
+    "prompts/list",
+    "prompts/get",
+})
 
 
 class LauncherError(RuntimeError):
@@ -46,7 +60,9 @@ class LauncherStopped(Exception):
 @dataclass(frozen=True)
 class LauncherConfig:
     port: int = DEFAULT_PORT
+    public_port: int = DEFAULT_PUBLIC_PORT
     open_browser: bool = True
+    library_root: Optional[Path] = None
 
 
 def parse_args(argv: Sequence[str] | None = None) -> LauncherConfig:
@@ -54,11 +70,22 @@ def parse_args(argv: Sequence[str] | None = None) -> LauncherConfig:
         description="Start novel-workflow web and a Cloudflare Quick Tunnel."
     )
     parser.add_argument("--port", type=int, default=DEFAULT_PORT)
+    parser.add_argument("--public-port", type=int, default=DEFAULT_PUBLIC_PORT)
+    parser.add_argument("--library-root", type=Path, default=None)
     parser.add_argument("--no-browser", action="store_true")
     ns = parser.parse_args(argv)
     if not 1 <= ns.port <= 65535:
         parser.error("--port must be between 1 and 65535")
-    return LauncherConfig(port=ns.port, open_browser=not ns.no_browser)
+    if not 1 <= ns.public_port <= 65535:
+        parser.error("--public-port must be between 1 and 65535")
+    if ns.port == ns.public_port:
+        parser.error("--port and --public-port must be different")
+    return LauncherConfig(
+        port=ns.port,
+        public_port=ns.public_port,
+        open_browser=not ns.no_browser,
+        library_root=ns.library_root,
+    )
 
 
 def repository_root() -> Path:
@@ -91,6 +118,9 @@ def find_cloudflared(
 
 def ensure_port_available(host: str, port: int) -> None:
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+        # Mirror ThreadingHTTPServer's SO_REUSEADDR so the pre-check is not
+        # fooled by a freshly closed server still in TIME_WAIT.
+        sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         try:
             sock.bind((host, port))
         except OSError as exc:
@@ -112,13 +142,26 @@ def start_http_server(
     web_root: Path,
     host: str,
     port: int,
+    *,
+    handler_factory: Optional[Callable[..., BaseHTTPRequestHandler]] = None,
+    server_name: str = "novel-workflow-http",
 ) -> tuple[ThreadingHTTPServer, threading.Thread]:
-    handler = functools.partial(QuietStaticHandler, directory=str(web_root))
-    server = ThreadingHTTPServer((host, port), handler)
+    """Start a static-file (or custom) HTTP server on ``(host, port)``.
+
+    ``handler_factory`` defaults to :class:`QuietStaticHandler` rooted at
+    ``web_root``. Callers wanting a custom handler (e.g. the local API
+    router) can pass a ``functools.partial`` that closes over any extra
+    state. ``server_name`` is only used to label the daemon thread.
+    """
+    if handler_factory is None:
+        handler_factory = functools.partial(
+            QuietStaticHandler, directory=str(web_root)
+        )
+    server = ThreadingHTTPServer((host, port), handler_factory)
     server.daemon_threads = True
     thread = threading.Thread(
         target=server.serve_forever,
-        name="novel-workflow-http",
+        name=server_name,
         daemon=True,
     )
     thread.start()
@@ -153,6 +196,443 @@ def wait_until_ready(
             return
         time.sleep(interval)
     raise LauncherError(f"Timed out waiting for endpoint: {url}")
+
+
+# --- Local API ----------------------------------------------------------
+#
+# The local API lives on the private port (default 8080) only. It exposes
+# a small JSON surface so the SPA can list, create, open, and probe the
+# local book library without the user pasting a long path in the URL bar.
+# Every endpoint except ``/api/local/capabilities`` requires a token
+# generated at launcher startup. Every endpoint (including capabilities)
+# requires the ``Origin`` header to match the private host, so a script
+# running on the same machine cannot impersonate the browser.
+
+
+def _origin_allowed(origin: str, host: str, port: int) -> bool:
+    """Return ``True`` when ``origin`` points back at the local server."""
+    if not origin:
+        return False
+    expected_hosts = {f"http://localhost:{port}", f"http://127.0.0.1:{port}"}
+    return origin.rstrip("/") in expected_hosts
+
+
+def _bearer_or_x_token(handler: BaseHTTPRequestHandler) -> Optional[str]:
+    """Extract a token from ``Authorization: Bearer`` or ``X-Library-Token``."""
+    auth = handler.headers.get("Authorization", "")
+    if auth.lower().startswith("bearer "):
+        return auth[7:].strip() or None
+    return handler.headers.get("X-Library-Token", "").strip() or None
+
+
+class LocalApi:
+    """Routes JSON requests against a :class:`LibrarySession`.
+
+    The API is intentionally narrow: it is the *only* surface that talks
+    to the MCP child, and it is reachable only from the local browser.
+    Any 4xx/5xx response goes through :meth:`_send_error` so the SPA can
+    rely on a stable ``{"error": {"code": str, "message": str}}`` shape.
+    """
+
+    def __init__(
+        self,
+        session: "LibrarySession",
+        *,
+        host: str = HOST,
+        port: int = DEFAULT_PORT,
+        token: Optional[str] = None,
+        mcp_whitelist: frozenset[str] = MCP_METHOD_WHITELIST,
+    ) -> None:
+        self._session = session
+        self._host = host
+        self._port = int(port)
+        self._token = token or secrets.token_urlsafe(32)
+        self._mcp_whitelist = mcp_whitelist
+
+    @property
+    def token(self) -> str:
+        return self._token
+
+    @property
+    def public_origin(self) -> str:
+        return f"http://localhost:{self._port}"
+
+    @property
+    def port(self) -> int:
+        return self._port
+
+    @port.setter
+    def port(self, value: int) -> None:
+        """Update the bound port after the HTTP server actually listens.
+
+        ``port=0`` asks the OS for any free port; the real port is only
+        known after ``ThreadingHTTPServer`` is bound. Tests rely on this
+        to keep the local API in sync with whichever port the server
+        ended up using.
+        """
+        self._port = int(value)
+
+    # -- dispatch --------------------------------------------------------
+
+    def handle(self, handler: BaseHTTPRequestHandler, method: str) -> None:
+        path = handler.path
+        if not path.startswith(LOCAL_API_PREFIX):
+            self._send_error(handler, 404, "not_found", "Unknown endpoint.")
+            return
+        sub = path[len(LOCAL_API_PREFIX):].rstrip("/")
+        # ``capabilities`` is the only unauthenticated endpoint; it's how
+        # the SPA learns the token and what it can call.
+        if sub == "capabilities" and method == "GET":
+            self._serve_capabilities(handler)
+            return
+        if not _origin_allowed(
+            handler.headers.get("Origin", ""), self._host, self._port
+        ):
+            self._send_error(
+                handler, 403, "origin_rejected",
+                "Origin is not allowed for the local API.",
+            )
+            return
+        if _bearer_or_x_token(handler) != self._token:
+            self._send_error(
+                handler, 401, "unauthorized",
+                "Missing or invalid library token.",
+            )
+            return
+        route = (method, sub)
+        try:
+            if route == ("GET", "library"):
+                self._serve_library(handler)
+            elif route == ("POST", "library"):
+                self._serve_set_library(handler)
+            elif route == ("POST", "select-directory"):
+                self._serve_select_directory(handler)
+            elif route == ("GET", "tree"):
+                self._serve_tree(handler)
+            elif route == ("POST", "open"):
+                self._serve_open(handler)
+            elif route == ("POST", "create"):
+                self._serve_create(handler)
+            elif route == ("POST", "mcp"):
+                self._serve_mcp(handler)
+            elif route == ("GET", "active"):
+                self._serve_active(handler)
+            else:
+                self._send_error(handler, 404, "not_found", "Unknown route.")
+        except ValueError as exc:
+            self._send_error(handler, 400, "bad_request", str(exc))
+        except McpBridgeError as exc:
+            self._send_error(handler, 502, "mcp_error", str(exc))
+        except OSError as exc:
+            self._send_error(handler, 500, "io_error", str(exc))
+
+    # -- handlers --------------------------------------------------------
+
+    def _serve_capabilities(self, handler: BaseHTTPRequestHandler) -> None:
+        if not _origin_allowed(
+            handler.headers.get("Origin", ""), self._host, self._port
+        ):
+            self._send_error(
+                handler, 403, "origin_rejected",
+                "Origin is not allowed for the local API.",
+            )
+            return
+        catalog = self._session.catalog()
+        payload = {
+            "version": "0.1.0",
+            "library": str(self._session.library),
+            "has_active_book": self._session.open,
+            "active_directory": (
+                self._session.client.root.name
+                if self._session.open and self._session.client is not None
+                else None
+            ),
+            "public_origin": self.public_origin,
+            "token": self._token,
+            "mcp_methods": sorted(self._mcp_whitelist),
+            "catalog": [
+                {
+                    "title": entry.title,
+                    "directory": entry.directory,
+                    "stage": entry.stage,
+                    "updated_at": entry.updated_at,
+                    "chapter_count": entry.chapter_count,
+                }
+                for entry in catalog
+            ],
+        }
+        self._send_json(handler, 200, payload)
+
+    def _serve_library(self, handler: BaseHTTPRequestHandler) -> None:
+        catalog = self._session.catalog()
+        self._send_json(handler, 200, {
+            "library": str(self._session.library),
+            "books": [
+                {
+                    "title": entry.title,
+                    "directory": entry.directory,
+                    "stage": entry.stage,
+                    "updated_at": entry.updated_at,
+                    "chapter_count": entry.chapter_count,
+                }
+                for entry in catalog
+            ],
+        })
+
+    def _serve_set_library(self, handler: BaseHTTPRequestHandler) -> None:
+        """Switch the active library to an absolute path provided by the SPA.
+
+        Rejects non-absolute, empty, or non-directory paths. The active
+        MCP child (if any) is left untouched — the caller must follow up
+        with an ``open`` or ``create`` request to rebind MCP.
+        """
+        body = self._read_json(handler)
+        path = body.get("path")
+        if not isinstance(path, str) or not path.strip():
+            self._send_error(
+                handler, 400, "bad_request",
+                "path is required and must be a non-empty string.",
+            )
+            return
+        target = Path(path)
+        if not target.is_absolute():
+            self._send_error(
+                handler, 400, "bad_request",
+                "path must be an absolute directory.",
+            )
+            return
+        if not target.is_dir():
+            self._send_error(
+                handler, 422, "unwritable_library",
+                f"library directory does not exist: {target}",
+            )
+            return
+        catalog = self._session.set_library(target)
+        self._send_json(handler, 200, {
+            "library": str(self._session.library),
+            "books": [
+                {
+                    "title": entry.title,
+                    "directory": entry.directory,
+                    "stage": entry.stage,
+                    "updated_at": entry.updated_at,
+                    "chapter_count": entry.chapter_count,
+                }
+                for entry in catalog
+            ],
+        })
+
+    def _serve_select_directory(self, handler: BaseHTTPRequestHandler) -> None:
+        """Open the native Windows folder picker and switch library if chosen.
+
+        Returns ``{"selected": true, ...}`` on success, ``{"selected": false}``
+        when the user cancels, and HTTP 501 on non-Windows callers. The
+        picker subprocess is injected for testability; the default
+        implementation never receives user-controlled text.
+        """
+        try:
+            picked = self._session.pick_library()
+        except Exception as exc:
+            self._send_error(
+                handler, 500, "picker_failed", str(exc),
+            )
+            return
+        if picked is None:
+            # Either the platform doesn't support it, or the user
+            # cancelled; the SPA renders this as a no-op state.
+            self._send_json(handler, 200, {"selected": False})
+            return
+        try:
+            catalog = self._session.set_library(picked)
+        except ValueError as exc:
+            self._send_error(handler, 422, "unwritable_library", str(exc))
+            return
+        self._send_json(handler, 200, {
+            "selected": True,
+            "library": str(self._session.library),
+            "books": [
+                {
+                    "title": entry.title,
+                    "directory": entry.directory,
+                    "stage": entry.stage,
+                    "updated_at": entry.updated_at,
+                    "chapter_count": entry.chapter_count,
+                }
+                for entry in catalog
+            ],
+        })
+
+    def _serve_tree(self, handler: BaseHTTPRequestHandler) -> None:
+        self._send_json(handler, 200, self._session.tree_snapshot())
+
+    def _serve_active(self, handler: BaseHTTPRequestHandler) -> None:
+        if not self._session.open or self._session.client is None:
+            self._send_json(handler, 200, {
+                "active": None,
+                "tree": self._session.tree_snapshot(),
+            })
+            return
+        self._send_json(handler, 200, {
+            "active": {
+                "directory": self._session.client.root.name,
+                "path": str(self._session.client.root),
+            },
+            "tree": self._session.tree_snapshot(),
+        })
+
+    def _serve_open(self, handler: BaseHTTPRequestHandler) -> None:
+        body = self._read_json(handler)
+        directory = body.get("directory")
+        if not isinstance(directory, str) or not directory:
+            self._send_error(
+                handler, 400, "bad_request", "directory is required."
+            )
+            return
+        result = self._session.open_book(directory)
+        self._send_json(handler, 200, result)
+
+    def _serve_create(self, handler: BaseHTTPRequestHandler) -> None:
+        body = self._read_json(handler)
+        title = body.get("title")
+        decision = body.get("decision")
+        if not isinstance(title, str) or not title.strip():
+            self._send_error(
+                handler, 400, "bad_request", "title is required."
+            )
+            return
+        if decision is not None and not isinstance(decision, str):
+            self._send_error(
+                handler, 400, "bad_request", "decision must be a string."
+            )
+            return
+        result = self._session.create_book(title, decision)
+        # ProjectEntry objects aren't JSON-serializable; convert the
+        # collision matches into a plain dict shape before sending.
+        if result.get("status") == "collision":
+            result["matches"] = [
+                {
+                    "title": m.title,
+                    "directory": m.directory,
+                    "stage": m.stage,
+                    "updated_at": m.updated_at,
+                    "chapter_count": m.chapter_count,
+                }
+                for m in result.get("matches", [])
+            ]
+        # A 200 + collision payload lets the UI prompt without an error.
+        self._send_json(handler, 200, result)
+
+    def _serve_mcp(self, handler: BaseHTTPRequestHandler) -> None:
+        body = self._read_json(handler)
+        method = body.get("method")
+        params = body.get("params")
+        if not isinstance(method, str) or not method:
+            self._send_error(
+                handler, 400, "bad_request", "method is required."
+            )
+            return
+        if method not in self._mcp_whitelist:
+            self._send_error(
+                handler, 403, "method_forbidden",
+                f"MCP method not allowed: {method}",
+            )
+            return
+        if params is not None and not isinstance(params, dict):
+            self._send_error(
+                handler, 400, "bad_request", "params must be an object."
+            )
+            return
+        result = self._session.mcp(method, params)
+        self._send_json(handler, 200, result)
+
+    # -- helpers ---------------------------------------------------------
+
+    def _read_json(self, handler: BaseHTTPRequestHandler) -> dict:
+        length = int(handler.headers.get("Content-Length", "0") or 0)
+        if length <= 0:
+            return {}
+        if length > 256 * 1024:
+            raise ValueError(f"request body too large: {length}")
+        raw = handler.rfile.read(length)
+        try:
+            payload = json.loads(raw.decode("utf-8"))
+        except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+            raise ValueError(f"invalid JSON body: {exc}") from exc
+        if not isinstance(payload, dict):
+            raise ValueError("request body must be a JSON object.")
+        return payload
+
+    def _send_json(
+        self, handler: BaseHTTPRequestHandler, status: int, payload: dict
+    ) -> None:
+        body = json.dumps(payload, ensure_ascii=False).encode("utf-8")
+        handler.send_response(status)
+        handler.send_header("Content-Type", "application/json; charset=utf-8")
+        handler.send_header("Content-Length", str(len(body)))
+        handler.send_header("Cache-Control", "no-store")
+        handler.end_headers()
+        handler.wfile.write(body)
+
+    def _send_error(
+        self,
+        handler: BaseHTTPRequestHandler,
+        status: int,
+        code: str,
+        message: str,
+    ) -> None:
+        self._send_json(handler, status, {
+            "error": {"code": code, "message": message},
+        })
+
+
+def make_local_api_handler(
+    api: LocalApi, web_root: Path
+) -> Callable[..., BaseHTTPRequestHandler]:
+    """Build a :class:`BaseHTTPRequestHandler` subclass bound to ``api``.
+
+    Requests under ``/api/local/*`` are routed to ``api.handle``;
+    everything else falls through to the standard static-file serving
+    rooted at ``web_root``. This is the factory the launcher uses to
+    build the private port's HTTP server.
+    """
+
+    class _LocalApiHandler(QuietStaticHandler):
+        def log_message(self, format: str, *args: object) -> None:
+            return
+
+        def do_GET(self) -> None:  # type: ignore[override]
+            if self.path.startswith(LOCAL_API_PREFIX):
+                try:
+                    api.handle(self, "GET")
+                except Exception as exc:  # pragma: no cover - safety net
+                    api._send_error(self, 500, "internal_error", str(exc))
+                return
+            super().do_GET()
+
+        def do_POST(self) -> None:  # type: ignore[override]
+            if self.path.startswith(LOCAL_API_PREFIX):
+                try:
+                    api.handle(self, "POST")
+                except Exception as exc:  # pragma: no cover - safety net
+                    api._send_error(self, 500, "internal_error", str(exc))
+                return
+            self.send_error(405, "Method Not Allowed")
+
+        def do_HEAD(self) -> None:  # type: ignore[override]
+            if self.path.startswith(LOCAL_API_PREFIX):
+                self.send_error(405, "Method Not Allowed")
+                return
+            super().do_HEAD()
+
+    return functools.partial(_LocalApiHandler, directory=str(web_root))
+
+
+# Late import to avoid a hard dependency for callers that only want the
+# launcher / tunnel half of this module.
+from scripts.local_mcp_bridge import (  # noqa: E402  (intentional late import)
+    LibrarySession,
+    McpBridgeError,
+)
 
 
 JOB_OBJECT_EXTENDED_LIMIT_INFORMATION_CLASS = 9
@@ -354,14 +834,39 @@ def wait_for_tunnel_url(
 
 @dataclass
 class LauncherResources:
+    """All long-lived resources owned by a single :class:`Launcher` run.
+
+    The launcher starts up to three things in parallel:
+
+    * a private static+API server on the configured local port,
+    * a public static-only server on the configured public port (the
+      one the cloudflared tunnel actually proxies to), and
+    * the cloudflared tunnel itself.
+
+    On :meth:`close` every resource is shut down in reverse order. The
+    :class:`LibrarySession` is closed last so any in-flight MCP request
+    on the way out gets a clean error instead of a half-torn pipe.
+    """
+
     server: ThreadingHTTPServer | None = None
     server_thread: threading.Thread | None = None
+    public_server: ThreadingHTTPServer | None = None
+    public_server_thread: threading.Thread | None = None
     tunnel: ManagedProcess | None = None
+    library_session: Optional["LibrarySession"] = None
+    local_api: Optional["LocalApi"] = None
     _closed: bool = False
 
     @property
     def open(self) -> bool:
-        return not self._closed and (self.server is not None or self.tunnel is not None)
+        return (
+            not self._closed
+            and (
+                self.server is not None
+                or self.public_server is not None
+                or self.tunnel is not None
+            )
+        )
 
     def close(self) -> None:
         if self._closed:
@@ -369,11 +874,27 @@ class LauncherResources:
         self._closed = True
         if self.tunnel is not None:
             self.tunnel.close()
-        if self.server is not None:
-            self.server.shutdown()
-            self.server.server_close()
-        if self.server_thread is not None:
-            self.server_thread.join(timeout=2)
+        for srv, thr in (
+            (self.public_server, self.public_server_thread),
+            (self.server, self.server_thread),
+        ):
+            if srv is not None:
+                try:
+                    srv.shutdown()
+                except Exception:
+                    pass
+                try:
+                    srv.server_close()
+                except Exception:
+                    pass
+            if thr is not None:
+                thr.join(timeout=2)
+        if self.library_session is not None:
+            try:
+                self.library_session.close()
+            except Exception:
+                pass
+            self.library_session = None
 
 
 class Launcher:
@@ -391,6 +912,8 @@ class Launcher:
         local_timeout: float = 10,
         tunnel_timeout: float = 30,
         public_timeout: float = 60,
+        library_session: Optional["LibrarySession"] = None,
+        library_session_factory: Optional[Callable[[Path], "LibrarySession"]] = None,
     ):
         self.config = config
         self.root = root or repository_root()
@@ -403,6 +926,12 @@ class Launcher:
         self.local_timeout = local_timeout
         self.tunnel_timeout = tunnel_timeout
         self.public_timeout = public_timeout
+        self._library_session_factory = library_session_factory
+        # Accept an explicit session (used by tests) or build one on the
+        # first ``run()`` from the configured ``library_root``. Building
+        # lazily keeps the import order: tests can inject a session
+        # without a real library directory on disk.
+        self._library_session = library_session
         self.resources = LauncherResources()
 
     @property
@@ -416,21 +945,46 @@ class Launcher:
         print("[警告] 任何获得公网链接的人都可以访问此页面。")
         print("[退出] 按 Ctrl+C 或关闭此窗口即可停止全部服务。\n")
 
+    def _ensure_library_session(self) -> "LibrarySession":
+        if self.resources.library_session is not None:
+            return self.resources.library_session
+        if self._library_session is not None:
+            self.resources.library_session = self._library_session
+            return self._library_session
+        root = self.config.library_root
+        if root is None:
+            root = self.root / ".library"
+        if self._library_session_factory is None:
+            session = LibrarySession(root)
+        else:
+            session = self._library_session_factory(root)
+        self.resources.library_session = session
+        return session
+
     def run(self) -> int:
         web_root = validate_web_root(self.root)
         executable = self.cloudflared or find_cloudflared()
         if self.config.port:
             ensure_port_available(HOST, self.config.port)
+        if self.config.public_port:
+            ensure_port_available(HOST, self.config.public_port)
         try:
             print("[检查] 启动本地网页与 Cloudflare 临时穿透…")
-            server, server_thread = start_http_server(
+            session = self._ensure_library_session()
+            api = LocalApi(session, host=HOST, port=self.config.port)
+            self.resources.local_api = api
+            local_factory = make_local_api_handler(api, web_root)
+            local_server, local_thread = start_http_server(
                 web_root,
                 HOST,
                 self.config.port,
+                handler_factory=local_factory,
+                server_name="novel-workflow-local",
             )
-            self.resources.server = server
-            self.resources.server_thread = server_thread
-            actual_port = int(server.server_address[1])
+            self.resources.server = local_server
+            self.resources.server_thread = local_thread
+            actual_port = int(local_server.server_address[1])
+            api.port = actual_port  # reconcile with OS-assigned port
             local_health_url = f"http://{HOST}:{actual_port}/"
             local_browser_url = f"http://localhost:{actual_port}/"
             wait_until_ready(
@@ -442,10 +996,41 @@ class Launcher:
             )
             print(f"[本地] 已就绪: {local_browser_url}")
 
+            public_server, public_thread = start_http_server(
+                web_root,
+                HOST,
+                self.config.public_port,
+                server_name="novel-workflow-public",
+            )
+            self.resources.public_server = public_server
+            self.resources.public_server_thread = public_thread
+            actual_public_port = int(public_server.server_address[1])
+            public_health_url = (
+                f"http://{HOST}:{actual_public_port}/"
+            )
+            wait_until_ready(
+                public_health_url,
+                timeout=self.local_timeout,
+                probe=self.local_probe,
+                marker="novel-workflow",
+                stop_event=self.stop_event,
+            )
+            print(f"[公开] 已就绪: {public_health_url}")
+
             self.resources.tunnel = self.tunnel_factory(
                 executable,
-                local_health_url,
+                public_health_url,
             )
+            if self.resources.tunnel is None:
+                # Headless / acceptance mode: run local servers only, no
+                # public URL. The two ports are still real and routable.
+                print(
+                    f"[本地] 公共穿透未启用 (tunnel_factory=None); "
+                    f"对外仅暴露本地端 {local_browser_url}"
+                )
+                self._print_ready(local_browser_url, public_health_url)
+                self.stop_event.wait()
+                return 0
             public_url = wait_for_tunnel_url(
                 self.resources.tunnel,
                 timeout=self.tunnel_timeout,

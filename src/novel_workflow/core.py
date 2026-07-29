@@ -35,9 +35,11 @@ import hashlib
 import json
 import re
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import Any
+
+from .library import chapter_artifact_dir
 
 # --- Constants -------------------------------------------------------------
 
@@ -219,6 +221,16 @@ def analyze_intake(interview: dict) -> dict:
 
 def utcnow() -> str:
     return datetime.now(timezone.utc).isoformat()
+
+
+def local_today() -> date:
+    """Return today's local date for stable, user-visible artifact directory names.
+
+    Artifact directories (chapters/第NNNN章_YYYYMMDD) are a user-facing,
+    filesystem-stable contract; using ``date.today()`` keeps them aligned with
+    the user's local calendar regardless of where the workflow is run.
+    """
+    return date.today()
 
 
 def load_json(path: Path) -> dict:
@@ -641,7 +653,7 @@ def _check_source_alignment(root: Path, draft_artifact: str) -> None:
 
 def _chapter_ledger_entry(state: dict) -> dict:
     """Build a compact ledger summary from a chapter state object."""
-    return {
+    entry = {
         "status": state.get("status"),
         "title": state.get("title"),
         "goal": state.get("goal"),
@@ -649,6 +661,12 @@ def _chapter_ledger_entry(state: dict) -> dict:
         "released_at": state.get("released_at"),
         "updated_at": state.get("updated_at"),
     }
+    artifact_dir = state.get("artifact_dir")
+    if artifact_dir:
+        # Only surface the field when populated so older projects without
+        # artifact directories keep their pre-existing ledger shape.
+        entry["artifact_dir"] = artifact_dir
+    return entry
 
 
 def _sync_chapter_ledger(root: Path, state: dict) -> None:
@@ -703,6 +721,21 @@ def issue_chapter(root: Path, chapter: int, title: str, goal: str, contract: dic
             f"max_chapters ({load_limits(root)['max_chapters']}) reached; "
             "issue refused"
         )
+    artifact_dir = chapter_artifact_dir(chapter, local_today()).as_posix()
+    artifact_path = root / artifact_dir
+    try:
+        artifact_path.mkdir(parents=True, exist_ok=False)
+    except FileExistsError:
+        raise ValueError(
+            f"chapter {chapter} artifact directory already exists: {artifact_dir}"
+        ) from None
+    except OSError:
+        if artifact_path.is_dir():
+            try:
+                artifact_path.rmdir()
+            except OSError:
+                pass
+        raise
     c = {
         "schema_version": SCHEMA_VERSION,
         "chapter": chapter,
@@ -718,9 +751,18 @@ def issue_chapter(root: Path, chapter: int, title: str, goal: str, contract: dic
         "artifacts": {},
         "independence": {},
         "revisions": [],
+        "artifact_dir": artifact_dir,
         "updated_at": utcnow(),
     }
-    save_json(state_path, c)
+    try:
+        save_json(state_path, c)
+    except Exception:
+        if artifact_path.is_dir():
+            try:
+                artifact_path.rmdir()
+            except OSError:
+                pass
+        raise
     _sync_chapter_ledger(root, c)
     append_event(root, {"type": "CHAPTER_ISSUED", "chapter": chapter, "title": title})
     return c

@@ -17,6 +17,16 @@
   jail that funnels `workflow.json` and `.novel-workflow/**` through
   state-machine tools only. See `docs/MCP.md` for the design and a CLI
   transcript.
+- Added a persistent local book library: dated `title_YYYYMMDD[(n)]` directory
+  reservation, collision-aware discovery, chapter artifact layout
+  (`chapters/第NNN章_YYYYMMDD`), bounded JSON-RPC bridge to the local
+  stdio MCP child, and a dual HTTP-server launcher (local `8080` MCP-backed
+  and disk-writable, public `8081`/Quick Tunnel Pyodide memory-only) with
+  token + Origin enforcement and isolated shutdown. `scripts/launch_web.py`
+  accepts a headless mode (no `cloudflared`) for sandbox/CI smoke; the
+  browser SPA exposes a `NWL` library adapter and a `library panel` that
+  dispatches to `NWB` for normal workflow operations. See
+  `docs/superpowers/specs/2026-07-28-local-mcp-library-design.md`.
 
 ## 0.2.0
 

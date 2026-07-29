@@ -42,6 +42,7 @@ FILES = [
     "_visual.py",
     "cli.py",
     "core.py",
+    "library.py",
     "mcp_server.py",
     "model_adapter.py",
     "model_cli.py",

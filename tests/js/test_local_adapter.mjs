@@ -382,3 +382,111 @@ test("chapter setup and artifact arguments are rewritten under artifact_dir", ()
   assert.equal(prepared.plan.arguments.prewrite, "chapters/第001章_20260729/prewrite.md");
   assert.equal(prepared.plan.arguments.artifact, "chapters/第001章_20260729/draft.md");
 });
+
+// ---------------- creative storage API ----------------
+
+function loadLocalWithFetch(runtime, fetchImpl) {
+  const src = readFileSync(localJsPath, "utf8");
+  const moduleObj = { exports: {} };
+  const sandbox = {
+    module: moduleObj,
+    exports: moduleObj.exports,
+    window: { NWL_RUNTIME: runtime || null, btoa: (s) => Buffer.from(s, "binary").toString("base64") },
+    btoa: (s) => Buffer.from(s, "binary").toString("base64"),
+    document: { addEventListener: () => {} },
+    fetch: fetchImpl || (() => Promise.reject(new Error("fetch not stubbed"))),
+    console: console,
+  };
+  vm.createContext(sandbox);
+  vm.runInContext(src, sandbox, { filename: "web/local.js" });
+  return moduleObj.exports;
+}
+
+test("creativeSession calls GET creative/session with token", async () => {
+  const calls = [];
+  const NWL = loadLocalWithFetch(
+    { apiBase: "/api/local", token: "tk-test" },
+    (url, opts) => {
+      calls.push({ url, opts });
+      return Promise.resolve({
+        ok: true,
+        text: () => Promise.resolve(JSON.stringify({ turns: [], summary: "" })),
+      });
+    }
+  );
+  const result = await NWL.creativeSession();
+  assert.equal(calls[0].url, "/api/local/creative/session");
+  assert.equal(calls[0].opts.method, "GET");
+  assert.equal(calls[0].opts.headers["Authorization"], "Bearer tk-test");
+  assert.equal(result.turns.length, 0);
+  assert.equal(result.summary, "");
+});
+
+test("appendCreativeTurn POSTs turn body to creative/turn", async () => {
+  const calls = [];
+  const NWL = loadLocalWithFetch(
+    { apiBase: "/api/local", token: "tk-test" },
+    (url, opts) => {
+      calls.push({ url, opts });
+      return Promise.resolve({
+        ok: true,
+        text: () => Promise.resolve(JSON.stringify({ id: "t1", role: "user", text: "hi" })),
+      });
+    }
+  );
+  const result = await NWL.appendCreativeTurn({ id: "t1", role: "user", text: "hi" });
+  assert.equal(calls[0].url, "/api/local/creative/turn");
+  assert.equal(calls[0].opts.method, "POST");
+  const body = JSON.parse(calls[0].opts.body);
+  assert.equal(body.turn.id, "t1");
+  assert.equal(result.id, "t1");
+});
+
+test("exportCreativeBackup returns ArrayBuffer from raw response", async () => {
+  const fakeBuffer = new ArrayBuffer(4);
+  const NWL = loadLocalWithFetch(
+    { apiBase: "/api/local", token: "tk-test" },
+    (url, opts) => Promise.resolve({
+      ok: true,
+      arrayBuffer: () => Promise.resolve(fakeBuffer),
+    })
+  );
+  const result = await NWL.exportCreativeBackup();
+  assert.equal(result, fakeBuffer);
+});
+
+test("importCreativeBackup encodes bytes as base64 in POST body", async () => {
+  const calls = [];
+  const NWL = loadLocalWithFetch(
+    { apiBase: "/api/local", token: "tk-test" },
+    (url, opts) => {
+      calls.push({ url, opts });
+      return Promise.resolve({
+        ok: true,
+        text: () => Promise.resolve(JSON.stringify({ merged: true })),
+      });
+    }
+  );
+  const bytes = new Uint8Array([1, 2, 3, 4]);
+  await NWL.importCreativeBackup(bytes, "merge");
+  assert.equal(calls[0].url, "/api/local/creative/import");
+  assert.equal(calls[0].opts.method, "POST");
+  const body = JSON.parse(calls[0].opts.body);
+  assert.equal(body.decision, "merge");
+  assert.equal(body.archive_base64, "AQIDBA==");
+});
+
+test("creative API errors include code and status", async () => {
+  const NWL = loadLocalWithFetch(
+    { apiBase: "/api/local", token: "tk-test" },
+    (url, opts) => Promise.resolve({
+      ok: false,
+      status: 409,
+      text: () => Promise.resolve(JSON.stringify({ error: { code: "no_active_book", message: "open a book first" } })),
+    })
+  );
+  await assert.rejects(
+    NWL.creativeSession(),
+    (err) => err.code === "no_active_book" && err.status === 409
+  );
+});

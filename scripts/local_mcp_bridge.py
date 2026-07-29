@@ -305,6 +305,19 @@ class LibrarySession:
     def open(self) -> bool:
         return self._client is not None and self._client.open
 
+    @property
+    def active_root(self) -> Optional[Path]:
+        """The active book's root directory, or ``None`` when no book is open.
+
+        Creative storage and other active-book-scoped bridges key off this
+        so they can refuse work before any MCP child is published. It is
+        intentionally read-only: the only way to change it is
+        ``open_book`` / ``create_book``.
+        """
+        if not self.open or self._client is None:
+            return None
+        return self._client.root
+
     # -- library queries -------------------------------------------------
 
     def catalog(self) -> list[ProjectEntry]:

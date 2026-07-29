@@ -615,6 +615,30 @@ class LibrarySessionTests(unittest.TestCase):
             self.assertNotIn("link/secret.txt", names)
             session.close()
 
+    def test_active_root_is_none_until_a_book_is_open(self):
+        with tempfile.TemporaryDirectory() as d:
+            lib = Path(d)
+            book = lib / "demo_20260728"
+            book.mkdir()
+            (book / "workflow.json").write_text(
+                "{\"meta\": {\"title\": \"demo\"}}", encoding="utf-8"
+            )
+            popen, holder = _spawn()
+            session = LibrarySession(
+                lib, client_factory=lambda root, **kw: _make_client(root, popen, holder)
+            )
+            self.assertIsNone(session.active_root)
+            holder["fake"].responses[1] = {
+                "jsonrpc": "2.0", "id": 1,
+                "result": {"serverInfo": {"name": "novel-workflow"}},
+            }
+            holder["fake"].responses[2] = {
+                "jsonrpc": "2.0", "id": 2, "result": {"ok": True}
+            }
+            session.open_book("demo_20260728")
+            self.assertEqual(session.active_root.name, "demo_20260728")
+            session.close()
+
 
 def _make_client(root, popen, holder):
     client = McpStdioClient(root, popen=popen)

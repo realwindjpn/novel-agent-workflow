@@ -239,6 +239,10 @@ def _bearer_or_x_token(handler: BaseHTTPRequestHandler) -> Optional[str]:
     return handler.headers.get("X-Library-Token", "").strip() or None
 
 
+class NoActiveBookError(Exception):
+    """Raised when a creative route is called without an active book."""
+
+
 class LocalApi:
     """Routes JSON requests against a :class:`LibrarySession`.
 
@@ -256,12 +260,14 @@ class LocalApi:
         port: int = DEFAULT_PORT,
         token: Optional[str] = None,
         mcp_whitelist: frozenset[str] = MCP_METHOD_WHITELIST,
+        creative_store_factory: Optional[Callable[..., "CreativeStore"]] = None,
     ) -> None:
         self._session = session
         self._host = host
         self._port = int(port)
         self._token = token or secrets.token_urlsafe(32)
         self._mcp_whitelist = mcp_whitelist
+        self._creative_store_factory = creative_store_factory or _default_creative_store
 
     @property
     def token(self) -> str:
@@ -330,10 +336,28 @@ class LocalApi:
                 self._serve_mcp(handler)
             elif route == ("GET", "active"):
                 self._serve_active(handler)
+            elif route == ("GET", "creative/session"):
+                self._serve_creative_session(handler)
+            elif route == ("POST", "creative/turn"):
+                self._serve_creative_turn(handler)
+            elif route == ("POST", "creative/state"):
+                self._serve_creative_state(handler)
+            elif route == ("POST", "creative/proposal"):
+                self._serve_creative_proposal(handler)
+            elif route == ("POST", "creative/draft"):
+                self._serve_creative_draft(handler)
+            elif route == ("GET", "creative/export"):
+                self._serve_creative_export(handler)
+            elif route == ("POST", "creative/import"):
+                self._serve_creative_import(handler)
             else:
                 self._send_error(handler, 404, "not_found", "Unknown route.")
         except ValueError as exc:
             self._send_error(handler, 400, "bad_request", str(exc))
+        except NoActiveBookError as exc:
+            self._send_error(handler, 409, "no_active_book", str(exc))
+        except CreativeStoreError as exc:
+            self._send_error(handler, 400, "creative_error", str(exc))
         except McpBridgeError as exc:
             self._send_error(handler, 502, "mcp_error", str(exc))
         except OSError as exc:
@@ -564,6 +588,90 @@ class LocalApi:
         result = self._session.mcp(method, params)
         self._send_json(handler, 200, result)
 
+    # -- creative storage -----------------------------------------------
+
+    def _creative_store(self) -> CreativeStore:
+        root = self._session.active_root
+        if root is None:
+            raise NoActiveBookError("A book must be open for creative storage.")
+        return self._creative_store_factory(root)
+
+    def _serve_creative_session(self, handler: BaseHTTPRequestHandler) -> None:
+        store = self._creative_store()
+        self._send_json(handler, 200, store.read_session())
+
+    def _serve_creative_turn(self, handler: BaseHTTPRequestHandler) -> None:
+        body = self._read_json(handler)
+        turn = body.get("turn")
+        if not isinstance(turn, dict):
+            self._send_error(handler, 400, "bad_request", "turn is required.")
+            return
+        store = self._creative_store()
+        result = store.append_turn(turn)
+        self._send_json(handler, 200, result)
+
+    def _serve_creative_state(self, handler: BaseHTTPRequestHandler) -> None:
+        body = self._read_json(handler)
+        summary = body.get("summary", "")
+        facts = body.get("facts", {})
+        if not isinstance(summary, str):
+            self._send_error(handler, 400, "bad_request", "summary must be a string.")
+            return
+        if not isinstance(facts, dict):
+            self._send_error(handler, 400, "bad_request", "facts must be an object.")
+            return
+        store = self._creative_store()
+        store.write_state(summary, facts)
+        self._send_json(handler, 200, {"ok": True})
+
+    def _serve_creative_proposal(self, handler: BaseHTTPRequestHandler) -> None:
+        body = self._read_json(handler)
+        proposal = body.get("proposal")
+        if not isinstance(proposal, dict):
+            self._send_error(handler, 400, "bad_request", "proposal is required.")
+            return
+        store = self._creative_store()
+        result = store.write_proposal(proposal)
+        self._send_json(handler, 200, result)
+
+    def _serve_creative_draft(self, handler: BaseHTTPRequestHandler) -> None:
+        body = self._read_json(handler)
+        draft = body.get("draft")
+        if not isinstance(draft, dict):
+            self._send_error(handler, 400, "bad_request", "draft is required.")
+            return
+        store = self._creative_store()
+        result = store.write_draft(draft)
+        self._send_json(handler, 200, result)
+
+    def _serve_creative_export(self, handler: BaseHTTPRequestHandler) -> None:
+        store = self._creative_store()
+        payload = store.export_zip()
+        self._send_bytes(
+            handler, 200, payload,
+            content_type="application/zip",
+            filename="creative-backup.zip",
+        )
+
+    def _serve_creative_import(self, handler: BaseHTTPRequestHandler) -> None:
+        body = self._read_json(handler)
+        archive_b64 = body.get("archive_base64")
+        decision = body.get("decision")
+        if not isinstance(archive_b64, str) or not archive_b64:
+            self._send_error(handler, 400, "bad_request", "archive_base64 is required.")
+            return
+        if not isinstance(decision, str):
+            self._send_error(handler, 400, "bad_request", "decision is required.")
+            return
+        # Cap at 12 MiB before base64 decode.
+        if len(archive_b64) > 16 * 1024 * 1024:
+            self._send_error(handler, 413, "payload_too_large", "Archive is too large.")
+            return
+        payload = base64.b64decode(archive_b64)
+        store = self._creative_store()
+        result = store.import_zip(payload, decision)
+        self._send_json(handler, 200, result)
+
     # -- helpers ---------------------------------------------------------
 
     def _read_json(self, handler: BaseHTTPRequestHandler) -> dict:
@@ -602,6 +710,22 @@ class LocalApi:
         self._send_json(handler, status, {
             "error": {"code": code, "message": message},
         })
+
+    def _send_bytes(
+        self,
+        handler: BaseHTTPRequestHandler,
+        status: int,
+        payload: bytes,
+        content_type: str,
+        filename: str,
+    ) -> None:
+        handler.send_response(status)
+        handler.send_header("Content-Type", content_type)
+        handler.send_header("Content-Length", str(len(payload)))
+        handler.send_header("Content-Disposition", f'attachment; filename="{filename}"')
+        handler.send_header("Cache-Control", "no-store")
+        handler.end_headers()
+        handler.wfile.write(payload)
 
 
 def make_local_api_handler(
@@ -699,6 +823,14 @@ from scripts.local_mcp_bridge import (  # noqa: E402  (intentional late import)
     LibrarySession,
     McpBridgeError,
 )
+from scripts.creative_store import (  # noqa: E402
+    CreativeStore,
+    CreativeStoreError,
+)
+
+
+def _default_creative_store(book_root):
+    return CreativeStore(book_root)
 
 
 JOB_OBJECT_EXTENDED_LIMIT_INFORMATION_CLASS = 9

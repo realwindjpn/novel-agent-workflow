@@ -966,5 +966,103 @@ class LocalApiTests(unittest.TestCase):
         self.assertEqual(body["error"]["code"], "origin_rejected")
 
 
+    def test_creative_session_requires_active_book(self):
+        status, body = self._request(
+            "GET", "/api/local/creative/session",
+            headers={
+                "Origin": f"http://localhost:{self.port}",
+                "Authorization": f"Bearer {self.token}",
+            },
+        )
+        self.assertEqual(status, 409)
+        self.assertEqual(body["error"]["code"], "no_active_book")
+
+    def test_creative_routes_require_token_and_stay_off_public_handler(self):
+        # No token → 401
+        denied_status, denied_body = self._request(
+            "GET", "/api/local/creative/session",
+            headers={"Origin": f"http://localhost:{self.port}"},
+        )
+        self.assertEqual(denied_status, 401)
+        self.assertEqual(denied_body["error"]["code"], "unauthorized")
+        # Public port → 404
+        public_status, _ = self._request(
+            "GET", "/api/local/creative/session",
+            port=self.public_port,
+        )
+        self.assertEqual(public_status, 404)
+
+    def test_creative_turn_works_after_opening_book(self):
+        # Open the demo book first
+        open_status, _ = self._request(
+            "POST", "/api/local/open",
+            headers={
+                "Origin": f"http://localhost:{self.port}",
+                "Authorization": f"Bearer {self.token}",
+            },
+            body={"directory": "demo_20260728"},
+        )
+        self.assertEqual(open_status, 200)
+        # Append a creative turn
+        turn_status, turn_body = self._request(
+            "POST", "/api/local/creative/turn",
+            headers={
+                "Origin": f"http://localhost:{self.port}",
+                "Authorization": f"Bearer {self.token}",
+            },
+            body={"turn": {"id": "t1", "role": "user", "text": "hello"}},
+        )
+        self.assertEqual(turn_status, 200)
+        self.assertEqual(turn_body["id"], "t1")
+        # Read session back — turn should be there
+        sess_status, sess_body = self._request(
+            "GET", "/api/local/creative/session",
+            headers={
+                "Origin": f"http://localhost:{self.port}",
+                "Authorization": f"Bearer {self.token}",
+            },
+        )
+        self.assertEqual(sess_status, 200)
+        self.assertEqual(len(sess_body["turns"]), 1)
+        self.assertEqual(sess_body["turns"][0]["text"], "hello")
+
+    def test_creative_export_returns_zip_bytes(self):
+        # Open the demo book and add a turn first
+        self._request(
+            "POST", "/api/local/open",
+            headers={
+                "Origin": f"http://localhost:{self.port}",
+                "Authorization": f"Bearer {self.token}",
+            },
+            body={"directory": "demo_20260728"},
+        )
+        self._request(
+            "POST", "/api/local/creative/turn",
+            headers={
+                "Origin": f"http://localhost:{self.port}",
+                "Authorization": f"Bearer {self.token}",
+            },
+            body={"turn": {"id": "t1", "role": "user", "text": "export me"}},
+        )
+        # Export
+        import http.client
+        conn = http.client.HTTPConnection("127.0.0.1", self.port, timeout=2)
+        conn.request(
+            "GET", "/api/local/creative/export",
+            headers={
+                "Origin": f"http://localhost:{self.port}",
+                "Authorization": f"Bearer {self.token}",
+            },
+        )
+        response = conn.getresponse()
+        data = response.read()
+        conn.close()
+        self.assertEqual(response.status, 200)
+        self.assertIn("application/zip", response.getheader("Content-Type", ""))
+        self.assertGreater(len(data), 0)
+        # First bytes should be ZIP magic
+        self.assertEqual(data[:2], b"PK")
+
+
 if __name__ == "__main__":
     unittest.main()

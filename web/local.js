@@ -42,7 +42,7 @@
   var stateCache = { projectExists: false, project: null, chapters: [] };
 
   // ---- HTTP helper ----
-  function callApi(sub, init) {
+  function callApiResponse(sub, init) {
     init = init || {};
     var method = (init.method || "GET").toUpperCase();
     var headers = { "Accept": "application/json" };
@@ -56,7 +56,11 @@
       opts.body = typeof init.body === "string" ? init.body : JSON.stringify(init.body);
     }
     var url = runtime.apiBase + "/" + sub.replace(/^\/+/, "");
-    return fetch(url, opts).then(function (r) {
+    return fetch(url, opts);
+  }
+
+  function callApi(sub, init) {
+    return callApiResponse(sub, init).then(function (r) {
       return r.text().then(function (txt) {
         var parsed = null;
         try { parsed = txt ? JSON.parse(txt) : null; } catch (e) { parsed = null; }
@@ -71,6 +75,38 @@
         }
         return parsed;
       });
+    });
+  }
+
+  function bytesToBase64(bytes) {
+    var binary = "";
+    for (var i = 0; i < bytes.length; i++) {
+      binary += String.fromCharCode(bytes[i]);
+    }
+    return btoa(binary);
+  }
+
+  // ---- creative storage API ----
+  function creativeSession() { return callApi("creative/session"); }
+  function appendCreativeTurn(turn) {
+    return callApi("creative/turn", { method: "POST", body: { turn: turn } });
+  }
+  function writeCreativeState(summary, facts) {
+    return callApi("creative/state", { method: "POST", body: { summary: summary, facts: facts } });
+  }
+  function writeCreativeProposal(proposal) {
+    return callApi("creative/proposal", { method: "POST", body: { proposal: proposal } });
+  }
+  function writeCreativeDraft(draft) {
+    return callApi("creative/draft", { method: "POST", body: { draft: draft } });
+  }
+  function exportCreativeBackup() {
+    return callApiResponse("creative/export").then(function (response) { return response.arrayBuffer(); });
+  }
+  function importCreativeBackup(bytes, decision) {
+    return callApi("creative/import", {
+      method: "POST",
+      body: { archive_base64: bytesToBase64(bytes), decision: decision }
     });
   }
 
@@ -731,7 +767,15 @@
     runSeq: runSeq,
     normaliseRpcResponse: normaliseRpcResponse,
     rewriteChapterArtifacts: rewriteChapterArtifacts,
-    formatCmdLine: formatCmdLine
+    formatCmdLine: formatCmdLine,
+    creativeSession: creativeSession,
+    appendCreativeTurn: appendCreativeTurn,
+    writeCreativeState: writeCreativeState,
+    writeCreativeProposal: writeCreativeProposal,
+    writeCreativeDraft: writeCreativeDraft,
+    exportCreativeBackup: exportCreativeBackup,
+    importCreativeBackup: importCreativeBackup,
+    bytesToBase64: bytesToBase64
   };
   // ``window.NWL`` belongs to llm.js (the optional LLM adapter).  Keep the
   // local MCP bridge on its own global so loading llm.js cannot overwrite it.

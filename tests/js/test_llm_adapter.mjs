@@ -159,6 +159,42 @@ test("creativeReply rejects on empty response", async () => {
   );
 });
 
+[
+  ["reasoning content", { choices: [{ message: { content: null, reasoning_content: "推理模型回复" } }] }, "推理模型回复"],
+  ["array content", { choices: [{ message: { content: [{ type: "text", text: "分段回复" }] } }] }, "分段回复"],
+  ["choice text", { choices: [{ text: "choice 回复" }] }, "choice 回复"],
+  ["top-level output text", { output_text: "顶层回复" }, "顶层回复"]
+].forEach(function ([label, payload, expected]) {
+  test("creativeReply accepts " + label, async () => {
+    const NWL = loadLLM(function () {
+      return Promise.resolve({ ok: true, status: 200, json: () => Promise.resolve(payload) });
+    });
+    const result = await NWL.creativeReply({ text: "继续", autonomy: false, context: {} });
+    assert.equal(result.reply, expected);
+  });
+});
+
+test("testConnection verifies a real chat completion", async () => {
+  const calls = [];
+  const NWL = loadLLM(function (url, opts) {
+    calls.push({ url: url, opts: opts });
+    return Promise.resolve({
+      ok: true,
+      status: 200,
+      json: () => Promise.resolve(completion("ok"))
+    });
+  });
+
+  const result = await NWL.testConnection();
+  assert.equal(result.ok, true);
+  assert.match(result.msg, /真实生成成功/);
+  assert.match(calls[0].url, /\/chat\/completions$/);
+  assert.equal(calls[0].opts.method, "POST");
+  const body = JSON.parse(calls[0].opts.body);
+  assert.equal(body.stream, false);
+  assert.ok(body.messages.some((m) => m.role === "user"));
+});
+
 test("creativeReply sends autonomy flag in prompt context", async () => {
   const NWL = loadLLM({ content: "好的。" });
   await NWL.creativeReply({ text: "你来决定", autonomy: true, context: {} });

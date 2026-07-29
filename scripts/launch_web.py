@@ -772,12 +772,16 @@ def make_local_api_handler(
         def log_message(self, format: str, *args: object) -> None:
             return
 
+        def end_headers(self) -> None:  # type: ignore[override]
+            if not self.path.startswith(LOCAL_API_PREFIX):
+                self.send_header("Cache-Control", "no-store")
+            super().end_headers()
+
         def _serve_local_index(self, *, include_body: bool) -> None:
             body = local_index_body()
             self.send_response(200)
             self.send_header("Content-Type", "text/html; charset=utf-8")
             self.send_header("Content-Length", str(len(body)))
-            self.send_header("Cache-Control", "no-store")
             self.send_header("X-Frame-Options", "DENY")
             self.send_header("Content-Security-Policy", "frame-ancestors 'none'")
             self.end_headers()
@@ -1207,7 +1211,8 @@ class Launcher:
             actual_port = int(local_server.server_address[1])
             api.port = actual_port  # reconcile with OS-assigned port
             local_health_url = f"http://{HOST}:{actual_port}/"
-            local_browser_url = f"http://localhost:{actual_port}/"
+            run_id = secrets.token_urlsafe(6)
+            local_browser_url = f"http://localhost:{actual_port}/?run={run_id}"
             wait_until_ready(
                 local_health_url,
                 timeout=self.local_timeout,
@@ -1216,6 +1221,7 @@ class Launcher:
                 stop_event=self.stop_event,
             )
             print(f"[本地] 已就绪: {local_browser_url}")
+            self._open_local_browser(local_browser_url)
 
             public_server, public_thread = start_http_server(
                 web_root,
@@ -1243,7 +1249,6 @@ class Launcher:
                     f"[本地] 已按 --no-tunnel 跳过 cloudflared; "
                     f"不会影响其他穿透进程。"
                 )
-                self._open_local_browser(local_browser_url)
                 self._print_ready(
                     local_browser_url,
                     public_health_url,
@@ -1280,7 +1285,6 @@ class Launcher:
                 stop_event=self.stop_event,
             )
             self._print_ready(local_browser_url, public_url)
-            self._open_local_browser(local_browser_url)
 
             while not self.stop_event.wait(0.25):
                 if self.resources.tunnel.process.poll() is not None:

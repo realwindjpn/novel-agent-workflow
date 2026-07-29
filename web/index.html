@@ -609,6 +609,8 @@
   #chat-panel { display: none; }
   body.white #chat-panel { display: flex; }
   body.white #term-panel { display: none; }
+  body.white main { grid-template-columns: minmax(0, 1fr); }
+  body.white #chat-panel { grid-column: 1 / -1; }
 
   /* ---------- creative workspace ---------- */
   .creative-header-actions { margin-left: auto; display: flex; gap: 6px; align-items: center; }

@@ -959,6 +959,7 @@
       .then(function (result) {
         renderBookList(result);
         setLibStatus(message, false);
+        if (libDialog && libDialog.open) libDialog.close();
       });
   }
 
@@ -1104,6 +1105,7 @@
     Promise.resolve()
       .then(function () { return window.NWLocal.refreshCapabilities(); })
       .then(function () { refreshLibPanel(); return refreshFiles(); })
+      .then(function () { return bootCreativeForActiveBook(); })
       .then(function () { setBootPhase(100, true); wave.pulse(1.0); })
       .catch(function (e) {
         bootLog("本地 API 握手失败：" + ((e && e.message) || e), false);
@@ -1140,17 +1142,33 @@
 
   /* ---------------- creative workspace controller ---------------- */
   var creativeController = null;
+  var creativeBookDirectory = "";
 
   function bootCreativeForActiveBook() {
     if (!window.NWCreativeChat || !window.NWLocal || !window.NWLocal.capabilities) return Promise.resolve();
     var directory = window.NWLocal.capabilities.active_directory || "";
     if (!directory) {
       if (creativeController) creativeController.clear();
+      creativeBookDirectory = "";
       return Promise.resolve();
     }
     if (!creativeController) creativeController = window.NWCreativeChat.bind();
+    creativeController.clear();
+    creativeBookDirectory = directory;
     return creativeController.boot(directory);
   }
+
+  window.NWCW = {
+    isActive: function () {
+      return Boolean(creativeController && creativeBookDirectory);
+    },
+    submit: function (text) {
+      if (!creativeController || !creativeBookDirectory) {
+        return Promise.reject(new Error("请先打开一本创作。"));
+      }
+      return creativeController.submit(text);
+    }
+  };
 
   // Drawer toggles (persist in session, not per book)
   var progressToggle = document.getElementById("creative-progress-toggle");

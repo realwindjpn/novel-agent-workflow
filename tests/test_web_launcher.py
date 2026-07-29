@@ -57,6 +57,12 @@ class WebLibraryPanelAssetTests(unittest.TestCase):
         self.assertIn('libOpenBtn.disabled', self.app_js)
         self.assertIn('正在读取书库', self.app_js)
 
+    def test_successful_book_switch_closes_the_library_dialog(self):
+        start = self.app_js.index("function finishBookSwitch")
+        end = self.app_js.index("function finishCreatedBook", start)
+        switch_body = self.app_js[start:end]
+        self.assertIn("libDialog.close()", switch_body)
+
     def test_app_registers_a_collision_aware_project_creator(self):
         self.assertIn("setProjectCreator", self.app_js)
         self.assertIn("pendingCollision", self.app_js)
@@ -68,6 +74,15 @@ class WebLibraryPanelAssetTests(unittest.TestCase):
     def test_chat_init_summary_reports_collision_cancellation(self):
         self.assertIn('out.indexOf("已取消创建新书")', self.chat_js)
         self.assertIn('return "已取消创建新书。"', self.chat_js)
+
+    def test_freeform_greeting_does_not_present_a_command_translator(self):
+        start = self.chat_js.index("function greet()")
+        end = self.chat_js.index("function refreshStateSummary", start)
+        greeting = self.chat_js[start:end]
+        self.assertNotIn("翻译成真实的", greeting)
+        self.assertIn("自由创作搭档", greeting)
+        self.assertIn("聊聊主角", greeting)
+        self.assertIn("试写一个开场", greeting)
 
     def test_freeform_workspace_has_drawers_actions_and_durability(self):
         for required in (
@@ -86,8 +101,22 @@ class WebLibraryPanelAssetTests(unittest.TestCase):
             self.assertIn(required, self.html)
 
     def test_creative_mode_does_not_render_raw_status_html(self):
-        self.assertNotIn("状态已更新 —— <b>", self.chat_js)
+        start = self.chat_js.index("function refreshStateSummary")
+        end = self.chat_js.index("function summarizeGates", start)
+        summary_renderer = self.chat_js[start:end]
+        self.assertNotIn("<b>", summary_renderer)
+        self.assertNotIn("<b style=", summary_renderer)
         self.assertIn("textContent", self.creative_chat_js)
+
+    def test_white_mode_chat_fills_the_main_grid(self):
+        self.assertIn(
+            "body.white main { grid-template-columns: minmax(0, 1fr); }",
+            self.html,
+        )
+        self.assertIn(
+            "body.white #chat-panel { grid-column: 1 / -1; }",
+            self.html,
+        )
 
 
 class LauncherPrimitiveTests(unittest.TestCase):
@@ -310,12 +339,21 @@ class LauncherOrchestrationTests(unittest.TestCase):
         with redirect_stdout(io.StringIO()), redirect_stderr(io.StringIO()):
             return app.run()
 
-    def test_success_waits_for_tunnel_then_opens_local_browser(self):
+    def test_success_opens_versioned_local_browser_before_tunnel(self):
         stop = threading.Event()
         opened = []
+        events = []
 
         def open_browser(url):
             opened.append(url)
+            events.append("browser")
+            return True
+
+        def start_fake_tunnel(executable, local_url):
+            events.append("tunnel")
+            return self._fake_tunnel()
+
+        def ready_public(url, marker=None):
             stop.set()
             return True
 
@@ -323,14 +361,16 @@ class LauncherOrchestrationTests(unittest.TestCase):
             launch_web.LauncherConfig(port=0, public_port=0, open_browser=True),
             root=self.root,
             cloudflared=Path("cloudflared"),
-            tunnel_factory=lambda executable, local_url: self._fake_tunnel(),
-            public_probe=lambda url, marker=None: True,
+            tunnel_factory=start_fake_tunnel,
+            public_probe=ready_public,
             browser_open=open_browser,
             stop_event=stop,
         )
         self.assertEqual(self._run_app(app), 0)
         self.assertEqual(len(opened), 1)
         self.assertTrue(opened[0].startswith("http://localhost:"))
+        self.assertRegex(opened[0], r"/\?run=[A-Za-z0-9_-]+$")
+        self.assertEqual(events[:2], ["browser", "tunnel"])
         self.assertFalse(app.resources_open)
 
     def test_no_browser_suppresses_browser_open(self):
@@ -357,10 +397,17 @@ class LauncherOrchestrationTests(unittest.TestCase):
         stop = threading.Event()
         opened = []
         tunnel_factory = mock.Mock()
+        probe_calls = 0
 
         def open_browser(url):
             opened.append(url)
-            stop.set()
+            return True
+
+        def local_probe(url, marker=None):
+            nonlocal probe_calls
+            probe_calls += 1
+            if probe_calls >= 2:
+                stop.set()
             return True
 
         app = launch_web.Launcher(
@@ -372,6 +419,7 @@ class LauncherOrchestrationTests(unittest.TestCase):
             ),
             root=self.root,
             tunnel_factory=tunnel_factory,
+            local_probe=local_probe,
             browser_open=open_browser,
             stop_event=stop,
         )
@@ -379,6 +427,7 @@ class LauncherOrchestrationTests(unittest.TestCase):
         tunnel_factory.assert_not_called()
         self.assertEqual(len(opened), 1)
         self.assertTrue(opened[0].startswith("http://localhost:"))
+        self.assertIn("/?run=", opened[0])
         self.assertFalse(app.resources_open)
 
     def test_browser_failure_is_non_fatal(self):
@@ -475,6 +524,9 @@ class LocalApiTests(unittest.TestCase):
             '<script src="local.js"></script>',
             encoding="utf-8",
         )
+        (self.web_root / "local.js").write_text(
+            "window.NWLocal = {};", encoding="utf-8"
+        )
         self.library = Path(self._tmp.name) / "library"
         self.library.mkdir()
         # Pre-create one book so /library returns a non-empty list.
@@ -548,6 +600,22 @@ class LocalApiTests(unittest.TestCase):
         self.assertEqual(len(body["catalog"]), 1)
         self.assertEqual(body["catalog"][0]["title"], "demo")
         self.assertFalse(body["has_active_book"])
+
+    def test_local_static_assets_disable_browser_cache(self):
+        import http.client
+
+        conn = http.client.HTTPConnection("127.0.0.1", self.port, timeout=2)
+        conn.request(
+            "GET",
+            "/local.js?runtime=test",
+            headers={"Host": f"127.0.0.1:{self.port}"},
+        )
+        response = conn.getresponse()
+        response.read()
+        conn.close()
+
+        self.assertEqual(response.status, 200)
+        self.assertEqual(response.getheader("Cache-Control"), "no-store")
 
     def test_local_index_injects_runtime_but_public_index_does_not(self):
         local_status, local_body = self._request("GET", "/index.html")

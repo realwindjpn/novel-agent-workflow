@@ -189,14 +189,14 @@
    * ============================================================ */
   function greet() {
     assistantHtml(
-      '<div class="greet-title">嗨，我是你这本小说的<strong> 白话模式</strong> 助手</div>' +
-      '<div class="greet-body">用自然语言告诉我你想做什么，我把它翻译成真实的 <code>novel-workflow</code> 命令执行。所有写操作都会先给你看将要执行什么，确认后再跑。' +
+      '<div class="greet-title">嗨，我是你这本小说的<strong> 自由创作搭档</strong></div>' +
+      '<div class="greet-body">可以和我发散方向、推敲人物、比较方案或直接试写。这里的讨论不会自动推进正式流水线；只有你采纳并再次确认方案后，才会写入项目。' +
       '<div class="greet-chips">' +
-      '<button class="chip" data-q="现在到哪了">现在到哪了？</button>' +
-      '<button class="chip" data-q="下一步">下一步该做什么</button>' +
-      '<button class="chip" data-q="开始一本新书">开始一本新书</button>' +
-      '<button class="chip" data-q="发布第 1 章">发布第 1 章</button>' +
-      '<button class="chip" data-q="help">列出我都会什么</button>' +
+      '<button class="chip" data-q="聊聊这本书最有张力的方向">发散故事方向</button>' +
+      '<button class="chip" data-q="聊聊主角，他最深的欲望和困境是什么">聊聊主角</button>' +
+      '<button class="chip" data-q="为当前故事试写一个开场">试写一个开场</button>' +
+      '<button class="chip" data-q="帮我梳理核心冲突和代价">梳理核心冲突</button>' +
+      '<button class="chip" data-q="你来决定一个最有潜力的方向">你来决定</button>' +
       "</div></div>"
     );
     chatScroll.querySelectorAll(".chip").forEach(function (c) {
@@ -221,21 +221,21 @@
       lines.push("项目还没立项。说「开始一本新书」或「创建项目」我来帮你建。");
     } else {
       var p = st.project;
-      lines.push("<b>《" + esc(p.title || "未命名") + "》</b> · 当前阶段 <b>" + esc(p.stage || "IDEA") + "</b>");
+      lines.push("《" + (p.title || "未命名") + "》 · 当前阶段 " + (p.stage || "IDEA"));
       var conceptTxt = {PENDING: "未完成", PASS: "已通过", FAIL: "未通过"}[p.concept] || p.concept;
       var bibleTxt = {PENDING: "未写", WRITTEN: "已写"}[p.bible] || p.bible;
-      lines.push("· 概念评审：" + esc(conceptTxt) + "  ·  圣经：" + esc(bibleTxt));
+      lines.push("· 概念评审：" + conceptTxt + "  ·  圣经：" + bibleTxt);
       var om = {PENDING: "未写", WRITTEN: "已写", PASS: "已通过", FAIL: "未通过"}[p.outline.master] || p.outline.master;
       var ov = {PENDING: "未写", WRITTEN: "已写", PASS: "已通过", FAIL: "未通过"}[p.outline.volume] || p.outline.volume;
       var oc = {PENDING: "未写", WRITTEN: "已写", PASS: "已通过", FAIL: "未通过"}[p.outline.chapter] || p.outline.chapter;
-      lines.push("· 大纲：master " + esc(om) + " · volume " + esc(ov) + " · chapter " + esc(oc));
-      lines.push("· 大纲锁定：" + (p.outlineLocked ? "<b style=\"color:var(--ok)\">已锁定</b>" : "<b style=\"color:var(--warn)\">未锁定</b>"));
+      lines.push("· 大纲：master " + om + " · volume " + ov + " · chapter " + oc);
+      lines.push("· 大纲锁定：" + (p.outlineLocked ? "已锁定" : "未锁定"));
       if (st.chapters.length === 0) {
         lines.push("· 章节：还没有签发任何章节。");
       } else {
         st.chapters.forEach(function (c) {
           var gateSummary = summarizeGates(c.gates);
-          lines.push("· 第 " + c.chapter + " 章 <b>《" + esc(c.title) + "》</b> · " + esc(c.status) + "（" + gateSummary + "）");
+          lines.push("· 第 " + c.chapter + " 章《" + c.title + "》 · " + c.status + "（" + gateSummary + "）");
         });
       }
       lines.push(nextStepHint(p, st.chapters));
@@ -755,14 +755,24 @@
     var text = chatInput.value.trim();
     if (!text) return;
     chatInput.value = "";
-    userMsg(text);
 
     // Pending confirmation short-circuit (do not even attempt LLM).
     if (pending && pending.kind === "plan") {
+      userMsg(text);
       var low = text.toLowerCase();
       if (/^(确认|好|可以|执行|嗯|ok|yes|y|✓)$/i.test(low)) { handlePendingRun(); return; }
       if (/^(取消|算了|不|no|n|✗|×)$/i.test(low)) { handlePendingCancel(); return; }
     }
+
+    // An active local book belongs to the freeform creative controller.
+    // It renders and persists the user turn itself; never duplicate it here
+    // or silently fall through to the legacy command/rule pipeline.
+    if (window.NWCW && window.NWCW.isActive()) {
+      window.NWCW.submit(text);
+      return;
+    }
+
+    userMsg(text);
 
     // v4: try LLM first if enabled + key set, rule engine as silent fallback.
     if (window.NWL && window.NWL.isEnabled() && window.NWL.getApiKey()) {

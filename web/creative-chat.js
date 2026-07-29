@@ -46,6 +46,19 @@
     var state = "idle";
     var pendingProposal = null;
     var bookId = "";
+    var autonomyGranted = false;
+
+    function modelContext() {
+      var sess = ports.storage.session();
+      return {
+        book: bookId,
+        turns: sess.turns || [],
+        summary: sess.summary || "",
+        facts: sess.facts || {},
+        proposals: sess.proposals || [],
+        drafts: sess.drafts || []
+      };
+    }
 
     /* ---- boot: restore session from storage ---- */
     function boot(book) {
@@ -97,6 +110,7 @@
 
     function doSubmit(text, autonomy) {
       state = "responding";
+      autonomyGranted = autonomyGranted || autonomy;
       var userTurn = {
         id: ports.idGen(),
         role: "user",
@@ -106,12 +120,11 @@
       ports.view.renderUser(text);
 
       return ports.storage.appendTurn(userTurn).then(function () {
-        var ctx = {
-          input: text,
+        return ports.model.creativeReply({
+          text: text,
           autonomy: autonomy,
-          session: ports.storage.session()
-        };
-        return ports.model.creativeReply(ctx);
+          context: modelContext()
+        });
       }).then(function (result) {
         var assistantTurn = {
           id: ports.idGen(),
@@ -125,8 +138,8 @@
         state = "idle";
         // Non-blocking readiness assessment — never blocks the conversation
         ports.model.assessReadiness({
-          input: text,
-          session: ports.storage.session()
+          text: text,
+          context: modelContext()
         }).then(function (r) {
           ports.view.renderReadiness(r.ready, r.reason);
         });
@@ -141,7 +154,8 @@
     function generateProposal() {
       state = "compiling";
       return ports.model.compileProposal({
-        session: ports.storage.session()
+        autonomy: autonomyGranted,
+        context: modelContext()
       }).then(function (proposal) {
         pendingProposal = proposal;
         ports.view.renderProposal(proposal);

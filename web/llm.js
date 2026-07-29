@@ -180,9 +180,7 @@
       }
       return resp.json();
     }).then(function (j) {
-      var choice = j && j.choices && j.choices[0];
-      var msg = choice && choice.message;
-      var txt = msg && (msg.content || msg.text || "");
+      var txt = extractProviderText(j);
       if (!txt) throw new Error("LLM 返回为空");
       return extractJson(txt);
     });
@@ -311,22 +309,28 @@
   }
 
   /* ============================================================
-   * Test connection: hit /models and return ok / err string
+   * Test connection: perform one minimal real generation
    * ============================================================ */
   function testConnection() {
     var key = getApiKey();
     if (!key) return Promise.resolve({ ok: false, msg: "未设置 API key" });
-    var base = getBaseUrl();
-    return fetch(base + "/models", {
-      method: "GET",
-      headers: { "Authorization": "Bearer " + key }
-    }).then(function (r) {
-      if (r.ok) return { ok: true, msg: "✓ 连接成功（" + r.status + "）" };
-      return r.text().then(function (t) {
-        return { ok: false, msg: "HTTP " + r.status + " · " + t.slice(0, 120) };
-      });
+    return requestText([
+      { role: "system", content: "只回复 ok。" },
+      { role: "user", content: "ping" }
+    ], {
+      temperature: 0,
+      maxTokens: 8,
+      timeout: 15000,
+      json: false
+    }).then(function () {
+      return { ok: true, msg: "✓ 真实生成成功（" + getModel() + "）" };
     }).catch(function (e) {
-      return { ok: false, msg: "网络/CORS 失败：" + (e && e.message || e) };
+      var code = e && e.code ? e.code : "network";
+      var detail = e && e.detail ? " · " + e.detail : "";
+      return {
+        ok: false,
+        msg: "生成测试失败 [" + code + "]：" + ((e && e.message) || e) + detail
+      };
     });
   }
 
@@ -496,10 +500,34 @@
     });
   }
 
+  function contentText(value) {
+    if (typeof value === "string") return value;
+    if (Array.isArray(value)) {
+      return value.map(contentText).filter(Boolean).join("");
+    }
+    if (value && typeof value === "object") {
+      return contentText(value.text || value.content || value.output_text || "");
+    }
+    return "";
+  }
+
   function extractProviderText(payload) {
     var choice = payload && payload.choices && payload.choices[0];
     var msg = choice && choice.message;
-    return (msg && (msg.content || msg.text)) || "";
+    var candidates = [
+      msg && msg.content,
+      msg && msg.text,
+      msg && msg.reasoning_content,
+      choice && choice.text,
+      payload && payload.output_text,
+      payload && payload.output,
+      payload && payload.text
+    ];
+    for (var i = 0; i < candidates.length; i++) {
+      var text = contentText(candidates[i]);
+      if (text && text.trim()) return text;
+    }
+    return "";
   }
 
   function requestText(messages, options) {

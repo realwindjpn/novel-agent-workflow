@@ -85,17 +85,23 @@ function fakeExecutor() {
 function fakeModel(opts) {
   opts = opts || {};
   const inputs = [];
+  const readinessInputs = [];
+  const compilerInputs = [];
   return {
     inputs: inputs,
+    readinessInputs: readinessInputs,
+    compilerInputs: compilerInputs,
     creativeReply: function (input) {
       inputs.push(input);
       if (opts.error) return Promise.reject(opts.error);
       return Promise.resolve({ reply: opts.reply || "好的。" });
     },
     assessReadiness: function (input) {
+      readinessInputs.push(input);
       return Promise.resolve({ ready: opts.ready != null ? opts.ready : false, reason: opts.reason || "" });
     },
     compileProposal: function (input) {
+      compilerInputs.push(input);
       if (opts.compileError) return Promise.reject(opts.compileError);
       return Promise.resolve(opts.proposal || completeProposal());
     }
@@ -189,6 +195,34 @@ test("autonomy phrase reaches creative model and persists both turns", async () 
   assert.equal(ports.model.inputs[0].autonomy, true);
   assert.deepEqual(ports.storage.turns.map((t) => t.role), ["user", "assistant"]);
   assert.match(ports.view.messages[1].text, /双线悬疑/);
+});
+
+test("creative model receives real text and restored active-book context", async () => {
+  const NWCreativeChat = loadController();
+  const ports = fakePorts({ storedSession: savedSession(), reply: "接着旧案写。" });
+  const controller = NWCreativeChat.createController(ports);
+  await controller.boot("book-a");
+  await controller.submit("继续雨夜开场");
+
+  const input = ports.model.inputs[0];
+  assert.equal(input.text, "继续雨夜开场");
+  assert.equal(input.context.book, "book-a");
+  assert.equal(input.context.summary, "雨夜命案");
+  assert.deepEqual(input.context.facts.confirmed, ["主角是法医"]);
+  assert.equal(input.context.turns.at(-1).text, "继续雨夜开场");
+  assert.equal(ports.model.readinessInputs[0].context.book, "book-a");
+});
+
+test("compiler receives the same normalized active-book context", async () => {
+  const NWCreativeChat = loadController();
+  const ports = fakePorts({ storedSession: savedSession() });
+  const controller = NWCreativeChat.createController(ports);
+  await controller.boot("book-a");
+  await controller.generateProposal();
+
+  assert.equal(ports.model.compilerInputs[0].context.book, "book-a");
+  assert.equal(ports.model.compilerInputs[0].context.summary, "雨夜命案");
+  assert.equal(ports.model.compilerInputs[0].context.turns.length, 2);
 });
 
 test("explicit letModelDecide sets autonomy true", async () => {

@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- Fixed the real local creative-workspace runtime: one-click launch now opens
+  a per-run, non-cached local URL before tunnel readiness; the active book and
+  saved conversation restore during initial boot; and the main composer routes
+  ordinary text exclusively through the freeform controller instead of the
+  legacy command/rule pipeline. Model setup now verifies a real completion,
+  accepts common OpenAI-compatible response shapes, and passes the actual user
+  text plus restored context. White mode fills the window when drawers are
+  closed, and formal-state summaries no longer display literal HTML tags.
 - Added a freeform creative workspace that replaces the rigid command
   translator with free-form conversation. The model and user discuss story
   ideas; confirmed proposals are compiled into the formal `idea` command

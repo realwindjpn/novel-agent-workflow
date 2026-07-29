@@ -69,6 +69,7 @@ class LauncherConfig:
     port: int = DEFAULT_PORT
     public_port: int = DEFAULT_PUBLIC_PORT
     open_browser: bool = True
+    enable_tunnel: bool = True
     library_root: Optional[Path] = None
 
 
@@ -80,6 +81,11 @@ def parse_args(argv: Sequence[str] | None = None) -> LauncherConfig:
     parser.add_argument("--public-port", type=int, default=DEFAULT_PUBLIC_PORT)
     parser.add_argument("--library-root", type=Path, default=None)
     parser.add_argument("--no-browser", action="store_true")
+    parser.add_argument(
+        "--no-tunnel",
+        action="store_true",
+        help="start the local/public listeners without cloudflared",
+    )
     ns = parser.parse_args(argv)
     if not 1 <= ns.port <= 65535:
         parser.error("--port must be between 1 and 65535")
@@ -91,6 +97,7 @@ def parse_args(argv: Sequence[str] | None = None) -> LauncherConfig:
         port=ns.port,
         public_port=ns.public_port,
         open_browser=not ns.no_browser,
+        enable_tunnel=not ns.no_tunnel,
         library_root=ns.library_root,
     )
 
@@ -997,12 +1004,33 @@ class Launcher:
     def resources_open(self) -> bool:
         return self.resources.open
 
-    def _print_ready(self, local_url: str, public_url: str) -> None:
-        print("\n[就绪] 网页端与临时穿透均已启动")
-        print(f"[本地] {local_url}")
-        print(f"[穿透] {public_url}")
-        print("[警告] 任何获得公网链接的人都可以访问此页面。")
+    def _print_ready(
+        self,
+        local_url: str,
+        public_url: str,
+        *,
+        tunnel_enabled: bool = True,
+    ) -> None:
+        if tunnel_enabled:
+            print("\n[就绪] 网页端与临时穿透均已启动")
+            print(f"[本地] {local_url}")
+            print(f"[穿透] {public_url}")
+            print("[警告] 任何获得公网链接的人都可以访问此页面。")
+        else:
+            print("\n[就绪] 本地网页端已启动")
+            print(f"[本地] {local_url}")
+            print(f"[公开本机] {public_url}")
+            print("[说明] 未启动内置穿透；现有 ngrok 等进程不受影响。")
         print("[退出] 按 Ctrl+C 或关闭此窗口即可停止全部服务。\n")
+
+    def _open_local_browser(self, local_url: str) -> None:
+        if not self.config.open_browser:
+            return
+        try:
+            if not self.browser_open(local_url):
+                print(f"[警告] 浏览器未自动打开，请手动访问 {local_url}")
+        except Exception as exc:
+            print(f"[警告] 浏览器打开失败: {exc}; 请手动访问 {local_url}")
 
     def _ensure_library_session(self) -> "LibrarySession":
         if self.resources.library_session is not None:
@@ -1022,7 +1050,9 @@ class Launcher:
 
     def run(self) -> int:
         web_root = validate_web_root(self.root)
-        executable = self.cloudflared or find_cloudflared()
+        executable = None
+        if self.config.enable_tunnel:
+            executable = self.cloudflared or find_cloudflared()
         if self.config.port:
             ensure_port_available(HOST, self.config.port)
         if self.config.public_port:
@@ -1076,6 +1106,21 @@ class Launcher:
             )
             print(f"[公开] 已就绪: {public_health_url}")
 
+            if not self.config.enable_tunnel:
+                print(
+                    f"[本地] 已按 --no-tunnel 跳过 cloudflared; "
+                    f"不会影响其他穿透进程。"
+                )
+                self._open_local_browser(local_browser_url)
+                self._print_ready(
+                    local_browser_url,
+                    public_health_url,
+                    tunnel_enabled=False,
+                )
+                self.stop_event.wait()
+                return 0
+
+            assert executable is not None
             self.resources.tunnel = self.tunnel_factory(
                 executable,
                 public_health_url,
@@ -1103,18 +1148,7 @@ class Launcher:
                 stop_event=self.stop_event,
             )
             self._print_ready(local_browser_url, public_url)
-
-            if self.config.open_browser:
-                try:
-                    if not self.browser_open(local_browser_url):
-                        print(
-                            f"[警告] 浏览器未自动打开，请手动访问 {local_browser_url}"
-                        )
-                except Exception as exc:
-                    print(
-                        f"[警告] 浏览器打开失败: {exc}; "
-                        f"请手动访问 {local_browser_url}"
-                    )
+            self._open_local_browser(local_browser_url)
 
             while not self.stop_event.wait(0.25):
                 if self.resources.tunnel.process.poll() is not None:

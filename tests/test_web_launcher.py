@@ -72,11 +72,16 @@ class LauncherPrimitiveTests(unittest.TestCase):
         config = launch_web.parse_args([])
         self.assertEqual(config.port, 8080)
         self.assertTrue(config.open_browser)
+        self.assertTrue(config.enable_tunnel)
 
     def test_parse_args_supports_port_and_no_browser(self):
         config = launch_web.parse_args(["--port", "9090", "--no-browser"])
         self.assertEqual(config.port, 9090)
         self.assertFalse(config.open_browser)
+
+    def test_parse_args_supports_no_tunnel(self):
+        config = launch_web.parse_args(["--no-tunnel"])
+        self.assertFalse(config.enable_tunnel)
 
     def test_parse_quick_tunnel_url(self):
         line = 'INF Requesting new quick Tunnel url=https://quiet-brook.trycloudflare.com'
@@ -324,6 +329,34 @@ class LauncherOrchestrationTests(unittest.TestCase):
         )
         self.assertEqual(self._run_app(app), 0)
         browser.assert_not_called()
+
+    def test_no_tunnel_skips_cloudflared_and_opens_local_browser(self):
+        stop = threading.Event()
+        opened = []
+        tunnel_factory = mock.Mock()
+
+        def open_browser(url):
+            opened.append(url)
+            stop.set()
+            return True
+
+        app = launch_web.Launcher(
+            launch_web.LauncherConfig(
+                port=0,
+                public_port=0,
+                open_browser=True,
+                enable_tunnel=False,
+            ),
+            root=self.root,
+            tunnel_factory=tunnel_factory,
+            browser_open=open_browser,
+            stop_event=stop,
+        )
+        self.assertEqual(self._run_app(app), 0)
+        tunnel_factory.assert_not_called()
+        self.assertEqual(len(opened), 1)
+        self.assertTrue(opened[0].startswith("http://localhost:"))
+        self.assertFalse(app.resources_open)
 
     def test_browser_failure_is_non_fatal(self):
         stop = threading.Event()

@@ -257,6 +257,7 @@ Optional command-line use:
 ```powershell
 .\一键启动.cmd --port 9090 --public-port 9091
 .\一键启动.cmd --library-root D:\MyBooks
+.\一键启动.cmd --no-tunnel   # 与现有 ngrok 等穿透并行，只启动本地服务
 .\一键启动.cmd --no-browser
 python3 scripts/launch_web.py --help
 ```

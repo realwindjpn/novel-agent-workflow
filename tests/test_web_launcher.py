@@ -32,6 +32,9 @@ class WebLibraryPanelAssetTests(unittest.TestCase):
         self.chat_js = (
             Path(__file__).resolve().parents[1] / "web" / "chat.js"
         ).read_text(encoding="utf-8")
+        self.creative_chat_js = (
+            Path(__file__).resolve().parents[1] / "web" / "creative-chat.js"
+        ).read_text(encoding="utf-8")
 
     def test_library_panel_uses_cards_and_a_disabled_primary_action(self):
         self.assertIn('id="lib-books" class="lib-book-list"', self.html)
@@ -65,6 +68,26 @@ class WebLibraryPanelAssetTests(unittest.TestCase):
     def test_chat_init_summary_reports_collision_cancellation(self):
         self.assertIn('out.indexOf("已取消创建新书")', self.chat_js)
         self.assertIn('return "已取消创建新书。"', self.chat_js)
+
+    def test_freeform_workspace_has_drawers_actions_and_durability(self):
+        for required in (
+            'id="mode-whi"',
+            '自由创作',
+            'id="creative-progress-toggle"',
+            'id="creative-files-toggle"',
+            'id="creative-decide"',
+            'id="creative-generate"',
+            'id="creative-save-draft"',
+            'id="creative-durability"',
+            'id="creative-proposal"',
+            'id="creative-import"',
+            'id="creative-export"',
+        ):
+            self.assertIn(required, self.html)
+
+    def test_creative_mode_does_not_render_raw_status_html(self):
+        self.assertNotIn("状态已更新 —— <b>", self.chat_js)
+        self.assertIn("textContent", self.creative_chat_js)
 
 
 class LauncherPrimitiveTests(unittest.TestCase):

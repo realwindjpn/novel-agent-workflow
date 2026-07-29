@@ -954,6 +954,7 @@
   function finishBookSwitch(message) {
     return window.NWLocal.refreshCapabilities()
       .then(function () { refreshLibPanel(); return refreshFiles(); })
+      .then(function () { return bootCreativeForActiveBook(); })
       .then(function () { return window.NWLocal.listBooks(); })
       .then(function (result) {
         renderBookList(result);
@@ -1135,6 +1136,111 @@
         x.classList.toggle("on", x.getAttribute("data-view") === "term");
       });
     });
+  });
+
+  /* ---------------- creative workspace controller ---------------- */
+  var creativeController = null;
+
+  function bootCreativeForActiveBook() {
+    if (!window.NWCreativeChat || !window.NWLocal || !window.NWLocal.capabilities) return Promise.resolve();
+    var directory = window.NWLocal.capabilities.active_directory || "";
+    if (!directory) {
+      if (creativeController) creativeController.clear();
+      return Promise.resolve();
+    }
+    if (!creativeController) creativeController = window.NWCreativeChat.bind();
+    return creativeController.boot(directory);
+  }
+
+  // Drawer toggles (persist in session, not per book)
+  var progressToggle = document.getElementById("creative-progress-toggle");
+  var filesToggle = document.getElementById("creative-files-toggle");
+  if (progressToggle) progressToggle.addEventListener("click", function () {
+    var open = document.body.classList.toggle("creative-progress-open");
+    progressToggle.setAttribute("aria-expanded", String(open));
+    try { sessionStorage.setItem("creative-progress-open", open ? "1" : "0"); } catch (e) {}
+  });
+  if (filesToggle) filesToggle.addEventListener("click", function () {
+    var open = document.body.classList.toggle("creative-files-open");
+    filesToggle.setAttribute("aria-expanded", String(open));
+    try { sessionStorage.setItem("creative-files-open", open ? "1" : "0"); } catch (e) {}
+  });
+  // Restore drawer state from session
+  try {
+    if (sessionStorage.getItem("creative-progress-open") === "1" && progressToggle) progressToggle.click();
+    if (sessionStorage.getItem("creative-files-open") === "1" && filesToggle) filesToggle.click();
+  } catch (e) {}
+
+  // Creative action buttons
+  var decideBtn = document.getElementById("creative-decide");
+  var generateBtn = document.getElementById("creative-generate");
+  var saveDraftBtn = document.getElementById("creative-save-draft");
+  var exportBtn = document.getElementById("creative-export");
+  var importInput = document.getElementById("creative-import-file");
+
+  if (decideBtn) decideBtn.addEventListener("click", function () {
+    if (!creativeController) return;
+    var input = document.getElementById("chat-input");
+    var text = input && input.value ? input.value.trim() : "";
+    if (!text) text = "你来决定下一步方向";
+    if (input) input.value = "";
+    creativeController.letModelDecide(text);
+  });
+  if (generateBtn) generateBtn.addEventListener("click", function () {
+    if (!creativeController) return;
+    creativeController.generateProposal();
+  });
+  if (saveDraftBtn) saveDraftBtn.addEventListener("click", function () {
+    if (!creativeController) return;
+    var input = document.getElementById("chat-input");
+    var title = input && input.value ? input.value.trim() : "试写片段";
+    creativeController.saveTrialDraft(title, "", []);
+  });
+  if (exportBtn) exportBtn.addEventListener("click", function () {
+    if (!creativeController) return;
+    creativeController.exportBackup().then(function (backup) {
+      var url = URL.createObjectURL(new Blob([backup.bytes], { type: backup.mimeType }));
+      var a = document.createElement("a");
+      a.href = url; a.download = backup.filename;
+      document.body.appendChild(a); a.click(); a.remove();
+      URL.revokeObjectURL(url);
+    });
+  });
+  if (importInput) importInput.addEventListener("change", function () {
+    if (!creativeController || !importInput.files || !importInput.files[0]) return;
+    var file = importInput.files[0];
+    file.arrayBuffer().then(function (buf) {
+      return creativeController.importBackup(new Uint8Array(buf));
+    }).then(function () {
+      importInput.value = "";
+    });
+  });
+
+  // Proposal accept/discard delegated clicks
+  var proposalEl = document.getElementById("creative-proposal");
+  if (proposalEl) proposalEl.addEventListener("click", function (ev) {
+    var btn = ev.target.closest("button[data-act]");
+    if (!btn || !creativeController) return;
+    var act = btn.getAttribute("data-act");
+    if (act === "accept") creativeController.acceptProposal();
+    else if (act === "discard") creativeController.discardProposal();
+  });
+
+  // Import choice buttons
+  var importChoicesEl = document.getElementById("creative-import-choices");
+  if (importChoicesEl) importChoicesEl.addEventListener("click", function (ev) {
+    var btn = ev.target.closest("button[data-import-choice]");
+    if (!btn) return;
+    var choice = btn.getAttribute("data-import-choice");
+    importChoicesEl.hidden = true;
+    // Re-run import with the chosen decision
+    if (creativeController && window._lastImportBytes) {
+      creativeController._ports.storage.importBackup(window._lastImportBytes, choice).then(function () {
+        window._lastImportBytes = null;
+        if (creativeController._ports.view.clear) creativeController._ports.view.clear();
+        creativeController.boot(window.NWLocal && window.NWLocal.capabilities ? window.NWLocal.capabilities.active_directory : "");
+      });
+    }
   });
 
   window.NWG.init();

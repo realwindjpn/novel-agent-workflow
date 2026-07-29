@@ -610,6 +610,64 @@
   body.white #chat-panel { display: flex; }
   body.white #term-panel { display: none; }
 
+  /* ---------- creative workspace ---------- */
+  .creative-header-actions { margin-left: auto; display: flex; gap: 6px; align-items: center; }
+  .creative-durability {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.04em;
+    padding: 3px 8px; border-radius: 999px; border: 1px solid var(--edge2);
+    color: var(--dim); white-space: nowrap;
+  }
+  .creative-durability[data-state="local"] { color: #64f0de; border-color: var(--signal-dim); }
+  .creative-durability[data-state="browser"] { color: #f1c75b; border-color: #5a4720; }
+  .creative-durability[data-state="backup-required"] { color: var(--red); border-color: #55262c; }
+
+  .creative-actions {
+    flex: 0 0 auto; display: flex; gap: 6px; flex-wrap: wrap;
+    padding: 8px 16px; border-top: 1px solid var(--edge); background: var(--bg1);
+  }
+  .creative-actions .btn.primary { background: var(--violet); border-color: var(--violet); color: #fff; }
+  .creative-actions .btn.primary:hover { background: #7564c0; }
+  .creative-actions #creative-import { position: relative; overflow: hidden; }
+  .creative-actions #creative-import input[type="file"] {
+    position: absolute; inset: 0; opacity: 0; cursor: pointer;
+  }
+
+  .creative-readiness {
+    flex: 0 0 auto; padding: 4px 16px; font-size: 11px; color: var(--dim);
+    background: var(--bg1); border-top: 1px solid var(--edge);
+    min-height: 0; max-height: 0; overflow: hidden; transition: max-height 0.2s;
+  }
+  .creative-readiness:not(:empty) { max-height: 32px; padding: 6px 16px; }
+  .creative-readiness.yes { color: var(--signal); }
+  .creative-readiness.no { color: var(--dim); }
+
+  #creative-proposal { flex: 0 0 auto; }
+  #creative-proposal:not([hidden]) { display: block; padding: 10px 16px; }
+  .proposal-card {
+    background: var(--bg2); border: 1px solid var(--violet); border-radius: 8px;
+    padding: 10px 12px; font-size: 12.5px; line-height: 1.55;
+  }
+  .proposal-preview { font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+  .proposal-summary { color: var(--signal); font-size: 12px; margin-bottom: 6px; }
+  .proposal-assumptions, .proposal-uncertainties { font-size: 11.5px; color: var(--dim); margin-bottom: 4px; }
+  .proposal-btns { display: flex; gap: 6px; margin-top: 8px; }
+  .proposal-btns .btn.primary { background: var(--violet); border-color: var(--violet); color: #fff; }
+
+  #creative-import-choices { flex: 0 0 auto; padding: 8px 16px; }
+  #creative-import-choices:not([hidden]) { display: flex; gap: 6px; }
+  #creative-import-choices .btn { font-size: 11px; }
+
+  /* creative drawers: guide and files become overlay drawers in white mode */
+  body.white:not(.creative-progress-open) #guide { display: none; }
+  body.white:not(.creative-files-open) #files { display: none; }
+  body.white.creative-progress-open #guide,
+  body.white.creative-files-open #files {
+    position: fixed; top: 0; bottom: 0; width: 340px; z-index: 45;
+    box-shadow: var(--shadow-pop); background: var(--bg1);
+  }
+  body.white.creative-progress-open #guide { left: 0; }
+  body.white.creative-files-open #files { right: 0; }
+
   /* busy state: terminal prompt spinner */
   .spin {
     display: inline-block; width: 9px; height: 9px; border-radius: 50%;
@@ -743,7 +801,7 @@
     <div class="spacer"></div>
     <div class="mode-switch" role="tablist" aria-label="模式切换">
       <button id="mode-enc" class="on" role="tab" aria-selected="true">编码</button>
-      <button id="mode-whi" role="tab" aria-selected="false"><span class="dot-nl"></span>白话</button>
+      <button id="mode-whi" role="tab" aria-selected="false"><span class="dot-nl"></span>自由创作</button>
     </div>
     <button id="llm-gear" type="button" title="LLM 接入设置（白话模式 AI 驱动）" aria-label="LLM 设置">⚙</button>
     <span id="lib-panel" aria-label="本地书库">
@@ -855,18 +913,34 @@
 
     <section class="panel" id="chat-panel">
       <div class="chat-head">
-        <span class="title"><span class="violet-dot"></span>白话模式 <span id="chat-llm-badge">规则引擎</span></span>
-        <span class="sub">用自然语言驱动 novel-workflow，写操作前会先给你看将执行的命令</span>
-        <span class="meta">同一份项目状态 · 与编码模式无缝切换</span>
+        <span class="title"><span class="violet-dot"></span>自由创作 <span id="chat-llm-badge">规则引擎</span></span>
+        <span class="sub">与模型自由对话，确认创意后编译为正式工作流</span>
+        <div class="creative-header-actions">
+          <button class="btn small" id="creative-progress-toggle" aria-expanded="false" aria-controls="guide" title="展开/收起引导流水线">流水线</button>
+          <button class="btn small" id="creative-files-toggle" aria-expanded="false" aria-controls="files" title="展开/收起项目文件">文件</button>
+          <span class="creative-durability" id="creative-durability" data-state="browser" title="数据持久化状态">browser</span>
+        </div>
       </div>
       <div id="chat-scroll"></div>
+      <div id="creative-proposal" hidden aria-live="polite" aria-label="创意方案预览"></div>
+      <div id="creative-readiness" class="creative-readiness" role="status"></div>
+      <div class="creative-actions">
+        <button class="btn" id="creative-decide" title="授权模型自主决策方向">你来决定</button>
+        <button class="btn primary" id="creative-generate" title="将对话中的创意编译为正式方案">编译方案</button>
+        <button class="btn" id="creative-save-draft" title="保存当前段落为试写草稿">保存试写</button>
+        <button class="btn small" id="creative-export" title="导出 ZIP 创意备份">下载备份</button>
+        <label class="btn small" id="creative-import" title="导入 ZIP 创意备份">导入备份
+          <input type="file" accept=".zip,application/zip" hidden id="creative-import-file">
+        </label>
+      </div>
+      <div id="creative-import-choices" class="creative-import-choices" hidden></div>
       <div id="chat-input-row">
         <span class="prompt">说点什么 ▸</span>
         <input id="chat-input" type="text" autocomplete="off" spellcheck="false"
-               placeholder="例如：现在到哪了 · 下一步 · 开始一本新书 · 签发第 1 章 · 发布第 1 章">
+               placeholder="例如：你来决定这个方向 · 聊聊主角吧 · 编译方案">
         <button id="chat-send">发送</button>
       </div>
-      <div id="chat-hint">回车发送 · <b>help</b> 看能力清单 · <b>下一步</b> 自动续流水线 · 写操作必须点 [执行] 才跑 · 顶栏 <b>⚙</b> 可接入 LLM（自带 Key）</div>
+      <div id="chat-hint">回车发送 · <b>你来决定</b> 授权模型自主 · <b>编译方案</b> 将对话编译为 idea 命令 · 写操作必须点 [执行] 才跑 · 顶栏 <b>⚙</b> 可接入 LLM</div>
     </section>
 
     <section class="panel" id="files">

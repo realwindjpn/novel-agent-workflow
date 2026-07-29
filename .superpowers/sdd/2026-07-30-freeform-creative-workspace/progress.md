@@ -14,7 +14,15 @@ Branch: codex/local-mcp-library-plan
 - tests/js/test_llm_adapter.mjs: 14 tests covering all three calls + error types
 - INTAKE_KEYS (15 fields) matching core.py INTAKE_FIELD_KEYS
 
-## Task 8 — compile confirmed proposals + formal gate (pending commit)
+## Task 9 — redesign white-language surface as creative workspace (pending commit)
+- Renamed mode tab from "白话" to "自由创作"
+- Added creative workspace UI: durability indicator, drawer toggles (guide/files),
+  action buttons (decide/generate/save-draft/export/import), proposal region,
+  readiness display, import choices
+- CSS: creative drawers as overlay panels, durability state colors, responsive
+- app.js: bootCreativeForActiveBook, drawer toggle wiring, action button wiring,
+  proposal accept/discard delegation, import choice handling
+- tests/test_web_launcher.py: 2 new asset contract tests (all pass)
 - Aligned formalIdeaPlan with plan spec: added setup, source, proposalId,
   resultSummary; intent="采用创意方案"
 - Trial draft format: added status="trial", created_at field

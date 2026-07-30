@@ -1,6 +1,6 @@
 # Structured Workbench Floating Chat Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** Restore the structured desktop workbench as the default surface while supporting one main-window natural-language reply, automatic second-turn migration into a persistent draggable chat window, programmatic creative convergence, and two-stage formal handoff.
 
@@ -100,7 +100,7 @@ creativeController.submitProposalToWorkflow()
 - Modify: `tests/js/test_local_adapter.mjs`
 - Modify: `web/index.html`
 
-- [ ] **Step 1: Write failing router tests**
+- [x] **Step 1: Write failing router tests**
 
 Create `tests/js/test_conversation_router.mjs` with a VM loader matching the existing JS tests and these cases:
 
@@ -161,7 +161,7 @@ test("isKnownCommandHead reuses the argv table", () => {
 });
 ```
 
-- [ ] **Step 2: Run tests and observe the missing modules**
+- [x] **Step 2: Run tests and observe the missing modules**
 
 Run:
 
@@ -171,7 +171,7 @@ node --test tests/js/test_conversation_router.mjs tests/js/test_local_adapter.mj
 
 Expected: `test_conversation_router.mjs` fails because `web/conversation-router.js` does not exist; local adapter test fails because `isKnownCommandHead` is undefined.
 
-- [ ] **Step 3: Implement the router and command-head export**
+- [x] **Step 3: Implement the router and command-head export**
 
 Add this pure export beside `ARGV_TABLE` in `web/local.js` and expose it on the public API:
 
@@ -242,11 +242,11 @@ Create `web/conversation-router.js` with this state shape and behavior:
 
 Load `conversation-router.js` after `local.js` and before `app.js` in `web/index.html`.
 
-- [ ] **Step 4: Run focused tests**
+- [x] **Step 4: Run focused tests**
 
 Run the Step 2 command. Expected: all router and local adapter tests pass.
 
-- [ ] **Step 5: Commit Task 1**
+- [x] **Step 5: Commit Task 1**
 
 ```powershell
 git add web/conversation-router.js web/local.js web/index.html tests/js/test_conversation_router.mjs tests/js/test_local_adapter.mjs
@@ -267,7 +267,7 @@ git commit -m "feat: route terminal conversations deterministically"
 - Modify: `tests/js/test_local_adapter.mjs`
 - Modify: `tests/js/test_creative_adapter.mjs`
 
-- [ ] **Step 1: Write failing v1/v2 and route tests**
+- [x] **Step 1: Write failing v1/v2 and route tests**
 
 Add to `tests/test_creative_store.py`:
 
@@ -316,7 +316,7 @@ assert.deepEqual(JSON.parse(calls[0].opts.body), { conversation_state: state });
 
 and browser-storage fallback round-trips `conversation_state` through `NWCreative.boot()`.
 
-- [ ] **Step 2: Run the focused storage tests and verify failure**
+- [x] **Step 2: Run the focused storage tests and verify failure**
 
 ```powershell
 python -m unittest tests.test_creative_store tests.test_web_launcher.LocalApiTests
@@ -325,7 +325,7 @@ node --test tests/js/test_local_adapter.mjs tests/js/test_creative_adapter.mjs
 
 Expected: failures mention missing `conversation_state`, missing route, and missing JS methods.
 
-- [ ] **Step 3: Implement schema v2 and the narrow route**
+- [x] **Step 3: Implement schema v2 and the narrow route**
 
 In `scripts/creative_store.py` set `SCHEMA_VERSION = 2`, accept imported schemas `{1, 2}`, and add:
 
@@ -388,11 +388,11 @@ function writeConversationState(state) {
 
 Teach `persist` to call the local method and let browser/memory fallback use the existing full-session save.
 
-- [ ] **Step 4: Run focused storage tests**
+- [x] **Step 4: Run focused storage tests**
 
 Run Step 2. Expected: all focused Python and JS storage/API tests pass.
 
-- [ ] **Step 5: Commit Task 2**
+- [x] **Step 5: Commit Task 2**
 
 ```powershell
 git add scripts/creative_store.py scripts/launch_web.py web/local.js web/creative.js tests/test_creative_store.py tests/test_web_launcher.py tests/js/test_local_adapter.mjs tests/js/test_creative_adapter.mjs
@@ -408,7 +408,7 @@ git commit -m "feat: persist creative convergence state"
 - Create: `tests/js/test_creative_coverage.mjs`
 - Modify: `web/index.html`
 
-- [ ] **Step 1: Write failing coverage tests**
+- [x] **Step 1: Write failing coverage tests**
 
 Cover exact quote verification, conflict preservation, completed/effective counters, phase transitions, autonomy assumptions, and stale proposals:
 
@@ -448,7 +448,7 @@ test("critical coverage version makes an old proposal stale", () => {
 });
 ```
 
-- [ ] **Step 2: Run the coverage test and observe module-not-found**
+- [x] **Step 2: Run the coverage test and observe module-not-found**
 
 ```powershell
 node --test tests/js/test_creative_coverage.mjs
@@ -456,7 +456,7 @@ node --test tests/js/test_creative_coverage.mjs
 
 Expected: failure because `web/creative-coverage.js` does not exist.
 
-- [ ] **Step 3: Implement the pure ledger**
+- [x] **Step 3: Implement the pure ledger**
 
 Create the module with constants:
 
@@ -498,11 +498,11 @@ function deriveTransition(state) {
 
 Expose the shared API under `window.NWCreativeCoverage` and CommonJS, then load it after `creative.js` and before `creative-chat.js`.
 
-- [ ] **Step 4: Run coverage tests**
+- [x] **Step 4: Run coverage tests**
 
 Run Step 2. Expected: all coverage tests pass.
 
-- [ ] **Step 5: Commit Task 3**
+- [x] **Step 5: Commit Task 3**
 
 ```powershell
 git add web/creative-coverage.js web/index.html tests/js/test_creative_coverage.mjs
@@ -517,7 +517,7 @@ git commit -m "feat: add programmatic creative coverage ledger"
 - Modify: `web/llm.js`
 - Modify: `tests/js/test_llm_adapter.mjs`
 
-- [ ] **Step 1: Write failing extractor tests**
+- [x] **Step 1: Write failing extractor tests**
 
 Add tests that assert `extractCoverage`:
 
@@ -541,7 +541,7 @@ const extractionJson = JSON.stringify({
 });
 ```
 
-- [ ] **Step 2: Run the LLM adapter test and verify failure**
+- [x] **Step 2: Run the LLM adapter test and verify failure**
 
 ```powershell
 node --test tests/js/test_llm_adapter.mjs
@@ -549,7 +549,7 @@ node --test tests/js/test_llm_adapter.mjs
 
 Expected: `NWL.extractCoverage is not a function`.
 
-- [ ] **Step 3: Implement `extractCoverage`**
+- [x] **Step 3: Implement `extractCoverage`**
 
 Add a separate low-temperature request; do not reuse the creative reply or compiler response:
 
@@ -583,11 +583,11 @@ function extractCoverage(input) {
 
 Export `extractCoverage`. Keep `assessReadiness` temporarily for backward compatibility, but the controller must stop using it in Task 5.
 
-- [ ] **Step 4: Run LLM adapter tests**
+- [x] **Step 4: Run LLM adapter tests**
 
 Run Step 2. Expected: all tests pass, including existing provider compatibility cases.
 
-- [ ] **Step 5: Commit Task 4**
+- [x] **Step 5: Commit Task 4**
 
 ```powershell
 git add web/llm.js tests/js/test_llm_adapter.mjs
@@ -602,7 +602,7 @@ git commit -m "feat: extract cited creative evidence"
 - Modify: `web/creative-chat.js`
 - Modify: `tests/js/test_creative_chat.mjs`
 
-- [ ] **Step 1: Extend fake ports and write failing controller tests**
+- [x] **Step 1: Extend fake ports and write failing controller tests**
 
 Extend the fake view with `operations`, `coverage`, `guided`, and `stale` records. Add tests:
 
@@ -650,7 +650,7 @@ test("critical evidence change makes proposal stale and blocks handoff", async (
 });
 ```
 
-- [ ] **Step 2: Run controller tests and observe missing lifecycle/state APIs**
+- [x] **Step 2: Run controller tests and observe missing lifecycle/state APIs**
 
 ```powershell
 node --test tests/js/test_creative_chat.mjs
@@ -658,7 +658,7 @@ node --test tests/js/test_creative_chat.mjs
 
 Expected: failures for missing view lifecycle, storage state writes, extraction, and handoff guard.
 
-- [ ] **Step 3: Refactor the controller around the shared contracts**
+- [x] **Step 3: Refactor the controller around the shared contracts**
 
 Make `submit(text, options)` execute this order:
 
@@ -691,7 +691,7 @@ Expose `submitProposalToWorkflow`; it calls `NWCreativeCoverage.canHandoff`, wri
 
 Every `beginOperation` must be paired from a `finally`-equivalent path so success, provider error, timeout, book switch, and clear leave no busy state.
 
-- [ ] **Step 4: Run controller plus coverage tests**
+- [x] **Step 4: Run controller plus coverage tests**
 
 ```powershell
 node --test tests/js/test_creative_chat.mjs tests/js/test_creative_coverage.mjs
@@ -699,7 +699,7 @@ node --test tests/js/test_creative_chat.mjs tests/js/test_creative_coverage.mjs
 
 Expected: all tests pass.
 
-- [ ] **Step 5: Commit Task 5**
+- [x] **Step 5: Commit Task 5**
 
 ```powershell
 git add web/creative-chat.js tests/js/test_creative_chat.mjs
@@ -716,7 +716,7 @@ git commit -m "feat: converge creative sessions programmatically"
 - Modify: `web/index.html`
 - Modify: `tests/test_web_launcher.py`
 
-- [ ] **Step 1: Write failing geometry and lifecycle tests**
+- [x] **Step 1: Write failing geometry and lifecycle tests**
 
 Test the pure geometry reducer independently of DOM:
 
@@ -752,7 +752,7 @@ test("operation nodes are unique and always removable", () => {
 
 Add static asset assertions to `tests/test_web_launcher.py` for `id="creative-float"`, titlebar, minimize/close controls, resize handle, launcher button, `aria-live`, and `floating-chat.js` script inclusion.
 
-- [ ] **Step 2: Run tests and observe missing shell/assets**
+- [x] **Step 2: Run tests and observe missing shell/assets**
 
 ```powershell
 node --test tests/js/test_floating_chat.mjs
@@ -761,7 +761,7 @@ python -m unittest tests.test_web_launcher.WebLibraryPanelAssetTests
 
 Expected: missing module and missing DOM asset failures.
 
-- [ ] **Step 3: Implement geometry reducer and DOM shell**
+- [x] **Step 3: Implement geometry reducer and DOM shell**
 
 Implement constants exactly:
 
@@ -798,11 +798,11 @@ Add DOM IDs:
 
 Use `position: fixed`; set `z-index` above drawers; apply the existing `.chat-typing` three-dot markup from `beginOperation`. Under `prefers-reduced-motion`, keep static dots.
 
-- [ ] **Step 4: Run floating shell/static tests**
+- [x] **Step 4: Run floating shell/static tests**
 
 Run Step 2. Expected: all tests pass.
 
-- [ ] **Step 5: Commit Task 6**
+- [x] **Step 5: Commit Task 6**
 
 ```powershell
 git add web/floating-chat.js web/index.html tests/js/test_floating_chat.mjs tests/test_web_launcher.py
@@ -820,7 +820,7 @@ git commit -m "feat: add persistent desktop chat window"
 - Modify: `web/index.html`
 - Modify: `tests/test_web_launcher.py`
 
-- [ ] **Step 1: Write failing integration contracts**
+- [x] **Step 1: Write failing integration contracts**
 
 Create a source/VM integration test that asserts:
 
@@ -845,7 +845,7 @@ test("structured workbench is the default surface", () => {
 
 Extend static Python tests to assert the quick-card container exists inside the terminal panel and the old full-width `body.white main` default does not activate on boot.
 
-- [ ] **Step 2: Run integration/static tests and verify failure**
+- [x] **Step 2: Run integration/static tests and verify failure**
 
 ```powershell
 node --test tests/js/test_workbench_chat_integration.mjs
@@ -854,7 +854,7 @@ python -m unittest tests.test_web_launcher.WebLibraryPanelAssetTests
 
 Expected: missing integration functions/DOM contracts.
 
-- [ ] **Step 3: Wire the router, quick card, controller, and float shell**
+- [x] **Step 3: Wire the router, quick card, controller, and float shell**
 
 Expose a main quick-card view from `chat.js`:
 
@@ -901,7 +901,7 @@ Add a direct launcher-button path that opens the float shell and binds its compo
 
 On command, 15-minute timeout, book switch, or explicit end, call `router.reset(reason)`. Book switch also cancels UI operations and loads the new book before accepting another message.
 
-- [ ] **Step 4: Run integration plus controller/router tests**
+- [x] **Step 4: Run integration plus controller/router tests**
 
 ```powershell
 node --test tests/js/test_workbench_chat_integration.mjs tests/js/test_conversation_router.mjs tests/js/test_creative_chat.mjs tests/js/test_floating_chat.mjs
@@ -910,7 +910,7 @@ python -m unittest tests.test_web_launcher.WebLibraryPanelAssetTests
 
 Expected: all focused tests pass.
 
-- [ ] **Step 5: Commit Task 7**
+- [x] **Step 5: Commit Task 7**
 
 ```powershell
 git add web/app.js web/chat.js web/index.html tests/js/test_workbench_chat_integration.mjs tests/test_web_launcher.py
@@ -929,7 +929,7 @@ git commit -m "feat: promote continued chat into floating window"
 - Modify: `tests/js/test_creative_chat.mjs`
 - Modify: `tests/js/test_workbench_chat_integration.mjs`
 
-- [ ] **Step 1: Write failing handoff tests**
+- [x] **Step 1: Write failing handoff tests**
 
 Add controller tests:
 
@@ -956,7 +956,7 @@ test("valid proposal requires float submit then workbench execute", async () => 
 
 Add integration assertions that a handoff minimizes the float, switches/scrolls to the structured workbench, and renders the existing plan card; it must not call `NWB.runSmart` until the plan card execute action.
 
-- [ ] **Step 2: Run handoff tests and verify failure**
+- [x] **Step 2: Run handoff tests and verify failure**
 
 ```powershell
 node --test tests/js/test_creative_chat.mjs tests/js/test_workbench_chat_integration.mjs
@@ -964,7 +964,7 @@ node --test tests/js/test_creative_chat.mjs tests/js/test_workbench_chat_integra
 
 Expected: incomplete/stale handoff is not guarded or phase/minimize integration is missing.
 
-- [ ] **Step 3: Implement the two independent confirmation gates**
+- [x] **Step 3: Implement the two independent confirmation gates**
 
 In the float proposal card expose these actions:
 
@@ -986,11 +986,11 @@ window.NWC.offerExternalPlan(plan);
 
 The existing plan-card `执行` handler remains the only place that calls `NWB.runSmart`. After success, mark proposal `committed`; after failure, leave it `accepted` and display the core error.
 
-- [ ] **Step 4: Run handoff/controller tests**
+- [x] **Step 4: Run handoff/controller tests**
 
 Run Step 2. Expected: all tests pass and executor is still untouched before the second confirmation.
 
-- [ ] **Step 5: Commit Task 8**
+- [x] **Step 5: Commit Task 8**
 
 ```powershell
 git add web/creative-chat.js web/floating-chat.js web/chat.js web/app.js tests/js/test_creative_chat.mjs tests/js/test_workbench_chat_integration.mjs
@@ -1007,13 +1007,13 @@ git commit -m "feat: hand validated proposals to the workbench"
 - Modify: `CHANGELOG.md`
 - Modify: `tests/test_web_launcher.py`
 
-- [ ] **Step 1: Add failing final asset/security contracts**
+- [x] **Step 1: Add failing final asset/security contracts**
 
 Update `WebLibraryPanelAssetTests` to assert all new scripts load before `app.js`, the structured mode is default, quick/floating DOM controls exist, reduced-motion CSS exists, and the public handler still has no `/api/local/creative/*` routes.
 
 Add a deny-list-oriented assertion that the three new JS modules contain no key-shaped fixture or fixed provider endpoint.
 
-- [ ] **Step 2: Run final static contracts and verify documentation gaps**
+- [x] **Step 2: Run final static contracts and verify documentation gaps**
 
 ```powershell
 python -m unittest tests.test_web_launcher.WebLibraryPanelAssetTests tests.test_web_launcher.LocalApiTests
@@ -1021,7 +1021,7 @@ python -m unittest tests.test_web_launcher.WebLibraryPanelAssetTests tests.test_
 
 Expected before docs/assets are complete: one or more new static contract assertions fail.
 
-- [ ] **Step 3: Document the final behavior**
+- [x] **Step 3: Document the final behavior**
 
 Update documentation with these exact user-visible rules:
 
@@ -1036,7 +1036,7 @@ Update documentation with these exact user-visible rules:
 
 Add a concise Unreleased CHANGELOG entry. Do not duplicate the full design spec.
 
-- [ ] **Step 4: Run every JS and Python test plus release check**
+- [x] **Step 4: Run every JS and Python test plus release check**
 
 ```powershell
 $files = Get-ChildItem tests/js/test_*.mjs | Sort-Object Name
@@ -1050,7 +1050,7 @@ python scripts/release_check.py
 
 Expected: every JS suite passes; Python reports no failures; final output contains `RELEASE_CHECK_PASS`.
 
-- [ ] **Step 5: Commit Task 9**
+- [x] **Step 5: Commit Task 9**
 
 ```powershell
 git add README.md web/README.md CHANGELOG.md tests/test_web_launcher.py
@@ -1065,7 +1065,7 @@ git commit -m "docs: explain structured workbench conversations"
 - Modify only if acceptance reveals a defect: files owned by Tasks 1–9
 - Do not commit screenshots, logs, downloaded ZIPs, or QA books
 
-- [ ] **Step 1: Run headless local/public isolation acceptance**
+- [x] **Step 1: Run headless local/public isolation acceptance**
 
 ```powershell
 python _local_acceptance.py
@@ -1073,7 +1073,7 @@ python _local_acceptance.py
 
 Expected: all eight steps pass; local capabilities return 200 with token; public capabilities return 404; both ports and MCP child close cleanly.
 
-- [ ] **Step 2: Restart only this repository's launcher**
+- [x] **Step 2: Restart only this repository's launcher**
 
 Before stopping anything, inspect PID command lines for ports 8080/8081 and verify they belong to `F:\bookworkflow\scripts\launch_web.py`. Stop only that launcher and its verified descendants. Do not stop PID/name matches belonging to `F:\feishu_mcp` or ngrok.
 
@@ -1085,7 +1085,7 @@ Start-Process -FilePath "$env:ComSpec" -ArgumentList '/c','一键启动.cmd' -Wo
 
 Expected: 8080 and 8081 listen; one launcher-owned cloudflared process targets 8081; unrelated ngrok remains alive.
 
-- [ ] **Step 3: Verify page health in Browser before interaction**
+- [x] **Step 3: Verify page health in Browser before interaction**
 
 Using the Browser plugin, verify:
 
@@ -1095,7 +1095,7 @@ Using the Browser plugin, verify:
 - no relevant console error/warning;
 - desktop screenshot shows pipeline, terminal, and files as the main surface.
 
-- [ ] **Step 4: Verify quick reply and transactional promotion**
+- [x] **Step 4: Verify quick reply and transactional promotion**
 
 With an existing QA book or a clearly labeled QA turn:
 
@@ -1108,19 +1108,19 @@ With an existing QA book or a clearly labeled QA turn:
 7. verify the second reply and animation occur only in the float;
 8. reload and confirm conversation restores in the float but not as main quick cards.
 
-- [ ] **Step 5: Verify geometry and command isolation**
+- [x] **Step 5: Verify geometry and command isolation**
 
 Drag, resize, minimize, restore, scroll the main page, and reload. Confirm geometry persists and remains within 12px viewport bounds. Then submit one known command and one intentionally invalid `novel-workflow` command; both must stay in the terminal and neither may open the float.
 
-- [ ] **Step 6: Verify convergence and handoff without bypass**
+- [x] **Step 6: Verify convergence and handoff without bypass**
 
 Use seeded browser/controller fixtures for 6/10 thresholds if producing ten real model turns is costly. Verify guided mode, forced draft, incomplete submit disabled, autonomy assumptions visible, stale proposal blocking, first float confirmation, main plan card, and no core mutation before the final execute click.
 
-- [ ] **Step 7: Verify all animation termination paths**
+- [x] **Step 7: Verify all animation termination paths**
 
 Exercise success, provider error, timeout simulation, minimize during generation, close during generation, and book switch. After every path assert there is no `.chat-typing` node and send controls are enabled again.
 
-- [ ] **Step 8: Final repository audit and handoff commit if needed**
+- [x] **Step 8: Final repository audit and handoff commit if needed**
 
 ```powershell
 git diff --check

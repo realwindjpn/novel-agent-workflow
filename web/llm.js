@@ -660,6 +660,56 @@
   }
 
   /* ============================================================
+   * Structured coverage extraction — separate low-temperature
+   * request that returns cited evidence items. Does not reuse the
+   * creative reply or compiler response.
+   * ============================================================ */
+  var COVERAGE_FIELDS = ["premise", "protagonist", "central_conflict", "stakes", "world", "style_audience", "ending_direction"];
+  var COVERAGE_STATUSES = { candidate: 1, confirmed: 1, assumed: 1, conflicted: 1 };
+
+  function buildCoverageMessages(input) {
+    input = input || {};
+    var ctx = input.context || {};
+    var turns = (ctx.turns || []).slice(-10);
+    return [{
+      role: "system",
+      content: [
+        "从对话中抽取新增或修正的小说结构素材，只返回严格 JSON。",
+        "格式：{\"items\":[{\"field\":字段,\"value\":内容,\"status\":\"candidate|confirmed|assumed|conflicted\",\"evidence\":[{\"turn_id\":消息ID,\"quote\":消息中的逐字片段}]}]}",
+        "允许字段：" + COVERAGE_FIELDS.join(", "),
+        "不得编造 quote；没有可靠证据时返回 {\"items\":[]}",
+        "autonomy=" + (input.autonomy ? "true" : "false"),
+        JSON.stringify(turns)
+      ].join("\n")
+    }, { role: "user", content: "抽取本轮新增素材" }];
+  }
+
+  function validateExtraction(parsed) {
+    if (!parsed || !Array.isArray(parsed.items)) throw new ModelError("schema_error", "素材抽取缺少 items");
+    var allowed = {};
+    COVERAGE_FIELDS.forEach(function (f) { allowed[f] = 1; });
+    parsed.items.forEach(function (it) {
+      if (!it || typeof it !== "object") throw new ModelError("schema_error", "素材条目无效");
+      if (!allowed[it.field]) throw new ModelError("schema_error", "unknown field: " + it.field);
+      if (!COVERAGE_STATUSES[it.status]) throw new ModelError("schema_error", "unknown status: " + it.status);
+      if (!Array.isArray(it.evidence) || it.evidence.length === 0) throw new ModelError("schema_error", "素材缺少 evidence: " + it.field);
+    });
+    return parsed;
+  }
+
+  function extractCoverage(input) {
+    if (!isEnabled()) return Promise.reject(new ModelError("not_configured", "LLM 未启用"));
+    if (!getApiKey()) return Promise.reject(new ModelError("not_configured", "未设置 API key"));
+    var messages = buildCoverageMessages(input);
+    return requestText(messages, { temperature: 0.1, maxTokens: 1200, json: true })
+      .then(function (text) {
+        try { return extractJson(text); }
+        catch (e) { throw new ModelError("parse_error", (e && e.message) || "素材抽取返回非 JSON"); }
+      })
+      .then(validateExtraction);
+  }
+
+  /* ============================================================
    * Public surface
    * ============================================================ */
   window.NWL = {
@@ -674,6 +724,7 @@
     creativeReply: creativeReply,
     assessReadiness: assessReadiness,
     compileProposal: compileProposal,
+    extractCoverage: extractCoverage,
     ModelError: ModelError,
     INTAKE_KEYS: INTAKE_KEYS,
     testConnection: testConnection,

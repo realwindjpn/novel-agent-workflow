@@ -281,3 +281,113 @@ test("ModelError carries code and detail", () => {
   assert.match(e.detail, /30s/);
   assert.equal(typeof e.message, "string");
 });
+
+// ---------------- extractCoverage ----------------
+
+const COVERAGE_FIELDS = ["premise", "protagonist", "central_conflict", "stakes", "world", "style_audience", "ending_direction"];
+
+test("extractCoverage sends only bounded turns and the seven allowed field names", async () => {
+  const NWL = loadLLM({ content: JSON.stringify({ items: [] }) });
+  const turns = [];
+  for (let i = 0; i < 20; i++) turns.push({ id: "t" + i, role: i % 2 === 0 ? "user" : "assistant", text: "msg " + i });
+  await NWL.extractCoverage({ context: { turns }, autonomy: false });
+  const body = JSON.parse(NWL.__calls[0].opts.body);
+  const sysText = body.messages[0].content;
+  COVERAGE_FIELDS.forEach(function (f) { assert.ok(sysText.indexOf(f) >= 0, "field " + f + " should be in prompt"); });
+  // only last 10 turns sent
+  const turnsJson = sysText.split("\n").filter(function (l) { return l.indexOf("[") === 0; });
+  assert.ok(turnsJson.length <= 10, "should bound turns to last 10, got " + turnsJson.length);
+  assert.equal(body.temperature, 0.1);
+});
+
+test("extractCoverage returns empty items for valid empty extraction", async () => {
+  const NWL = loadLLM({ content: JSON.stringify({ items: [] }) });
+  const result = await NWL.extractCoverage({ context: { turns: [{ id: "u1", role: "user", text: "hi" }] }, autonomy: false });
+  assert.equal(result.items.length, 0);
+});
+
+test("extractCoverage accepts exact evidence records", async () => {
+  const extractionJson = JSON.stringify({
+    items: [{
+      field: "premise",
+      value: "未清理的犯罪现场成为家族秘密的钥匙",
+      status: "candidate",
+      evidence: [{ turn_id: "u1", quote: "犯罪现场成为家族秘密的钥匙" }]
+    }]
+  });
+  const NWL = loadLLM({ content: extractionJson });
+  const result = await NWL.extractCoverage({ context: { turns: [{ id: "u1", role: "user", text: "犯罪现场成为家族秘密的钥匙" }] }, autonomy: false });
+  assert.equal(result.items.length, 1);
+  assert.equal(result.items[0].field, "premise");
+  assert.equal(result.items[0].evidence[0].turn_id, "u1");
+});
+
+test("extractCoverage rejects unknown field with schema_error", async () => {
+  const NWL = loadLLM({ content: JSON.stringify({ items: [{ field: "mood", value: "v", status: "candidate", evidence: [{ turn_id: "u1", quote: "v" }] }] }) });
+  await assert.rejects(
+    NWL.extractCoverage({ context: { turns: [{ id: "u1", role: "user", text: "v" }] }, autonomy: false }),
+    (e) => e.code === "schema_error" && /field/i.test(e.message)
+  );
+});
+
+test("extractCoverage rejects unknown status with schema_error", async () => {
+  const NWL = loadLLM({ content: JSON.stringify({ items: [{ field: "premise", value: "v", status: "magic", evidence: [{ turn_id: "u1", quote: "v" }] }] }) });
+  await assert.rejects(
+    NWL.extractCoverage({ context: { turns: [{ id: "u1", role: "user", text: "v" }] }, autonomy: false }),
+    (e) => e.code === "schema_error" && /status/i.test(e.message)
+  );
+});
+
+test("extractCoverage rejects missing evidence with schema_error", async () => {
+  const NWL = loadLLM({ content: JSON.stringify({ items: [{ field: "premise", value: "v", status: "candidate" }] }) });
+  await assert.rejects(
+    NWL.extractCoverage({ context: { turns: [{ id: "u1", role: "user", text: "v" }] }, autonomy: false }),
+    (e) => e.code === "schema_error" && /evidence/i.test(e.message)
+  );
+});
+
+test("extractCoverage reports provider error as typed ModelError", async () => {
+  const NWL = loadLLM({ status: 500, body: "err" });
+  await assert.rejects(
+    NWL.extractCoverage({ context: { turns: [] }, autonomy: false }),
+    (e) => e.code === "provider_http" && e instanceof NWL.ModelError
+  );
+});
+
+test("extractCoverage reports parse error as typed ModelError", async () => {
+  const NWL = loadLLM({ content: "not json at all" });
+  await assert.rejects(
+    NWL.extractCoverage({ context: { turns: [] }, autonomy: false }),
+    (e) => e.code === "parse_error" || e.code === "schema_error"
+  );
+});
+
+test("extractCoverage reports schema_error when items missing", async () => {
+  const NWL = loadLLM({ content: JSON.stringify({ something: "else" }) });
+  await assert.rejects(
+    NWL.extractCoverage({ context: { turns: [] }, autonomy: false }),
+    (e) => e.code === "schema_error" && /items/i.test(e.message)
+  );
+});
+
+test("extractCoverage failure never changes a successful natural reply", async () => {
+  const NWL = loadLLMSequence([
+    { content: "先从旧案切入。" },
+    { content: "broken json" }
+  ]);
+  const reply = await NWL.creativeReply({ text: "继续", autonomy: false, context: {} });
+  assert.equal(reply.reply, "先从旧案切入。");
+  await assert.rejects(
+    NWL.extractCoverage({ context: { turns: [] }, autonomy: false }),
+    (e) => e instanceof NWL.ModelError
+  );
+  // reply unchanged
+  assert.equal(reply.reply, "先从旧案切入。");
+});
+
+test("extractCoverage sends autonomy flag in prompt", async () => {
+  const NWL = loadLLM({ content: JSON.stringify({ items: [] }) });
+  await NWL.extractCoverage({ context: { turns: [] }, autonomy: true });
+  const sysText = JSON.parse(NWL.__calls[0].opts.body).messages[0].content;
+  assert.match(sysText, /autonomy=true/);
+});

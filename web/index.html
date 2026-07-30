@@ -796,8 +796,45 @@
   #creative-float-launcher {
     position: fixed; right: 24px; bottom: 24px; z-index: 90;
     width: 52px; height: 52px; border-radius: 50%;
-    border: none; background: var(--violet, #6c5ce7); color: #fff;
-    font-size: 14px; cursor: pointer; box-shadow: 0 4px 14px rgba(0,0,0,.25);
+    border: 1px solid rgba(176, 157, 255, .72);
+    background: radial-gradient(circle at 34% 28%, #a997f0 0%, var(--violet) 44%, #6551b8 100%);
+    color: #fff; font: 700 15px/1 var(--mono); letter-spacing: .06em;
+    cursor: grab; user-select: none; touch-action: none;
+    box-shadow: 0 5px 18px rgba(142, 123, 216, .32);
+    animation: ai-launcher-breathe 3.2s cubic-bezier(.77, 0, .175, 1) infinite;
+    transition: transform 160ms cubic-bezier(.23, 1, .32, 1),
+                border-color 160ms ease,
+                box-shadow 160ms ease,
+                background-color 160ms ease;
+    will-change: transform;
+  }
+  @keyframes ai-launcher-breathe {
+    0%, 100% { transform: translateY(0); box-shadow: 0 5px 18px rgba(142, 123, 216, .32); }
+    50% { transform: translateY(-3px); box-shadow: 0 9px 26px rgba(142, 123, 216, .55); }
+  }
+  @media (hover: hover) and (pointer: fine) {
+    #creative-float-launcher:hover {
+      animation: none;
+      transform: translateY(-2px) scale(1.06);
+      border-color: rgba(213, 204, 255, .96);
+      box-shadow: 0 10px 30px rgba(142, 123, 216, .62), 0 0 0 4px rgba(142, 123, 216, .12);
+    }
+  }
+  #creative-float-launcher.is-pressed,
+  #creative-float-launcher:active:not(.is-dragging) {
+    animation: none;
+    transform: scale(.97);
+  }
+  #creative-float-launcher.is-dragging {
+    animation: none;
+    cursor: grabbing;
+    transform: scale(1.03);
+    border-color: rgba(226, 220, 255, 1);
+    box-shadow: 0 12px 34px rgba(142, 123, 216, .68), 0 0 0 5px rgba(142, 123, 216, .15);
+  }
+  #creative-float-launcher:focus-visible {
+    outline: 2px solid var(--signal);
+    outline-offset: 4px;
   }
   #creative-float {
     position: fixed; z-index: 100; display: flex; flex-direction: column;
@@ -840,7 +877,12 @@
   }
   .quick-continuation-hint { color: var(--text-2); font-size: 11px; padding: 3px 2px 8px; }
   @media (prefers-reduced-motion: reduce) {
-    #creative-float, #creative-float-launcher { transition: none; }
+    #creative-float { transition: none; }
+    #creative-float-launcher {
+      animation: none;
+      transform: none;
+      transition: border-color 120ms ease, box-shadow 120ms ease, background-color 120ms ease;
+    }
   }
 </style>
 </head>
@@ -1031,7 +1073,7 @@
 
   <div id="toast" role="status" aria-live="polite"></div>
 
-  <button id="creative-float-launcher" aria-label="打开自由对话">对话</button>
+  <button id="creative-float-launcher" aria-label="打开自由对话">AI</button>
   <section id="creative-float" hidden aria-label="自由对话窗口">
     <header id="creative-float-titlebar">
       <strong>自由对话</strong>

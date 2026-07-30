@@ -83,6 +83,16 @@ test("float launcher opens the float shell directly", () => {
   assert.match(appSource, /floatChat\.open/);
 });
 
+test("AI launcher is draggable, animated, and independent from outside clicks", () => {
+  assert.match(htmlSource, /id="creative-float-launcher"[^>]*>AI<\/button>/);
+  assert.match(htmlSource, /@keyframes ai-launcher-breathe/);
+  assert.match(htmlSource, /#creative-float-launcher\.is-dragging/);
+  assert.match(htmlSource, /@media \(hover: hover\) and \(pointer: fine\)/);
+  assert.match(htmlSource, /prefers-reduced-motion:[^}]+[\s\S]*#creative-float-launcher/);
+  assert.match(appSource, /floatChat\.bindLauncher/);
+  assert.doesNotMatch(appSource, /document\.addEventListener\("click"[\s\S]{0,300}floatChat\.minimize/);
+});
+
 test("command path resets the conversation router", () => {
   assert.match(appSource, /conversationRouter\.reset\("command"\)/);
 });

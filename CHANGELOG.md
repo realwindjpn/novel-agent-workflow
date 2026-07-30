@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Polished the desktop free-chat entry into a draggable `AI` launcher with
+  browser-persisted, viewport-clamped position, restrained hover/press and
+  breathing feedback, and reduced-motion support. Dragging cannot misfire the
+  open action, and an open floating conversation remains resident when the
+  user clicks elsewhere on the workbench.
 - Fixed Windows acceptance defects in the structured workbench: successful
   creative replies now reach the main quick card and floating window, model
   errors remain visible, floating conversations restore with persistent

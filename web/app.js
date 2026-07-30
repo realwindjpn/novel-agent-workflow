@@ -1353,13 +1353,16 @@
   var floatLauncher = document.getElementById("creative-float-launcher");
   var floatClose = document.getElementById("creative-float-close");
   var floatMinimize = document.getElementById("creative-float-minimize");
-  if (floatLauncher) floatLauncher.addEventListener("click", function () {
-    var fc = ensureFloatChat();
-    if (!fc) return;
-    var dir = (window.NWLocal && window.NWLocal.capabilities) ? window.NWLocal.capabilities.active_directory : "";
-    if (dir) floatChat.open(dir);
-    else { floatChat.open("placeholder"); }
-  });
+  if (floatLauncher) {
+    var launcherShell = ensureFloatChat();
+    if (launcherShell && launcherShell.bindLauncher) {
+      floatChat.bindLauncher(floatLauncher, function () {
+        var dir = (window.NWLocal && window.NWLocal.capabilities)
+          ? window.NWLocal.capabilities.active_directory : "";
+        floatChat.open(dir || "placeholder");
+      });
+    }
+  }
   if (floatClose) floatClose.addEventListener("click", function () {
     if (floatChat) { floatChat.minimize(); }
   });

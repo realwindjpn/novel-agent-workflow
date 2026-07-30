@@ -25,7 +25,7 @@
 - Modify: `tests/js/test_floating_chat.mjs`
 - Modify: `web/floating-chat.js`
 
-- [ ] **Step 1: Add failing position and drag tests**
+- [x] **Step 1: Add failing position and drag tests**
 
 Add tests that exercise the public contracts directly:
 
@@ -72,7 +72,7 @@ test("launcher click activates below the five-pixel drag threshold", () => {
 
 Extend fake elements with `setPointerCapture`, `releasePointerCapture`, `hasPointerCapture`, and a fake `defaultView` resize target. The `pointer()` helper returns `{pointerId, button: 0, isPrimary: true, clientX, clientY, preventDefault(){}}`.
 
-- [ ] **Step 2: Run the focused test and observe failure**
+- [x] **Step 2: Run the focused test and observe failure**
 
 Run:
 
@@ -82,7 +82,7 @@ node --test tests/js/test_floating_chat.mjs
 
 Expected: FAIL because `clampLauncherPosition`, `LAUNCHER_STORAGE_KEY`, and `bindLauncher` do not exist.
 
-- [ ] **Step 3: Implement the launcher controller**
+- [x] **Step 3: Implement the launcher controller**
 
 Add these constants and pure reducer to `web/floating-chat.js`:
 
@@ -118,11 +118,11 @@ Inside `createWindow()`, implement `bindLauncher(element, onActivate)` with thes
 
 Expose `clampLauncherPosition`, `LAUNCHER_STORAGE_KEY`, and the launcher constants from the module API.
 
-- [ ] **Step 4: Run focused tests**
+- [x] **Step 4: Run focused tests**
 
 Run the Step 2 command. Expected: all floating-chat tests pass.
 
-- [ ] **Step 5: Commit Task 1**
+- [x] **Step 5: Commit Task 1**
 
 ```powershell
 git add web/floating-chat.js tests/js/test_floating_chat.mjs
@@ -137,7 +137,7 @@ git commit -m "feat: make AI chat launcher draggable"
 - Modify: `web/index.html`
 - Modify: `CHANGELOG.md`
 
-- [ ] **Step 1: Add failing static contracts**
+- [x] **Step 1: Add failing static contracts**
 
 Add assertions:
 
@@ -152,7 +152,7 @@ test("AI launcher is draggable, animated, and independent from outside clicks", 
 });
 ```
 
-- [ ] **Step 2: Run and observe failure**
+- [x] **Step 2: Run and observe failure**
 
 ```powershell
 node --test tests/js/test_workbench_chat_integration.mjs
@@ -160,7 +160,7 @@ node --test tests/js/test_workbench_chat_integration.mjs
 
 Expected: FAIL because the button still says `对话`, has no launcher animation, and app wiring still uses a direct click listener.
 
-- [ ] **Step 3: Wire the controller and add motion CSS**
+- [x] **Step 3: Wire the controller and add motion CSS**
 
 In `web/app.js`, replace the direct launcher click listener with:
 
@@ -188,7 +188,7 @@ Gate hover under `@media (hover: hover) and (pointer: fine)`, pause motion while
 
 Add an Unreleased CHANGELOG bullet covering draggable saved position, motion feedback, reduced-motion, and outside-click permanence.
 
-- [ ] **Step 4: Run JS regression**
+- [x] **Step 4: Run JS regression**
 
 ```powershell
 node --test tests/js/*.mjs
@@ -196,7 +196,7 @@ node --test tests/js/*.mjs
 
 Expected: all JS tests pass.
 
-- [ ] **Step 5: Commit Task 2**
+- [x] **Step 5: Commit Task 2**
 
 ```powershell
 git add CHANGELOG.md web/app.js web/index.html tests/js/test_workbench_chat_integration.mjs
@@ -209,11 +209,11 @@ git commit -m "feat: polish AI chat launcher interaction"
 - Modify only if acceptance exposes a defect: files from Tasks 1–2
 - Do not commit screenshots or local QA data
 
-- [ ] **Step 1: Reload the running local page**
+- [x] **Step 1: Reload the running local page**
 
 Open `http://localhost:8080/`, reload after the code changes, and verify the title plus meaningful structured-workbench DOM and zero relevant console warnings/errors.
 
-- [ ] **Step 2: Verify pointer and persistence behavior**
+- [x] **Step 2: Verify pointer and persistence behavior**
 
 At a 1280×720 desktop viewport:
 
@@ -225,11 +225,11 @@ At a 1280×720 desktop viewport:
 6. click the pipeline and terminal outside the chat and verify the chat remains visible;
 7. use the explicit minimize button and verify only then it hides.
 
-- [ ] **Step 3: Verify reduced-motion and viewport clamp contracts**
+- [x] **Step 3: Verify reduced-motion and viewport clamp contracts**
 
 Use the automated reducer tests for reduced-motion/static contracts and resize clamp. Confirm the visible button remains within the 12px viewport edge after reload.
 
-- [ ] **Step 4: Run final checks**
+- [x] **Step 4: Run final checks**
 
 ```powershell
 node --test tests/js/*.mjs
@@ -240,7 +240,7 @@ git status -sb
 
 Expected: all JS tests pass, `RELEASE_CHECK_PASS`, no whitespace errors, and only the plan checkbox update remains.
 
-- [ ] **Step 5: Mark plan complete, commit, and push**
+- [x] **Step 5: Mark plan complete, commit, and push**
 
 Change every completed checkbox in this plan to `[x]`, then:
 

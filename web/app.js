@@ -792,6 +792,126 @@
   };
 
   /* ---------------- input wiring ---------------- */
+  var conversationRouter = null;
+  var floatChat = null;
+  var quickSessionId = null;
+
+  function ensureConversationRouter() {
+    if (conversationRouter) return conversationRouter;
+    if (!window.NWConversationRouter) return null;
+    var isKnown = (window.NWLocal && window.NWLocal.isKnownCommandHead)
+      ? window.NWLocal.isKnownCommandHead
+      : function () { return false; };
+    conversationRouter = window.NWConversationRouter.createRouter({
+      isKnownCommandHead: isKnown,
+    });
+    return conversationRouter;
+  }
+
+  function ensureFloatChat() {
+    if (floatChat) return floatChat;
+    if (!window.NWFloatChat) return null;
+    floatChat = window.NWFloatChat.createWindow({
+      document: document,
+      storage: (function () {
+        try { return window.localStorage; } catch (e) { return null; }
+      })(),
+      viewport: { width: window.innerWidth, height: window.innerHeight },
+      onSubmit: function (text) {
+        if (!text || !text.trim()) return;
+        submitToFloat(text);
+      },
+      onAction: function () {},
+    });
+    return floatChat;
+  }
+
+  /* First natural-language round: render a temporary quick card in the main
+   * terminal panel, drive the creative controller, complete the router only
+   * after both turns are persisted. */
+  function startQuickConversation(v, decision) {
+    var router = ensureConversationRouter();
+    var qc = window.NWQuickChat;
+    if (!qc || !creativeController) {
+      enqueue(function () { return handleLine(v); });
+      return;
+    }
+    quickSessionId = decision.sessionId;
+    var userTurnId = "q-" + quickSessionId + "-u1";
+    qc.begin(quickSessionId, { id: userTurnId, text: v });
+    qc.beginOperation(quickSessionId);
+    creativeController.submit(v, { surface: "main" }).then(function (reply) {
+      var assistantTurnId = "q-" + quickSessionId + "-a1";
+      qc.complete(quickSessionId, { id: assistantTurnId, text: reply });
+      if (router) router.completeQuickRound({
+        sessionId: quickSessionId,
+        userTurnId: userTurnId,
+        assistantTurnId: assistantTurnId,
+        completedAt: Date.now(),
+      });
+    }, function (err) {
+      qc.fail(quickSessionId, err);
+    });
+  }
+
+  /* Second natural input: migrate the first round into the float shell
+   * BEFORE issuing the model reply, then remove main nodes only after the
+   * migration acknowledges rendering. */
+  function promoteQuickConversation(v, decision) {
+    var router = ensureConversationRouter();
+    var fc = ensureFloatChat();
+    var qc = window.NWQuickChat;
+    if (!fc || !qc || !creativeController || !quickSessionId) {
+      enqueue(function () { return handleLine(v); });
+      return;
+    }
+    // resolve the two stored turn ids from the creative session
+    var session = (window.NWCreative && window.NWCreative.session) ? window.NWCreative.session() : null;
+    var turns = (session && session.turns) ? session.turns : [];
+    var pendingUserTurn = { id: "q-" + decision.sessionId + "-u2", role: "user", text: v };
+    // append/persist the second user turn exactly once via the controller
+    var migrateResult = fc.migrate({ turns: turns, pendingUserTurn: pendingUserTurn });
+    if (migrateResult && migrateResult.rendered) {
+      removeQuickConversation(quickSessionId);
+      // call the controller for the assistant half without re-appending the second user turn
+      creativeController.submit(v, { surface: "floating" }).then(function (reply) {
+        fc.endOperation({ kind: "reply", outcome: "success" });
+      }, function (err) {
+        fc.endOperation({ kind: "reply", outcome: "error" });
+      });
+      fc.beginOperation({ kind: "reply" });
+      quickSessionId = null;
+    } else {
+      // migration failed — retain/collapse the main card and expose Retry
+      qc.collapse(quickSessionId);
+    }
+  }
+
+  function removeQuickConversation(sessionId) {
+    var qc = window.NWQuickChat;
+    if (qc) qc.remove(sessionId);
+  }
+
+  function cancelConversationUi(reason) {
+    var router = ensureConversationRouter();
+    if (router) router.reset(reason);
+    if (quickSessionId && window.NWQuickChat) {
+      window.NWQuickChat.remove(quickSessionId);
+      quickSessionId = null;
+    }
+  }
+
+  function submitToFloat(text) {
+    if (!creativeController) return;
+    var fc = ensureFloatChat();
+    if (fc) fc.beginOperation({ kind: "reply" });
+    creativeController.submit(text, { surface: "floating" }).then(function () {
+      if (fc) fc.endOperation({ kind: "reply", outcome: "success" });
+    }, function () {
+      if (fc) fc.endOperation({ kind: "reply", outcome: "error" });
+    });
+  }
+
   termInput.addEventListener("keydown", function (ev) {
     if (ev.key === "Enter") {
       ev.preventDefault();
@@ -799,7 +919,20 @@
       termInput.value = "";
       if (v.trim() === "") return;
       history.push(v); histIdx = history.length;
-      enqueue(function () { return handleLine(v); });
+      var router = ensureConversationRouter();
+      if (router && creativeController) {
+        var classification = conversationRouter.classify(v);
+        if (classification.kind === "command") {
+          conversationRouter.reset("command");
+          enqueue(function () { return handleLine(v); });
+          return;
+        }
+        var decision = conversationRouter.beginNatural(v);
+        if (decision.surface === "main") startQuickConversation(v, decision);
+        else promoteQuickConversation(v, decision);
+      } else {
+        enqueue(function () { return handleLine(v); });
+      }
     } else if (ev.key === "ArrowUp") {
       ev.preventDefault();
       if (history.length === 0) return;
@@ -1145,6 +1278,8 @@
   var creativeBookDirectory = "";
 
   function bootCreativeForActiveBook() {
+    // book switch cancels any in-flight main quick conversation
+    cancelConversationUi("book-switch");
     if (!window.NWCreativeChat || !window.NWLocal || !window.NWLocal.capabilities) return Promise.resolve();
     var directory = window.NWLocal.capabilities.active_directory || "";
     if (!directory) {
@@ -1169,6 +1304,24 @@
       return creativeController.submit(text);
     }
   };
+
+  // Floating chat launcher / controls (Task 6+7)
+  var floatLauncher = document.getElementById("creative-float-launcher");
+  var floatClose = document.getElementById("creative-float-close");
+  var floatMinimize = document.getElementById("creative-float-minimize");
+  if (floatLauncher) floatLauncher.addEventListener("click", function () {
+    var fc = ensureFloatChat();
+    if (!fc) return;
+    var dir = (window.NWLocal && window.NWLocal.capabilities) ? window.NWLocal.capabilities.active_directory : "";
+    if (dir) floatChat.open(dir);
+    else { floatChat.open("placeholder"); }
+  });
+  if (floatClose) floatClose.addEventListener("click", function () {
+    if (floatChat) { floatChat.minimize(); }
+  });
+  if (floatMinimize) floatMinimize.addEventListener("click", function () {
+    if (floatChat) floatChat.minimize();
+  });
 
   // Drawer toggles (persist in session, not per book)
   var progressToggle = document.getElementById("creative-progress-toggle");

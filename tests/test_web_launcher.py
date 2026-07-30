@@ -141,6 +141,30 @@ class WebLibraryPanelAssetTests(unittest.TestCase):
     def test_reduced_motion_css_exists(self):
         self.assertIn("prefers-reduced-motion", self.html)
 
+    def test_quick_card_container_inside_terminal_panel(self):
+        # the quick-card area must live inside the terminal panel
+        idx_term = self.html.index('id="term-panel"')
+        idx_quick = self.html.index('id="quick-card-area"')
+        idx_input_row = self.html.index('id="term-input-row"', idx_term)
+        self.assertGreater(idx_quick, idx_term, "quick-card-area must be inside term-panel")
+        self.assertLess(idx_quick, idx_input_row, "quick-card-area must precede term-input-row")
+
+    def test_quick_chat_api_exposed_from_chat_js(self):
+        self.assertIn("NWQuickChat", self.chat_js)
+        self.assertIn("data-quick-session", self.chat_js)
+        self.assertIn("data-turn-id", self.chat_js)
+
+    def test_app_wires_conversation_router_to_terminal(self):
+        self.assertIn("conversationRouter.classify(v)", self.app_js)
+        self.assertIn('classification.kind === "command"', self.app_js)
+        self.assertIn("startQuickConversation(v", self.app_js)
+        self.assertIn("promoteQuickConversation(v", self.app_js)
+        self.assertIn('conversationRouter.reset("command")', self.app_js)
+
+    def test_structured_mode_is_default_on_boot(self):
+        # boot must not force white mode
+        self.assertIn('id="mode-enc" class="on"', self.html)
+
     def test_public_handler_has_no_local_creative_routes(self):
         # the public (no-token) handler must never expose /api/local/creative/*
         bridge = (

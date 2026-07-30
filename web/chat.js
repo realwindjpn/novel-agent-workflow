@@ -811,6 +811,81 @@
     pending = { kind: "plan", plan: plan, div: d };
   }
 
+  /* ---- NWQuickChat: main-window temporary quick-reply cards (Task 7) ----
+   * First natural-language round renders here inside the terminal panel.
+   * On second natural input the nodes are removed transactionally after the
+   * float shell acknowledges migration. Nodes carry data-quick-session and
+   * data-turn-id so removal is scoped to one session only. */
+  var quickArea = document.getElementById("quick-card-area");
+  var quickSessions = {};   // sessionId -> { nodeIds: [] }
+
+  function qNode(sessionId, turnId, role) {
+    var div = document.createElement("div");
+    div.className = "chat-msg chat-" + (role === "user" ? "user" : "assistant");
+    div.setAttribute("data-quick-session", sessionId);
+    div.setAttribute("data-turn-id", turnId);
+    if (quickArea) quickArea.appendChild(div);
+    return div;
+  }
+
+  function qTyping(sessionId) {
+    var div = document.createElement("div");
+    div.className = "chat-typing";
+    div.setAttribute("data-quick-session", sessionId);
+    div.setAttribute("data-quick-busy", "1");
+    var d1 = document.createElement("i");
+    var d2 = document.createElement("i");
+    var d3 = document.createElement("i");
+    div.appendChild(d1); div.appendChild(d2); div.appendChild(d3);
+    if (quickArea) quickArea.appendChild(div);
+    return div;
+  }
+
+  window.NWQuickChat = {
+    begin: function (sessionId, userTurn) {
+      quickSessions[sessionId] = { nodeIds: [] };
+      var n = qNode(sessionId, userTurn.id, "user");
+      n.textContent = userTurn.text;
+      quickSessions[sessionId].nodeIds.push(userTurn.id);
+    },
+    beginOperation: function (sessionId) {
+      qTyping(sessionId);
+    },
+    complete: function (sessionId, assistantTurn) {
+      // remove busy typing node
+      if (quickArea) {
+        var busy = quickArea.querySelectorAll('[data-quick-busy="1"][data-quick-session="' + sessionId + '"]');
+        busy.forEach(function (n) { n.remove(); });
+      }
+      var n = qNode(sessionId, assistantTurn.id, "assistant");
+      n.textContent = assistantTurn.text;
+      if (quickSessions[sessionId]) quickSessions[sessionId].nodeIds.push(assistantTurn.id);
+    },
+    fail: function (sessionId, error) {
+      if (quickArea) {
+        var busy = quickArea.querySelectorAll('[data-quick-busy="1"][data-quick-session="' + sessionId + '"]');
+        busy.forEach(function (n) { n.remove(); });
+      }
+      var n = qNode(sessionId, "error-" + sessionId, "assistant");
+      n.textContent = "⚠ " + (error && error.message ? error.message : "出错了");
+      n.style.opacity = "0.7";
+    },
+    getTurnIds: function (sessionId) {
+      return quickSessions[sessionId] ? quickSessions[sessionId].nodeIds.slice() : [];
+    },
+    remove: function (sessionId) {
+      if (!quickArea) return;
+      var nodes = quickArea.querySelectorAll('[data-quick-session="' + sessionId + '"]');
+      nodes.forEach(function (n) { n.remove(); });
+      delete quickSessions[sessionId];
+    },
+    collapse: function (sessionId) {
+      if (!quickArea) return;
+      var nodes = quickArea.querySelectorAll('[data-quick-session="' + sessionId + '"]');
+      nodes.forEach(function (n) { n.style.opacity = "0.5"; });
+    }
+  };
+
   window.NWC = { setMode: setMode, refresh: refreshStateSummary, offerExternalPlan: offerExternalPlan };
 
   /* v4: wire up the LLM settings popover + badge (llm.js's IIFE has

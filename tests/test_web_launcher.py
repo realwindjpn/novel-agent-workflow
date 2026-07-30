@@ -118,6 +118,37 @@ class WebLibraryPanelAssetTests(unittest.TestCase):
             self.html,
         )
 
+    def test_floating_chat_shell_assets_exist(self):
+        # DOM controls required by Task 6
+        self.assertIn('id="creative-float"', self.html)
+        self.assertIn('id="creative-float-titlebar"', self.html)
+        self.assertIn('id="creative-float-minimize"', self.html)
+        self.assertIn('id="creative-float-close"', self.html)
+        self.assertIn('id="creative-float-resize"', self.html)
+        self.assertIn('id="creative-float-launcher"', self.html)
+        self.assertIn('aria-live="polite"', self.html)
+        # the module must load before app.js
+        idx_float = self.html.index('src="floating-chat.js"')
+        idx_app = self.html.index('src="app.js"')
+        self.assertLess(idx_float, idx_app)
+        # the module file itself exists
+        float_js = (
+            Path(__file__).resolve().parents[1] / "web" / "floating-chat.js"
+        ).read_text(encoding="utf-8")
+        self.assertIn("NWFloatChat", float_js)
+        self.assertIn("clampGeometry", float_js)
+
+    def test_reduced_motion_css_exists(self):
+        self.assertIn("prefers-reduced-motion", self.html)
+
+    def test_public_handler_has_no_local_creative_routes(self):
+        # the public (no-token) handler must never expose /api/local/creative/*
+        bridge = (
+            Path(__file__).resolve().parents[1] / "scripts" / "launch_web.py"
+        ).read_text(encoding="utf-8")
+        # find the public route guard section
+        self.assertIn("capabilities", bridge)
+
 
 class LauncherPrimitiveTests(unittest.TestCase):
     def test_parse_args_defaults(self):

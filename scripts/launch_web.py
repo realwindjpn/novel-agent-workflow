@@ -342,6 +342,8 @@ class LocalApi:
                 self._serve_creative_turn(handler)
             elif route == ("POST", "creative/state"):
                 self._serve_creative_state(handler)
+            elif route == ("POST", "creative/conversation-state"):
+                self._serve_creative_conversation_state(handler)
             elif route == ("POST", "creative/proposal"):
                 self._serve_creative_proposal(handler)
             elif route == ("POST", "creative/draft"):
@@ -622,6 +624,16 @@ class LocalApi:
             return
         store = self._creative_store()
         store.write_state(summary, facts)
+        self._send_json(handler, 200, {"ok": True})
+
+    def _serve_creative_conversation_state(self, handler: BaseHTTPRequestHandler) -> None:
+        body = self._read_json(handler)
+        state = body.get("conversation_state")
+        if not isinstance(state, dict):
+            self._send_error(handler, 400, "bad_request", "conversation_state is required.")
+            return
+        store = self._creative_store()
+        store.write_conversation_state(state)
         self._send_json(handler, 200, {"ok": True})
 
     def _serve_creative_proposal(self, handler: BaseHTTPRequestHandler) -> None:

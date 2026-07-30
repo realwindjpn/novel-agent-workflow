@@ -442,6 +442,26 @@ test("appendCreativeTurn POSTs turn body to creative/turn", async () => {
   assert.equal(result.id, "t1");
 });
 
+test("writeCreativeConversationState POSTs conversation_state to its route", async () => {
+  const calls = [];
+  const NWL = loadLocalWithFetch(
+    { apiBase: "/api/local", token: "tk-test" },
+    (url, opts) => {
+      calls.push({ url, opts });
+      return Promise.resolve({
+        ok: true,
+        text: () => Promise.resolve(JSON.stringify({ ok: true })),
+      });
+    }
+  );
+  const state = { phase: "collecting", completed_rounds: 2, effective_rounds: 1, coverage_version: 1, coverage: {}, active_proposal_id: null };
+  await NWL.writeCreativeConversationState(state);
+  assert.equal(calls[0].url, "/api/local/creative/conversation-state");
+  assert.equal(calls[0].opts.method, "POST");
+  assert.equal(calls[0].opts.headers["Authorization"], "Bearer tk-test");
+  assert.deepEqual(JSON.parse(calls[0].opts.body), { conversation_state: state });
+});
+
 test("exportCreativeBackup returns ArrayBuffer from raw response", async () => {
   const fakeBuffer = new ArrayBuffer(4);
   const NWL = loadLocalWithFetch(

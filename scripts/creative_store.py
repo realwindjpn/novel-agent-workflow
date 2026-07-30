@@ -25,13 +25,26 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Mapping
 
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2
+IMPORTABLE_SCHEMA_VERSIONS = {1, 2}
 MAX_TURNS = 10_000
 MAX_TEXT_BYTES = 256 * 1024
 MAX_ARCHIVE_BYTES = 8 * 1024 * 1024
 MAX_ARCHIVE_ENTRIES = 256
 MAX_UNPACKED_BYTES = 16 * 1024 * 1024
 ID_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{0,79}$")
+
+# Conversation-state phases for the programmatic creative convergence
+# state machine. The store only validates shape; transitions are decided
+# by the pure coverage ledger in web/creative-coverage.js.
+PHASES = {
+    "exploring",
+    "collecting",
+    "guided",
+    "proposal-ready",
+    "proposal",
+    "handed-off",
+}
 
 
 class CreativeStoreError(ValueError):
@@ -44,6 +57,17 @@ def _empty_facts() -> dict[str, list[str]]:
         "boundaries": [],
         "rejected": [],
         "important_turn_ids": [],
+    }
+
+
+def _empty_conversation_state() -> dict[str, Any]:
+    return {
+        "phase": "exploring",
+        "completed_rounds": 0,
+        "effective_rounds": 0,
+        "coverage_version": 0,
+        "coverage": {},
+        "active_proposal_id": None,
     }
 
 
@@ -63,6 +87,7 @@ class CreativeStore:
                 "facts": _empty_facts(),
                 "proposals": [],
                 "drafts": [],
+                "conversation_state": _empty_conversation_state(),
             }
         return self._read_existing_session()
 
@@ -75,13 +100,24 @@ class CreativeStore:
                 if line.strip():
                     turns.append(json.loads(line))
         return {
-            "schema_version": int(manifest.get("schema_version", SCHEMA_VERSION)),
+            "schema_version": SCHEMA_VERSION,
             "turns": turns,
             "summary": self._read_text(self.root / "context-summary.md"),
             "facts": self._read_json(self.root / "facts.json", _empty_facts()),
             "proposals": self._read_collection("proposals"),
             "drafts": self._read_collection("drafts"),
+            "conversation_state": self._read_conversation_state(),
         }
+
+    def _read_conversation_state(self) -> dict[str, Any]:
+        stored = self._read_json(
+            self.root / "conversation-state.json", None
+        )
+        if not isinstance(stored, dict):
+            return _empty_conversation_state()
+        clean = dict(_empty_conversation_state())
+        clean.update(stored)
+        return clean
 
     def _read_collection(self, name: str) -> list[dict[str, Any]]:
         directory = self.root / name
@@ -128,6 +164,32 @@ class CreativeStore:
         self._ensure_root()
         self._atomic_text(self.root / "context-summary.md", summary)
         self._atomic_json(self.root / "facts.json", clean)
+        self._write_manifest()
+
+    def write_conversation_state(self, state: Mapping[str, Any]) -> None:
+        """Persist the programmatic creative convergence state.
+
+        The store validates shape only (phase, non-negative integer
+        counters, object coverage, null-or-string proposal id); the
+        pure coverage ledger decides transitions. ``state`` is merged
+        over the empty defaults so callers may pass partial states.
+        """
+        clean = dict(_empty_conversation_state())
+        clean.update(dict(state))
+        if clean["phase"] not in PHASES:
+            raise CreativeStoreError("conversation state phase is invalid")
+        for key in ("completed_rounds", "effective_rounds", "coverage_version"):
+            value = clean[key]
+            if not isinstance(value, int) or isinstance(value, bool) or value < 0:
+                raise CreativeStoreError(f"{key} must be a non-negative integer")
+        if not isinstance(clean["coverage"], dict):
+            raise CreativeStoreError("coverage must be an object")
+        if clean["active_proposal_id"] is not None and not isinstance(
+            clean["active_proposal_id"], str
+        ):
+            raise CreativeStoreError("active_proposal_id must be a string or null")
+        self._ensure_root()
+        self._atomic_json(self.root / "conversation-state.json", clean)
         self._write_manifest()
 
     def write_proposal(self, proposal: Mapping[str, Any]) -> dict[str, Any]:
@@ -205,6 +267,9 @@ class CreativeStore:
                 "proposal_count": len(session["proposals"]),
                 "draft_count": len(session["drafts"]),
             }, ensure_ascii=False, indent=2) + "\n",
+            "creative-backup/conversation-state.json": json.dumps(
+                session["conversation_state"], ensure_ascii=False, indent=2
+            ) + "\n",
             "creative-backup/conversation.jsonl": "".join(
                 json.dumps(turn, ensure_ascii=False, separators=(",", ":")) + "\n"
                 for turn in session["turns"]
@@ -277,7 +342,7 @@ class CreativeStore:
             manifest = json.loads(manifest_raw.decode("utf-8"))
         except (UnicodeDecodeError, json.JSONDecodeError) as exc:
             raise CreativeStoreError("creative ZIP manifest is unreadable") from exc
-        if int(manifest.get("schema_version", -1)) != SCHEMA_VERSION:
+        if int(manifest.get("schema_version", -1)) not in IMPORTABLE_SCHEMA_VERSIONS:
             raise CreativeStoreError("creative ZIP schema version is unsupported")
 
         def _decode(name: str) -> str:
@@ -315,6 +380,19 @@ class CreativeStore:
                 drafts.append(json.loads(raw.decode("utf-8")))
             except (UnicodeDecodeError, json.JSONDecodeError):
                 continue
+        # conversation-state.json is optional: v1 archives omit it and
+        # synthesize an empty (exploring) state. v2 archives carry it.
+        conversation_state = _empty_conversation_state()
+        convo_state_raw = entries.get("creative-backup/conversation-state.json")
+        if convo_state_raw is not None:
+            try:
+                parsed_state = json.loads(convo_state_raw.decode("utf-8"))
+                if isinstance(parsed_state, dict):
+                    clean_state = dict(_empty_conversation_state())
+                    clean_state.update(parsed_state)
+                    conversation_state = clean_state
+            except (UnicodeDecodeError, json.JSONDecodeError):
+                pass
         return {
             "schema_version": SCHEMA_VERSION,
             "turns": turns,
@@ -322,6 +400,7 @@ class CreativeStore:
             "facts": facts,
             "proposals": proposals,
             "drafts": drafts,
+            "conversation_state": conversation_state,
         }
 
     def _write_session_tree(self, target: Path, session: dict[str, Any]) -> None:
@@ -341,6 +420,8 @@ class CreativeStore:
         )
         self._atomic_text(target / "context-summary.md", session["summary"])
         self._atomic_json(target / "facts.json", session["facts"])
+        incoming_state = session.get("conversation_state") or _empty_conversation_state()
+        self._atomic_json(target / "conversation-state.json", incoming_state)
         for proposal in session["proposals"]:
             self._atomic_json(target / "proposals" / f"{proposal['id']}.json", proposal)
         for draft in session["drafts"]:
@@ -379,6 +460,19 @@ class CreativeStore:
         if not merged_summary and incoming["summary"]:
             merged_summary = incoming["summary"]
 
+        # Conversation state is the live convergence progress. Preserve the
+        # current book's state when it has any progress; only adopt the
+        # incoming state when the current book is still at exploring with no
+        # rounds (e.g. restoring a backup into a fresh book).
+        current_state = current.get("conversation_state") or _empty_conversation_state()
+        incoming_state = incoming.get("conversation_state") or _empty_conversation_state()
+        current_has_progress = (
+            current_state.get("phase") != "exploring"
+            or int(current_state.get("completed_rounds", 0)) > 0
+            or int(current_state.get("coverage_version", 0)) > 0
+        )
+        merged_conversation_state = current_state if current_has_progress else incoming_state
+
         self._ensure_root()
         self._atomic_text(
             self.root / "conversation.jsonl",
@@ -387,6 +481,7 @@ class CreativeStore:
         )
         self._atomic_text(self.root / "context-summary.md", merged_summary)
         self._atomic_json(self.root / "facts.json", merged_facts)
+        self._atomic_json(self.root / "conversation-state.json", merged_conversation_state)
         (self.root / "proposals").mkdir(exist_ok=True)
         (self.root / "drafts").mkdir(exist_ok=True)
         for proposal in merged_proposals:

@@ -57,7 +57,7 @@ function makeMemoryStorage() {
 function fakeLocal(opts) {
   opts = opts || {};
   const calls = [];
-  const session = opts.session || { turns: [], summary: "", facts: emptyFacts(), proposals: [], drafts: [] };
+  const session = opts.session || { turns: [], summary: "", facts: emptyFacts(), proposals: [], drafts: [], conversation_state: emptyConversationState() };
   const api = {
     active: true,
     capabilities: { active_directory: "book-a" },
@@ -74,6 +74,12 @@ function fakeLocal(opts) {
       calls.push({ name: "writeCreativeState" });
       if (opts.stateError) return Promise.reject(opts.stateError);
       session.summary = summary; session.facts = clone(facts);
+      return Promise.resolve({ ok: true });
+    },
+    writeCreativeConversationState: (state) => {
+      calls.push({ name: "writeCreativeConversationState" });
+      if (opts.conversationStateError) return Promise.reject(opts.conversationStateError);
+      session.conversation_state = clone(state);
       return Promise.resolve({ ok: true });
     },
     writeCreativeProposal: (p) => {
@@ -118,6 +124,10 @@ function fakeStorage(opts) {
 
 function emptyFacts() {
   return { confirmed: [], boundaries: [], rejected: [], important_turn_ids: [] };
+}
+
+function emptyConversationState() {
+  return { phase: "exploring", completed_rounds: 0, effective_rounds: 0, coverage_version: 0, coverage: {}, active_proposal_id: null };
 }
 
 function clone(o) { return JSON.parse(JSON.stringify(o)); }
@@ -306,6 +316,33 @@ test("writeState and writeProposal round-trip through local backend", async () =
   const s = creative.session();
   assert.equal(s.summary, "雨夜命案。");
   assert.equal(s.proposals[0].preview, "追查旧案");
+});
+
+test("writeConversationState round-trips through local backend", async () => {
+  const local = fakeLocal();
+  const sb = loadSandbox({ NWLocal: local });
+  const creative = sb.window.NWCreative;
+  await creative.boot("book-a");
+  const state = { phase: "collecting", completed_rounds: 2, effective_rounds: 1, coverage_version: 1, coverage: {}, active_proposal_id: null };
+  await creative.writeConversationState(state);
+  assert.equal(local.calls.at(-1).name, "writeCreativeConversationState");
+  assert.equal(creative.session().conversation_state.phase, "collecting");
+  assert.equal(creative.session().conversation_state.completed_rounds, 2);
+});
+
+test("browser-only fallback round-trips conversation_state through boot", async () => {
+  const storage = makeMemoryStorage();
+  const sb = loadSandbox({ NWLocal: { active: false }, localStorage: storage });
+  const creative = sb.window.NWCreative;
+  await creative.boot("book-a");
+  const state = { phase: "guided", completed_rounds: 6, effective_rounds: 3, coverage_version: 2, coverage: { premise: { value: "x" } }, active_proposal_id: null };
+  await creative.writeConversationState(state);
+  // Re-boot from the same browser storage: state should restore.
+  const sb2 = loadSandbox({ NWLocal: { active: false }, localStorage: storage });
+  const creative2 = sb2.window.NWCreative;
+  await creative2.boot("book-a");
+  assert.equal(creative2.session().conversation_state.phase, "guided");
+  assert.equal(creative2.session().conversation_state.completed_rounds, 6);
 });
 
 test("subscribe listener fires on mutation", async () => {

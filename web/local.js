@@ -94,6 +94,9 @@
   function writeCreativeState(summary, facts) {
     return callApi("creative/state", { method: "POST", body: { summary: summary, facts: facts } });
   }
+  function writeCreativeConversationState(state) {
+    return callApi("creative/conversation-state", { method: "POST", body: { conversation_state: state } });
+  }
   function writeCreativeProposal(proposal) {
     return callApi("creative/proposal", { method: "POST", body: { proposal: proposal } });
   }
@@ -780,6 +783,7 @@
     creativeSession: creativeSession,
     appendCreativeTurn: appendCreativeTurn,
     writeCreativeState: writeCreativeState,
+    writeCreativeConversationState: writeCreativeConversationState,
     writeCreativeProposal: writeCreativeProposal,
     writeCreativeDraft: writeCreativeDraft,
     exportCreativeBackup: exportCreativeBackup,

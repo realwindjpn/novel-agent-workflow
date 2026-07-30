@@ -10,13 +10,13 @@
  * is reported to the UI as one of: "local", "browser", "backup-required".
  *
  * Exposes window.NWCreative = { boot, session, durability, appendTurn,
- * writeState, writeProposal, writeDraft, exportBackup, previewImport,
- * importBackup, subscribe }. Also module.exports for Node tests.
+ * writeState, writeProposal, writeDraft, writeConversationState, exportBackup,
+ * previewImport, importBackup, subscribe }. Also module.exports for Node tests.
  */
 (function () {
   "use strict";
 
-  var SCHEMA_VERSION = 1;
+  var SCHEMA_VERSION = 2;
   var STORAGE_PREFIX = "nwa.creative.";
   var MAX_RECENT_TURNS = 200;
 
@@ -27,6 +27,10 @@
   var primaryBackend = "browser"; // "local" | "browser"
   var storageAvailable = detectStorage();
 
+  function emptyConversationState() {
+    return { phase: "exploring", completed_rounds: 0, effective_rounds: 0, coverage_version: 0, coverage: {}, active_proposal_id: null };
+  }
+
   function emptySession() {
     return {
       schema_version: SCHEMA_VERSION,
@@ -34,7 +38,8 @@
       summary: "",
       facts: { confirmed: [], boundaries: [], rejected: [], important_turn_ids: [] },
       proposals: [],
-      drafts: []
+      drafts: [],
+      conversation_state: emptyConversationState()
     };
   }
 
@@ -151,6 +156,9 @@
           if (d && d.id && !merged.drafts.some(function (x) { return x.id === d.id; })) merged.drafts.push(d);
         });
       }
+      if (incoming.conversation_state && typeof incoming.conversation_state === "object") {
+        merged.conversation_state = clone(incoming.conversation_state);
+      }
     }
     return merged;
   }
@@ -184,6 +192,12 @@
     return persist("draft", draft).then(function () { notify(); });
   }
 
+  function writeConversationState(state) {
+    if (!state || typeof state !== "object") return Promise.resolve();
+    session.conversation_state = clone(state);
+    return persist("conversation-state", state).then(function () { notify(); });
+  }
+
   function persist(kind, payload) {
     if (primaryBackend === "local") {
       var lb = localBridge();
@@ -193,6 +207,7 @@
       else if (kind === "state") p = lb.writeCreativeState(payload.summary, payload.facts);
       else if (kind === "proposal") p = lb.writeCreativeProposal(payload);
       else if (kind === "draft") p = lb.writeCreativeDraft(payload);
+      else if (kind === "conversation-state") p = lb.writeCreativeConversationState(payload);
       else p = Promise.resolve();
       return p.then(function () {
         durabilityState = "local";
@@ -230,6 +245,7 @@
       }),
       "creative-backup/context-summary.md": session.summary || "",
       "creative-backup/facts.json": JSON.stringify(session.facts),
+      "creative-backup/conversation-state.json": JSON.stringify(session.conversation_state || emptyConversationState()),
       "creative-backup/conversation.jsonl": session.turns.map(function (t) { return JSON.stringify(t); }).join("\n") + (session.turns.length ? "\n" : "")
     };
     session.proposals.forEach(function (p) {
@@ -288,13 +304,18 @@
     if (entries["creative-backup/facts.json"]) {
       try { facts = JSON.parse(entries["creative-backup/facts.json"]); } catch (e) {}
     }
+    var conversationState = emptyConversationState();
+    if (entries["creative-backup/conversation-state.json"]) {
+      try { conversationState = JSON.parse(entries["creative-backup/conversation-state.json"]); } catch (e) {}
+    }
     return {
       schemaVersion: manifest.schema_version || SCHEMA_VERSION,
       summary: summary,
       facts: facts,
       turns: turns,
       proposals: proposals,
-      drafts: drafts
+      drafts: drafts,
+      conversation_state: conversationState
     };
   }
 
@@ -355,6 +376,7 @@
     writeState: writeState,
     writeProposal: writeProposal,
     writeDraft: writeDraft,
+    writeConversationState: writeConversationState,
     exportBackup: exportBackup,
     previewImport: previewImport,
     importBackup: importBackup,

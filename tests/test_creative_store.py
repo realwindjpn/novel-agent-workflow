@@ -23,9 +23,10 @@ class CreativeStoreTests(unittest.TestCase):
     def test_empty_session_does_not_create_files(self) -> None:
         store = CreativeStore(self.book)
         session = store.read_session()
-        self.assertEqual(session["schema_version"], 1)
+        self.assertEqual(session["schema_version"], 2)
         self.assertEqual(session["turns"], [])
         self.assertEqual(session["summary"], "")
+        self.assertEqual(session["conversation_state"]["phase"], "exploring")
         self.assertFalse((self.book / "creative").exists())
 
     def test_requires_a_real_book_root(self) -> None:
@@ -124,6 +125,75 @@ class CreativeStoreTests(unittest.TestCase):
         result = store.import_zip(source.export_zip(), "copy")
         self.assertEqual(store.read_session()["turns"][0]["id"], "current")
         self.assertTrue((self.book / "creative" / "imports" / result["copy_id"] / "manifest.json").is_file())
+
+    # -- conversation-state schema v2 --------------------------------
+
+    def test_v1_session_gets_empty_conversation_state_without_rewrite(self) -> None:
+        creative = self.book / "creative"
+        creative.mkdir()
+        (creative / "manifest.json").write_text(
+            '{"schema_version":1,"turn_count":0,"proposal_count":0,"draft_count":0}',
+            encoding="utf-8",
+        )
+        session = CreativeStore(self.book).read_session()
+        self.assertEqual(session["schema_version"], 2)
+        self.assertEqual(session["conversation_state"]["phase"], "exploring")
+        self.assertFalse((creative / "conversation-state.json").exists())
+
+    def test_write_conversation_state_round_trips_and_is_in_zip(self) -> None:
+        store = CreativeStore(self.book)
+        state = {
+            "phase": "collecting",
+            "completed_rounds": 2,
+            "effective_rounds": 1,
+            "coverage_version": 1,
+            "coverage": {},
+            "active_proposal_id": None,
+        }
+        store.write_conversation_state(state)
+        self.assertEqual(store.read_session()["conversation_state"], state)
+        with zipfile.ZipFile(io.BytesIO(store.export_zip())) as zf:
+            self.assertIn("creative-backup/conversation-state.json", zf.namelist())
+
+    def test_conversation_state_rejects_invalid_phase_and_negative_counts(self) -> None:
+        store = CreativeStore(self.book)
+        with self.assertRaisesRegex(CreativeStoreError, "phase"):
+            store.write_conversation_state({"phase": "magic"})
+        with self.assertRaisesRegex(CreativeStoreError, "completed_rounds"):
+            store.write_conversation_state({"phase": "exploring", "completed_rounds": -1})
+
+    def test_conversation_state_import_round_trips(self) -> None:
+        store = CreativeStore(self.book)
+        store.write_conversation_state({
+            "phase": "guided", "completed_rounds": 6, "effective_rounds": 3,
+            "coverage_version": 2, "coverage": {"premise": {"value": "x"}}, "active_proposal_id": None,
+        })
+        archive = store.export_zip()
+        target_book = Path(self.tmp.name) / "target"
+        target_book.mkdir()
+        (target_book / "workflow.json").write_text('{}', encoding="utf-8")
+        target = CreativeStore(target_book)
+        target.import_zip(archive, "merge")
+        imported = target.read_session()
+        self.assertEqual(imported["conversation_state"]["phase"], "guided")
+        self.assertEqual(imported["conversation_state"]["completed_rounds"], 6)
+
+    def test_v1_zip_import_synthesizes_empty_conversation_state(self) -> None:
+        # Build a v1-shaped archive (no conversation-state.json, schema 1).
+        raw = io.BytesIO()
+        with zipfile.ZipFile(raw, "w") as zf:
+            zf.writestr("creative-backup/manifest.json", json.dumps({"schema_version": 1, "turn_count": 0, "proposal_count": 0, "draft_count": 0}))
+            zf.writestr("creative-backup/conversation.jsonl", "")
+            zf.writestr("creative-backup/context-summary.md", "")
+            zf.writestr("creative-backup/facts.json", json.dumps({"confirmed": [], "boundaries": [], "rejected": [], "important_turn_ids": []}))
+        target_book = Path(self.tmp.name) / "v1target"
+        target_book.mkdir()
+        (target_book / "workflow.json").write_text('{}', encoding="utf-8")
+        target = CreativeStore(target_book)
+        target.import_zip(raw.getvalue(), "copy")
+        imported = target.read_session()
+        self.assertEqual(imported["schema_version"], 2)
+        self.assertEqual(imported["conversation_state"]["phase"], "exploring")
 
 
 if __name__ == "__main__":

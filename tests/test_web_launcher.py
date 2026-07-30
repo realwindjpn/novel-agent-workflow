@@ -1117,6 +1117,50 @@ class LocalApiTests(unittest.TestCase):
         self.assertEqual(len(sess_body["turns"]), 1)
         self.assertEqual(sess_body["turns"][0]["text"], "hello")
 
+    def test_conversation_state_round_trips_and_stays_off_public_port(self):
+        self._request(
+            "POST", "/api/local/open",
+            headers={
+                "Origin": f"http://localhost:{self.port}",
+                "Authorization": f"Bearer {self.token}",
+            },
+            body={"directory": "demo_20260728"},
+        )
+        state = {
+            "phase": "collecting",
+            "completed_rounds": 2,
+            "effective_rounds": 1,
+            "coverage_version": 1,
+            "coverage": {},
+            "active_proposal_id": None,
+        }
+        post_status, post_body = self._request(
+            "POST", "/api/local/creative/conversation-state",
+            headers={
+                "Origin": f"http://localhost:{self.port}",
+                "Authorization": f"Bearer {self.token}",
+            },
+            body={"conversation_state": state},
+        )
+        self.assertEqual(post_status, 200)
+        self.assertTrue(post_body["ok"])
+        sess_status, sess_body = self._request(
+            "GET", "/api/local/creative/session",
+            headers={
+                "Origin": f"http://localhost:{self.port}",
+                "Authorization": f"Bearer {self.token}",
+            },
+        )
+        self.assertEqual(sess_status, 200)
+        self.assertEqual(sess_body["conversation_state"], state)
+        # The public handler must not expose any creative route.
+        public_status, _ = self._request(
+            "POST", "/api/local/creative/conversation-state",
+            port=self.public_port,
+            body={"conversation_state": state},
+        )
+        self.assertNotEqual(public_status, 200)
+
     def test_creative_export_returns_zip_bytes(self):
         # Open the demo book and add a turn first
         self._request(

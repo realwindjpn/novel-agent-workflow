@@ -537,6 +537,8 @@
       executed: [],
       offerExternalPlan: function (plan) {
         this.offered.push(plan);
+        // app.js handoff callback: minimize float, scroll to workbench
+        if (window.NWCW && window.NWCW.onHandoff) window.NWCW.onHandoff(plan);
         // Delegate to chat.js plan-card rendering if available
         if (window.NWC && window.NWC.offerExternalPlan) {
           window.NWC.offerExternalPlan(plan);

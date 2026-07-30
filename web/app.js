@@ -1302,6 +1302,16 @@
         return Promise.reject(new Error("请先打开一本创作。"));
       }
       return creativeController.submit(text);
+    },
+    /* Task 8 handoff gate: minimize the float, return to the structured
+     * workbench, then render the formal plan card. The plan card's own
+     * execute button (chat.js) is the only place that mutates the core. */
+    onHandoff: function (plan) {
+      if (floatChat) floatChat.minimize();
+      document.body.classList.remove("white");
+      var termPanel = document.getElementById("term-panel");
+      if (termPanel) termPanel.scrollIntoView({ block: "nearest" });
+      if (window.NWC && window.NWC.offerExternalPlan) window.NWC.offerExternalPlan(plan);
     }
   };
 

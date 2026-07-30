@@ -488,3 +488,65 @@ test("critical evidence change makes proposal stale and blocks handoff", async (
   await controller.submitProposalToWorkflow();
   assert.equal(ports.executor.offered.length, 0);
 });
+
+
+
+// ---------------- Task 8: incomplete / valid handoff gates ----------------
+
+function incompleteForcedDraftSession() {
+  const s = savedSession();
+  const p = completeProposal();
+  p.forcedDraft = true;
+  // remove a required+critical intake field so canHandoff fails
+  delete p.intake.premise;
+  p.coverage_version = 1;
+  p.coverage_snapshot = {};
+  s.proposals = [p];
+  s.conversation_state = {
+    phase: "proposal",
+    completed_rounds: 10,
+    effective_rounds: 8,
+    coverage_version: 1,
+    coverage: { premise: { value: "", status: "candidate", evidence: [], source_turn_ids: [], version: 1 } },
+    active_proposal_id: p.id
+  };
+  return s;
+}
+
+function validProposalSession() {
+  const s = savedSession();
+  const p = completeProposal();
+  p.coverage_version = 2;
+  p.coverage_snapshot = {};
+  s.proposals = [p];
+  s.conversation_state = {
+    phase: "proposal",
+    completed_rounds: 6,
+    effective_rounds: 5,
+    coverage_version: 2,
+    coverage: { premise: { value: "悬疑", status: "confirmed", evidence: [], source_turn_ids: ["turn-1"], version: 2 } },
+    active_proposal_id: p.id
+  };
+  return s;
+}
+
+test("incomplete forced draft cannot enter the workbench", async () => {
+  const NWCreativeChat = loadController();
+  const ports = fakePorts({ storedSession: incompleteForcedDraftSession() });
+  const controller = NWCreativeChat.createController(ports);
+  await controller.boot("book-a");
+  await controller.submitProposalToWorkflow();
+  assert.equal(ports.executor.offered.length, 0);
+  assert.match(ports.view.errors.at(-1).message, /缺少|未完成/);
+});
+
+test("valid proposal requires float submit then workbench execute", async () => {
+  const NWCreativeChat = loadController();
+  const ports = fakePorts({ storedSession: validProposalSession() });
+  const controller = NWCreativeChat.createController(ports);
+  await controller.boot("book-a");
+  await controller.submitProposalToWorkflow();
+  assert.equal(ports.executor.offered.length, 1);
+  assert.equal(ports.executor.executed.length, 0);
+  assert.equal(ports.storage.latestConversationState.phase, "handed-off");
+});

@@ -68,3 +68,18 @@ test("float launcher opens the float shell directly", () => {
 test("command path resets the conversation router", () => {
   assert.match(appSource, /conversationRouter\.reset\("command"\)/);
 });
+
+test("handoff minimizes float, scrolls to workbench, and renders plan card", () => {
+  // app.js onHandoff callback must minimize the float + scroll + offerExternalPlan
+  assert.match(appSource, /onHandoff/);
+  assert.match(appSource, /floatChat\.minimize\(\)/);
+  assert.match(appSource, /scrollIntoView/);
+  assert.match(appSource, /offerExternalPlan/);
+  // the plan-card execute handler in chat.js is the only runSmart caller
+  assert.match(chatSource, /NWB\.runSmart/);
+});
+
+test("no core mutation before the final plan-card execute click", () => {
+  // app.js must not call NWB.runSmart directly anywhere
+  assert.doesNotMatch(appSource, /NWB\.runSmart/);
+});

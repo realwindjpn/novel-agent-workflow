@@ -757,7 +757,9 @@ def make_local_api_handler(
         index = (web_root / "index.html").read_text(encoding="utf-8")
         for asset in (
             "sources.js", "tape.js", "ansi.js", "explorer.js", "guide.js",
-            "local.js", "zip.js", "creative.js", "creative-chat.js", "app.js", "llm.js", "chat.js",
+            "local.js", "conversation-router.js", "zip.js", "creative.js",
+            "creative-coverage.js", "creative-chat.js", "floating-chat.js",
+            "app.js", "llm.js", "chat.js",
         ):
             index = index.replace(
                 f'src="{asset}"', f'src="{asset}?runtime={cache_nonce}"'

@@ -226,6 +226,26 @@ cards). An optional LLM BYOK layer is opt-in: when no key is set, or
 the chosen endpoint is unreachable, the runner falls back silently to
 the rule-based intent engine — no degraded state, no half-promises.
 
+### Structured workbench and floating chat
+
+The desktop workbench is the default surface. Terminal input is routed
+through a deterministic classifier: known commands (`novel-workflow …`,
+`help`, `ls`, `cat`, `tree`, `clear`, `reset`) always stay in the
+terminal; other prose gets **one** main-window quick reply. A second
+continuous natural message migrates transactionally into a **floating
+chat window** before its model reply — draggable, resizable,
+minimizable, viewport-clamped, with browser-local geometry persistence.
+
+Creative convergence is program-driven, not prose-driven: six completed
+rounds enter guided mode and ten force a structured draft. An evidence
+ledger validates exact quotes against real turn text; stale or
+incomplete proposals cannot enter the workbench. Validated proposals
+pass through **two independent confirmation gates** — float submit
+(offers the formal plan card) then plan-card execute (the only place
+core workflow state is mutated). Conversation, evidence, and proposals
+persist per book through local/browser/memory and ZIP backup paths.
+There is no mobile guarantee in this release.
+
 ### Windows one-click start (local + temporary public URL)
 
 With Python 3.11+ and

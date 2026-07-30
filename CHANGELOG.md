@@ -2,6 +2,19 @@
 
 ## Unreleased
 
+- Added a structured desktop workbench as the default surface with a
+  floating chat window. The first natural-language reply appears
+  temporarily in the main terminal area; a second continuous natural
+  message migrates transactionally into a draggable, resizable,
+  minimizable floating window whose geometry is browser-local. Six
+  completed creative rounds enter guided mode and ten force a structured
+  draft. Validated proposals hand off to the workbench through two
+  independent confirmation gates (float submit + plan-card execute);
+  the core workflow state is never mutated before the final execute
+  click. Conversation, evidence ledger, and proposals persist per book
+  through local/browser/memory and ZIP paths. Known and invalid-prefixed
+  commands never become natural chat. No mobile guarantee in this
+  release.
 - Fixed the real local creative-workspace runtime: one-click launch now opens
   a per-run, non-cached local URL before tunnel readiness; the active book and
   saved conversation restore during initial boot; and the main composer routes

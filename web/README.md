@@ -53,6 +53,9 @@ optional LLM settings (see below).
 | `ansi.js` | ANSI → HTML colorizer for terminal output |
 | `explorer.js` | file tree rendering |
 | `guide.js` | guided walkthrough of the 22-step pipeline |
+| `conversation-router.js` | deterministic command/natural classifier + 15-min continuity (Task 1) |
+| `creative-coverage.js` | pure evidence ledger, 3/6/10 thresholds, stale/handoff guards (Task 3) |
+| `floating-chat.js` | desktop floating window shell + geometry persistence (Task 6) |
 
 ## Modes
 
@@ -83,6 +86,16 @@ optional LLM settings (see below).
     continues without falling back to a rule engine.
   - **Local/public isolation**: creative routes exist only on the local
     port (8080); the public port (8081) cannot access them.
+- **Structured workbench + floating chat** — the desktop workbench is the
+  default surface. Known commands stay in the terminal; the first natural
+  reply appears as a temporary quick card in the terminal panel, and a
+  second continuous natural message migrates transactionally into a
+  draggable/resizable/minimizable floating window before its model reply.
+  Geometry is browser-local; conversation, evidence, and proposals are
+  book-local and ZIP-backed. Six completed rounds enter guided mode; ten
+  force a structured draft. Stale or incomplete proposals cannot hand off.
+  Float submit offers the formal plan card; only the plan-card execute
+  click mutates core state. No mobile guarantee in this release.
 - **LLM BYOK (opt-in)** — bring-your-own-key against any OpenAI-compatible
   endpoint. The key never leaves the browser (stored in `localStorage`).
   When the key is absent, unreachable, or returns an error, the runner

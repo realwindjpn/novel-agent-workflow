@@ -166,12 +166,45 @@ class WebLibraryPanelAssetTests(unittest.TestCase):
         self.assertIn('id="mode-enc" class="on"', self.html)
 
     def test_public_handler_has_no_local_creative_routes(self):
-        # the public (no-token) handler must never expose /api/local/creative/*
+        # the public (no-token) server must use the default static handler
+        # (no API routing) so /api/local/* returns 404 on the public port.
         bridge = (
             Path(__file__).resolve().parents[1] / "scripts" / "launch_web.py"
         ).read_text(encoding="utf-8")
-        # find the public route guard section
-        self.assertIn("capabilities", bridge)
+        # the public server call must NOT pass a handler_factory (uses default)
+        pub_call = bridge.index("public_server, public_thread = start_http_server(")
+        pub_block = bridge[pub_call:pub_call + 200]
+        self.assertNotIn("handler_factory", pub_block,
+                         "public server must not wire an API handler")
+        # the local server DOES route /api/local/*
+        self.assertIn("LOCAL_API_PREFIX", bridge)
+
+    def test_all_new_modules_load_before_app_js(self):
+        modules = [
+            "conversation-router.js",
+            "creative-coverage.js",
+            "creative-chat.js",
+            "floating-chat.js",
+        ]
+        idx_app = self.html.index('src="app.js"')
+        for m in modules:
+            idx = self.html.index('src="%s"' % m)
+            self.assertLess(idx, idx_app, "%s must load before app.js" % m)
+
+    def test_new_js_modules_have_no_key_or_fixed_endpoint(self):
+        import re
+        web_dir = Path(__file__).resolve().parents[1] / "web"
+        key_patterns = [
+            re.compile(r"sk-[a-zA-Z0-9]{20,}"),       # OpenAI-style key
+            re.compile(r"[Bb]earer\s+[A-Za-z0-9_\-]{16,}"),
+            re.compile(r"https?://api\.openai\.com"),
+            re.compile(r"https?://[a-z]+\.openai\.com"),
+        ]
+        for mod in ("conversation-router.js", "creative-coverage.js", "floating-chat.js"):
+            src = (web_dir / mod).read_text(encoding="utf-8")
+            for pat in key_patterns:
+                self.assertIsNone(pat.search(src),
+                                  "%s must not contain key fixtures (%s)" % (mod, pat.pattern))
 
 
 class LauncherPrimitiveTests(unittest.TestCase):

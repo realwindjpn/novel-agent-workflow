@@ -62,6 +62,10 @@ function fakeView() {
     durabilityStates: [],
     readiness: [],
     importChoices: null,
+    operations: [],
+    coverage: [],
+    guided: [],
+    stale: [],
     renderUser: function (text) { this.messages.push({ role: "user", text: text }); },
     renderAssistant: function (text) { this.messages.push({ role: "assistant", text: text }); },
     showError: function (err) { this.errors.push(err); },
@@ -70,7 +74,12 @@ function fakeView() {
     setDurability: function (s) { this.durabilityStates.push(s); },
     renderReadiness: function (ready, reason) { this.readiness.push({ ready: ready, reason: reason }); },
     renderImportChoices: function (choices) { this.importChoices = choices; },
-    clear: function () { this.messages = []; this.proposal = null; }
+    beginOperation: function (info) { this.operations.push(Object.assign({ type: "begin" }, info)); },
+    endOperation: function (info) { this.operations.push(Object.assign({ type: "end" }, info)); },
+    renderCoverage: function (coverage) { this.coverage.push(coverage); },
+    renderGuidedMode: function (info) { this.guided.push(info); },
+    markProposalStale: function (reason) { this.stale.push(true); },
+    clear: function () { this.messages = []; this.proposal = null; this.operations = []; this.coverage = []; this.guided = []; this.stale = []; }
   };
 }
 
@@ -87,10 +96,12 @@ function fakeModel(opts) {
   const inputs = [];
   const readinessInputs = [];
   const compilerInputs = [];
+  const coverageInputs = [];
   return {
     inputs: inputs,
     readinessInputs: readinessInputs,
     compilerInputs: compilerInputs,
+    coverageInputs: coverageInputs,
     creativeReply: function (input) {
       inputs.push(input);
       if (opts.error) return Promise.reject(opts.error);
@@ -100,10 +111,21 @@ function fakeModel(opts) {
       readinessInputs.push(input);
       return Promise.resolve({ ready: opts.ready != null ? opts.ready : false, reason: opts.reason || "" });
     },
+    extractCoverage: function (input) {
+      coverageInputs.push(input);
+      if (opts.extractionError) return Promise.reject(opts.extractionError);
+      return Promise.resolve(opts.extraction || { items: [] });
+    },
     compileProposal: function (input) {
       compilerInputs.push(input);
       if (opts.compileError) return Promise.reject(opts.compileError);
-      return Promise.resolve(opts.proposal || completeProposal());
+      var proposal = opts.proposal || completeProposal();
+      if (input && input.forcedDraft) {
+        // Mark as forced draft so tests can detect it
+        proposal = JSON.parse(JSON.stringify(proposal));
+        proposal.forcedDraft = true;
+      }
+      return Promise.resolve(proposal);
     }
   };
 }
@@ -114,10 +136,15 @@ function fakeStorage(opts) {
   const turns = [];
   const proposals = [];
   const drafts = [];
+  let conversationState = (stored && stored.conversation_state) ? JSON.parse(JSON.stringify(stored.conversation_state)) : null;
+  const conversationStates = [];
   return {
     turns: turns,
     proposals: proposals,
     drafts: drafts,
+    conversationStates: conversationStates,
+    get latestConversationState() { return conversationState; },
+    setConversationState: function (s) { conversationState = JSON.parse(JSON.stringify(s)); },
     boot: function (bookId) {
       if (stored) {
         stored.turns.forEach((t) => turns.push(t));
@@ -132,12 +159,14 @@ function fakeStorage(opts) {
         proposals: proposals.slice(),
         drafts: drafts.slice(),
         summary: stored ? stored.summary : "",
-        facts: stored ? stored.facts : { confirmed: [], boundaries: [], rejected: [], important_turn_ids: [] }
+        facts: stored ? stored.facts : { confirmed: [], boundaries: [], rejected: [], important_turn_ids: [] },
+        conversation_state: conversationState ? JSON.parse(JSON.stringify(conversationState)) : null
       };
     },
     durability: function () { return "local"; },
     appendTurn: function (turn) { if (!turns.some((t) => t.id === turn.id)) turns.push(turn); return Promise.resolve(turn); },
     writeState: function (summary, facts) { return Promise.resolve(); },
+    writeConversationState: function (s) { conversationState = JSON.parse(JSON.stringify(s)); conversationStates.push(JSON.parse(JSON.stringify(s))); return Promise.resolve(s); },
     writeProposal: function (p) {
       const i = proposals.findIndex((x) => x.id === p.id);
       if (i >= 0) proposals[i] = p; else proposals.push(p);
@@ -181,6 +210,9 @@ function loadController() {
   };
   sandbox.globalThis = sandbox;
   vm.createContext(sandbox);
+  // Load creative-coverage.js first so window.NWCreativeCoverage is available
+  const covPath = resolve(__dirname, "..", "..", "web", "creative-coverage.js");
+  vm.runInContext(readFileSync(covPath, "utf8"), sandbox, { filename: "web/creative-coverage.js" });
   vm.runInContext(readFileSync(chatJsPath, "utf8"), sandbox, { filename: "web/creative-chat.js" });
   return sandbox.window.NWCreativeChat;
 }
@@ -210,7 +242,7 @@ test("creative model receives real text and restored active-book context", async
   assert.equal(input.context.summary, "雨夜命案");
   assert.deepEqual(input.context.facts.confirmed, ["主角是法医"]);
   assert.equal(input.context.turns.at(-1).text, "继续雨夜开场");
-  assert.equal(ports.model.readinessInputs[0].context.book, "book-a");
+  assert.equal(ports.model.coverageInputs[0].context.book, "book-a");
 });
 
 test("compiler receives the same normalized active-book context", async () => {
@@ -355,4 +387,104 @@ test("controller requires merge copy or cancel on collision", async () => {
   const controller = NWCreativeChat.createController(ports);
   await controller.importBackup(new Uint8Array([1, 2, 3]));
   assert.deepEqual(ports.view.importChoices, ["merge", "copy", "cancel"]);
+});
+
+// ---------- Task 5: convergence, lifecycle, stale ----------
+
+function sessionAtRound(n) {
+  const s = savedSession();
+  s.conversation_state = {
+    phase: "collecting",
+    completed_rounds: n,
+    effective_rounds: n,
+    coverage_version: 0,
+    coverage: { premise: { value: "x", status: "confirmed", evidence: [], source_turn_ids: [], version: 0 } },
+    active_proposal_id: null
+  };
+  return s;
+}
+
+function stateAtRound(n) {
+  return {
+    phase: "collecting",
+    completed_rounds: n,
+    effective_rounds: n,
+    coverage_version: 0,
+    coverage: {},
+    active_proposal_id: null
+  };
+}
+
+function sessionWithProposalAtVersion(v) {
+  const s = savedSession();
+  const p = completeProposal();
+  p.coverage_version = v;
+  p.coverage_snapshot = {};
+  s.proposals = [p];
+  s.conversation_state = {
+    phase: "proposal",
+    completed_rounds: 4,
+    effective_rounds: 3,
+    coverage_version: v,
+    coverage: { premise: { value: "x", status: "confirmed", evidence: [], source_turn_ids: [], version: v } },
+    active_proposal_id: p.id
+  };
+  return s;
+}
+
+function criticalUpdateAtVersion(v) {
+  return {
+    items: [{
+      field: "protagonist",
+      value: "记者",
+      status: "confirmed",
+      evidence: [{ turn_id: "id-1", quote: "主角改成记者" }]
+    }]
+  };
+}
+
+test("natural reply has a balanced operation lifecycle", async () => {
+  const NWCreativeChat = loadController();
+  const ports = fakePorts({ reply: "先从旧案切入。", extraction: { items: [] } });
+  const controller = NWCreativeChat.createController(ports);
+  await controller.boot("book-a");
+  await controller.submit("聊聊方向", { surface: "floating" });
+  assert.deepEqual(ports.view.operations, [
+    { type: "begin", kind: "reply", surface: "floating" },
+    { type: "end", kind: "reply", outcome: "success" }
+  ]);
+});
+
+test("reply persists even when coverage extraction fails", async () => {
+  const NWCreativeChat = loadController();
+  const ports = fakePorts({ extractionError: new Error("extract failed") });
+  const controller = NWCreativeChat.createController(ports);
+  await controller.boot("book-a");
+  await controller.submit("继续", { surface: "floating" });
+  assert.deepEqual(ports.storage.turns.map((t) => t.role), ["user", "assistant"]);
+  assert.equal(ports.storage.conversationStates.length, 0);
+});
+
+test("six rounds guide and ten rounds force a draft", async () => {
+  const NWCreativeChat = loadController();
+  const ports = fakePorts({ storedSession: sessionAtRound(5) });
+  const controller = NWCreativeChat.createController(ports);
+  await controller.boot("book-a");
+  await controller.submit("继续补充", { surface: "floating" });
+  assert.equal(ports.view.guided.at(-1).phase, "guided");
+
+  ports.storage.setConversationState(stateAtRound(9));
+  await controller.submit("再聊一次", { surface: "floating" });
+  assert.equal(ports.model.compilerInputs.at(-1).forcedDraft, true);
+});
+
+test("critical evidence change makes proposal stale and blocks handoff", async () => {
+  const NWCreativeChat = loadController();
+  const ports = fakePorts({ storedSession: sessionWithProposalAtVersion(2), extraction: criticalUpdateAtVersion(3) });
+  const controller = NWCreativeChat.createController(ports);
+  await controller.boot("book-a");
+  await controller.submit("主角改成记者", { surface: "floating" });
+  assert.equal(ports.view.stale.at(-1), true);
+  await controller.submitProposalToWorkflow();
+  assert.equal(ports.executor.offered.length, 0);
 });

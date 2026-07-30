@@ -6,6 +6,7 @@
   var CRITICAL = { premise: true, protagonist: true, central_conflict: true, stakes: true };
   var STATUSES = { candidate: true, confirmed: true, assumed: true, conflicted: true };
   var REQUIRED_INTAKE = REQUIRED;
+  var INTAKE_ALIASES = { style_audience: "style" };
 
   function emptyConversationState() {
     return {
@@ -152,7 +153,9 @@
     var intake = proposal.intake;
     if (!intake || typeof intake !== "object") return false;
     var ok = REQUIRED_INTAKE.every(function (f) {
-      return typeof intake[f] === "string" && intake[f].trim().length > 0;
+      var val = intake[f];
+      if (val === undefined && INTAKE_ALIASES[f]) val = intake[INTAKE_ALIASES[f]];
+      return typeof val === "string" && val.trim().length > 0;
     });
     if (!ok) return false;
     return true;

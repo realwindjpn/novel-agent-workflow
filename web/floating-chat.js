@@ -16,6 +16,11 @@
   var MIN_SIZE = { width: 340, height: 360 };
   var EDGE = 12;
   var STORAGE_KEY = "nwa.float-chat.geometry.v1";
+  var LAUNCHER_STORAGE_KEY = "nwa.float-launcher.position.v1";
+  var LAUNCHER_SIZE = 52;
+  var LAUNCHER_DEFAULT_GAP = 24;
+  var LAUNCHER_EDGE = 12;
+  var LAUNCHER_DRAG_THRESHOLD = 5;
 
   /* ---- pure geometry reducer (no DOM) ---- */
 
@@ -53,6 +58,39 @@
     if (g.top < EDGE) g.top = EDGE;
 
     return { width: g.width, height: g.height, left: g.left, top: g.top };
+  }
+
+  function clampLauncherPosition(saved, viewport) {
+    var left = saved && Number.isFinite(saved.left)
+      ? saved.left : viewport.width - LAUNCHER_SIZE - LAUNCHER_DEFAULT_GAP;
+    var top = saved && Number.isFinite(saved.top)
+      ? saved.top : viewport.height - LAUNCHER_SIZE - LAUNCHER_DEFAULT_GAP;
+    return {
+      left: Math.max(LAUNCHER_EDGE, Math.min(left, viewport.width - LAUNCHER_SIZE - LAUNCHER_EDGE)),
+      top: Math.max(LAUNCHER_EDGE, Math.min(top, viewport.height - LAUNCHER_SIZE - LAUNCHER_EDGE))
+    };
+  }
+
+  function readLauncherPosition(storage) {
+    if (!storage) return null;
+    try {
+      var raw = storage.getItem(LAUNCHER_STORAGE_KEY);
+      if (!raw) return null;
+      var parsed = JSON.parse(raw);
+      if (!Number.isFinite(parsed.left) || !Number.isFinite(parsed.top)) return null;
+      return { left: parsed.left, top: parsed.top };
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function persistLauncherPosition(storage, position) {
+    if (!storage || !position) return;
+    try {
+      storage.setItem(LAUNCHER_STORAGE_KEY, JSON.stringify({ left: position.left, top: position.top }));
+    } catch (e) {
+      /* private mode / quota: position persistence is best-effort */
+    }
   }
 
   function persistGeometry(storage, geo, minimized) {
@@ -112,6 +150,7 @@
     var geometryBound = false;
     var pointerMode = null;
     var pointerStart = null;
+    var launcherUnbind = null;
 
     function ensureEls() {
       floatEl = doc.getElementById("creative-float");
@@ -213,6 +252,143 @@
         doc.addEventListener("pointerup", pointerUp);
         doc.addEventListener("pointercancel", pointerUp);
       }
+    }
+
+    function bindLauncher(element, onActivate) {
+      if (!element) return function () {};
+      if (launcherUnbind) launcherUnbind();
+
+      var view = (doc && doc.defaultView) || global;
+      var activePointerId = null;
+      var start = null;
+      var position = null;
+      var dragging = false;
+      var suppressClick = false;
+
+      function currentViewport() {
+        return {
+          width: view && Number.isFinite(view.innerWidth) ? view.innerWidth : viewport.width,
+          height: view && Number.isFinite(view.innerHeight) ? view.innerHeight : viewport.height
+        };
+      }
+
+      function applyPosition(next) {
+        position = clampLauncherPosition(next, currentViewport());
+        element.style.right = "auto";
+        element.style.bottom = "auto";
+        element.style.left = position.left + "px";
+        element.style.top = position.top + "px";
+      }
+
+      function onPointerDown(e) {
+        if (activePointerId !== null) return;
+        if (e && e.isPrimary === false) return;
+        if (e && e.button != null && e.button !== 0) return;
+        activePointerId = e && e.pointerId != null ? e.pointerId : 1;
+        start = {
+          x: e && Number.isFinite(e.clientX) ? e.clientX : 0,
+          y: e && Number.isFinite(e.clientY) ? e.clientY : 0,
+          left: position.left,
+          top: position.top
+        };
+        dragging = false;
+        element.classList.add("is-pressed");
+        try {
+          if (element.setPointerCapture) element.setPointerCapture(activePointerId);
+        } catch (captureError) {
+          /* document listeners below keep dragging usable without capture */
+        }
+      }
+
+      function pointerMatches(e) {
+        return activePointerId !== null && (!e || e.pointerId == null || e.pointerId === activePointerId);
+      }
+
+      function onPointerMove(e) {
+        if (!pointerMatches(e) || !start) return;
+        var x = e && Number.isFinite(e.clientX) ? e.clientX : start.x;
+        var y = e && Number.isFinite(e.clientY) ? e.clientY : start.y;
+        var dx = x - start.x;
+        var dy = y - start.y;
+        if (!dragging && Math.hypot(dx, dy) < LAUNCHER_DRAG_THRESHOLD) return;
+        if (!dragging) {
+          dragging = true;
+          element.classList.remove("is-pressed");
+          element.classList.add("is-dragging");
+        }
+        applyPosition({ left: start.left + dx, top: start.top + dy });
+        if (e && e.preventDefault) e.preventDefault();
+      }
+
+      function finishPointer(e, suppressGeneratedClick) {
+        if (!pointerMatches(e)) return;
+        var finishedId = activePointerId;
+        if (dragging) {
+          persistLauncherPosition(storage, position);
+          suppressClick = !!suppressGeneratedClick;
+        }
+        activePointerId = null;
+        start = null;
+        dragging = false;
+        element.classList.remove("is-pressed");
+        element.classList.remove("is-dragging");
+        try {
+          if (element.hasPointerCapture && element.hasPointerCapture(finishedId)) {
+            element.releasePointerCapture(finishedId);
+          }
+        } catch (releaseError) {
+          /* losing capture is already an end condition */
+        }
+      }
+
+      function onPointerUp(e) { finishPointer(e, true); }
+      function onPointerCancel(e) { finishPointer(e, false); }
+      function onLostPointerCapture(e) { finishPointer(e, false); }
+
+      function onClick(e) {
+        if (suppressClick) {
+          suppressClick = false;
+          if (e && e.preventDefault) e.preventDefault();
+          return;
+        }
+        if (typeof onActivate === "function") onActivate();
+      }
+
+      function onResize() {
+        applyPosition(position);
+        persistLauncherPosition(storage, position);
+      }
+
+      applyPosition(readLauncherPosition(storage));
+      element.addEventListener("pointerdown", onPointerDown);
+      element.addEventListener("pointermove", onPointerMove);
+      element.addEventListener("pointerup", onPointerUp);
+      element.addEventListener("pointercancel", onPointerCancel);
+      element.addEventListener("lostpointercapture", onLostPointerCapture);
+      element.addEventListener("click", onClick);
+      if (doc && doc.addEventListener) {
+        doc.addEventListener("pointermove", onPointerMove);
+        doc.addEventListener("pointerup", onPointerUp);
+        doc.addEventListener("pointercancel", onPointerCancel);
+      }
+      if (view && view.addEventListener) view.addEventListener("resize", onResize);
+
+      launcherUnbind = function () {
+        element.removeEventListener("pointerdown", onPointerDown);
+        element.removeEventListener("pointermove", onPointerMove);
+        element.removeEventListener("pointerup", onPointerUp);
+        element.removeEventListener("pointercancel", onPointerCancel);
+        element.removeEventListener("lostpointercapture", onLostPointerCapture);
+        element.removeEventListener("click", onClick);
+        if (doc && doc.removeEventListener) {
+          doc.removeEventListener("pointermove", onPointerMove);
+          doc.removeEventListener("pointerup", onPointerUp);
+          doc.removeEventListener("pointercancel", onPointerCancel);
+        }
+        if (view && view.removeEventListener) view.removeEventListener("resize", onResize);
+        launcherUnbind = null;
+      };
+      return launcherUnbind;
     }
 
     function prepareGeometry() {
@@ -349,6 +525,7 @@
 
     function destroy() {
       cancelOperations("destroyed");
+      if (launcherUnbind) launcherUnbind();
       if (floatEl && floatEl.remove) floatEl.remove();
       busyNodes = [];
       migratedIds = [];
@@ -376,6 +553,7 @@
       migrate: migrate,
       appendTurn: appendTurn,
       restoreConversation: restoreConversation,
+      bindLauncher: bindLauncher,
       beginOperation: beginOperation,
       endOperation: endOperation,
       cancelOperations: cancelOperations,
@@ -392,11 +570,16 @@
 
   var api = {
     clampGeometry: clampGeometry,
+    clampLauncherPosition: clampLauncherPosition,
     createWindow: createWindow,
     DEFAULT_SIZE: DEFAULT_SIZE,
     MIN_SIZE: MIN_SIZE,
     EDGE: EDGE,
     STORAGE_KEY: STORAGE_KEY,
+    LAUNCHER_STORAGE_KEY: LAUNCHER_STORAGE_KEY,
+    LAUNCHER_SIZE: LAUNCHER_SIZE,
+    LAUNCHER_EDGE: LAUNCHER_EDGE,
+    LAUNCHER_DRAG_THRESHOLD: LAUNCHER_DRAG_THRESHOLD,
   };
 
   if (typeof module !== "undefined" && module.exports) module.exports = api;

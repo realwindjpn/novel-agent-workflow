@@ -37,6 +37,7 @@ const floatApi = loadFloatApi();
 function fakeDoc() {
   const nodes = new Map();
   function makeEl(tag, id) {
+    const capturedPointers = new Set();
     const el = {
       tagName: tag,
       id: id || null,
@@ -62,6 +63,9 @@ function fakeDoc() {
       addEventListener(t, fn) { (this._listeners[t] = this._listeners[t] || []).push(fn); },
       removeEventListener(t, fn) { if (this._listeners[t]) this._listeners[t] = this._listeners[t].filter(f => f !== fn); },
       dispatch(t, event) { (this._listeners[t] || []).forEach(fn => fn(event || {})); },
+      setPointerCapture(id) { capturedPointers.add(id); },
+      releasePointerCapture(id) { capturedPointers.delete(id); },
+      hasPointerCapture(id) { return capturedPointers.has(id); },
       get textContent() { return this._text; },
       set textContent(v) { this._text = String(v); },
       get innerHTML() { return this._html; },
@@ -92,6 +96,14 @@ function fakeDoc() {
     removeEventListener(t, fn) { if (this._listeners[t]) this._listeners[t] = this._listeners[t].filter(f => f !== fn); },
     dispatch(t, event) { (this._listeners[t] || []).forEach(fn => fn(event || {})); },
   };
+  doc.defaultView = {
+    innerWidth: 1440,
+    innerHeight: 900,
+    _listeners: {},
+    addEventListener(t, fn) { (this._listeners[t] = this._listeners[t] || []).push(fn); },
+    removeEventListener(t, fn) { if (this._listeners[t]) this._listeners[t] = this._listeners[t].filter(f => f !== fn); },
+    dispatch(t, event) { (this._listeners[t] || []).forEach(fn => fn(event || {})); },
+  };
   doc.body.appendChild = function(c) { this.children.push(c); this.childNodes.push(c); c.parentNode = this; return c; };
   return doc;
 }
@@ -111,9 +123,22 @@ function fakeOptions(overrides) {
   opts.document = opts.document || fakeDoc();
   opts.storage = opts.storage || fakeStorage();
   opts.viewport = opts.viewport || { width: 1440, height: 900 };
+  opts.document.defaultView.innerWidth = opts.viewport.width;
+  opts.document.defaultView.innerHeight = opts.viewport.height;
   opts.onSubmit = opts.onSubmit || (function () {});
   opts.onAction = opts.onAction || (function () {});
   return opts;
+}
+
+function pointer(pointerId, clientX, clientY) {
+  return {
+    pointerId,
+    button: 0,
+    isPrimary: true,
+    clientX,
+    clientY,
+    preventDefault() {},
+  };
 }
 
 /* ---- geometry reducer tests (pure, no DOM) ---- */
@@ -220,6 +245,68 @@ test("beginOperation pairs with endOperation leaving no busy state on error path
   shell.beginOperation({ kind: "compile" });
   shell.endOperation({ kind: "compile", outcome: "success" });
   assert.equal(shell.busyCount(), 0);
+});
+
+test("launcher position defaults bottom-right and clamps to the safe edge", () => {
+  assert.deepEqual(
+    JSON.parse(JSON.stringify(floatApi.clampLauncherPosition(null, { width: 1280, height: 720 }))),
+    { left: 1204, top: 644 }
+  );
+  assert.deepEqual(
+    JSON.parse(JSON.stringify(floatApi.clampLauncherPosition({ left: -40, top: 900 }, { width: 800, height: 600 }))),
+    { left: 12, top: 536 }
+  );
+});
+
+test("launcher drag suppresses activation and persists only on release", () => {
+  const opts = fakeOptions({ viewport: { width: 1280, height: 720 } });
+  const shell = floatApi.createWindow(opts);
+  const launcher = opts.document.getElementById("creative-float-launcher");
+  let activations = 0;
+  shell.bindLauncher(launcher, () => { activations += 1; });
+  launcher.dispatch("pointerdown", pointer(1, 1210, 650));
+  launcher.dispatch("pointermove", pointer(1, 900, 420));
+  assert.equal(opts.storage.getItem(floatApi.LAUNCHER_STORAGE_KEY), null);
+  assert.equal(launcher.classList.contains("is-dragging"), true);
+  launcher.dispatch("pointerup", pointer(1, 900, 420));
+  launcher.dispatch("click", { detail: 1, preventDefault() {} });
+  assert.equal(activations, 0);
+  assert.equal(launcher.classList.contains("is-dragging"), false);
+  const stored = JSON.parse(opts.storage.getItem(floatApi.LAUNCHER_STORAGE_KEY));
+  assert.deepEqual(stored, { left: 894, top: 414 });
+  launcher.dispatch("click", { detail: 1, preventDefault() {} });
+  assert.equal(activations, 1, "only the drag-generated click is suppressed");
+});
+
+test("launcher click activates below the five-pixel drag threshold", () => {
+  const opts = fakeOptions({ viewport: { width: 1280, height: 720 } });
+  const shell = floatApi.createWindow(opts);
+  const launcher = opts.document.getElementById("creative-float-launcher");
+  let activations = 0;
+  shell.bindLauncher(launcher, () => { activations += 1; });
+  launcher.dispatch("pointerdown", pointer(4, 1200, 640));
+  launcher.dispatch("pointermove", pointer(4, 1203, 642));
+  launcher.dispatch("pointerup", pointer(4, 1203, 642));
+  launcher.dispatch("click", { detail: 1, preventDefault() {} });
+  assert.equal(activations, 1);
+  assert.equal(opts.storage.getItem(floatApi.LAUNCHER_STORAGE_KEY), null);
+});
+
+test("launcher restores saved position and reclamps it on viewport resize", () => {
+  const storage = fakeStorage();
+  storage.setItem("nwa.float-launcher.position.v1", JSON.stringify({ left: 900, top: 620 }));
+  const opts = fakeOptions({ storage, viewport: { width: 1280, height: 720 } });
+  const shell = floatApi.createWindow(opts);
+  const launcher = opts.document.getElementById("creative-float-launcher");
+  shell.bindLauncher(launcher, () => {});
+  assert.equal(launcher.style.left, "900px");
+  assert.equal(launcher.style.top, "620px");
+  opts.document.defaultView.innerWidth = 800;
+  opts.document.defaultView.innerHeight = 600;
+  opts.document.defaultView.dispatch("resize", {});
+  assert.deepEqual(JSON.parse(storage.getItem(floatApi.LAUNCHER_STORAGE_KEY)), { left: 736, top: 536 });
+  assert.equal(launcher.style.left, "736px");
+  assert.equal(launcher.style.top, "536px");
 });
 
 test("drag and resize update and persist clamped geometry", () => {

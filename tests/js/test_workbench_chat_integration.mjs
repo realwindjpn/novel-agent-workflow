@@ -60,6 +60,24 @@ test("quick card container exists inside the terminal panel", () => {
   assert.match(htmlSource, /id="quick-card-area"/);
 });
 
+test("successful quick reply includes a continuation hint and rejects blank cards", () => {
+  assert.match(chatSource, /quick-continuation-hint/);
+  assert.match(chatSource, /再发一条自然语言/);
+  assert.match(appSource, /typeof reply !== "string" \|\| !reply\.trim\(\)/);
+  assert.match(appSource, /\.catch\(function \(err\) \{\s*qc\.fail/);
+});
+
+test("floating replies resync persisted turns and expose errors", () => {
+  assert.match(appSource, /syncFloatFromStorage/);
+  assert.match(appSource, /fc\.appendTurn/);
+  assert.match(appSource, /floatChat\.cancelOperations/);
+});
+
+test("floating window uses the workbench dark semantic colors", () => {
+  assert.match(htmlSource, /#creative-float\s*\{[^}]*background:\s*var\(--surface-1\)/s);
+  assert.match(htmlSource, /#creative-float-messages\s*>\s*\[data-role="assistant"\]\s*\{[^}]*background:\s*var\(--surface-2\)/s);
+});
+
 test("float launcher opens the float shell directly", () => {
   assert.match(appSource, /creative-float-launcher/);
   assert.match(appSource, /floatChat\.open/);

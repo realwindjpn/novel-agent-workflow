@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- Fixed Windows acceptance defects in the structured workbench: successful
+  creative replies now reach the main quick card and floating window, model
+  errors remain visible, floating conversations restore with persistent
+  draggable/resizable geometry, minimized windows stay minimized when a
+  request finishes, and model connection results remain visible. A
+  successfully registered Quick Tunnel no longer tears down the local app
+  merely because the same Windows host cannot probe its public URL; an actual
+  cloudflared exit is still fatal and fully cleaned up.
 - Added a structured desktop workbench as the default surface with a
   floating chat window. The first natural-language reply appears
   temporarily in the main terminal area; a second continuous natural

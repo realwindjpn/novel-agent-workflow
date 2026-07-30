@@ -369,14 +369,15 @@
       document.getElementById("llm-key").value = getApiKey();
       document.getElementById("llm-status").textContent = "";
     }
-    function saveForm() {
+    function saveForm(options) {
+      options = options || {};
       writeSetting("enabled", document.getElementById("llm-enabled").checked ? "1" : "0");
       writeSetting("baseUrl", document.getElementById("llm-base").value.trim() || DEFAULT_BASE);
       writeSetting("model",   document.getElementById("llm-model").value.trim() || DEFAULT_MODEL);
       writeSetting("apiKey",  document.getElementById("llm-key").value.trim());
       document.getElementById("llm-status").textContent = "已保存";
       window.dispatchEvent(new CustomEvent("nwa.llm.settings-changed"));
-      setTimeout(function () { pop.hidden = true; }, 350);
+      if (options.hide !== false) setTimeout(function () { pop.hidden = true; }, 350);
     }
     function clearAll() {
       clearSettings();
@@ -385,7 +386,7 @@
       window.dispatchEvent(new CustomEvent("nwa.llm.settings-changed"));
     }
     function doTest() {
-      saveForm();   // test against latest values
+      saveForm({ hide: false });   // test against latest values and keep result visible
       document.getElementById("llm-status").textContent = "测试中…";
       testConnection().then(function (r) {
         document.getElementById("llm-status").textContent = r.msg;

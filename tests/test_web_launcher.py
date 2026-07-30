@@ -572,17 +572,31 @@ class LauncherOrchestrationTests(unittest.TestCase):
         tunnel_factory.assert_not_called()
         self.assertFalse(app.resources_open)
 
-    def test_public_readiness_failure_cleans_up_everything(self):
+    def test_public_readiness_failure_keeps_local_and_tunnel_until_user_stops(self):
+        stop = threading.Event()
+        timer = None
+
+        def public_never_ready(url, marker=None):
+            nonlocal timer
+            if timer is None:
+                timer = threading.Timer(0.05, stop.set)
+                timer.start()
+            return False
+
         app = launch_web.Launcher(
             launch_web.LauncherConfig(port=0, public_port=0, open_browser=False),
             root=self.root,
             cloudflared=Path("cloudflared"),
             tunnel_factory=lambda executable, local_url: self._fake_tunnel(),
-            public_probe=lambda url, marker=None: False,
+            public_probe=public_never_ready,
             public_timeout=0.02,
+            stop_event=stop,
         )
-        with self.assertRaisesRegex(launch_web.LauncherError, "Timed out"):
-            self._run_app(app)
+        try:
+            self.assertEqual(self._run_app(app), 0)
+        finally:
+            if timer is not None:
+                timer.cancel()
         self.assertFalse(app.resources_open)
 
 

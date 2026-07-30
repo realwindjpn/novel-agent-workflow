@@ -229,6 +229,14 @@ test("autonomy phrase reaches creative model and persists both turns", async () 
   assert.match(ports.view.messages[1].text, /双线悬疑/);
 });
 
+test("submit resolves the generated prose after coverage extraction", async () => {
+  const NWCreativeChat = loadController();
+  const ports = fakePorts({ reply: "从共同梦境里的钟声切入。" });
+  const controller = NWCreativeChat.createController(ports);
+  const reply = await controller.submit("怎么展开？", { surface: "main" });
+  assert.equal(reply, "从共同梦境里的钟声切入。");
+});
+
 test("creative model receives real text and restored active-book context", async () => {
   const NWCreativeChat = loadController();
   const ports = fakePorts({ storedSession: savedSession(), reply: "接着旧案写。" });
@@ -267,9 +275,10 @@ test("explicit letModelDecide sets autonomy true", async () => {
 
 test("model failure is visible and never invokes rule engine", async () => {
   const NWCreativeChat = loadController();
-  const ports = fakePorts({ error: Object.assign(new Error("请求超时"), { code: "timeout" }) });
+  const failure = Object.assign(new Error("请求超时"), { code: "timeout" });
+  const ports = fakePorts({ error: failure });
   const controller = NWCreativeChat.createController(ports);
-  await controller.submit("你来决定");
+  await assert.rejects(controller.submit("你来决定"), (error) => error === failure);
   assert.equal(ports.ruleCalls, 0);
   assert.equal(ports.view.errors[0].code, "timeout");
   // user turn retained

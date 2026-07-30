@@ -13,6 +13,7 @@ import vm from "node:vm";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const llmJsPath = resolve(__dirname, "..", "..", "web", "llm.js");
+const llmSource = readFileSync(llmJsPath, "utf8");
 
 const INTAKE_KEYS = [
   "audience", "genre", "target_words", "premise", "world", "protagonist",
@@ -193,6 +194,10 @@ test("testConnection verifies a real chat completion", async () => {
   const body = JSON.parse(calls[0].opts.body);
   assert.equal(body.stream, false);
   assert.ok(body.messages.some((m) => m.role === "user"));
+});
+
+test("connection test keeps the popover visible long enough to show its result", () => {
+  assert.match(llmSource, /saveForm\(\{ hide: false \}\)/);
 });
 
 test("creativeReply sends autonomy flag in prompt context", async () => {

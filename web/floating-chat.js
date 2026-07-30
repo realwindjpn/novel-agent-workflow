@@ -103,11 +103,15 @@
     var inputEl = null;
     var sendEl = null;
     var resizeEl = null;
+    var titlebarEl = null;
     var geo = null;
     var openBookId = null;
     var busyNodes = []; // unique by kind
     var migratedIds = [];
     var bound = false;
+    var geometryBound = false;
+    var pointerMode = null;
+    var pointerStart = null;
 
     function ensureEls() {
       floatEl = doc.getElementById("creative-float");
@@ -118,6 +122,7 @@
       inputEl = doc.getElementById("creative-float-input");
       sendEl = doc.getElementById("creative-float-send");
       resizeEl = doc.getElementById("creative-float-resize");
+      titlebarEl = doc.getElementById("creative-float-titlebar");
     }
 
     function applyGeo() {
@@ -151,12 +156,76 @@
       }
     }
 
-    function open(bookId) {
-      ensureEls();
-      openBookId = bookId;
+    function pointerDown(mode, e) {
+      if (e && e.button != null && e.button !== 0) return;
+      if (mode === "drag" && e && e.target && e.target.closest && e.target.closest("button, input")) return;
+      pointerMode = mode;
+      pointerStart = {
+        x: e && typeof e.clientX === "number" ? e.clientX : 0,
+        y: e && typeof e.clientY === "number" ? e.clientY : 0,
+        geo: { width: geo.width, height: geo.height, left: geo.left, top: geo.top }
+      };
+      if (e && e.preventDefault) e.preventDefault();
+    }
+
+    function pointerMove(e) {
+      if (!pointerMode || !pointerStart) return;
+      var x = e && typeof e.clientX === "number" ? e.clientX : pointerStart.x;
+      var y = e && typeof e.clientY === "number" ? e.clientY : pointerStart.y;
+      var dx = x - pointerStart.x;
+      var dy = y - pointerStart.y;
+      var next = pointerMode === "drag"
+        ? {
+            width: pointerStart.geo.width,
+            height: pointerStart.geo.height,
+            left: pointerStart.geo.left + dx,
+            top: pointerStart.geo.top + dy
+          }
+        : {
+            width: pointerStart.geo.width + dx,
+            height: pointerStart.geo.height + dy,
+            left: pointerStart.geo.left,
+            top: pointerStart.geo.top
+          };
+      geo = clampGeometry(next, viewport);
+      applyGeo();
+      if (e && e.preventDefault) e.preventDefault();
+    }
+
+    function pointerUp() {
+      if (!pointerMode) return;
+      pointerMode = null;
+      pointerStart = null;
+      persistGeometry(storage, geo, !!(floatEl && floatEl.hidden));
+    }
+
+    function bindGeometry() {
+      if (geometryBound) return;
+      geometryBound = true;
+      if (titlebarEl && titlebarEl.addEventListener) {
+        titlebarEl.addEventListener("pointerdown", function (e) { pointerDown("drag", e); });
+      }
+      if (resizeEl && resizeEl.addEventListener) {
+        resizeEl.addEventListener("pointerdown", function (e) { pointerDown("resize", e); });
+      }
+      if (doc && doc.addEventListener) {
+        doc.addEventListener("pointermove", pointerMove);
+        doc.addEventListener("pointerup", pointerUp);
+        doc.addEventListener("pointercancel", pointerUp);
+      }
+    }
+
+    function prepareGeometry() {
       var restored = readGeometry(storage);
       geo = clampGeometry(restored, viewport);
       applyGeo();
+      bindGeometry();
+    }
+
+    function open(bookId) {
+      ensureEls();
+      openBookId = bookId;
+      prepareGeometry();
       if (floatEl) floatEl.hidden = false;
       bindComposer();
       persistGeometry(storage, geo, false);
@@ -164,6 +233,7 @@
 
     function renderTurn(turn) {
       if (!messagesEl) return;
+      if (!turn || !turn.id || migratedIds.indexOf(turn.id) >= 0) return;
       var bubble = doc.createElement("div");
       bubble.id = "float-msg-" + turn.id;
       bubble.dataset.turnId = turn.id;
@@ -171,18 +241,49 @@
       bubble.textContent = turn.text;
       messagesEl.appendChild(bubble);
       migratedIds.push(turn.id);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
     }
 
     function migrate(data) {
       ensureEls();
-      if (floatEl) floatEl.hidden = false;
+      if (!geo) prepareGeometry();
+      var keepHidden = !!(data && data.preserveVisibility && floatEl && floatEl.hidden);
+      if (floatEl && !keepHidden) floatEl.hidden = false;
       migratedIds = [];
       if (messagesEl) messagesEl.innerHTML = "";
       var turns = data.turns || [];
       for (var i = 0; i < turns.length; i++) renderTurn(turns[i]);
       if (data.pendingUserTurn) renderTurn(data.pendingUserTurn);
       bindComposer();
+      persistGeometry(storage, geo, keepHidden);
       return { rendered: true };
+    }
+
+    function appendTurn(turn) {
+      ensureEls();
+      renderTurn(turn);
+      return { rendered: true, id: turn && turn.id };
+    }
+
+    function restoreConversation(bookId, turns) {
+      ensureEls();
+      var restored = readGeometry(storage);
+      if (!restored) return false;
+      openBookId = bookId;
+      geo = clampGeometry(restored, viewport);
+      applyGeo();
+      bindGeometry();
+      bindComposer();
+      migratedIds = [];
+      if (messagesEl) messagesEl.innerHTML = "";
+      (turns || []).forEach(renderTurn);
+      if (floatEl) floatEl.hidden = !!restored.minimized;
+      return true;
+    }
+
+    function setComposerBusy(on) {
+      if (inputEl) inputEl.disabled = !!on;
+      if (sendEl) sendEl.disabled = !!on;
     }
 
     function beginOperation(op) {
@@ -202,6 +303,7 @@
       node.appendChild(d3);
       if (messagesEl) messagesEl.appendChild(node);
       busyNodes.push({ kind: op.kind, node: node });
+      setComposerBusy(true);
     }
 
     function endOperation(op) {
@@ -212,6 +314,16 @@
           break;
         }
       }
+      if (!busyNodes.length) setComposerBusy(false);
+    }
+
+    function cancelOperations(reason) {
+      for (var i = 0; i < busyNodes.length; i++) {
+        if (busyNodes[i].node && busyNodes[i].node.remove) busyNodes[i].node.remove();
+      }
+      busyNodes = [];
+      setComposerBusy(false);
+      if (reason) setState(reason === "book-switch" ? "已切换创作" : "已停止生成");
     }
 
     function busyCount() {
@@ -224,6 +336,7 @@
 
     function minimize() {
       ensureEls();
+      cancelOperations("minimized");
       if (floatEl) floatEl.hidden = true;
       persistGeometry(storage, geo, true);
     }
@@ -235,6 +348,7 @@
     }
 
     function destroy() {
+      cancelOperations("destroyed");
       if (floatEl && floatEl.remove) floatEl.remove();
       busyNodes = [];
       migratedIds = [];
@@ -260,8 +374,11 @@
     return {
       open: open,
       migrate: migrate,
+      appendTurn: appendTurn,
+      restoreConversation: restoreConversation,
       beginOperation: beginOperation,
       endOperation: endOperation,
+      cancelOperations: cancelOperations,
       busyCount: busyCount,
       messageIds: messageIds,
       minimize: minimize,

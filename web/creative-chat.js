@@ -166,16 +166,19 @@
         };
         ports.view.renderAssistant(result.reply);
         return ports.storage.appendTurn(assistantTurn).then(function () { return result; });
-      }).then(function () {
+      }).then(function (result) {
         ports.view.endOperation({ kind: "reply", outcome: "success" });
         state = "idle";
         // Coverage extraction — non-blocking for the reply itself
-        return extractAndApplyCoverage(autonomy).catch(function () { /* handled inside */ });
+        return extractAndApplyCoverage(autonomy).then(function () {
+          return result.reply;
+        });
       }).catch(function (err) {
         ports.view.endOperation({ kind: "reply", outcome: "error" });
         ports.view.showError(err);
         state = "error";
         // User turn is already persisted; no rule-engine fallback
+        throw err;
       });
     }
 

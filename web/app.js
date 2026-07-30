@@ -826,6 +826,25 @@
     return floatChat;
   }
 
+  function creativeTurns() {
+    var session = (window.NWCreative && window.NWCreative.session) ? window.NWCreative.session() : null;
+    return (session && session.turns) ? session.turns : [];
+  }
+
+  function syncFloatFromStorage(fc) {
+    if (!fc) return;
+    fc.migrate({ turns: creativeTurns(), preserveVisibility: true });
+  }
+
+  function appendFloatError(fc, err) {
+    if (!fc || !fc.appendTurn) return;
+    fc.appendTurn({
+      id: "float-error-" + Date.now().toString(36),
+      role: "assistant",
+      text: "⚠ " + ((err && err.message) || "生成失败，请重试。")
+    });
+  }
+
   /* First natural-language round: render a temporary quick card in the main
    * terminal panel, drive the creative controller, complete the router only
    * after both turns are persisted. */
@@ -841,6 +860,9 @@
     qc.begin(quickSessionId, { id: userTurnId, text: v });
     qc.beginOperation(quickSessionId);
     creativeController.submit(v, { surface: "main" }).then(function (reply) {
+      if (typeof reply !== "string" || !reply.trim()) {
+        throw new Error("自然回复为空，请检查模型连接后重试。");
+      }
       var assistantTurnId = "q-" + quickSessionId + "-a1";
       qc.complete(quickSessionId, { id: assistantTurnId, text: reply });
       if (router) router.completeQuickRound({
@@ -849,7 +871,7 @@
         assistantTurnId: assistantTurnId,
         completedAt: Date.now(),
       });
-    }, function (err) {
+    }).catch(function (err) {
       qc.fail(quickSessionId, err);
     });
   }
@@ -865,21 +887,25 @@
       enqueue(function () { return handleLine(v); });
       return;
     }
-    // resolve the two stored turn ids from the creative session
-    var session = (window.NWCreative && window.NWCreative.session) ? window.NWCreative.session() : null;
-    var turns = (session && session.turns) ? session.turns : [];
+    var dir = (window.NWLocal && window.NWLocal.capabilities) ? window.NWLocal.capabilities.active_directory : "";
+    fc.open(dir || "placeholder");
+    // resolve the stored turn ids from the creative session
+    var turns = creativeTurns();
     var pendingUserTurn = { id: "q-" + decision.sessionId + "-u2", role: "user", text: v };
     // append/persist the second user turn exactly once via the controller
     var migrateResult = fc.migrate({ turns: turns, pendingUserTurn: pendingUserTurn });
     if (migrateResult && migrateResult.rendered) {
       removeQuickConversation(quickSessionId);
+      fc.beginOperation({ kind: "reply" });
       // call the controller for the assistant half without re-appending the second user turn
       creativeController.submit(v, { surface: "floating" }).then(function (reply) {
+        if (typeof reply !== "string" || !reply.trim()) throw new Error("自然回复为空，请重试。");
+        syncFloatFromStorage(fc);
         fc.endOperation({ kind: "reply", outcome: "success" });
-      }, function (err) {
+      }).catch(function (err) {
         fc.endOperation({ kind: "reply", outcome: "error" });
+        appendFloatError(fc, err);
       });
-      fc.beginOperation({ kind: "reply" });
       quickSessionId = null;
     } else {
       // migration failed — retain/collapse the main card and expose Retry
@@ -899,16 +925,21 @@
       window.NWQuickChat.remove(quickSessionId);
       quickSessionId = null;
     }
+    if (floatChat && floatChat.cancelOperations) floatChat.cancelOperations(reason);
+    if (reason === "book-switch" && floatChat) floatChat.minimize();
   }
 
   function submitToFloat(text) {
     if (!creativeController) return;
     var fc = ensureFloatChat();
+    var pending = { id: "float-user-" + Date.now().toString(36), role: "user", text: text };
+    if (fc) fc.migrate({ turns: creativeTurns(), pendingUserTurn: pending });
     if (fc) fc.beginOperation({ kind: "reply" });
-    creativeController.submit(text, { surface: "floating" }).then(function () {
-      if (fc) fc.endOperation({ kind: "reply", outcome: "success" });
-    }, function () {
-      if (fc) fc.endOperation({ kind: "reply", outcome: "error" });
+    creativeController.submit(text, { surface: "floating" }).then(function (reply) {
+      if (typeof reply !== "string" || !reply.trim()) throw new Error("自然回复为空，请重试。");
+      if (fc) { syncFloatFromStorage(fc); fc.endOperation({ kind: "reply", outcome: "success" }); }
+    }).catch(function (err) {
+      if (fc) { fc.endOperation({ kind: "reply", outcome: "error" }); appendFloatError(fc, err); }
     });
   }
 
@@ -1290,7 +1321,10 @@
     if (!creativeController) creativeController = window.NWCreativeChat.bind();
     creativeController.clear();
     creativeBookDirectory = directory;
-    return creativeController.boot(directory);
+    return creativeController.boot(directory).then(function () {
+      var fc = ensureFloatChat();
+      if (fc && fc.restoreConversation) fc.restoreConversation(directory, creativeTurns());
+    });
   }
 
   window.NWCW = {

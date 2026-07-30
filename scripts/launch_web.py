@@ -1292,12 +1292,25 @@ class Launcher:
                 on_line=lambda line: print(f"[穿透] {line}"),
                 stop_event=self.stop_event,
             )
-            wait_until_ready(
-                public_url,
-                timeout=self.public_timeout,
-                probe=self.public_probe,
-                stop_event=self.stop_event,
-            )
+            try:
+                wait_until_ready(
+                    public_url,
+                    timeout=self.public_timeout,
+                    probe=self.public_probe,
+                    stop_event=self.stop_event,
+                )
+            except LauncherError:
+                # A local machine can be unable to resolve or reach its own
+                # trycloudflare URL even though cloudflared has registered the
+                # tunnel and remote clients can use it. Keep the local app and
+                # the live tunnel available; an actual cloudflared exit is
+                # still detected by the ownership loop below.
+                if self.resources.tunnel.process.poll() is not None:
+                    raise
+                print(
+                    "[警告] 已创建公网地址，但本机无法完成回环验证；"
+                    "本地网页与 cloudflared 将继续运行。"
+                )
             self._print_ready(local_browser_url, public_url)
 
             while not self.stop_event.wait(0.25):

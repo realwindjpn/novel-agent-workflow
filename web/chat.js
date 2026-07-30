@@ -841,6 +841,15 @@
     return div;
   }
 
+  function qContinuationHint(sessionId) {
+    var div = document.createElement("div");
+    div.className = "quick-continuation-hint";
+    div.setAttribute("data-quick-session", sessionId);
+    div.textContent = "再发一条自然语言，将自动转入右下角自由对话窗。";
+    if (quickArea) quickArea.appendChild(div);
+    return div;
+  }
+
   window.NWQuickChat = {
     begin: function (sessionId, userTurn) {
       quickSessions[sessionId] = { nodeIds: [] };
@@ -860,6 +869,7 @@
       var n = qNode(sessionId, assistantTurn.id, "assistant");
       n.textContent = assistantTurn.text;
       if (quickSessions[sessionId]) quickSessions[sessionId].nodeIds.push(assistantTurn.id);
+      qContinuationHint(sessionId);
     },
     fail: function (sessionId, error) {
       if (quickArea) {

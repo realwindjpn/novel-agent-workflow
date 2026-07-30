@@ -36,7 +36,6 @@ const floatApi = loadFloatApi();
 
 function fakeDoc() {
   const nodes = new Map();
-  let idc = 0;
   function makeEl(tag, id) {
     const el = {
       tagName: tag,
@@ -62,6 +61,7 @@ function fakeDoc() {
       removeAttribute(k) { delete this.attributes[k]; },
       addEventListener(t, fn) { (this._listeners[t] = this._listeners[t] || []).push(fn); },
       removeEventListener(t, fn) { if (this._listeners[t]) this._listeners[t] = this._listeners[t].filter(f => f !== fn); },
+      dispatch(t, event) { (this._listeners[t] || []).forEach(fn => fn(event || {})); },
       get textContent() { return this._text; },
       set textContent(v) { this._text = String(v); },
       get innerHTML() { return this._html; },
@@ -76,6 +76,7 @@ function fakeDoc() {
     return el;
   }
   const doc = {
+    _listeners: {},
     createElement(tag) { return makeEl(tag); },
     createTextNode(t) { return makeEl("#text"); },
     getElementById(id) {
@@ -87,7 +88,9 @@ function fakeDoc() {
     head: makeEl("head"),
     querySelector(sel) { return null; },
     querySelectorAll(sel) { return []; },
-    addEventListener() {},
+    addEventListener(t, fn) { (this._listeners[t] = this._listeners[t] || []).push(fn); },
+    removeEventListener(t, fn) { if (this._listeners[t]) this._listeners[t] = this._listeners[t].filter(f => f !== fn); },
+    dispatch(t, event) { (this._listeners[t] || []).forEach(fn => fn(event || {})); },
   };
   doc.body.appendChild = function(c) { this.children.push(c); this.childNodes.push(c); c.parentNode = this; return c; };
   return doc;
@@ -216,5 +219,61 @@ test("beginOperation pairs with endOperation leaving no busy state on error path
   shell.endOperation({ kind: "reply", outcome: "error" });
   shell.beginOperation({ kind: "compile" });
   shell.endOperation({ kind: "compile", outcome: "success" });
+  assert.equal(shell.busyCount(), 0);
+});
+
+test("drag and resize update and persist clamped geometry", () => {
+  const opts = fakeOptions();
+  const shell = floatApi.createWindow(opts);
+  shell.open("book-a");
+  const titlebar = opts.document.getElementById("creative-float-titlebar");
+  titlebar.dispatch("pointerdown", { button: 0, clientX: 1100, clientY: 400, target: titlebar, preventDefault() {} });
+  opts.document.dispatch("pointermove", { clientX: 900, clientY: 250, preventDefault() {} });
+  opts.document.dispatch("pointerup", {});
+  let stored = JSON.parse(opts.storage.getItem(floatApi.STORAGE_KEY));
+  assert.ok(stored.left < 1008);
+  assert.ok(stored.top < 328);
+
+  const resize = opts.document.getElementById("creative-float-resize");
+  resize.dispatch("pointerdown", { button: 0, clientX: stored.left + stored.width, clientY: stored.top + stored.height, preventDefault() {} });
+  opts.document.dispatch("pointermove", { clientX: stored.left + stored.width + 80, clientY: stored.top + stored.height + 40, preventDefault() {} });
+  opts.document.dispatch("pointerup", {});
+  stored = JSON.parse(opts.storage.getItem(floatApi.STORAGE_KEY));
+  assert.equal(stored.width, 500);
+  assert.equal(stored.height, 600);
+});
+
+test("migrate, append, cancel and reload restore the floating conversation", () => {
+  const opts = fakeOptions();
+  const first = floatApi.createWindow(opts);
+  first.open("book-a");
+  first.migrate({ turns: [{ id: "u1", role: "user", text: "方向" }] });
+  first.appendTurn({ id: "a1", role: "assistant", text: "悬疑" });
+  first.beginOperation({ kind: "reply" });
+  assert.equal(opts.document.getElementById("creative-float-send").disabled, true);
+  first.cancelOperations("book-switch");
+  assert.equal(first.busyCount(), 0);
+  assert.equal(opts.document.getElementById("creative-float-send").disabled, false);
+
+  const second = floatApi.createWindow(opts);
+  assert.equal(second.restoreConversation("book-a", [
+    { id: "u1", role: "user", text: "方向" },
+    { id: "a1", role: "assistant", text: "悬疑" }
+  ]), true);
+  assert.deepEqual(JSON.parse(JSON.stringify(second.messageIds())), ["u1", "a1"]);
+  assert.equal(opts.document.getElementById("creative-float").hidden, false);
+});
+
+test("a reply sync cannot reopen a window minimized during generation", () => {
+  const opts = fakeOptions();
+  const shell = floatApi.createWindow(opts);
+  shell.open("book-a");
+  shell.beginOperation({ kind: "reply" });
+  shell.minimize();
+  shell.migrate({
+    turns: [{ id: "a1", role: "assistant", text: "完成" }],
+    preserveVisibility: true
+  });
+  assert.equal(opts.document.getElementById("creative-float").hidden, true);
   assert.equal(shell.busyCount(), 0);
 });

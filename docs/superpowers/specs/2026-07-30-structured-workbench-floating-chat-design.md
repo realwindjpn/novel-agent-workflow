@@ -239,6 +239,9 @@ exploring
 {
   "value": "自然语言内容",
   "source_turn_ids": ["turn-id"],
+  "evidence": [
+    {"turn_id": "turn-id", "quote": "来源消息中的逐字片段"}
+  ],
   "status": "candidate|confirmed|assumed|conflicted",
   "updated_at": "ISO-8601"
 }
@@ -247,7 +250,8 @@ exploring
 素材抽取是独立的结构化模型调用，但程序负责硬校验：
 
 - `source_turn_ids` 必须存在于当前书籍会话。
-- 引用 turn 必须包含支持该值的实际文本。
+- 每条 `evidence.turn_id` 必须存在于当前书籍会话，`evidence.quote` 必须是对应消息中逐字存在的非空片段。
+- `source_turn_ids` 必须与 `evidence` 中去重后的 turn id 完全一致。
 - 空字符串、未知 turn、重复 id 和不支持的状态被拒绝。
 - 新值与已确认值冲突时标记 `conflicted`，不能覆盖 confirmed 值。
 - 模型只说“已经成熟”不会改变状态。

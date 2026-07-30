@@ -490,3 +490,24 @@ test("creative API errors include code and status", async () => {
     (err) => err.code === "no_active_book" && err.status === 409
   );
 });
+
+// ---------------- isKnownCommandHead ----------------
+
+test("isKnownCommandHead reuses the argv table", () => {
+  const NWLocal = loadLocal(null);
+  assert.equal(NWLocal.isKnownCommandHead("idea"), true);
+  assert.equal(NWLocal.isKnownCommandHead("outline-lock"), true);
+  assert.equal(NWLocal.isKnownCommandHead("status"), true);
+  assert.equal(NWLocal.isKnownCommandHead("release"), true);
+  assert.equal(NWLocal.isKnownCommandHead("聊聊主角"), false);
+  assert.equal(NWLocal.isKnownCommandHead("xyzzy"), false);
+  assert.equal(NWLocal.isKnownCommandHead(""), false);
+  assert.equal(NWLocal.isKnownCommandHead(null), false);
+  assert.equal(NWLocal.isKnownCommandHead(undefined), false);
+});
+
+test("isKnownCommandHead is case-insensitive", () => {
+  const NWLocal = loadLocal(null);
+  assert.equal(NWLocal.isKnownCommandHead("IDEA"), true);
+  assert.equal(NWLocal.isKnownCommandHead("Status"), true);
+});

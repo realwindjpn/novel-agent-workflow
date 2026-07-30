@@ -260,6 +260,14 @@
   function parseJson(s) { try { return JSON.parse(s); } catch (e) { return {}; } }
   function parseInt10(s) { var n = parseInt(s, 10); if (!isFinite(n)) throw new Error("expected integer, got " + s); return n; }
 
+  // Deterministic command-head detection: reuses the same argv table that
+  // argvToMcp dispatches against, so the conversation router never has to
+  // ask a model whether something is a command. Case-insensitive; unknown /
+  // empty / non-string heads are never commands.
+  function isKnownCommandHead(head) {
+    return Object.prototype.hasOwnProperty.call(ARGV_TABLE, String(head || "").toLowerCase());
+  }
+
   function argvToMcp(argv) {
     if (!argv || argv.length === 0) return { kind: "empty" };
     var cmd = argv[0];
@@ -760,6 +768,7 @@
     getActive: getActive,
     runMcp: runMcp,
     setProjectCreator: setProjectCreator,
+    isKnownCommandHead: isKnownCommandHead,
     readState: function () { return stateCache; },
     refreshState: refreshState,
     refreshFiles: refreshFiles,

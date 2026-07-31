@@ -19,6 +19,9 @@
  *   readState()       — sync; returns stateCache
  *   refreshState()    — async; populates stateCache from real workflow.json
  *   listBooks()       — GET /api/local/library
+ *   listTrash()       — GET /api/local/trash
+ *   trashBook(dir)    — POST /api/local/trash
+ *   restoreBook(id)   — POST /api/local/restore
  *   chooseDirectory() — POST /api/local/select-directory
  *   setLibrary(p)     — POST /api/local/library
  *   openBook(dir)     — POST /api/local/open
@@ -552,6 +555,24 @@
     if (!active) return Promise.resolve({ library: "", books: [] });
     return callApi("library");
   }
+  function listTrash() {
+    if (!active) return Promise.resolve({ library: "", trash: [] });
+    return callApi("trash");
+  }
+  function trashBook(directory) {
+    if (!active) return Promise.reject(new Error("local library not active"));
+    return callApi("trash", { method: "POST", body: { directory: directory } })
+      .then(function (result) {
+        return refreshCapabilities().then(function () { return result; });
+      });
+  }
+  function restoreBook(trashId) {
+    if (!active) return Promise.reject(new Error("local library not active"));
+    return callApi("restore", { method: "POST", body: { trash_id: trashId } })
+      .then(function (result) {
+        return refreshCapabilities().then(function () { return result; });
+      });
+  }
   function chooseDirectory() {
     if (!active) return Promise.reject(new Error("local library not active"));
     return callApi("select-directory", { method: "POST", body: {} })
@@ -763,6 +784,9 @@
     argvToMcp: argvToMcp,
     refreshCapabilities: refreshCapabilities,
     listBooks: listBooks,
+    listTrash: listTrash,
+    trashBook: trashBook,
+    restoreBook: restoreBook,
     chooseDirectory: chooseDirectory,
     setLibrary: setLibrary,
     openBook: openBook,

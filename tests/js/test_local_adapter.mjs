@@ -402,6 +402,65 @@ function loadLocalWithFetch(runtime, fetchImpl) {
   return moduleObj.exports;
 }
 
+// ---------------- local-library recycle API ----------------
+
+test("listTrash calls authenticated GET trash", async () => {
+  const calls = [];
+  const NWL = loadLocalWithFetch(
+    { apiBase: "/api/local", token: "tk-test" },
+    (url, opts) => {
+      calls.push({ url, opts });
+      return Promise.resolve({
+        ok: true,
+        text: () => Promise.resolve(JSON.stringify({ library: "C:\\Books", trash: [] }))
+      });
+    }
+  );
+  const result = await NWL.listTrash();
+  assert.equal(calls[0].url, "/api/local/trash");
+  assert.equal(calls[0].opts.method, "GET");
+  assert.equal(calls[0].opts.headers.Authorization, "Bearer tk-test");
+  assert.equal(result.trash.length, 0);
+});
+
+test("trashBook posts directory then refreshes capabilities", async () => {
+  const calls = [];
+  const NWL = loadLocalWithFetch(
+    { apiBase: "/api/local", token: "tk-test" },
+    (url, opts) => {
+      calls.push({ url, opts });
+      const body = url.endsWith("/trash")
+        ? { status: "trashed", trash_id: "t1", was_active: true }
+        : { library: "C:\\Books", active_directory: null };
+      return Promise.resolve({ ok: true, text: () => Promise.resolve(JSON.stringify(body)) });
+    }
+  );
+  const result = await NWL.trashBook("demo_20260731");
+  assert.equal(calls[0].url, "/api/local/trash");
+  assert.equal(calls[0].opts.method, "POST");
+  assert.deepEqual(JSON.parse(calls[0].opts.body), { directory: "demo_20260731" });
+  assert.equal(calls[1].url, "/api/local/capabilities");
+  assert.equal(result.trash_id, "t1");
+  assert.equal(NWL.capabilities.active_directory, null);
+});
+
+test("restoreBook posts trash_id and propagates structured errors", async () => {
+  const NWL = loadLocalWithFetch(
+    { apiBase: "/api/local", token: "tk-test" },
+    () => Promise.resolve({
+      ok: false,
+      status: 400,
+      text: () => Promise.resolve(JSON.stringify({
+        error: { code: "bad_request", message: "invalid trash entry" }
+      }))
+    })
+  );
+  await assert.rejects(
+    NWL.restoreBook("bad"),
+    (error) => error.code === "bad_request" && error.status === 400
+  );
+});
+
 test("creativeSession calls GET creative/session with token", async () => {
   const calls = [];
   const NWL = loadLocalWithFetch(

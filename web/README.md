@@ -177,6 +177,21 @@ engines and have different persistence guarantees.
   round-trip. The local API reads only the catalog and a bounded file
   snapshot directly.
 
+### Local recycle bin
+
+In the local library dialog, select a book and choose **移入回收区**. The local
+launcher closes that book's MCP child if it is active, then moves the complete
+directory to `<library>/.trash/<timestamp>__<original-directory>` and writes a
+UTF-8 `.trash-info.json` tag. Recycled books are excluded from the normal
+catalog and same-title checks.
+
+Expand **回收区** to restore a book. Restore never overwrites an existing
+directory; a collision becomes `原目录名（恢复1）`, then `原目录名（恢复2）`, and so
+on. The web UI has no permanent-delete action. To remove a recycled book
+forever, delete its tagged directory directly from `<library>/.trash` in the
+local file system. The public Quick Tunnel cannot list, recycle, restore, or
+delete books.
+
 In local white-language mode, starting a new book routes `init` through the
 library creator first. The page creates and activates the dated book directory,
 then continues with its MCP child; it never sends `init` to a missing or

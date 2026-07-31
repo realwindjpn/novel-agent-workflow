@@ -313,6 +313,21 @@ that matches the room you are in.
 - Reopen: pick the book from the list and the launcher starts a fresh MCP child rooted at that directory. Existing `workflow.json` / `.novel-workflow/*.json` / `chapters/` / `releases/` files are honoured; no migration step is run.
 - Chapter workspaces: the first time you issue a chapter, the page creates `chapters/第NNN章_YYYYMMDD/` next to `workflow.json` (zero-padded to three digits). Subsequent prewrite / draft / review / repair writes from the page land inside that directory. Restart the launcher and the same chapter directory is picked up automatically.
 
+### Local recycle bin
+
+In the local library dialog, select a book and choose **移入回收区**. The local
+launcher closes that book's MCP child if it is active, then moves the complete
+directory to `<library>/.trash/<timestamp>__<original-directory>` and writes a
+UTF-8 `.trash-info.json` tag. Recycled books are excluded from the normal
+catalog and same-title checks.
+
+Expand **回收区** to restore a book. Restore never overwrites an existing
+directory; a collision becomes `原目录名（恢复1）`, then `原目录名（恢复2）`, and so
+on. The web UI has no permanent-delete action. To remove a recycled book
+forever, delete its tagged directory directly from `<library>/.trash` in the
+local file system. The public Quick Tunnel cannot list, recycle, restore, or
+delete books.
+
 ### Two surfaces, one engine
 
 | Mode          | URL                        | Engine    | Disk writes | Use it for                                                |

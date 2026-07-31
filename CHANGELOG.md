@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Added a local-only recoverable library recycle bin. Books are moved into a
+  tagged `.trash` directory, active MCP children close before the move,
+  restores never overwrite an existing directory, and permanent deletion
+  remains an explicit local-file-system action. Public static/tunnel routes
+  stay isolated.
 - Polished the desktop free-chat entry into a draggable `AI` launcher with
   browser-persisted, viewport-clamped position, restrained hover/press and
   breathing feedback, and reduced-motion support. Dragging cannot misfire the

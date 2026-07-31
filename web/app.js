@@ -998,6 +998,14 @@
   var libRefreshBtn = document.getElementById("lib-refresh");
   var libBooks = document.getElementById("lib-books");
   var libOpenBtn = document.getElementById("lib-open");
+  var libTrashBookBtn = document.getElementById("lib-trash-book");
+  var libTrashCount = document.getElementById("lib-trash-count");
+  var libTrashPath = document.getElementById("lib-trash-path");
+  var libTrashList = document.getElementById("lib-trash-list");
+  var libTrashConfirm = document.getElementById("lib-trash-confirm");
+  var libTrashConfirmText = document.getElementById("lib-trash-confirm-text");
+  var libTrashApplyBtn = document.getElementById("lib-trash-apply");
+  var libTrashCancelBtn = document.getElementById("lib-trash-cancel");
   var libCount = document.getElementById("lib-count");
   var libPathDisplay = document.getElementById("lib-path-display");
   var libNewTitle = document.getElementById("lib-new-title");
@@ -1010,6 +1018,7 @@
   var cancelCollisionBtn = document.getElementById("lib-cancel-collision");
   var pendingCollision = null;
   var selectedBookDirectory = "";
+  var visibleBooksByDirectory = {};
   if (localMode) document.body.classList.add("local-mode");
 
   function setLibStatus(text, isError) {
@@ -1017,6 +1026,70 @@
     libStatus.textContent = text || "";
     libStatus.classList.toggle("err", !!isError);
   }
+
+  function renderTrashState(state) {
+    libTrashBookBtn.disabled = state.busy || !state.selected;
+    libTrashApplyBtn.disabled = state.busy || !state.pending;
+    libTrashCancelBtn.disabled = state.busy;
+    libTrashCount.textContent = state.trash.length + " 本已回收";
+    libTrashPath.textContent = state.library ? state.library + "\\.trash" : ".trash";
+    libTrashList.replaceChildren();
+    state.trash.forEach(function (entry) {
+      var card = document.createElement("div");
+      card.className = "lib-book-card lib-trash-card";
+      var title = document.createElement("span");
+      title.className = "lib-book-title";
+      title.textContent = entry.title || entry.original_directory || entry.trash_id;
+      var chip = document.createElement("span");
+      chip.className = "lib-status-chip";
+      chip.textContent = entry.valid ? "已回收" : "标记无效";
+      var meta = document.createElement("span");
+      meta.className = "lib-book-meta";
+      meta.textContent = entry.valid
+        ? (entry.original_directory + " · " + entry.trashed_at)
+        : (entry.error || "无法读取回收标签");
+      card.append(title, chip, meta);
+      if (entry.valid) {
+        var actions = document.createElement("div");
+        actions.className = "lib-dialog-actions";
+        var restore = document.createElement("button");
+        restore.type = "button";
+        restore.dataset.trashId = entry.trash_id;
+        restore.textContent = "恢复";
+        restore.disabled = state.busy;
+        actions.appendChild(restore);
+        card.appendChild(actions);
+      }
+      libTrashList.appendChild(card);
+    });
+    if (state.pending && !libTrashConfirm.open) {
+      libTrashConfirmText.textContent =
+        "将“" + (state.pending.title || state.pending.directory) + "”（" +
+        state.pending.directory + "）移入可恢复回收区。";
+      libTrashConfirm.showModal();
+    }
+    if (!state.pending && libTrashConfirm.open && !state.busy) libTrashConfirm.close();
+    if (state.error) setLibStatus(state.error, true);
+  }
+
+  var trashController = window.NWLibraryTrash.createController({
+    listTrash: function () { return window.NWLocal.listTrash(); },
+    trashBook: function (directory) { return window.NWLocal.trashBook(directory); },
+    restoreBook: function (trashId) { return window.NWLocal.restoreBook(trashId); },
+    onChange: renderTrashState,
+    onMutation: function (result, kind) {
+      return window.NWLocal.listBooks().then(function (payload) {
+        renderBookList(payload);
+        refreshLibPanel();
+        if (kind === "trash" && result && result.was_active) {
+          return refreshFiles().then(function () {
+            return bootCreativeForActiveBook();
+          });
+        }
+        return null;
+      });
+    }
+  });
 
   function refreshLibPanel() {
     if (!window.NWLocal) return;
@@ -1055,6 +1128,7 @@
       card.setAttribute("aria-selected", selected ? "true" : "false");
     });
     libOpenBtn.disabled = !selectedBookDirectory;
+    trashController.select(visibleBooksByDirectory[selectedBookDirectory] || null);
   }
 
   function renderBookList(result) {
@@ -1062,6 +1136,8 @@
     libBooks.replaceChildren();
     selectedBookDirectory = "";
     var books = (result && (result.books || result.catalog)) || [];
+    visibleBooksByDirectory = {};
+    books.forEach(function (book) { visibleBooksByDirectory[book.directory] = book; });
     if (libCount) libCount.textContent = books.length + " 本创作";
     if (result && result.library) {
       libPathInput.value = result.library;
@@ -1099,7 +1175,7 @@
     if (active && books.some(function (book) { return book.directory === active; })) {
       selectBookCard(active);
     } else {
-      libOpenBtn.disabled = true;
+      selectBookCard("");
     }
     setLibStatus(books.length ? "已读取 " + books.length + " 本创作。" : "书库为空，可以创建新书。", false);
   }
@@ -1111,7 +1187,7 @@
     return window.NWLocal.listBooks().then(function (result) {
       renderBookList(result);
       refreshLibPanel();
-      return result;
+      return trashController.refresh().then(function () { return result; });
     });
   }
 
@@ -1199,9 +1275,35 @@
     selectBookCard(card.dataset.directory);
     setLibStatus("已选择：" + card.querySelector(".lib-book-title").textContent, false);
   });
+  if (libTrashBookBtn) libTrashBookBtn.addEventListener("click", function () {
+    trashController.requestTrash();
+  });
+  if (libTrashCancelBtn) libTrashCancelBtn.addEventListener("click", function () {
+    trashController.cancelTrash();
+  });
+  if (libTrashConfirm) libTrashConfirm.addEventListener("cancel", function (event) {
+    event.preventDefault();
+    trashController.cancelTrash();
+  });
+  if (libTrashApplyBtn) libTrashApplyBtn.addEventListener("click", function () {
+    trashController.confirmTrash().then(function (result) {
+      setLibStatus("已移入回收区：" + result.original_directory, false);
+    }).catch(function (error) { setLibStatus(error.message || error, true); });
+  });
+  if (libTrashList) libTrashList.addEventListener("click", function (event) {
+    var button = event.target.closest("button[data-trash-id]");
+    if (!button) return;
+    trashController.restore(button.dataset.trashId).then(function (result) {
+      setLibStatus(
+        result.renamed ? "已恢复并改名：" + result.directory : "已恢复：" + result.directory,
+        false
+      );
+    }).catch(function (error) { setLibStatus(error.message || error, true); });
+  });
   if (libCloseBtn) libCloseBtn.addEventListener("click", function () { libDialog.close(); });
   if (libRefreshBtn) libRefreshBtn.addEventListener("click", function () {
     window.NWLocal.listBooks().then(renderBookList)
+      .then(function () { return trashController.refresh(); })
       .catch(function (e) { setLibStatus((e && e.message) || e, true); });
   });
   if (libApplyBtn) libApplyBtn.addEventListener("click", function () {
@@ -1211,6 +1313,7 @@
     window.NWLocal.setLibrary(path)
       .then(function () { refreshLibPanel(); return window.NWLocal.listBooks(); })
       .then(renderBookList)
+      .then(function () { return trashController.refresh(); })
       .catch(function (e) { setLibStatus((e && e.message) || e, true); });
   });
   if (libBrowseBtn) libBrowseBtn.addEventListener("click", function () {
@@ -1219,7 +1322,7 @@
       if (!r || !r.selected) { setLibStatus("已取消选择。", false); return null; }
       return window.NWLocal.refreshCapabilities().then(function () {
         refreshLibPanel(); return window.NWLocal.listBooks();
-      }).then(renderBookList);
+      }).then(renderBookList).then(function () { return trashController.refresh(); });
     }).catch(function (e) { setLibStatus((e && e.message) || e, true); });
   });
   if (libOpenBtn) libOpenBtn.addEventListener("click", function () {

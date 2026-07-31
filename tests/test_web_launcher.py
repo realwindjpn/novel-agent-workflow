@@ -57,6 +57,25 @@ class WebLibraryPanelAssetTests(unittest.TestCase):
         self.assertIn('libOpenBtn.disabled', self.app_js)
         self.assertIn('正在读取书库', self.app_js)
 
+    def test_library_panel_has_recoverable_trash_controls(self):
+        self.assertIn('id="lib-trash-book"', self.html)
+        self.assertIn('id="lib-trash-list"', self.html)
+        self.assertIn('id="lib-trash-path"', self.html)
+        self.assertIn('id="lib-trash-confirm"', self.html)
+        self.assertIn('id="lib-trash-apply"', self.html)
+        self.assertIn('id="lib-trash-cancel"', self.html)
+        self.assertIn('回收区', self.html)
+        self.assertIn('本地永久删除', self.html)
+        self.assertNotIn('永久删除</button>', self.html)
+        self.assertIn('<script src="library-trash.js"></script>', self.html)
+
+    def test_library_controller_integrates_recycle_state(self):
+        self.assertIn('window.NWLibraryTrash.createController', self.app_js)
+        self.assertIn('window.NWLocal.listTrash', self.app_js)
+        self.assertIn('window.NWLocal.trashBook', self.app_js)
+        self.assertIn('window.NWLocal.restoreBook', self.app_js)
+        self.assertIn('was_active', self.app_js)
+
     def test_successful_book_switch_closes_the_library_dialog(self):
         start = self.app_js.index("function finishBookSwitch")
         end = self.app_js.index("function finishCreatedBook", start)

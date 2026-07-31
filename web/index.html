@@ -137,6 +137,7 @@
   .lib-dialog button:hover:not(:disabled) { border-color: var(--signal); color: var(--signal); }
   .lib-dialog button:focus-visible { outline: 2px solid var(--signal); outline-offset: 2px; }
   .lib-dialog button.primary { border-color: #137f78; background: #0b292b; color: #64f0de; }
+  .lib-dialog button.danger { border-color: #8a3946; background: #2a1118; color: #ff9eaa; }
   .lib-dialog button:disabled { cursor: not-allowed; opacity: .42; }
   .lib-location, .lib-section { border: 1px solid #21314d; border-radius: 10px; background: #091321; }
   .lib-location summary { display: flex; gap: 12px; align-items: center; padding: 12px 14px; cursor: pointer; color: var(--dim); }
@@ -154,6 +155,12 @@
   .lib-book-empty { padding: 24px 14px; border: 1px dashed #2b3c5a; border-radius: 8px; color: var(--dim); text-align: center; font-size: 11px; line-height: 1.6; }
   .lib-status-chip { align-self: start; border: 1px solid #35506f; border-radius: 999px; padding: 3px 7px; color: #a9c4e8; font-size: 9px; white-space: nowrap; }
   .lib-primary-action { width: 100%; padding-block: 10px !important; }
+  .lib-book-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .lib-trash-section .lib-location-body { gap: 12px; }
+  .lib-trash-help { margin: 0; color: var(--dim); font-size: 10px; line-height: 1.6; }
+  .lib-trash-help code { color: var(--ink); overflow-wrap: anywhere; }
+  .lib-trash-card { cursor: default !important; }
+  .lib-trash-card .lib-dialog-actions { grid-column: 1 / -1; }
   .lib-create-section { background: linear-gradient(135deg, #0a1726, #0a2026); }
   .lib-create-row { display: grid; grid-template-columns: 1fr auto; gap: 9px; }
   .lib-dialog-status { min-height: 18px; margin: 0; color: var(--dim); font-size: 11px; }
@@ -946,9 +953,27 @@
         </div>
         <div id="lib-books" class="lib-book-list" role="listbox"
              aria-label="已有创作列表"></div>
-        <button type="button" class="primary lib-primary-action"
-                id="lib-open" disabled>继续创作</button>
+        <div class="lib-book-actions">
+          <button type="button" class="primary lib-primary-action"
+                  id="lib-open" disabled>继续创作</button>
+          <button type="button" class="danger lib-primary-action"
+                  id="lib-trash-book" disabled>移入回收区</button>
+        </div>
       </section>
+
+      <details id="lib-trash-section" class="lib-location lib-trash-section">
+        <summary>
+          <span>回收区</span>
+          <span id="lib-trash-count" class="lib-count">0 本已回收</span>
+        </summary>
+        <div class="lib-location-body">
+          <p class="lib-trash-help">
+            可在这里恢复。需要本地永久删除时，请在资源管理器删除
+            <code id="lib-trash-path">.trash</code> 中对应的已标记目录。
+          </p>
+          <div id="lib-trash-list" class="lib-book-list" aria-label="回收区列表"></div>
+        </div>
+      </details>
 
       <section class="lib-section lib-create-section" aria-labelledby="lib-create-title">
         <div class="lib-section-head">
@@ -974,6 +999,17 @@
         <button type="button" class="primary" id="lib-open-latest">打开上次同名创作</button>
         <button type="button" id="lib-create-copy">建立新创作</button>
         <button type="button" id="lib-cancel-collision">取消</button>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog id="lib-trash-confirm" class="lib-dialog" aria-labelledby="lib-trash-confirm-title">
+    <div class="lib-dialog-inner">
+      <div class="lib-dialog-head"><h2 id="lib-trash-confirm-title">移入回收区</h2></div>
+      <p id="lib-trash-confirm-text" class="lib-dialog-status"></p>
+      <div class="lib-dialog-actions">
+        <button type="button" class="danger" id="lib-trash-apply">确认移入</button>
+        <button type="button" id="lib-trash-cancel">取消</button>
       </div>
     </div>
   </dialog>
@@ -1099,6 +1135,7 @@
 <script src="explorer.js"></script>
 <script src="guide.js"></script>
 <script src="local.js"></script>
+<script src="library-trash.js"></script>
 <script src="conversation-router.js"></script>
 <script src="zip.js"></script>
 <script src="creative.js"></script>

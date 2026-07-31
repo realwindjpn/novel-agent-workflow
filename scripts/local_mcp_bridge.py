@@ -26,10 +26,21 @@ import sys
 import threading
 from collections import deque
 from dataclasses import dataclass
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable, Deque, Optional
 
-from novel_workflow.library import ProjectEntry, discover_projects, next_book_directory
+from novel_workflow.library import (
+    TRASH_DIRECTORY,
+    TRASH_INFO_FILE,
+    ProjectEntry,
+    TrashEntry,
+    discover_projects,
+    discover_trash,
+    next_book_directory,
+    next_restore_directory,
+    next_trash_directory,
+)
 
 
 # --- Low-level stdio client -----------------------------------------------
@@ -480,6 +491,119 @@ class LibrarySession:
             "status": "opened",
             "directory": directory,
             "path": str(target),
+        }
+
+    def trash(self) -> list[TrashEntry]:
+        return discover_trash(self._library)
+
+    def _validate_immediate_name(self, value: str, *, label: str) -> str:
+        if not isinstance(value, str) or not value:
+            raise ValueError(f"{label} is required")
+        if value in {".", "..", TRASH_DIRECTORY} or "/" in value or "\\" in value:
+            raise ValueError(f"{label} must be an immediate child name")
+        return value
+
+    def _write_trash_tag(self, recycled: Path, payload: dict) -> None:
+        tag = recycled / TRASH_INFO_FILE
+        temporary = recycled / f"{TRASH_INFO_FILE}.tmp"
+        try:
+            temporary.write_text(
+                json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
+                encoding="utf-8",
+            )
+            os.replace(temporary, tag)
+        finally:
+            if temporary.exists():
+                temporary.unlink()
+
+    def trash_book(self, directory: str) -> dict:
+        directory = self._validate_immediate_name(directory, label="directory")
+        candidate = self._library / directory
+        if candidate.is_symlink():
+            raise ValueError("symlinked books are not supported")
+        source = candidate.resolve()
+        try:
+            source.relative_to(self._library.resolve())
+        except ValueError as exc:
+            raise ValueError(f"directory escapes the library: {directory}") from exc
+        entries = {entry.directory: entry for entry in self.catalog()}
+        entry = entries.get(directory)
+        if entry is None:
+            raise ValueError(f"book directory missing: {directory}")
+        if not entry.valid:
+            raise ValueError(entry.error or f"invalid book: {directory}")
+        if (source / TRASH_INFO_FILE).exists():
+            raise ValueError(f"reserved trash tag already exists in {directory}")
+
+        now = datetime.now(timezone.utc)
+        destination = next_trash_directory(self._library, directory, now)
+        tag = {
+            "schema_version": 1,
+            "original_directory": directory,
+            "title": entry.title,
+            "trashed_at": now.isoformat().replace("+00:00", "Z"),
+        }
+        with self._switch_lock:
+            was_active = bool(
+                self._client is not None
+                and self._client.root.resolve() == source
+            )
+            if was_active:
+                client = self._client
+                client.close()
+                self._client = None
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            source.rename(destination)
+            try:
+                self._write_trash_tag(destination, tag)
+            except Exception:
+                destination.rename(source)
+                raise
+        return {
+            "status": "trashed",
+            "trash_id": destination.name,
+            "original_directory": directory,
+            "title": entry.title,
+            "trashed_at": tag["trashed_at"],
+            "was_active": was_active,
+        }
+
+    def restore_book(self, trash_id: str) -> dict:
+        trash_id = self._validate_immediate_name(trash_id, label="trash_id")
+        trash_root = self._library / TRASH_DIRECTORY
+        if trash_root.is_symlink():
+            raise ValueError("symlinked trash directory is not supported")
+        candidate = trash_root / trash_id
+        if candidate.is_symlink():
+            raise ValueError("symlinked trash entries are not supported")
+        source = candidate.resolve()
+        try:
+            source.relative_to(trash_root.resolve())
+        except ValueError as exc:
+            raise ValueError(f"trash entry escapes the library: {trash_id}") from exc
+        entries = {entry.trash_id: entry for entry in self.trash()}
+        entry = entries.get(trash_id)
+        if entry is None:
+            raise ValueError(f"trash entry missing: {trash_id}")
+        if not entry.valid or entry.original_directory is None:
+            raise ValueError(entry.error or f"invalid trash entry: {trash_id}")
+        if not (source / "workflow.json").is_file():
+            raise ValueError(f"workflow.json missing in trash entry: {trash_id}")
+
+        destination = next_restore_directory(self._library, entry.original_directory)
+        original_tag = (source / TRASH_INFO_FILE).read_bytes()
+        with self._switch_lock:
+            (source / TRASH_INFO_FILE).unlink()
+            try:
+                source.rename(destination)
+            except Exception:
+                (source / TRASH_INFO_FILE).write_bytes(original_tag)
+                raise
+        return {
+            "status": "restored",
+            "trash_id": trash_id,
+            "directory": destination.name,
+            "renamed": destination.name != entry.original_directory,
         }
 
     def mcp(self, method: str, params: Optional[dict] = None) -> dict:

@@ -16,7 +16,9 @@ import tempfile
 import threading
 import time
 import unittest
+from datetime import datetime, timezone
 from pathlib import Path
+from unittest.mock import patch
 
 from scripts.local_mcp_bridge import (
     BookCollision,
@@ -24,7 +26,7 @@ from scripts.local_mcp_bridge import (
     McpBridgeError,
     McpStdioClient,
 )
-from novel_workflow.library import ProjectEntry
+from novel_workflow.library import ProjectEntry, TRASH_DIRECTORY, TRASH_INFO_FILE
 
 
 class _FakeProc:
@@ -350,6 +352,175 @@ class McpStdioClientTests(unittest.TestCase):
 
 
 class LibrarySessionTests(unittest.TestCase):
+    def _plain_book(self, library: Path, name: str, title: str = "Demo") -> Path:
+        book = library / name
+        book.mkdir()
+        (book / "workflow.json").write_text(
+            json.dumps({"title": title, "chapters": {}}), encoding="utf-8"
+        )
+        return book
+
+    def test_trash_book_moves_and_tags_a_closed_book(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            library = Path(tmp)
+            source = self._plain_book(library, "demo_20260731")
+            session = LibrarySession(library)
+            result = session.trash_book("demo_20260731")
+            recycled = library / TRASH_DIRECTORY / result["trash_id"]
+            self.assertFalse(source.exists())
+            self.assertTrue((recycled / "workflow.json").is_file())
+            tag = json.loads((recycled / TRASH_INFO_FILE).read_text(encoding="utf-8"))
+            self.assertEqual(tag["original_directory"], "demo_20260731")
+            self.assertEqual(tag["title"], "Demo")
+
+    def test_trash_active_book_closes_client_before_move(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            library = Path(tmp)
+            source = self._plain_book(library, "demo_20260731")
+            events = []
+
+            class ActiveClient:
+                root = source
+                open = True
+
+                def close(inner_self):
+                    self.assertTrue(source.exists())
+                    events.append("closed")
+                    inner_self.open = False
+
+            session = LibrarySession(library)
+            session._client = ActiveClient()
+            result = session.trash_book("demo_20260731")
+            self.assertEqual(events, ["closed"])
+            self.assertIsNone(session.client)
+            self.assertTrue(result["was_active"])
+
+    def test_restore_book_renames_on_collision_and_removes_tag(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            library = Path(tmp)
+            self._plain_book(library, "demo_20260731")
+            session = LibrarySession(library)
+            trashed = session.trash_book("demo_20260731")
+            self._plain_book(library, "demo_20260731", "Replacement")
+            restored = session.restore_book(trashed["trash_id"])
+            self.assertEqual(restored["directory"], "demo_20260731（恢复1）")
+            self.assertTrue(restored["renamed"])
+            target = library / restored["directory"]
+            self.assertTrue((target / "workflow.json").is_file())
+            self.assertFalse((target / TRASH_INFO_FILE).exists())
+            self.assertFalse(session.open)
+
+    def test_trash_book_rejects_traversal_and_reserved_root(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            session = LibrarySession(Path(tmp))
+            for value in ("", ".", "..", ".trash", "../book", "a/b", "a\\b"):
+                with self.subTest(value=value):
+                    with self.assertRaises(ValueError):
+                        session.trash_book(value)
+
+    def test_tag_write_failure_rolls_book_back(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            library = Path(tmp)
+            source = self._plain_book(library, "demo_20260731")
+            session = LibrarySession(library)
+            with patch("scripts.local_mcp_bridge.os.replace", side_effect=OSError("tag failed")):
+                with self.assertRaises(OSError):
+                    session.trash_book("demo_20260731")
+            self.assertTrue(source.is_dir())
+            self.assertFalse((source / TRASH_INFO_FILE).exists())
+
+    def test_failed_active_close_aborts_before_move(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            library = Path(tmp)
+            source = self._plain_book(library, "demo_20260731")
+
+            class FailingClient:
+                root = source
+                open = True
+
+                def close(inner_self):
+                    raise RuntimeError("close failed")
+
+            session = LibrarySession(library)
+            session._client = FailingClient()
+            with self.assertRaisesRegex(RuntimeError, "close failed"):
+                session.trash_book("demo_20260731")
+            self.assertTrue(source.is_dir())
+            trash_root = library / TRASH_DIRECTORY
+            self.assertFalse(trash_root.exists() and any(trash_root.iterdir()))
+
+    def test_trash_book_rejects_symlinked_book(self):
+        if not _symlink_supported():
+            self.skipTest("symlinks not supported on this platform")
+        with tempfile.TemporaryDirectory() as tmp:
+            library = Path(tmp) / "library"
+            library.mkdir()
+            outside = Path(tmp) / "outside"
+            outside.mkdir()
+            (outside / "workflow.json").write_text("{}", encoding="utf-8")
+            (library / "linked").symlink_to(outside, target_is_directory=True)
+            session = LibrarySession(library)
+            with self.assertRaisesRegex(ValueError, "symlink"):
+                session.trash_book("linked")
+            self.assertTrue(outside.is_dir())
+
+    def test_restore_rejects_traversal_and_symlinked_trash_entry(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            library = Path(tmp) / "library"
+            library.mkdir()
+            session = LibrarySession(library)
+            for value in ("", ".", "..", ".trash", "../book", "a/b", "a\\b"):
+                with self.subTest(value=value):
+                    with self.assertRaises(ValueError):
+                        session.restore_book(value)
+            if _symlink_supported():
+                outside = Path(tmp) / "outside"
+                outside.mkdir()
+                trash_root = library / TRASH_DIRECTORY
+                trash_root.mkdir()
+                (trash_root / "linked").symlink_to(outside, target_is_directory=True)
+                with self.assertRaisesRegex(ValueError, "symlink"):
+                    session.restore_book("linked")
+
+    def test_trash_move_failure_preserves_source(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            library = Path(tmp)
+            source = self._plain_book(library, "demo_20260731")
+            session = LibrarySession(library)
+            original_rename = Path.rename
+
+            def fail_first_move(path, target):
+                if path == source:
+                    raise OSError("trash move failed")
+                return original_rename(path, target)
+
+            with patch.object(Path, "rename", fail_first_move):
+                with self.assertRaisesRegex(OSError, "trash move failed"):
+                    session.trash_book("demo_20260731")
+            self.assertTrue(source.is_dir())
+            self.assertFalse((source / TRASH_INFO_FILE).exists())
+
+    def test_restore_failure_recreates_original_tag(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            library = Path(tmp)
+            self._plain_book(library, "demo_20260731")
+            session = LibrarySession(library)
+            moved = session.trash_book("demo_20260731")
+            recycled = library / TRASH_DIRECTORY / moved["trash_id"]
+            expected = (recycled / TRASH_INFO_FILE).read_bytes()
+            original_rename = Path.rename
+
+            def fail_restore(path, target):
+                if path == recycled:
+                    raise OSError("restore move failed")
+                return original_rename(path, target)
+
+            with patch.object(Path, "rename", fail_restore):
+                with self.assertRaisesRegex(OSError, "restore move failed"):
+                    session.restore_book(moved["trash_id"])
+            self.assertEqual((recycled / TRASH_INFO_FILE).read_bytes(), expected)
+            self.assertFalse((library / "demo_20260731").exists())
+
     def test_open_book_rejects_traversal(self):
         with tempfile.TemporaryDirectory() as d:
             session = LibrarySession(Path(d))

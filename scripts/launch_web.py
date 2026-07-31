@@ -151,6 +151,20 @@ class QuietStaticHandler(SimpleHTTPRequestHandler):
     def log_message(self, format: str, *args: object) -> None:
         return
 
+    def do_GET(self) -> None:  # type: ignore[override]
+        """Keep the public static server from exposing local API routes."""
+        if self.path.startswith(LOCAL_API_PREFIX):
+            self.send_error(404, "Not Found")
+            return
+        super().do_GET()
+
+    def do_HEAD(self) -> None:  # type: ignore[override]
+        """Keep the public static server from exposing local API routes."""
+        if self.path.startswith(LOCAL_API_PREFIX):
+            self.send_error(404, "Not Found")
+            return
+        super().do_HEAD()
+
     def do_POST(self) -> None:  # type: ignore[override]
         """Keep the public static server from exposing local API routes."""
         if self.path.startswith(LOCAL_API_PREFIX):

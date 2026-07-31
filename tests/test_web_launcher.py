@@ -767,6 +767,32 @@ class LocalApiTests(unittest.TestCase):
             )
             self.assertEqual(status, 404)
 
+    def test_public_static_handler_blocks_local_api_files_for_get_and_head(self):
+        api_file = self.web_root / "api" / "local" / "trash"
+        api_file.parent.mkdir(parents=True)
+        api_file.write_text("must not be served", encoding="utf-8")
+
+        for method in ("GET", "HEAD"):
+            with self.subTest(server="public", method=method):
+                status, _ = self._request(
+                    method, "/api/local/trash", port=self.public_port,
+                )
+                self.assertEqual(status, 404)
+
+            with self.subTest(server="public-static", method=method):
+                status, _ = self._request(
+                    method, "/local.js", port=self.public_port,
+                )
+                self.assertEqual(status, 200)
+
+        status, body = self._request(
+            "GET", "/api/local/trash", headers=self._auth_headers(),
+        )
+        self.assertEqual(status, 200)
+        self.assertIn("trash", body)
+        status, _ = self._request("HEAD", "/api/local/trash")
+        self.assertEqual(status, 405)
+
     def test_trash_rejects_foreign_origin_and_empty_body(self):
         status, body = self._request(
             "POST", "/api/local/trash",

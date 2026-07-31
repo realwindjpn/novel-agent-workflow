@@ -1,12 +1,17 @@
 (function () {
   "use strict";
 
+  function cloneEntry(entry) {
+    if (!entry || typeof entry !== "object") return entry;
+    return Object.assign({}, entry);
+  }
+
   function cloneState(state) {
     return {
       library: state.library,
-      trash: state.trash.slice(),
-      selected: state.selected,
-      pending: state.pending,
+      trash: state.trash.map(cloneEntry),
+      selected: cloneEntry(state.selected),
+      pending: cloneEntry(state.pending),
       busy: state.busy,
       error: state.error,
     };
@@ -26,14 +31,14 @@
 
     function select(book) {
       if (state.busy) return snapshot();
-      state.selected = book || null;
+      state.selected = book ? cloneEntry(book) : null;
       emit();
       return snapshot();
     }
 
     function requestTrash() {
       if (state.busy || !state.selected) return snapshot();
-      state.pending = state.selected;
+      state.pending = cloneEntry(state.selected);
       state.error = "";
       emit();
       return snapshot();
@@ -48,7 +53,7 @@
     function refresh() {
       return Promise.resolve(options.listTrash()).then(function (payload) {
         state.library = payload && payload.library ? payload.library : "";
-        state.trash = payload && Array.isArray(payload.trash) ? payload.trash.slice() : [];
+        state.trash = payload && Array.isArray(payload.trash) ? payload.trash.map(cloneEntry) : [];
         state.error = "";
         emit();
         return snapshot();
@@ -64,7 +69,7 @@
       state.busy = true;
       state.error = "";
       emit();
-      return Promise.resolve(operation()).then(function (result) {
+      return Promise.resolve().then(operation).then(function (result) {
         return Promise.resolve(options.onMutation ? options.onMutation(result, kind) : null)
           .then(function () { return refresh(); })
           .then(function () { return result; });

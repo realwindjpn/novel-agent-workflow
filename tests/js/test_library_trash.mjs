@@ -17,12 +17,15 @@ function loadApi() {
 }
 
 test("selection and cancel never call the transport", async () => {
-  const calls = [];
+  const transports = [];
   const states = [];
   const controller = loadApi().createController({
-    listTrash: async () => ({ library: "C:\\Books", trash: [] }),
-    trashBook: async (directory) => calls.push(directory),
-    restoreBook: async () => {},
+    listTrash: async () => {
+      transports.push("listTrash");
+      return { library: "C:\\Books", trash: [] };
+    },
+    trashBook: async () => transports.push("trashBook"),
+    restoreBook: async () => transports.push("restoreBook"),
     onChange: (state) => states.push(state),
     onMutation: async () => {},
   });
@@ -31,24 +34,32 @@ test("selection and cancel never call the transport", async () => {
   assert.equal(controller.snapshot().pending.directory, "demo");
   controller.cancelTrash();
   assert.equal(controller.snapshot().pending, null);
-  assert.deepEqual(calls, []);
+  assert.deepEqual(transports, []);
   assert.equal(states.at(-1).busy, false);
 });
 
 test("confirmed recycle is busy, forwards result, refreshes, and clears selection", async () => {
   let release;
   const mutations = [];
+  const events = [];
   const controller = loadApi().createController({
-    listTrash: async () => ({ library: "C:\\Books", trash: [{ trash_id: "t1", valid: true }] }),
+    listTrash: async () => {
+      events.push("refresh");
+      return { library: "C:\\Books", trash: [{ trash_id: "t1", valid: true }] };
+    },
     trashBook: () => new Promise((resolve) => { release = resolve; }),
     restoreBook: async () => {},
     onChange: () => {},
-    onMutation: async (result, kind) => mutations.push({ result, kind }),
+    onMutation: async (result, kind) => {
+      events.push("mutation");
+      mutations.push({ result, kind });
+    },
   });
   controller.select({ directory: "demo", title: "Demo" });
   controller.requestTrash();
   const pending = controller.confirmTrash();
   assert.equal(controller.snapshot().busy, true);
+  await Promise.resolve();
   release({ status: "trashed", trash_id: "t1", was_active: true });
   const result = await pending;
   assert.equal(result.trash_id, "t1");
@@ -57,6 +68,7 @@ test("confirmed recycle is busy, forwards result, refreshes, and clears selectio
   assert.equal(controller.snapshot().trash.length, 1);
   assert.equal(mutations[0].kind, "trash");
   assert.equal(mutations[0].result.was_active, true);
+  assert.deepEqual(events, ["mutation", "refresh"]);
 });
 
 test("restore errors remain visible and always clear busy", async () => {
@@ -70,6 +82,53 @@ test("restore errors remain visible and always clear busy", async () => {
   await assert.rejects(controller.restore("t1"), /restore failed/);
   assert.equal(controller.snapshot().busy, false);
   assert.equal(controller.snapshot().error, "restore failed");
+});
+
+test("snapshots cannot mutate selected, pending, or trash state", async () => {
+  const directories = [];
+  const controller = loadApi().createController({
+    listTrash: async () => ({
+      library: "C:\\Books",
+      trash: [{ trash_id: "t1", valid: false }],
+    }),
+    trashBook: async (directory) => {
+      directories.push(directory);
+      return { status: "trashed" };
+    },
+    restoreBook: async () => {},
+    onChange: () => {},
+    onMutation: async () => {},
+  });
+  await controller.refresh();
+  controller.select({ directory: "demo", title: "Demo" });
+  controller.requestTrash();
+
+  const snapshot = controller.snapshot();
+  snapshot.selected.directory = "changed-selection";
+  snapshot.pending.directory = "changed-pending";
+  snapshot.trash[0].trash_id = "changed-trash";
+  snapshot.trash[0].valid = true;
+
+  const isolated = controller.snapshot();
+  assert.equal(isolated.selected.directory, "demo");
+  assert.equal(isolated.pending.directory, "demo");
+  assert.equal(isolated.trash[0].trash_id, "t1");
+  assert.equal(isolated.trash[0].valid, false);
+  await controller.confirmTrash();
+  assert.deepEqual(directories, ["demo"]);
+});
+
+test("synchronous transport errors remain visible and always clear busy", async () => {
+  const controller = loadApi().createController({
+    listTrash: async () => ({ library: "C:\\Books", trash: [] }),
+    trashBook: async () => {},
+    restoreBook: () => { throw new Error("synchronous restore failed"); },
+    onChange: () => {},
+    onMutation: async () => {},
+  });
+  await assert.rejects(controller.restore("t1"), /synchronous restore failed/);
+  assert.equal(controller.snapshot().busy, false);
+  assert.equal(controller.snapshot().error, "synchronous restore failed");
 });
 
 test("a second mutation is rejected while recycle is running", async () => {

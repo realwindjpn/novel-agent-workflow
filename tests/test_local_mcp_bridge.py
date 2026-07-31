@@ -173,6 +173,10 @@ class _FakeStdout:
             self._buf.append(data)
             self._cv.notify_all()
 
+    @property
+    def closed(self) -> bool:
+        return self._closed
+
     def __iter__(self):
         return self
 
@@ -264,6 +268,23 @@ class McpStdioClientTests(unittest.TestCase):
             )
             client.close()
             client.close()  # idempotent
+
+    def test_close_closes_all_child_pipes(self):
+        with tempfile.TemporaryDirectory() as d:
+            book = Path(d) / "book"
+            book.mkdir()
+            popen, holder = _spawn()
+            client = McpStdioClient(book, popen=popen)
+            holder["fake"].responses[1] = {
+                "jsonrpc": "2.0",
+                "id": 1,
+                "result": {"serverInfo": {"name": "novel-workflow"}},
+            }
+            client.start()
+            client.close()
+            self.assertTrue(holder["fake"].stdin.closed)
+            self.assertTrue(holder["fake"].stdout.closed)
+            self.assertTrue(holder["fake"].stderr.closed)
 
     def test_serialised_concurrent_calls(self):
         with tempfile.TemporaryDirectory() as d:

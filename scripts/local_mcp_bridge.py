@@ -202,6 +202,16 @@ class McpStdioClient:
                     proc.kill()
                 except OSError:
                     pass
+                try:
+                    proc.wait(timeout=2.0)
+                except subprocess.TimeoutExpired:
+                    pass
+            for stream in (proc.stdout, proc.stderr):
+                try:
+                    if stream is not None and not getattr(stream, "closed", False):
+                        stream.close()
+                except OSError:
+                    pass
         # Wake anyone blocked on a request so they surface a clean error
         # instead of hanging forever.
         with self._wake_lock:

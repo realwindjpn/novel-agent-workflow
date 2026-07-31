@@ -3,16 +3,21 @@ from __future__ import annotations
 import json
 import tempfile
 import unittest
-from datetime import date
+from datetime import date, datetime, timezone
 from pathlib import Path
 from unittest.mock import patch
 
 from novel_workflow import core as nw_core
 from novel_workflow.library import (
+    TRASH_DIRECTORY,
+    TRASH_INFO_FILE,
     ProjectEntry,
     chapter_artifact_dir,
     discover_projects,
+    discover_trash,
     next_book_directory,
+    next_restore_directory,
+    next_trash_directory,
     safe_component,
 )
 from novel_workflow.core import (
@@ -67,6 +72,61 @@ class LibraryTests(unittest.TestCase):
             entries = discover_projects(root)
             self.assertEqual([e.directory for e in entries], ["new", "old", "bad"])
             self.assertFalse(entries[-1].valid)
+
+    def test_discover_projects_excludes_trash_directory(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            book = root / "normal"
+            book.mkdir()
+            (book / "workflow.json").write_text(
+                json.dumps({"title": "Normal", "chapters": {}}), encoding="utf-8"
+            )
+            trash = root / TRASH_DIRECTORY / "tagged"
+            trash.mkdir(parents=True)
+            (trash / "workflow.json").write_text(
+                json.dumps({"title": "Hidden", "chapters": {}}), encoding="utf-8"
+            )
+            self.assertEqual([e.directory for e in discover_projects(root)], ["normal"])
+
+    def test_next_trash_and_restore_directories_are_collision_safe(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            now = datetime(2026, 7, 31, 8, 30, 15, 123456, tzinfo=timezone.utc)
+            first = next_trash_directory(root, "雾城回声_20260731", now)
+            self.assertEqual(
+                first.name,
+                "20260731T083015123456Z__雾城回声_20260731",
+            )
+            first.mkdir(parents=True)
+            self.assertEqual(
+                next_trash_directory(root, "雾城回声_20260731", now).name,
+                first.name + "(1)",
+            )
+            occupied = root / "雾城回声_20260731"
+            occupied.mkdir()
+            self.assertEqual(
+                next_restore_directory(root, "雾城回声_20260731").name,
+                "雾城回声_20260731（恢复1）",
+            )
+
+    def test_discover_trash_reads_valid_and_invalid_tags(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            valid = root / TRASH_DIRECTORY / "valid-id"
+            valid.mkdir(parents=True)
+            (valid / TRASH_INFO_FILE).write_text(json.dumps({
+                "schema_version": 1,
+                "original_directory": "雾城回声_20260731",
+                "title": "雾城回声",
+                "trashed_at": "2026-07-31T08:30:15.123456Z",
+            }, ensure_ascii=False), encoding="utf-8")
+            invalid = root / TRASH_DIRECTORY / "invalid-id"
+            invalid.mkdir()
+            entries = {entry.trash_id: entry for entry in discover_trash(root)}
+            self.assertTrue(entries["valid-id"].valid)
+            self.assertEqual(entries["valid-id"].original_directory, "雾城回声_20260731")
+            self.assertFalse(entries["invalid-id"].valid)
+            self.assertIn("missing", entries["invalid-id"].error)
 
     def test_chapter_artifact_dir_is_relative_and_zero_padded(self):
         self.assertEqual(

@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 import re
 from dataclasses import dataclass
-from datetime import date
+from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import Optional
 
@@ -16,6 +16,9 @@ _RESERVED = (
     | {f"COM{i}" for i in range(1, 10)}
     | {f"LPT{i}" for i in range(1, 10)}
 )
+
+TRASH_DIRECTORY = ".trash"
+TRASH_INFO_FILE = ".trash-info.json"
 
 
 def safe_component(value: str) -> str:
@@ -78,6 +81,16 @@ class ProjectEntry:
     error: Optional[str] = None
 
 
+@dataclass(frozen=True)
+class TrashEntry:
+    trash_id: str
+    original_directory: Optional[str]
+    title: Optional[str]
+    trashed_at: Optional[str]
+    valid: bool
+    error: Optional[str] = None
+
+
 def _safe_resolve(child: Path, library: Path) -> Optional[Path]:
     """Resolve ``child`` against ``library``; reject if it escapes the library."""
     try:
@@ -91,6 +104,82 @@ def _safe_resolve(child: Path, library: Path) -> Optional[Path]:
     except ValueError:
         return None
     return resolved
+
+
+def next_trash_directory(
+    library: Path,
+    original_directory: str,
+    now: Optional[datetime] = None,
+) -> Path:
+    library = Path(library)
+    trash_root = library / TRASH_DIRECTORY
+    if trash_root.is_symlink():
+        raise ValueError("symlinked trash directory is not supported")
+    trash_root.mkdir(parents=True, exist_ok=True)
+    if _safe_resolve(trash_root, library) is None:
+        raise ValueError("trash directory escapes the library")
+    instant = now or datetime.now(timezone.utc)
+    if instant.tzinfo is None:
+        instant = instant.replace(tzinfo=timezone.utc)
+    instant = instant.astimezone(timezone.utc)
+    stamp = instant.strftime("%Y%m%dT%H%M%S%fZ")
+    base = f"{stamp}__{safe_component(original_directory)}"
+    candidate = trash_root / base
+    counter = 1
+    while candidate.exists():
+        candidate = trash_root / f"{base}({counter})"
+        counter += 1
+    return candidate
+
+
+def next_restore_directory(library: Path, original_directory: str) -> Path:
+    library = Path(library)
+    base = safe_component(original_directory)
+    candidate = library / base
+    counter = 1
+    while candidate.exists():
+        candidate = library / f"{base}（恢复{counter}）"
+        counter += 1
+    return candidate
+
+
+def _read_trash_entry(child: Path) -> TrashEntry:
+    tag = child / TRASH_INFO_FILE
+    if not tag.is_file():
+        return TrashEntry(child.name, None, None, None, False, "trash tag missing")
+    try:
+        data = json.loads(tag.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        return TrashEntry(child.name, None, None, None, False, f"trash tag unreadable: {exc}")
+    original = data.get("original_directory")
+    title = data.get("title")
+    trashed_at = data.get("trashed_at")
+    if (
+        data.get("schema_version") != 1
+        or not isinstance(original, str) or not original
+        or original in {".", "..", TRASH_DIRECTORY}
+        or "/" in original or "\\" in original
+        or not isinstance(title, str) or not title
+        or not isinstance(trashed_at, str) or not trashed_at
+    ):
+        return TrashEntry(child.name, None, None, None, False, "trash tag invalid")
+    return TrashEntry(child.name, original, title, trashed_at, True, None)
+
+
+def discover_trash(library: Path) -> list[TrashEntry]:
+    library = Path(library)
+    trash_root = library / TRASH_DIRECTORY
+    if not trash_root.is_dir() or trash_root.is_symlink():
+        return []
+    entries: list[TrashEntry] = []
+    for child in sorted(trash_root.iterdir(), key=lambda p: p.name):
+        if not child.is_dir() or child.is_symlink():
+            continue
+        if _safe_resolve(child, trash_root) is None:
+            continue
+        entries.append(_read_trash_entry(child))
+    entries.sort(key=lambda e: (e.trashed_at or "", e.trash_id), reverse=True)
+    return entries
 
 
 def _read_project(child: Path) -> ProjectEntry:
@@ -151,6 +240,8 @@ def discover_projects(library: Path) -> list[ProjectEntry]:
         return []
     entries: list[ProjectEntry] = []
     for child in sorted(library.iterdir(), key=lambda p: p.name):
+        if child.name == TRASH_DIRECTORY:
+            continue
         if not child.is_dir() or child.is_symlink():
             # Reject symlinks at the top level outright: a symlink whose
             # target is outside the library could escape the catalog.

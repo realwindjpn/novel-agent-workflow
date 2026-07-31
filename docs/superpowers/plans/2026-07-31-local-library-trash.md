@@ -1,6 +1,6 @@
 # Local Library Trash and Restore Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** Add a local-only, recoverable library recycle bin that safely moves, tags, lists, and restores books while leaving permanent deletion to the local file system.
 
@@ -42,7 +42,7 @@
 - Modify: `tests/test_library.py`
 - Regenerate: `web/sources.js`
 
-- [ ] **Step 1: Write the failing pure-library tests**
+- [x] **Step 1: Write the failing pure-library tests**
 
 Extend the import list in `tests/test_library.py` and add these tests to `LibraryTests`:
 
@@ -119,7 +119,7 @@ def test_discover_trash_reads_valid_and_invalid_tags(self):
         self.assertIn("missing", entries["invalid-id"].error)
 ```
 
-- [ ] **Step 2: Run the tests and verify the new imports fail**
+- [x] **Step 2: Run the tests and verify the new imports fail**
 
 Run:
 
@@ -129,7 +129,7 @@ Run:
 
 Expected: `ImportError` for the new trash constants/functions.
 
-- [ ] **Step 3: Implement the pure library model and helpers**
+- [x] **Step 3: Implement the pure library model and helpers**
 
 Add these definitions to `src/novel_workflow/library.py`, importing
 `datetime` and `timezone` alongside `date`:
@@ -235,7 +235,7 @@ for child in sorted(library.iterdir(), key=lambda p: p.name):
         continue
 ```
 
-- [ ] **Step 4: Run the focused tests and regenerate the canonical snapshot**
+- [x] **Step 4: Run the focused tests and regenerate the canonical snapshot**
 
 Run:
 
@@ -248,7 +248,7 @@ git diff --check
 Expected: all `LibraryTests` pass; `web/sources.js` changes only because the
 canonical `library.py` source changed; `git diff --check` is silent.
 
-- [ ] **Step 5: Commit the pure layer**
+- [x] **Step 5: Commit the pure layer**
 
 ```powershell
 git add src/novel_workflow/library.py tests/test_library.py web/sources.js
@@ -263,7 +263,7 @@ git commit -m "feat: add library trash primitives"
 - Modify: `scripts/local_mcp_bridge.py`
 - Modify: `tests/test_local_mcp_bridge.py`
 
-- [ ] **Step 1: Add failing session transaction tests**
+- [x] **Step 1: Add failing session transaction tests**
 
 Import `TRASH_DIRECTORY`, `TRASH_INFO_FILE`, and `datetime/timezone`, then add
 these methods to `LibrarySessionTests`:
@@ -346,7 +346,7 @@ def test_tag_write_failure_rolls_book_back(self):
         self.assertFalse((source / TRASH_INFO_FILE).exists())
 ```
 
-- [ ] **Step 2: Run the session tests and verify missing methods fail**
+- [x] **Step 2: Run the session tests and verify missing methods fail**
 
 ```powershell
 .\.venv\Scripts\python.exe -m unittest tests.test_local_mcp_bridge.LibrarySessionTests -v
@@ -354,7 +354,7 @@ def test_tag_write_failure_rolls_book_back(self):
 
 Expected: failures reporting that `trash_book` and `restore_book` do not exist.
 
-- [ ] **Step 3: Implement strict validation and transactional moves**
+- [x] **Step 3: Implement strict validation and transactional moves**
 
 Expand the `novel_workflow.library` import in `scripts/local_mcp_bridge.py`:
 
@@ -491,7 +491,7 @@ def restore_book(self, trash_id: str) -> dict:
     }
 ```
 
-- [ ] **Step 4: Add concrete close, symlink, and restore-rollback tests**
+- [x] **Step 4: Add concrete close, symlink, and restore-rollback tests**
 
 Add these methods to `LibrarySessionTests`:
 
@@ -597,7 +597,7 @@ git diff --check
 
 Expected: both modules pass and the diff check is silent.
 
-- [ ] **Step 5: Commit the stateful session layer**
+- [x] **Step 5: Commit the stateful session layer**
 
 ```powershell
 git add scripts/local_mcp_bridge.py tests/test_local_mcp_bridge.py
@@ -612,7 +612,7 @@ git commit -m "feat: recycle and restore library books"
 - Modify: `scripts/launch_web.py`
 - Modify: `tests/test_web_launcher.py`
 
-- [ ] **Step 1: Add failing end-to-end local API tests**
+- [x] **Step 1: Add failing end-to-end local API tests**
 
 Add a helper to `LocalApiTests`:
 
@@ -697,7 +697,7 @@ def test_public_server_has_no_trash_routes(self):
         self.assertEqual(status, 404)
 ```
 
-- [ ] **Step 2: Run the API tests and verify `404` on the new local routes**
+- [x] **Step 2: Run the API tests and verify `404` on the new local routes**
 
 ```powershell
 .\.venv\Scripts\python.exe -m unittest tests.test_web_launcher.LocalApiTests -v
@@ -706,7 +706,7 @@ def test_public_server_has_no_trash_routes(self):
 Expected: the new authenticated route test fails with `404` while existing tests
 remain green.
 
-- [ ] **Step 3: Add route dispatch and serialization**
+- [x] **Step 3: Add route dispatch and serialization**
 
 Add these branches in `LocalApi.handle()` after the existing library routes:
 
@@ -756,7 +756,7 @@ def _serve_restore_book(self, handler: BaseHTTPRequestHandler) -> None:
     self._send_json(handler, 200, self._session.restore_book(trash_id))
 ```
 
-- [ ] **Step 4: Add origin, malformed body, collision restore, and invalid-tag tests**
+- [x] **Step 4: Add origin, malformed body, collision restore, and invalid-tag tests**
 
 Add these methods to `LocalApiTests`:
 
@@ -824,7 +824,7 @@ Run:
 
 Expected: all `LocalApiTests` pass, including the public `404` assertions.
 
-- [ ] **Step 5: Commit the local API**
+- [x] **Step 5: Commit the local API**
 
 ```powershell
 git add scripts/launch_web.py tests/test_web_launcher.py
@@ -839,7 +839,7 @@ git commit -m "feat: expose local recycle bin API"
 - Modify: `web/local.js`
 - Modify: `tests/js/test_local_adapter.mjs`
 
-- [ ] **Step 1: Add failing adapter request tests**
+- [x] **Step 1: Add failing adapter request tests**
 
 Add these tests after the existing local-library adapter tests:
 
@@ -902,7 +902,7 @@ test("restoreBook posts trash_id and propagates structured errors", async () => 
 });
 ```
 
-- [ ] **Step 2: Run the adapter tests and verify methods are missing**
+- [x] **Step 2: Run the adapter tests and verify methods are missing**
 
 ```powershell
 node --test tests\js\test_local_adapter.mjs
@@ -911,7 +911,7 @@ node --test tests\js\test_local_adapter.mjs
 Expected: failures saying `listTrash`, `trashBook`, and `restoreBook` are not
 functions.
 
-- [ ] **Step 3: Implement and export the adapter methods**
+- [x] **Step 3: Implement and export the adapter methods**
 
 Add beside `listBooks()` in `web/local.js`:
 
@@ -940,7 +940,7 @@ function restoreBook(trashId) {
 
 Add `listTrash`, `trashBook`, and `restoreBook` to the exported `api` object.
 
-- [ ] **Step 4: Run adapter and existing routing tests**
+- [x] **Step 4: Run adapter and existing routing tests**
 
 ```powershell
 node --test tests\js\test_local_adapter.mjs tests\js\test_chat_routing.mjs
@@ -948,7 +948,7 @@ node --test tests\js\test_local_adapter.mjs tests\js\test_chat_routing.mjs
 
 Expected: both files pass.
 
-- [ ] **Step 5: Commit the adapter**
+- [x] **Step 5: Commit the adapter**
 
 ```powershell
 git add web/local.js tests/js/test_local_adapter.mjs
@@ -963,7 +963,7 @@ git commit -m "feat: add browser recycle transport"
 - Create: `web/library-trash.js`
 - Create: `tests/js/test_library_trash.mjs`
 
-- [ ] **Step 1: Create failing controller lifecycle tests**
+- [x] **Step 1: Create failing controller lifecycle tests**
 
 Create `tests/js/test_library_trash.mjs`:
 
@@ -1043,7 +1043,7 @@ test("restore errors remain visible and always clear busy", async () => {
 });
 ```
 
-- [ ] **Step 2: Run the test and verify the module is absent**
+- [x] **Step 2: Run the test and verify the module is absent**
 
 ```powershell
 node --test tests\js\test_library_trash.mjs
@@ -1051,7 +1051,7 @@ node --test tests\js\test_library_trash.mjs
 
 Expected: `ENOENT` for `web/library-trash.js`.
 
-- [ ] **Step 3: Implement the transport-agnostic controller**
+- [x] **Step 3: Implement the transport-agnostic controller**
 
 Create `web/library-trash.js`:
 
@@ -1173,7 +1173,7 @@ Create `web/library-trash.js`:
 })();
 ```
 
-- [ ] **Step 4: Add duplicate-submit and invalid-item tests, then run the suite**
+- [x] **Step 4: Add duplicate-submit and invalid-item tests, then run the suite**
 
 Append these tests to `tests/js/test_library_trash.mjs`:
 
@@ -1222,7 +1222,7 @@ node --test tests\js\test_library_trash.mjs
 
 Expected: all controller tests pass.
 
-- [ ] **Step 5: Commit the controller**
+- [x] **Step 5: Commit the controller**
 
 ```powershell
 git add web/library-trash.js tests/js/test_library_trash.mjs
@@ -1238,7 +1238,7 @@ git commit -m "feat: add recycle bin state controller"
 - Modify: `web/app.js`
 - Modify: `tests/test_web_launcher.py`
 
-- [ ] **Step 1: Add failing static UI contract tests**
+- [x] **Step 1: Add failing static UI contract tests**
 
 Add to `WebLibraryPanelAssetTests`:
 
@@ -1263,7 +1263,7 @@ def test_library_controller_integrates_recycle_state(self):
     self.assertIn('was_active', self.app_js)
 ```
 
-- [ ] **Step 2: Run the asset tests and verify missing controls fail**
+- [x] **Step 2: Run the asset tests and verify missing controls fail**
 
 ```powershell
 .\.venv\Scripts\python.exe -m unittest tests.test_web_launcher.WebLibraryPanelAssetTests -v
@@ -1271,7 +1271,7 @@ def test_library_controller_integrates_recycle_state(self):
 
 Expected: both new tests fail because the markup and integration are absent.
 
-- [ ] **Step 3: Add accessible markup and local-only explanatory copy**
+- [x] **Step 3: Add accessible markup and local-only explanatory copy**
 
 In the existing-book section of `web/index.html`, replace the single primary
 button with:
@@ -1332,7 +1332,7 @@ Add styles:
 
 Load `library-trash.js` after `local.js` and before `app.js`.
 
-- [ ] **Step 4: Bind selection, confirmation, rendering, and mutation refresh**
+- [x] **Step 4: Bind selection, confirmation, rendering, and mutation refresh**
 
 In `web/app.js`, cache the new elements and maintain `visibleBooksByDirectory`.
 When `renderBookList()` receives books, populate that map. Extend
@@ -1437,7 +1437,7 @@ libTrashList.addEventListener("click", function (event) {
 Call `trashController.refresh()` in `loadLibraryDialog()`, after library path
 changes, and after manual refresh. Keep the modal open after recycle/restore.
 
-- [ ] **Step 5: Run UI, adapter, and API regression tests**
+- [x] **Step 5: Run UI, adapter, and API regression tests**
 
 ```powershell
 .\.venv\Scripts\python.exe -m unittest tests.test_web_launcher.WebLibraryPanelAssetTests tests.test_web_launcher.LocalApiTests -v
@@ -1447,7 +1447,7 @@ git diff --check
 
 Expected: all focused Python/JavaScript tests pass and the diff check is silent.
 
-- [ ] **Step 6: Commit the UI integration**
+- [x] **Step 6: Commit the UI integration**
 
 ```powershell
 git add web/index.html web/app.js tests/test_web_launcher.py
@@ -1464,7 +1464,7 @@ git commit -m "feat: add library recycle bin UI"
 - Modify: `CHANGELOG.md`
 - Verify: `web/sources.js`
 
-- [ ] **Step 1: Document the exact recoverable behavior**
+- [x] **Step 1: Document the exact recoverable behavior**
 
 Add a `Local recycle bin` subsection to the local-library sections of both
 READMEs with this content:
@@ -1494,7 +1494,7 @@ Add under `## Unreleased` in `CHANGELOG.md`:
   explicit local-file-system action. Public static/tunnel routes stay isolated.
 ```
 
-- [ ] **Step 2: Verify snapshot and focused suites**
+- [x] **Step 2: Verify snapshot and focused suites**
 
 Run:
 
@@ -1509,7 +1509,7 @@ git diff --check
 Expected: the generator produces no new diff, all focused suites pass, and
 `git diff --check` is silent.
 
-- [ ] **Step 3: Commit documentation**
+- [x] **Step 3: Commit documentation**
 
 ```powershell
 git add README.md web/README.md CHANGELOG.md
@@ -1524,7 +1524,7 @@ git commit -m "docs: explain local library recycle bin"
 - Modify if a defect is found: only files already named in Tasks 1-7
 - Modify after all checks pass: `docs/superpowers/plans/2026-07-31-local-library-trash.md`
 
-- [ ] **Step 1: Run all JavaScript tests**
+- [x] **Step 1: Run all JavaScript tests**
 
 ```powershell
 $failed = $false
@@ -1537,7 +1537,7 @@ if ($failed) { exit 1 }
 
 Expected: every JavaScript test file passes.
 
-- [ ] **Step 2: Run all Python and release checks**
+- [x] **Step 2: Run all Python and release checks**
 
 ```powershell
 .\.venv\Scripts\python.exe -m unittest discover -s tests -v
@@ -1547,7 +1547,7 @@ Expected: every JavaScript test file passes.
 Expected: the Python suite passes (environment-specific skips are reported, not
 failures) and the release script prints `RELEASE_CHECK_PASS`.
 
-- [ ] **Step 3: Perform real browser acceptance in a disposable library**
+- [x] **Step 3: Perform real browser acceptance in a disposable library**
 
 Create a temporary library outside `F:\bookworkflow\book`:
 
@@ -1584,7 +1584,7 @@ Do not delete the disposable directory until the launcher is stopped. After
 acceptance, stop only that launcher process and remove only the printed
 `$acceptanceRoot` path.
 
-- [ ] **Step 4: Audit repository and security boundaries**
+- [x] **Step 4: Audit repository and security boundaries**
 
 ```powershell
 git status --short
@@ -1596,7 +1596,7 @@ rg -n "Bearer |X-Library-Token|api[_-]?key|secret" README.md web scripts src tes
 Expected: only planned files changed; no real local token, key, acceptance
 directory, trash payload, or user-book content is present in the repository.
 
-- [ ] **Step 5: Stop on acceptance defects rather than recording false completion**
+- [x] **Step 5: Stop on acceptance defects rather than recording false completion**
 
 If any acceptance defect remains, leave the affected checkbox unchecked, record
 the exact failing command or browser step beneath it, and revise this plan with
@@ -1604,7 +1604,7 @@ a concrete failing test plus exact patch before making another implementation
 commit. Do not mark the plan complete and do not broaden scope into Windows
 Recycle Bin integration or web permanent deletion.
 
-- [ ] **Step 6: Mark this plan complete and commit the acceptance record**
+- [x] **Step 6: Mark this plan complete and commit the acceptance record**
 
 Change every checkbox in this plan from `[ ]` to `[x]` only after its command or
 manual check has actually passed, then run:

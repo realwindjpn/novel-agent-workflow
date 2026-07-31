@@ -689,6 +689,144 @@ class LocalApiTests(unittest.TestCase):
             parsed = data.decode("utf-8", errors="replace")
         return response.status, parsed
 
+    def _auth_headers(self, *, origin=True):
+        headers = {"Authorization": f"Bearer {self.token}"}
+        if origin:
+            headers["Origin"] = f"http://localhost:{self.port}"
+        return headers
+
+    def test_trash_routes_list_recycle_and_restore(self):
+        status, moved = self._request(
+            "POST", "/api/local/trash",
+            headers=self._auth_headers(),
+            body={"directory": "demo_20260728"},
+        )
+        self.assertEqual(status, 200)
+        self.assertEqual(moved["status"], "trashed")
+        self.assertFalse((self.library / "demo_20260728").exists())
+
+        status, listed = self._request(
+            "GET", "/api/local/trash", headers=self._auth_headers()
+        )
+        self.assertEqual(status, 200)
+        self.assertEqual(listed["trash"][0]["trash_id"], moved["trash_id"])
+        self.assertTrue(listed["trash"][0]["valid"])
+
+        status, restored = self._request(
+            "POST", "/api/local/restore",
+            headers=self._auth_headers(),
+            body={"trash_id": moved["trash_id"]},
+        )
+        self.assertEqual(status, 200)
+        self.assertEqual(restored["status"], "restored")
+        self.assertTrue((self.library / restored["directory"]).is_dir())
+
+    def test_trash_active_book_clears_capabilities(self):
+        self._request(
+            "POST", "/api/local/open",
+            headers=self._auth_headers(),
+            body={"directory": "demo_20260728"},
+        )
+        status, moved = self._request(
+            "POST", "/api/local/trash",
+            headers=self._auth_headers(),
+            body={"directory": "demo_20260728"},
+        )
+        self.assertEqual(status, 200)
+        self.assertTrue(moved["was_active"])
+        status, capabilities = self._request(
+            "GET", "/api/local/capabilities",
+            headers={"Authorization": f"Bearer {self.token}"},
+        )
+        self.assertEqual(status, 200)
+        self.assertIsNone(capabilities["active_directory"])
+
+    def test_trash_routes_require_authentication(self):
+        for method, path, body in (
+            ("GET", "/api/local/trash", None),
+            ("POST", "/api/local/trash", {"directory": "demo_20260728"}),
+            ("POST", "/api/local/restore", {"trash_id": "x"}),
+        ):
+            with self.subTest(method=method, path=path):
+                status, response = self._request(method, path, body=body)
+                self.assertEqual(status, 401)
+                self.assertEqual(response["error"]["code"], "unauthorized")
+
+    def test_public_server_has_no_trash_routes(self):
+        for method, path, body in (
+            ("GET", "/api/local/trash", None),
+            ("POST", "/api/local/trash", {"directory": "demo_20260728"}),
+            ("POST", "/api/local/restore", {"trash_id": "x"}),
+        ):
+            status, _ = self._request(
+                method,
+                path,
+                port=self.public_port,
+                headers={"Authorization": f"Bearer {self.token}"},
+                body=body,
+            )
+            self.assertEqual(status, 404)
+
+    def test_trash_rejects_foreign_origin_and_empty_body(self):
+        status, body = self._request(
+            "POST", "/api/local/trash",
+            headers={
+                "Origin": "http://evil.example",
+                "Authorization": f"Bearer {self.token}",
+            },
+            body={"directory": "demo_20260728"},
+        )
+        self.assertEqual(status, 403)
+        self.assertEqual(body["error"]["code"], "origin_rejected")
+        status, body = self._request(
+            "POST", "/api/local/trash",
+            headers=self._auth_headers(),
+            body={},
+        )
+        self.assertEqual(status, 400)
+        self.assertEqual(body["error"]["code"], "bad_request")
+
+    def test_restore_collision_uses_recovery_suffix(self):
+        status, moved = self._request(
+            "POST", "/api/local/trash",
+            headers=self._auth_headers(),
+            body={"directory": "demo_20260728"},
+        )
+        self.assertEqual(status, 200)
+        replacement = self.library / "demo_20260728"
+        replacement.mkdir()
+        (replacement / "workflow.json").write_text(
+            json.dumps({"title": "replacement", "chapters": {}}), encoding="utf-8"
+        )
+        status, restored = self._request(
+            "POST", "/api/local/restore",
+            headers=self._auth_headers(),
+            body={"trash_id": moved["trash_id"]},
+        )
+        self.assertEqual(status, 200)
+        self.assertEqual(restored["directory"], "demo_20260728（恢复1）")
+        self.assertTrue(restored["renamed"])
+
+    def test_invalid_trash_tag_is_listed_but_cannot_restore(self):
+        invalid = self.library / ".trash" / "invalid-id"
+        invalid.mkdir(parents=True)
+        (invalid / "workflow.json").write_text("{}", encoding="utf-8")
+        status, listed = self._request(
+            "GET", "/api/local/trash", headers=self._auth_headers()
+        )
+        self.assertEqual(status, 200)
+        item = next(
+            entry for entry in listed["trash"] if entry["trash_id"] == "invalid-id"
+        )
+        self.assertFalse(item["valid"])
+        status, body = self._request(
+            "POST", "/api/local/restore",
+            headers=self._auth_headers(),
+            body={"trash_id": "invalid-id"},
+        )
+        self.assertEqual(status, 400)
+        self.assertEqual(body["error"]["code"], "bad_request")
+
     def test_capabilities_returns_token_and_catalog(self):
         status, body = self._request(
             "GET", "/api/local/capabilities",

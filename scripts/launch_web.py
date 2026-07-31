@@ -151,6 +151,13 @@ class QuietStaticHandler(SimpleHTTPRequestHandler):
     def log_message(self, format: str, *args: object) -> None:
         return
 
+    def do_POST(self) -> None:  # type: ignore[override]
+        """Keep the public static server from exposing local API routes."""
+        if self.path.startswith(LOCAL_API_PREFIX):
+            self.send_error(404, "Not Found")
+            return
+        self.send_error(405, "Method Not Allowed")
+
 
 def start_http_server(
     web_root: Path,
@@ -324,6 +331,12 @@ class LocalApi:
                 self._serve_library(handler)
             elif route == ("POST", "library"):
                 self._serve_set_library(handler)
+            elif route == ("GET", "trash"):
+                self._serve_trash(handler)
+            elif route == ("POST", "trash"):
+                self._serve_trash_book(handler)
+            elif route == ("POST", "restore"):
+                self._serve_restore_book(handler)
             elif route == ("POST", "select-directory"):
                 self._serve_select_directory(handler)
             elif route == ("GET", "tree"):
@@ -423,6 +436,39 @@ class LocalApi:
                 for entry in catalog
             ],
         })
+
+    @staticmethod
+    def _trash_json(entry) -> dict:
+        return {
+            "trash_id": entry.trash_id,
+            "original_directory": entry.original_directory,
+            "title": entry.title,
+            "trashed_at": entry.trashed_at,
+            "valid": entry.valid,
+            "error": entry.error,
+        }
+
+    def _serve_trash(self, handler: BaseHTTPRequestHandler) -> None:
+        self._send_json(handler, 200, {
+            "library": str(self._session.library),
+            "trash": [self._trash_json(entry) for entry in self._session.trash()],
+        })
+
+    def _serve_trash_book(self, handler: BaseHTTPRequestHandler) -> None:
+        body = self._read_json(handler)
+        directory = body.get("directory")
+        if not isinstance(directory, str) or not directory:
+            self._send_error(handler, 400, "bad_request", "directory is required.")
+            return
+        self._send_json(handler, 200, self._session.trash_book(directory))
+
+    def _serve_restore_book(self, handler: BaseHTTPRequestHandler) -> None:
+        body = self._read_json(handler)
+        trash_id = body.get("trash_id")
+        if not isinstance(trash_id, str) or not trash_id:
+            self._send_error(handler, 400, "bad_request", "trash_id is required.")
+            return
+        self._send_json(handler, 200, self._session.restore_book(trash_id))
 
     def _serve_set_library(self, handler: BaseHTTPRequestHandler) -> None:
         """Switch the active library to an absolute path provided by the SPA.

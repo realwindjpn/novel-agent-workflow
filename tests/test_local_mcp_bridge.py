@@ -10,6 +10,7 @@ contract the launcher and the SPA both rely on.
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 import sys
 import tempfile
@@ -464,6 +465,46 @@ class LibrarySessionTests(unittest.TestCase):
                 session.trash_book("linked")
             self.assertTrue(outside.is_dir())
 
+    @unittest.skipUnless(sys.platform == "win32", "Windows junction test")
+    def test_trash_book_rejects_junctioned_book(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            library = Path(tmp) / "library"
+            library.mkdir()
+            outside = Path(tmp) / "outside"
+            outside.mkdir()
+            self._plain_book(outside, "book")
+            junction = library / "linked"
+            created = subprocess.run(
+                ["cmd.exe", "/d", "/c", "mklink", "/J", str(junction), str(outside / "book")],
+                capture_output=True,
+                text=True,
+            )
+            if created.returncode != 0:
+                self.skipTest("cannot create a Windows junction in this environment")
+            self.assertFalse(junction.is_symlink())
+            with self.assertRaisesRegex(ValueError, "junction"):
+                LibrarySession(library).trash_book("linked")
+
+    @unittest.skipUnless(sys.platform == "win32", "Windows junction test")
+    def test_trash_book_rejects_junctioned_trash_root(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            library = Path(tmp) / "library"
+            library.mkdir()
+            self._plain_book(library, "demo_20260731")
+            outside = Path(tmp) / "outside"
+            outside.mkdir()
+            junction = library / TRASH_DIRECTORY
+            created = subprocess.run(
+                ["cmd.exe", "/d", "/c", "mklink", "/J", str(junction), str(outside)],
+                capture_output=True,
+                text=True,
+            )
+            if created.returncode != 0:
+                self.skipTest("cannot create a Windows junction in this environment")
+            self.assertFalse(junction.is_symlink())
+            with self.assertRaisesRegex(ValueError, "junction"):
+                LibrarySession(library).trash_book("demo_20260731")
+
     def test_restore_rejects_traversal_and_symlinked_trash_entry(self):
         with tempfile.TemporaryDirectory() as tmp:
             library = Path(tmp) / "library"
@@ -482,19 +523,40 @@ class LibrarySessionTests(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, "symlink"):
                     session.restore_book("linked")
 
+    @unittest.skipUnless(sys.platform == "win32", "Windows junction test")
+    def test_restore_rejects_junctioned_trash_entry(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            library = Path(tmp) / "library"
+            library.mkdir()
+            trash_root = library / TRASH_DIRECTORY
+            trash_root.mkdir()
+            outside = Path(tmp) / "outside"
+            outside.mkdir()
+            junction = trash_root / "linked"
+            created = subprocess.run(
+                ["cmd.exe", "/d", "/c", "mklink", "/J", str(junction), str(outside)],
+                capture_output=True,
+                text=True,
+            )
+            if created.returncode != 0:
+                self.skipTest("cannot create a Windows junction in this environment")
+            self.assertFalse(junction.is_symlink())
+            with self.assertRaisesRegex(ValueError, "junction"):
+                LibrarySession(library).restore_book("linked")
+
     def test_trash_move_failure_preserves_source(self):
         with tempfile.TemporaryDirectory() as tmp:
             library = Path(tmp)
             source = self._plain_book(library, "demo_20260731")
             session = LibrarySession(library)
-            original_rename = Path.rename
+            original_rename = os.rename
 
             def fail_first_move(path, target):
                 if path == source:
                     raise OSError("trash move failed")
                 return original_rename(path, target)
 
-            with patch.object(Path, "rename", fail_first_move):
+            with patch("scripts.local_mcp_bridge.os.rename", fail_first_move):
                 with self.assertRaisesRegex(OSError, "trash move failed"):
                     session.trash_book("demo_20260731")
             self.assertTrue(source.is_dir())
@@ -508,18 +570,65 @@ class LibrarySessionTests(unittest.TestCase):
             moved = session.trash_book("demo_20260731")
             recycled = library / TRASH_DIRECTORY / moved["trash_id"]
             expected = (recycled / TRASH_INFO_FILE).read_bytes()
-            original_rename = Path.rename
+            original_rename = os.rename
 
             def fail_restore(path, target):
                 if path == recycled:
                     raise OSError("restore move failed")
                 return original_rename(path, target)
 
-            with patch.object(Path, "rename", fail_restore):
+            with patch("scripts.local_mcp_bridge.os.rename", fail_restore):
                 with self.assertRaisesRegex(OSError, "restore move failed"):
                     session.restore_book(moved["trash_id"])
             self.assertEqual((recycled / TRASH_INFO_FILE).read_bytes(), expected)
             self.assertFalse((library / "demo_20260731").exists())
+
+    def test_restore_retries_collision_created_after_destination_selection(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            library = Path(tmp)
+            self._plain_book(library, "demo_20260731")
+            session = LibrarySession(library)
+            moved = session.trash_book("demo_20260731")
+            recycled = library / TRASH_DIRECTORY / moved["trash_id"]
+            original_rename = os.rename
+            raced = False
+
+            def collide_once(path, target):
+                nonlocal raced
+                if path == recycled and not raced:
+                    raced = True
+                    Path(target).mkdir()
+                    raise FileExistsError("destination appeared during restore")
+                return original_rename(path, target)
+
+            with patch("scripts.local_mcp_bridge.os.rename", collide_once):
+                restored = session.restore_book(moved["trash_id"])
+            self.assertTrue(raced)
+            self.assertEqual(restored["directory"], "demo_20260731（恢复1）")
+            self.assertTrue((library / "demo_20260731").is_dir())
+            self.assertTrue((library / restored["directory"] / "workflow.json").is_file())
+
+    def test_restore_rollback_preserves_concurrently_recreated_tag(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            library = Path(tmp)
+            self._plain_book(library, "demo_20260731")
+            session = LibrarySession(library)
+            moved = session.trash_book("demo_20260731")
+            recycled = library / TRASH_DIRECTORY / moved["trash_id"]
+            tag = recycled / TRASH_INFO_FILE
+            recreated = b'{"concurrent": true}\n'
+            original_rename = os.rename
+
+            def recreate_tag_then_fail(path, target):
+                if path == recycled:
+                    tag.write_bytes(recreated)
+                    raise OSError("restore move failed")
+                return original_rename(path, target)
+
+            with patch("scripts.local_mcp_bridge.os.rename", recreate_tag_then_fail):
+                with self.assertRaisesRegex(OSError, "restore move failed"):
+                    session.restore_book(moved["trash_id"])
+            self.assertEqual(tag.read_bytes(), recreated)
 
     def test_open_book_rejects_traversal(self):
         with tempfile.TemporaryDirectory() as d:

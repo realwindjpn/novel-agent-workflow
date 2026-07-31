@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import json
 import os
+import stat
 import subprocess
 import sys
 import threading
@@ -503,6 +504,40 @@ class LibrarySession:
             raise ValueError(f"{label} must be an immediate child name")
         return value
 
+    @staticmethod
+    def _is_symlink_or_junction(path: Path) -> bool:
+        """Return whether ``path`` is a symlink or Windows reparse point.
+
+        ``Path.is_symlink`` intentionally excludes directory junctions on
+        Windows. A junction can redirect a book or trash path just as a
+        symlink can, so inspect the lstat reparse-point flag as well.
+        """
+        if path.is_symlink():
+            return True
+        try:
+            attributes = path.lstat().st_file_attributes
+        except (AttributeError, OSError):
+            return False
+        return bool(attributes & stat.FILE_ATTRIBUTE_REPARSE_POINT)
+
+    def _rename_to_available_destination(
+        self, source: Path, choose_destination: Callable[[], Path]
+    ) -> Path:
+        """Rename ``source`` without replacing a concurrently created path.
+
+        On Windows, ``os.rename`` is the strongest standard-library move for
+        this operation: unlike ``os.replace``, it raises ``FileExistsError``
+        when the target already exists. Recompute under the session lock and
+        retry that explicit collision rather than clobbering the newcomer.
+        """
+        while True:
+            destination = choose_destination()
+            try:
+                os.rename(source, destination)
+            except FileExistsError:
+                continue
+            return destination
+
     def _write_trash_tag(self, recycled: Path, payload: dict) -> None:
         tag = recycled / TRASH_INFO_FILE
         temporary = recycled / f"{TRASH_INFO_FILE}.tmp"
@@ -519,8 +554,11 @@ class LibrarySession:
     def trash_book(self, directory: str) -> dict:
         directory = self._validate_immediate_name(directory, label="directory")
         candidate = self._library / directory
-        if candidate.is_symlink():
-            raise ValueError("symlinked books are not supported")
+        if self._is_symlink_or_junction(candidate):
+            raise ValueError("symlinked or junctioned books are not supported")
+        trash_root = self._library / TRASH_DIRECTORY
+        if self._is_symlink_or_junction(trash_root):
+            raise ValueError("symlinked or junctioned trash directory is not supported")
         source = candidate.resolve()
         try:
             source.relative_to(self._library.resolve())
@@ -536,7 +574,6 @@ class LibrarySession:
             raise ValueError(f"reserved trash tag already exists in {directory}")
 
         now = datetime.now(timezone.utc)
-        destination = next_trash_directory(self._library, directory, now)
         tag = {
             "schema_version": 1,
             "original_directory": directory,
@@ -552,12 +589,14 @@ class LibrarySession:
                 client = self._client
                 client.close()
                 self._client = None
-            destination.parent.mkdir(parents=True, exist_ok=True)
-            source.rename(destination)
+            destination = self._rename_to_available_destination(
+                source,
+                lambda: next_trash_directory(self._library, directory, now),
+            )
             try:
                 self._write_trash_tag(destination, tag)
             except Exception:
-                destination.rename(source)
+                os.rename(destination, source)
                 raise
         return {
             "status": "trashed",
@@ -571,11 +610,11 @@ class LibrarySession:
     def restore_book(self, trash_id: str) -> dict:
         trash_id = self._validate_immediate_name(trash_id, label="trash_id")
         trash_root = self._library / TRASH_DIRECTORY
-        if trash_root.is_symlink():
-            raise ValueError("symlinked trash directory is not supported")
+        if self._is_symlink_or_junction(trash_root):
+            raise ValueError("symlinked or junctioned trash directory is not supported")
         candidate = trash_root / trash_id
-        if candidate.is_symlink():
-            raise ValueError("symlinked trash entries are not supported")
+        if self._is_symlink_or_junction(candidate):
+            raise ValueError("symlinked or junctioned trash entries are not supported")
         source = candidate.resolve()
         try:
             source.relative_to(trash_root.resolve())
@@ -590,14 +629,21 @@ class LibrarySession:
         if not (source / "workflow.json").is_file():
             raise ValueError(f"workflow.json missing in trash entry: {trash_id}")
 
-        destination = next_restore_directory(self._library, entry.original_directory)
-        original_tag = (source / TRASH_INFO_FILE).read_bytes()
         with self._switch_lock:
-            (source / TRASH_INFO_FILE).unlink()
+            tag_path = source / TRASH_INFO_FILE
+            original_tag = tag_path.read_bytes()
+            tag_path.unlink()
             try:
-                source.rename(destination)
+                destination = self._rename_to_available_destination(
+                    source,
+                    lambda: next_restore_directory(self._library, entry.original_directory),
+                )
             except Exception:
-                (source / TRASH_INFO_FILE).write_bytes(original_tag)
+                try:
+                    with tag_path.open("xb") as tag_file:
+                        tag_file.write(original_tag)
+                except FileExistsError:
+                    pass
                 raise
         return {
             "status": "restored",

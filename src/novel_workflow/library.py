@@ -106,12 +106,29 @@ def _safe_resolve(child: Path, library: Path) -> Optional[Path]:
     return resolved
 
 
+def _validated_directory_name(value: str, *, label: str) -> str:
+    """Return one unchanged filesystem component or reject path-like input."""
+    if not isinstance(value, str) or not value:
+        raise ValueError(f"{label} is required")
+    if (
+        value in {".", "..", TRASH_DIRECTORY}
+        or "/" in value
+        or "\\" in value
+        or safe_component(value) != value
+    ):
+        raise ValueError(f"{label} must be a safe immediate child name")
+    return value
+
+
 def next_trash_directory(
     library: Path,
     original_directory: str,
     now: Optional[datetime] = None,
 ) -> Path:
     library = Path(library)
+    original_directory = _validated_directory_name(
+        original_directory, label="original_directory"
+    )
     trash_root = library / TRASH_DIRECTORY
     if trash_root.is_symlink():
         raise ValueError("symlinked trash directory is not supported")
@@ -134,7 +151,9 @@ def next_trash_directory(
 
 def next_restore_directory(library: Path, original_directory: str) -> Path:
     library = Path(library)
-    base = safe_component(original_directory)
+    base = _validated_directory_name(
+        original_directory, label="original_directory"
+    )
     candidate = library / base
     counter = 1
     while candidate.exists():
@@ -170,6 +189,8 @@ def discover_trash(library: Path) -> list[TrashEntry]:
     library = Path(library)
     trash_root = library / TRASH_DIRECTORY
     if not trash_root.is_dir() or trash_root.is_symlink():
+        return []
+    if _safe_resolve(trash_root, library) is None:
         return []
     entries: list[TrashEntry] = []
     for child in sorted(trash_root.iterdir(), key=lambda p: p.name):

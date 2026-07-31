@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import json
+import subprocess
+import sys
 import tempfile
 import unittest
 from datetime import date, datetime, timezone
@@ -108,6 +110,42 @@ class LibraryTests(unittest.TestCase):
                 next_restore_directory(root, "雾城回声_20260731").name,
                 "雾城回声_20260731（恢复1）",
             )
+
+    def test_trash_paths_reject_path_like_names_before_creating_trash(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            for value in ("", ".", "..", ".trash", "../book", "a/b", "a\\b", " book "):
+                with self.subTest(value=value):
+                    with self.assertRaises(ValueError):
+                        next_trash_directory(root, value)
+                    with self.assertRaises(ValueError):
+                        next_restore_directory(root, value)
+            self.assertFalse((root / TRASH_DIRECTORY).exists())
+
+    @unittest.skipUnless(sys.platform == "win32", "Windows junction test")
+    def test_discover_trash_rejects_junction_outside_library(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp) / "library"
+            outside = Path(tmp) / "outside"
+            root.mkdir()
+            entry = outside / "outside-id"
+            entry.mkdir(parents=True)
+            (entry / TRASH_INFO_FILE).write_text(json.dumps({
+                "schema_version": 1,
+                "original_directory": "outside-book",
+                "title": "Outside",
+                "trashed_at": "2026-07-31T08:30:15Z",
+            }), encoding="utf-8")
+            junction = root / TRASH_DIRECTORY
+            created = subprocess.run(
+                ["cmd.exe", "/d", "/c", "mklink", "/J", str(junction), str(outside)],
+                capture_output=True,
+                text=True,
+            )
+            if created.returncode != 0:
+                self.skipTest("cannot create a Windows junction in this environment")
+            self.assertFalse(junction.is_symlink())
+            self.assertEqual(discover_trash(root), [])
 
     def test_discover_trash_reads_valid_and_invalid_tags(self):
         with tempfile.TemporaryDirectory() as tmp:

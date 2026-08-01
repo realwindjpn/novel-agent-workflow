@@ -6,6 +6,11 @@ A zero-build, zero-backend, zero-network-of-its-own web UI that drives the
 state machine that the CLI and the MCP server expose — it is not a separate
 product.
 
+Run the browser launcher from the repository root (the directory containing
+`pyproject.toml` and `一键启动.cmd`). The browser UI is in `web/`; the default
+local library is `<repository root>/book` and can be relocated with
+`--library-root <absolute path>`.
+
 The runner lives in this repo at `web/`. The rest of the project (`src/`,
 `tests/`, `docs/MCP.md`, …) is unaware of it; the contract is one-way: the
 web side snapshots the Python package, never the other way around.

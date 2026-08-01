@@ -1476,16 +1476,19 @@
   // Drawer toggles (persist in session, not per book)
   var progressToggle = document.getElementById("creative-progress-toggle");
   var filesToggle = document.getElementById("creative-files-toggle");
+  var filesClose = document.getElementById("creative-files-close");
   if (progressToggle) progressToggle.addEventListener("click", function () {
     var open = document.body.classList.toggle("creative-progress-open");
     progressToggle.setAttribute("aria-expanded", String(open));
     try { sessionStorage.setItem("creative-progress-open", open ? "1" : "0"); } catch (e) {}
   });
-  if (filesToggle) filesToggle.addEventListener("click", function () {
+  function toggleFilesDrawer() {
     var open = document.body.classList.toggle("creative-files-open");
-    filesToggle.setAttribute("aria-expanded", String(open));
+    if (filesToggle) filesToggle.setAttribute("aria-expanded", String(open));
     try { sessionStorage.setItem("creative-files-open", open ? "1" : "0"); } catch (e) {}
-  });
+  }
+  if (filesToggle) filesToggle.addEventListener("click", toggleFilesDrawer);
+  if (filesClose) filesClose.addEventListener("click", toggleFilesDrawer);
   // Restore drawer state from session
   try {
     if (sessionStorage.getItem("creative-progress-open") === "1" && progressToggle) progressToggle.click();

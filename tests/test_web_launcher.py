@@ -109,6 +109,7 @@ class WebLibraryPanelAssetTests(unittest.TestCase):
             '自由创作',
             'id="creative-progress-toggle"',
             'id="creative-files-toggle"',
+            'id="creative-files-close"',
             'id="creative-decide"',
             'id="creative-generate"',
             'id="creative-save-draft"',

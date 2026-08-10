@@ -1,0 +1,972 @@
+{
+  "schema": "sensenova_mirofish_feed_package_v1",
+  "created_at": "2026-08-07T17:47:49",
+  "source_run_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260807_1719",
+  "mirofish_input_gate": {
+    "status": "ALLOW_MIROFISH_INPUT",
+    "reason": "",
+    "status_hint": "after_card_distill",
+    "valid_content_cards": 5,
+    "body_valid_cards": 6,
+    "story_value_cards": 5,
+    "low_story_value_cards": 1,
+    "mirofish_ready_cards": 5,
+    "p0_p1_story_value_cards": 5,
+    "material_relevance_status": "PASS",
+    "domestic_body_success": 7,
+    "body_fetch_success": 10,
+    "body_files_written": 10,
+    "body_fetch_success_metric": "raw/bodies/*.txt with BODY_FETCHED report item",
+    "story_value_threshold": {
+      "story_value_cards_min": 3,
+      "p0_p1_story_value_cards_min": 1,
+      "body_only_path_rejected": true
+    },
+    "bridge_mirofish_cron_recoverable": true
+  },
+  "mirofish_input_gate_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260807_1719/raw/mirofish_input_gate.json",
+  "expert_gate_report": {
+    "status": "ALLOW_MIROFISH_INPUT",
+    "expert_gate_pass": true,
+    "valid_content_cards": 5,
+    "failure_tags": [],
+    "reason": "",
+    "source": "derived_from_mirofish_input_gate",
+    "expert_gate_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260807_1719/raw/expert_gate_report.json",
+    "mirofish_input_gate_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260807_1719/raw/mirofish_input_gate.json",
+    "required_experts": [
+      "沈逸",
+      "高志凯"
+    ]
+  },
+  "expert_gate_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260807_1719/raw/expert_gate_report.json",
+  "expert_voice_cards": [],
+  "expert_voice_card_count": 0,
+  "source_cards": [
+    {
+      "material_id": "20260807_b9866256f9",
+      "title": "技术破壁与政策护航 低空经济2026开启规模化运营新篇章",
+      "url": "http://jjckb.xinhuanet.com/20260116/871a5c41982547e0857dae64ac701197/c.html",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260807_1719/cards/技术破壁与政策护航_低空经济2026开启规模化运营新篇章_43521aa0.md",
+      "source_group": "domestic",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260807_1719/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260807_1719/raw/bodies/c_43521aa0c165378a.txt",
+        "candidate_id": "33b97f3c1c479b83",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": "primary_official"
+      },
+      "evidence_complete": true,
+      "disposition": "CHAPTER_PREP_ONLY",
+      "chapter_hint": 0,
+      "story_axis": ""
+    },
+    {
+      "material_id": "20260807_38efae98d4",
+      "title": "天问二号任务示意图。图片来源：国家航天局探月与航天工程中心",
+      "url": "https://app.xinhuanet.com/news/article.html?articleId=ff4dd8219220db43267c6724ec97e17f",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260807_1719/cards/天问二号任务示意图_图片来源_国家航天局探月与航天工程中心_ab8aa3dd.md",
+      "source_group": "domestic",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260807_1719/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260807_1719/raw/bodies/article_ab8aa3ddb913c586.txt",
+        "candidate_id": "0468e441b9d10da2",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": "primary_official"
+      },
+      "evidence_complete": true,
+      "disposition": "CHAPTER_PREP_ONLY",
+      "chapter_hint": 0,
+      "story_axis": ""
+    },
+    {
+      "material_id": "20260807_5e462f58a2",
+      "title": "央视网消息：**自主创新从来都是中国航天的成功“密码”，“航天强国”一词更是出现在“十五五”的规划建议中。2025年，中国航天不断突破，国家战略与市场活力深度交织。",
+      "url": "https://news.cctv.com/2026/01/22/ARTIirX5et2odfxFyxg2FouY260122.shtml",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260807_1719/cards/央视网消息___自主创新从来都是中国航天的成功_密码___航天强国_一词更是出现在_十五五_的规_ea48a587.md",
+      "source_group": "domestic",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260807_1719/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260807_1719/raw/bodies/ARTIirX5et2odfxFyxg2FouY260122_ea48a587cb62f3ba.txt",
+        "candidate_id": "78c50ef2068c234e",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": "primary_official"
+      },
+      "evidence_complete": true,
+      "disposition": "CHAPTER_PREP_ONLY",
+      "chapter_hint": 0,
+      "story_axis": ""
+    },
+    {
+      "material_id": "20260807_b7431eeba0",
+      "title": "NASA’s Lunar Development and Test Facility Prepares Artemis Hardware for Moon",
+      "url": "https://www.nasa.gov/centers-and-facilities/johnson/nasas-lunar-development-and-test-facility-prepares-artemis-hardware-for-moon",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260807_1719/cards/NASA_s_Lunar_Development_and_Test_Facility_Prepare_ad50dcc6.md",
+      "source_group": "overseas",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260807_1719/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260807_1719/raw/bodies/NASA_s_Lunar_Development_and_Test_Facili_ad50dcc656ebc912.txt",
+        "candidate_id": "ad50dcc656ebc912",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": ""
+      },
+      "evidence_complete": false,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": ""
+    },
+    {
+      "material_id": "20260807_f1cb5420dc",
+      "title": "NASA’s SkyFall Helicopters at Work (Artist’s Concept)",
+      "url": "https://science.nasa.gov/photojournal/nasas-skyfall-helicopters-at-work-artists-concept",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260807_1719/cards/NASA_s_SkyFall_Helicopters_at_Work__Artist_s_Conce_05c33e8d.md",
+      "source_group": "overseas",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260807_1719/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260807_1719/raw/bodies/NASA_s_SkyFall_Helicopters_at_Work__Arti_05c33e8db9361003.txt",
+        "candidate_id": "05c33e8db9361003",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": ""
+      },
+      "evidence_complete": true,
+      "disposition": "CHAPTER_PREP_ONLY",
+      "chapter_hint": 0,
+      "story_axis": ""
+    }
+  ],
+  "source_card_count": 5,
+  "fresh_news_cards": [
+    {
+      "material_id": "20260807_b9866256f9",
+      "title": "技术破壁与政策护航 低空经济2026开启规模化运营新篇章",
+      "url": "http://jjckb.xinhuanet.com/20260116/871a5c41982547e0857dae64ac701197/c.html",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260807_1719/cards/技术破壁与政策护航_低空经济2026开启规模化运营新篇章_43521aa0.md",
+      "source_group": "domestic",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260807_1719/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260807_1719/raw/bodies/c_43521aa0c165378a.txt",
+        "candidate_id": "33b97f3c1c479b83",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": "primary_official"
+      },
+      "evidence_complete": true,
+      "disposition": "CHAPTER_PREP_ONLY",
+      "chapter_hint": 0,
+      "story_axis": "",
+      "card_family": "fresh_news_card",
+      "bridge_retained": true
+    },
+    {
+      "material_id": "20260807_38efae98d4",
+      "title": "天问二号任务示意图。图片来源：国家航天局探月与航天工程中心",
+      "url": "https://app.xinhuanet.com/news/article.html?articleId=ff4dd8219220db43267c6724ec97e17f",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260807_1719/cards/天问二号任务示意图_图片来源_国家航天局探月与航天工程中心_ab8aa3dd.md",
+      "source_group": "domestic",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260807_1719/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260807_1719/raw/bodies/article_ab8aa3ddb913c586.txt",
+        "candidate_id": "0468e441b9d10da2",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": "primary_official"
+      },
+      "evidence_complete": true,
+      "disposition": "CHAPTER_PREP_ONLY",
+      "chapter_hint": 0,
+      "story_axis": "",
+      "card_family": "fresh_news_card",
+      "bridge_retained": true
+    },
+    {
+      "material_id": "20260807_5e462f58a2",
+      "title": "央视网消息：**自主创新从来都是中国航天的成功“密码”，“航天强国”一词更是出现在“十五五”的规划建议中。2025年，中国航天不断突破，国家战略与市场活力深度交织。",
+      "url": "https://news.cctv.com/2026/01/22/ARTIirX5et2odfxFyxg2FouY260122.shtml",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260807_1719/cards/央视网消息___自主创新从来都是中国航天的成功_密码___航天强国_一词更是出现在_十五五_的规_ea48a587.md",
+      "source_group": "domestic",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260807_1719/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260807_1719/raw/bodies/ARTIirX5et2odfxFyxg2FouY260122_ea48a587cb62f3ba.txt",
+        "candidate_id": "78c50ef2068c234e",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": "primary_official"
+      },
+      "evidence_complete": true,
+      "disposition": "CHAPTER_PREP_ONLY",
+      "chapter_hint": 0,
+      "story_axis": "",
+      "card_family": "fresh_news_card",
+      "bridge_retained": true
+    },
+    {
+      "material_id": "20260807_b7431eeba0",
+      "title": "NASA’s Lunar Development and Test Facility Prepares Artemis Hardware for Moon",
+      "url": "https://www.nasa.gov/centers-and-facilities/johnson/nasas-lunar-development-and-test-facility-prepares-artemis-hardware-for-moon",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260807_1719/cards/NASA_s_Lunar_Development_and_Test_Facility_Prepare_ad50dcc6.md",
+      "source_group": "overseas",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260807_1719/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260807_1719/raw/bodies/NASA_s_Lunar_Development_and_Test_Facili_ad50dcc656ebc912.txt",
+        "candidate_id": "ad50dcc656ebc912",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": ""
+      },
+      "evidence_complete": false,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": "",
+      "card_family": "fresh_news_card",
+      "bridge_retained": true
+    },
+    {
+      "material_id": "20260807_f1cb5420dc",
+      "title": "NASA’s SkyFall Helicopters at Work (Artist’s Concept)",
+      "url": "https://science.nasa.gov/photojournal/nasas-skyfall-helicopters-at-work-artists-concept",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260807_1719/cards/NASA_s_SkyFall_Helicopters_at_Work__Artist_s_Conce_05c33e8d.md",
+      "source_group": "overseas",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260807_1719/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260807_1719/raw/bodies/NASA_s_SkyFall_Helicopters_at_Work__Arti_05c33e8db9361003.txt",
+        "candidate_id": "05c33e8db9361003",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": ""
+      },
+      "evidence_complete": true,
+      "disposition": "CHAPTER_PREP_ONLY",
+      "chapter_hint": 0,
+      "story_axis": "",
+      "card_family": "fresh_news_card",
+      "bridge_retained": true
+    }
+  ],
+  "fresh_news_card_count": 5,
+  "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260807_1719/raw/body_fetch_report.json",
+  "raw_bodies_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260807_1719/raw/bodies",
+  "source_pipeline_state": {
+    "run_id": "cron_20260807_1719",
+    "status": "partial",
+    "valid_content_cards": 5,
+    "query_plan_cards": 0,
+    "body_fetch_success": 10,
+    "card_pass_count": 6
+  },
+  "policy": {
+    "query_plan_excluded": true,
+    "formal_cards_written": false,
+    "production_runner_modified": false,
+    "outline_text_txt_draft_modified": false,
+    "body_success_requires_raw_bodies_txt": true,
+    "expert_gate_required_before_mirofish": true
+  },
+  "valid_input_count": 5,
+  "skipped_count": 90,
+  "skip_reason_counts": {
+    "low_value_expo_or_conference": 3,
+    "low_value_policy_or_commentary": 2,
+    "not_distilled": 1,
+    "no_dyson_tree_match": 9,
+    "stale_domestic_article": 1,
+    "query_plan_no_body": 58,
+    "summary_not_body_evidence": 4,
+    "not_article_page_url": 1,
+    "duplicate_within_run": 7,
+    "duplicate_url": 2,
+    "missing_body_path": 2
+  },
+  "body_fetch_evidence_count": 10,
+  "body_fetch_evidence_key_count": 20,
+  "stale_domestic_blocked_count": 1,
+  "missing_cards_by_tier": {
+    "P0": [
+      "天问二号任务示意图_图片来源_国家航天局探月与航天工程中心_ab8aa3ddb913c586",
+      "央视网消息___自主创新从来都是中国航天的成功_密码___航天强国_一词更是出现在_十_ea48a587cb62f3ba",
+      "技术破壁与政策护航_低空经济2026开启规模化运营新篇章_43521aa0c165378a"
+    ],
+    "P1": [
+      "国科超导_蓄力铁基超导产业化关键一跃_61f95a4f6f40f607"
+    ]
+  },
+  "p0_missing": true,
+  "p0_missing_cards": [
+    "天问二号任务示意图_图片来源_国家航天局探月与航天工程中心_ab8aa3ddb913c586",
+    "央视网消息___自主创新从来都是中国航天的成功_密码___航天强国_一词更是出现在_十_ea48a587cb62f3ba",
+    "技术破壁与政策护航_低空经济2026开启规模化运营新篇章_43521aa0c165378a"
+  ],
+  "p1_missing_cards": [
+    "国科超导_蓄力铁基超导产业化关键一跃_61f95a4f6f40f607"
+  ],
+  "p0_p1_gate_blocked": true,
+  "skipped": [
+    {
+      "candidate_id": "c123932_41655213_a2ec96140464a242",
+      "title": "c123932 41655213",
+      "url": "http://gd.people.com.cn/n2/2026/0731/c123932-41655213.html",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "LOW_VALUE_EXPO_OR_CONFERENCE"
+    },
+    {
+      "candidate_id": "c360301_41544987_d2a8ecc4077fd5be",
+      "title": "c360301 41544987",
+      "url": "http://js.people.com.cn/n2/2026/0407/c360301-41544987.html",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "LOW_VALUE_EXPO_OR_CONFERENCE"
+    },
+    {
+      "candidate_id": "c134768_41644024_604acad0452a2c36",
+      "title": "c134768 41644024",
+      "url": "http://sh.people.com.cn/n2/2026/0720/c134768-41644024.html",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "LOW_VALUE_EXPO_OR_CONFERENCE"
+    },
+    {
+      "candidate_id": "c_715e1f10b1311588",
+      "title": "c",
+      "url": "http://www.xinhuanet.com/finance/20260215/0783f8b9f59c42b2a760fb2d7d02e4f6/c.html",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "LOW_VALUE_POLICY_OR_COMMENTARY"
+    },
+    {
+      "candidate_id": "国科超导_蓄力铁基超导产业化关键一跃_61f95a4f6f40f607",
+      "title": "国科超导：蓄力铁基超导产业化关键一跃",
+      "url": "http://jjckb.xinhuanet.com/20260724/90e2653ed2d04ec2b28ca9e8a96e0a39/c.html",
+      "status": "MODEL_DISTILL_FAILED_FALLBACK_CARD",
+      "reason": "not_distilled"
+    },
+    {
+      "candidate_id": "产业创新红利加速兑现_科创板_预喜_公告揭示成长动能_b7c1648e0eb0a031",
+      "title": "产业创新红利加速兑现 科创板“预喜”公告揭示成长动能",
+      "url": "http://jjckb.xinhuanet.com/20260717/e98209cebd1b411d976612cc049b1325/c.html",
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "NO_DYSON_TREE_MATCH"
+    },
+    {
+      "candidate_id": "ARTIWje0u1f2m25yGB3kONlr241123_7dbc32bc7b641895",
+      "title": "ARTIWje0u1f2m25yGB3kONlr241123",
+      "url": "https://news.cctv.com/2024/11/23/ARTIWje0u1f2m25yGB3kONlr241123.shtml",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "STALE_DOMESTIC_ARTICLE"
+    },
+    {
+      "candidate_id": "ARTIynLK1bjZHDmZmSGnA7M8260513_01d91cf801fbd5f0",
+      "title": "ARTIynLK1bjZHDmZmSGnA7M8260513",
+      "url": "https://news.cctv.com/2026/05/13/ARTIynLK1bjZHDmZmSGnA7M8260513.shtml",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "LOW_VALUE_POLICY_OR_COMMENTARY"
+    },
+    {
+      "candidate_id": "空间缩微走到尽头后_时间开始折叠_26e89ce891d6016d",
+      "title": "“空间缩微走到尽头后，时间开始折叠。”",
+      "url": "https://auto.cctv.com/2026/05/27/ARTIAuOJ3r021tLxWbC8VBqD260526.shtml",
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "NO_DYSON_TREE_MATCH"
+    },
+    {
+      "candidate_id": "央视网消息___8月3日_记者从中国海油获悉_我国自主研发的吨级以上电动垂直起降航空器_00ab075543a365c7",
+      "title": "　　央视网消息：**8月3日，记者从中国海油获悉，我国自主研发的吨级以上电动垂直起降航空器，首次实现远海石油平台物资运输飞行。这一突破不仅创新了海上物资补给模式，更标志着我国在海陆低空物流场景应用中迈出关键一步。",
+      "url": "https://news.cctv.com/2025/08/03/ARTIwAzdCixzXAk6eLnNLcoC250803.shtml",
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "NO_DYSON_TREE_MATCH"
+    },
+    {
+      "candidate_id": "QP_stdaily_com__query_plan_e7e97758b7061b25",
+      "title": "[QP:stdaily.com] query_plan",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_stdaily_com__新材料_先进制造_能源_1e33a24c15ea7197",
+      "title": "[QP:stdaily.com] 新材料 先进制造 能源",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_stdaily_com__人工智能_机器人_量子_b78f9c8f77c64371",
+      "title": "[QP:stdaily.com] 人工智能 机器人 量子",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_huanqiu_com__科技_国防_航天_b8ade137ef0e228c",
+      "title": "[QP:huanqiu.com] 科技 国防 航天",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_huanqiu_com__地缘_科技_产业链_76479a3fda63046e",
+      "title": "[QP:huanqiu.com] 地缘 科技 产业链",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_guancha_cn__半导体_出口管制_产业链_e65ec3ec54b2524e",
+      "title": "[QP:guancha.cn] 半导体 出口管制 产业链",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_guancha_cn__航天_军事_科技_22aa3cd6aed9f773",
+      "title": "[QP:guancha.cn] 航天 军事 科技",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_miit_gov_cn__新型工业化_先进制造_产业链_57f373f9f8e545f4",
+      "title": "[QP:miit.gov.cn] 新型工业化 先进制造 产业链",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_miit_gov_cn__人工智能_半导体_算力_33f2b8e5a4e172d5",
+      "title": "[QP:miit.gov.cn] 人工智能 半导体 算力",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_mod_gov_cn__科技_国防_无人机_a023db994eaccf58",
+      "title": "[QP:mod.gov.cn] 科技 国防 无人机",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_mod_gov_cn__航天_网络_信息化_507094a2c08c6e18",
+      "title": "[QP:mod.gov.cn] 航天 网络 信息化",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_most_gov_cn__query_plan_7b22d1f8c24da32e",
+      "title": "[QP:most.gov.cn] query_plan",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_most_gov_cn__人工智能_量子_新材料_560b4a6aa25151d7",
+      "title": "[QP:most.gov.cn] 人工智能 量子 新材料",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cnsa_gov_cn__月球_深空_探测工程_20303b7b884d5ac0",
+      "title": "[QP:cnsa.gov.cn] 月球 深空 探测工程",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cnsa_gov_cn__航天_科技_探测_cf2955ec4106227b",
+      "title": "[QP:cnsa.gov.cn] 航天 科技 探测",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cas_cn__科技突破_重大进展_05d228606419c44d",
+      "title": "[QP:cas.cn] 科技突破 重大进展",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cas_cn__人工智能_量子_新材料_c58a3607244415fd",
+      "title": "[QP:cas.cn] 人工智能 量子 新材料",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cas_cn__航天_深空_机器人_7ea1cbe5f0a40dbb",
+      "title": "[QP:cas.cn] 航天 深空 机器人",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_iop_cas_cn__量子_材料_能源_c5aec814225aed6f",
+      "title": "[QP:iop.cas.cn] 量子 材料 能源",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cac_gov_cn__人工智能_治理_数据_6e4102c607c44cc1",
+      "title": "[QP:cac.gov.cn] 人工智能 治理 数据",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cac_gov_cn__网络安全_数据安全_生成式人工智能_ec83078b973194f8",
+      "title": "[QP:cac.gov.cn] 网络安全 数据安全 生成式人工智能",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cmse_gov_cn__载人航天_空间站_天舟_eddcbfcee4b24443",
+      "title": "[QP:cmse.gov.cn] 载人航天 空间站 天舟",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cmse_gov_cn__发射_火箭_运载_2cc94829804f64aa",
+      "title": "[QP:cmse.gov.cn] 发射 火箭 运载",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_calt_com__长征_火箭_运载_13526e783ee2df73",
+      "title": "[QP:calt.com] 长征 火箭 运载",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_calt_com__发射_成功_回收_7e7b783bb5b8a367",
+      "title": "[QP:calt.com] 发射 成功 回收",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_spacechina_com__长征_火箭_发射_4b86a47786211456",
+      "title": "[QP:spacechina.com] 长征 火箭 发射",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_spacechina_com__运载火箭_可重复使用_88f58593ce879f11",
+      "title": "[QP:spacechina.com] 运载火箭 可重复使用",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_nasa_gov__Artemis_lunar_program_5280907ed00de3bf",
+      "title": "[QP:nasa.gov] Artemis lunar program",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_esa_int__lunar_exploration_deep_d5c7a04dafc49a93",
+      "title": "[QP:esa.int] lunar exploration deep",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_darpa_mil__autonomous_systems_drone_b92f5eb6d0ecaf49",
+      "title": "[QP:darpa.mil] autonomous systems drone",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_defense_gov__drone_swarm_military_3386c3c86d65e361",
+      "title": "[QP:defense.gov] drone swarm military",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_energy_gov__quantum_energy_research_078ec664e34007f2",
+      "title": "[QP:energy.gov] quantum energy research",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_noaa_gov__satellite_climate_ocean_f41db89017aca1dd",
+      "title": "[QP:noaa.gov] satellite climate ocean",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_pubmed_ncbi_nlm_nih_gov__brain_computer_i_e12ff3e03a5f79c5",
+      "title": "[QP:pubmed.ncbi.nlm.nih.gov] brain computer interface",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_arxiv_org__quantum_computing_94fde7d15ecd98ff",
+      "title": "[QP:arxiv.org] quantum computing",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_arxiv_org__AI_safety_robotics_a4988c3fa07a226f",
+      "title": "[QP:arxiv.org] AI safety robotics",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_openalex_org__quantum_computing_AI_0e7d3417e9a776fe",
+      "title": "[QP:openalex.org] quantum computing AI",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_nature_com__quantum_computing_AI_1fc7e5443e28b9bd",
+      "title": "[QP:nature.com] quantum computing AI",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_science_org__quantum_AI_energy_b2d0d330ae9ba9ee",
+      "title": "[QP:science.org] quantum AI energy",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_ieee_org__AI_chips_robotics_97d6f9830620498a",
+      "title": "[QP:ieee.org] AI chips robotics",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_bis_gov__export_control_semiconductors_39ca2d7d901d69d2",
+      "title": "[QP:bis.gov] export control semiconductors",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_semiconductors_org__semiconductor_industr_c37fa121bae6a837",
+      "title": "[QP:semiconductors.org] semiconductor industry chips",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_g7_canada_ca__G7_Summit_Kananaskis_dd191e1d0205c641",
+      "title": "[QP:g7.canada.ca] G7 Summit Kananaskis",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_g7_canada_ca__Group_of_Seven_1b1923adb322e07e",
+      "title": "[QP:g7.canada.ca] Group of Seven",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_canada_ca__G7_Summit_Kananaskis_f506cc16b9b1d085",
+      "title": "[QP:canada.ca] G7 Summit Kananaskis",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_international_gc_ca__G7_summit_Canada_06647f143574724e",
+      "title": "[QP:international.gc.ca] G7 summit Canada",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_whitehouse_gov__G7_Summit_Kananaskis_8074eab53cd5f181",
+      "title": "[QP:whitehouse.gov] G7 Summit Kananaskis",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_whitehouse_gov__Group_of_Seven_e087eebd6ca1eb94",
+      "title": "[QP:whitehouse.gov] Group of Seven",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_consilium_europa_eu__G7_Summit_Kananaskis_f5c805bd000d841c",
+      "title": "[QP:consilium.europa.eu] G7 Summit Kananaskis",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_consilium_europa_eu__Group_of_Seven_1046ea450400016a",
+      "title": "[QP:consilium.europa.eu] Group of Seven",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_state_gov__ceasefire_Iran_Israel_0f55a66b4180fd62",
+      "title": "[QP:state.gov] ceasefire Iran Israel",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_state_gov__treaty_ceasefire_official_4599e8f7bcdf2c3b",
+      "title": "[QP:state.gov] treaty ceasefire official",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_treasury_gov__sanctions_Iran_technology_a1e7e961933b03c9",
+      "title": "[QP:treasury.gov] sanctions Iran technology",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_treasury_gov__sanctions_export_controls_15a665d244b9c907",
+      "title": "[QP:treasury.gov] sanctions export controls",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_anthropic_com__Claude_model_disabled_f2f2d5cce38e3767",
+      "title": "[QP:anthropic.com] Claude model disabled",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_anthropic_com__model_availability_Claude_1ca730ffaeb55ec3",
+      "title": "[QP:anthropic.com] model availability Claude",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_status_anthropic_com__Claude_model_availa_940d0420ce115d4f",
+      "title": "[QP:status.anthropic.com] Claude model availability",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_openai_com__model_availability_deprecated_8d66dd0bfda19707",
+      "title": "[QP:openai.com] model availability deprecated",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "f8daa16a0a896026",
+      "title": "Educators &#038; Teens Get Hands-On With TEMPO Data to Help Investigate Local Air Quality",
+      "url": "https://science.nasa.gov/learning-resources/science-activation/educators-teens-get-hands-on-with-tempo-data-to-help-investigate-local-air-quality",
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "NO_DYSON_TREE_MATCH"
+    },
+    {
+      "candidate_id": "b2fcc743d78f83c2",
+      "title": "I Am Artemis: Tom Percy",
+      "url": "https://www.nasa.gov/missions/artemis/i-am-artemis/i-am-artemis-tom-percy",
+      "status": "SUMMARY_ONLY",
+      "reason": "summary_not_body_evidence"
+    },
+    {
+      "candidate_id": "79ef2c9d59812f57",
+      "title": "Taking Flight to Prepare for Space",
+      "url": "https://www.nasa.gov/image-article/taking-flight-to-prepare-for-space",
+      "status": "SUMMARY_ONLY",
+      "reason": "summary_not_body_evidence"
+    },
+    {
+      "candidate_id": "518595452db0cf03",
+      "title": "ExoMars stretches out its legs",
+      "url": "https://www.esa.int/ESA_Multimedia/Videos/2026/08/ExoMars_stretches_out_its_legs",
+      "status": "SUMMARY_ONLY",
+      "reason": "summary_not_body_evidence"
+    },
+    {
+      "candidate_id": "8e6543cbf6f44897",
+      "title": "Your chance to run software in deep space on ESA's asteroid mission",
+      "url": "https://www.esa.int/Enabling_Support/Space_Engineering_Technology/Your_chance_to_run_software_in_deep_space_on_ESA_s_asteroid_mission",
+      "status": "SUMMARY_ONLY",
+      "reason": "summary_not_body_evidence"
+    },
+    {
+      "candidate_id": "2e958fef19f0a72f",
+      "title": "Levitating sensor for magnetic fields could detect ultrafaint brain activity",
+      "url": "https://www.nature.com/articles/d41586-026-02458-9",
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "NO_DYSON_TREE_MATCH"
+    },
+    {
+      "candidate_id": "67fff5c8e0af0610",
+      "title": "AI agents are checking the scientific literature — and spotting decades-old errors",
+      "url": "https://www.nature.com/articles/d41586-026-02235-8",
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "NO_DYSON_TREE_MATCH"
+    },
+    {
+      "candidate_id": "97105b9433c2ebcb",
+      "title": "“AI桂林”文旅大模型正式上线 “AI桂林”文旅大模型在第22届中国—东盟博览会正式上线。这是桂林市与人民网深度合作开发的首个聚焦打造“世界级旅游城市”的全域智慧文旅大模型。 了解详情 →",
+      "url": "http://tech.people.com.cn/detail.html",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "NOT_ARTICLE_PAGE_URL"
+    },
+    {
+      "candidate_id": "ad50dcc656ebc912",
+      "title": "NASA’s Lunar Development and Test Facility Prepares Artemis Hardware for Moon",
+      "url": "https://www.nasa.gov/centers-and-facilities/johnson/nasas-lunar-development-and-test-facility-prepares-artemis-hardware-for-moon",
+      "status": "SUMMARY_ONLY",
+      "reason": "duplicate_within_run"
+    },
+    {
+      "candidate_id": "05c33e8db9361003",
+      "title": "NASA’s SkyFall Helicopters at Work (Artist’s Concept)",
+      "url": "https://science.nasa.gov/photojournal/nasas-skyfall-helicopters-at-work-artists-concept",
+      "status": "SUMMARY_ONLY",
+      "reason": "duplicate_within_run"
+    },
+    {
+      "candidate_id": "b2fcc743d78f83c2",
+      "title": "I Am Artemis: Tom Percy",
+      "url": "https://www.nasa.gov/missions/artemis/i-am-artemis/i-am-artemis-tom-percy",
+      "status": "SUMMARY_ONLY",
+      "reason": "duplicate_within_run"
+    },
+    {
+      "candidate_id": "79ef2c9d59812f57",
+      "title": "Taking Flight to Prepare for Space",
+      "url": "https://www.nasa.gov/image-article/taking-flight-to-prepare-for-space",
+      "status": "SUMMARY_ONLY",
+      "reason": "duplicate_within_run"
+    },
+    {
+      "candidate_id": "1860e34ccbc6d3a6",
+      "title": "εpsilon",
+      "url": "https://www.esa.int/Science_Exploration/Human_and_Robotic_Exploration/epsilon",
+      "status": "SKIP_DUPLICATE",
+      "reason": "DUPLICATE_URL"
+    },
+    {
+      "candidate_id": "518595452db0cf03",
+      "title": "ExoMars stretches out its legs",
+      "url": "https://www.esa.int/ESA_Multimedia/Videos/2026/08/ExoMars_stretches_out_its_legs",
+      "status": "SUMMARY_ONLY",
+      "reason": "duplicate_within_run"
+    },
+    {
+      "candidate_id": "8e6543cbf6f44897",
+      "title": "Your chance to run software in deep space on ESA's asteroid mission",
+      "url": "https://www.esa.int/Enabling_Support/Space_Engineering_Technology/Your_chance_to_run_software_in_deep_space_on_ESA_s_asteroid_mission",
+      "status": "SUMMARY_ONLY",
+      "reason": "duplicate_within_run"
+    },
+    {
+      "candidate_id": "6a216a156fad28d2",
+      "title": "Operational Tropical Cyclone Forecasting with AI",
+      "url": "https://www.nature.com/articles/s41586-026-10953-2",
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "NO_DYSON_TREE_MATCH"
+    },
+    {
+      "candidate_id": "67fff5c8e0af0610",
+      "title": "AI agents are checking the scientific literature — and spotting decades-old errors",
+      "url": "https://www.nature.com/articles/d41586-026-02235-8",
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "duplicate_within_run"
+    },
+    {
+      "candidate_id": "8dbb2238c30b71eb",
+      "title": "Announcements Jul 9, 2026 Inviting hard questions We’re asking the public for their hardest questions about AI, and committing to show our work as we address them.",
+      "url": "https://www.anthropic.com/news/hard-questions",
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "NO_DYSON_TREE_MATCH"
+    },
+    {
+      "candidate_id": "9a736d88a945f954",
+      "title": "nasa spacex advance wind tunnel tests for starship rocket",
+      "url": "https://www.nasa.gov/directorates/esdmd/artemis-campaign-development-division/human-landing-system-program/nasa-spacex-advance-wind-tunnel-tests-for-starship-rocket",
+      "status": "NEED_FETCH_BODY",
+      "reason": "missing_body_path"
+    },
+    {
+      "candidate_id": "081f7aae74c6198c",
+      "title": "us french swot satellite measures tsunami after massive quake",
+      "url": "https://www.jpl.nasa.gov/news/us-french-swot-satellite-measures-tsunami-after-massive-quake",
+      "status": "NEED_FETCH_BODY",
+      "reason": "missing_body_path"
+    },
+    {
+      "candidate_id": "b0575c12905ca69e",
+      "title": "两部门部署在全国开展2026年“全民反诈在行动”集中宣传月活动",
+      "url": "https://news.cctv.com/2026/06/10/ARTImWdyfJZtw95kmOJgdob2260610.shtml",
+      "status": "SKIP_DUPLICATE",
+      "reason": "DUPLICATE_URL"
+    },
+    {
+      "candidate_id": "46f2f8ed8146dd8f",
+      "title": "高质量数据集建设激活人工智能发展新动能",
+      "url": "http://finance.people.com.cn/n1/2026/0529/c1004-40729991.html",
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "NO_DYSON_TREE_MATCH"
+    }
+  ],
+  "decision_cards_path": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260807_1719_final/bridge_runs/cron_20260807_1719/decision_cards.json",
+  "conversion_tasks_path": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260807_1719_final/bridge_runs/cron_20260807_1719/card_conversion_tasks.json",
+  "cross_run_dedupe_path": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260807_1719_final/bridge_run/processed_signatures.json"
+}

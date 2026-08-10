@@ -1,18 +1,18 @@
 [
   {
     "$schema": "decision_card_v1_bridge_20260606",
-    "material_id": "20260701_ef42fb623e",
-    "source_url": "https://www.nasa.gov/news-release/la-nasa-adjudica-nuevas-misiones-cientificas-para-base-lunar-y-adelanta-nuevas-oportunidades",
-    "title": "La NASA adjudica nuevas misiones científicas para Base Lunar y adelanta nuevas oportunidades",
-    "captured_at": "2026-07-01T07:13:59",
+    "material_id": "20260729_67c03e739d",
+    "source_url": "https://science.nasa.gov/science-research/heliophysics/nasa-science-soars-during-august-total-solar-eclipse",
+    "title": "NASA Science Soars During August Total Solar Eclipse",
+    "captured_at": "2026-07-29T12:22:35",
     "source_group": "overseas",
     "source_type": "official",
     "verification_status": "official_verified",
-    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/cards/La_NASA_adjudica_nuevas_misiones_científicas_para_f47c23da.md",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260729_1022/cards/NASA_Science_Soars_During_August_Total_Solar_Eclip_d77f1cb2.md",
     "body_fetch_evidence": {
-      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/raw/body_fetch_report.json",
-      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/raw/bodies/La_NASA_adjudica_nuevas_misiones_científ_f47c23da5a3c7631.txt",
-      "candidate_id": "f47c23da5a3c7631",
+      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260729_1022/raw/body_fetch_report.json",
+      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260729_1022/raw/bodies/NASA_Science_Soars_During_August_Total_S_d77f1cb2880542ce.txt",
+      "candidate_id": "d77f1cb2880542ce",
       "status": "BODY_FETCHED",
       "counts_as_body_success": true,
       "source_role": "primary_official",
@@ -63,297 +63,29 @@
     "disposition": "ARCHIVE_WITH_REASON",
     "disposition_reason": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY",
     "disposition_by": "deterministic_bridge_20260606",
-    "disposition_at": "2026-07-01T07:13:59",
+    "disposition_at": "2026-07-29T12:22:35",
     "bridge_policy": "dry_run_no_formal_card_no_index_no_wiki_write"
   },
   {
     "$schema": "decision_card_v1_bridge_20260606",
-    "material_id": "20260701_3aaa313f9a",
-    "source_url": "https://www.nasa.gov/general/nextstep-3-b-moon-base-demonstrations",
-    "title": "NextSTEP-3 B: Moon Base Demonstrations",
-    "captured_at": "2026-07-01T07:13:59",
+    "material_id": "20260729_a57c3466b3",
+    "source_url": "https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Sentinel-1/How_Sentinel-1_measured_movement_of_Venezuela_quakes",
+    "title": "How Sentinel-1 measured movement of Venezuela quakes",
+    "captured_at": "2026-07-29T12:22:35",
     "source_group": "overseas",
     "source_type": "official",
     "verification_status": "official_verified",
-    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/cards/NextSTEP-3_B__Moon_Base_Demonstrations_d04ca1c0.md",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260729_1022/cards/How_Sentinel-1_measured_movement_of_Venezuela_quak_951ea5d9.md",
     "body_fetch_evidence": {
-      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/raw/body_fetch_report.json",
-      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/raw/bodies/NextSTEP-3_B__Moon_Base_Demonstrations_d04ca1c0f7dcf54b.txt",
-      "candidate_id": "d04ca1c0f7dcf54b",
+      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260729_1022/raw/body_fetch_report.json",
+      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260729_1022/raw/bodies/How_Sentinel-1_measured_movement_of_Vene_951ea5d9d65a51c2.txt",
+      "candidate_id": "951ea5d9d65a51c2",
       "status": "BODY_FETCHED",
       "counts_as_body_success": true,
       "source_role": "primary_official",
       "source_confidence": ""
     },
     "title_body_mismatch": true,
-    "evidence_complete": false,
-    "duplicate_check": {
-      "duplicate": true,
-      "reason": "TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY"
-    },
-    "mirofish_projection": {
-      "force_reactions": [
-        {
-          "force": "主控",
-          "reaction": "归档备查；不进入G2/G3。",
-          "wiki_ref": "时事素材/归档"
-        }
-      ],
-      "chain_conflicts": [
-        {
-          "chain": [
-            "expo_event",
-            "authority_filter",
-            "kewu_relevance"
-          ],
-          "time_anchor": "latest_sensenova_run",
-          "intensity": "low"
-        }
-      ],
-      "chapter_hooks": [],
-      "outline_delta_candidate": {
-        "type": "red_line",
-        "target_chapter": 0,
-        "proposed_addition": "",
-        "not_proposed": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY"
-      },
-      "anti_patterns": [
-        "不得把query_plan当有效素材",
-        "不得无URL/无正文伪造素材卡",
-        "不得直接改大纲/正文/TXT/草稿箱"
-      ],
-      "six_role_recommendation": {
-        "needed": false,
-        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
-      }
-    },
-    "disposition": "ARCHIVE_WITH_REASON",
-    "disposition_reason": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY",
-    "disposition_by": "deterministic_bridge_20260606",
-    "disposition_at": "2026-07-01T07:13:59",
-    "bridge_policy": "dry_run_no_formal_card_no_index_no_wiki_write"
-  },
-  {
-    "$schema": "decision_card_v1_bridge_20260606",
-    "material_id": "20260701_f72d191efe",
-    "source_url": "https://www.nasa.gov/news-release/nasa-awards-more-moon-base-science-previews-new-opportunities",
-    "title": "NASA Awards More Moon Base Science, Previews New Opportunities",
-    "captured_at": "2026-07-01T07:13:59",
-    "source_group": "overseas",
-    "source_type": "official",
-    "verification_status": "official_verified",
-    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/cards/NASA_Awards_More_Moon_Base_Science__Previews_New_O_11b184ff.md",
-    "body_fetch_evidence": {
-      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/raw/body_fetch_report.json",
-      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/raw/bodies/NASA_Awards_More_Moon_Base_Science__Prev_11b184ff0bb43927.txt",
-      "candidate_id": "11b184ff0bb43927",
-      "status": "BODY_FETCHED",
-      "counts_as_body_success": true,
-      "source_role": "primary_official",
-      "source_confidence": ""
-    },
-    "title_body_mismatch": true,
-    "evidence_complete": false,
-    "duplicate_check": {
-      "duplicate": true,
-      "reason": "TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY"
-    },
-    "mirofish_projection": {
-      "force_reactions": [
-        {
-          "force": "主控",
-          "reaction": "归档备查；不进入G2/G3。",
-          "wiki_ref": "时事素材/归档"
-        }
-      ],
-      "chain_conflicts": [
-        {
-          "chain": [
-            "expo_event",
-            "authority_filter",
-            "kewu_relevance"
-          ],
-          "time_anchor": "latest_sensenova_run",
-          "intensity": "low"
-        }
-      ],
-      "chapter_hooks": [],
-      "outline_delta_candidate": {
-        "type": "red_line",
-        "target_chapter": 0,
-        "proposed_addition": "",
-        "not_proposed": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY"
-      },
-      "anti_patterns": [
-        "不得把query_plan当有效素材",
-        "不得无URL/无正文伪造素材卡",
-        "不得直接改大纲/正文/TXT/草稿箱"
-      ],
-      "six_role_recommendation": {
-        "needed": false,
-        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
-      }
-    },
-    "disposition": "ARCHIVE_WITH_REASON",
-    "disposition_reason": "重复或已入库：TITLE_TOKEN_OVERLAP_WITH_EXISTING_LIBRARY",
-    "disposition_by": "deterministic_bridge_20260606",
-    "disposition_at": "2026-07-01T07:13:59",
-    "bridge_policy": "dry_run_no_formal_card_no_index_no_wiki_write"
-  },
-  {
-    "$schema": "decision_card_v1_bridge_20260606",
-    "material_id": "20260701_d977200ade",
-    "source_url": "https://www.miit.gov.cn/jgsj/kjs/gzdt/art/2026/art_2bf762c3d3be4f5593e80e3e3abd95f9.html",
-    "title": "关于2025年人工智能应用典型案例入选名单的公示",
-    "captured_at": "2026-07-01T07:13:59",
-    "source_group": "domestic",
-    "source_type": "official",
-    "verification_status": "official_verified",
-    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/cards/关于2025年人工智能应用典型案例入选名单的公示_1200a361.md",
-    "body_fetch_evidence": {
-      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/raw/body_fetch_report.json",
-      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/raw/bodies/关于2025年人工智能应用典型案例入选名单的公示_1200a36161fd76b3.txt",
-      "candidate_id": "1200a36161fd76b3",
-      "status": "BODY_FETCHED",
-      "counts_as_body_success": true,
-      "source_role": "primary_official",
-      "source_confidence": ""
-    },
-    "title_body_mismatch": false,
-    "evidence_complete": false,
-    "duplicate_check": {
-      "duplicate": true,
-      "reason": "SOURCE_URL_ALREADY_IN_INDEX_OR_CARD"
-    },
-    "mirofish_projection": {
-      "force_reactions": [
-        {
-          "force": "主控",
-          "reaction": "归档备查；不进入G2/G3。",
-          "wiki_ref": "时事素材/归档"
-        }
-      ],
-      "chain_conflicts": [
-        {
-          "chain": [
-            "compute_sovereignty",
-            "authority_filter",
-            "kewu_relevance"
-          ],
-          "time_anchor": "latest_sensenova_run",
-          "intensity": "low"
-        }
-      ],
-      "chapter_hooks": [],
-      "outline_delta_candidate": {
-        "type": "red_line",
-        "target_chapter": 0,
-        "proposed_addition": "",
-        "not_proposed": "重复或已入库：SOURCE_URL_ALREADY_IN_INDEX_OR_CARD"
-      },
-      "anti_patterns": [
-        "不得把query_plan当有效素材",
-        "不得无URL/无正文伪造素材卡",
-        "不得直接改大纲/正文/TXT/草稿箱"
-      ],
-      "six_role_recommendation": {
-        "needed": false,
-        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
-      }
-    },
-    "disposition": "ARCHIVE_WITH_REASON",
-    "disposition_reason": "重复或已入库：SOURCE_URL_ALREADY_IN_INDEX_OR_CARD",
-    "disposition_by": "deterministic_bridge_20260606",
-    "disposition_at": "2026-07-01T07:13:59",
-    "bridge_policy": "dry_run_no_formal_card_no_index_no_wiki_write"
-  },
-  {
-    "$schema": "decision_card_v1_bridge_20260606",
-    "material_id": "20260701_0d2d0a4c9b",
-    "source_url": "https://www.miit.gov.cn/jgsj/kjs/gzdt/art/2026/art_bc6fa4304a0040ccb1446e68ec8eec48.html",
-    "title": "工业和信息化部办公厅关于公布2025年度工业和信息化质量提升与品牌建设典型案例名单的通知",
-    "captured_at": "2026-07-01T07:13:59",
-    "source_group": "domestic",
-    "source_type": "official",
-    "verification_status": "official_verified",
-    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/cards/工业和信息化部办公厅关于公布2025年度工业和信息化质量提升与品牌建设典型案例名单的通知_0a7e8c7a.md",
-    "body_fetch_evidence": {
-      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/raw/body_fetch_report.json",
-      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/raw/bodies/工业和信息化部办公厅关于公布2025年度工业和信息化质量提升与品牌建设典型案例名_0a7e8c7a4d63b419.txt",
-      "candidate_id": "0a7e8c7a4d63b419",
-      "status": "BODY_FETCHED",
-      "counts_as_body_success": true,
-      "source_role": "primary_official",
-      "source_confidence": ""
-    },
-    "title_body_mismatch": false,
-    "evidence_complete": false,
-    "duplicate_check": {
-      "duplicate": true,
-      "reason": "SOURCE_URL_ALREADY_IN_INDEX_OR_CARD"
-    },
-    "mirofish_projection": {
-      "force_reactions": [
-        {
-          "force": "主控",
-          "reaction": "归档备查；不进入G2/G3。",
-          "wiki_ref": "时事素材/归档"
-        }
-      ],
-      "chain_conflicts": [
-        {
-          "chain": [
-            "compute_sovereignty",
-            "authority_filter",
-            "kewu_relevance"
-          ],
-          "time_anchor": "latest_sensenova_run",
-          "intensity": "low"
-        }
-      ],
-      "chapter_hooks": [],
-      "outline_delta_candidate": {
-        "type": "red_line",
-        "target_chapter": 0,
-        "proposed_addition": "",
-        "not_proposed": "重复或已入库：SOURCE_URL_ALREADY_IN_INDEX_OR_CARD"
-      },
-      "anti_patterns": [
-        "不得把query_plan当有效素材",
-        "不得无URL/无正文伪造素材卡",
-        "不得直接改大纲/正文/TXT/草稿箱"
-      ],
-      "six_role_recommendation": {
-        "needed": false,
-        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
-      }
-    },
-    "disposition": "ARCHIVE_WITH_REASON",
-    "disposition_reason": "重复或已入库：SOURCE_URL_ALREADY_IN_INDEX_OR_CARD",
-    "disposition_by": "deterministic_bridge_20260606",
-    "disposition_at": "2026-07-01T07:13:59",
-    "bridge_policy": "dry_run_no_formal_card_no_index_no_wiki_write"
-  },
-  {
-    "$schema": "decision_card_v1_bridge_20260606",
-    "material_id": "20260701_bf6e20dd8d",
-    "source_url": "https://www.most.gov.cn/kjbgz/202606/t20260629_196855.html",
-    "title": "科技部副部长林新访问马来西亚、老挝并出席中马政府间科技创新合作联委会、中老政府间科技合作联委会和中国—东盟科技创新合作联委会会议",
-    "captured_at": "2026-07-01T07:13:59",
-    "source_group": "domestic",
-    "source_type": "official",
-    "verification_status": "official_verified",
-    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/cards/科技部副部长林新访问马来西亚_老挝并出席中马政府间科技创新合作联委会_中老政府间科技合作联委会和中国_0812bf96.md",
-    "body_fetch_evidence": {
-      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/raw/body_fetch_report.json",
-      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260701_0643/raw/bodies/科技部副部长林新访问马来西亚_老挝并出席中马政府间科技创新合作联委会_中老政府间_0812bf96ccd925da.txt",
-      "candidate_id": "0812bf96ccd925da",
-      "status": "BODY_FETCHED",
-      "counts_as_body_success": true,
-      "source_role": "primary_official",
-      "source_confidence": ""
-    },
-    "title_body_mismatch": false,
     "evidence_complete": true,
     "duplicate_check": {
       "duplicate": false,
@@ -398,7 +130,7 @@
     "disposition": "ARCHIVE_WITH_REASON",
     "disposition_reason": "与当前算力主权、地月争夺、群体智能或军事制度主线因果链不足。",
     "disposition_by": "deterministic_bridge_20260606",
-    "disposition_at": "2026-07-01T07:13:59",
+    "disposition_at": "2026-07-29T12:22:35",
     "bridge_policy": "dry_run_no_formal_card_no_index_no_wiki_write"
   }
 ]

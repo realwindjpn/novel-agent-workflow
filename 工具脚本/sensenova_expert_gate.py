@@ -52,6 +52,8 @@ FAILURE_TAGS = {
     'insufficient': 'EXPERT_GATE_INSUFFICIENT',
     'summary_only': 'EXPERT_SOURCE_SEARCH_SUMMARY_ONLY',
 }
+MIN_BODY_CHARS = 120
+BODY_FIELDS = ('body_text', 'body', 'transcript', 'source_excerpt', 'excerpt')
 
 
 def now() -> str:
@@ -129,21 +131,36 @@ def load_cards(run_dir: Path, cards_file: Path | None) -> list[dict[str, Any]]:
 
 
 def body_text(card: dict[str, Any], run_dir: Path) -> str:
-    direct = '\n'.join(
-        norm_text(card.get(k))
-        for k in ('body_text', 'body', 'transcript', 'source_excerpt', 'excerpt', 'summary')
-        if norm_text(card.get(k))
-    )
+    """Return real body/transcript evidence only.
+
+    Search snippets and candidate summaries are discovery evidence, never source body.
+    """
+    parts: list[str] = []
+    for key in BODY_FIELDS:
+        value = norm_text(card.get(key))
+        if value:
+            parts.append(value)
     path_value = norm_text(card.get('body_path') or card.get('raw_path') or card.get('source_body_path'))
     if path_value:
         path = Path(path_value)
         if not path.is_absolute():
             path = run_dir / path
         try:
-            direct += '\n' + path.read_text(encoding='utf-8', errors='ignore')
+            file_text = path.read_text(encoding='utf-8', errors='ignore').strip()
+            if file_text:
+                parts.append(file_text)
         except Exception:
             pass
-    return direct.strip()
+    return '\n'.join(parts).strip()
+
+
+def body_char_count(text: str) -> int:
+    return len(re.sub(r'\s+', '', text or ''))
+
+
+def has_summary_only_signal(card: dict[str, Any], body: str) -> bool:
+    summary = norm_text(card.get('summary') or card.get('snippet') or card.get('search_snippet'))
+    return bool(summary) and body_char_count(body) < MIN_BODY_CHARS
 
 
 def has_public_trace(card: dict[str, Any]) -> bool:
@@ -155,16 +172,20 @@ def has_public_trace(card: dict[str, Any]) -> bool:
 def classify_card(card: dict[str, Any], run_dir: Path) -> tuple[bool, list[str], dict[str, Any]]:
     source_type = norm_text(card.get('source_type') or card.get('source_kind') or card.get('type'))
     body = body_text(card, run_dir)
+    body_chars = body_char_count(body)
     tags: list[str] = []
 
     if source_type in SEARCH_SUMMARY_TYPES or card.get('search_summary_only') is True:
+        tags.append(FAILURE_TAGS['summary_only'])
+    if has_summary_only_signal(card, body):
         tags.append(FAILURE_TAGS['summary_only'])
     if not has_public_trace(card):
         tags.append(FAILURE_TAGS['no_primary'])
     if source_type and source_type not in VALID_SOURCE_TYPES and source_type not in SEARCH_SUMMARY_TYPES:
         tags.append(FAILURE_TAGS['no_primary'])
-    if not body or len(re.sub(r'\s+', '', body)) < 120:
+    if body_chars < MIN_BODY_CHARS:
         tags.append(FAILURE_TAGS['body_blocked'])
+    tags = sorted(set(tags))
 
     ok = not tags
     # 2026-06-22 增量：来源含观察者网（guancha.cn / 观察者）且评论员为沈逸/高志凯时，
@@ -187,14 +208,14 @@ def classify_card(card: dict[str, Any], run_dir: Path) -> tuple[bool, list[str],
         'published_at': norm_text(card.get('published_at') or card.get('date')),
         'captured_at': norm_text(card.get('captured_at')) or now(),
         'source_type': source_type or 'unknown',
-        'body_chars': len(body),
+        'body_chars': body_chars,
         'summary': norm_text(card.get('summary'))[:500],
         'material_axis': norm_text(card.get('material_axis') or card.get('axis') or 'expert_voice'),
         'g2_g3_hint': norm_text(card.get('g2_g3_hint') or card.get('mirofish_hint')),
         'usable_for_mirofish': ok,
         'failure_tags': sorted(set(tags)),
     }
-    return ok, sorted(set(tags)), normalized
+    return ok, tags, normalized
 
 
 def build_rescue_item(key: str, tags: list[str]) -> dict[str, Any]:

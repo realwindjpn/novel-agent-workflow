@@ -1,0 +1,41 @@
+{
+  "updated_at": "2026-08-08T17:36:12",
+  "run_id": "cron_20260808_1721",
+  "run_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260808_1721",
+  "per_run_bridge_dir": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260808_1721_final/bridge_runs/cron_20260808_1721",
+  "valid_input_count": 6,
+  "skipped_count": 83,
+  "disposition_counts": {
+    "OUTLINE_PATCH": 0,
+    "CHAPTER_PREP_ONLY": 5,
+    "ARCHIVE_WITH_REASON": 1
+  },
+  "conversion_task_count": 5,
+  "missing_cards_by_tier": {
+    "P0": [
+      "我国具备执行陆海两栖航天搜索回收任务能力_fcb55685188dc7e5"
+    ],
+    "P1": [
+      "2月9日上午_习近平总书记来到位于北京亦庄的国家信创园_了解信息技术应用创新和北京加快建设_6036fc2a4b39a27a",
+      "59374_overview_1e34214f1442f5c5",
+      "artemis_8d279be15a4247ac",
+      "satellites_ocean_6d07af5cd70f8ba0",
+      "大连理工大学自研新材料将国产轴承使用寿命提高6倍_e18513cf4f3c6d02",
+      "当你坐着C919大飞机去旅行_是不是特别有自豪感_这个_大飞机梦_的实现_可是咱们多年关键_97a6687180e515d4"
+    ]
+  },
+  "p0_missing": true,
+  "p0_missing_cards": [
+    "我国具备执行陆海两栖航天搜索回收任务能力_fcb55685188dc7e5"
+  ],
+  "report": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260808_1721_final/DRY_RUN_REPORT.md",
+  "p0_p1_gate_blocked": true,
+  "p1_missing_cards": [
+    "2月9日上午_习近平总书记来到位于北京亦庄的国家信创园_了解信息技术应用创新和北京加快建设_6036fc2a4b39a27a",
+    "59374_overview_1e34214f1442f5c5",
+    "artemis_8d279be15a4247ac",
+    "satellites_ocean_6d07af5cd70f8ba0",
+    "大连理工大学自研新材料将国产轴承使用寿命提高6倍_e18513cf4f3c6d02",
+    "当你坐着C919大飞机去旅行_是不是特别有自豪感_这个_大飞机梦_的实现_可是咱们多年关键_97a6687180e515d4"
+  ]
+}

@@ -9,6 +9,8 @@ kewu_domain_ontology.py  v1  (2026-07-10)
 """
 from __future__ import annotations
 
+import re
+
 from typing import Any
 
 # ═══════════════════════════════════════════════
@@ -162,6 +164,21 @@ STABLE_DOMAINS: dict[str, dict[str, Any]] = {
         'plot_threads': ['算力=电/热/水', '聚变之火', '散热不可突破兰道下限', '能源绑定算力'],
         'weight': 0.9,
     },
+    'foundational_science': {
+        'label': '基础科学',
+        'query_keywords': [
+            '数学', 'mathematics', 'math', '定理', 'theorem', '猜想', 'conjecture',
+            '证明', 'proof', '基础科学', 'foundational science', '黎曼猜想', 'Riemann',
+            '费马大定理', 'Fermat', '哥德尔', 'Gödel', 'Godel', '数论', 'number theory',
+            '拓扑', 'topology', '代数', 'algebra', '几何', 'geometry', 'P vs NP',
+            '千禧年难题', 'Millennium Prize',
+        ],
+        'outline_chapters': [261, 375, 376, 381, 406, 420, 456],
+        'dyson_tree': ['quantum_computing', 'dyson_construction'],
+        'tech_institution_chars': ['形式化证明', '可计算性', '复杂性理论', '数学基础'],
+        'plot_threads': ['理论突破', '算力边界', '基础理论驱动工程跃迁'],
+        'weight': 1.0,
+    },
 }
 
 # ═══════════════════════════════════════════════
@@ -251,6 +268,23 @@ DYSON_SPHERE_CAPABILITY_TREE: dict[str, dict[str, Any]] = {
         'outline_chapters': [256, 406, 420, 440, 456, 470, 485, 495, 500],
         'depends_on': ['energy_harvesting', 'quantum_computing', 'consciousness_interface'],
         'tech_constraints': ['恒星绑定', '人性弱化', '宇宙级连锁'],
+    },
+    # 2026-08-09 修复: 战略资源/循环利用域, 覆盖锂电池回收、稀土、关键矿产等
+    # 当前事件(如新华社《探秘一块锂电池的"重生"之旅》)匹配 南美锂战/氦-3开采 等章节,
+    # 却因 Dyson 树缺节点被判 NO_DYSON_TREE_MATCH 归档, 致 DOMESTIC_OFFICIAL_P0_ZERO。
+    'strategic_materials': {
+        'label': '战略资源',
+        'level': 'foundation',
+        'keywords': [
+            '电池', '锂电池', '动力电池', 'battery', 'lithium', '锂',
+            '回收', '再生', '资源化', '循环利用', '供应链', '产业链',
+            '退役', '稀土', '关键矿产', '战略资源', '矿产资源',
+            'resource recovery', 'battery recycling', 'critical minerals',
+            'rare earth', 'strategic resources', 'resource security',
+        ],
+        'outline_chapters': [75, 157, 20, 31, 37, 63, 78, 86, 95, 101],
+        'depends_on': [],
+        'tech_constraints': ['回收率', '提炼纯度', '供应链韧性'],
     },
 }
 
@@ -412,7 +446,16 @@ DOMAIN_OFFICIAL_SITES: dict[str, list[str]] = {
     'military': ['mod.gov.cn', 'defense.gov', 'darpa.mil'],
     'materials': ['cas.cn', 'stdaily.com', 'nature.com'],
     'energy': ['energy.gov', 'cas.cn', 'most.gov.cn'],
+    'foundational_science': ['arxiv.org', 'nature.com', 'ams.org', 'maa.org'],
 }
+
+
+def _keyword_matches(text_lower: str, keyword: str) -> bool:
+    """中文按子串匹配；英文和缩写必须匹配完整词组。"""
+    keyword_lower = keyword.lower()
+    if re.search(r'[\u4e00-\u9fff]', keyword):
+        return keyword_lower in text_lower
+    return re.search(r'\b' + re.escape(keyword_lower) + r'\b', text_lower) is not None
 
 
 def get_domain_for_keywords(text: str) -> list[tuple[str, float]]:
@@ -420,7 +463,7 @@ def get_domain_for_keywords(text: str) -> list[tuple[str, float]]:
     text_lower = text.lower()
     results: list[tuple[str, float]] = []
     for domain_id, domain in STABLE_DOMAINS.items():
-        hits = sum(1 for kw in domain['query_keywords'] if kw.lower() in text_lower)
+        hits = sum(1 for kw in domain['query_keywords'] if _keyword_matches(text_lower, kw))
         if hits > 0:
             results.append((domain_id, hits * domain.get('weight', 1.0)))
     results.sort(key=lambda x: -x[1])
@@ -448,7 +491,7 @@ def is_noise_domain(text: str) -> tuple[bool, str]:
     for noise_id, noise in NOISE_DOMAINS.items():
         if noise_id == 'stale_news':
             continue  # 旧闻由时间判断
-        hits = sum(1 for kw in noise['keywords'] if kw.lower() in text_lower)
+        hits = sum(1 for kw in noise['keywords'] if _keyword_matches(text_lower, kw))
         if hits >= 2:  # 需要至少2个噪声关键词命中
             return True, noise['reason']
     return False, ''

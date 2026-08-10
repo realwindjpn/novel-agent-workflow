@@ -15,6 +15,7 @@
 """
 from __future__ import annotations
 import argparse, datetime, hashlib, json, os, re, subprocess, sys, time
+from email.utils import parsedate_to_datetime
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -88,6 +89,109 @@ SIGNAL_KW = [
     # 军事（扩展）
     '导弹', '国防', '军备', '航母', '潜艇',
 ]
+
+HOTSPOT_ACTION_TERMS = (
+    '发布', '推出', '开放', '开源', '权重', '宣布', '发现', '证明', '突破', '攻破',
+    '漏洞', '攻击', '越狱', '投毒', '首飞', '发射', '回收', 'released', 'launched',
+    'open-weight', 'open weight', 'open-source', 'announced', 'discovered', 'proved',
+    'breakthrough', 'attack', 'exploit', 'jailbreak', 'poisoning', 'vulnerability',
+)
+
+HOTSPOT_AI_SCIENCE_DOMAINS = {'frontier_tech', 'biology', 'space', 'ai', 'materials', 'energy'}
+
+
+def platform_alias(platform: str) -> str:
+    return {
+        '微信公众号': 'wechat', '公众号': 'wechat',
+        'B站': 'bilibili', '微博': 'weibo', '知乎': 'zhihu', '网站': 'generic',
+    }.get(platform, platform) or platform
+
+
+def build_account_query_plan(
+    accounts: list[dict],
+    platform_filter: set[str] | None = None,
+    coverage_sweep: bool = False,
+    max_queries: int = 0,
+) -> list[tuple[dict, str, str]]:
+    """Plan queries explicitly; coverage sweeps rotate across all configured domains."""
+    platform_filter = platform_filter or set()
+
+    def eligible_platforms(account: dict) -> list[tuple[str, str]]:
+        rows = []
+        for raw in account.get('platform_candidates', []):
+            normalized = platform_alias(raw)
+            if normalized == 'generic':
+                continue
+            if platform_filter and raw not in platform_filter and normalized not in platform_filter:
+                continue
+            rows.append((raw, normalized))
+        return rows
+
+    plan: list[tuple[dict, str, str]] = []
+    if not coverage_sweep:
+        for account in accounts:
+            for raw, normalized in eligible_platforms(account):
+                plan.append((account, raw, normalized))
+                if max_queries > 0 and len(plan) >= max_queries:
+                    return plan
+        return plan
+
+    by_domain: dict[str, list[dict]] = {}
+    domain_order: list[str] = []
+    for account in accounts:
+        domain_id = account.get('domain_id', '') or 'unknown'
+        if domain_id not in by_domain:
+            by_domain[domain_id] = []
+            domain_order.append(domain_id)
+        by_domain[domain_id].append(account)
+    selected_per_domain: dict[str, set[str]] = {domain_id: set() for domain_id in domain_order}
+    selected_names: set[str] = set()
+    max_rounds = max((len(rows) for rows in by_domain.values()), default=0)
+    for _ in range(max_rounds):
+        for domain_id in domain_order:
+            domain_accounts = by_domain[domain_id]
+            remaining = [account for account in domain_accounts if account.get('name', '') not in selected_per_domain[domain_id]]
+            if not remaining:
+                continue
+            account = next((row for row in remaining if row.get('name', '') not in selected_names), remaining[0])
+            platforms = eligible_platforms(account)
+            if not platforms:
+                selected_per_domain[domain_id].add(account.get('name', ''))
+                continue
+            raw, normalized = platforms[0]
+            plan.append((account, raw, normalized))
+            selected_per_domain[domain_id].add(account.get('name', ''))
+            selected_names.add(account.get('name', ''))
+            if max_queries > 0 and len(plan) >= max_queries:
+                return plan
+    return plan
+
+
+def kol_hotspot_health_metrics(items: list[dict]) -> dict:
+    eligible = [item for item in items if item.get('material_policy') in ('PLATFORM_SIGNAL', 'DISCOVERY_ONLY')]
+    dated = [item for item in eligible if item.get('published_at') and item.get('failure_tag') != 'DATE_UNKNOWN']
+    dynamic_entities = {
+        entity
+        for item in eligible
+        for values in (item.get('domain_score', {}).get('entities', {}) or {}).values()
+        for entity in values
+    }
+    eventful = [
+        item for item in dated
+        if any(term.lower() in f"{item.get('title', '')} {item.get('evidence', '')}".lower() for term in HOTSPOT_ACTION_TERMS)
+    ]
+    ai_science = [
+        item for item in eventful
+        if (item.get('domain_id_scored') or item.get('domain_id')) in HOTSPOT_AI_SCIENCE_DOMAINS
+    ]
+    return {
+        'fresh_dated_count': len(dated),
+        'hotspot_event_count': len(eventful),
+        'ai_science_hotspot_count': len(ai_science),
+        'dynamic_entity_count': len(dynamic_entities),
+        'dynamic_entities': sorted(dynamic_entities)[:30],
+        'date_unknown_ratio': round(sum(1 for item in eligible if item.get('failure_tag') == 'DATE_UNKNOWN') / max(1, len(eligible)), 3),
+    }
 
 NON_ARTICLE_URL_PATTERNS = [
     r'/search\?', r'/search$', r'/tag/', r'/channel/', r'/account/',
@@ -270,14 +374,20 @@ def social_cdp_visible_text_for_url(url: str, max_chars: int = 500) -> tuple[str
 
 
 # ── P0 freshness gate ──
-def _parse_relative_date(text: str) -> str:
+def _parse_relative_date(text: str, today: datetime.date | None = None) -> str:
     """Parse Weibo/Chinese relative time strings to ISO date.
     Returns '' if unparseable.
     """
-    now = datetime.date.today()
+    now = today or datetime.date.today()
     if not text:
         return ''
     t = text.strip().lower()
+    try:
+        parsed_rfc = parsedate_to_datetime(text.strip())
+        if parsed_rfc:
+            return parsed_rfc.date().isoformat()
+    except (TypeError, ValueError, OverflowError):
+        pass
     # "昨天", "前天", "X天前", "X小时前"
     m = re.search(r'(\d+)\s*(?:天前|天以前|days?\s*ago)', t)
     if m:
@@ -304,7 +414,105 @@ def _parse_relative_date(text: str) -> str:
     return ''
 
 
-def is_stale_kol_item(item: dict, max_age_days: int = 7) -> tuple[bool, str]:
+def extract_publication_date(item: dict, today: datetime.date | None = None) -> str:
+    """Extract explicit publication evidence without inventing a collection date."""
+    reference_date = today or datetime.date.today()
+    candidates = [
+        item.get('published_at'), item.get('created_at'), item.get('pubdate'),
+        item.get('publish_time'), item.get('date'), item.get('url'),
+    ]
+    for raw in candidates:
+        if raw is None or raw == '':
+            continue
+        if isinstance(raw, (int, float)) or (isinstance(raw, str) and raw.strip().isdigit() and len(raw.strip()) >= 10):
+            try:
+                stamp = int(raw)
+                if stamp > 10_000_000_000:
+                    stamp //= 1000
+                parsed_dt = datetime.datetime.fromtimestamp(stamp, tz=datetime.timezone.utc).date()
+                if 2000 <= parsed_dt.year <= reference_date.year + 1:
+                    return parsed_dt.isoformat()
+            except (ValueError, TypeError, OverflowError, OSError):
+                pass
+        parsed = _parse_relative_date(str(raw), today=reference_date)
+        if parsed:
+            try:
+                parsed_date = datetime.date.fromisoformat(parsed)
+                if parsed_date <= reference_date + datetime.timedelta(days=1):
+                    return parsed
+            except ValueError:
+                pass
+        text = str(raw)
+        m = re.search(r'(?<!\d)(20\d{2})[/_-](\d{1,2})[/_-](\d{1,2})(?!\d)', text)
+        if m:
+            try:
+                return datetime.date(int(m.group(1)), int(m.group(2)), int(m.group(3))).isoformat()
+            except ValueError:
+                pass
+        m = re.search(r'(?<!\d)(\d{2})(\d{2})(\d{2})(?=\D*(?:s?html?|$))', text, re.I)
+        if m:
+            try:
+                year = 2000 + int(m.group(1))
+                parsed_date = datetime.date(year, int(m.group(2)), int(m.group(3)))
+                if year <= reference_date.year + 1:
+                    return parsed_date.isoformat()
+            except ValueError:
+                pass
+    return ''
+
+
+def fetch_publication_date(url: str, platform: str, timeout: int = 15) -> str:
+    """Fetch explicit platform publication metadata; never use collection time."""
+    if not url:
+        return ''
+    try:
+        import urllib.request
+        if platform == 'wechat' and 'mp.weixin.qq.com' in url:
+            wechat_url = url + ('&scene=1' if '?' in url else '?scene=1')
+            req = urllib.request.Request(wechat_url, headers={
+                'User-Agent': 'Mozilla/5.0 (Linux; Android 10; WeChat) AppleWebKit/537.36 MicroMessenger/8.0',
+            })
+            raw = urllib.request.urlopen(req, timeout=timeout).read(4_000_000).decode('utf-8', 'ignore')
+            m = re.search(r"ori_create_time:\s*['\"]?(\d{10,13})", raw)
+            if m:
+                return extract_publication_date({'created_at': m.group(1)})
+            m = re.search(r"create_time:\s*['\"](20\d{2}-\d{2}-\d{2})", raw)
+            if m:
+                return m.group(1)
+        if platform == 'weibo':
+            status_id = ''
+            for pattern in (
+                r'm\.weibo\.cn/(?:detail|status)/([0-9A-Za-z]+)',
+                r'weibo\.com/[^/\s]+/(?:status/)?([0-9A-Za-z]+)$',
+            ):
+                m = re.search(pattern, url.rstrip('/'))
+                if m:
+                    status_id = m.group(1)
+                    break
+            if status_id:
+                cookies = {}
+                cookie_file = Path('/root/.hermes/weibo_cookies.txt')
+                if cookie_file.exists():
+                    for line in cookie_file.read_text(encoding='utf-8', errors='ignore').splitlines():
+                        line = line.strip()
+                        if line.startswith('#HttpOnly_'):
+                            line = line[10:]
+                        parts = line.split('\t')
+                        if len(parts) >= 7:
+                            cookies[parts[5]] = parts[6]
+                headers = {'User-Agent': 'Mozilla/5.0', 'Referer': 'https://weibo.com/'}
+                if cookies:
+                    headers['Cookie'] = '; '.join(f'{k}={v}' for k, v in cookies.items())
+                req = urllib.request.Request(f'https://weibo.com/ajax/statuses/show?id={status_id}', headers=headers)
+                data = json.loads(urllib.request.urlopen(req, timeout=timeout).read().decode('utf-8', 'ignore'))
+                post = data.get('data', data)
+                return extract_publication_date({'created_at': post.get('created_at', '')})
+    except Exception:
+        pass
+    return ''
+
+
+def is_stale_kol_item(item: dict, max_age_days: int = 7, today: datetime.date | None = None) -> tuple[bool, str]:
     """Check freshness. Returns (is_stale, reason_tag).
 
     Rules:
@@ -315,20 +523,21 @@ def is_stale_kol_item(item: dict, max_age_days: int = 7) -> tuple[bool, str]:
     """
     pub = (item.get('published_at') or '').strip()
     evidence = (item.get('evidence') or '') + ' ' + (item.get('title') or '')
+    reference_date = today or datetime.date.today()
 
     # Try published_at first
     if pub:
-        parsed = _parse_relative_date(pub)
+        parsed = _parse_relative_date(pub, today=reference_date)
         if not parsed:
             # try raw ISO
             parsed = pub[:10] if re.match(r'20\d{2}-\d{2}-\d{2}', pub) else ''
         if parsed:
             try:
                 pub_date = datetime.date.fromisoformat(parsed)
-                age = (datetime.date.today() - pub_date).days
+                age = (reference_date - pub_date).days
                 if age > max_age_days:
                     return True, 'STALE_KOL_ARTICLE'
-                if pub_date.year < datetime.date.today().year:
+                if pub_date.year < reference_date.year:
                     return True, 'DATE_OLD_YEAR'
             except (ValueError, TypeError):
                 pass
@@ -337,7 +546,7 @@ def is_stale_kol_item(item: dict, max_age_days: int = 7) -> tuple[bool, str]:
     year_matches = re.findall(r'(20\d{2})年', evidence)
     if year_matches:
         max_old_year = max(int(y) for y in year_matches)
-        if max_old_year < datetime.date.today().year:
+        if max_old_year < reference_date.year:
             return True, 'DATE_OLD_YEAR'
 
     # No date info at all
@@ -571,7 +780,10 @@ def discover_weibo_mobile(query: str, max_results: int = 3, timeout: int = 20) -
             continue
         text = post.get('text_raw', '') or re.sub(r'<[^>]+>', '', post.get('text', ''))
         url = f'https://m.weibo.cn/detail/{mid}'
-        hits.append({'title': text[:120], 'url': url, 'body': text[:500]})
+        hits.append({
+            'title': text[:120], 'url': url, 'body': text[:500],
+            'published_at': post.get('created_at', ''),
+        })
         if len(hits) >= max_results:
             break
     return hits
@@ -1148,10 +1360,18 @@ def main():
     ap.add_argument('--timeout-sec', type=int, default=8, help='ddgs单条超时秒数')
     ap.add_argument('--platform', type=str, default='', help='只跑指定平台: wechat/bilibili/weibo/zhihu')
     ap.add_argument('--limit', type=int, default=0, help='只跑前N个account')
+    ap.add_argument('--coverage-sweep', action='store_true', help='按九域轮转，每账户优先查询一个平台')
+    ap.add_argument('--max-queries', type=int, default=0, help='本轮最大查询骨架数，0为不限制')
+    ap.add_argument('--max-runtime-sec', type=int, default=0, help='总运行预算秒数；到点截断后续查询/正文抓取并落盘，0为不限制')
     ap.add_argument('--dry-run-mirofish', action='store_true', help='只产出discovery，不跑MiroFish后段')
     ap.add_argument('--out-dir', type=str, default='', help='输出目录')
     ap.add_argument('--disable-social-cdp', action='store_true', help='禁用本机社媒助手CDP探测/只读补充')
     args = ap.parse_args()
+    run_started_monotonic = time.monotonic()
+    runtime_truncated = False
+
+    def runtime_budget_exhausted() -> bool:
+        return bool(args.max_runtime_sec > 0 and time.monotonic() - run_started_monotonic >= args.max_runtime_sec)
     if args.disable_social_cdp:
         os.environ['KEWU_DISABLE_SOCIAL_CDP'] = '1'
 
@@ -1190,6 +1410,10 @@ def main():
         accounts = watch['accounts']
         domain_map = {}
 
+    configured_accounts = list(accounts)
+    configured_account_count = len(configured_accounts)
+    configured_domain_count = len(domain_map)
+
     if args.limit > 0:
         accounts = accounts[:args.limit]
 
@@ -1217,69 +1441,66 @@ def main():
     total_queries = 0
     domain_query_counts: dict[str, int] = {}
 
-    platform_aliases = {
-        '微信公众号': 'wechat', '公众号': 'wechat',
-        'B站': 'bilibili', '微博': 'weibo', '知乎': 'zhihu', '网站': 'generic',
-    }
+    query_plan = build_account_query_plan(
+        accounts,
+        platform_filter=plat_filter,
+        coverage_sweep=args.coverage_sweep,
+        max_queries=args.max_queries,
+    )
+    queried_account_names: set[str] = set()
+    queried_domain_ids: set[str] = set()
 
-    for acc in accounts:
+    for acc, plat_raw, plat in query_plan:
+        if runtime_budget_exhausted():
+            runtime_truncated = True
+            errors.append({'account': '', 'platform': '', 'error': 'RUNTIME_BUDGET_EXHAUSTED_BEFORE_QUERY'})
+            break
         name = acc['name']
-        platforms = acc.get('platform_candidates', [])
-        for plat_raw in platforms:
-            plat: str = platform_aliases.get(plat_raw, plat_raw) or plat_raw
-            if plat == 'generic':
-                continue
-            if plat_filter and plat_raw not in plat_filter and plat not in plat_filter:
-                continue
-            total_queries += 1
-            if acc.get('domain_id'):
-                domain_query_counts[acc['domain_id']] = domain_query_counts.get(acc['domain_id'], 0) + 1
-            print(f'  [{total_queries}] {name} · {plat} ...', end=' ', flush=True)
-            t0 = time.time()
-            hits = discover_for_account(acc, plat, args.timeout_sec)
-            dt = time.time() - t0
-            if not hits:
-                err_tag = 'NO_HITS'
-                errors.append({'account': name, 'platform': plat, 'error': err_tag,
-                               'fallback_tried': ['collect_web', 'anysearch', 'ddgs']})
-                print(f'0 hits ({dt:.1f}s)')
-                continue
+        total_queries += 1
+        queried_account_names.add(name)
+        if acc.get('domain_id'):
+            queried_domain_ids.add(acc['domain_id'])
+            domain_query_counts[acc['domain_id']] = domain_query_counts.get(acc['domain_id'], 0) + 1
+        print(f'  [{total_queries}] {name} · {plat} ...', end=' ', flush=True)
+        t0 = time.time()
+        hits = discover_for_account(acc, plat, args.timeout_sec)
+        elapsed = time.time() - t0
+        if not hits:
+            errors.append({'account': name, 'platform': plat, 'error': 'NO_HITS',
+                           'fallback_tried': ['collect_web', 'anysearch', 'ddgs']})
+            print(f'0 hits ({elapsed:.1f}s)')
+            continue
 
-            found = 0
-            for h in hits:
-                url = h.get('url', '')
-                if not url or url in existing_urls:
-                    continue
-                existing_urls.add(url)
-                item = dict(EMPTY_ITEM)
-                item['account'] = name
-                item['platform'] = plat
-                item['query'] = h.get('_route', '')
-                item['url'] = url
-                item['title'] = h.get('title', '')
-                item['source_route'] = h.get('_route', 'unknown')
-                item['discovery_status'] = 'discovered'
-                item['failure_tag'] = ''
-                # Tag with domain_id from watchlist
-                item['domain_id'] = acc.get('domain_id', '')
-                item['domain_name'] = acc.get('domain_name', '')
-
-                # score for noise filter
-                sc = score_item(name, plat, h)
-                item['body_status'] = 'pending'
-                disc_body = h.get('body', '') or ''
-                disc_title = h.get('title', '') or ''
-                # 优先用body，其次用真实title（排除占位符）
-                if disc_body and len(disc_body) > 5:
-                    item['evidence'] = disc_body[:500]
-                elif disc_title and 'candidate' not in disc_title.lower() and len(disc_title) > 10:
-                    item['evidence'] = disc_title[:500]
-                else:
-                    item['evidence'] = ''
-
-                all_items.append(item)
-                found += 1
-            print(f'{found} new ({dt:.1f}s)')
+        found = 0
+        for hit in hits:
+            url = hit.get('url', '')
+            if not url or url in existing_urls:
+                continue
+            existing_urls.add(url)
+            item = dict(EMPTY_ITEM)
+            item['account'] = name
+            item['platform'] = plat
+            item['query'] = hit.get('_route', '')
+            item['url'] = url
+            item['title'] = hit.get('title', '')
+            item['published_at'] = extract_publication_date(hit)
+            item['source_route'] = hit.get('_route', 'unknown')
+            item['discovery_status'] = 'discovered'
+            item['failure_tag'] = ''
+            item['domain_id'] = acc.get('domain_id', '')
+            item['domain_name'] = acc.get('domain_name', '')
+            item['body_status'] = 'pending'
+            discovery_body = hit.get('body', '') or ''
+            discovery_title = hit.get('title', '') or ''
+            if discovery_body and len(discovery_body) > 5:
+                item['evidence'] = discovery_body[:500]
+            elif discovery_title and 'candidate' not in discovery_title.lower() and len(discovery_title) > 10:
+                item['evidence'] = discovery_title[:500]
+            else:
+                item['evidence'] = ''
+            all_items.append(item)
+            found += 1
+        print(f'{found} new ({elapsed:.1f}s)')
 
     # ── B. Body Fetch — 所有 pending 项都必须尝试抓正文 ──
     body_report = {
@@ -1288,6 +1509,9 @@ def main():
         'by_platform': {}, 'by_failure_tag': {}, 'details': [],
     }
     for it in all_items:
+        if runtime_budget_exhausted():
+            runtime_truncated = True
+            break
         if it.get('body_status') != 'pending':
             continue
         url = it.get('url', '')
@@ -1327,6 +1551,8 @@ def main():
         if body and evidence_is_body(body):
             it['evidence'] = body
             it['body_status'] = 'fetched'
+            if not it.get('published_at'):
+                it['published_at'] = fetch_publication_date(url, plat)
             body_report['success'] += 1
             detail['result'] = 'fetched'
             detail['body_len'] = len(body)
@@ -1358,6 +1584,8 @@ def main():
     for it in all_items:
         if it.get('viewpoint_inference', '') in ('', '待模型审'):
             it['viewpoint_inference'] = infer_viewpoint(it)
+        if not it.get('published_at'):
+            it['published_at'] = extract_publication_date(it)
         # P0: freshness gate — must run BEFORE material_policy_tag
         stale, reason = is_stale_kol_item(it, max_age_days=7)
         if stale:
@@ -1393,6 +1621,18 @@ def main():
     # ── D. Save platform_discovery.json ──
     stats = {
         'total_queries': total_queries,
+        'configured_accounts': configured_account_count,
+        'selected_accounts': len(accounts),
+        'queried_accounts': len(queried_account_names),
+        'queried_account_names': sorted(queried_account_names),
+        'configured_domains': configured_domain_count,
+        'queried_domains': len(queried_domain_ids),
+        'queried_domain_ids': sorted(queried_domain_ids),
+        'coverage_sweep': bool(args.coverage_sweep),
+        'max_queries': args.max_queries,
+        'max_runtime_sec': args.max_runtime_sec,
+        'runtime_elapsed_sec': round(time.monotonic() - run_started_monotonic, 3),
+        'runtime_truncated': runtime_truncated,
         'discovered': sum(1 for i in all_items if i.get('discovery_status') == 'discovered'),
         'body_fetched': sum(1 for i in all_items if i.get('body_status') == 'fetched'),
         'excerpt_only': sum(1 for i in all_items if i.get('body_status') == 'excerpt_only'),
@@ -1455,7 +1695,7 @@ def main():
             if did:
                 domain_body_success[did] = domain_body_success.get(did, 0) + 1
 
-    total_accounts = len(accounts)
+    total_accounts = configured_account_count
     domains_with_results = len(domain_results)
     total_domains = len(domain_map) if domain_map else 1
 
@@ -1485,12 +1725,26 @@ def main():
 
     # Determine health status
     failure_tags = []
+    if len(queried_domain_ids) < total_domains:
+        failure_tags.append(f'DOMAINS_QUERIED_{len(queried_domain_ids)}_of_{total_domains}')
+    if len(queried_account_names) < min(total_accounts, total_domains):
+        failure_tags.append(f'ACCOUNTS_QUERIED_{len(queried_account_names)}_of_{total_accounts}')
     if domains_with_results < min_domains:
         failure_tags.append(f'DOMAINS_ONLY_{domains_with_results}_of_{total_domains}')
     if len(accounts_with_results) < min_accounts_total:
         failure_tags.append(f'ACCOUNTS_ONLY_{len(accounts_with_results)}_WITH_RESULTS')
     if stale_platform > 0:
         failure_tags.append(f'STALE_PLATFORM={stale_platform}')
+
+    hotspot_metrics = kol_hotspot_health_metrics(all_items)
+    if hotspot_metrics['date_unknown_ratio'] > 0.5:
+        failure_tags.append(f'DATE_UNKNOWN_RATIO_{hotspot_metrics["date_unknown_ratio"]:.2f}')
+    if hotspot_metrics['fresh_dated_count'] < 1:
+        failure_tags.append('NO_FRESH_DATED_KOL_RESULT')
+    if hotspot_metrics['ai_science_hotspot_count'] < 1:
+        failure_tags.append('AI_SCIENCE_HOTSPOT_RECALL_ZERO')
+    if hotspot_metrics['dynamic_entity_count'] < 1:
+        failure_tags.append('DYNAMIC_ENTITY_ZERO')
 
     silent_domains = [did for did in domain_map if did not in domain_results]
 
@@ -1525,6 +1779,14 @@ def main():
     stats['domain_queries'] = domain_query_counts
     stats['sidecar_health'] = sidecar_health
     stats['sidecar_health_reason'] = sidecar_health_reason
+    stats['hotspot_recall'] = hotspot_metrics
+    stats['health_policy'] = {
+        'cache_requires': ['fresh_dated_result', 'domain_coverage', 'ai_science_hotspot_recall', 'dynamic_entity', 'body_or_excerpt'],
+        'mapping_baseline': 'stable_nine_domains_dyson_tree_latest_outline_post_discovery_filter',
+        'full_list_health_claim': len(queried_account_names) == total_accounts,
+    }
+    discovery_doc['stats'] = stats
+    discovery_path.write_text(json.dumps(discovery_doc, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     print(f'[health_gate] domains={domains_with_results}/{total_domains} accounts={len(accounts_with_results)}/{total_accounts} stale_PLATFORM={stale_platform} → {sidecar_health}')
 
     # ── E2. MiroFish Feed Package ──
@@ -1542,6 +1804,10 @@ def main():
         f'# 平台号观点雷达 v2 — {TODAY}',
         '',
         f'- queries: {stats["total_queries"]}',
+        f'- configured_accounts: {stats.get("configured_accounts", 0)}',
+        f'- queried_accounts: {stats.get("queried_accounts", 0)}',
+        f'- queried_domains: {stats.get("queried_domains", 0)}/{stats.get("configured_domains", 0)}',
+        f'- full_list_health_claim: {stats.get("health_policy", {}).get("full_list_health_claim", False)}',
         f'- discovered: {stats["discovered"]}',
         f'- body_fetched: {stats["body_fetched"]}',
         f'- excerpt_only: {stats["excerpt_only"]}',
@@ -1561,6 +1827,10 @@ def main():
         f'- errors: {stats["errors"]}',
         f'- stale_filtered: {stats.get("stale_filtered", 0)}',
         f'- date_unknown: {stats.get("date_unknown", 0)}',
+        f'- date_unknown_ratio: {stats.get("hotspot_recall", {}).get("date_unknown_ratio", 0)}',
+        f'- fresh_dated_count: {stats.get("hotspot_recall", {}).get("fresh_dated_count", 0)}',
+        f'- ai_science_hotspot_count: {stats.get("hotspot_recall", {}).get("ai_science_hotspot_count", 0)}',
+        f'- dynamic_entity_count: {stats.get("hotspot_recall", {}).get("dynamic_entity_count", 0)}',
         f'- coverage_pct: {stats.get("coverage_pct", 0)}%',
         f'- domains_with_results: {stats.get("domains_with_results", 0)}/{stats.get("domains_total", 0)}',
         f'- silent_domains: {", ".join(stats.get("silent_domains", [])) or "none"}',

@@ -1,3 +1,10 @@
+
+## 2026-08-06 半导体设备/出口管制补卡
+
+- 国产浸没式DUV小批量产与交付：`../时事素材/素材卡/2026-08-06/素材卡_国产浸没式DUV光刻机小批量产与交付_20260806.md`
+- ASML对华光刻限制：`../时事素材/素材卡/2026-08-06/素材卡_ASML对华光刻出口限制与服务收紧_20260806.md`
+- 新凯来/宇量昇报道关联（PARTIAL）：`../时事素材/素材卡/2026-08-06/素材卡_新凯来宇量昇_国产光刻设备链报道关联_20260806.md`
+
 # 科武纪元·知识库总索引
 
 > 按科技线分类，写作时按需引用。
@@ -128,6 +135,12 @@
 | [T1200碳纤维与流程工业主权](先进材料/素材卡_T1200碳纤维与流程工业主权_20260511.md) | T1200/SYT80百吨级量产、8GPa级、流程工业know-how、批次稳定性 | 外骨骼、深空工程、技术封锁、材料主权 | 观察者网/微信 |
 
 ## 时事素材索引
+
+## 供应链关键材料线（新增 2026-07-18）
+
+| 素材卡 | 核心数据 | 小说映射 | 来源 |
+|--------|---------|---------|------|
+| [中国临时禁止氦气出口：进口依赖型保供](供应链/素材卡_中国氦气临时禁止出口_进口依赖型保供_20260718.md) | 2026-07-10第29号公告；税号2804290010；即日执行；USGS 2025全球190/美国81/卡塔尔63/俄罗斯18/中国3百万立方米 | 逆向资源牌、工业气体单点故障、低温储运与回箱时滞；CHAPTER_PREP_ONLY | 商务部/海关总署、USGS 2026、Reuters、财新 |
 
 | 文件 | 科技线 | 最近更新 |
 |------|--------|---------|
@@ -886,3 +899,12 @@
 | [科学家让活细胞成像既全又清](时事素材/素材卡/2026-06-22/素材卡_LargePNet_活细胞AI成像_20260622.md) | primary official；MiroFish=CHAPTER_PREP_ONLY | 第359章远端准备：活细胞长时观测、大视野AI复原、科研治理与人才争夺。 | https://news.cctv.com/2026/06/22/ARTIZPIxDC4mgWxyNv9fFYQa260622.shtml |
 | [央地共建粤港澳大湾区国际科技创新中心工作推进会在广州召开](时事素材/素材卡/2026-06-22/素材卡_粤港澳科创中心_产业组织_20260622.md) | primary official；MiroFish=CHAPTER_PREP_ONLY | 第125章背景：国家级科创中心、数据算力算法应用一体、湾区产业组织。 | https://www.most.gov.cn/kjbgz/202606/t20260618_196809.html |
 | [两部门部署在全国开展2026年“全民反诈在行动”集中宣传月活动](时事素材/素材卡/2026-06-22/素材卡_全民反诈_基层治理与平台治理_20260622.md) | primary official；MiroFish=CHAPTER_PREP_ONLY | 第125章背景：基层网格、平台治理、跨境诈骗人口与资金链治理。 | https://news.cctv.com/2026/06/10/ARTImWdyfJZtw95kmOJgdob2260610.shtml |
+
+## 自动归档素材 2026-07-20 2336
+
+| 素材卡 | 分类 | 调用位置 | 来源 |
+|---|---|---|---|
+| [AutoRestTest_at_the_SBFT_2026_Tool_Competition](深空工程/素材卡_AutoRestTest_at_the_SBFT_2026_Tool_Competition_20260720.md) | 深空工程 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [NASA_Invites_Media_to_Roman_Space_Telescope,_Crew-13_Launches](深空工程/素材卡_NASA_Invites_Media_to_Roman_Space_Telescope,_Crew-13_Launches_20260720.md) | 深空工程 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [NASA’s_Psyche_Mission_Images_Details_of_Martian_Surface_During_Flyby](深空工程/素材卡_NASA’s_Psyche_Mission_Images_Details_of_Martian_Surface_During_Flyby_20260720.md) | 深空工程 | 待角色调用 | 自动归档/SenseNova计划驱动 |
+| [NASA&#8217;s_Chandra_and_IXPE_Study_Pulsar_in_Lighthouse_Nebula](深空工程/素材卡_NASA&#8217;s_Chandra_and_IXPE_Study_Pulsar_in_Lighthouse_Nebula_20260720.md) | 深空工程 | 待角色调用 | 自动归档/SenseNova计划驱动 |

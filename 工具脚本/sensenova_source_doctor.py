@@ -205,8 +205,30 @@ def main(argv: list[str] | None = None) -> int:
             'route through fallback search/body_fetch and keep rescue_queue when official sites are blocked',
         )
 
+    network_failures = []
+    if not args.quick:
+        for c in checks:
+            if c['name'].startswith(('dns:', 'fetch:', 'bing:', 'domestic_official:')) and c['status'] in {'FAIL', 'WARN'}:
+                # DNS/HTTP 失败保留真实分类；不得因“有 route_map”而伪报 OK。
+                if c['status'] in {'FAIL', 'WARN'}:
+                    network_failures.append({'name': c['name'], 'status': c['status'], 'detail': c.get('detail', '')})
+        if domestic_official_routes and not domestic_http_ok:
+            network_failures.append({
+                'name': 'domestic_official:all_http_down',
+                'status': 'FAIL',
+                'detail': f'total={len(domestic_official_routes)} http_ok=0',
+            })
+
+    hard_fail = any(c['status'] == 'FAIL' for c in checks) or bool(network_failures and not args.quick and not domestic_http_ok and domestic_official_routes)
+    if hard_fail:
+        overall = 'PARTIAL'
+    elif network_failures:
+        overall = 'PARTIAL'
+    else:
+        overall = 'OK'
+
     report = {
-        'status': 'OK' if all(c['status'] != 'FAIL' for c in checks) else 'PARTIAL',
+        'status': overall,
         'mode': 'quick' if args.quick else 'full',
         'timeout_seconds': timeout,
         'checks': checks,
@@ -221,6 +243,27 @@ def main(argv: list[str] | None = None) -> int:
             'dns_fail': len(domestic_dns_fail),
             'http_fail': sum(1 for r in domestic_official_routes if r['classification'].startswith('HTTP_') and r['classification'] != 'HTTP_OK'),
         },
+        'network_failures': network_failures,
+        'body_gate_contract': {
+            'search_summary_is_not_source_body': True,
+            'empty_body_is_not_success': True,
+            'min_body_chars': 120,
+            'counts_as_body_success_requires': [
+                'url',
+                'BODY_FETCHED_or_primary_body_field',
+                'body_file_or_body_text',
+                'body_chars>=120',
+            ],
+            'failure_tags': [
+                'EMPTY_BODY',
+                'BODY_TOO_SHORT',
+                'SEARCH_SUMMARY_ONLY',
+                'EXPERT_SOURCE_SEARCH_SUMMARY_ONLY',
+                'EXPERT_SOURCE_BODY_BLOCKED',
+                'WECHAT_JS_CONTENT_MISSING',
+                'WECHAT_BODY_TOO_SHORT',
+            ],
+        },
         'expert_public_view_routes': EXPERT_PUBLIC_VIEW_ROUTES,
         'expert_gate_contract': {
             'required_experts': ['沈逸', '高志凯'],
@@ -228,6 +271,7 @@ def main(argv: list[str] | None = None) -> int:
             'gate_script': str(Path(__file__).with_name('sensenova_expert_gate.py')),
             'mirofish_block_tag': 'EXPERT_GATE_INSUFFICIENT',
             'search_summary_is_not_source_body': True,
+            'summary_field_is_not_body': True,
         },
     }
     # Default remains JSON for existing callers; --json is accepted as an explicit contract.

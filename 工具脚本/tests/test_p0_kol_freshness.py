@@ -21,6 +21,7 @@ WATCHLIST = Path('/root/workspace/科武纪元/学习记录/平台号观点雷�
 
 PASS_COUNT = 0
 FAIL_COUNT = 0
+FIXTURE_TODAY = datetime.date(2026, 7, 10)
 
 
 def ok(label: str):
@@ -58,7 +59,7 @@ section('2. is_stale_kol_item (freshness gate)')
 
 # 2a. Old post (2025-01-15) → STALE_KOL_ARTICLE
 old = json.loads((FIXTURES / 'fixture_old_post.json').read_text())
-stale, reason = radar.is_stale_kol_item(old, max_age_days=7)
+stale, reason = radar.is_stale_kol_item(old, max_age_days=7, today=FIXTURE_TODAY)
 if stale and reason == 'STALE_KOL_ARTICLE':
     ok('old_post → STALE_KOL_ARTICLE')
 else:
@@ -66,7 +67,7 @@ else:
 
 # 2b. G1 surgery (today) → NOT stale
 g1 = json.loads((FIXTURES / 'fixture_g1_surgery.json').read_text())
-stale, reason = radar.is_stale_kol_item(g1, max_age_days=7)
+stale, reason = radar.is_stale_kol_item(g1, max_age_days=7, today=FIXTURE_TODAY)
 if not stale and reason == '':
     ok('g1_surgery → NOT stale (fresh)')
 else:
@@ -74,7 +75,7 @@ else:
 
 # 2c. CZ-10B (today) → NOT stale
 cz = json.loads((FIXTURES / 'fixture_cz10b_launch.json').read_text())
-stale, reason = radar.is_stale_kol_item(cz, max_age_days=7)
+stale, reason = radar.is_stale_kol_item(cz, max_age_days=7, today=FIXTURE_TODAY)
 if not stale and reason == '':
     ok('cz10b_launch → NOT stale (fresh)')
 else:
@@ -82,7 +83,7 @@ else:
 
 # 2d. No date at all → DATE_UNKNOWN
 nodate = {'title': '无日期文章', 'evidence': '一些内容', 'published_at': ''}
-stale, reason = radar.is_stale_kol_item(nodate, max_age_days=7)
+stale, reason = radar.is_stale_kol_item(nodate, max_age_days=7, today=FIXTURE_TODAY)
 if not stale and reason == 'DATE_UNKNOWN':
     ok('no_date → DATE_UNKNOWN')
 else:
@@ -90,7 +91,7 @@ else:
 
 # 2e. Evidence with old year "2025年" → DATE_OLD_YEAR
 oldyear = {'title': '2025年回顾', 'evidence': '2025年发生了重大变化', 'published_at': ''}
-stale, reason = radar.is_stale_kol_item(oldyear, max_age_days=7)
+stale, reason = radar.is_stale_kol_item(oldyear, max_age_days=7, today=FIXTURE_TODAY)
 if stale and reason == 'DATE_OLD_YEAR':
     ok('evidence_2025 → DATE_OLD_YEAR')
 else:
@@ -98,7 +99,7 @@ else:
 
 # 2f. Relative date "3天前" → NOT stale
 recent = {'title': '最近的', 'evidence': '', 'published_at': '3天前'}
-stale, reason = radar.is_stale_kol_item(recent, max_age_days=7)
+stale, reason = radar.is_stale_kol_item(recent, max_age_days=7, today=FIXTURE_TODAY)
 if not stale:
     ok('relative_3d → NOT stale')
 else:
@@ -106,11 +107,33 @@ else:
 
 # 2g. Relative date "15天前" → STALE_KOL_ARTICLE
 old_rel = {'title': '较早的', 'evidence': '', 'published_at': '15天前'}
-stale, reason = radar.is_stale_kol_item(old_rel, max_age_days=7)
+stale, reason = radar.is_stale_kol_item(old_rel, max_age_days=7, today=FIXTURE_TODAY)
 if stale and reason == 'STALE_KOL_ARTICLE':
     ok('relative_15d → STALE_KOL_ARTICLE')
 else:
     fail('relative_15d', f'stale={stale}, reason={reason}')
+
+# 2h. Supplement dates only from explicit metadata/snippet/URL evidence.
+date_cases = [
+    ({'created_at': '2026-07-26'}, '2026-07-26'),
+    ({'created_at': 'Fri Jul 24 10:00:00 +0800 2026'}, '2026-07-24'),
+    ({'url': 'https://news.cctv.com/2026/07/27/ARTIx.shtml'}, '2026-07-27'),
+    ({'url': 'https://news.cctv.com/a/b/ARTIx260726.shtml'}, '2026-07-26'),
+]
+for payload, expected in date_cases:
+    got = radar.extract_publication_date(payload, today=datetime.date(2026, 7, 27))
+    if got == expected:
+        ok(f'date supplementation {expected}')
+    else:
+        fail('date supplementation', f'payload={payload}, got={got}, expected={expected}')
+if radar.extract_publication_date({'title': '没有明确日期的文章'}, today=FIXTURE_TODAY) == '':
+    ok('date supplementation does not invent collection date')
+else:
+    fail('date supplementation', 'invented date without explicit evidence')
+if radar.extract_publication_date({'evidence': '计划于2035年奔赴深空'}, today=FIXTURE_TODAY) == '':
+    ok('future event year is not publication date')
+else:
+    fail('date supplementation', 'future event year misclassified as publication date')
 
 
 # ── 3. material_policy_tag (keyword expansion) ──
@@ -185,7 +208,7 @@ items = full['items']
 
 # Apply freshness gate + policy tag (replicate main loop logic)
 for it in items:
-    stale, reason = radar.is_stale_kol_item(it, max_age_days=7)
+    stale, reason = radar.is_stale_kol_item(it, max_age_days=7, today=FIXTURE_TODAY)
     if stale:
         it['material_policy'] = 'NOISE'
         it['failure_tag'] = reason

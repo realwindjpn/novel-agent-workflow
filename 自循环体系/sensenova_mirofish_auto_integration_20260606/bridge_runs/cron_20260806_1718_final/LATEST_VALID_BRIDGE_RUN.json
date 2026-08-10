@@ -1,0 +1,35 @@
+{
+  "updated_at": "2026-08-06T17:41:07",
+  "run_id": "cron_20260806_1718",
+  "run_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260806_1718",
+  "per_run_bridge_dir": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260806_1718_final/bridge_runs/cron_20260806_1718",
+  "valid_input_count": 7,
+  "skipped_count": 87,
+  "disposition_counts": {
+    "OUTLINE_PATCH": 0,
+    "CHAPTER_PREP_ONLY": 5,
+    "ARCHIVE_WITH_REASON": 2
+  },
+  "conversion_task_count": 5,
+  "missing_cards_by_tier": {
+    "P0": [
+      "央视新闻___2025年12月01日_06_21_32_d605a0ebd5b0fc7f",
+      "科学与健康丨产业加快落地_低空经济_振翅高飞_f5813323961c5dd7"
+    ],
+    "P1": [
+      "2月9日上午_习近平总书记来到位于北京亦庄的国家信创园_了解信息技术应用创新和北京加快建设_6036fc2a4b39a27a",
+      "7月7日_我国首个深空探测领域国际科技组织__国际深空探测学会在安徽合肥成立_该学会由中国_62d431a6322fe5c7"
+    ]
+  },
+  "p0_missing": true,
+  "p0_missing_cards": [
+    "央视新闻___2025年12月01日_06_21_32_d605a0ebd5b0fc7f",
+    "科学与健康丨产业加快落地_低空经济_振翅高飞_f5813323961c5dd7"
+  ],
+  "report": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260806_1718_final/DRY_RUN_REPORT.md",
+  "p0_p1_gate_blocked": true,
+  "p1_missing_cards": [
+    "2月9日上午_习近平总书记来到位于北京亦庄的国家信创园_了解信息技术应用创新和北京加快建设_6036fc2a4b39a27a",
+    "7月7日_我国首个深空探测领域国际科技组织__国际深空探测学会在安徽合肥成立_该学会由中国_62d431a6322fe5c7"
+  ]
+}

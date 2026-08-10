@@ -105,6 +105,18 @@ def infer_volume(project_dir: Path, chapter: int) -> str:
     return volumes[0]
 
 
+def resolve_volume(project_dir: Path, chapter: int, explicit_volume: str | None) -> str:
+    """以大纲卷属为硬真源；显式参数仅可复述，不得覆盖。"""
+    inferred = infer_volume(project_dir, chapter)
+    explicit = (explicit_volume or '').strip().replace('·', '：')
+    if explicit and explicit != inferred:
+        raise ValueError(
+            f'分卷硬闸失败：第{chapter}章大纲卷属={inferred}，'
+            f'显式参数={explicit}；拒绝上传'
+        )
+    return inferred
+
+
 def parse_chapter(project_dir: Path, chapter: int):
     txt = project_dir / '已投稿' / f'第{chapter}章.txt'
     if not txt.exists():
@@ -139,14 +151,29 @@ def parse_chapter(project_dir: Path, chapter: int):
 def ensure_volume(session: str, volume_name: str, state_path: Path | None = None):
     js = """
 (() => {
- const explicit = document.querySelector('.publish-header-volume-name')?.innerText || '';
+ const explicit = (document.querySelector('.publish-header-volume-name')?.innerText || '').trim();
  const maintain = document.querySelector('.publish-maintain-volume')?.innerText || '';
- const m = maintain.match(/第[一二三四五六七八九十]+卷[：:].+/);
- const current = explicit || (m ? m[0].replace(/:/g, '：') : '');
- return {current, explicit, maintain};
+ const wrap = document.querySelector('.publish-header-volume-wrap')?.innerText || '';
+ const m = (maintain + '\\n' + wrap).match(/第[一二三四五六七八九十]+卷[：:][^\\n]*/);
+ let current = explicit || (m ? m[0].replace(/:/g, '：').trim() : '');
+ // 新建草稿页首屏偶发 class 已在但 innerText 空；用 body 兜底
+ if (!current) {
+   const body = document.body?.innerText || '';
+   const m2 = body.match(/第[一二三四五六七八九十]+卷[：:][^\\n]{0,20}/);
+   if (m2) current = m2[0].replace(/:/g, '：').trim();
+ }
+ return {current, explicit, maintain, wrap};
 })()
 """
-    cur = js_eval(session, js, state_path=state_path)
+    # 新建草稿后 SPA 未就绪时 class/文案皆空；先轮询再点选
+    cur = None
+    for _ in range(8):
+        cur = js_eval(session, js, state_path=state_path)
+        if isinstance(cur, dict) and cur.get('current') == volume_name:
+            return cur
+        if isinstance(cur, dict) and (cur.get('current') or cur.get('explicit') or cur.get('maintain') or cur.get('wrap')):
+            break
+        time.sleep(0.6)
     if isinstance(cur, dict) and cur.get('current') == volume_name:
         return cur
     clicked = False
@@ -159,9 +186,11 @@ def ensure_volume(session: str, volume_name: str, state_path: Path | None = None
             continue
     if not clicked:
         # 番茄发布页偶尔改版，header 只显示文本无旧class；若页面文本已在目标卷，直接继续。
-        cur = js_eval(session, js, state_path=state_path)
-        if isinstance(cur, dict) and cur.get('current') == volume_name:
-            return cur
+        for _ in range(5):
+            cur = js_eval(session, js, state_path=state_path)
+            if isinstance(cur, dict) and cur.get('current') == volume_name:
+                return cur
+            time.sleep(0.5)
         raise RuntimeError(f'分卷入口未找到: {cur}')
     time.sleep(0.8)
     js2 = f"""
@@ -201,6 +230,8 @@ def ensure_volume(session: str, volume_name: str, state_path: Path | None = None
 }})()
 """
     # React 受控弹窗在自动化里偶发 header 不立刻刷新；若弹窗 selected 已变为目标卷，则继续后续填充，fill_main 会再次校验 vol。
+    res = None
+    chk = None
     for attempt in range(3):
         res = js_eval(session, js2, state_path=state_path)
         time.sleep(1)
@@ -313,7 +344,35 @@ def add_author_note(session: str, note: str, state_path: Path | None = None):
     return chk
 
 
-def save_and_verify(session: str, data: dict, state_path: Path | None = None):
+def draft_listing_scan(session: str, chapter: int, title: str, state_path: Path | None = None) -> dict:
+    """打开草稿箱，统计同名「第N章 标题」出现次数。用于防重复新建。"""
+    ab(session, f"open {shlex.quote(DRAFT_URL)}", timeout=60, state_path=state_path)
+    time.sleep(2)
+    needle = f'第{chapter}章 {title}'
+    js = f"""
+(() => {{
+ const needle={needle!r};
+ const txt=document.body.innerText || '';
+ let count=0, from=0;
+ while(true){{
+   const i=txt.indexOf(needle, from);
+   if(i<0) break;
+   count += 1;
+   from = i + needle.length;
+ }}
+ const start=txt.indexOf('名称');
+ const end=txt.indexOf('© 2026');
+ const listText=(start>=0 && end>start) ? txt.slice(start, end) : txt.slice(0, 1200);
+ return {{ok:true, needle, count, listText}};
+}})()
+"""
+    res = js_eval(session, js, state_path=state_path)
+    if not isinstance(res, dict) or not res.get('ok'):
+        raise RuntimeError(f'草稿箱扫描失败: {res}')
+    return res
+
+
+def save_and_verify(session: str, data: dict, volume_name: str, state_path: Path | None = None):
     ab(session, "click 'button.auto-editor-save-btn'", timeout=30, state_path=state_path)
     time.sleep(3)
     js = """
@@ -322,21 +381,23 @@ def save_and_verify(session: str, data: dict, state_path: Path | None = None):
     saved = js_eval(session, js, state_path=state_path)
     # 番茄有时点“存草稿”后不立即刷新“已保存到云端”文案，但草稿 URL、章号、标题、字数已落页。
     # 以草稿箱列表复核作为最终证据，不在此处因 saved 文案滞后中断。
-    if not isinstance(saved, dict) or saved.get('num') != str(data['chapter']):
+    if (
+        not isinstance(saved, dict)
+        or saved.get('num') != str(data['chapter'])
+        or saved.get('title') != data['title']
+        or saved.get('vol') != volume_name
+    ):
         raise RuntimeError(f'顶部存草稿失败: {saved}')
-    ab(session, f"open {shlex.quote(DRAFT_URL)}", timeout=60, state_path=state_path)
-    time.sleep(2)
-    js2 = f"""
-(() => {{
- const rows=[];
- const cells=Array.from(document.querySelectorAll('[role=cell], td, .byte-table-cell')).map(e=>(e.innerText||e.textContent||'').trim()).filter(Boolean);
- const txt=document.body.innerText;
- return {{ok:txt.includes('第{data['chapter']}章 {data['title']}'), listText:txt.slice(txt.indexOf('名称'), txt.indexOf('© 2026'))}};
-}})()
-"""
-    listing = js_eval(session, js2, state_path=state_path)
-    if not isinstance(listing, dict) or not listing.get('ok'):
-        raise RuntimeError(f'草稿箱复核失败: {listing}')
+    listing = draft_listing_scan(session, data['chapter'], data['title'], state_path=state_path)
+    if not listing.get('count'):
+        raise RuntimeError(f'草稿箱复核失败(未命中): {listing}')
+    listing = {
+        'ok': True,
+        'listText': listing.get('listText'),
+        'count': listing.get('count'),
+        'needle': listing.get('needle'),
+        'duplicate': int(listing.get('count') or 0) > 1,
+    }
     return {'saved': saved, 'listing': listing}
 
 
@@ -349,7 +410,21 @@ def main():
     ap.add_argument('--state', type=Path, default=DEFAULT_STATE, help='持久化 auth state JSON；默认 /root/workspace/browser_profiles/fanqie/fanqie_state.json')
     ap.add_argument('--check-login', action='store_true', help='只验证作家后台登录态；成功后保存state')
     ap.add_argument('--execute', action='store_true', help='实际操作番茄后台；默认只解析检查')
+    ap.add_argument(
+        '--force-new',
+        action='store_true',
+        help='即使草稿箱已有同名「第N章 标题」也强制再点「新建草稿」。默认拒绝，防双草稿。',
+    )
+    ap.add_argument(
+        '--allow-duplicate-listing',
+        action='store_true',
+        help='保存后若 listing 同名>1 仍视为成功（仅告警）。默认 duplicate 时返回码非0，提示人工清理。',
+    )
     args = ap.parse_args()
+
+    # 分卷必须先过大纲硬闸。即使TXT门禁未齐，也先暴露错误卷属，
+    # 避免调用方用旧的 --volume 参数绕过权威大纲。
+    volume = resolve_volume(args.project_dir, args.chapter, args.volume)
 
     if args.check_login:
         ok = backend_ok(args.session, args.state)
@@ -364,8 +439,6 @@ def main():
             raise RuntimeError('上传TXT完备门禁失败，请先运行 ensure_fanqie_upload_txt_ready.py --write 修复：\n' + gate.stdout)
 
     data = parse_chapter(args.project_dir, args.chapter)
-    explicit_volume = args.volume.strip() if args.volume else ''
-    volume = explicit_volume or infer_volume(args.project_dir, args.chapter)
     print(json.dumps({k: v for k, v in data.items() if k not in ('body','note')} | {'note': data['note'], 'volume': volume}, ensure_ascii=False, indent=2))
     if not args.execute:
         print('DRY_RUN_OK')
@@ -376,25 +449,72 @@ def main():
         raise RuntimeError(f'作家后台未登录，请扫码或导入cookie后重试: {login}')
     save_state(args.session, args.state)
 
-    # 若当前已在新建草稿页，可直接续跑；否则进入草稿箱并点击新建草稿。
+    # 幂等门禁：草稿箱已有同名「第N章 标题」时，默认禁止再点「新建草稿」。
+    # 根因备忘：2026-08-05 第245章 被看板 worker 与主控各 execute 一次 → 同名双草稿。
+    pre = draft_listing_scan(args.session, data['chapter'], data['title'], state_path=args.state)
+    if int(pre.get('count') or 0) > 0 and not args.force_new:
+        report = {
+            'error': 'DRAFT_ALREADY_EXISTS',
+            'chapter': data['chapter'],
+            'title': data['title'],
+            'existing_count': pre.get('count'),
+            'listText': pre.get('listText'),
+            'hint': '同名草稿已在箱内。勿重复 --execute。清理旧项后重跑，或显式 --force-new（不推荐）。',
+            'state': str(args.state),
+        }
+        print(json.dumps(report, ensure_ascii=False, indent=2))
+        raise SystemExit(2)
+
+    # 若当前已在新建草稿页，可直接续跑；否则进入新建草稿编辑页。
+    # 2026-08-05 根因：纯 click「新建草稿」常点到包裹 DIV，不导航；真实入口是
+    # /main/writer/{BOOK_ID}/publish/?enter_from=newdraft
+    NEW_DRAFT_URL = f'https://fanqienovel.com/main/writer/{BOOK_ID}/publish/?enter_from=newdraft'
     cur = ab(args.session, "get url", timeout=30, state_path=args.state).strip()
-    if '/publish/' not in cur or 'enter_from=newdraft' not in cur:
-        ab(args.session, f"open {shlex.quote(DRAFT_URL)}", timeout=60, state_path=args.state)
-        time.sleep(2)
-        clicked = js_eval(args.session, """
+    if '/publish/' not in cur:
+        # 优先直达 URL（比点按钮稳）
+        ab(args.session, f"open {shlex.quote(NEW_DRAFT_URL)}", timeout=60, state_path=args.state)
+        entered = False
+        for _ in range(15):
+            time.sleep(0.7)
+            cur2 = ab(args.session, "get url", timeout=30, state_path=args.state).strip()
+            if '/publish/' in cur2:
+                entered = True
+                break
+        if not entered:
+            # 回退：打开草稿箱，找真实 <a href> 再跳
+            ab(args.session, f"open {shlex.quote(DRAFT_URL)}", timeout=60, state_path=args.state)
+            href = None
+            for _ in range(12):
+                time.sleep(0.8)
+                hit = js_eval(args.session, """
 (() => {
- const e=[...document.querySelectorAll('a,button')].find(x=>(x.innerText||x.textContent||'').trim()==='新建草稿');
- if(!e) return {ok:false, reason:'new_draft_not_found', text:document.body.innerText.slice(0,500)};
- e.click(); return {ok:true, tag:e.tagName, text:e.innerText};
+ const e=[...document.querySelectorAll('a')].find(x => {
+   const t=(x.innerText||x.textContent||'').replace(/\\s+/g,'').trim();
+   const h=x.getAttribute('href')||'';
+   return t==='新建草稿' || h.includes('enter_from=newdraft');
+ });
+ return e ? {ok:true, href:e.getAttribute('href')||e.href||null, text:(e.innerText||'').trim()} : {ok:false, head:(document.body.innerText||'').slice(0,300)};
 })()
 """, state_path=args.state)
-        if not isinstance(clicked, dict) or not clicked.get('ok'):
-            raise RuntimeError(f'新建草稿失败: {clicked}')
-        time.sleep(3)
+                if isinstance(hit, dict) and hit.get('ok') and hit.get('href'):
+                    href = hit['href']
+                    break
+            if not href:
+                raise RuntimeError(f'新建草稿失败: 直达与链接均未就绪 url={ab(args.session,"get url",timeout=30,state_path=args.state).strip()}')
+            if href.startswith('/'):
+                href = 'https://fanqienovel.com' + href
+            ab(args.session, f"open {shlex.quote(href)}", timeout=60, state_path=args.state)
+            for _ in range(12):
+                time.sleep(0.7)
+                if '/publish/' in ab(args.session, "get url", timeout=30, state_path=args.state).strip():
+                    entered = True
+                    break
+            if not entered:
+                raise RuntimeError(f'新建草稿后未进入编辑页: href={href} url={ab(args.session,"get url",timeout=30,state_path=args.state).strip()}')
     ensure_volume(args.session, volume, state_path=args.state)
     fill = fill_main(args.session, data, volume, state_path=args.state)
     note = add_author_note(args.session, data['note'], state_path=args.state)
-    final = save_and_verify(args.session, data, state_path=args.state)
+    final = save_and_verify(args.session, data, volume, state_path=args.state)
     # 上传成功后自动同步 sync_kewu
     sync_result = 'SYNC_SKIPPED'
     if isinstance(final, dict) and final.get('listing', {}).get('ok'):
@@ -418,8 +538,27 @@ def main():
             sync_result = 'SYNC_FAILED'
             print(f'sync_kewu exception: {e}', file=sys.stderr)
     save_state(args.session, args.state)
-    report = {'fill': fill, 'note': note, 'final': final, 'sync': sync_result, 'state': str(args.state)}
+    report = {
+        'fill': fill,
+        'note': note,
+        'final': final,
+        'sync': sync_result,
+        'state': str(args.state),
+        'pre_existing_count': pre.get('count'),
+        'force_new': bool(args.force_new),
+    }
     print(json.dumps(report, ensure_ascii=False, indent=2))
+    # 保存后仍出现同名>1：默认非0，避免调用方把重复当成功闭环
+    if (
+        isinstance(final, dict)
+        and int(final.get('listing', {}).get('count') or 0) > 1
+        and not args.allow_duplicate_listing
+    ):
+        print(
+            'WARNING: listing duplicate after save; set --allow-duplicate-listing to suppress exit 3',
+            file=sys.stderr,
+        )
+        raise SystemExit(3)
 
 if __name__ == '__main__':
     try:

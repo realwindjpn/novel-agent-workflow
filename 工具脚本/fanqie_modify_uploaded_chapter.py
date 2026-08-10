@@ -176,8 +176,26 @@ def replace_body(session: str, data: dict):
 
 
 def submit(session: str, data: dict):
-    # 下一步
-    ab(session, "click 'button.auto-editor-next'", timeout=30)
+    # 先处理夜间审核提示/继续编辑等浮层，再点下一步。
+    js_eval(session, """
+(() => {
+  const labels=['我知道了','继续编辑'];
+  const btn=Array.from(document.querySelectorAll('button')).find(b=>labels.includes((b.innerText||'').trim()) && b.getBoundingClientRect().width>0);
+  if(btn) btn.click();
+  return {dismissed:!!btn, text:btn?.innerText||''};
+})()
+""")
+    time.sleep(0.8)
+    next_result = js_eval(session, """
+(() => {
+  const btn=document.querySelector('button.auto-editor-next') || Array.from(document.querySelectorAll('button')).find(b=>(b.innerText||'').trim()==='下一步' && b.getBoundingClientRect().width>0);
+  if(!btn) return {ok:false,reason:'next_not_found'};
+  if(btn.disabled) return {ok:false,reason:'next_disabled'};
+  btn.click(); return {ok:true};
+})()
+""")
+    if not isinstance(next_result, dict) or not next_result.get('ok'):
+        raise RuntimeError(f'下一步点击失败: {next_result}')
     time.sleep(2)
     txt = js_eval(session, "(() => document.body.innerText)()")
     if isinstance(txt, str) and ('超过上传发布字数限制' in txt or '超过' in txt and '字数限制' in txt):

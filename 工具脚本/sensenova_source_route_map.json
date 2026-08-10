@@ -1,10 +1,12 @@
 {
-  "version": "2026-06-21.mimo-diagnosis-v1",
-  "purpose": "SenseNova/科武素材采集信息源路由矩阵。吸收 Agent-Reach 的 channel/doctor 思路，但不安装第三方包。2026-06-21 修复：添加 domain_route_overrides，解决 anti-bot/API/RSS 域名被错误路由到 light_crawler（requests-only）的问题。",
+  "version": "2026-08-08.body-gate-v1",
+  "purpose": "SenseNova/科武素材采集信息源路由矩阵。吸收 Agent-Reach 的 channel/doctor 思路，但不安装第三方包。2026-06-21 修复：添加 domain_route_overrides，解决 anti-bot/API/RSS 域名被错误路由到 light_crawler（requests-only）的问题。2026-08-08：固化正文成功门禁——搜索摘要/空正文不得算 body success。",
   "principles": [
     "先专用通道，后通用网页，最后浏览器/人工接力",
     "discovery 只作线索，正式卡必须反查 primary/official/academic",
     "正文抓取失败必须记录 failure_tag，不得伪装成有效素材",
+    "搜索摘要/snippet 只能 discovery，不得算 body_fetched / official_verified body",
+    "空正文、短正文(<120去空白字符)、无 URL 条目不得自动转正式素材卡",
     "模型只做蒸馏/审卡/映射，不替代抓取",
     "anti-bot 域名（403/407）必须跳过 light/requests 直走 browser/crawl4ai",
     "API-only 域名（openalex 等）不得走 HTML 抓取，须走 anysearch_extract",

@@ -1,0 +1,312 @@
+{
+  "schema": "sensenova_mirofish_feed_package_v1",
+  "created_at": "2026-07-28T14:08:28",
+  "source_run_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260728_1322",
+  "mirofish_input_gate": {
+    "status": "ALLOW_MIROFISH_INPUT",
+    "reason": "",
+    "status_hint": "after_card_distill",
+    "valid_content_cards": 4,
+    "body_valid_cards": 4,
+    "story_value_cards": 4,
+    "low_story_value_cards": 0,
+    "mirofish_ready_cards": 4,
+    "p0_p1_story_value_cards": 4,
+    "material_relevance_status": "PARTIAL",
+    "domestic_body_success": 4,
+    "body_fetch_success": 14,
+    "body_files_written": 11,
+    "body_fetch_success_metric": "raw/bodies/*.txt with BODY_FETCHED report item",
+    "story_value_threshold": {
+      "story_value_cards_min": 3,
+      "p0_p1_story_value_cards_min": 1,
+      "body_only_path_rejected": true
+    },
+    "bridge_mirofish_cron_recoverable": true
+  },
+  "mirofish_input_gate_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260728_1322/raw/mirofish_input_gate.json",
+  "expert_gate_report": {
+    "status": "ALLOW_MIROFISH_INPUT",
+    "expert_gate_pass": true,
+    "valid_content_cards": 4,
+    "failure_tags": [],
+    "reason": "",
+    "source": "derived_from_mirofish_input_gate",
+    "expert_gate_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260728_1322/raw/expert_gate_report.json",
+    "mirofish_input_gate_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260728_1322/raw/mirofish_input_gate.json",
+    "required_experts": [
+      "沈逸",
+      "高志凯"
+    ]
+  },
+  "expert_gate_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260728_1322/raw/expert_gate_report.json",
+  "expert_voice_cards": [],
+  "expert_voice_card_count": 0,
+  "source_cards": [
+    {
+      "material_id": "20260728_67c03e739d",
+      "title": "NASA Science Soars During August Total Solar Eclipse",
+      "url": "https://science.nasa.gov/science-research/heliophysics/nasa-science-soars-during-august-total-solar-eclipse",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260728_1322/cards/NASA_Science_Soars_During_August_Total_Solar_Eclip_d77f1cb2.md",
+      "source_group": "overseas",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260728_1322/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260728_1322/raw/bodies/NASA_Science_Soars_During_August_Total_S_d77f1cb2880542ce.txt",
+        "candidate_id": "d77f1cb2880542ce",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": ""
+      },
+      "evidence_complete": false,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": ""
+    },
+    {
+      "material_id": "20260728_c21f291d9b",
+      "title": "Two new Galileo satellites enter service",
+      "url": "https://www.esa.int/Applications/Satellite_navigation/Two_new_Galileo_satellites_enter_service",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260728_1322/cards/Two_new_Galileo_satellites_enter_service_bd49b9b7.md",
+      "source_group": "overseas",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260728_1322/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260728_1322/raw/bodies/Two_new_Galileo_satellites_enter_service_bd49b9b722f23fd5.txt",
+        "candidate_id": "bd49b9b722f23fd5",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": ""
+      },
+      "evidence_complete": false,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": ""
+    }
+  ],
+  "source_card_count": 2,
+  "fresh_news_cards": [
+    {
+      "material_id": "20260728_67c03e739d",
+      "title": "NASA Science Soars During August Total Solar Eclipse",
+      "url": "https://science.nasa.gov/science-research/heliophysics/nasa-science-soars-during-august-total-solar-eclipse",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260728_1322/cards/NASA_Science_Soars_During_August_Total_Solar_Eclip_d77f1cb2.md",
+      "source_group": "overseas",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260728_1322/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260728_1322/raw/bodies/NASA_Science_Soars_During_August_Total_S_d77f1cb2880542ce.txt",
+        "candidate_id": "d77f1cb2880542ce",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": ""
+      },
+      "evidence_complete": false,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": "",
+      "card_family": "fresh_news_card",
+      "bridge_retained": true
+    },
+    {
+      "material_id": "20260728_c21f291d9b",
+      "title": "Two new Galileo satellites enter service",
+      "url": "https://www.esa.int/Applications/Satellite_navigation/Two_new_Galileo_satellites_enter_service",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260728_1322/cards/Two_new_Galileo_satellites_enter_service_bd49b9b7.md",
+      "source_group": "overseas",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260728_1322/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260728_1322/raw/bodies/Two_new_Galileo_satellites_enter_service_bd49b9b722f23fd5.txt",
+        "candidate_id": "bd49b9b722f23fd5",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": ""
+      },
+      "evidence_complete": false,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": "",
+      "card_family": "fresh_news_card",
+      "bridge_retained": true
+    }
+  ],
+  "fresh_news_card_count": 2,
+  "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260728_1322/raw/body_fetch_report.json",
+  "raw_bodies_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260728_1322/raw/bodies",
+  "source_pipeline_state": {
+    "run_id": "cron_20260728_1322",
+    "status": "partial",
+    "valid_content_cards": 4,
+    "query_plan_cards": 0,
+    "body_fetch_success": 14,
+    "card_pass_count": 4
+  },
+  "policy": {
+    "query_plan_excluded": true,
+    "formal_cards_written": false,
+    "production_runner_modified": false,
+    "outline_text_txt_draft_modified": false,
+    "body_success_requires_raw_bodies_txt": true,
+    "expert_gate_required_before_mirofish": true
+  },
+  "valid_input_count": 2,
+  "skipped_count": 18,
+  "skip_reason_counts": {
+    "no_dyson_tree_match": 7,
+    "body_clean_too_short": 1,
+    "not_article_page_url": 1,
+    "duplicate_within_run": 4,
+    "duplicate_url": 2,
+    "low_value_expo_or_conference": 1,
+    "stale_domestic_article": 1,
+    "low_value_policy_or_commentary": 1
+  },
+  "body_fetch_evidence_count": 11,
+  "body_fetch_evidence_key_count": 22,
+  "stale_domestic_blocked_count": 1,
+  "missing_cards_by_tier": {},
+  "p0_missing": false,
+  "p0_missing_cards": [],
+  "p1_missing_cards": [],
+  "p0_p1_gate_blocked": false,
+  "skipped": [
+    {
+      "candidate_id": "18a58851afaa3ab4",
+      "title": "Raging wildfires near Madrid, Spain",
+      "url": "https://www.esa.int/ESA_Multimedia/Images/2026/07/Raging_wildfires_near_Madrid_Spain",
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "NO_DYSON_TREE_MATCH"
+    },
+    {
+      "candidate_id": "fcdf543df26d9ee2",
+      "title": "Why total solar eclipses are so special",
+      "url": "https://www.esa.int/ESA_Multimedia/Videos/2026/07/Why_total_solar_eclipses_are_so_special",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "BODY_CLEAN_TOO_SHORT"
+    },
+    {
+      "candidate_id": "29960f3e06bfc3ed",
+      "title": "Phase-homogeneous mixed halide perovskites for stable tandem photovoltaics",
+      "url": "https://www.nature.com/articles/s41586-026-10929-2",
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "NO_DYSON_TREE_MATCH"
+    },
+    {
+      "candidate_id": "2974bd3b06cc6f2a",
+      "title": "‘Timer’ in the brain tracks sleep — and predicts awakening",
+      "url": "https://www.nature.com/articles/d41586-026-02294-x",
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "NO_DYSON_TREE_MATCH"
+    },
+    {
+      "candidate_id": "ecb708d7912ac978",
+      "title": "How to prevent AI from harming mathematics",
+      "url": "https://www.nature.com/articles/d41586-026-02309-7",
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "NO_DYSON_TREE_MATCH"
+    },
+    {
+      "candidate_id": "c0c53b6cc3aaf9fb",
+      "title": "深海“密码曲”：南海抹香鲸声音里藏着什么秘密？",
+      "url": "https://news.cctv.com/2026/07/28/ARTIsEyi4FvppNSitkRjrOFS260727.shtml",
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "NO_DYSON_TREE_MATCH"
+    },
+    {
+      "candidate_id": "97105b9433c2ebcb",
+      "title": "“AI桂林”文旅大模型正式上线 “AI桂林”文旅大模型在第22届中国—东盟博览会正式上线。这是桂林市与人民网深度合作开发的首个聚焦打造“世界级旅游城市”的全域智慧文旅大模型。 了解详情 →",
+      "url": "http://tech.people.com.cn/detail.html",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "NOT_ARTICLE_PAGE_URL"
+    },
+    {
+      "candidate_id": "d77f1cb2880542ce",
+      "title": "NASA Science Soars During August Total Solar Eclipse",
+      "url": "https://science.nasa.gov/science-research/heliophysics/nasa-science-soars-during-august-total-solar-eclipse",
+      "status": "DISTILLED",
+      "reason": "duplicate_within_run"
+    },
+    {
+      "candidate_id": "1860e34ccbc6d3a6",
+      "title": "εpsilon",
+      "url": "https://www.esa.int/Science_Exploration/Human_and_Robotic_Exploration/epsilon",
+      "status": "SKIP_DUPLICATE",
+      "reason": "DUPLICATE_URL"
+    },
+    {
+      "candidate_id": "fcdf543df26d9ee2",
+      "title": "Why total solar eclipses are so special",
+      "url": "https://www.esa.int/ESA_Multimedia/Videos/2026/07/Why_total_solar_eclipses_are_so_special",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "duplicate_within_run"
+    },
+    {
+      "candidate_id": "bd49b9b722f23fd5",
+      "title": "Two new Galileo satellites enter service",
+      "url": "https://www.esa.int/Applications/Satellite_navigation/Two_new_Galileo_satellites_enter_service",
+      "status": "DISTILLED",
+      "reason": "duplicate_within_run"
+    },
+    {
+      "candidate_id": "ecb708d7912ac978",
+      "title": "How to prevent AI from harming mathematics",
+      "url": "https://www.nature.com/articles/d41586-026-02309-7",
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "duplicate_within_run"
+    },
+    {
+      "candidate_id": "d9e96d0038765d36",
+      "title": "Securing Multimodal AI through Internal Information Decomposition",
+      "url": "https://arxiv.org/abs/2607.21600",
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "NO_DYSON_TREE_MATCH"
+    },
+    {
+      "candidate_id": "8dbb2238c30b71eb",
+      "title": "Announcements Jul 9, 2026 Inviting hard questions We’re asking the public for their hardest questions about AI, and committing to show our work as we address them.",
+      "url": "https://www.anthropic.com/news/hard-questions",
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "NO_DYSON_TREE_MATCH"
+    },
+    {
+      "candidate_id": "b0575c12905ca69e",
+      "title": "两部门部署在全国开展2026年“全民反诈在行动”集中宣传月活动",
+      "url": "https://news.cctv.com/2026/06/10/ARTImWdyfJZtw95kmOJgdob2260610.shtml",
+      "status": "SKIP_DUPLICATE",
+      "reason": "DUPLICATE_URL"
+    },
+    {
+      "candidate_id": "46f2f8ed8146dd8f",
+      "title": "高质量数据集建设激活人工智能发展新动能",
+      "url": "http://finance.people.com.cn/n1/2026/0529/c1004-40729991.html",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "LOW_VALUE_EXPO_OR_CONFERENCE"
+    },
+    {
+      "candidate_id": "c64094_40171173_b8f864b309dccc39",
+      "title": "c64094 40171173",
+      "url": "http://cpc.people.com.cn/n1/2024/0201/c64094-40171173.html",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "STALE_DOMESTIC_ARTICLE"
+    },
+    {
+      "candidate_id": "c64387_40763414_15870ce127b5d8f2",
+      "title": "c64387 40763414",
+      "url": "http://cpc.people.com.cn/n1/2026/0719/c64387-40763414.html",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "LOW_VALUE_POLICY_OR_COMMENTARY"
+    }
+  ],
+  "decision_cards_path": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260728_1400_229230/bridge_runs/cron_20260728_1322/decision_cards.json",
+  "conversion_tasks_path": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260728_1400_229230/bridge_runs/cron_20260728_1322/card_conversion_tasks.json",
+  "cross_run_dedupe_path": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260728_1400_229230/bridge_run/processed_signatures.json"
+}

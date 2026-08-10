@@ -179,9 +179,11 @@ def crawl_wechat(url, output_path=None):
         m = re.search(r'<h1[^>]*class="[^"]*rich_media_title[^"]*"[^>]*>(.*?)</h1>', raw, re.S)
         title = html.unescape(re.sub('<.*?>', '', m.group(1))).strip() if m else '微信文章'
         
-        # 提取正文 js_content
+        # 提取正文 js_content；无正文节点时不得把整页 HTML 冒充成功正文。
         mc = re.search(r'<div[^>]*id="js_content"[^>]*>(.*?)(?:<script nonce=|<script type="text/javascript")', raw, re.S)
-        body = mc.group(1) if mc else raw
+        if not mc:
+            return False, 0, 'WECHAT_JS_CONTENT_MISSING'
+        body = mc.group(1)
         
         # 清洗
         body = re.sub(r'<br\s*/?>', '\n', body, flags=re.I)
@@ -190,6 +192,9 @@ def crawl_wechat(url, output_path=None):
         body = html.unescape(re.sub(r'<[^>]+>', '', body))
         lines = [x.strip() for x in body.splitlines() if x.strip()]
         text = '\n'.join(lines)
+        compact = re.sub(r'\s+', '', text)
+        if len(compact) < 120:
+            return False, len(text), f'WECHAT_BODY_TOO_SHORT:{len(compact)}'
         
         if output_path:
             out = Path(output_path)
@@ -955,16 +960,84 @@ def main():
         rss_count = sum(1 for v in rss.values() if isinstance(v, list))
         stats["RSS成功"] = f"{rss_count}/{len(rss)}源"
     
-    # 写清单
+    # 写清单；成功/失败分列，避免“有文件=全成功”误读。
+    def _is_success_stat(v: str) -> bool:
+        v = str(v or '')
+        if v.startswith('失败') or '失败' in v or v.startswith('等待'):
+            return False
+        if v.startswith('成功'):
+            return True
+        # RSS/列表类：N/M源 或 “N条/个成功”
+        if re.search(r'(\d+)\s*/\s*(\d+)', v):
+            m = re.search(r'(\d+)\s*/\s*(\d+)', v)
+            return bool(m is not None and int(m.group(1)) > 0)
+        if re.search(r'(\d+)\s*(条|个|篇).*成功', v) or re.search(r'成功\s*(\d+)', v):
+            return True
+        m2 = re.fullmatch(r'(\d+)(条|个|篇)?', v.strip())
+        if m2:
+            return int(m2.group(1)) > 0
+        return False
+
+    def _is_fail_stat(v: str) -> bool:
+        v = str(v or '')
+        return ('失败' in v) or v.startswith('等待') or v.startswith('WECHAT_') or v.startswith('BODY_')
+
+    success_items = {k: v for k, v in stats.items() if isinstance(v, str) and _is_success_stat(v)}
+    fail_items = {k: v for k, v in stats.items() if isinstance(v, str) and _is_fail_stat(v)}
+    raw_files = [p for p in RAW_DIR.rglob('*') if p.is_file()]
+    card_files = [p for p in CARDS_OUT.rglob('*') if p.is_file()] if CARDS_OUT.exists() else []
+    failure_tags = []
+    for k, v in fail_items.items():
+        failure_tags.append(f'{k}:{v}')
+    if success_items and not fail_items:
+        overall_status = 'DONE'
+    elif success_items and fail_items:
+        overall_status = 'PARTIAL'
+    elif not success_items and not fail_items and raw_files:
+        # 有原始产物但未标成功/失败：按可消费产物记 PARTIAL，不报 DONE
+        overall_status = 'PARTIAL'
+        failure_tags.append('NO_EXPLICIT_SUCCESS_STAT')
+    elif not success_items and not fail_items:
+        overall_status = 'PARTIAL'
+        failure_tags.append('NO_CONSUMABLE_OUTPUT')
+    else:
+        overall_status = 'PARTIAL'
+    machine_status = {
+        'date': TODAY,
+        'mode': mode,
+        'status': overall_status,
+        'success_count': len(success_items),
+        'fail_count': len(fail_items),
+        'raw_file_count': len(raw_files),
+        'card_file_count': len(card_files),
+        'failure_tags': failure_tags[:50],
+        'stats': stats,
+        'policy': {
+            'search_summary_is_not_source_body': True,
+            'empty_body_is_not_success': True,
+            'wechat_requires_js_content': True,
+            'min_body_chars': 120,
+        },
+    }
+    (OUT_DIR / 'collection_status.json').write_text(
+        json.dumps(machine_status, ensure_ascii=False, indent=2) + '\n', encoding='utf-8'
+    )
     manifest = OUT_DIR / "MANIFEST.md"
     with open(manifest, 'w', encoding='utf-8') as f:
-        f.write(f"# 采集清单 {TODAY}\n\n## 统计\n\n| 来源 | 结果 |\n|------|------|\n")
+        f.write(f"# 采集清单 {TODAY}\n\n")
+        f.write(f"- status: {machine_status['status']}\n")
+        f.write(f"- success_count: {machine_status['success_count']}\n")
+        f.write(f"- fail_count: {machine_status['fail_count']}\n")
+        f.write(f"- raw_file_count: {machine_status['raw_file_count']}\n")
+        f.write(f"- card_file_count: {machine_status['card_file_count']}\n")
+        f.write(f"- failure_tags: {machine_status['failure_tags'] or []}\n\n")
+        f.write("## 统计\n\n| 来源 | 结果 |\n|------|------|\n")
         for k, v in stats.items():
             f.write(f"| {k} | {v} |\n")
-        f.write(f"\n## 输出目录\n\n- 原始素材: `{RAW_DIR}`\n- 素材卡: `{CARDS_OUT}`\n")
+        f.write(f"\n## 输出目录\n\n- 原始素材: `{RAW_DIR}`\n- 素材卡: `{CARDS_OUT}`\n- 机器状态: `{OUT_DIR / 'collection_status.json'}`\n")
         f.write("\n## 输出文件\n\n")
         for p in sorted(OUT_DIR.rglob("*")):
-            if p.is_file() and p.name != "MANIFEST.md":
+            if p.is_file() and p.name not in {"MANIFEST.md", "collection_status.json"}:
                 f.write(f"- `{p.relative_to(OUT_DIR)}`\n")
         rss_file = RAW_DIR / "rss_feeds.json"
         if rss_file.exists():
@@ -981,6 +1054,8 @@ def main():
                 f.write(f"\nRSS明细读取失败：{e}\n")
     
     log("\n=== 采集完成 ===")
+    log(f"  status: {machine_status['status']}")
+    log(f"  success_count: {machine_status['success_count']} fail_count: {machine_status['fail_count']}")
     for k, v in stats.items():
         log(f"  {k}: {v}")
     log(f"  目录: {OUT_DIR}")

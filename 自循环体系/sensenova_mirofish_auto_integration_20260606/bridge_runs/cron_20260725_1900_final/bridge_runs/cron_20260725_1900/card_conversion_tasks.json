@@ -1,0 +1,20 @@
+[
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260725_5ecdf9ab85",
+    "title": "强化科创策源、建设AI高地 上海部署下半年工作",
+    "source_url": "https://news.cctv.com/2026/07/24/ARTI6aN8uw5tLyVJPSyQrMyA260724.shtml",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260725_1900/cards/强化科创策源_建设AI高地_上海部署下半年工作_a0fcb25d.md",
+    "target_chapter_hint": 125,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_Wiki",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_Wiki"
+    ],
+    "not_done_in_dry_run": true
+  }
+]

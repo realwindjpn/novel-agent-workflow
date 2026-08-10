@@ -485,6 +485,88 @@ def should_generate_followup(entities: dict[str, list[str]]) -> bool:
 # 4. 降噪判断
 # ═══════════════════════════════════════════════
 
+def is_noise_like_title(title: str) -> bool:
+    """True when title is path-stem noise (c/article/ARTI...) rather than a real headline."""
+    t = (title or '').strip()
+    if not t:
+        return True
+    if len(t) < 6:
+        return True
+    low = t.lower()
+    if low in {'c', 'article', 'gateway', 'entity list', 'latest news', 'announcements', 'announcement'}:
+        return True
+    if re.match(r'^ARTI[A-Za-z0-9]+$', t):
+        return True
+    if re.match(r'^\[QP:', t):
+        return True
+    if re.match(r'^(c|article|gateway)\b', low):
+        # bare path stems like "c 1127368611" / "c1003 27943628"
+        if re.match(r'^(c|article)\s*\d', low) or re.match(r'^c\d', low):
+            return True
+        if low in {'c', 'article', 'gateway'}:
+            return True
+    # pure slug of alnum/underscore/hyphen without spaces and no CJK
+    if re.fullmatch(r'[A-Za-z0-9_\-]{6,}', t) and not re.search(r'[\u4e00-\u9fff]', t):
+        # allow multi-word english titles with spaces only; slug-like single token often path stem
+        if '_' in t or t.isupper() or t.lower().startswith('arti'):
+            return True
+    return False
+
+
+def recover_title_from_body(title: str, body: str = '', url: str = '') -> tuple[str, str]:
+    """Recover a usable headline from body when title is path-stem noise.
+
+    Returns (title, reason) where reason is KEEP / FROM_* / RECOVER_FAILED / NO_BODY.
+    """
+    t = (title or '').strip()
+    b = (body or '').strip()
+    if not is_noise_like_title(t):
+        return t, 'KEEP'
+    if not b:
+        return t, 'NO_BODY'
+    m = re.search(r'原标题[：:]\s*([^\n]{6,120})', b)
+    if m:
+        cand = m.group(1).strip()
+        cand = re.sub(r'[*_`#]+', '', cand).strip()
+        if len(cand) >= 6 and not is_noise_like_title(cand):
+            return cand[:120], 'FROM_ORIGINAL_TITLE'
+    for line in b.splitlines():
+        line = line.strip()
+        if not line.startswith('#'):
+            continue
+        h = re.sub(r'^#+\s*', '', line).strip()
+        h = re.sub(r'[*_`]+', '', h).strip()
+        if len(h) >= 6 and not re.match(r'^(来源|字体|分享|副标题|正在加载)', h) and not is_noise_like_title(h):
+            return h[:120], 'FROM_MD_HEADING'
+    for line in b.splitlines():
+        line = re.sub(r'!\[[^\]]*\]\([^)]*\)', '', line)
+        line = re.sub(r'\[[^\]]*\]\([^)]*\)', '', line)
+        line = re.sub(r'<[^>]+>', '', line)
+        line = line.strip(' #*-|\t')
+        if len(line) < 8:
+            continue
+        if re.match(r'^(来源|字体|分享到|记者|编辑|发布时间|http|www\.|\d{1,2}:\d{2}|新华社|人民网|央视网)', line):
+            continue
+        if re.match(r'^\d{4}[-年/]\d{1,2}', line):
+            continue
+        if 'javascript' in line.lower():
+            continue
+        if re.search(r'[\u4e00-\u9fff]{4,}', line) or re.search(r'[A-Za-z]{6,}', line):
+            if not is_noise_like_title(line):
+                return line[:120], 'FROM_BODY_LINE'
+    # last resort: url stem only if better than noise single letter
+    try:
+        from urllib.parse import urlparse, unquote
+        import pathlib as _pathlib
+        stem = _pathlib.Path(unquote(urlparse(url or '').path or '')).stem
+        stem = re.sub(r'[_\-]+', ' ', stem).strip()
+        if stem and not is_noise_like_title(stem) and len(stem) >= 8:
+            return stem[:120], 'FROM_URL_STEM'
+    except Exception:
+        pass
+    return t, 'RECOVER_FAILED'
+
+
 def classify_noise_degradation(
     title: str,
     summary: str = '',
@@ -510,8 +592,16 @@ def classify_noise_degradation(
         if _is_stale_by_date(published_at, max_age):
             return True, 'STALE_NEWS'
 
-    # 3. 标题过短或无意义
-    if title and len(title.strip()) < 6:
+    # 3. 标题过短或无意义 —— 若 summary/body 已有实质正文，不在此处误杀；
+    #    由 score_and_classify_item 先做 title-from-body 恢复后再评分。
+    if is_noise_like_title(title):
+        substantive = (summary or '').strip()
+        # body-like summary: enough chars and not just URL echo
+        if len(substantive) >= 80 and (
+            re.search(r'[\u4e00-\u9fff]{8,}', substantive)
+            or re.search(r'[A-Za-z]{20,}', substantive)
+        ):
+            return False, ''
         return True, 'TITLE_TOO_SHORT'
 
     return False, ''
@@ -599,12 +689,26 @@ def score_and_classify_item(
     summary = str(item.get('summary') or '')
     url = str(item.get('url') or '')
     published_at = str(item.get('published_at') or '')
-    source_group = str(item.get('source_group_key') or '')
-    blob = f'{title} {summary} {url}'
+    source_group = str(item.get('source_group_key') or item.get('source_group') or '')
+    body_for_title = str(item.get('body') or item.get('_body_text') or summary or '')
+    recovered_title, title_recover_reason = recover_title_from_body(title, body_for_title, url)
+    if title_recover_reason not in ('KEEP', 'NO_BODY', 'RECOVER_FAILED') and recovered_title:
+        item = dict(item)
+        item['_title_original'] = title
+        item['_title_recover_reason'] = title_recover_reason
+        item['title'] = recovered_title
+        title = recovered_title
+    # Prefer body+summary for scoring blob so path-stem titles cannot zero Dyson hits.
+    body_extra = str(item.get('body') or item.get('_body_text') or '')
+    if body_extra and body_extra not in summary:
+        summary_for_score = (summary + '\n' + body_extra[:4000]).strip()
+    else:
+        summary_for_score = summary
+    blob = f'{title} {summary_for_score} {url}'
 
-    # 1. 降噪判断
+    # 1. 降噪判断（用恢复后标题 + 正文摘要，避免 c/article/ARTI 误杀）
     should_degrade, degrade_reason = classify_noise_degradation(
-        title, summary, url, published_at, source_group
+        title, summary_for_score, url, published_at, source_group
     )
     if should_degrade:
         return {
@@ -626,8 +730,11 @@ def score_and_classify_item(
             'followup_needed': False,
         }
 
-    # 2. 域感知评分
-    score_result = score_item_domain_aware(item, outline_chapter_set, outline_path=outline_path)
+    # 2. 域感知评分（喂恢复后标题 + 正文）
+    score_item = dict(item)
+    score_item['title'] = title
+    score_item['summary'] = summary_for_score
+    score_result = score_item_domain_aware(score_item, outline_chapter_set, outline_path=outline_path)
 
     # 3. 去重
     dedup_flag = False
@@ -659,5 +766,9 @@ def score_and_classify_item(
     score_result['entities'] = entities
     score_result['dedup_flag'] = dedup_flag
     score_result['followup_needed'] = followup
+    score_result['title_used'] = title
+    score_result['title_recover_reason'] = locals().get('title_recover_reason', item.get('_title_recover_reason', 'KEEP'))
+    if item.get('_title_original'):
+        score_result['title_original'] = item.get('_title_original')
 
     return score_result

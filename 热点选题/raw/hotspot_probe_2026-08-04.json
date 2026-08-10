@@ -1,0 +1,319 @@
+{
+  "date": "2026-08-04",
+  "proxy_10819_alive": false,
+  "results": [
+    {
+      "name": "pcgamer_rss",
+      "url": "https://www.pcgamer.com/rss/",
+      "proxy": false,
+      "status": 200,
+      "bytes": 600000,
+      "seconds": 31.13,
+      "items": [
+        {
+          "title": "If you hate parrying, projectiles in Beast of Reincarnation are ridiculously overpowered if you focus on leveling them up",
+          "link": ""
+        },
+        {
+          "title": "Beast of Reincarnation review",
+          "link": ""
+        },
+        {
+          "title": "Henry Cavill confirms he'll star in the live action Warhammer 40K series written by Mike Flanagan, but his character 'shall remain a secret for now'",
+          "link": ""
+        },
+        {
+          "title": "Dave Bautista reportedly 'in talks' to take over the role of Kratos in Amazon's God of War series",
+          "link": ""
+        },
+        {
+          "title": "The original ethernet cable was canonically '1968 Corvette yellow' to distinguish it from a power cable—because you literally had to drill into it to install it",
+          "link": ""
+        },
+        {
+          "title": "Big Walk ignores 'friendslop' trends, and is better for it",
+          "link": ""
+        },
+        {
+          "title": "'Wait for me, my Czech friend': Japanese dev adds Czech localization just for the one Steam user who wishlisted his game in the Czech Republic",
+          "link": ""
+        },
+        {
+          "title": "'I would die': Obsession star Inde Navarrette would love a role in Resident Evil",
+          "link": ""
+        },
+        {
+          "title": "Microsoft is planning to bring Xbox 360 games to PC, according to leaked documents",
+          "link": ""
+        },
+        {
+          "title": "MacBook Neo outperforms Dell XPS 13 in Cyberpunk 2077 benchmark—though I wouldn't recommend gaming on either notebook",
+          "link": ""
+        },
+        {
+          "title": "Razer Blade 16 (2026) review",
+          "link": ""
+        }
+      ],
+      "error": null
+    },
+    {
+      "name": "eurogamer_news",
+      "url": "https://www.eurogamer.net/feed/news",
+      "proxy": false,
+      "status": 200,
+      "bytes": 161641,
+      "seconds": 0.86,
+      "items": [
+        {
+          "title": "Eurogamer.net News Feed",
+          "link": "https://www.eurogamer.net/feed/news"
+        },
+        {
+          "title": "Indie game bundle saving buyers over $1,000 in support of laid off developers has raised over $100,000 in three days",
+          "link": "https://www.eurogamer.net/indie-game-bundle-laid-off-developers-support-fund-100000"
+        },
+        {
+          "title": "Square Enix responds to Kingdom Hearts Collection AI controversy two months after players called it out",
+          "link": "https://www.eurogamer.net/kingdom-hearts-collection-ai-accusations-response"
+        },
+        {
+          "title": "Marvel Tokon: Fighting Souls shows early signs of popularity, soaring up tournament entry leaderboards",
+          "link": "https://www.eurogamer.net/marvel-tokon-fighting-souls-early-popularity-tournaments"
+        },
+        {
+          "title": "Memory chip maker Samsung says the component shortage will continue to get worse in 2027, while earning a pretty penny from it",
+          "link": "https://www.eurogamer.net/samsung-memory-shortage-2027-2028-q2-earnings"
+        },
+        {
+          "title": "Yet another price rise: AMD will reportedly raise its graphics card and memory prices alongside Nvidia",
+          "link": "https://www.eurogamer.net/amd-price-rise-gpu-memory"
+        },
+        {
+          "title": "Dragon's Dogma 2: Dark Arisen director casually announces a Hard Mode is in the works",
+          "link": "https://www.eurogamer.net/dragons-dogma-2-dark-arisen-hard-mode"
+        },
+        {
+          "title": "Palworld Online is a new MMORPG coming to iOS and Android later this year",
+          "link": "https://www.eurogamer.net/palworld-online-revealed-mobile-mmorpg"
+        },
+        {
+          "title": "As hype builds for Final Fantasy 7 Revelation, Remake and Rebirth continue to sell well",
+          "link": "https://www.eurogamer.net/final-fantasy-7-revelation-remake-rebirth-sales"
+        },
+        {
+          "title": "Control Resonant's story will take around 30 hours, Remedy says, with completionists looking at 50-hour runs",
+          "link": "https://www.eurogamer.net/control-resonant-30-50-hours-long"
+        },
+        {
+          "title": "Story of Seasons mobile game cancelled as Marvelous cuts six-year Tencent partnership",
+          "link": "https://www.eurogamer.net/story-of-seasons-mobile-cancelled"
+        },
+        {
+          "title": "Silent Hill: Townfall's dev team wrecked old TVs with magnets to make its in-game gadget feel real",
+          "link": "https://www.eurogamer.net/silent-hill-townfall-crtv"
+        }
+      ],
+      "error": null
+    },
+    {
+      "name": "playstation_blog",
+      "url": "https://blog.playstation.com/feed/",
+      "proxy": false,
+      "status": 200,
+      "bytes": 205652,
+      "seconds": 2.88,
+      "items": [
+        {
+          "title": "PlayStation.Blog",
+          "link": "https://blog.playstation.com"
+        },
+        {
+          "title": "PlayStation.Blog",
+          "link": "https://blog.playstation.com"
+        },
+        {
+          "title": "Players&#8217; Choice: Vote for July 2026’s best new game",
+          "link": "https://blog.playstation.com/2026/08/03/players-choice-vote-for-july-2026s-best-new-game/"
+        },
+        {
+          "title": "Beast of Reincarnation hands-on: parry-rich combat and the cutest mutant pup",
+          "link": "https://blog.playstation.com/2026/08/03/beast-of-reincarnation-hands-on-parry-rich-combat-and-the-cutest-mutant-pup/"
+        },
+        {
+          "title": "Silent Hill: Townfall Developers discuss the Scottish setting, retro technology, first-person combat",
+          "link": "https://blog.playstation.com/2026/07/30/silent-hill-townfall-developers-discuss-the-scottish-setting-retro-technology-first-person-combat/"
+        },
+        {
+          "title": "Silent Hill: Townfall hands-on report",
+          "link": "https://blog.playstation.com/2026/07/29/silent-hill-townfall-hands-on-report/"
+        },
+        {
+          "title": "Ball x Pit final update The Naturalist arrives August 6",
+          "link": "https://blog.playstation.com/2026/07/28/ball-x-pit-final-update-the-naturalist-arrives-august-6/"
+        },
+        {
+          "title": "PlayStation Plus Monthly Games for August &#8211; Dying Light 2 Stay Human: Reloaded Edition, Big Walk, Signalis",
+          "link": "https://blog.playstation.com/2026/07/28/playstation-plus-monthly-games-for-august-dying-light-2-stay-human-reloaded-edition-big-walk-signalis/"
+        },
+        {
+          "title": "Flamecraft is coming to PS5 this year, demo available today",
+          "link": "https://blog.playstation.com/2026/07/28/flamecraft-is-coming-to-ps5-this-year-demo-available-today/"
+        },
+        {
+          "title": "Share of the Week: Assassin’s Creed Black Flag Resynced",
+          "link": "https://blog.playstation.com/2026/07/24/share-of-the-week-assassins-creed-black-flag-resynced/"
+        },
+        {
+          "title": "Phoenix Cyclops revealed as MARVEL Tōkon: Fighting Souls First Year 1 DLC character",
+          "link": "https://blog.playstation.com/2026/07/23/phoenix-cyclops-revealed-as-marvel-tokon-fighting-souls-first-year-1-dlc-character/"
+        },
+        {
+          "title": "Marvel’s Wolverine: Story Trailer, new art, composer details, and more",
+          "link": "https://blog.playstation.com/2026/07/23/marvels-wolverine-story-trailer-new-art-composer-details-and-more/"
+        }
+      ],
+      "error": null
+    },
+    {
+      "name": "ign_news",
+      "url": "https://www.ign.com/news",
+      "proxy": false,
+      "status": 200,
+      "bytes": 203199,
+      "seconds": 10.09,
+      "items": [
+        {
+          "title": "Game Reviews",
+          "link": "https://www.ign.com/reviews/games"
+        },
+        {
+          "title": "Upcoming Games",
+          "link": "https://www.ign.com/upcoming/games"
+        },
+        {
+          "title": "Video Game Trailers",
+          "link": "https://www.ign.com/events/video-game-trailers"
+        },
+        {
+          "title": "Movie Trailers",
+          "link": "https://www.ign.com/events/movie-trailers"
+        },
+        {
+          "title": "2dGame of Thrones: The Mad King Reveals Full Stage Cast and First Portrait24",
+          "link": "https://www.ign.com/articles/game-of-thrones-the-mad-king-cast-first-look"
+        },
+        {
+          "title": "3dThe Lord of the Rings: The Rings of Power Has a Non-Canon &#x27;Orc With an Arc&#x27; Who Turns Against Sauron and Even Writes Poetry37",
+          "link": "https://www.ign.com/articles/the-lord-of-the-rings-the-rings-of-power-has-a-non-canon-orc-with-an-arc-who-turns-against-sauron-and-even-writes-poetry"
+        },
+        {
+          "title": "6dLive-Action Link Actor Discusses The Legend of Zelda Movie, Says He Was Too Young to Play Breath of the Wild When It Launched249",
+          "link": "https://www.ign.com/articles/live-action-link-actor-discusses-the-legend-of-zelda-movie-says-he-was-too-young-to-play-breath-of-the-wild-when-it-launched"
+        },
+        {
+          "title": "4:539h agoXbox Reveals Shocking New Series X and S Prices - IGN Daily Fix9h agoFire Emblem: Fortune&#x27;s Weave",
+          "link": "https://www.ign.com/videos/xbox-reveals-shocking-new-series-x-and-s-prices-ign-daily-fix"
+        },
+        {
+          "title": "10h agoDave Bautista in Talks to Join God of War TV Series as Kratos10h ago - Hail Mary.God of War",
+          "link": "https://www.ign.com/articles/dave-bautista-in-talks-to-join-god-of-war-tv-series-as-kratos"
+        },
+        {
+          "title": "Game Release Dates",
+          "link": "https://www.ign.com/upcoming/games"
+        }
+      ],
+      "error": null
+    },
+    {
+      "name": "gamespot_news",
+      "url": "https://www.gamespot.com/news/",
+      "proxy": false,
+      "status": null,
+      "bytes": 0,
+      "seconds": 0.9,
+      "items": [],
+      "error": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "name": "steam_news",
+      "url": "https://store.steampowered.com/news/",
+      "proxy": false,
+      "status": 200,
+      "bytes": 600000,
+      "seconds": 3.0,
+      "items": [
+        {
+          "title": "Get the Steam Mobile App",
+          "link": "https://store.steampowered.com/mobile"
+        },
+        {
+          "title": "Steam Subscriber Agreement",
+          "link": "https://store.steampowered.com/subscriber_agreement/?snr=1_2108_4__global-responsive-menu"
+        }
+      ],
+      "error": null
+    },
+    {
+      "name": "x_search_gaming",
+      "url": "https://x.com/search?q=gaming%20news%20OR%20PlayStation%20OR%20Steam%20OR%20Xbox&src=typed_query",
+      "proxy": false,
+      "status": null,
+      "bytes": 0,
+      "seconds": 0.57,
+      "items": [],
+      "error": "URLError: <urlopen error [Errno 104] Connection reset by peer>"
+    },
+    {
+      "name": "reddit_games_search",
+      "url": "https://www.reddit.com/search/?q=gaming%20news&type=link",
+      "proxy": false,
+      "status": null,
+      "bytes": 0,
+      "seconds": 30.42,
+      "items": [],
+      "error": "URLError: <urlopen error timed out>"
+    },
+    {
+      "name": "resetera",
+      "url": "https://www.resetera.com/forums/gaming-forum.7/",
+      "proxy": false,
+      "status": null,
+      "bytes": 0,
+      "seconds": 0.9,
+      "items": [],
+      "error": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "name": "rebang_gamersky",
+      "url": "https://api.rebang.today/v1/items?tab=gamersky&sub_tab=rec&page=1&version=1",
+      "proxy": false,
+      "status": 200,
+      "bytes": 23148,
+      "seconds": 0.34,
+      "items": [],
+      "error": null
+    },
+    {
+      "name": "rebang_ithome",
+      "url": "https://api.rebang.today/v1/items?tab=ithome&sub_tab=latest&page=1&version=1",
+      "proxy": false,
+      "status": 200,
+      "bytes": 11848,
+      "seconds": 0.09,
+      "items": [],
+      "error": null
+    },
+    {
+      "name": "rebang_xiaohongshu",
+      "url": "https://api.rebang.today/v1/items?tab=xiaohongshu&sub_tab=hot-search&page=1&version=1",
+      "proxy": false,
+      "status": 200,
+      "bytes": 4935,
+      "seconds": 0.1,
+      "items": [],
+      "error": null
+    }
+  ]
+}

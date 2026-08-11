@@ -193,10 +193,42 @@ def ensure_volume(session: str, volume_name: str, state_path: Path | None = None
             time.sleep(0.5)
         raise RuntimeError(f'分卷入口未找到: {cur}')
     time.sleep(0.8)
+    # 2026-08-10 ch256 实测：卷名 React onClick 挂在叶子 span 上，
+    # 但直接调用 span.__reactProps.onClick 只改闭包态，未必触发当前可见 modal 的选中态。
+    # 真实可操作路径是：标记可见 modal 内精确卷名 span → agent-browser 物理 click → 点 modal 确定。
+    mark = js_eval(session, f"""
+(() => {{
+ const target = {volume_name!r};
+ document.querySelectorAll('[data-fanqie-volume-target]').forEach(e=>e.removeAttribute('data-fanqie-volume-target'));
+ const visible = (el) => {{ const r=el.getBoundingClientRect(); return r.width>0 && r.height>0; }};
+ const items = Array.from(document.querySelectorAll('.editor-volume-list-item, .editor-volume-list-item-normal')).filter(visible);
+ const match = items.find(li => (li.innerText||'').trim() === target);
+ if (!match) return {{ok:false, reason:'volume_not_found', items: items.map(li=>(li.innerText||'').trim())}};
+ const leaf = Array.from(match.querySelectorAll('span,*')).find(el => visible(el) && (el.innerText||el.textContent||'').trim() === target && el.children.length === 0) || match;
+ leaf.setAttribute('data-fanqie-volume-target','1');
+ return {{ok:true, target, tag:leaf.tagName, text:(leaf.innerText||leaf.textContent||'').trim(), rect:(()=>{{const r=leaf.getBoundingClientRect(); return {{x:r.x,y:r.y,w:r.width,h:r.height}};}})()}};
+}})()
+""", state_path=state_path)
+    if isinstance(mark, dict) and mark.get('reason') == 'volume_not_found':
+        raise RuntimeError(f"volume_not_found: {mark}")
+    if isinstance(mark, dict) and mark.get('ok'):
+        try:
+            ab(session, "click '[data-fanqie-volume-target=\"1\"]'", timeout=30, state_path=state_path)
+            time.sleep(0.5)
+            ab(session, "click '.byte-modal-footer button:last-child'", timeout=30, state_path=state_path)
+            time.sleep(1)
+            chk = js_eval(session, js, state_path=state_path)
+            if isinstance(chk, dict) and chk.get('current') == volume_name:
+                return chk | {'physical_click': mark}
+        except Exception:
+            pass
     js2 = f"""
 (() => {{
  const target = {volume_name!r};
+ const propsKeyOf = (el) => el && Object.keys(el).find(k => k.startsWith('__reactProps$'));
  const fiberKey = (el) => el && Object.keys(el).find(k => k.startsWith('__reactFiber$'));
+ const fakeEvent = {{preventDefault(){{}}, stopPropagation(){{}}}};
+
  const fireFiberClick = (el) => {{
    for (let node = el; node; node = node.parentElement) {{
      const key = fiberKey(node);
@@ -205,34 +237,55 @@ def ensure_volume(session: str, volume_name: str, state_path: Path | None = None
      for (let i=0; i<12 && f; i++, f=f.return) {{
        const p = f.memoizedProps;
        if (p && typeof p.onClick === 'function') {{
-         p.onClick({{preventDefault(){{}}, stopPropagation(){{}}, target:node, currentTarget:node}});
+         p.onClick({{...fakeEvent, target:node, currentTarget:node}});
          return true;
        }}
      }}
    }}
    return false;
  }};
- const item = Array.from(document.querySelectorAll('span, .editor-volume-list-item, .editor-volume-list-item-normal'))
-   .find(e => (e.innerText||e.textContent||'').trim() === target && Object.keys(e).some(k => k.startsWith('__reactProps$') && typeof e[k].onClick === 'function'));
- if (!item) return {{ok:false, reason:'volume_not_found', text:document.body.innerText.slice(0,500)}};
- const before = Array.from(document.querySelectorAll('.editor-volume-list-item-normal.selected')).map(e=>(e.innerText||'').trim());
- const propsKey = Object.keys(item).find(k=>k.startsWith('__reactProps$'));
- if (propsKey && typeof item[propsKey].onClick === 'function') item[propsKey].onClick();
- else {{ item.click(); fireFiberClick(item); }}
+
+ const items = Array.from(document.querySelectorAll('.editor-volume-list-item, .editor-volume-list-item-normal'));
+ // 优先按 item 内文本精确匹配，保留硬闸：后台无目标卷即 volume_not_found
+ const match = items.find(li => (li.innerText||'').trim() === target);
+ if (!match) return {{ok:false, reason:'volume_not_found', items: items.map(li=>(li.innerText||'').trim()), head:(document.body.innerText||'').slice(0,800)}};
+
+ // 根因（2026-08-10 ch256 修复）：React 把 onClick 挂在含目标文本的叶子 SPAN 上，
+ // 父级 .editor-volume-list-item(-normal) DIV 只挂 children 无 onClick。
+ // 原 item.click() + fireFiberClick(item) 只向下/向上单向，未命中 SPAN。
+ // 修正：先在 match 子树内找含目标文本且自身挂 reactProps.onClick 的叶子节点直接调用。
+ const candidates = Array.from(match.querySelectorAll('*')).filter(el=>{{
+   const t=(el.innerText||el.textContent||'').trim();
+   return t.localeCompare(target) === 0 && el.children.length===0;
+ }});
+ candidates.unshift(match);
+ let fired=false;
+ for (const leaf of candidates) {{
+   const pk = propsKeyOf(leaf);
+   if (pk && typeof leaf[pk]?.onClick === 'function') {{
+     leaf[pk].onClick({{...fakeEvent, target:leaf, currentTarget:leaf}});
+     fired=true; break;
+   }}
+ }}
+ if (!fired) {{ match.click(); fireFiberClick(match); }}
+
  const after = Array.from(document.querySelectorAll('.editor-volume-list-item-normal.selected')).map(e=>(e.innerText||'').trim());
- const ok = Array.from(document.querySelectorAll('button, .byte-btn'))
-   .find(e => (e.innerText||e.textContent||'').trim()==='确定');
- if (!ok) return {{ok:false, reason:'confirm_not_found', before, after}};
- const okProps = Object.keys(ok).find(k=>k.startsWith('__reactProps$'));
- if (okProps && typeof ok[okProps].onClick === 'function') ok[okProps].onClick();
+
+ // "确定"按钮：优先直接调用 reactProps.onClick，回退 DOM click。
+ // 页面已渲染时 <button> 自身 innerText 即"确定"；其 reactProps.onClick 挂在 button 自身。
+ const allBtns = Array.from(document.querySelectorAll('button, .byte-btn'));
+ const ok = allBtns.find(b => (b.innerText||'').trim()==='确定');
+ if (!ok) return {{ok:false, reason:'confirm_not_found', before: items.map(li=>(li.innerText||'').trim()), after}};
+ const okPk = propsKeyOf(ok);
+ if (okPk && typeof ok[okPk]?.onClick === 'function') ok[okPk].onClick({{...fakeEvent, target:ok, currentTarget:ok}});
  else {{ ok.click(); fireFiberClick(ok); }}
- return {{ok:true, before, after}};
+ return {{ok:true, target, fired, after}};
 }})()
 """
     # React 受控弹窗在自动化里偶发 header 不立刻刷新；若弹窗 selected 已变为目标卷，则继续后续填充，fill_main 会再次校验 vol。
     res = None
     chk = None
-    for attempt in range(3):
+    for attempt in range(4):
         res = js_eval(session, js2, state_path=state_path)
         time.sleep(1)
         chk = js_eval(session, js, state_path=state_path)
@@ -420,6 +473,11 @@ def main():
         action='store_true',
         help='保存后若 listing 同名>1 仍视为成功（仅告警）。默认 duplicate 时返回码非0，提示人工清理。',
     )
+    ap.add_argument(
+        '--verify-volume-only',
+        action='store_true',
+        help='只在当前发布页执行分卷选择并读回 header；不填正文、不保存、不点下一步。用于上传脚本选择级回归。',
+    )
     args = ap.parse_args()
 
     # 分卷必须先过大纲硬闸。即使TXT门禁未齐，也先暴露错误卷属，
@@ -431,6 +489,26 @@ def main():
         if ok.get('ok'):
             save_state(args.session, args.state)
         print(json.dumps(ok | {'state': str(args.state)}, ensure_ascii=False, indent=2))
+        return
+
+    if args.verify_volume_only:
+        cur_url = ab(args.session, 'get url', timeout=30, state_path=args.state).strip()
+        if '/publish/' not in cur_url:
+            raise RuntimeError(f'当前不在发布页，拒绝选择级回归: {cur_url}')
+        selected = ensure_volume(args.session, volume, state_path=args.state)
+        header = js_eval(args.session, f"""
+(() => {{
+ const target = {volume!r};
+ const header = (document.querySelector('.publish-header-volume-name')?.innerText || '').trim();
+ const text = document.body?.innerText || '';
+ const modalOpen = !!document.querySelector('.editor-volume-list');
+ return {{ok: header === target, header, modalOpen, url: location.href, bodyHead: text.slice(0, 300)}};
+}})()
+""", state_path=args.state)
+        report = {'ok': isinstance(header, dict) and header.get('header') == volume, 'volume': volume, 'selected': selected, 'header': header}
+        print(json.dumps(report, ensure_ascii=False, indent=2))
+        if not report['ok']:
+            raise SystemExit(4)
         return
 
     if READY_GATE.exists() and args.project_dir == PROJECT_DIR:

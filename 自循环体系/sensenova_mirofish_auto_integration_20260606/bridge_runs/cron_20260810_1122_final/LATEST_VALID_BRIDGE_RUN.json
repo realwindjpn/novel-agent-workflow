@@ -1,0 +1,30 @@
+{
+  "updated_at": "2026-08-10T11:34:51",
+  "run_id": "cron_20260810_1122",
+  "run_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260810_1122",
+  "per_run_bridge_dir": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260810_1122_final/bridge_runs/cron_20260810_1122",
+  "valid_input_count": 5,
+  "skipped_count": 86,
+  "disposition_counts": {
+    "OUTLINE_PATCH": 1,
+    "CHAPTER_PREP_ONLY": 3,
+    "ARCHIVE_WITH_REASON": 1
+  },
+  "conversion_task_count": 3,
+  "missing_cards_by_tier": {
+    "P0": [
+      "央视新闻___2025年12月01日_06_21_32_d605a0ebd5b0fc7f",
+      "石墨烯航空电池助力低空经济_高飞_c37c70869a95d183",
+      "竞逐物理AI时代新机遇_4013c7b9580337af"
+    ]
+  },
+  "p0_missing": true,
+  "p0_missing_cards": [
+    "央视新闻___2025年12月01日_06_21_32_d605a0ebd5b0fc7f",
+    "石墨烯航空电池助力低空经济_高飞_c37c70869a95d183",
+    "竞逐物理AI时代新机遇_4013c7b9580337af"
+  ],
+  "report": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260810_1122_final/DRY_RUN_REPORT.md",
+  "p0_p1_gate_blocked": true,
+  "p1_missing_cards": []
+}

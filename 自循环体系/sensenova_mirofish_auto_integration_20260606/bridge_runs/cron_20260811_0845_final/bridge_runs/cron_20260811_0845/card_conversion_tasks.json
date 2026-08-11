@@ -1,0 +1,56 @@
+[
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260811_92a5f4ff37",
+    "title": "题：“低空经济”发展一年间",
+    "source_url": "https://app.xinhuanet.com/news/article.html?articleId=baec341126e86ffd5d65a388839c9119",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260811_0845/cards/题__低空经济_发展一年间_8add9e2c.md",
+    "target_chapter_hint": 217,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_Wiki",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_Wiki"
+    ],
+    "not_done_in_dry_run": true
+  },
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260811_8de4971d50",
+    "title": "央视新闻 | 2025年12月01日 06:21:32",
+    "source_url": "https://news.cctv.com/2025/12/01/ARTI6AFqjB6O3hvlbsemKrKT251201.shtml",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260811_0845/cards/央视新闻___2025年12月01日_06_21_32_d605a0eb.md",
+    "target_chapter_hint": 156,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_Wiki",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_Wiki"
+    ],
+    "not_done_in_dry_run": true
+  },
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260811_915f0027ce",
+    "title": "探秘一块锂电池的“重生”之旅",
+    "source_url": "https://news.cctv.com/2026/08/09/ARTIktaj7MoH87AHHCibikE0260809.shtml",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260811_0845/cards/探秘一块锂电池的_重生_之旅_2105973e.md",
+    "target_chapter_hint": 125,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_Wiki",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_Wiki"
+    ],
+    "not_done_in_dry_run": true
+  }
+]

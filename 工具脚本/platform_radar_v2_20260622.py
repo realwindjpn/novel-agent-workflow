@@ -193,6 +193,114 @@ def kol_hotspot_health_metrics(items: list[dict]) -> dict:
         'date_unknown_ratio': round(sum(1 for item in eligible if item.get('failure_tag') == 'DATE_UNKNOWN') / max(1, len(eligible)), 3),
     }
 
+
+# ══════════════════════════════════════════
+#  P0 fix (2026-08-11): per-domain diagnostics
+#  — each domain MUST emit failure_reason, body_fetched, fresh_dated,
+#    excerpt_only independently; no invention of success from excerpt+unknown.
+# ══════════════════════════════════════════
+_STRICT_FAILURE_TAGS = frozenset({'DATE_UNKNOWN', 'STALE_KOL_ARTICLE', 'DATE_OLD_YEAR'})
+_NO_RESULT_POLICIES = frozenset({'NOISE', 'ARCHIVE_WITH_REASON'})
+
+
+def compute_domain_diagnostics(domain_id: str, domain_items: list[dict], cdp_available: bool) -> dict:
+    """Return independent per-domain counters + failure_reason.
+
+    Contract:
+      - body_fetched = items with body_status == 'fetched' (raw count).
+      - body_fetched_strict = fetched AND failure_tag NOT in DATE_UNKNOWN/STALE AND policy NOT NOISE/ARCHIVE.
+        This is the metric used by the strict health gate; excerpt_only NEVER counts here.
+      - excerpt_only, fresh_dated_count, date_unknown_count counted independently.
+      - failure_reason is a join of all observed failure causes for the domain.
+    """
+    total = len(domain_items)
+    body_fetched = sum(1 for it in domain_items if it.get('body_status') == 'fetched')
+    excerpt_only = sum(1 for it in domain_items if it.get('body_status') == 'excerpt_only')
+    fetch_fail = sum(1 for it in domain_items if it.get('body_status') == 'fetch_fail')
+    skipped_na = sum(1 for it in domain_items if it.get('body_status') == 'skipped_non_article')
+    truncated = sum(1 for it in domain_items if it.get('body_status') == 'truncated_by_budget')
+    dom_mismatch = sum(1 for it in domain_items if it.get('body_status') == 'skipped_domain_mismatch')
+    no_hits_items = 0
+    for it in domain_items:
+        if it.get('discovery_status') == 'discovered':
+            no_hits_items += 0
+        elif not it.get('url'):
+            no_hits_items += 1
+
+    date_unknown = sum(1 for it in domain_items if it.get('failure_tag') == 'DATE_UNKNOWN')
+    stale = sum(1 for it in domain_items if it.get('failure_tag') in ('STALE_KOL_ARTICLE', 'DATE_OLD_YEAR'))
+    noise = sum(1 for it in domain_items if it.get('material_policy') == 'NOISE')
+    archive = sum(1 for it in domain_items if it.get('material_policy') == 'ARCHIVE_WITH_REASON')
+    signal = sum(1 for it in domain_items if it.get('material_policy') == 'PLATFORM_SIGNAL')
+    disc_only = sum(1 for it in domain_items if it.get('material_policy') == 'DISCOVERY_ONLY')
+
+    # Fresh dated: has published_at AND not unknown/stale
+    fresh_dated = sum(
+        1 for it in domain_items
+        if it.get('published_at')
+        and it.get('failure_tag') not in _STRICT_FAILURE_TAGS
+    )
+
+    # Strict body: real body fetch AND not stale/unknown AND not noise/archive
+    body_fetched_strict = sum(
+        1 for it in domain_items
+        if it.get('body_status') == 'fetched'
+        and it.get('failure_tag') not in _STRICT_FAILURE_TAGS
+        and it.get('material_policy') not in _NO_RESULT_POLICIES
+    )
+
+    reasons: list[str] = []
+    if total == 0:
+        reasons.append('NO_QUERY_EXECUTED')
+    if no_hits_items > 0 and body_fetched == 0 and excerpt_only == 0:
+        reasons.append(f'NO_HITS={no_hits_items}')
+    if truncated > 0:
+        reasons.append(f'BUDGET_TRUNCATED={truncated}')
+    if stale > 0:
+        reasons.append(f'STALE={stale}')
+    if date_unknown > 0:
+        suffix = '_CDP_UNAVAILABLE' if not cdp_available else ''
+        reasons.append(f'DATE_UNKNOWN{suffix}={date_unknown}')
+    if fetch_fail > 0:
+        reasons.append(f'BODY_FETCH_FAIL={fetch_fail}')
+    if skipped_na > 0:
+        reasons.append(f'NON_ARTICLE_SKIPPED={skipped_na}')
+    if dom_mismatch > 0:
+        reasons.append(f'DOMAIN_MISMATCH={dom_mismatch}')
+    if noise > 0:
+        reasons.append(f'NOISE={noise}')
+    if archive > 0:
+        reasons.append(f'ARCHIVE_NO_DYSON={archive}')
+    if body_fetched == 0 and excerpt_only == 0 and fetch_fail == 0 and skipped_na == 0 and truncated == 0 and total > 0:
+        reasons.append('NO_URL_DISCOVERED')
+    elif body_fetched == 0 and total > 0:
+        reasons.append('NO_BODY_FETCHED')
+    if signal == 0 and disc_only == 0 and body_fetched_strict == 0:
+        reasons.append('NO_STRICT_RESULT')
+
+    if not reasons:
+        reasons.append('OK')
+
+    return {
+        'total_items': total,
+        'body_fetched': body_fetched,
+        'body_fetched_strict': body_fetched_strict,
+        'excerpt_only': excerpt_only,
+        'fetch_fail': fetch_fail,
+        'skipped_non_article': skipped_na,
+        'truncated_by_budget': truncated,
+        'domain_mismatch': dom_mismatch,
+        'no_hits_items': no_hits_items,
+        'fresh_dated_count': fresh_dated,
+        'date_unknown_count': date_unknown,
+        'stale_count': stale,
+        'noise_count': noise,
+        'archive_count': archive,
+        'signal_count': signal,
+        'discovery_only_count': disc_only,
+        'failure_reason': '|'.join(reasons),
+    }
+
 NON_ARTICLE_URL_PATTERNS = [
     r'/search\?', r'/search$', r'/tag/', r'/channel/', r'/account/',
     r'space\.bilibili\.com/\d+/?$', r'm\.bilibili\.com/search\?',
@@ -392,6 +500,9 @@ def _parse_relative_date(text: str, today: datetime.date | None = None) -> str:
     m = re.search(r'(\d+)\s*(?:天前|天以前|days?\s*ago)', t)
     if m:
         return (now - datetime.timedelta(days=int(m.group(1)))).isoformat()
+    # "今天" = today; "昨天"/"前天" handled below
+    if '今天' in t or 'today' in t:
+        return now.isoformat()
     if '昨天' in t or 'yesterday' in t:
         return (now - datetime.timedelta(days=1)).isoformat()
     if '前天' in t:
@@ -399,8 +510,19 @@ def _parse_relative_date(text: str, today: datetime.date | None = None) -> str:
     m = re.search(r'(\d+)\s*(?:小时前|hours?\s*ago)', t)
     if m:
         return now.isoformat()
-    # Explicit ISO / YYYY-MM-DD / YYYY.MM.DD / YYYY/MM/DD
-    m = re.search(r'(20\d{2})[.\-/](\d{1,2})[.\-/](\d{1,2})', t)
+    # minutes/seconds ago — still today (handle both "30分钟前" and "几分钟前")
+    if '几分钟前' in t or '几分钟' in t or '几秒钟' in t:
+        return now.isoformat()
+    m = re.search(r'(\d+)\s*(?:分钟前|秒钟前|秒前|小时前|天前)', t)
+    if m:
+        return now.isoformat()
+    # Explicit ISO / YYYY-MM-DD / YYYY.MM.DD / YYYY/MM/DD — try before generic digit-date
+    # regex at the end, so multi-character delimiters (e.g. "·") and non-digits after the
+    # month/day don't force us into the YYYYMMDD fallback.
+    m = re.search(r'(20\d{2})[./\-年](\d{1,2})[./\-月](\d{1,2})', t)
+    if m:
+        return f'{m.group(1)}-{int(m.group(2)):02d}-{int(m.group(3)):02d}'
+    m = re.search(r'(20\d{2})[.\/\-](\d{1,2})[.\/\-](\d{1,2})', t)
     if m:
         return f'{m.group(1)}-{int(m.group(2)):02d}-{int(m.group(3)):02d}'
     # YYYY年MM月DD日
@@ -420,6 +542,10 @@ def extract_publication_date(item: dict, today: datetime.date | None = None) -> 
     candidates = [
         item.get('published_at'), item.get('created_at'), item.get('pubdate'),
         item.get('publish_time'), item.get('date'), item.get('url'),
+        # Search/reader routes often carry the publication date only in excerpt/body.
+        # This is still explicit source text; do not fall back to collection time.
+        item.get('body'), item.get('text'), item.get('excerpt'), item.get('summary'),
+        item.get('evidence'), item.get('title'),
     ]
     for raw in candidates:
         if raw is None or raw == '':
@@ -479,6 +605,17 @@ def fetch_publication_date(url: str, platform: str, timeout: int = 15) -> str:
             m = re.search(r"create_time:\s*['\"](20\d{2}-\d{2}-\d{2})", raw)
             if m:
                 return m.group(1)
+        if platform == 'bilibili' and 'bilibili.com' in url:
+            bv_match = re.search(r'(BV[a-zA-Z0-9]+)', url)
+            if bv_match:
+                api_url = f'https://api.bilibili.com/x/web-interface/view?bvid={bv_match.group(1)}'
+                req = urllib.request.Request(api_url, headers={
+                    'User-Agent': 'Mozilla/5.0', 'Referer': 'https://www.bilibili.com/',
+                })
+                data = json.loads(urllib.request.urlopen(req, timeout=timeout).read().decode('utf-8', 'ignore'))
+                pubdate = data.get('data', {}).get('pubdate') or data.get('data', {}).get('ctime')
+                if pubdate:
+                    return extract_publication_date({'created_at': pubdate})
         if platform == 'weibo':
             status_id = ''
             for pattern in (
@@ -507,6 +644,19 @@ def fetch_publication_date(url: str, platform: str, timeout: int = 15) -> str:
                 data = json.loads(urllib.request.urlopen(req, timeout=timeout).read().decode('utf-8', 'ignore'))
                 post = data.get('data', data)
                 return extract_publication_date({'created_at': post.get('created_at', '')})
+        req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+        raw = urllib.request.urlopen(req, timeout=timeout).read(512000).decode('utf-8', 'ignore')
+        for pattern in (
+            r'property=["\']article:published_time["\'][^>]+content=["\']([^"\']+)',
+            r'name=["\']pubdate["\'][^>]+content=["\']([^"\']+)',
+            r'itemprop=["\']datePublished["\'][^>]+content=["\']([^"\']+)',
+            r'(20\d{2}[.\-/年]\d{1,2}[.\-/月]\d{1,2})',
+        ):
+            m = re.search(pattern, raw, re.I)
+            if m:
+                parsed = extract_publication_date({'date': m.group(1)})
+                if parsed:
+                    return parsed
     except Exception:
         pass
     return ''
@@ -546,7 +696,9 @@ def is_stale_kol_item(item: dict, max_age_days: int = 7, today: datetime.date | 
     year_matches = re.findall(r'(20\d{2})年', evidence)
     if year_matches:
         max_old_year = max(int(y) for y in year_matches)
-        if max_old_year < reference_date.year:
+        # P0 fix (2026-08-10): only mark DATE_OLD_YEAR when year is at least 2 years behind today.
+        # A 2025 item collected in 2026 is still within the current content-cycle window.
+        if max_old_year < reference_date.year - 1:
             return True, 'DATE_OLD_YEAR'
 
     # No date info at all
@@ -1509,14 +1661,24 @@ def main():
         'by_platform': {}, 'by_failure_tag': {}, 'details': [],
     }
     for it in all_items:
-        if runtime_budget_exhausted():
-            runtime_truncated = True
-            break
         if it.get('body_status') != 'pending':
             continue
         url = it.get('url', '')
         plat = it.get('platform', '')
         detail = {'url': url, 'platform': plat, 'account': it.get('account', '')}
+
+        # P0 fix (2026-08-10): post-check runtime budget at item start.
+        # If budget ran out between items, mark the item explicitly so it
+        # never stays in 'pending' — a stale 'pending' body_status is what
+        # caused 9 domains-of-results to collapse to 3 in the prior run.
+        if runtime_budget_exhausted():
+            runtime_truncated = True
+            it['body_status'] = 'truncated_by_budget'
+            it['failure_tag'] = 'BUDGET_TRUNCATED'
+            detail['result'] = 'truncated_by_budget'
+            detail['failure_tag'] = 'BUDGET_TRUNCATED'
+            body_report['details'].append(detail)
+            continue
 
         # Platform-URL domain consistency
         _url_lower = url.lower()
@@ -1587,7 +1749,7 @@ def main():
         if not it.get('published_at'):
             it['published_at'] = extract_publication_date(it)
         # P0: freshness gate — must run BEFORE material_policy_tag
-        stale, reason = is_stale_kol_item(it, max_age_days=7)
+        stale, reason = is_stale_kol_item(it, max_age_days=30)
         if stale:
             it['material_policy'] = 'NOISE'
             it['failure_tag'] = reason
@@ -1674,9 +1836,11 @@ def main():
     print(f'[body_report] attempts={body_report["attempts"]} success={body_report["success"]} fail={body_report["fail"]} skipped={body_report["skipped_non_article"]} → {body_report_path}')
 
     # ── E. Domain Coverage Gate (replaces old sidecar health gate) ──
-    # Track results per domain
-    domain_results = {}  # domain_id → set of account names with results
-    domain_body_success = {}
+    # 2026-08-11 P0: each domain MUST emit per-domain diagnostics + failure_reason;
+    # strict success counts body_fetched_strict (real body, not excerpt, not stale/unknown, not NOISE/ARCHIVE).
+    domain_results = {}  # domain_id → set of account names with strict results
+    domain_body_success_raw = {}
+    domain_body_success_strict = {}
     accounts_with_results = set()
     for it in all_items:
         if it.get('material_policy') in ('PLATFORM_SIGNAL', 'DISCOVERY_ONLY'):
@@ -1686,16 +1850,35 @@ def main():
             if did:
                 domain_results.setdefault(did, set()).add(acc_name)
             else:
-                # Legacy: infer domain from account→domain_map
                 for d_id, acc_names in domain_map.items():
                     if acc_name in acc_names:
                         domain_results.setdefault(d_id, set()).add(acc_name)
+        # Raw body success: any fetched, regardless of policy/tag
         if it.get('body_status') == 'fetched':
             did = it.get('domain_id', '')
             if did:
-                domain_body_success[did] = domain_body_success.get(did, 0) + 1
+                domain_body_success_raw[did] = domain_body_success_raw.get(did, 0) + 1
+        # Strict body success: real body, not stale/unknown, not noise/archive
+        if it.get('body_status') == 'fetched' \
+           and it.get('failure_tag') not in _STRICT_FAILURE_TAGS \
+           and it.get('material_policy') not in _NO_RESULT_POLICIES:
+            did = it.get('domain_id', '')
+            if did:
+                domain_body_success_strict[did] = domain_body_success_strict.get(did, 0) + 1
+
+    cdp_available = social_cdp_report.get('status') == 'CDP_AVAILABLE'
+    items_by_domain: dict[str, list[dict]] = {did: [] for did in domain_map}
+    for it in all_items:
+        did = it.get('domain_id', '')
+        if did in items_by_domain:
+            items_by_domain[did].append(it)
 
     total_accounts = configured_account_count
+    domains_with_strict_results = sum(
+        1 for did in domain_map
+        if domain_body_success_strict.get(did, 0) > 0
+        or domain_results.get(did) is not None
+    )
     domains_with_results = len(domain_results)
     total_domains = len(domain_map) if domain_map else 1
 
@@ -1708,20 +1891,37 @@ def main():
     domain_health = {}
     for did, acc_names in domain_map.items():
         configured_accounts = len(acc_names)
-        output_accounts = len(domain_results.get(did, set()))
+        output_accounts = len(domain_results.get(did, set()) or set())
+        diag = compute_domain_diagnostics(did, items_by_domain.get(did, []), cdp_available=cdp_available)
         domain_health[did] = {
             'domain_name': next((d.get('domain_name', '') for d in watch.get('domains', []) if d.get('domain_id') == did), ''),
             'configured_accounts': configured_accounts,
             'queries': domain_query_counts.get(did, 0),
             'output_accounts': output_accounts,
-            'body_success': domain_body_success.get(did, 0),
-            'missing': output_accounts == 0,
+            'body_success_raw': domain_body_success_raw.get(did, 0),
+            'body_success_strict': domain_body_success_strict.get(did, 0),
+            'fresh_dated': diag['fresh_dated_count'],
+            'excerpt_only': diag['excerpt_only'],
+            'date_unknown': diag['date_unknown_count'],
+            'stale': diag['stale_count'],
+            'noise': diag['noise_count'],
+            'archive': diag['archive_count'],
+            'fetch_fail': diag['fetch_fail'],
+            'missing': output_accounts == 0 and diag['body_fetched_strict'] == 0,
+            'failure_reason': diag['failure_reason'],
         }
 
-    # Domain coverage gate: all nine domains must be reported; HEALTHY requires 9/9.
+    # Domain coverage gate: all nine domains must have strict results to be HEALTHY.
     coverage_gate = watch.get('ingest_rules', {}).get('domain_coverage_gate', {})
     min_domains = total_domains
     min_accounts_total = coverage_gate.get('min_accounts_with_results_total', 3)
+    min_strict_body_domains = min_domains  # strict gate: 9/9 must have real body or signal
+
+    domains_with_strict_body_or_signal = sum(
+        1 for did in domain_map
+        if domain_body_success_strict.get(did, 0) > 0
+        or domain_results.get(did) is not None
+    )
 
     # Determine health status
     failure_tags = []
@@ -1729,12 +1929,26 @@ def main():
         failure_tags.append(f'DOMAINS_QUERIED_{len(queried_domain_ids)}_of_{total_domains}')
     if len(queried_account_names) < min(total_accounts, total_domains):
         failure_tags.append(f'ACCOUNTS_QUERIED_{len(queried_account_names)}_of_{total_accounts}')
+    # Strict gate: require real body OR signal in every domain; excerpt+unknown does NOT count
+    if domains_with_strict_body_or_signal < min_strict_body_domains:
+        failure_tags.append(f'STRICT_DOMAINS_ONLY_{domains_with_strict_body_or_signal}_of_{total_domains}')
     if domains_with_results < min_domains:
-        failure_tags.append(f'DOMAINS_ONLY_{domains_with_results}_of_{total_domains}')
+        failure_tags.append(f'POLICY_DOMAINS_ONLY_{domains_with_results}_of_{total_domains}')
     if len(accounts_with_results) < min_accounts_total:
         failure_tags.append(f'ACCOUNTS_ONLY_{len(accounts_with_results)}_WITH_RESULTS')
     if stale_platform > 0:
         failure_tags.append(f'STALE_PLATFORM={stale_platform}')
+    if not cdp_available:
+        failure_tags.append('CDP_UNAVAILABLE_SOCIAL_SUPPLEMENT_OFF')
+
+    # Per-domain failure reasons: any domain without strict body or signal
+    failed_domains_detail = []
+    for did in domain_map:
+        dh = domain_health[did]
+        if dh['body_success_strict'] == 0 and dh['output_accounts'] == 0:
+            failed_domains_detail.append(f"{did}:{dh['failure_reason']}")
+    if failed_domains_detail:
+        failure_tags.append('DOMAIN_FAILURE_DETAILS=' + ';'.join(failed_domains_detail))
 
     hotspot_metrics = kol_hotspot_health_metrics(all_items)
     if hotspot_metrics['date_unknown_ratio'] > 0.5:
@@ -1773,6 +1987,7 @@ def main():
     stats['accounts_with_results'] = len(accounts_with_results)
     stats['domains_total'] = total_domains
     stats['domains_with_results'] = domains_with_results
+    stats['domains_with_strict_body_or_signal'] = domains_with_strict_body_or_signal
     stats['silent_domains'] = silent_domains
     stats['domain_coverage_detail'] = {did: len(accs) for did, accs in domain_results.items()}
     stats['domain_health'] = domain_health
@@ -1833,17 +2048,32 @@ def main():
         f'- dynamic_entity_count: {stats.get("hotspot_recall", {}).get("dynamic_entity_count", 0)}',
         f'- coverage_pct: {stats.get("coverage_pct", 0)}%',
         f'- domains_with_results: {stats.get("domains_with_results", 0)}/{stats.get("domains_total", 0)}',
+        f'- domains_with_strict_body_or_signal: {stats.get("domains_with_strict_body_or_signal", 0)}/{stats.get("domains_total", 0)}',
         f'- silent_domains: {", ".join(stats.get("silent_domains", [])) or "none"}',
         f'- sidecar_health: **{stats.get("sidecar_health", "N/A")}**',
         f'- sidecar_health_reason: {stats.get("sidecar_health_reason", "")}',
         '',
-        '## 九域健康矩阵',
+        '## 九域健康矩阵（严格计数：正文strict=已抓到正文且非日期未知/非stale/非NOISE/非ARCHIVE）',
         '',
-        '| domain | 配置账户数 | 查询数 | 产出账户数 | 正文成功数 | 缺失 |',
-        '|---|---:|---:|---:|---:|---|',
+        '| domain | 账户 | 查询 | strict产出账户 | 正文raw | 正文strict | fresh_dated | excerpt_only | date_unknown | stale | noise | archive | failure_reason |',
+        '|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|',
     ]
     for did, row in stats.get('domain_health', {}).items():
-        md.append(f"| {did}/{row.get('domain_name', '')} | {row.get('configured_accounts', 0)} | {row.get('queries', 0)} | {row.get('output_accounts', 0)} | {row.get('body_success', 0)} | {'YES' if row.get('missing') else 'NO'} |")
+        md.append(
+            f"| {did}/{row.get('domain_name', '')} "
+            f"| {row.get('configured_accounts', 0)} "
+            f"| {row.get('queries', 0)} "
+            f"| {row.get('output_accounts', 0)} "
+            f"| {row.get('body_success_raw', 0)} "
+            f"| {row.get('body_success_strict', 0)} "
+            f"| {row.get('fresh_dated', 0)} "
+            f"| {row.get('excerpt_only', 0)} "
+            f"| {row.get('date_unknown', 0)} "
+            f"| {row.get('stale', 0)} "
+            f"| {row.get('noise', 0)} "
+            f"| {row.get('archive', 0)} "
+            f"| {row.get('failure_reason', 'OK')} |"
+        )
     md += [
         '',
         '## 平台信号',

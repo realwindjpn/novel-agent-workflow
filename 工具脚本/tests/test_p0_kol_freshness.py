@@ -386,7 +386,63 @@ else:
 # ── 6. coverage_by_domain gate — PARTIAL triggers ──
 section('6. coverage_by_domain PARTIAL triggers')
 
-# 6a. Only 1 domain with results → PARTIAL
+# ── 7. 2026-08-11 P0: strict domain diagnostics ──
+section('7. P0 strict diagnostics: per-domain, independent counts, no excerpt+unknown fake success')
+
+cdp_available = True
+# Domain with mixed results: 1 fresh body, 1 stale body, 1 excerpt+unknown, 1 fetch_fail, 1 truncated
+mixed_items = [
+    {'body_status': 'fetched', 'failure_tag': '', 'material_policy': 'PLATFORM_SIGNAL', 'published_at': '2026-08-10'},
+    {'body_status': 'fetched', 'failure_tag': 'STALE_KOL_ARTICLE', 'material_policy': 'NOISE', 'published_at': '2024-01-01'},
+    {'body_status': 'excerpt_only', 'failure_tag': 'DATE_UNKNOWN', 'material_policy': 'DISCOVERY_ONLY', 'published_at': ''},
+    {'body_status': 'fetch_fail', 'failure_tag': '', 'material_policy': 'NOISE', 'published_at': ''},
+    {'body_status': 'truncated_by_budget', 'failure_tag': 'DATE_UNKNOWN', 'material_policy': 'NOISE', 'published_at': ''},
+]
+diag = radar.compute_domain_diagnostics('ai', mixed_items, cdp_available=cdp_available)
+if diag['body_fetched'] == 2 and diag['body_fetched_strict'] == 1 and diag['excerpt_only'] == 1 and diag['fresh_dated_count'] == 1 and diag['date_unknown_count'] == 2 and diag['fetch_fail'] == 1 and diag['truncated_by_budget'] == 1:
+    ok('mixed-domain: independent counts (body=2 strict=1 excerpt=1 fresh=1 unknown=2 fail=1 trunc=1)')
+else:
+    fail('mixed-domain counts', f'{diag}')
+fr = diag['failure_reason']
+if 'STALE=1' in fr and 'DATE_UNKNOWN=2' in fr and 'BODY_FETCH_FAIL=1' in fr and 'BUDGET_TRUNCATED=1' in fr and 'NOISE=' in fr and 'ARCHIVE_NO_DYSON=1' in fr:
+    ok('mixed-domain: failure_reason lists STALE/DATE_UNKNOWN/BODY_FETCH_FAIL/BUDGET_TRUNCATED/NOISE/ARCHIVE')
+else:
+    fail('mixed-domain failure_reason', fr)
+if '_CDP_UNAVAILABLE' not in fr:
+    ok('mixed-domain: CDP available → no _CDP_UNAVAILABLE suffix on DATE_UNKNOWN')
+else:
+    fail('mixed-domain CDP suffix', fr)
+
+# excerpt_only + DATE_UNKNOWN must NOT be counted as strict body success
+excerpt_only = [
+    {'body_status': 'excerpt_only', 'failure_tag': 'DATE_UNKNOWN', 'material_policy': 'DISCOVERY_ONLY', 'published_at': ''},
+]
+diag2 = radar.compute_domain_diagnostics('space', excerpt_only, cdp_available=False)
+# DISCOVERY_ONLY policy → no NOISE/ARCHIVE policy → no NO_STRICT_RESULT; but no body → NO_BODY_FETCHED
+if diag2['body_fetched_strict'] == 0 and 'DATE_UNKNOWN_CDP_UNAVAILABLE=1' in diag2['failure_reason'] and 'NO_BODY_FETCHED' in diag2['failure_reason']:
+    ok('excerpt+unknown w/ CDP unavailable → strict=0, DATE_UNKNOWN_CDP_UNAVAILABLE, NO_BODY_FETCHED')
+else:
+    fail('excerpt+unknown strict=0', f'{diag2}')
+
+# empty domain
+diag3 = radar.compute_domain_diagnostics('energy', [], cdp_available=True)
+if 'NO_QUERY_EXECUTED' in diag3['failure_reason']:
+    ok('empty domain → NO_QUERY_EXECUTED')
+else:
+    fail('empty domain', diag3['failure_reason'])
+
+# OK domain
+ok_items = [
+    {'body_status': 'fetched', 'failure_tag': '', 'material_policy': 'PLATFORM_SIGNAL', 'published_at': '2026-08-10'},
+]
+diag4 = radar.compute_domain_diagnostics('space', ok_items, cdp_available=True)
+if diag4['failure_reason'] == 'OK' and diag4['body_fetched_strict'] == 1 and diag4['fresh_dated_count'] == 1:
+    ok('OK domain → failure_reason=OK, strict=1, fresh=1')
+else:
+    fail('OK domain', f'{diag4}')
+
+
+# ── 6a. Only 1 domain with results → PARTIAL ──
 fake_items_1domain = [
     {'account': '差评君', 'domain_id': 'frontier_tech', 'material_policy': 'PLATFORM_SIGNAL'},
 ]

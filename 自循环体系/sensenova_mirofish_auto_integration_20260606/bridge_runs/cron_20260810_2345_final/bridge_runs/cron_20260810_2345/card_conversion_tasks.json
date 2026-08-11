@@ -1,0 +1,56 @@
+[
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260810_8de4971d50",
+    "title": "央视新闻 | 2025年12月01日 06:21:32",
+    "source_url": "https://news.cctv.com/2025/12/01/ARTI6AFqjB6O3hvlbsemKrKT251201.shtml",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260810_2345/cards/央视新闻___2025年12月01日_06_21_32_d605a0eb.md",
+    "target_chapter_hint": 156,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_Wiki",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_Wiki"
+    ],
+    "not_done_in_dry_run": true
+  },
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260810_5e462f58a2",
+    "title": "央视网消息：**自主创新从来都是中国航天的成功“密码”，“航天强国”一词更是出现在“十五五”的规划建议中。2025年，中国航天不断突破，国家战略与市场活力深度交织。",
+    "source_url": "https://news.cctv.com/2026/01/22/ARTIirX5et2odfxFyxg2FouY260122.shtml",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260810_2345/cards/央视网消息___自主创新从来都是中国航天的成功_密码___航天强国_一词更是出现在_十五五_的规_ea48a587.md",
+    "target_chapter_hint": 156,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_Wiki",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_Wiki"
+    ],
+    "not_done_in_dry_run": true
+  },
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260810_915f0027ce",
+    "title": "探秘一块锂电池的“重生”之旅",
+    "source_url": "https://news.cctv.com/2026/08/09/ARTIktaj7MoH87AHHCibikE0260809.shtml",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260810_2345/cards/探秘一块锂电池的_重生_之旅_2105973e.md",
+    "target_chapter_hint": 125,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_Wiki",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_Wiki"
+    ],
+    "not_done_in_dry_run": true
+  }
+]

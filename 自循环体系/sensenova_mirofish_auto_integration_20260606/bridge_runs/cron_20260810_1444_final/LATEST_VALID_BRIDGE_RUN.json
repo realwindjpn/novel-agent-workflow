@@ -1,0 +1,37 @@
+{
+  "updated_at": "2026-08-10T14:57:04",
+  "run_id": "cron_20260810_1444",
+  "run_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260810_1444",
+  "per_run_bridge_dir": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260810_1444_final/bridge_runs/cron_20260810_1444",
+  "valid_input_count": 6,
+  "skipped_count": 87,
+  "disposition_counts": {
+    "OUTLINE_PATCH": 0,
+    "CHAPTER_PREP_ONLY": 5,
+    "ARCHIVE_WITH_REASON": 1
+  },
+  "conversion_task_count": 5,
+  "missing_cards_by_tier": {
+    "P0": [
+      "石墨烯航空电池助力低空经济_高飞_c37c70869a95d183",
+      "科技日报___2026-06-08_15_11_53_eb0f6c58a22254d7"
+    ],
+    "P1": [
+      "上海人工智能实验室发布_珠穆朗玛计划___志在打造科学智能_全国中枢_b2e147bdf6030a8b",
+      "央视新闻___2026年02月20日_17_48_08_cf419ca7758db067",
+      "当你坐着C919大飞机去旅行_是不是特别有自豪感_这个_大飞机梦_的实现_可是咱们多年关键_97a6687180e515d4"
+    ]
+  },
+  "p0_missing": true,
+  "p0_missing_cards": [
+    "石墨烯航空电池助力低空经济_高飞_c37c70869a95d183",
+    "科技日报___2026-06-08_15_11_53_eb0f6c58a22254d7"
+  ],
+  "report": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260810_1444_final/DRY_RUN_REPORT.md",
+  "p0_p1_gate_blocked": true,
+  "p1_missing_cards": [
+    "上海人工智能实验室发布_珠穆朗玛计划___志在打造科学智能_全国中枢_b2e147bdf6030a8b",
+    "央视新闻___2026年02月20日_17_48_08_cf419ca7758db067",
+    "当你坐着C919大飞机去旅行_是不是特别有自豪感_这个_大飞机梦_的实现_可是咱们多年关键_97a6687180e515d4"
+  ]
+}

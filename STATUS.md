@@ -1,5 +1,12 @@
 
 
+## 2026-08-10 21:40｜G2融纲与备注层/准备包收口
+- 批次：`cron_20260810_2045`，8张有效卡；三态：OUTLINE_PATCH=1、CHAPTER_PREP_ONLY=4、ARCHIVE_WITH_REASON=3。
+- 裁决：物理AI只并入ch95备注层，不升版本号、不改正文；ch156/ch217/ch125准备包已落地。
+- 证据：`/root/workspace/任务运行态/20260810_kewu_selfcycle_cron_20260810_2045/output/G2_FINAL.md`。
+- 已同步：大纲latest、时事素材INDEX、章节准备包INDEX、知识库INDEX、任务STATUS/WAL/QUEUE；队列G2_REQUIRED已ACK。
+- 边界：不生成TXT、不保存草稿箱、不改变上传线；当前上传线仍按CURRENT_UPLOAD_PROGRESS：正式254、草稿闭环255、当前/下一256。
+
 ## 2026-08-01 00:12｜第235-236章草稿箱闭环
 - 状态：`DRAFT_SAVED_NOT_PUBLISHED`。
 - 第235章《算力异变》：终稿SHA `59b06397566b20e6f8595ebcef3aa31fc7f2e2f1b45cfaa47f5af57f3e7e804f`；番茄7492字；第五卷：归途；草稿ID `7668725054586225176`。
@@ -1424,3 +1431,5 @@
 - 边界: 保存草稿箱，未发布。
 - 2026-08-10 09:43 | ch255 R4 deterministic safety/sequence patch after final review FAIL
 - 2026-08-10 09:53 | ch255 R4 all targeted reviews PASS
+- 2026-08-11 08:03 | 同步章节 256
+- 2026-08-11 10:07 | ch257 R4五席与DEAI双终审闭环

@@ -1,5 +1,13 @@
 
 
+## 2026-08-10 21:40｜cron_20260810_2045 G2融纲收口
+- 状态: G2_DONE_OUTLINE_PATCH_APPLIED_PREP_INDEXED
+- 裁决: 物理AI并入ch95备注层；ch156/ch217/ch125准备包落地；ARCHIVE维持。
+- 证据: /root/workspace/任务运行态/20260810_kewu_selfcycle_cron_20260810_2045/output/G2_FINAL.md
+- 写入: 大纲latest、时事素材INDEX、章节准备包INDEX、知识库INDEX、素材卡/准备包。
+- 队列: kewu_selfcycle_cron_20260810_2045_G2_REQUIRED 已WAL-before-ACK。
+- 边界: 未改正文、未TXT、未草稿箱；上传线仍按CURRENT_UPLOAD_PROGRESS 254/255/256。
+
 ## 2026-07-26 15:05｜G1全日对账收束
 - 五轮Bridge去重后唯一素材6张（OUTLINE_PATCH=0、CHAPTER_PREP_ONLY=1、ARCHIVE_WITH_REASON=5），故跳过G2。
 - 核验2026-07-24的219/220与2026-07-25的221/222闭环态、正文SHA及草稿箱列表证据，下一候选为223/224。
@@ -2105,3 +2113,9 @@
 
 ### 2026-08-10 09:53
 - ch255 R4 all targeted reviews PASS
+
+### 2026-08-11 08:03
+- 同步章节 256
+
+### 2026-08-11 10:07
+- ch257 R4五席与DEAI双终审闭环

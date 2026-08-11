@@ -1,0 +1,74 @@
+[
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260810_b5413335bb",
+    "title": "我国具备执行陆海两栖航天搜索回收任务能力",
+    "source_url": "http://www.xinhuanet.com/tech/20260211/927c65ff849643899391ed84a8271139/c.html",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260810_2045/cards/我国具备执行陆海两栖航天搜索回收任务能力_fcb55685.md",
+    "target_chapter_hint": 156,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_Wiki",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_Wiki"
+    ],
+    "not_done_in_dry_run": true
+  },
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260810_450772c102",
+    "title": "央视新闻 | 2025年04月24日 12:43:42",
+    "source_url": "https://news.cctv.com/2025/04/24/ARTIPryvF0JMA6DexsOpu1VE250424.shtml",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260810_2045/cards/央视新闻___2025年04月24日_12_43_42_12849d8d.md",
+    "target_chapter_hint": 156,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_Wiki",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_Wiki"
+    ],
+    "not_done_in_dry_run": true
+  },
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260810_1f67bc8a09",
+    "title": "科技日报 | 2026-06-08 15:11:53",
+    "source_url": "https://business.cctv.com/2026/06/08/ARTIcnPWxeBI0dS7ILsSEigQ260608.shtml",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260810_2045/cards/科技日报___2026-06-08_15_11_53_eb0f6c58.md",
+    "target_chapter_hint": 217,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_Wiki",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_Wiki"
+    ],
+    "not_done_in_dry_run": true
+  },
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260810_915f0027ce",
+    "title": "探秘一块锂电池的“重生”之旅",
+    "source_url": "https://news.cctv.com/2026/08/09/ARTIktaj7MoH87AHHCibikE0260809.shtml",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260810_2045/cards/探秘一块锂电池的_重生_之旅_2105973e.md",
+    "target_chapter_hint": 125,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_Wiki",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_Wiki"
+    ],
+    "not_done_in_dry_run": true
+  }
+]

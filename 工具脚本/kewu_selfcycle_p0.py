@@ -1,14 +1,20 @@
 #!/usr/bin/env python3
 """
-科武纪元 自循环 P0 确定性状态脚本
+科武纪元 自循环 P0 确定性状态脚本（单链隔离改造 2026-08-13）
 ──────────────────────────────────
 功能：
-  1. 扫描 已投稿/第*.txt → 最大章号 N → 输出 N+1, N+2 为上传队列
+  1. 任务状态机（单一真源）：只读 任务运行态/<task_id>/state.json 的
+     `upload_queue` 推导活跃上传队列。不再以 `已投稿/` 扫描推队列。
   2. 创建 locks/ raw/ reports/ 目录
-  3. 写 state.json / queue.json / events.jsonl 到审核记录/自循环体系会议_YYYYMMDD/
-  4. 检查 新版/ git diff → 0点前只报告不改
+  3. 写 state.json / queue.json / events.jsonl 到 审核记录/自循环体系会议_YYYYMMDD/
+  4. 检查 新版/ git diff → 仅报告不改
   5. 生成 reports/p0_state_report.md
+
 约束：幂等；不改正文；不上传；中文路径兼容。
+
+用法：
+  python3 kewu_selfcycle_p0.py --state 任务运行态/<task_id>/state.json
+  python3 kewu_selfcycle_p0.py --task 任务运行态/<task_id>
 """
 
 import json
@@ -27,6 +33,7 @@ REVIEW_BASE = ROOT / "审核记录"
 LOCKS = ROOT / "locks"
 RAW = ROOT / "raw"
 REPORTS = ROOT / "reports"
+TASK_RUNTIME = Path("/root/workspace/任务运行态")
 
 TODAY = datetime.now()
 DATE_TAG = TODAY.strftime("%Y%m%d")
@@ -41,26 +48,74 @@ def log(msg: str):
     print(f"[{ts}] {msg}")
 
 
-def safe_json_write(path: Path, data: dict | list):
-    """原子写 JSON，先写 .tmp 再 rename"""
+def safe_json_write(path: Path, data):
     tmp = path.with_suffix(".tmp")
     tmp.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
     tmp.rename(path)
 
 
 def append_event(events_path: Path, event: dict):
-    """追加一行 JSON 到 events.jsonl"""
     line = json.dumps(event, ensure_ascii=False)
     with open(events_path, "a", encoding="utf-8") as f:
         f.write(line + "\n")
 
 
-# ── 1. 扫描已投稿最大章号 ─────────────────────
+# ── 参数解析 ───────────────────────────────────
+def parse_args() -> dict:
+    args = {"state": None, "task": None}
+    argv = sys.argv[1:]
+    i = 0
+    while i < len(argv):
+        if argv[i] == "--state" and i + 1 < len(argv):
+            args["state"] = argv[i + 1]
+            i += 2
+        elif argv[i] == "--task" and i + 1 < len(argv):
+            args["task"] = argv[i + 1]
+            i += 2
+        else:
+            i += 1
+    return args
+
+
+# ── 任务状态机（单一真源）──────────────────────
+def resolve_state_path(args: dict) -> Path | None:
+    if args.get("state"):
+        return Path(args["state"])
+    if args.get("task"):
+        return Path(args["task"]) / "state.json"
+    return None
+
+
+def read_task_state(state_path: Path | None) -> dict | None:
+    if state_path is None or not state_path.exists():
+        return None
+    try:
+        data = json.loads(state_path.read_text(encoding="utf-8"))
+        return data if isinstance(data, dict) else None
+    except Exception as e:
+        log(f"WARN: 读 state 失败: {e}")
+        return None
+
+
+def derive_queue_from_state(state: dict | None) -> list[int]:
+    """只从任务 state.json 推导活跃上传队列；绝不扫描已投稿推队列。"""
+    if not state:
+        return []
+    raw = state.get("upload_queue") or state.get("active_queue") or []
+    out: list[int] = []
+    for x in raw:
+        try:
+            out.append(int(x))
+        except (TypeError, ValueError):
+            pass
+    return out
+
+
+# ── 1. 扫描已投稿最大章号（仅信息参考）─────────
 def scan_published_max() -> int:
-    """返回已投稿目录中最大章号"""
+    """返回已投稿目录中最大章号（仅信息，不用于推导活跃队列）。"""
     max_ch = 0
     if not PUBLISHED.exists():
-        log(f"WARN: {PUBLISHED} 不存在")
         return 0
     for f in PUBLISHED.iterdir():
         m = CHAPTER_RE.search(f.name)
@@ -73,10 +128,8 @@ def scan_published_max() -> int:
 
 # ── 2. 检查新版 git diff ──────────────────────
 def check_new_edition_diff() -> dict:
-    """检查 新版/ 目录 git diff，返回变更摘要"""
     result = {"has_diff": False, "files": [], "summary": ""}
     try:
-        # staged + unstaged
         r = subprocess.run(
             ["git", "diff", "--stat", "--", "新版/"],
             capture_output=True, text=True, cwd=str(ROOT), timeout=15
@@ -84,14 +137,11 @@ def check_new_edition_diff() -> dict:
         out = r.stdout.strip()
         if out:
             result["has_diff"] = True
-            # 提取文件名
             for line in out.splitlines():
                 if "章" in line:
-                    # 提取中文文件名
                     parts = line.split("|")
                     if parts:
-                        fname = parts[0].strip()
-                        result["files"].append(fname)
+                        result["files"].append(parts[0].strip())
             result["summary"] = out.splitlines()[-1] if out else ""
     except Exception as e:
         result["summary"] = f"git diff error: {e}"
@@ -100,172 +150,144 @@ def check_new_edition_diff() -> dict:
 
 # ── 3. 检查新版有哪些章节 ─────────────────────
 def scan_new_edition_chapters() -> list[int]:
-    """扫描 新版/ 目录所有章号"""
     chapters = set()
     if not NEW_EDITION.exists():
         return []
     for f in NEW_EDITION.iterdir():
         m = CHAPTER_RE.search(f.name)
         if m and f.suffix == ".md":
-            ch = int(m.group(1))
-            chapters.add(ch)
+            chapters.add(int(m.group(1)))
     return sorted(chapters)
 
 
 # ── 主流程 ─────────────────────────────────────
 def main():
-    log("═══ 科武自循环 P0 启动 ═══")
+    log("═══ 科武自循环 P0 启动（状态机版） ═══")
 
-    # ── 确保目录存在 ──
     for d in [LOCKS, RAW, REPORTS, MEETING_DIR]:
         d.mkdir(parents=True, exist_ok=True)
         log(f"DIR OK: {d.relative_to(ROOT)}")
 
-    # ── 1. 扫描已投稿 ──
+    # ── 1. 已投稿扫描（仅信息，不推导活跃队列）──
     max_published = scan_published_max()
-    next_1 = max_published + 1
-    next_2 = max_published + 2
-    log(f"已投稿最高: 第{max_published}章 → 上传队列: 第{next_1}章, 第{next_2}章")
+    log(f"已投稿最高: 第{max_published}章（仅信息，不用于推导队列）")
 
-    # ── 2. 新版章节扫描 ──
+    # ── 2. 任务状态机：活跃队列只读 state.json ──
+    args = parse_args()
+    state_path = resolve_state_path(args)
+    task_state = read_task_state(state_path)
+    queue = derive_queue_from_state(task_state)
+    if state_path is not None and task_state is None:
+        log(f"WARN: state 缺失或不可读: {state_path}")
+    log(f"活跃上传队列(来自 state.json): {queue if queue else '∅'}")
+
+    # ── 3. 新版章节扫描 ──
     new_ed_chapters = scan_new_edition_chapters()
-    log(f"新版/ 章节数: {len(new_ed_chapters)}, 范围: {new_ed_chapters[0] if new_ed_chapters else '?'}~{new_ed_chapters[-1] if new_ed_chapters else '?'}")
+    log(f"新版/ 章节数: {len(new_ed_chapters)}")
 
-    # ── 3. 检查新版 git diff ──
+    # ── 4. 检查新版 git diff ──
     diff_info = check_new_edition_diff()
     now_hour = datetime.now().hour
-    before_midnight = now_hour < 0 or True  # 0点 = hour==0；脚本随时可跑，标记当前时间
-    is_after_midnight = now_hour >= 0  # 始终 true，实际逻辑：0-24均算"可报告"
-    # 真正的0点后判断：当前时间在 00:00-06:00 为凌晨窗口
     is_night_window = 0 <= now_hour < 6
-    log(f"当前时间 {TODAY.strftime('%H:%M')} | 凌晨窗口(0-6时): {'是' if is_night_window else '否'}")
-
     if diff_info["has_diff"]:
         log(f"新版/ 有未提交 diff: {len(diff_info['files'])} 文件")
-        for f in diff_info["files"]:
-            log(f"  - {f}")
         if not is_night_window:
             log("→ 非凌晨窗口，仅报告，不改正文")
     else:
         log("新版/ 无未提交 diff")
 
-    # ── 4. 判断队列章节在新版是否存在 ──
     new_ed_set = set(new_ed_chapters)
-    q1_exists = next_1 in new_ed_set
-    q2_exists = next_2 in new_ed_set
-    log(f"第{next_1}章 新版存在: {'是' if q1_exists else '否'}")
-    log(f"第{next_2}章 新版存在: {'是' if q2_exists else '否'}")
 
-    # ── 5. 写 state.json ──
+    # ── 5. 阻塞检测 ──
+    blocks: list[str] = []
+    if not queue:
+        blocks.append(
+            "STATE_MISSING_ACTIVE_QUEUE: 未提供任务 state.json 的 upload_queue，"
+            "且不以已投稿/推队列"
+        )
+    for ch in queue:
+        if ch not in new_ed_set:
+            blocks.append(f"第{ch}章 新版/ 无源稿，无法精修")
+
+    # ── 6. 写 state.json ──
     state = {
-        "schema": "kewu-selfcycle-p0-v1",
+        "schema": "kewu-selfcycle-p0-v2",
         "timestamp": TODAY.isoformat(),
-        "published_max": max_published,
-        "upload_queue": [next_1, next_2],
+        "published_max": max_published,       # 信息参考
+        "upload_queue": queue,                # 来自任务 state.json
+        "queue_source": "task_state_json",
         "new_edition_range": [new_ed_chapters[0], new_ed_chapters[-1]] if new_ed_chapters else [],
         "new_edition_count": len(new_ed_chapters),
-        "queue_source_exists": {"next_1": q1_exists, "next_2": q2_exists},
         "new_edition_diff": diff_info,
         "night_window": is_night_window,
-        "blocks": []
+        "blocks": blocks,
     }
+    safe_json_write(MEETING_DIR / "state.json", state)
+    log(f"WRITE: {(MEETING_DIR / 'state.json').relative_to(ROOT)}")
 
-    # 阻塞检测
-    if not q1_exists:
-        state["blocks"].append(f"第{next_1}章 新版/ 无源稿，无法精修")
-    if not q2_exists:
-        state["blocks"].append(f"第{next_2}章 新版/ 无源稿，无法精修")
-
-    state_path = MEETING_DIR / "state.json"
-    safe_json_write(state_path, state)
-    log(f"WRITE: {state_path.relative_to(ROOT)}")
-
-    # ── 6. 写 queue.json ──
-    queue = {
-        "generated_at": TODAY.isoformat(),
-        "items": []
-    }
-    for ch in [next_1, next_2]:
+    # ── 7. 写 queue.json ──
+    qitems = []
+    for ch in queue:
         exists = ch in new_ed_set
-        queue["items"].append({
+        qitems.append({
             "chapter": ch,
             "status": "ready" if exists else "blocked_no_source",
             "source": f"新版/第{ch}章.md" if exists else None,
             "target": f"已投稿/第{ch}章.txt",
             "review_passed": False,
-            "uploaded": False
+            "uploaded": False,
         })
+    queue_obj = {"generated_at": TODAY.isoformat(), "items": qitems}
+    safe_json_write(MEETING_DIR / "queue.json", queue_obj)
+    log(f"WRITE: {(MEETING_DIR / 'queue.json').relative_to(ROOT)}")
 
-    queue_path = MEETING_DIR / "queue.json"
-    safe_json_write(queue_path, queue)
-    log(f"WRITE: {queue_path.relative_to(ROOT)}")
-
-    # ── 7. 追加 events.jsonl ──
-    events_path = MEETING_DIR / "events.jsonl"
-    event = {
+    # ── 8. events.jsonl ──
+    append_event(MEETING_DIR / "events.jsonl", {
         "ts": TODAY.isoformat(),
         "type": "p0_scan",
         "published_max": max_published,
-        "queue": [next_1, next_2],
-        "blocks": state["blocks"],
-        "night_window": is_night_window
-    }
-    append_event(events_path, event)
-    log(f"APPEND: {events_path.relative_to(ROOT)}")
+        "queue": queue,
+        "queue_source": "task_state_json",
+        "blocks": blocks,
+        "night_window": is_night_window,
+    })
+    log(f"APPEND: {(MEETING_DIR / 'events.jsonl').relative_to(ROOT)}")
 
-    # ── 8. 生成报告 ──
+    # ── 9. 报告 ──
     report_lines = [
-        f"# 科武自循环 P0 状态报告",
-        f"",
+        "# 科武自循环 P0 状态报告（状态机版）",
+        "",
         f"- 生成时间: {TODAY.strftime('%Y-%m-%d %H:%M:%S')}",
-        f"- 已投稿最高: 第{max_published}章",
-        f"- 上传队列: 第{next_1}章, 第{next_2}章",
+        f"- 已投稿最高(信息): 第{max_published}章",
+        f"- 活跃上传队列(任务 state.json): {queue if queue else '∅'}",
         f"- 新版章节数: {len(new_ed_chapters)}",
         f"- 凌晨窗口: {'是' if is_night_window else '否'}",
-        f"",
-        f"## 队列详情",
-        f"",
+        "",
+        "## 队列详情",
+        "",
     ]
-    for item in queue["items"]:
-        ch = item["chapter"]
-        st = item["status"]
-        src = item["source"] or "无"
-        report_lines.append(f"- 第{ch}章: `{st}` | 源: {src}")
-
+    for item in qitems:
+        report_lines.append(f"- 第{item['chapter']}章: `{item['status']}` | 源: {item['source'] or '无'}")
     if diff_info["has_diff"]:
-        report_lines.append(f"")
-        report_lines.append(f"## 新版/ 未提交变更")
-        report_lines.append(f"")
+        report_lines += ["", "## 新版/ 未提交变更", ""]
         for f in diff_info["files"]:
             report_lines.append(f"- {f}")
         if not is_night_window:
-            report_lines.append(f"")
-            report_lines.append(f"> ⚠ 非凌晨窗口，仅报告，不改正文")
-
-    if state["blocks"]:
-        report_lines.append(f"")
-        report_lines.append(f"## 阻塞项")
-        report_lines.append(f"")
-        for b in state["blocks"]:
+            report_lines += ["", "> ⚠ 非凌晨窗口，仅报告，不改正文"]
+    if blocks:
+        report_lines += ["", "## 阻塞项", ""]
+        for b in blocks:
             report_lines.append(f"- ❌ {b}")
-
-    report_lines.append(f"")
-    report_lines.append(f"## 目录状态")
-    report_lines.append(f"")
+    report_lines += ["", "## 目录状态", ""]
     for d in [LOCKS, RAW, REPORTS, MEETING_DIR]:
         report_lines.append(f"- `{d.relative_to(ROOT)}/`: ✅ 已就绪")
+    (REPORTS / "p0_state_report.md").write_text("\n".join(report_lines), encoding="utf-8")
+    log(f"WRITE: {(REPORTS / 'p0_state_report.md').relative_to(ROOT)}")
 
-    report_path = REPORTS / "p0_state_report.md"
-    report_path.write_text("\n".join(report_lines), encoding="utf-8")
-    log(f"WRITE: {report_path.relative_to(ROOT)}")
-
-    # ── 汇总 ──
     log("═══ P0 完成 ═══")
-    log(f"上传队列: 第{next_1}章({'有源稿' if q1_exists else '❌缺源稿'}) / 第{next_2}章({'有源稿' if q2_exists else '❌缺源稿'})")
-    if state["blocks"]:
-        log(f"阻塞: {len(state['blocks'])} 项")
-    else:
-        log("无阻塞，队列就绪")
+    log(f"活跃队列: {queue if queue else '∅（无 state.json upload_queue）'}")
+    if blocks:
+        log(f"阻塞: {len(blocks)} 项")
 
 
 if __name__ == "__main__":

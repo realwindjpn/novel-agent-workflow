@@ -1,0 +1,39 @@
+{
+  "updated_at": "2026-08-13T21:48:39",
+  "run_id": "cron_20260813_2131",
+  "run_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260813_2131",
+  "per_run_bridge_dir": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260813_2131_final/bridge_runs/cron_20260813_2131",
+  "valid_input_count": 11,
+  "skipped_count": 92,
+  "disposition_counts": {
+    "OUTLINE_PATCH": 0,
+    "CHAPTER_PREP_ONLY": 4,
+    "ARCHIVE_WITH_REASON": 7
+  },
+  "conversion_task_count": 4,
+  "missing_cards_by_tier": {
+    "P0": [
+      "产业创新红利加速兑现_科创板_预喜_公告揭示成长动能_b7c1648e0eb0a031",
+      "我国具备执行陆海两栖航天搜索回收任务能力_fcb55685188dc7e5",
+      "科学与健康丨产业加快落地_低空经济_振翅高飞_f5813323961c5dd7"
+    ],
+    "P1": [
+      "satellite_ocean_heat_content_suite_dc7ca9c1b7e4cdcc",
+      "what_is_the_artemis_program_grades_5_8_c173b4b63cc4959f",
+      "当你坐着C919大飞机去旅行_是不是特别有自豪感_这个_大飞机梦_的实现_可是咱们多年关键_97a6687180e515d4"
+    ]
+  },
+  "p0_missing": true,
+  "p0_missing_cards": [
+    "产业创新红利加速兑现_科创板_预喜_公告揭示成长动能_b7c1648e0eb0a031",
+    "我国具备执行陆海两栖航天搜索回收任务能力_fcb55685188dc7e5",
+    "科学与健康丨产业加快落地_低空经济_振翅高飞_f5813323961c5dd7"
+  ],
+  "report": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260813_2131_final/DRY_RUN_REPORT.md",
+  "p0_p1_gate_blocked": true,
+  "p1_missing_cards": [
+    "satellite_ocean_heat_content_suite_dc7ca9c1b7e4cdcc",
+    "what_is_the_artemis_program_grades_5_8_c173b4b63cc4959f",
+    "当你坐着C919大飞机去旅行_是不是特别有自豪感_这个_大飞机梦_的实现_可是咱们多年关键_97a6687180e515d4"
+  ]
+}

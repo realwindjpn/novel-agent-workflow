@@ -133,16 +133,98 @@ def _extract_outline_title(fragment: str) -> str:
     return parts[0][:80]
 
 
+# Structured outline body rows look like:
+#     "   170|第86章 | 第二卷·烽火 | 三秒延迟 | <内容> | <伏笔> | 3600"
+# i.e. an embedded source-line-number prefix, then chapter, volume, title.
+_OUTLINE_BODY_ROW_RE = re.compile(
+    r'^[ \t]*\d{1,4}\|第\s*(\d{1,3})\s*章\s*\|(?P<rest>.*)$',
+    re.M,
+)
+# The canonical body section starts at the "500章大纲" heading; everything above
+# it is the operational header (执行索引/源稿门禁/常驻红线/最新摘要/G2 备注层),
+# which quotes many "第N章" references inside prose and note-layer paragraphs.
+_OUTLINE_BODY_ANCHORS = ('# 科武纪元·500章大纲', '500章大纲V8')
+# Note-layer / operational markers that must never become a chapter title.
+_OUTLINE_TITLE_REJECT = (
+    '备注', 'PATCH', 'NOTE_ONLY', 'CHAPTER_PREP', 'ARCHIVE', 'CARD_PENDING',
+    '素材卡', '准备包', '禁止', '不升版本号', '来源', '裁决', '瘦身',
+)
+
+
+def _outline_body_offset(text: str) -> int:
+    """Offset where the canonical chapter body begins (0 when no anchor found)."""
+    for anchor in _OUTLINE_BODY_ANCHORS:
+        idx = text.find(anchor)
+        if idx != -1:
+            return idx
+    return 0
+
+
+def _is_note_layer_title(title: str) -> bool:
+    """True when a candidate title is note-layer prose rather than a real headline."""
+    t = (title or '').strip()
+    if not t:
+        return True
+    # Real outline titles are short headlines (e.g. 三秒延迟 / 太空巴拿马).
+    if len(t) > 30:
+        return True
+    # Note-layer fragments start mid-sentence after a stripped delimiter.
+    if t[0] in '：:。，,、；;）)】」』”"':
+        return True
+    if any(mark in t for mark in _OUTLINE_TITLE_REJECT):
+        return True
+    if '`' in t or t.startswith('**【'):
+        return True
+    return False
+
+
+def _parse_outline_body_rows(text: str, body_offset: int) -> dict[int, dict[str, Any]]:
+    """Parse structured chapter rows from the canonical body section.
+
+    Each chapter has exactly one authoritative row, so a structured hit always
+    wins over occurrence-based scanning of the header/note layer.
+    """
+    rows: dict[int, dict[str, Any]] = {}
+    body = text[body_offset:]
+    for match in _OUTLINE_BODY_ROW_RE.finditer(body):
+        chapter = int(match.group(1))
+        rest = match.group('rest')
+        # Cut at the next embedded "NNN|第M章" so same-line multi-chapter rows split.
+        nxt = re.search(r'\s*\d{1,4}\|第\s*\d{1,3}\s*章', rest)
+        if nxt:
+            rest = rest[:nxt.start()]
+        title = _extract_outline_title(rest)
+        if _is_note_layer_title(title):
+            continue
+        context = _clean_outline_field(f'第{chapter}章 |{rest}')[:900]
+        previous = rows.get(chapter)
+        if previous and len(previous.get('context', '')) >= len(context):
+            continue
+        rows[chapter] = {
+            'chapter': chapter,
+            'title': title,
+            'context': context,
+            'source': 'body_row',
+        }
+    return rows
+
+
 @lru_cache(maxsize=8)
 def parse_latest_outline(outline_path: str = str(DEFAULT_OUTLINE_PATH)) -> dict[str, Any]:
     """Parse the current latest outline and return chapter records.
 
     The outline has historical notes and some table rows containing multiple
     chapters on one line, so parsing is occurrence-based rather than line-based.
+
+    Parsing is two-pass so the note layer cannot overwrite real headlines:
+      1. structured body rows ("NNN|第N章 | 卷 | 标题 | ...") are authoritative;
+      2. occurrence-based scanning fills chapters the body rows missed, and only
+         appends note-layer text as extra matching context for known chapters.
     """
     path = Path(outline_path)
     text = path.read_text(encoding='utf-8', errors='ignore') if path.exists() else ''
-    chapters: dict[int, dict[str, Any]] = {}
+    body_offset = _outline_body_offset(text)
+    chapters: dict[int, dict[str, Any]] = _parse_outline_body_rows(text, body_offset)
     matches = list(re.finditer(r'第\s*(\d{1,3})\s*章', text))
     for idx, match in enumerate(matches):
         chapter = int(match.group(1))
@@ -153,12 +235,25 @@ def parse_latest_outline(outline_path: str = str(DEFAULT_OUTLINE_PATH)) -> dict[
         title = _extract_outline_title(fragment)
         context = _clean_outline_field(text[match.start():min(next_start, match.start() + 900)])
         previous = chapters.get(chapter)
-        if previous and len(previous.get('context', '')) >= len(context):
+        if previous is not None:
+            # Never let header/note-layer prose replace an authoritative headline;
+            # keep its wording only as supplementary matching context.
+            if previous.get('source') == 'body_row':
+                extra = context[:400]
+                if extra and extra not in previous['context']:
+                    previous['context'] = f"{previous['context']} {extra}"[:1600]
+                continue
+            if len(previous.get('context', '')) >= len(context):
+                continue
+        if _is_note_layer_title(title) and match.start() < body_offset:
+            # Header-only reference (e.g. 上传线/禁派清单) with no real row: skip,
+            # a genuine chapter always appears in the body section too.
             continue
         chapters[chapter] = {
             'chapter': chapter,
             'title': title,
             'context': context,
+            'source': chapters.get(chapter, {}).get('source', 'occurrence'),
         }
     return {
         'outline_path': str(path),
@@ -452,26 +547,99 @@ def _compute_timeliness(published_at: str) -> float:
 # 3. 动态实体抽取
 # ═══════════════════════════════════════════════
 
+# 补充实体 patterns（2026-08-13 Seat D 修复）：
+# 原 ENTITY_PATTERNS 覆盖不足导致 entities 全空，两类盲区：
+#   1) organization 三段式 pattern（中国+领域+后缀）匹配不到
+#      「中国航天科技集团」这类 中国+领域+行业+后缀 的四段式机构名；
+#   2) model_designation 只有英文型号/长征X，缺中文简称（长六改）、
+#      卫星星座（千帆极轨11组卫星）、AI 型号（π*0.6）。
+# 另补微博话题标签作为事件实体（event），供后续跟查。
+# 全部为标准库 re，零新依赖；不触碰 Dyson 树/大纲解析逻辑。
+_ENTITY_PATTERNS_EXTRA: dict[str, dict[str, Any]] = {
+    'model_designation': {
+        'label': '型号',
+        'patterns': [
+            # 中文火箭/导弹简称：长六改、长三乙、长征六号改
+            r'长(?:征)?[一二三四五六七八九十百\d]+(?:号|改|甲|乙|丙|丁)',
+            # 卫星星座/任务名：千帆极轨11组卫星、千帆星座
+            r'千帆[^\s#，。、；;:：]{1,12}卫星?',
+            # π*0.6 / π0.5 类 AI 型号
+            r'[πΠ]\*?\d+\.\d+',
+        ],
+        'generate_followup': True,
+    },
+    'organization': {
+        'label': '组织',
+        'patterns': [
+            # 四段式中式机构：中国航天科技集团 / 中国航天科工集团 / 中国电子科技集团 /
+            # 中国商用飞机有限责任公司 / 中国航空发动机集团
+            r'(?:中国|国家|美国|欧洲|日本|俄罗斯|印度)(?:航天|军事|科技|能源|量子|航空|电子|网络|信息|工业|空间|商用飞机)(?:科技|工业|科工|空间|电子|网络|信息|自动化|工程|发动机)?(?:集团|公司|研究院|研究所|中心|局|部|院|总院|大学|有限责任公司)',
+            # 中科院系统：中科院物理所 / 中科院分子影像重点实验室 / 中国科学院物理研究所
+            r'中科院[一-龥]{2,8}?(?:重点实验室|实验室|研究所|研究院|所|院|中心|大学)',
+            r'中国科学院[一-龥]{2,8}(?:研究所|研究院|中心|大学)?',
+            # 通用中文高校/科研机构（无国别前缀）：浙江大学、电子科技大学、
+            # 北京计算科学研究中心。固定宽度 lookbehind：机构名前驱须为非汉字
+            #（行首/标点/空白），避免人名+头衔粘连误吞（「香港城市大学王锋教授与新加坡国立大学」）。
+            r'(?<![一-龥])[一-龥]{2,10}(?:大学|学院|研究中心|研究院|研究所|重点实验室)',
+            # 已知 AI/机器人/行业机构（科武关注域）
+            r'(?:上海AI实验室|Physical Intelligence|OpenAI|Anthropic|DeepMind|宇树|智元|银河通用|自变量|毕马威|北京协和医院)',
+        ],
+        'generate_followup': True,
+    },
+    'person': {
+        'label': '人物',
+        'patterns': [
+            # 微博 @ 提名人（如 @毛不易），仅提名人名不带 @
+            r'@([\u4e00-\u9fff]{2,6})',
+        ],
+        'generate_followup': False,
+    },
+    'event': {
+        'label': '事件',
+        'patterns': [
+            # 微博话题标签即事件/主题：#长六改火箭成功发射千帆极轨11组卫星#
+            r'#[\u4e00-\u9fffA-Za-z0-9]{3,30}#',
+        ],
+        'generate_followup': False,
+    },
+}
+
+
 def extract_entities(text: str) -> dict[str, list[str]]:
-    """从文本中动态抽取新实体（型号/组织/人物）。
+    """从文本中动态抽取新实体（型号/组织/人物/事件）。
+
+    先跑 ontology 的 ENTITY_PATTERNS，再叠加 _ENTITY_PATTERNS_EXTRA
+    （补齐四段式机构、中文型号简称、微博话题），同类型结果去重合并。
 
     Returns:
         {entity_type: [entity_value, ...]}
     """
     results: dict[str, list[str]] = {}
-    for entity_type, config in ENTITY_PATTERNS.items():
-        found: list[str] = []
-        for pattern in config['patterns']:
+
+    def _collect(entity_type: str, patterns: list[str]) -> None:
+        found: list[str] = list(results.get(entity_type, []))
+        for pattern in patterns:
             try:
                 matches = re.findall(pattern, text)
                 for m in matches:
-                    m = m.strip()
+                    # 捕获组 pattern 取第一组；无组 pattern 取整串
+                    if isinstance(m, tuple):
+                        m = next((g for g in m if g), '')
+                    m = str(m).strip()
+                    # 账号噪声过滤：@沈逸的微博 / @某某微博号 非人名
+                    if entity_type == 'person' and re.search(r'微博|号$', m):
+                        continue
                     if m and len(m) >= 2 and m not in found:
                         found.append(m)
             except re.error:
                 continue
         if found:
             results[entity_type] = found
+
+    for entity_type, config in ENTITY_PATTERNS.items():
+        _collect(entity_type, config['patterns'])
+    for entity_type, config in _ENTITY_PATTERNS_EXTRA.items():
+        _collect(entity_type, config['patterns'])
     return results
 
 
@@ -587,7 +755,14 @@ def classify_noise_degradation(
         return True, reason
 
     # 2. 旧闻判断
-    if published_at:
+    #    Platform-commentary discovery items (source_group_key=*_platform_commentary)
+    #    are KOL viewpoint signals, not same-day news. Their freshness is gated
+    #    upstream by is_stale_kol_item with the policy-dependent viewpoint window
+    #    (PLATFORM_SIGNAL=365d / DISCOVERY_ONLY=270d, prior-calendar-year kept).
+    #    The 14/180-day news-staleness rule below is for primary-fact cards;
+    #    applying it here evicted every dated in-window commentary item as
+    #    STALE_NEWS before Dyson matching, producing fresh_dated_count=0.
+    if published_at and not source_group.endswith('_platform_commentary'):
         max_age = _get_max_age(source_group)
         if _is_stale_by_date(published_at, max_age):
             return True, 'STALE_NEWS'

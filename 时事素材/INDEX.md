@@ -1,3 +1,10 @@
+## 2026-08-13 动态实体补卡（Grok4.6 / DeepSeek V4 Pro，查漏后补采）
+
+| 日期 | 主题 | 领域 | 原文 | 素材卡/准备包 | 可用方向 |
+|---|---|---|---|---|---|
+| 2026-08-13 | Grok 4.6 发布：SpaceXAI 前沿模型对标 Kimi K3 | AI/前沿模型/算力主权 | xAI/SpaceXAI 官方 Release Notes + x.ai/news | `时事素材/素材卡/2026-08-13/素材卡_Grok4.6发布_SpaceXAI前沿模型对标KimiK3_20260813.md` | CHAPTER_PREP_ONLY：AI域算力主权/技术共和国 |
+| 2026-08-13 | DeepSeek V4 Pro 正式版上线：1.6T 开源 MoE | AI/开源模型/算力主权 | DeepSeek 官方 + 36Kr/腾讯云 | `时事素材/素材卡/2026-08-13/素材卡_DeepSeekV4Pro正式版上线_1.6T开源MoE_20260813.md` | CHAPTER_PREP_ONLY：AI域开源平权/记忆外置 |
+
 ## 2026-08-11 G2转卡（本源悟空/低空经济/深空通信/电池回收）
 
 | 日期 | 主题 | 领域 | 原文 | 素材卡/准备包 | 可用方向 |

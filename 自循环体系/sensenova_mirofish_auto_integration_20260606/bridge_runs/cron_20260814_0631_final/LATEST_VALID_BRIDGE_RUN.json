@@ -1,0 +1,28 @@
+{
+  "updated_at": "2026-08-14T06:43:01",
+  "run_id": "cron_20260814_0631",
+  "run_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260814_0631",
+  "per_run_bridge_dir": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260814_0631_final/bridge_runs/cron_20260814_0631",
+  "valid_input_count": 5,
+  "skipped_count": 104,
+  "disposition_counts": {
+    "OUTLINE_PATCH": 0,
+    "CHAPTER_PREP_ONLY": 2,
+    "ARCHIVE_WITH_REASON": 3
+  },
+  "conversion_task_count": 2,
+  "missing_cards_by_tier": {
+    "P1": [
+      "大连理工大学自研新材料将国产轴承使用寿命提高6倍_e18513cf4f3c6d02",
+      "当你坐着C919大飞机去旅行_是不是特别有自豪感_这个_大飞机梦_的实现_可是咱们多年关键_97a6687180e515d4"
+    ]
+  },
+  "p0_missing": false,
+  "p0_missing_cards": [],
+  "report": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260814_0631_final/DRY_RUN_REPORT.md",
+  "p0_p1_gate_blocked": true,
+  "p1_missing_cards": [
+    "大连理工大学自研新材料将国产轴承使用寿命提高6倍_e18513cf4f3c6d02",
+    "当你坐着C919大飞机去旅行_是不是特别有自豪感_这个_大飞机梦_的实现_可是咱们多年关键_97a6687180e515d4"
+  ]
+}

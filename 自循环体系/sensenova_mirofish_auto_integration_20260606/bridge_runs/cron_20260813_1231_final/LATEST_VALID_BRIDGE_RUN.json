@@ -1,0 +1,31 @@
+{
+  "updated_at": "2026-08-13T12:47:05",
+  "run_id": "cron_20260813_1231",
+  "run_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260813_1231",
+  "per_run_bridge_dir": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260813_1231_final/bridge_runs/cron_20260813_1231",
+  "valid_input_count": 10,
+  "skipped_count": 90,
+  "disposition_counts": {
+    "OUTLINE_PATCH": 0,
+    "CHAPTER_PREP_ONLY": 2,
+    "ARCHIVE_WITH_REASON": 8
+  },
+  "conversion_task_count": 2,
+  "missing_cards_by_tier": {
+    "P0": [
+      "我国具备执行陆海两栖航天搜索回收任务能力_fcb55685188dc7e5"
+    ],
+    "P1": [
+      "VIDEfc57nFjIDEdkE5VvOz5V260716_42c1d8d8314bd3de"
+    ]
+  },
+  "p0_missing": true,
+  "p0_missing_cards": [
+    "我国具备执行陆海两栖航天搜索回收任务能力_fcb55685188dc7e5"
+  ],
+  "report": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260813_1231_final/DRY_RUN_REPORT.md",
+  "p0_p1_gate_blocked": true,
+  "p1_missing_cards": [
+    "VIDEfc57nFjIDEdkE5VvOz5V260716_42c1d8d8314bd3de"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "updated_at": "2026-08-14T12:49:19",
+  "run_id": "cron_20260814_1232",
+  "run_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260814_1232",
+  "per_run_bridge_dir": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260814_1232_final/bridge_runs/cron_20260814_1232",
+  "valid_input_count": 9,
+  "skipped_count": 96,
+  "disposition_counts": {
+    "OUTLINE_PATCH": 0,
+    "CHAPTER_PREP_ONLY": 2,
+    "ARCHIVE_WITH_REASON": 7
+  },
+  "conversion_task_count": 2,
+  "missing_cards_by_tier": {
+    "P0": [
+      "1月13日23时25分_长征八号甲运载火箭将卫星互联网低轨18组卫星送入预定轨道_卫星成功_ea48a587cb62f3ba",
+      "evade_drone_capabilities_warfighters_b4f86f0d60dc17be"
+    ],
+    "P1": [
+      "Reaching_for_the_Moon_and_beyond_c3a96a2c12df8c74"
+    ]
+  },
+  "p0_missing": true,
+  "p0_missing_cards": [
+    "1月13日23时25分_长征八号甲运载火箭将卫星互联网低轨18组卫星送入预定轨道_卫星成功_ea48a587cb62f3ba",
+    "evade_drone_capabilities_warfighters_b4f86f0d60dc17be"
+  ],
+  "report": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260814_1232_final/DRY_RUN_REPORT.md",
+  "p0_p1_gate_blocked": true,
+  "p1_missing_cards": [
+    "Reaching_for_the_Moon_and_beyond_c3a96a2c12df8c74"
+  ]
+}

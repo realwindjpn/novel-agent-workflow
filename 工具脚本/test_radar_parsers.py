@@ -96,12 +96,22 @@ def test_is_stale_kol_item_date_old_year() -> None:
     check('2026-08-09 -> fresh',
           not stale and tag == '',
           f'got=({stale},{tag!r})')
-    # published_at older than 7 days -> STALE_KOL_ARTICLE
+    # 8 days old is INSIDE the KOL viewpoint window (a commentary piece keeps
+    # reference value for months). The old 7/30-day cutoff evicted every dated
+    # item, which is the NO_FRESH_DATED defect; assert the window, not a day count.
     stale, tag = r.is_stale_kol_item(
         {'published_at': '2026-08-01', 'title': 'x', 'evidence': 'y'},
         today=today,
     )
-    check('2026-08-01 -> STALE_KOL_ARTICLE',
+    check('2026-08-01 (8d) -> fresh within viewpoint window',
+          not stale and tag == '',
+          f'got=({stale},{tag!r})')
+    # An explicit max_age_days must still cut off exactly where told.
+    stale, tag = r.is_stale_kol_item(
+        {'published_at': '2026-08-01', 'title': 'x', 'evidence': 'y'},
+        max_age_days=7, today=today,
+    )
+    check('2026-08-01 with max_age_days=7 -> STALE_KOL_ARTICLE',
           stale and tag == 'STALE_KOL_ARTICLE',
           f'got=({stale},{tag!r})')
     # DATE_OLD_YEAR overrides STALE check from evidence years

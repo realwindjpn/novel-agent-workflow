@@ -1,0 +1,14 @@
+{
+  "signatures": [
+    "aa19ce32a0cf9ed6",
+    "ca7b1bb5af8389a5"
+  ],
+  "records": {
+    "aa19ce32a0cf9ed6": [
+      "cron_20260814_0031"
+    ],
+    "ca7b1bb5af8389a5": [
+      "cron_20260814_0031"
+    ]
+  }
+}

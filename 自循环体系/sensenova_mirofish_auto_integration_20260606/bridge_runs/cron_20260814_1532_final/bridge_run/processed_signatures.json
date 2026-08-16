@@ -1,0 +1,22 @@
+{
+  "signatures": [
+    "7e083ba84d9abec9",
+    "abcf2cf635fa5b0a",
+    "dde3a0174b9e2d79",
+    "ee508db1f968f9a7"
+  ],
+  "records": {
+    "7e083ba84d9abec9": [
+      "cron_20260814_1532"
+    ],
+    "abcf2cf635fa5b0a": [
+      "cron_20260814_1532"
+    ],
+    "dde3a0174b9e2d79": [
+      "cron_20260814_1532"
+    ],
+    "ee508db1f968f9a7": [
+      "cron_20260814_1532"
+    ]
+  }
+}

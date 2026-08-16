@@ -1,0 +1,30 @@
+{
+  "updated_at": "2026-08-15T12:49:50",
+  "run_id": "cron_20260815_1233",
+  "run_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260815_1233",
+  "per_run_bridge_dir": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260815_1233_final/bridge_runs/cron_20260815_1233",
+  "valid_input_count": 10,
+  "skipped_count": 94,
+  "disposition_counts": {
+    "OUTLINE_PATCH": 0,
+    "CHAPTER_PREP_ONLY": 3,
+    "ARCHIVE_WITH_REASON": 7
+  },
+  "conversion_task_count": 3,
+  "missing_cards_by_tier": {
+    "P0": [
+      "我国具备执行陆海两栖航天搜索回收任务能力_fcb55685188dc7e5",
+      "技术破壁与政策护航_低空经济2026开启规模化运营新篇章_43521aa0c165378a",
+      "科技日报___2025-02-11_14_27_01_030e59eab8b49cac"
+    ]
+  },
+  "p0_missing": true,
+  "p0_missing_cards": [
+    "我国具备执行陆海两栖航天搜索回收任务能力_fcb55685188dc7e5",
+    "技术破壁与政策护航_低空经济2026开启规模化运营新篇章_43521aa0c165378a",
+    "科技日报___2025-02-11_14_27_01_030e59eab8b49cac"
+  ],
+  "report": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260815_1233_final/DRY_RUN_REPORT.md",
+  "p0_p1_gate_blocked": true,
+  "p1_missing_cards": []
+}

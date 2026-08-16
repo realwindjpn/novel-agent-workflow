@@ -24,6 +24,7 @@ UPLOAD_DIR = PROJECT / '已投稿'
 # 导入扫描模块
 sys.path.insert(0, str(PROJECT / '工具脚本'))
 from kewu_deai_hard_gate_scan import scan_file, WEIGHTS
+from humanity_precard import default_card_path, validate_card
 
 
 def resolve_file(chapter: int | None, file_path: str | None) -> Path:
@@ -50,9 +51,18 @@ def main():
     ap = argparse.ArgumentParser(description='DEAI确定性扫描前置门禁')
     ap.add_argument('--chapter', type=int, default=None, help='章号')
     ap.add_argument('--file', type=str, default=None, help='直接指定文件路径')
+    ap.add_argument('--humanity-card', type=str, default=None, help='人味前置卡 JSON；默认候选同目录同名 .humanity.json')
     args = ap.parse_args()
 
     target = resolve_file(args.chapter, args.file)
+    humanity_card = Path(args.humanity_card) if args.humanity_card else default_card_path(target)
+    humanity = validate_card(humanity_card, target)
+    if humanity['status'] != 'PASS':
+        print('HUMANITY_PRECARD_BLOCKED')
+        print(f'card: {humanity_card}')
+        for error in humanity['errors']:
+            print(f'  - {error}')
+        return 2
     result = scan_file(target)
 
     verdict = result['verdict']
@@ -88,4 +98,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    raise SystemExit(main())

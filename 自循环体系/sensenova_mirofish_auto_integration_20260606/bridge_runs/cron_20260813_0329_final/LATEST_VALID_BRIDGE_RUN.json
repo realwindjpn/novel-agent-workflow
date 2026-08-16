@@ -1,0 +1,28 @@
+{
+  "updated_at": "2026-08-13T03:42:02",
+  "run_id": "cron_20260813_0329",
+  "run_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260813_0329",
+  "per_run_bridge_dir": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260813_0329_final/bridge_runs/cron_20260813_0329",
+  "valid_input_count": 6,
+  "skipped_count": 87,
+  "disposition_counts": {
+    "OUTLINE_PATCH": 0,
+    "CHAPTER_PREP_ONLY": 1,
+    "ARCHIVE_WITH_REASON": 5
+  },
+  "conversion_task_count": 1,
+  "missing_cards_by_tier": {
+    "P0": [
+      "1月13日23时25分_长征八号甲运载火箭将卫星互联网低轨18组卫星送入预定轨道_卫星成功_ea48a587cb62f3ba",
+      "c1004_40757258_0721e7b57028a77f"
+    ]
+  },
+  "p0_missing": true,
+  "p0_missing_cards": [
+    "1月13日23时25分_长征八号甲运载火箭将卫星互联网低轨18组卫星送入预定轨道_卫星成功_ea48a587cb62f3ba",
+    "c1004_40757258_0721e7b57028a77f"
+  ],
+  "report": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260813_0329_final/DRY_RUN_REPORT.md",
+  "p0_p1_gate_blocked": true,
+  "p1_missing_cards": []
+}

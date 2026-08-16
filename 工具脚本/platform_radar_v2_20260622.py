@@ -37,6 +37,11 @@ WATCH = BASE / '学习记录/平台号观点雷达/platform_watchlist.json'
 COLLECT_WEB = Path('/root/.hermes/skills/research/web-data-collection-suite/scripts/collect_web.py')
 ANYSEARCH_CLI = Path('/root/workspace/IMA素材/external_skills/anysearch-skill_20260604/repo/scripts/anysearch_cli.py')
 SOCIAL_CDP_URL = os.getenv('KEWU_SOCIAL_CDP_URL', 'http://127.0.0.1:9224').rstrip('/')
+SOCIAL_CDP_PORT = int(os.getenv('KEWU_SOCIAL_CDP_PORT', '9224'))
+SOCIAL_CDP_PROFILE = Path(os.getenv('KEWU_SOCIAL_CDP_PROFILE', '/root/.hermes/browser_profiles/socialext-cft'))
+SOCIAL_CDP_EXT_DIR = Path(os.getenv('KEWU_SOCIAL_CDP_EXT_DIR', '/root/.hermes/chrome_extensions/socialext-v3.3.2'))
+SOCIAL_CDP_BINARY = os.getenv('KEWU_SOCIAL_CDP_BINARY', '/usr/bin/google-chrome')
+SOCIAL_CDP_STARTUP_TIMEOUT = int(os.getenv('KEWU_SOCIAL_CDP_STARTUP_TIMEOUT', '15'))
 SOCIAL_CDP_ALLOWED_PLATFORMS = {'xiaohongshu', 'douyin', 'bilibili', 'kuaishou', 'tiktok'}
 SOCIAL_CDP_DOMAIN_MAP = {
     'xiaohongshu': ['xiaohongshu.com', 'xhslink.com'],
@@ -167,9 +172,31 @@ def build_account_query_plan(
     return plan
 
 
+# A missing date has several distinct causes that were all collapsed into a
+# single DATE_UNKNOWN tag, so diagnostics could not tell "we never fetched the
+# page" from "we fetched it and it genuinely carries no date". These subtypes
+# keep DATE_UNKNOWN as the prefix so existing prefix-based consumers still
+# match, while making the cause actionable.
+DATE_UNKNOWN_TAGS = frozenset({
+    'DATE_UNKNOWN',
+    'DATE_UNKNOWN_BODY_TRUNCATED',
+    'DATE_UNKNOWN_BODY_FETCH_FAIL',
+    'DATE_UNKNOWN_NON_ARTICLE',
+    # Legacy subtype kept for old sidecars; new runs demote aggregators to
+    # WEIBO_AGGREGATOR_PAGE + ARCHIVE_WITH_REASON so they leave eligible.
+    'DATE_UNKNOWN_AGGREGATOR_PAGE',
+    'DATE_UNKNOWN_NO_METADATA',
+})
+
+
+def is_date_unknown_tag(tag: str) -> bool:
+    """True for any DATE_UNKNOWN subtype (see DATE_UNKNOWN_TAGS)."""
+    return (tag or '') in DATE_UNKNOWN_TAGS
+
+
 def kol_hotspot_health_metrics(items: list[dict]) -> dict:
     eligible = [item for item in items if item.get('material_policy') in ('PLATFORM_SIGNAL', 'DISCOVERY_ONLY')]
-    dated = [item for item in eligible if item.get('published_at') and item.get('failure_tag') != 'DATE_UNKNOWN']
+    dated = [item for item in eligible if item.get('published_at') and not is_date_unknown_tag(item.get('failure_tag'))]
     dynamic_entities = {
         entity
         for item in eligible
@@ -190,7 +217,7 @@ def kol_hotspot_health_metrics(items: list[dict]) -> dict:
         'ai_science_hotspot_count': len(ai_science),
         'dynamic_entity_count': len(dynamic_entities),
         'dynamic_entities': sorted(dynamic_entities)[:30],
-        'date_unknown_ratio': round(sum(1 for item in eligible if item.get('failure_tag') == 'DATE_UNKNOWN') / max(1, len(eligible)), 3),
+        'date_unknown_ratio': round(sum(1 for item in eligible if is_date_unknown_tag(item.get('failure_tag'))) / max(1, len(eligible)), 3),
     }
 
 
@@ -199,7 +226,7 @@ def kol_hotspot_health_metrics(items: list[dict]) -> dict:
 #  — each domain MUST emit failure_reason, body_fetched, fresh_dated,
 #    excerpt_only independently; no invention of success from excerpt+unknown.
 # ══════════════════════════════════════════
-_STRICT_FAILURE_TAGS = frozenset({'DATE_UNKNOWN', 'STALE_KOL_ARTICLE', 'DATE_OLD_YEAR'})
+_STRICT_FAILURE_TAGS = frozenset({'STALE_KOL_ARTICLE', 'DATE_OLD_YEAR'}) | DATE_UNKNOWN_TAGS
 _NO_RESULT_POLICIES = frozenset({'NOISE', 'ARCHIVE_WITH_REASON'})
 
 
@@ -227,7 +254,7 @@ def compute_domain_diagnostics(domain_id: str, domain_items: list[dict], cdp_ava
         elif not it.get('url'):
             no_hits_items += 1
 
-    date_unknown = sum(1 for it in domain_items if it.get('failure_tag') == 'DATE_UNKNOWN')
+    date_unknown = sum(1 for it in domain_items if is_date_unknown_tag(it.get('failure_tag')))
     stale = sum(1 for it in domain_items if it.get('failure_tag') in ('STALE_KOL_ARTICLE', 'DATE_OLD_YEAR'))
     noise = sum(1 for it in domain_items if it.get('material_policy') == 'NOISE')
     archive = sum(1 for it in domain_items if it.get('material_policy') == 'ARCHIVE_WITH_REASON')
@@ -397,6 +424,17 @@ def probe_social_cdp() -> dict:
         'extension_capability': 'UNKNOWN',
         'body_supplement_policy': 'existing_tab_visible_text_only_no_cookie_no_publish_no_interaction',
     }
+    # 2026-08-12: 显式关闭时直接早退，省掉每轮 3s 连接超时。
+    # status=CDP_DISABLED_BY_CONFIG 与 CDP_UNAVAILABLE 区分开，
+    # 便于日后重建登录态时区分「按设计关闭」与「真的连不上」。
+    if os.getenv('KEWU_DISABLE_SOCIAL_CDP') == '1':
+        report['status'] = 'CDP_DISABLED_BY_CONFIG'
+        report['disabled_reason'] = (
+            'socialext-cft profile has no Default/Extensions and Cookies is ~20KB; '
+            'social helper extension and platform login state are absent. '
+            'Unset KEWU_DISABLE_SOCIAL_CDP after rebuilding login state.'
+        )
+        return report
     try:
         version = _cdp_json('/json/version')
         targets = _cdp_json('/json/list')
@@ -510,10 +548,16 @@ def _parse_relative_date(text: str, today: datetime.date | None = None) -> str:
     m = re.search(r'(\d+)\s*(?:小时前|hours?\s*ago)', t)
     if m:
         return now.isoformat()
+    # "刚刚" / "just now" — published moments ago, still today
+    if '刚刚' in t or 'just now' in t:
+        return now.isoformat()
     # minutes/seconds ago — still today (handle both "30分钟前" and "几分钟前")
-    if '几分钟前' in t or '几分钟' in t or '几秒钟' in t:
+    if '几分钟前' in t or '几分钟' in t or '几秒钟' in t or '几秒前' in t:
         return now.isoformat()
     m = re.search(r'(\d+)\s*(?:分钟前|秒钟前|秒前|小时前|天前)', t)
+    if m:
+        return now.isoformat()
+    m = re.search(r'(\d+)\s*(?:seconds?\s*ago|minutes?\s*ago)', t)
     if m:
         return now.isoformat()
     # Explicit ISO / YYYY-MM-DD / YYYY.MM.DD / YYYY/MM/DD — try before generic digit-date
@@ -533,7 +577,72 @@ def _parse_relative_date(text: str, today: datetime.date | None = None) -> str:
     m = re.search(r'(20\d{2})年', t)
     if m:
         return f'{m.group(1)}-01-01'
+    # MM月DD日 without explicit year — Weibo widget / feed snippets omit the
+    # year because it's implicit. Assume the current year, but if MM-DD is in
+    # the future relative to *now*, roll back to the prior year (Dec content
+    # collected in Jan). Past-only guard keeps this honest.
+    m = re.search(r'(?:^|[^\d])(\d{1,2})月(\d{1,2})日(?:\s+\d{1,2}:\d{2})?', t)
+    if m:
+        mo, da = int(m.group(1)), int(m.group(2))
+        try:
+            cand = datetime.date(now.year, mo, da)
+            if cand <= now:
+                return cand.isoformat()
+            return datetime.date(now.year - 1, mo, da).isoformat()
+        except ValueError:
+            pass
     return ''
+
+
+def _looks_like_platform_id(raw: str) -> bool:
+    """True when a bare digit run is a platform identifier, not an epoch stamp.
+
+    Weibo uid / wechat biz-mid / bilibili aid are 9-11 digit runs that fall
+    inside a plausible epoch range once read as seconds, so the timestamp
+    branch would silently mint a publication date out of an account id.
+    Epoch seconds for the content window we care about are 10 digits starting
+    with '1' and below the 2^31 wrap; uids share that shape, so the only
+    reliable discriminator is that a *seconds* stamp must land in the past.
+    Callers apply the past-only guard; this helper rejects the shapes that are
+    never timestamps at all (13-digit ms stamps are handled separately).
+    """
+    s = (raw or '').strip()
+    if not s.isdigit():
+        return False
+    # 10-digit epoch seconds and 13-digit epoch millis are the only widths a
+    # real platform timestamp uses. Anything else that is a pure digit run is
+    # an identifier (uid, mid, aid, article id).
+    return len(s) not in (10, 13)
+
+
+def _yymmdd_segment_is_datelike(text: str, match: re.Match) -> bool:
+    """Guard the weak YYMMDD fallback against id-bearing segments.
+
+    Accept only when the 6-digit run is its own path/file token, e.g.
+    `/a/b/ARTIx260726.shtml` or `/260726.html`. Reject when the run is glued
+    to an id-style segment such as `space.bilibili.com/<uid>/article/251231.html`
+    or Chinese ordinal text like `第251231号`, both of which previously minted a
+    publication date out of an identifier.
+    """
+    start, end = match.start(), match.end()
+    prefix = text[:start]
+    # Reject when the run is the whole value of an id/article path slot, i.e.
+    # the immediately preceding path segment names an identifier space
+    # (".../article/251231.html", ".../detail/260726", "?id=251231").
+    if re.search(r'(?:article|articles|item|items|detail|details|status|topic|id|no|num|p)[/=_\-]$', prefix, re.I):
+        return False
+    # Reject Chinese ordinal / numbering context ("第251231号", "编号251231").
+    if re.search(r'(?:第|编号|序号|No\.?|#)\s*$', prefix, re.I):
+        return False
+    # Require the run to be delimited by a non-alphanumeric boundary or a
+    # letter-led filename token (ARTIx260726), not by another digit run.
+    boundary = prefix[-1:] if prefix else ''
+    if boundary and boundary.isdigit():
+        return False
+    suffix = text[end:end + 1]
+    if suffix and suffix.isdigit():
+        return False
+    return True
 
 
 def extract_publication_date(item: dict, today: datetime.date | None = None) -> str:
@@ -550,13 +659,20 @@ def extract_publication_date(item: dict, today: datetime.date | None = None) -> 
     for raw in candidates:
         if raw is None or raw == '':
             continue
-        if isinstance(raw, (int, float)) or (isinstance(raw, str) and raw.strip().isdigit() and len(raw.strip()) >= 10):
+        if isinstance(raw, (int, float)) or (
+            isinstance(raw, str) and raw.strip().isdigit()
+            and len(raw.strip()) >= 10 and not _looks_like_platform_id(raw)
+        ):
             try:
                 stamp = int(raw)
                 if stamp > 10_000_000_000:
                     stamp //= 1000
                 parsed_dt = datetime.datetime.fromtimestamp(stamp, tz=datetime.timezone.utc).date()
-                if 2000 <= parsed_dt.year <= reference_date.year + 1:
+                # A publication date can never be in the future. Weibo uids and
+                # wechat mids are 10-digit runs that decode to plausible-looking
+                # future dates (e.g. uid 1793892941 -> 2026-11-05), so the
+                # past-only guard is what keeps an account id out of published_at.
+                if 2000 <= parsed_dt.year and parsed_dt <= reference_date + datetime.timedelta(days=1):
                     return parsed_dt.isoformat()
             except (ValueError, TypeError, OverflowError, OSError):
                 pass
@@ -580,7 +696,13 @@ def extract_publication_date(item: dict, today: datetime.date | None = None) -> 
             try:
                 year = 2000 + int(m.group(1))
                 parsed_date = datetime.date(year, int(m.group(2)), int(m.group(3)))
-                if year <= reference_date.year + 1:
+                # YYMMDD is a weak signal: only trust it when the run is a
+                # date-shaped path/file segment, never when it sits inside an
+                # id-bearing segment (space.bilibili.com/<uid>/article/251231.html
+                # decoded to 2025-12-31, and "第251231号" to the same date).
+                # Require a non-digit delimiter before the run AND that the run
+                # is not preceded by an id-ish path segment marker.
+                if year <= reference_date.year and parsed_date <= reference_date and _yymmdd_segment_is_datelike(text, m):
                     return parsed_date.isoformat()
             except ValueError:
                 pass
@@ -605,6 +727,22 @@ def fetch_publication_date(url: str, platform: str, timeout: int = 15) -> str:
             m = re.search(r"create_time:\s*['\"](20\d{2}-\d{2}-\d{2})", raw)
             if m:
                 return m.group(1)
+            # var ct = "1755000000" — epoch timestamp embedded as page var
+            m = re.search(r'var\s+ct\s*=\s*["\']?(\d{10})', raw)
+            if m:
+                got = extract_publication_date({'created_at': m.group(1)})
+                if got:
+                    return got
+            # <em id="publish_time">2026-01-01</em> — rendered publish time span
+            m = re.search(r'id="publish_time"[^>]*>\s*(20\d{2}-\d{2}-\d{2})', raw)
+            if m:
+                return m.group(1)
+            # og:article:published_time meta (WeChat sometimes carries this)
+            m = re.search(r'property=["\']article:published_time["\'][^>]+content=["\']([^"\']+)', raw, re.I)
+            if m:
+                parsed = extract_publication_date({'date': m.group(1)})
+                if parsed:
+                    return parsed
         if platform == 'bilibili' and 'bilibili.com' in url:
             bv_match = re.search(r'(BV[a-zA-Z0-9]+)', url)
             if bv_match:
@@ -640,17 +778,43 @@ def fetch_publication_date(url: str, platform: str, timeout: int = 15) -> str:
                 headers = {'User-Agent': 'Mozilla/5.0', 'Referer': 'https://weibo.com/'}
                 if cookies:
                     headers['Cookie'] = '; '.join(f'{k}={v}' for k, v in cookies.items())
-                req = urllib.request.Request(f'https://weibo.com/ajax/statuses/show?id={status_id}', headers=headers)
-                data = json.loads(urllib.request.urlopen(req, timeout=timeout).read().decode('utf-8', 'ignore'))
-                post = data.get('data', data)
-                return extract_publication_date({'created_at': post.get('created_at', '')})
+                try:
+                    req = urllib.request.Request(f'https://weibo.com/ajax/statuses/show?id={status_id}', headers=headers)
+                    data = json.loads(urllib.request.urlopen(req, timeout=timeout).read().decode('utf-8', 'ignore'))
+                    post = data.get('data', data)
+                    got = extract_publication_date({'created_at': post.get('created_at', '')})
+                    if got:
+                        return got
+                except Exception:
+                    pass
+                # Fallback: m.weibo.cn detail page embeds a JSON blob with created_at
+                # (Sina Visitor System may block, but try once without cookie too).
+                try:
+                    detail_req = urllib.request.Request(
+                        f'https://m.weibo.cn/detail/{status_id}',
+                        headers={'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)'},
+                    )
+                    dr = urllib.request.urlopen(detail_req, timeout=timeout).read(200000).decode('utf-8', 'ignore')
+                    m = re.search(r'"created_at"\s*:\s*"([^"]+)"', dr)
+                    if m:
+                        got = extract_publication_date({'created_at': m.group(1)})
+                        if got:
+                            return got
+                except Exception:
+                    pass
         req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
         raw = urllib.request.urlopen(req, timeout=timeout).read(512000).decode('utf-8', 'ignore')
         for pattern in (
             r'property=["\']article:published_time["\'][^>]+content=["\']([^"\']+)',
             r'name=["\']pubdate["\'][^>]+content=["\']([^"\']+)',
             r'itemprop=["\']datePublished["\'][^>]+content=["\']([^"\']+)',
+            # JSON-LD structured data: "datePublished": "2026-01-01..."
+            r'"datePublished"\s*:\s*"([^"]+)"',
+            # <time datetime="2026-01-01..."> HTML5 element
+            r'<time[^>]+datetime=["\']([^"\']+)',
             r'(20\d{2}[.\-/年]\d{1,2}[.\-/月]\d{1,2})',
+            # MM月DD日 without year (Chinese feed snippets) — via _parse_relative_date
+            r'(\d{1,2}月\d{1,2}日)',
         ):
             m = re.search(pattern, raw, re.I)
             if m:
@@ -662,18 +826,52 @@ def fetch_publication_date(url: str, platform: str, timeout: int = 15) -> str:
     return ''
 
 
-def is_stale_kol_item(item: dict, max_age_days: int = 7, today: datetime.date | None = None) -> tuple[bool, str]:
+# Freshness windows per material policy. A KOL *viewpoint* radar is not a
+# breaking-news feed: a commentary piece keeps reference value across the
+# current content cycle, so a single 7/30-day cutoff evicted every dated item
+# and produced NO_FRESH_DATED while genuinely expired 2022/2023 material still
+# has to be dropped. Tunable via KEWU_KOL_FRESHNESS_DAYS_<POLICY>.
+KOL_FRESHNESS_WINDOW_DAYS = {
+    'PLATFORM_SIGNAL': 365,
+    'DISCOVERY_ONLY': 270,
+}
+KOL_FRESHNESS_DEFAULT_DAYS = 270
+
+
+def kol_freshness_window_days(policy: str) -> int:
+    """Resolve the freshness window for a material policy (env-overridable)."""
+    key = (policy or '').strip().upper()
+    env = os.getenv(f'KEWU_KOL_FRESHNESS_DAYS_{key}') if key else None
+    if env and env.strip().isdigit():
+        return int(env.strip())
+    return KOL_FRESHNESS_WINDOW_DAYS.get(key, KOL_FRESHNESS_DEFAULT_DAYS)
+
+
+def is_stale_kol_item(
+    item: dict,
+    max_age_days: int | None = None,
+    today: datetime.date | None = None,
+) -> tuple[bool, str]:
     """Check freshness. Returns (is_stale, reason_tag).
 
     Rules:
-      1. Has published_at → parse; >max_age_days → STALE_KOL_ARTICLE
+      1. Has published_at → year at least 2 behind → DATE_OLD_YEAR;
+         else age > policy window → STALE_KOL_ARTICLE.
+         PLATFORM_SIGNAL from the prior calendar year stays in the approved
+         content-cycle window (date_sense TF-3) even when day-count is large.
       2. No published_at but evidence has year clue (e.g. "2024年", "2025年")
-         and year < current year → DATE_OLD_YEAR
+         and year is at least 2 years behind → DATE_OLD_YEAR
       3. No date at all → DATE_UNKNOWN (not stale, but lower confidence)
+
+    max_age_days defaults to the policy-derived viewpoint window
+    (see KOL_FRESHNESS_WINDOW_DAYS); pass an explicit value to override.
     """
     pub = (item.get('published_at') or '').strip()
     evidence = (item.get('evidence') or '') + ' ' + (item.get('title') or '')
     reference_date = today or datetime.date.today()
+    policy = (item.get('material_policy') or '').strip().upper()
+    if max_age_days is None:
+        max_age_days = kol_freshness_window_days(policy)
 
     # Try published_at first
     if pub:
@@ -684,11 +882,17 @@ def is_stale_kol_item(item: dict, max_age_days: int = 7, today: datetime.date | 
         if parsed:
             try:
                 pub_date = datetime.date.fromisoformat(parsed)
+                # Truly old calendar years first (2023 in 2026). Ordering age
+                # before the year guard previously marked in-cycle 2025 material
+                # STALE_KOL_ARTICLE and produced NO_FRESH_DATED.
+                if pub_date.year < reference_date.year - 1:
+                    return True, 'DATE_OLD_YEAR'
+                # Approved viewpoint cycle: prior-year eligible policies stay.
+                if policy in ('PLATFORM_SIGNAL', 'DISCOVERY_ONLY') and pub_date.year == reference_date.year - 1:
+                    return False, ''
                 age = (reference_date - pub_date).days
                 if age > max_age_days:
                     return True, 'STALE_KOL_ARTICLE'
-                if pub_date.year < reference_date.year:
-                    return True, 'DATE_OLD_YEAR'
             except (ValueError, TypeError):
                 pass
 
@@ -706,6 +910,84 @@ def is_stale_kol_item(item: dict, max_age_days: int = 7, today: datetime.date | 
         return False, 'DATE_UNKNOWN'
 
     return False, ''
+
+
+# Weibo hot/aggregator shells are event roll-up pages, not single posts, so they
+# carry no single publication timestamp by construction. They must leave the
+# eligible pool (ARCHIVE_WITH_REASON / WEIBO_AGGREGATOR_PAGE) rather than inflate
+# DATE_UNKNOWN_RATIO as fake metadata misses.
+WEIBO_AGGREGATOR_URL_PATTERNS = (
+    r'weibo\.com/a/hot/',
+    r'm\.s\.weibo\.com/zhisou',
+    r's\.weibo\.com/(?:top|weibo|hot)',
+)
+AGGREGATOR_FAILURE_TAG = 'WEIBO_AGGREGATOR_PAGE'
+
+
+def is_aggregator_url(url: str) -> bool:
+    """True for platform roll-up/search shells that have no single pub date."""
+    u = (url or '').strip().lower()
+    if not u:
+        return False
+    return any(re.search(p, u) for p in WEIBO_AGGREGATOR_URL_PATTERNS)
+
+
+def date_unknown_failure_tag(item: dict) -> str:
+    """Classify *why* a date is missing so diagnostics stay actionable.
+
+    Aggregator URLs are handled by apply_kol_item_gates (demoted out of
+    eligible) and must not reach this helper as an eligible DATE_UNKNOWN.
+    """
+    body_status = (item.get('body_status') or '').strip()
+    if is_aggregator_url(item.get('url', '')):
+        return AGGREGATOR_FAILURE_TAG
+    if body_status == 'truncated_by_budget':
+        return 'DATE_UNKNOWN_BODY_TRUNCATED'
+    if body_status in ('fetch_fail', 'skipped_domain_mismatch'):
+        return 'DATE_UNKNOWN_BODY_FETCH_FAIL'
+    if body_status == 'skipped_non_article':
+        return 'DATE_UNKNOWN_NON_ARTICLE'
+    if body_status in ('fetched', 'excerpt_only'):
+        return 'DATE_UNKNOWN_NO_METADATA'
+    return 'DATE_UNKNOWN'
+
+
+def backfill_platform_metadata_date(item: dict, timeout: int = 8) -> str:
+    """Bounded metadata-only date fetch for budget-truncated bodies.
+
+    Pulls only explicit platform metadata (wechat ori_create_time / create_time,
+    weibo created_at). Never uses collection/run timestamps. Returns '' when
+    metadata is inaccessible — callers must leave published_at empty rather than invent.
+    """
+    if (item.get('published_at') or '').strip():
+        return ''
+    platform = (item.get('platform') or '').strip()
+    url = (item.get('url') or '').strip()
+    body_status = (item.get('body_status') or '').strip()
+    # Only when body capture was interrupted or never produced evidence for
+    # extract_publication_date — full 'fetched' already ran fetch_publication_date.
+    if body_status not in ('truncated_by_budget', 'excerpt_only', 'fetch_fail'):
+        return ''
+    # WeChat: ori_create_time / create_time / var ct / publish_time
+    if platform == 'wechat' and 'mp.weixin.qq.com' in url:
+        # Normalize scheme; WeChat search hits often arrive as http:// and some
+        # edges reset those while https serves ori_create_time reliably.
+        if url.startswith('http://mp.weixin.qq.com'):
+            url = 'https://' + url[len('http://'):]
+        got = fetch_publication_date(url, 'wechat', timeout=timeout)
+        if got:
+            return got
+        # One bounded retry for transient resets; still never invent a date.
+        return fetch_publication_date(url, 'wechat', timeout=timeout)
+    # Weibo: ajax statuses/show / m.weibo.cn detail created_at
+    if platform == 'weibo' and ('weibo.com' in url or 'weibo.cn' in url):
+        if is_aggregator_url(url):
+            return ''
+        got = fetch_publication_date(url, 'weibo', timeout=timeout)
+        if got:
+            return got
+        return fetch_publication_date(url, 'weibo', timeout=timeout)
+    return ''
 
 
 def run_cmd(cmd: list[str], timeout: int = 30) -> tuple[int, str, str]:
@@ -1040,6 +1322,169 @@ def discover_for_account(account: dict, platform: str, timeout_sec: int, limit_p
 #  B. Body Fetch — 平台感知正文抓取
 # ══════════════════════════════════════════
 
+# ── 微博公开正文（游客态，无需登录 Cookie）──
+# 根因（2026-08-13 sidecar PARTIAL）：weibo.com/ajax/statuses/show 必须登录态，
+# 无 Cookie 或 Cookie 过期时回 {"ok":-100, url: login.php}；裸请 m.weibo.cn 会 302 到
+# visitor.passport.weibo.cn 的 Sina Visitor System 壳页。修复路线：先走 passport
+# genvisitor/incarnate 换游客 SUB/SUBP，再打 m.weibo.cn 公开 JSON 接口。
+_WEIBO_GUEST_UA = (
+    'Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 '
+    '(KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1'
+)
+_WEIBO_GUEST_TTL = 1800
+_weibo_guest_cache: dict = {'opener': None, 'ts': 0.0}
+# 视觉壳/提示文本，命中即判非正文（不得当正文回传）
+_WEIBO_SHELL_MARKERS = (
+    'Sina Visitor System', '新浪通行证', '微博登录', '展开全文c', 'Weibo.com',
+)
+
+
+def _weibo_guest_opener(force: bool = False):
+    """返回带游客 Cookie 的 urllib opener；失败返回 None。不落盘、不读用户凭据。"""
+    import http.cookiejar, urllib.request, urllib.parse
+    now = time.time()
+    if (not force and _weibo_guest_cache['opener'] is not None
+            and now - _weibo_guest_cache['ts'] < _WEIBO_GUEST_TTL):
+        return _weibo_guest_cache['opener']
+    jar = http.cookiejar.CookieJar()
+    opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(jar))
+    fp = json.dumps({
+        'os': '1', 'browser': 'Safari16,0,0,0', 'fonts': 'undefined',
+        'screenInfo': '390*844*24', 'plugins': '',
+    })
+    try:
+        req = urllib.request.Request(
+            'https://passport.weibo.com/visitor/genvisitor',
+            data=urllib.parse.urlencode({'cb': 'gen_callback', 'fp': fp}).encode(),
+            headers={
+                'User-Agent': _WEIBO_GUEST_UA,
+                'Referer': 'https://passport.weibo.com/visitor/visitor',
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+        )
+        raw = opener.open(req, timeout=15).read().decode('utf-8', 'ignore')
+        tid_m = re.search(r'"tid":"([^"]+)"', raw)
+        if not tid_m:
+            return None
+        inc = (
+            'https://passport.weibo.com/visitor/visitor?a=incarnate&t='
+            + urllib.parse.quote(tid_m.group(1))
+            + '&w=2&c=095&gc=&cb=cross_domain&from=weibo&_rand=' + str(time.time())
+        )
+        opener.open(urllib.request.Request(inc, headers={
+            'User-Agent': _WEIBO_GUEST_UA,
+            'Referer': 'https://passport.weibo.com/visitor/visitor',
+        }), timeout=15).read()
+    except Exception:
+        return None
+    if not any(c.name in ('SUB', 'SUBP') for c in jar):
+        return None
+    _weibo_guest_cache['opener'] = opener
+    _weibo_guest_cache['ts'] = now
+    return opener
+
+
+def _weibo_clean_text(raw_html: str) -> str:
+    """微博 text 字段（含 <a>/<br>/表情 img）转纯文本。"""
+    import html as html_mod
+    t = re.sub(r'<br\s*/?>', '\n', raw_html or '')
+    t = re.sub(r'<img[^>]*alt=["\']?([^"\'>\s]*)["\']?[^>]*>', r'\1', t)
+    t = re.sub(r'<[^>]+>', '', t)
+    t = html_mod.unescape(t)
+    t = re.sub(r'[ \t\u3000]+', ' ', t)
+    return re.sub(r'\n{3,}', '\n\n', t).strip()
+
+
+def _weibo_extract_mid(url: str) -> str:
+    """从各种微博 URL 形态提取 base62 mid / 数字 id；取不到返回 ''。"""
+    for pat in (
+        r'h5\.video\.weibo\.com/show/\d+:([0-9A-Za-z]+)',
+        r'm\.weibo\.cn/(?:detail|status)/([0-9A-Za-z]+)',
+        r'weibo\.com/(?:\d+|u/\d+|[A-Za-z0-9_\-]+)/status(?:es)?/([0-9A-Za-z]+)',
+        r'weibo\.com/\d+/([0-9A-Za-z]{9,})(?:[/?#]|$)',
+        r'weibo\.com/[A-Za-z0-9_\-]+/([0-9A-Za-z]{9,})(?:[/?#]|$)',
+    ):
+        m = re.search(pat, url)
+        if m:
+            return m.group(1)
+    tail = url.split('?')[0].split('#')[0].rstrip('/').split('/')[-1]
+    if re.fullmatch(r'[0-9A-Za-z]{9,}', tail) and not tail.isdigit():
+        return tail
+    if re.fullmatch(r'\d{16,}', tail):
+        return tail
+    return ''
+
+
+def _weibo_guest_body(mid: str, timeout: int = 20) -> tuple[str, str]:
+    """m.weibo.cn 游客态取公开微博正文。返回 (text, failure_tag)。
+
+    失败分类精确到原因：作者设置不可见 / 已删除 / 需登录 / 接口异常 / 正文过短。
+    """
+    import urllib.request
+    if not mid:
+        return '', 'WEIBO_NO_STATUS_ID'
+    opener = _weibo_guest_opener()
+    if opener is None:
+        return '', 'WEIBO_GUEST_TOKEN_FAIL'
+
+    def _api(path: str) -> tuple[dict, str]:
+        req = urllib.request.Request(
+            f'https://m.weibo.cn{path}',
+            headers={
+                'User-Agent': _WEIBO_GUEST_UA,
+                'Referer': 'https://m.weibo.cn/',
+                'Accept': 'application/json, text/plain, */*',
+                'Accept-Language': 'zh-CN,zh;q=0.9',
+                'X-Requested-With': 'XMLHttpRequest',
+                'MWeibo-Pwa': '1',
+            },
+        )
+        try:
+            resp = opener.open(req, timeout=min(timeout, 20))
+            raw = resp.read(400000).decode('utf-8', 'ignore')
+        except Exception as exc:
+            return {}, 'WEIBO_HTTP_ERROR|' + type(exc).__name__
+        if 'Sina Visitor System' in raw or '<html' in raw[:200].lower():
+            return {}, 'WEIBO_GUEST_REDIRECT_LOGIN'
+        try:
+            return json.loads(raw), ''
+        except json.JSONDecodeError:
+            return {}, 'WEIBO_JSON_DECODE_FAIL'
+
+    data, tag = _api(f'/statuses/show?id={mid}')
+    if tag:
+        return '', tag
+    if not data.get('ok'):
+        errno = str(data.get('errno') or '')
+        if errno == '20170':
+            return '', 'WEIBO_AUTHOR_RESTRICTED'
+        if errno in ('20101', '20003'):
+            return '', 'WEIBO_POST_DELETED'
+        return '', 'WEIBO_API_NOT_OK|errno=' + (errno or 'unknown')
+    d = data.get('data') or {}
+    text = _weibo_clean_text(d.get('text', ''))
+    if d.get('isLongText') and d.get('id'):
+        ext, ext_tag = _api(f'/statuses/extend?id={d["id"]}')
+        if not ext_tag and ext.get('ok'):
+            long_text = _weibo_clean_text(
+                (ext.get('data') or {}).get('longTextContent', ''))
+            if len(long_text) > len(text):
+                text = long_text
+    # 转发微博：原文才是正文主体，拼接后一起判定
+    rt = d.get('retweeted_status') or {}
+    if rt:
+        rt_text = _weibo_clean_text(rt.get('text', ''))
+        if rt_text:
+            text = (text + '\n【转发原文】' + rt_text).strip()
+    if not text:
+        return '', 'WEIBO_EMPTY_TEXT'
+    if any(mk in text for mk in _WEIBO_SHELL_MARKERS):
+        return '', 'WEIBO_SHELL_TEXT_ONLY'
+    if not evidence_is_body(text):
+        return '', f'WEIBO_BODY_TOO_SHORT|len={len(text)}'
+    return text, ''
+
+
 def fetch_body(url: str, platform: str, timeout: int = 30) -> tuple[str, str]:
     """返回 (body_snippet[:500], failure_tag or '')."""
     if not url:
@@ -1218,26 +1663,23 @@ def fetch_body(url: str, platform: str, timeout: int = 30) -> tuple[str, str]:
             return cdp_body[:500], ''
         return '', cdp_err
 
-    # ── 微博：mobile API with cookie → collect_web → urllib ──
+    # ── 微博：游客态 m.weibo.cn JSON → cookie 桌面 API → collect_web ──
+    # 该分支自闭环：不再落到通用 urllib，避免把 Sina Visitor System 壳页
+    # (~3.7KB HTML，strip 后 >50 字符) 误当正文回传。
     if 'weibo.com' in url or 'm.weibo.cn' in url or 'h5.video.weibo.com' in url:
         import urllib.request, urllib.parse
-        # Extract status_id from URL
-        _status_id = ''
-        for _sp in [
-            r'h5\.video\.weibo\.com/show/\d+:([0-9A-Za-z]+)',
-            r'm\.weibo\.cn/detail/([0-9A-Za-z]+)',
-            r'm\.weibo\.cn/status/([0-9A-Za-z]+)',
-            r'weibo\.com/[^/\s]+/status/([0-9A-Za-z]+)',
-        ]:
-            _sm = re.search(_sp, url)
-            if _sm:
-                _status_id = _sm.group(1)
-                break
-        if not _status_id:
-            # Try last path segment as status_id (for weibo.com/uid/mid format)
-            _parts = url.rstrip('/').split('/')
-            if len(_parts) >= 2 and re.fullmatch(r'[0-9A-Za-z]+', _parts[-1]):
-                _status_id = _parts[-1]
+        # 聚合页（weibo.com/a/hot/…）没有单条正文，按既有契约直接给聚合标签
+        if is_aggregator_url(url):
+            return '', AGGREGATOR_FAILURE_TAG
+        _status_id = _weibo_extract_mid(url)
+        # Route 0: 游客态公开接口（无需登录 Cookie，优先）
+        # 主页/名片页（weibo.com/casc?lpage=…）不含单条 mid，给专用标签便于发现层修 URL
+        _wb_tag = 'WEIBO_PROFILE_PAGE_NO_STATUS' if re.search(
+            r'weibo\.com/(?:u/\d+|[A-Za-z0-9_\-]+)(?:/)?(?:\?|$)', url) else 'WEIBO_NO_STATUS_ID'
+        if _status_id:
+            _wb_body, _wb_tag = _weibo_guest_body(_status_id, timeout=min(timeout, 20))
+            if _wb_body:
+                return _wb_body[:500], ''
         if _status_id:
             # Read cookies
             _cookie_file = Path('/root/.hermes/weibo_cookies.txt')
@@ -1282,11 +1724,14 @@ def fetch_body(url: str, platform: str, timeout: int = 30) -> tuple[str, str]:
                 data = json.loads(out.strip())
                 if data.get('data'):
                     _item = data['data'][0] if isinstance(data['data'], list) else data['data']
-                    _wb = _item.get('text', '') or _item.get('body', '')
-                    if _wb and len(_wb) > 30:
+                    _wb = _weibo_clean_text(_item.get('text', '') or _item.get('body', ''))
+                    if (_wb and evidence_is_body(_wb)
+                            and not any(mk in _wb for mk in _WEIBO_SHELL_MARKERS)):
                         return _wb[:500], ''
             except (json.JSONDecodeError, IndexError):
                 pass
+        # 微博分支到此终止：通用 urllib 只会拿到访客壳页，不得冒充正文。
+        return '', (_wb_tag or 'BODY_FETCH_FAIL')
 
     # ── 通用网页：collect_web light → urllib ──
     try:
@@ -1378,6 +1823,30 @@ def infer_viewpoint(item: dict) -> str:
     return '|'.join(tags) if tags else '待模型审'
 
 
+def apply_dyson_archive_gate(it: dict, domain_score: dict) -> None:
+    """Dyson relevance gate for platform-commentary discovery items (radar-local).
+
+    This radar only feeds the scorer secondary '*_platform_commentary' items;
+    primary-fact cards never pass through here, so this gate cannot weaken them.
+
+    Explicit contract for the no-Dyson-match path:
+    - Eligible policy (PLATFORM_SIGNAL/DISCOVERY_ONLY) + no Dyson match →
+      ARCHIVE_WITH_REASON with the scorer's explicit reason (default
+      NO_DYSON_TREE_MATCH). Dyson matching doubles as the domain-relevance
+      gate: viewpoint items that hit no capability node are archived, not
+      eligible.
+    - Any other re-gate outcome → drop legacy archive_reason. Replayed sidecar
+      items can carry a stale reason from a previous run; without the clear, a
+      NOISE/DATE_OLD_YEAR item kept 'NO_DYSON_TREE_MATCH' and reported
+      contradictory state.
+    """
+    if it.get('material_policy') in ('PLATFORM_SIGNAL', 'DISCOVERY_ONLY') and not it.get('dyson_tree_matches'):
+        it['material_policy'] = 'ARCHIVE_WITH_REASON'
+        it['archive_reason'] = domain_score.get('archive_reason') or 'NO_DYSON_TREE_MATCH'
+    else:
+        it.pop('archive_reason', None)
+
+
 def material_policy_tag(item: dict) -> str:
     """素材政策：signal强→可入素材池，弱→只留线索。"""
     score = 0
@@ -1431,7 +1900,7 @@ def _infer_confidence_score(it: dict) -> float:
     if it.get('platform') in ('wechat', 'bilibili', 'weibo', 'zhihu'):
         score += 0.05
     # P0: DATE_UNKNOWN → lower ceiling
-    if it.get('failure_tag') == 'DATE_UNKNOWN':
+    if is_date_unknown_tag(it.get('failure_tag')):
         score = min(score, 0.55)
     return round(min(score, 0.9), 2)
 
@@ -1575,15 +2044,19 @@ def main():
         plat_map = {'wechat': '微信公众号', 'bilibili': 'B站', 'weibo': '微博', 'zhihu': '知乎'}
         plat_filter.add(plat_map.get(args.platform, args.platform))
 
-    # resume: load existing items
+    # resume / post-segment: load existing items.
+    # --discovery-json alone = deterministic post-segment replay (no live
+    # discovery). --resume = load then continue collecting.
     existing_items: list[dict] = []
     existing_urls: set[str] = set()
-    if args.resume and discovery_path.exists():
+    post_segment = bool(args.discovery_json) and discovery_path.exists() and not args.resume
+    if (args.resume or post_segment) and discovery_path.exists():
         try:
             old = json.loads(discovery_path.read_text(encoding='utf-8'))
             existing_items = old.get('items', [])
             existing_urls = {it['url'] for it in existing_items if it.get('url')}
-            print(f'[resume] loaded {len(existing_items)} existing items from {discovery_path}')
+            mode = 'post-segment' if post_segment else 'resume'
+            print(f'[{mode}] loaded {len(existing_items)} existing items from {discovery_path}')
         except Exception:
             pass
 
@@ -1601,6 +2074,10 @@ def main():
     )
     queried_account_names: set[str] = set()
     queried_domain_ids: set[str] = set()
+
+    if post_segment:
+        print(f'[post-segment] skip live discovery; re-gate {len(all_items)} items')
+        query_plan = []
 
     for acc, plat_raw, plat in query_plan:
         if runtime_budget_exhausted():
@@ -1746,17 +2223,64 @@ def main():
     for it in all_items:
         if it.get('viewpoint_inference', '') in ('', '待模型审'):
             it['viewpoint_inference'] = infer_viewpoint(it)
-        if not it.get('published_at'):
-            it['published_at'] = extract_publication_date(it)
-        # P0: freshness gate — must run BEFORE material_policy_tag
-        stale, reason = is_stale_kol_item(it, max_age_days=30)
-        if stale:
-            it['material_policy'] = 'NOISE'
-            it['failure_tag'] = reason
+        # Aggregator/hot shells and non-article profile/search URLs are not
+        # single dated posts: demote out of eligible before date/freshness
+        # gates so they cannot inflate DATE_UNKNOWN_RATIO. Never invent a date.
+        if is_aggregator_url(it.get('url', '')):
+            it['material_policy'] = 'ARCHIVE_WITH_REASON'
+            it['failure_tag'] = AGGREGATOR_FAILURE_TAG
+            it['published_at'] = (it.get('published_at') or '').strip()
+        elif it.get('body_status') == 'skipped_non_article' or is_non_article_url(it.get('url', '')):
+            it['material_policy'] = 'ARCHIVE_WITH_REASON'
+            it['failure_tag'] = 'NON_ARTICLE_URL'
+            it['published_at'] = (it.get('published_at') or '').strip()
         else:
-            if reason == 'DATE_UNKNOWN':
-                it['failure_tag'] = 'DATE_UNKNOWN'
-            it['material_policy'] = material_policy_tag(it)
+            # Date backfill pass. The body loop only calls fetch_publication_date on
+            # the 'fetched' branch, so every item that hit a budget/domain/non-article
+            # continue kept published_at empty and reported DATE_UNKNOWN even when the
+            # date sat in plain sight in the title/excerpt/url. Re-derive from the
+            # item's own explicit fields here (no collection time, no invention),
+            # then optionally a bounded metadata-only platform fetch for WeChat
+            # items interrupted by body budget.
+            if not it.get('published_at'):
+                backfilled = extract_publication_date(it)
+                if backfilled:
+                    it['published_at'] = backfilled
+                    it['published_at_source'] = 'backfill_item_fields'
+                else:
+                    meta = backfill_platform_metadata_date(it, timeout=10)
+                    if meta:
+                        it['published_at'] = meta
+                        it['published_at_source'] = 'backfill_platform_metadata'
+            # Freshness gate. The viewpoint window is policy-dependent, so the
+            # provisional policy must be known first; a stale verdict then demotes
+            # the item to NOISE. Ordering it the other way round forced a single
+            # global cutoff and evicted every dated item (NO_FRESH_DATED).
+            provisional_policy = material_policy_tag(it)
+            it['material_policy'] = provisional_policy
+            stale, reason = is_stale_kol_item(it)
+            if stale:
+                it['material_policy'] = 'NOISE'
+                it['failure_tag'] = reason
+                it['stale_evicted_from_policy'] = provisional_policy
+            else:
+                if is_date_unknown_tag(reason):
+                    it['failure_tag'] = date_unknown_failure_tag(it)
+                else:
+                    # Re-gate cleared the defect: drop obsolete unknown/stale/budget tags.
+                    prev = it.get('failure_tag') or ''
+                    if (
+                        is_date_unknown_tag(prev)
+                        or prev in (
+                            'BUDGET_TRUNCATED',
+                            AGGREGATOR_FAILURE_TAG,
+                            'STALE_KOL_ARTICLE',
+                            'DATE_OLD_YEAR',
+                            'NON_ARTICLE_URL',
+                        )
+                    ):
+                        it['failure_tag'] = ''
+                    it.pop('stale_evicted_from_policy', None)
         it['source_nature'] = 'platform_commentary_discovery_not_primary_fact'
         it['official_crosscheck_required'] = True
         it['official_crosscheck_status'] = 'REQUIRED_BEFORE_FORMAL_FACT_CARD'
@@ -1776,9 +2300,7 @@ def main():
             it['outline_chapter_hits'] = domain_score.get('outline_chapter_hits', [])
             it['dyson_tree_matches'] = domain_score.get('dyson_tree_matches', [])
             it['dyson_gate_status'] = domain_score.get('dyson_gate_status', '')
-            if it.get('material_policy') in ('PLATFORM_SIGNAL', 'DISCOVERY_ONLY') and not it['dyson_tree_matches']:
-                it['material_policy'] = 'ARCHIVE_WITH_REASON'
-                it['archive_reason'] = domain_score.get('archive_reason') or 'NO_DYSON_TREE_MATCH'
+            apply_dyson_archive_gate(it, domain_score)
 
     # ── D. Save platform_discovery.json ──
     stats = {
@@ -1813,7 +2335,7 @@ def main():
         'social_cdp_platform_pages': len(social_cdp_report.get('platform_pages', [])),
         # P0: freshness stats
         'stale_filtered': sum(1 for i in all_items if i.get('failure_tag') in ('STALE_KOL_ARTICLE', 'DATE_OLD_YEAR')),
-        'date_unknown': sum(1 for i in all_items if i.get('failure_tag') == 'DATE_UNKNOWN'),
+        'date_unknown': sum(1 for i in all_items if is_date_unknown_tag(i.get('failure_tag'))),
     }
 
     discovery_doc = {
@@ -1938,7 +2460,12 @@ def main():
         failure_tags.append(f'ACCOUNTS_ONLY_{len(accounts_with_results)}_WITH_RESULTS')
     if stale_platform > 0:
         failure_tags.append(f'STALE_PLATFORM={stale_platform}')
-    if not cdp_available:
+    # 2026-08-12: socialext-cft profile 无 Default/Extensions、Cookies 仅 20KB，
+    # 社媒助手扩展与五平台登录态实际不存在，CDP 补采链路无资产可用。
+    # KEWU_DISABLE_SOCIAL_CDP=1 时视为「按设计关闭」，不计入 failure_tags，
+    # 避免 sidecar_health 恒为 PARTIAL 导致哨兵每轮空弹。
+    # 重建登录态后清掉该环境变量即可恢复原判定。
+    if not cdp_available and os.getenv('KEWU_DISABLE_SOCIAL_CDP') != '1':
         failure_tags.append('CDP_UNAVAILABLE_SOCIAL_SUPPLEMENT_OFF')
 
     # Per-domain failure reasons: any domain without strict body or signal

@@ -1,0 +1,33 @@
+{
+  "updated_at": "2026-08-14T18:43:53",
+  "run_id": "cron_20260814_1832",
+  "run_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260814_1832",
+  "per_run_bridge_dir": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260814_1832_final/bridge_runs/cron_20260814_1832",
+  "valid_input_count": 8,
+  "skipped_count": 95,
+  "disposition_counts": {
+    "OUTLINE_PATCH": 0,
+    "CHAPTER_PREP_ONLY": 1,
+    "ARCHIVE_WITH_REASON": 7
+  },
+  "conversion_task_count": 1,
+  "missing_cards_by_tier": {
+    "P0": [
+      "科技日报___2025-02-11_14_27_01_030e59eab8b49cac"
+    ],
+    "P1": [
+      "59374_overview_1e34214f1442f5c5",
+      "artemis_8d279be15a4247ac"
+    ]
+  },
+  "p0_missing": true,
+  "p0_missing_cards": [
+    "科技日报___2025-02-11_14_27_01_030e59eab8b49cac"
+  ],
+  "report": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260814_1832_final/DRY_RUN_REPORT.md",
+  "p0_p1_gate_blocked": true,
+  "p1_missing_cards": [
+    "59374_overview_1e34214f1442f5c5",
+    "artemis_8d279be15a4247ac"
+  ]
+}

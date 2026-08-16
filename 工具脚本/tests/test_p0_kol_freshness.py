@@ -89,13 +89,24 @@ if not stale and reason == 'DATE_UNKNOWN':
 else:
     fail('no_date', f'stale={stale}, reason={reason}')
 
-# 2e. Evidence with old year "2025年" → DATE_OLD_YEAR
-oldyear = {'title': '2025年回顾', 'evidence': '2025年发生了重大变化', 'published_at': ''}
-stale, reason = radar.is_stale_kol_item(oldyear, max_age_days=7, today=FIXTURE_TODAY)
-if stale and reason == 'DATE_OLD_YEAR':
-    ok('evidence_2025 → DATE_OLD_YEAR')
+# 2e. Evidence year one year back ("2025年" in 2026) must NOT be evicted:
+# a KOL viewpoint from last year still carries reference value, and the
+# year-rollover cutoff is what mass-killed valid commentary. Only material
+# at least two years behind is genuinely expired.
+lastyear = {'title': '2025年回顾', 'evidence': '2025年发生了重大变化', 'published_at': ''}
+stale, reason = radar.is_stale_kol_item(lastyear, max_age_days=7, today=FIXTURE_TODAY)
+if not stale and reason == 'DATE_UNKNOWN':
+    ok('evidence_2025 in 2026 → NOT DATE_OLD_YEAR (undated, kept)')
 else:
     fail('evidence_2025', f'stale={stale}, reason={reason}')
+
+# 2e-2. Two years behind is still evicted.
+oldyear = {'title': '2023年回顾', 'evidence': '2023年发生了重大变化', 'published_at': ''}
+stale, reason = radar.is_stale_kol_item(oldyear, max_age_days=7, today=FIXTURE_TODAY)
+if stale and reason == 'DATE_OLD_YEAR':
+    ok('evidence_2023 → DATE_OLD_YEAR')
+else:
+    fail('evidence_2023', f'stale={stale}, reason={reason}')
 
 # 2f. Relative date "3天前" → NOT stale
 recent = {'title': '最近的', 'evidence': '', 'published_at': '3天前'}
@@ -397,10 +408,17 @@ mixed_items = [
     {'body_status': 'excerpt_only', 'failure_tag': 'DATE_UNKNOWN', 'material_policy': 'DISCOVERY_ONLY', 'published_at': ''},
     {'body_status': 'fetch_fail', 'failure_tag': '', 'material_policy': 'NOISE', 'published_at': ''},
     {'body_status': 'truncated_by_budget', 'failure_tag': 'DATE_UNKNOWN', 'material_policy': 'NOISE', 'published_at': ''},
+    # ARCHIVE_NO_DYSON is counted off material_policy == 'ARCHIVE_WITH_REASON';
+    # the assertion below requires ARCHIVE_NO_DYSON=1, so the fixture has to
+    # actually carry one such item (it previously did not, making that leg of
+    # the assertion unsatisfiable by construction).
+    {'body_status': 'fetched', 'failure_tag': '', 'material_policy': 'ARCHIVE_WITH_REASON', 'published_at': '2026-08-10'},
 ]
 diag = radar.compute_domain_diagnostics('ai', mixed_items, cdp_available=cdp_available)
-if diag['body_fetched'] == 2 and diag['body_fetched_strict'] == 1 and diag['excerpt_only'] == 1 and diag['fresh_dated_count'] == 1 and diag['date_unknown_count'] == 2 and diag['fetch_fail'] == 1 and diag['truncated_by_budget'] == 1:
-    ok('mixed-domain: independent counts (body=2 strict=1 excerpt=1 fresh=1 unknown=2 fail=1 trunc=1)')
+# Counts synced to the 6-item fixture: the ARCHIVE_WITH_REASON entry is also
+# fetched+dated, so body_fetched=3 and fresh_dated=2 (stale item excluded).
+if diag['body_fetched'] == 3 and diag['body_fetched_strict'] == 1 and diag['excerpt_only'] == 1 and diag['fresh_dated_count'] == 2 and diag['date_unknown_count'] == 2 and diag['fetch_fail'] == 1 and diag['truncated_by_budget'] == 1:
+    ok('mixed-domain: independent counts (body=3 strict=1 excerpt=1 fresh=2 unknown=2 fail=1 trunc=1)')
 else:
     fail('mixed-domain counts', f'{diag}')
 fr = diag['failure_reason']

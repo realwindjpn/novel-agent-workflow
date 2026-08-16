@@ -1,6 +1,9 @@
 from pathlib import Path
 import re, sys, json
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from humanity_precard import default_card_path, validate_card
+
 ch=int(sys.argv[1])
 proj=Path('/root/workspace/科武纪元')
 # Prefer current candidate draft when present. Older versions looked at
@@ -8,6 +11,11 @@ proj=Path('/root/workspace/科武纪元')
 file=proj/'审核记录/临时精修'/f'第{ch}章_精修稿.tmp.md'
 if not file.exists(): file=proj/'待确认投稿'/f'第{ch}章改.txt'
 if not file.exists(): file=proj/'新版'/f'第{ch}章.md'
+humanity_card=default_card_path(file)
+humanity=validate_card(humanity_card,file)
+if humanity['status'] != 'PASS':
+    print(json.dumps({'chapter':ch,'status':'BLOCKED','humanity_card':str(humanity_card),'errors':humanity['errors']},ensure_ascii=False))
+    raise SystemExit(2)
 card=proj/'审核记录/任务卡'/f'第{ch}章.md'
 outdir=proj/'审核记录/证据包'; outdir.mkdir(parents=True,exist_ok=True)
 text=file.read_text(encoding='utf-8',errors='ignore')
@@ -68,6 +76,7 @@ pkg={
  'first_line':next((l for l in lines if l.strip()),''),
  'last_nonempty_line':lines[last-1] if last else '',
  'task_card':card_text[:1200],
+ 'humanity_card':humanity,
  'head_lines':head,
  'tail_lines':tail,
  'deai_hits':_deai_hits,
@@ -77,7 +86,7 @@ pkg={
 json_path=outdir/f'第{ch}章_evidence.json'
 md_path=outdir/f'第{ch}章_证据包.md'
 json_path.write_text(json.dumps(pkg,ensure_ascii=False,indent=2),encoding='utf-8')
-md=['# 第%d章 RTK证据包'%ch,'','## 文件',str(file),'','## 本地预检',f'- 字数：{pkg["chars"]}',f'- 首行：{pkg["first_line"]}',f'- 末行：{pkg["last_nonempty_line"]}','','## 去AI硬闸扫描',json.dumps(pkg['deai_counts'],ensure_ascii=False),'|行号|类型|证据|','|---:|---|---|']
+md=['# 第%d章 RTK证据包'%ch,'','## 文件',str(file),'','## 人味前置卡',f'- 路径：{humanity["card_path"]}',f'- SHA256：{humanity["card_sha256"]}',f'- 状态：{humanity["status"]}',f'- 锚点数：{humanity["anchor_count"]}','','## 后验人味审硬字段','- 编辑必须输出 `HUMANITY_EDITOR_PASS` 或 `HUMANITY_EDITOR_FAIL`，逐锚点核验七类约束。','- 读者必须输出 `HUMANITY_READER_PASS` 或 `HUMANITY_READER_FAIL`，逐锚点核验听感与人物行为兑现。','- 不得以“AI味不重”替代锚点核验。','','## 本地预检',f'- 字数：{pkg["chars"]}',f'- 首行：{pkg["first_line"]}',f'- 末行：{pkg["last_nonempty_line"]}','','## 去AI硬闸扫描',json.dumps(pkg['deai_counts'],ensure_ascii=False),'|行号|类型|证据|','|---:|---|---|']
 for h in pkg['deai_hits'][:80]:
     md.append(f"|{h['line']}|{h['type']}|{h['text'].replace('|','｜')}|")
 if not pkg['deai_hits']:

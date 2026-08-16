@@ -1,0 +1,38 @@
+[
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260814_7add9a74b9",
+    "title": "1月13日23时25分，长征八号甲运载火箭将卫星互联网低轨18组卫星送入预定轨道。卫星成功入轨并完成分离后，太阳能帆板展开，大厅内紧绷的气氛被掌声打破。",
+    "source_url": "https://news.cctv.com/2026/01/22/ARTIirX5et2odfxFyxg2FouY260122.shtml",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260814_1232/cards/1月13日23时25分_长征八号甲运载火箭将卫星互联网低轨18组卫星送入预定轨道_卫星成功入轨并完成_ea48a587.md",
+    "target_chapter_hint": 156,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_Wiki",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_Wiki"
+    ],
+    "not_done_in_dry_run": true
+  },
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260814_5504518772",
+    "title": "Reaching for the Moon and beyond",
+    "source_url": "https://www.esa.int/About_Us/Business_with_ESA/Business_Opportunities/Reaching_for_the_Moon_and_beyond",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260814_1232/cards/Reaching_for_the_Moon_and_beyond_c3a96a2c.md",
+    "target_chapter_hint": 156,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_Wiki",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_Wiki"
+    ],
+    "not_done_in_dry_run": true
+  }
+]

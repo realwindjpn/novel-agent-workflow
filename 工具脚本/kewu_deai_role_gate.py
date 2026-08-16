@@ -27,15 +27,19 @@ DEAI_ROLE_GATE = """
 ### B. 编辑DEAI：不可笼统PASS
 报告必须输出：
 - `DEAI_EDITOR_PASS` 或 `DEAI_EDITOR_FAIL`
+- `HUMANITY_EDITOR_PASS` 或 `HUMANITY_EDITOR_FAIL`
 - `NOT_BUT_COUNT`、`ENUMERATION_COUNT`、`META_INFO_COUNT`、`REPORT_TONE_COUNT`
 - 每一类命中必须给行号、原句、判定、删除/保留理由。
+- 必须按人味前置卡锚点逐项核验：人物当下目标、阻力、代价、关系张力、感官/物理反馈、动作链、角色口吻约束是否兑现；漏项或候选 SHA 不一致必须 `HUMANITY_EDITOR_FAIL`。
 - 任一章出现第四面墙元信息（下一章/第二卷/后续篇章等）= 必须 FAIL。
 - 出现密集说明、分层标签、对称定义收束、公文口播，除非逐条证明为自然对白/必要战术口令，否则 FAIL。
 
 ### C. 读者DEAI：按听书体验审
 报告必须输出：
 - `DEAI_READER_PASS` 或 `DEAI_READER_FAIL`
+- `HUMANITY_READER_PASS` 或 `HUMANITY_READER_FAIL`
 - 追读意愿1-5、听书出戏句、卡顿段、角色口吻趋同点。
+- 必须按人味前置卡锚点核验人物行为与听感兑现，并指出未兑现的具体约束；漏项或候选 SHA 不一致必须 `HUMANITY_READER_FAIL`。
 - “AI味不重/轻微总结腔可接受/会议感可接受”不得算PASS；必须给保留理由。
 - 听感硬闸：连续定义句、枚举句、总结句、宏观感慨比阅读更刺耳，应从严。
 

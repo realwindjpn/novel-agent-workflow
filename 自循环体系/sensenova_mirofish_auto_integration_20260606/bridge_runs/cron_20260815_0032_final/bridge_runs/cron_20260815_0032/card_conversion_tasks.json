@@ -1,0 +1,38 @@
+[
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260815_f100c02f3a",
+    "title": "从三大维度看新兴产业新动能加速奔涌",
+    "source_url": "http://www.xinhuanet.com/fortune/20260709/4c4a50be5ae4432f8a0303439dde3b2a/c.html",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260815_0032/cards/从三大维度看新兴产业新动能加速奔涌_487bda4e.md",
+    "target_chapter_hint": 359,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_Wiki",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_Wiki"
+    ],
+    "not_done_in_dry_run": true
+  },
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260815_299e05f224",
+    "title": "VIDEvA3Em3r61Ofq8pLuB0oC251010",
+    "source_url": "https://tv.cctv.com/2025/10/10/VIDEvA3Em3r61Ofq8pLuB0oC251010.shtml",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260815_0032/cards/VIDEvA3Em3r61Ofq8pLuB0oC251010_c70fe5f6.md",
+    "target_chapter_hint": 156,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_Wiki",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_Wiki"
+    ],
+    "not_done_in_dry_run": true
+  }
+]

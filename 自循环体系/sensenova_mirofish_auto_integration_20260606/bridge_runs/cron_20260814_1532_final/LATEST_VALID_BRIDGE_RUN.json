@@ -1,0 +1,43 @@
+{
+  "updated_at": "2026-08-14T15:49:47",
+  "run_id": "cron_20260814_1532",
+  "run_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260814_1532",
+  "per_run_bridge_dir": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260814_1532_final/bridge_runs/cron_20260814_1532",
+  "valid_input_count": 11,
+  "skipped_count": 95,
+  "disposition_counts": {
+    "OUTLINE_PATCH": 0,
+    "CHAPTER_PREP_ONLY": 4,
+    "ARCHIVE_WITH_REASON": 7
+  },
+  "conversion_task_count": 4,
+  "missing_cards_by_tier": {
+    "P0": [
+      "产业创新红利加速兑现_科创板_预喜_公告揭示成长动能_b7c1648e0eb0a031",
+      "我国具备执行陆海两栖航天搜索回收任务能力_fcb55685188dc7e5",
+      "石墨烯航空电池助力低空经济_高飞_c37c70869a95d183"
+    ],
+    "P1": [
+      "41221369_3c9003a8f3f55563",
+      "59374_overview_1e34214f1442f5c5",
+      "artemis_8d279be15a4247ac",
+      "c123932_41553617_34a1faffc8fe59dc",
+      "satellites_ocean_6d07af5cd70f8ba0"
+    ]
+  },
+  "p0_missing": true,
+  "p0_missing_cards": [
+    "产业创新红利加速兑现_科创板_预喜_公告揭示成长动能_b7c1648e0eb0a031",
+    "我国具备执行陆海两栖航天搜索回收任务能力_fcb55685188dc7e5",
+    "石墨烯航空电池助力低空经济_高飞_c37c70869a95d183"
+  ],
+  "report": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260814_1532_final/DRY_RUN_REPORT.md",
+  "p0_p1_gate_blocked": true,
+  "p1_missing_cards": [
+    "41221369_3c9003a8f3f55563",
+    "59374_overview_1e34214f1442f5c5",
+    "artemis_8d279be15a4247ac",
+    "c123932_41553617_34a1faffc8fe59dc",
+    "satellites_ocean_6d07af5cd70f8ba0"
+  ]
+}

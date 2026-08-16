@@ -1,0 +1,33 @@
+{
+  "updated_at": "2026-08-11T12:27:57",
+  "run_id": "cron_20260811_1209",
+  "run_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260811_1209",
+  "per_run_bridge_dir": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260811_1209_final/bridge_runs/cron_20260811_1209",
+  "valid_input_count": 7,
+  "skipped_count": 91,
+  "disposition_counts": {
+    "OUTLINE_PATCH": 0,
+    "CHAPTER_PREP_ONLY": 2,
+    "ARCHIVE_WITH_REASON": 5
+  },
+  "conversion_task_count": 2,
+  "missing_cards_by_tier": {
+    "P0": [
+      "央视网消息___自主创新从来都是中国航天的成功_密码___航天强国_一词更是出现在_十_ea48a587cb62f3ba"
+    ],
+    "P1": [
+      "59374_overview_1e34214f1442f5c5",
+      "大连理工大学自研新材料将国产轴承使用寿命提高6倍_e18513cf4f3c6d02"
+    ]
+  },
+  "p0_missing": true,
+  "p0_missing_cards": [
+    "央视网消息___自主创新从来都是中国航天的成功_密码___航天强国_一词更是出现在_十_ea48a587cb62f3ba"
+  ],
+  "report": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260811_1209_final/DRY_RUN_REPORT.md",
+  "p0_p1_gate_blocked": true,
+  "p1_missing_cards": [
+    "59374_overview_1e34214f1442f5c5",
+    "大连理工大学自研新材料将国产轴承使用寿命提高6倍_e18513cf4f3c6d02"
+  ]
+}

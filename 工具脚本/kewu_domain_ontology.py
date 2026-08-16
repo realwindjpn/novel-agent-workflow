@@ -107,6 +107,10 @@ STABLE_DOMAINS: dict[str, dict[str, Any]] = {
             'AI芯片', 'AI chip', 'GPU', 'NPU', 'ASIC',
             '智能体', 'agent', 'agentic', '多模态', 'multimodal',
             'AI治理', 'AI governance', '算法审计', 'algorithm audit',
+            # 机构实体（稳定，不随模型代次失效）+ 事件型词（2026-08-13 用户纠偏：勿硬编码模型名）
+            'OpenAI', 'Anthropic', 'DeepSeek', '深度求索', 'xAI', 'SpaceXAI', 'Moonshot', '月之暗面',
+            '智谱', 'Zhipu', 'MiniMax', '阿里通义', '腾讯混元', '字节豆包', 'Meta AI', 'Google DeepMind',
+            '模型发布', '发布新模型', '开源权重', 'open weights', 'model release', 'frontier model', 'benchmark 超越',
         ],
         'outline_chapters': [63, 78, 86, 95, 101, 184, 212, 225, 356, 357],
         'tech_institution_chars': ['CUDA', 'Transformer', 'RLHF', 'MoE'],

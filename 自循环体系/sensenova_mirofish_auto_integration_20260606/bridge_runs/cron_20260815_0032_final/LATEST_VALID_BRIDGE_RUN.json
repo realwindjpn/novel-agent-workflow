@@ -1,0 +1,37 @@
+{
+  "updated_at": "2026-08-15T00:50:07",
+  "run_id": "cron_20260815_0032",
+  "run_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260815_0032",
+  "per_run_bridge_dir": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260815_0032_final/bridge_runs/cron_20260815_0032",
+  "valid_input_count": 8,
+  "skipped_count": 98,
+  "disposition_counts": {
+    "OUTLINE_PATCH": 0,
+    "CHAPTER_PREP_ONLY": 2,
+    "ARCHIVE_WITH_REASON": 6
+  },
+  "conversion_task_count": 2,
+  "missing_cards_by_tier": {
+    "P0": [
+      "从三大维度看新兴产业新动能加速奔涌_487bda4e538e2522"
+    ],
+    "P1": [
+      "59374_overview_94966268dbfc92a9",
+      "VIDEvA3Em3r61Ofq8pLuB0oC251010_c70fe5f6c1cee3b8",
+      "artemis_8d279be15a4247ac",
+      "c404214_40769205_6ad43be14e5f9b93"
+    ]
+  },
+  "p0_missing": true,
+  "p0_missing_cards": [
+    "从三大维度看新兴产业新动能加速奔涌_487bda4e538e2522"
+  ],
+  "report": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260815_0032_final/DRY_RUN_REPORT.md",
+  "p0_p1_gate_blocked": true,
+  "p1_missing_cards": [
+    "59374_overview_94966268dbfc92a9",
+    "VIDEvA3Em3r61Ofq8pLuB0oC251010_c70fe5f6c1cee3b8",
+    "artemis_8d279be15a4247ac",
+    "c404214_40769205_6ad43be14e5f9b93"
+  ]
+}

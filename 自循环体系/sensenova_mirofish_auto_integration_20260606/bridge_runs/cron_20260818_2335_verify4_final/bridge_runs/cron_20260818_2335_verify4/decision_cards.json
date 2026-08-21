@@ -1,0 +1,365 @@
+[
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260819_7180d7d611",
+    "source_url": "http://www.hb.xinhuanet.com/20260814/4b5c32c35820445da7e2bba07d9e008f/c.html",
+    "title": "人工智能激活力 “新”意盎然促发展",
+    "captured_at": "2026-08-19T00:14:33",
+    "source_group": "domestic",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260818_2335_verify4/cards/人工智能激活力__新_意盎然促发展_69e8e15f.md",
+    "body_fetch_evidence": {
+      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260818_2335_verify4/raw/body_fetch_report.json",
+      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260818_2335_verify4/raw/bodies/c_69e8e15f2400ef8e.txt",
+      "candidate_id": "e6ec010eef4d43ec",
+      "status": "BODY_FETCHED",
+      "counts_as_body_success": true,
+      "source_role": "primary_official",
+      "source_confidence": "primary_official"
+    },
+    "title_body_mismatch": false,
+    "evidence_complete": true,
+    "duplicate_check": {
+      "duplicate": false,
+      "reason": ""
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "联邦/白盾体系",
+          "reaction": "把「人工智能激活力 “新”意盎然促发展」作为技术或制度压力测试变量，而非剧情事实照搬。",
+          "wiki_ref": "wiki/factions"
+        },
+        {
+          "force": "主角团/工程线",
+          "reaction": "只吸收可测反馈、失败模式、成本约束；不写成万能外挂。",
+          "wiki_ref": "wiki/characters"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "compute_sovereignty",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "medium"
+        }
+      ],
+      "chapter_hooks": [
+        {
+          "hook_id": "ch95_5960c20a",
+          "description": "与算法/算力/技术主权主线直接相关，交G2裁决是否写入备注层。 来源题名：人工智能激活力 “新”意盎然促发展",
+          "suitable_chapters": [
+            95
+          ],
+          "reversal": "仅作细节/变量，不直接改变既有章节功能。"
+        }
+      ],
+      "outline_delta_candidate": {
+        "type": "note_layer",
+        "target_chapter": 95,
+        "proposed_addition": "与算法/算力/技术主权主线直接相关，交G2裁决是否写入备注层。",
+        "not_proposed": ""
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": true,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "OUTLINE_PATCH",
+    "disposition_reason": "与算法/算力/技术主权主线直接相关，交G2裁决是否写入备注层。",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-08-19T00:14:33",
+    "bridge_policy": "bridge_artifacts_only_no_production_write"
+  },
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260819_b9866256f9",
+    "source_url": "http://jjckb.xinhuanet.com/20260116/871a5c41982547e0857dae64ac701197/c.html",
+    "title": "技术破壁与政策护航 低空经济2026开启规模化运营新篇章",
+    "captured_at": "2026-08-19T00:14:33",
+    "source_group": "domestic",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260818_2335_verify4/cards/技术破壁与政策护航_低空经济2026开启规模化运营新篇章_43521aa0.md",
+    "body_fetch_evidence": {
+      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260818_2335_verify4/raw/body_fetch_report.json",
+      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260818_2335_verify4/raw/bodies/c_43521aa0c165378a.txt",
+      "candidate_id": "33b97f3c1c479b83",
+      "status": "BODY_FETCHED",
+      "counts_as_body_success": true,
+      "source_role": "primary_official",
+      "source_confidence": "primary_official"
+    },
+    "title_body_mismatch": false,
+    "evidence_complete": true,
+    "duplicate_check": {
+      "duplicate": false,
+      "reason": ""
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "主控",
+          "reaction": "归档备查；不进入G2/G3。",
+          "wiki_ref": "时事素材/归档"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "low_kewu_relevance",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "low"
+        }
+      ],
+      "chapter_hooks": [],
+      "outline_delta_candidate": {
+        "type": "red_line",
+        "target_chapter": 0,
+        "proposed_addition": "",
+        "not_proposed": "与当前算力主权、地月争夺、群体智能或军事制度主线因果链不足。"
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": false,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "ARCHIVE_WITH_REASON",
+    "disposition_reason": "与当前算力主权、地月争夺、群体智能或军事制度主线因果链不足。",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-08-19T00:14:33",
+    "bridge_policy": "bridge_artifacts_only_no_production_write"
+  },
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260819_e740e33f04",
+    "source_url": "https://business.cctv.com/2026/07/22/ARTIjsaPkl43wPxMvgbLEnfz260722.shtml",
+    "title": "算力是数字经济时代的生产力，算力网是支撑数字经济高质量发展的关键基础设施。如今，大模型参数规模迈向万亿级，全国一体化算力网加快构建，算力的竞争逻辑也正被加速改写。",
+    "captured_at": "2026-08-19T00:14:33",
+    "source_group": "domestic",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260818_2335_verify4/cards/算力是数字经济时代的生产力_算力网是支撑数字经济高质量发展的关键基础设施_如今_大模型参数规模迈向万_9704fee7.md",
+    "body_fetch_evidence": {
+      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260818_2335_verify4/raw/body_fetch_report.json",
+      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260818_2335_verify4/raw/bodies/ARTIjsaPkl43wPxMvgbLEnfz260722_9704fee711da964b.txt",
+      "candidate_id": "a747c907e3c53120",
+      "status": "BODY_FETCHED",
+      "counts_as_body_success": true,
+      "source_role": "primary_official",
+      "source_confidence": "primary_official"
+    },
+    "title_body_mismatch": false,
+    "evidence_complete": true,
+    "duplicate_check": {
+      "duplicate": false,
+      "reason": ""
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "联邦/白盾体系",
+          "reaction": "把「算力是数字经济时代的生产力，算力网是支撑数字经济高质量发展的关键」作为技术或制度压力测试变量，而非剧情事实照搬。",
+          "wiki_ref": "wiki/factions"
+        },
+        {
+          "force": "主角团/工程线",
+          "reaction": "只吸收可测反馈、失败模式、成本约束；不写成万能外挂。",
+          "wiki_ref": "wiki/characters"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "domestic_policy_context",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "medium"
+        }
+      ],
+      "chapter_hooks": [
+        {
+          "hook_id": "ch125_58f45e6f",
+          "description": "政策框架/概念文只作制度语境准备，不直接升为OUTLINE_PATCH。 来源题名：算力是数字经济时代的生产力，算力网是支撑数字经济高质量发展的关键基础设施。如今，大模型参数规模迈向万亿级，全国一体化算力网加快构建，算力的竞争逻辑也正被加速改写。",
+          "suitable_chapters": [
+            125
+          ],
+          "reversal": "仅作细节/变量，不直接改变既有章节功能。"
+        }
+      ],
+      "outline_delta_candidate": {
+        "type": "red_line",
+        "target_chapter": 125,
+        "proposed_addition": "",
+        "not_proposed": "政策框架/概念文只作制度语境准备，不直接升为OUTLINE_PATCH。"
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": false,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "CHAPTER_PREP_ONLY",
+    "disposition_reason": "政策框架/概念文只作制度语境准备，不直接升为OUTLINE_PATCH。",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-08-19T00:14:33",
+    "bridge_policy": "bridge_artifacts_only_no_production_write"
+  },
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260819_c86d07e52b",
+    "source_url": "https://news.cctv.com/2026/03/04/ARTITRtCPOvyS5Lh1I4MmL9n260304.shtml",
+    "title": "新材料领域突破不断 惠及多个关键产业",
+    "captured_at": "2026-08-19T00:14:33",
+    "source_group": "domestic",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260818_2335_verify4/cards/新材料领域突破不断_惠及多个关键产业_f4bbd37b.md",
+    "body_fetch_evidence": {
+      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260818_2335_verify4/raw/body_fetch_report.json",
+      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260818_2335_verify4/raw/bodies/ARTITRtCPOvyS5Lh1I4MmL9n260304_f4bbd37b1475b99d.txt",
+      "candidate_id": "eb8aca1a8c1109a7",
+      "status": "BODY_FETCHED",
+      "counts_as_body_success": true,
+      "source_role": "primary_official",
+      "source_confidence": "primary_official"
+    },
+    "title_body_mismatch": true,
+    "evidence_complete": true,
+    "duplicate_check": {
+      "duplicate": false,
+      "reason": ""
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "主控",
+          "reaction": "归档备查；不进入G2/G3。",
+          "wiki_ref": "时事素材/归档"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "low_kewu_relevance",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "low"
+        }
+      ],
+      "chapter_hooks": [],
+      "outline_delta_candidate": {
+        "type": "red_line",
+        "target_chapter": 0,
+        "proposed_addition": "",
+        "not_proposed": "与当前算力主权、地月争夺、群体智能或军事制度主线因果链不足。"
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": false,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "ARCHIVE_WITH_REASON",
+    "disposition_reason": "与当前算力主权、地月争夺、群体智能或军事制度主线因果链不足。",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-08-19T00:14:33",
+    "bridge_policy": "bridge_artifacts_only_no_production_write"
+  },
+  {
+    "$schema": "decision_card_v1_bridge_20260606",
+    "material_id": "20260819_5d17f6724c",
+    "source_url": "https://www.spacechina.com/n25/n2014789/n2414549/c4647268/content.html",
+    "title": "长十乙首飞成功 我国首次实现运载火箭可控回收",
+    "captured_at": "2026-08-19T00:14:33",
+    "source_group": "domestic",
+    "source_type": "official",
+    "verification_status": "official_verified",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260818_2335_verify4/cards/长十乙首飞成功_我国首次实现运载火箭可控回收_d0f27784.md",
+    "body_fetch_evidence": {
+      "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260818_2335_verify4/raw/body_fetch_report.json",
+      "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260818_2335_verify4/raw/bodies/direct_official_长十乙首飞成功_我国首次实现运载火箭可控回收_d0f277843347ed05.txt",
+      "candidate_id": "d0f277843347ed05",
+      "status": "BODY_FETCHED",
+      "counts_as_body_success": true,
+      "source_role": "primary_official",
+      "source_confidence": "primary_official"
+    },
+    "title_body_mismatch": true,
+    "evidence_complete": false,
+    "duplicate_check": {
+      "duplicate": true,
+      "reason": "SOURCE_URL_ALREADY_IN_INDEX_OR_CARD"
+    },
+    "mirofish_projection": {
+      "force_reactions": [
+        {
+          "force": "主控",
+          "reaction": "归档备查；不进入G2/G3。",
+          "wiki_ref": "时事素材/归档"
+        }
+      ],
+      "chain_conflicts": [
+        {
+          "chain": [
+            "space_chain",
+            "authority_filter",
+            "kewu_relevance"
+          ],
+          "time_anchor": "latest_sensenova_run",
+          "intensity": "low"
+        }
+      ],
+      "chapter_hooks": [],
+      "outline_delta_candidate": {
+        "type": "red_line",
+        "target_chapter": 0,
+        "proposed_addition": "",
+        "not_proposed": "重复或已入库：SOURCE_URL_ALREADY_IN_INDEX_OR_CARD"
+      },
+      "anti_patterns": [
+        "不得把query_plan当有效素材",
+        "不得无URL/无正文伪造素材卡",
+        "不得直接改大纲/正文/TXT/草稿箱"
+      ],
+      "six_role_recommendation": {
+        "needed": false,
+        "reason": "OUTLINE_PATCH必须交G2/六角色裁决；CHAPTER_PREP_ONLY只进准备包。"
+      }
+    },
+    "disposition": "ARCHIVE_WITH_REASON",
+    "disposition_reason": "重复或已入库：SOURCE_URL_ALREADY_IN_INDEX_OR_CARD",
+    "disposition_by": "deterministic_bridge_20260606",
+    "disposition_at": "2026-08-19T00:14:33",
+    "bridge_policy": "bridge_artifacts_only_no_production_write"
+  }
+]

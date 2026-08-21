@@ -1,0 +1,30 @@
+{
+  "updated_at": "2026-08-20T10:35:19",
+  "run_id": "cron_20260820_0945",
+  "run_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260820_0945",
+  "per_run_bridge_dir": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260820_0945_final/bridge_runs/cron_20260820_0945",
+  "valid_input_count": 15,
+  "skipped_count": 113,
+  "disposition_counts": {
+    "OUTLINE_PATCH": 1,
+    "CHAPTER_PREP_ONLY": 2,
+    "ARCHIVE_WITH_REASON": 12
+  },
+  "conversion_task_count": 2,
+  "missing_cards_by_tier": {
+    "P1": [
+      "19810008016_724c724997b52856",
+      "ESA_launches_first_metal_3D_printer_to_ISS_b1a65a19a0c46738",
+      "satellite_ocean_heat_content_suite_dc7ca9c1b7e4cdcc"
+    ]
+  },
+  "p0_missing": false,
+  "p0_missing_cards": [],
+  "report": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260820_0945_final/DRY_RUN_REPORT.md",
+  "p0_p1_gate_blocked": true,
+  "p1_missing_cards": [
+    "19810008016_724c724997b52856",
+    "ESA_launches_first_metal_3D_printer_to_ISS_b1a65a19a0c46738",
+    "satellite_ocean_heat_content_suite_dc7ca9c1b7e4cdcc"
+  ]
+}

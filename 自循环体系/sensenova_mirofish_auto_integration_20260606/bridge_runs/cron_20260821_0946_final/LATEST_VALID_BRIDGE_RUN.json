@@ -1,0 +1,35 @@
+{
+  "updated_at": "2026-08-21T10:29:44",
+  "run_id": "cron_20260821_0946",
+  "run_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260821_0946",
+  "per_run_bridge_dir": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260821_0946_final/bridge_runs/cron_20260821_0946",
+  "valid_input_count": 20,
+  "skipped_count": 111,
+  "disposition_counts": {
+    "OUTLINE_PATCH": 0,
+    "CHAPTER_PREP_ONLY": 4,
+    "ARCHIVE_WITH_REASON": 16
+  },
+  "conversion_task_count": 4,
+  "missing_cards_by_tier": {
+    "P0": [
+      "evade_drone_capabilities_warfighters_b4f86f0d60dc17be"
+    ],
+    "P1": [
+      "doe_explainsdeuterium_tritium_fusion_fuel_feeb33cad54862fc",
+      "hurricane_satellite_imagery_084f7b3edf2ca4e1",
+      "推动科技创新和产业创新深度融合_学习贯彻党的二十届四中全会精神__n_n正在加载_n_n党_4983e293691c65dd"
+    ]
+  },
+  "p0_missing": true,
+  "p0_missing_cards": [
+    "evade_drone_capabilities_warfighters_b4f86f0d60dc17be"
+  ],
+  "report": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260821_0946_final/DRY_RUN_REPORT.md",
+  "p0_p1_gate_blocked": true,
+  "p1_missing_cards": [
+    "doe_explainsdeuterium_tritium_fusion_fuel_feeb33cad54862fc",
+    "hurricane_satellite_imagery_084f7b3edf2ca4e1",
+    "推动科技创新和产业创新深度融合_学习贯彻党的二十届四中全会精神__n_n正在加载_n_n党_4983e293691c65dd"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "updated_at": "2026-08-19T07:08:50",
+  "run_id": "cron_20260819_0642",
+  "run_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0642",
+  "per_run_bridge_dir": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260819_0642_final/bridge_runs/cron_20260819_0642",
+  "valid_input_count": 16,
+  "skipped_count": 111,
+  "disposition_counts": {
+    "OUTLINE_PATCH": 1,
+    "CHAPTER_PREP_ONLY": 3,
+    "ARCHIVE_WITH_REASON": 12
+  },
+  "conversion_task_count": 3,
+  "missing_cards_by_tier": {
+    "P0": [
+      "技术破壁与政策护航_低空经济2026开启规模化运营新篇章_43521aa0c165378a"
+    ],
+    "P1": [
+      "19810008016_724c724997b52856",
+      "s4i_academic_challenge_finalists_7024fcbb28fa041c",
+      "satellites_ocean_6d07af5cd70f8ba0",
+      "上海市打造的全国首家人工智能大模型专业孵化和加速平台_模速空间__目前已入驻国内200多家_c1c3789924ec16b9"
+    ]
+  },
+  "p0_missing": true,
+  "p0_missing_cards": [
+    "技术破壁与政策护航_低空经济2026开启规模化运营新篇章_43521aa0c165378a"
+  ],
+  "report": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260819_0642_final/DRY_RUN_REPORT.md",
+  "p0_p1_gate_blocked": true,
+  "p1_missing_cards": [
+    "19810008016_724c724997b52856",
+    "s4i_academic_challenge_finalists_7024fcbb28fa041c",
+    "satellites_ocean_6d07af5cd70f8ba0",
+    "上海市打造的全国首家人工智能大模型专业孵化和加速平台_模速空间__目前已入驻国内200多家_c1c3789924ec16b9"
+  ]
+}

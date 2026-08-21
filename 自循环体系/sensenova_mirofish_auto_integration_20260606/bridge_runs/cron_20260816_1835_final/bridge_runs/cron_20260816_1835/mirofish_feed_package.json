@@ -1,0 +1,163 @@
+{
+  "schema": "sensenova_mirofish_feed_package_v1",
+  "created_at": "2026-08-16T19:16:55",
+  "status": "EXPERT_GATE_BLOCKED",
+  "reason": "EXPERT_GATE_INSUFFICIENT",
+  "source_run_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260816_1835",
+  "mirofish_input_gate": {
+    "status": "ALLOW_MIROFISH_INPUT",
+    "reason": "",
+    "status_hint": "after_card_distill",
+    "valid_content_cards": 18,
+    "body_valid_cards": 21,
+    "story_value_cards": 18,
+    "low_story_value_cards": 3,
+    "mirofish_ready_cards": 18,
+    "p0_p1_story_value_cards": 18,
+    "material_relevance_status": "PASS",
+    "domestic_body_success": 8,
+    "body_fetch_success": 21,
+    "body_files_written": 21,
+    "body_fetch_success_metric": "raw/bodies/*.txt with BODY_FETCHED report item",
+    "story_value_threshold": {
+      "story_value_cards_min": 3,
+      "p0_p1_story_value_cards_min": 1,
+      "body_only_path_rejected": true
+    },
+    "bridge_mirofish_cron_recoverable": true
+  },
+  "mirofish_input_gate_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260816_1835/raw/mirofish_input_gate.json",
+  "expert_gate_report": {
+    "schema": "sensenova_expert_gate_v1",
+    "created_at": "2026-08-16T19:10:43",
+    "status": "BLOCKED",
+    "expert_gate_pass": false,
+    "required_experts": [
+      "沈逸",
+      "高志凯"
+    ],
+    "missing_experts": [
+      "shenyi",
+      "gaozhikai"
+    ],
+    "failure_tags": [
+      "EXPERT_GATE_INSUFFICIENT"
+    ],
+    "fields": {
+      "expert_voice_cards": [],
+      "p0_p1_expert_cards": [],
+      "expert_gate_pass": false
+    },
+    "per_expert": {
+      "shenyi": {
+        "expert_name": "沈逸",
+        "usable_count": 0,
+        "usable_cards": [],
+        "rejected_count": 0,
+        "rejected_cards": [],
+        "pass": false,
+        "failure_tags": [
+          "EXPERT_GATE_INSUFFICIENT",
+          "EXPERT_SOURCE_NO_PRIMARY_HIT"
+        ]
+      },
+      "gaozhikai": {
+        "expert_name": "高志凯",
+        "usable_count": 0,
+        "usable_cards": [],
+        "rejected_count": 0,
+        "rejected_cards": [],
+        "pass": false,
+        "failure_tags": [
+          "EXPERT_GATE_INSUFFICIENT",
+          "EXPERT_SOURCE_NO_PRIMARY_HIT"
+        ]
+      }
+    },
+    "rescue_queue": [
+      {
+        "expert": "shenyi",
+        "expert_name": "沈逸",
+        "failure_tags": [
+          "EXPERT_GATE_INSUFFICIENT",
+          "EXPERT_SOURCE_NO_PRIMARY_HIT"
+        ],
+        "required_stage": [
+          "discovery",
+          "body_fetch",
+          "summary_distill",
+          "expert_voice_card",
+          "mirofish_input_gate",
+          "G2_G3_review"
+        ],
+        "query_hints": [
+          "沈逸 人工智能 科技竞争 公开观点",
+          "沈逸 中美 科技 博弈 公开演讲",
+          "复旦 沈逸 国际关系 科技安全"
+        ],
+        "rules": [
+          "do not call no search result no advice",
+          "do not treat search snippet as original source",
+          "keep URL, publish/capture time, source type, and body/excerpt evidence"
+        ]
+      },
+      {
+        "expert": "gaozhikai",
+        "expert_name": "高志凯",
+        "failure_tags": [
+          "EXPERT_GATE_INSUFFICIENT",
+          "EXPERT_SOURCE_NO_PRIMARY_HIT"
+        ],
+        "required_stage": [
+          "discovery",
+          "body_fetch",
+          "summary_distill",
+          "expert_voice_card",
+          "mirofish_input_gate",
+          "G2_G3_review"
+        ],
+        "query_hints": [
+          "高志凯 科技竞争 公开观点",
+          "高志凯 中美关系 科技 博弈",
+          "Victor Gao China US technology public remarks"
+        ],
+        "rules": [
+          "do not call no search result no advice",
+          "do not treat search snippet as original source",
+          "keep URL, publish/capture time, source type, and body/excerpt evidence"
+        ]
+      }
+    ],
+    "policy": {
+      "search_summary_is_not_source_body": true,
+      "no_search_result_is_not_no_advice": true,
+      "does_not_modify_novel_text": true,
+      "mirofish_must_block_when_expert_gate_pass_false": true
+    },
+    "source_run_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260816_1835",
+    "input_cards_file": ""
+  },
+  "expert_gate_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260816_1835/raw/expert_gate_report.json",
+  "expert_voice_cards": [],
+  "expert_voice_card_count": 0,
+  "source_cards": [],
+  "source_card_count": 0,
+  "fresh_news_cards": [],
+  "fresh_news_card_count": 0,
+  "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260816_1835/raw/body_fetch_report.json",
+  "raw_bodies_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260816_1835/raw/bodies",
+  "body_file_count": 21,
+  "policy": {
+    "query_plan_excluded": true,
+    "formal_cards_written": false,
+    "production_runner_modified": false,
+    "outline_text_txt_draft_modified": false,
+    "root_outputs_updated": false,
+    "body_success_requires_raw_bodies_txt": true,
+    "expert_gate_required_before_mirofish": true,
+    "search_summary_is_not_source_body": true,
+    "no_search_result_is_not_no_advice": true
+  },
+  "valid_input_count": 0,
+  "skipped_count": 0
+}

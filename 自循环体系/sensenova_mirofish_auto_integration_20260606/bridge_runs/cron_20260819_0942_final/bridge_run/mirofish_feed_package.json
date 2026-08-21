@@ -1,0 +1,1848 @@
+{
+  "schema": "sensenova_mirofish_feed_package_v1",
+  "created_at": "2026-08-19T10:27:06",
+  "source_run_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942",
+  "mirofish_input_gate": {
+    "status": "ALLOW_MIROFISH_INPUT",
+    "reason": "",
+    "status_hint": "after_card_distill",
+    "valid_content_cards": 18,
+    "body_valid_cards": 20,
+    "story_value_cards": 18,
+    "low_story_value_cards": 2,
+    "mirofish_ready_cards": 18,
+    "p0_p1_story_value_cards": 18,
+    "material_relevance_status": "PASS",
+    "domestic_body_success": 8,
+    "body_fetch_success": 23,
+    "body_files_written": 25,
+    "body_fetch_success_metric": "raw/bodies/*.txt with BODY_FETCHED report item",
+    "story_value_threshold": {
+      "story_value_cards_min": 3,
+      "p0_p1_story_value_cards_min": 1,
+      "body_only_path_rejected": true
+    },
+    "bridge_mirofish_cron_recoverable": true
+  },
+  "mirofish_input_gate_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/mirofish_input_gate.json",
+  "expert_gate_report": {
+    "schema": "sensenova_expert_gate_v1",
+    "created_at": "2026-08-19T10:13:02",
+    "status": "PASS",
+    "expert_gate_pass": true,
+    "required_experts": [
+      "沈逸",
+      "高志凯"
+    ],
+    "missing_experts": [],
+    "failure_tags": [],
+    "fields": {
+      "expert_voice_cards": [
+        {
+          "expert": "shenyi",
+          "expert_name": "沈逸",
+          "title": "沈逸公开文章",
+          "url": "https://www.guancha.cn/ShenYi/2026_08_11_826895.shtml",
+          "commentator": "沈逸",
+          "published_at": "2026-08-11",
+          "captured_at": "2026-08-19T10:12:58",
+          "source_type": "primary_article",
+          "body_chars": 7562,
+          "summary": "",
+          "material_axis": "expert_voice",
+          "g2_g3_hint": "",
+          "usable_for_mirofish": true,
+          "failure_tags": []
+        },
+        {
+          "expert": "gaozhikai",
+          "expert_name": "高志凯",
+          "title": "高志凯公开文章",
+          "url": "https://www.guancha.cn/gaozhikai/2026_08_12_827024.shtml",
+          "commentator": "高志凯",
+          "published_at": "2026-08-12",
+          "captured_at": "2026-08-19T10:13:02",
+          "source_type": "primary_article",
+          "body_chars": 8184,
+          "summary": "",
+          "material_axis": "expert_voice",
+          "g2_g3_hint": "",
+          "usable_for_mirofish": true,
+          "failure_tags": []
+        }
+      ],
+      "p0_p1_expert_cards": [
+        {
+          "expert": "shenyi",
+          "expert_name": "沈逸",
+          "title": "沈逸公开文章",
+          "url": "https://www.guancha.cn/ShenYi/2026_08_11_826895.shtml",
+          "commentator": "沈逸",
+          "published_at": "2026-08-11",
+          "captured_at": "2026-08-19T10:12:58",
+          "source_type": "primary_article",
+          "body_chars": 7562,
+          "summary": "",
+          "material_axis": "expert_voice",
+          "g2_g3_hint": "",
+          "usable_for_mirofish": true,
+          "failure_tags": []
+        },
+        {
+          "expert": "gaozhikai",
+          "expert_name": "高志凯",
+          "title": "高志凯公开文章",
+          "url": "https://www.guancha.cn/gaozhikai/2026_08_12_827024.shtml",
+          "commentator": "高志凯",
+          "published_at": "2026-08-12",
+          "captured_at": "2026-08-19T10:13:02",
+          "source_type": "primary_article",
+          "body_chars": 8184,
+          "summary": "",
+          "material_axis": "expert_voice",
+          "g2_g3_hint": "",
+          "usable_for_mirofish": true,
+          "failure_tags": []
+        }
+      ],
+      "expert_gate_pass": true
+    },
+    "per_expert": {
+      "shenyi": {
+        "expert_name": "沈逸",
+        "usable_count": 1,
+        "usable_cards": [
+          {
+            "expert": "shenyi",
+            "expert_name": "沈逸",
+            "title": "沈逸公开文章",
+            "url": "https://www.guancha.cn/ShenYi/2026_08_11_826895.shtml",
+            "commentator": "沈逸",
+            "published_at": "2026-08-11",
+            "captured_at": "2026-08-19T10:12:58",
+            "source_type": "primary_article",
+            "body_chars": 7562,
+            "summary": "",
+            "material_axis": "expert_voice",
+            "g2_g3_hint": "",
+            "usable_for_mirofish": true,
+            "failure_tags": []
+          }
+        ],
+        "rejected_count": 0,
+        "rejected_cards": [],
+        "pass": true,
+        "failure_tags": []
+      },
+      "gaozhikai": {
+        "expert_name": "高志凯",
+        "usable_count": 1,
+        "usable_cards": [
+          {
+            "expert": "gaozhikai",
+            "expert_name": "高志凯",
+            "title": "高志凯公开文章",
+            "url": "https://www.guancha.cn/gaozhikai/2026_08_12_827024.shtml",
+            "commentator": "高志凯",
+            "published_at": "2026-08-12",
+            "captured_at": "2026-08-19T10:13:02",
+            "source_type": "primary_article",
+            "body_chars": 8184,
+            "summary": "",
+            "material_axis": "expert_voice",
+            "g2_g3_hint": "",
+            "usable_for_mirofish": true,
+            "failure_tags": []
+          }
+        ],
+        "rejected_count": 0,
+        "rejected_cards": [],
+        "pass": true,
+        "failure_tags": []
+      }
+    },
+    "rescue_queue": [],
+    "policy": {
+      "search_summary_is_not_source_body": true,
+      "no_search_result_is_not_no_advice": true,
+      "does_not_modify_novel_text": true,
+      "mirofish_must_block_when_expert_gate_pass_false": true
+    },
+    "source_run_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942",
+    "input_cards_file": ""
+  },
+  "expert_gate_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/expert_gate_report.json",
+  "expert_voice_cards": [
+    {
+      "expert": "shenyi",
+      "expert_name": "沈逸",
+      "title": "沈逸公开文章",
+      "url": "https://www.guancha.cn/ShenYi/2026_08_11_826895.shtml",
+      "commentator": "沈逸",
+      "published_at": "2026-08-11",
+      "captured_at": "2026-08-19T10:12:58",
+      "source_type": "primary_article",
+      "body_chars": 7562,
+      "summary": "",
+      "material_axis": "expert_voice",
+      "g2_g3_hint": "",
+      "usable_for_mirofish": true,
+      "failure_tags": []
+    },
+    {
+      "expert": "gaozhikai",
+      "expert_name": "高志凯",
+      "title": "高志凯公开文章",
+      "url": "https://www.guancha.cn/gaozhikai/2026_08_12_827024.shtml",
+      "commentator": "高志凯",
+      "published_at": "2026-08-12",
+      "captured_at": "2026-08-19T10:13:02",
+      "source_type": "primary_article",
+      "body_chars": 8184,
+      "summary": "",
+      "material_axis": "expert_voice",
+      "g2_g3_hint": "",
+      "usable_for_mirofish": true,
+      "failure_tags": []
+    }
+  ],
+  "expert_voice_card_count": 2,
+  "source_cards": [
+    {
+      "material_id": "20260819_931d770a33",
+      "title": "具身智能机器人“凌枢”在合肥亮相",
+      "url": "http://www.ah.xinhuanet.com/20250806/7d6ebc034d744f7f8872c1c0b0e249d5/c.html",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/cards/具身智能机器人_凌枢_在合肥亮相_05c9ed1d.md",
+      "source_group": "domestic",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/bodies/c_05c9ed1d65b7e7da.txt",
+        "candidate_id": "e6ec010eef4d43ec",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": "primary_official"
+      },
+      "evidence_complete": true,
+      "disposition": "OUTLINE_PATCH",
+      "chapter_hint": 0,
+      "story_axis": ""
+    },
+    {
+      "material_id": "20260819_30773c61e5",
+      "title": "打个“飞的”到机场、乘坐“空中出租车”跨长江、在长城边喝一杯无人机送来的咖啡……低空经济不断上“新”，逐渐走进人们生活。",
+      "url": "https://app.xinhuanet.com/news/article.html?articleId=baec341126e86ffd5d65a388839c9119",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/cards/打个_飞的_到机场_乘坐_空中出租车_跨长江_在长城边喝一杯无人机送来的咖啡__低空经济不断上_新_8add9e2c.md",
+      "source_group": "domestic",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/bodies/article_8add9e2ccc4db32f.txt",
+        "candidate_id": "33b97f3c1c479b83",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": "primary_official"
+      },
+      "evidence_complete": false,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": ""
+    },
+    {
+      "material_id": "20260819_b5413335bb",
+      "title": "我国具备执行陆海两栖航天搜索回收任务能力",
+      "url": "http://www.xinhuanet.com/tech/20260211/927c65ff849643899391ed84a8271139/c.html",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/cards/我国具备执行陆海两栖航天搜索回收任务能力_fcb55685.md",
+      "source_group": "domestic",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/bodies/c_fcb55685188dc7e5.txt",
+        "candidate_id": "0468e441b9d10da2",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": "primary_official"
+      },
+      "evidence_complete": true,
+      "disposition": "CHAPTER_PREP_ONLY",
+      "chapter_hint": 0,
+      "story_axis": ""
+    },
+    {
+      "material_id": "20260819_530b240e23",
+      "title": "上海市打造的全国首家人工智能大模型专业孵化和加速平台“模速空间”，目前已入驻国内200多家大模型领域最前沿的企业和机构。2025年4月29日，习近平总书记来到上海“模速空间”大模型创新生态社区调研。",
+      "url": "https://news.cctv.com/2026/02/20/ARTIB3j6Q9tE4B30RyB0pYgq260220.shtml",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/cards/上海市打造的全国首家人工智能大模型专业孵化和加速平台_模速空间__目前已入驻国内200多家大模型领域_c1c37899.md",
+      "source_group": "domestic",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/bodies/ARTIB3j6Q9tE4B30RyB0pYgq260220_c1c3789924ec16b9.txt",
+        "candidate_id": "a747c907e3c53120",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": "primary_official"
+      },
+      "evidence_complete": true,
+      "disposition": "OUTLINE_PATCH",
+      "chapter_hint": 0,
+      "story_axis": ""
+    },
+    {
+      "material_id": "20260819_58c1202339",
+      "title": "artemis",
+      "url": "https://www.nasa.gov/humans-in-space/artemis",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/cards/artemis_8d279be1.md",
+      "source_group": "overseas",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/bodies/artemis_8d279be15a4247ac.txt",
+        "candidate_id": "5280907ed00de3bf",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": "primary_official"
+      },
+      "evidence_complete": true,
+      "disposition": "CHAPTER_PREP_ONLY",
+      "chapter_hint": 0,
+      "story_axis": ""
+    },
+    {
+      "material_id": "20260819_7f9a0601e6",
+      "title": "nasas psyche mission first to a metal rich asteroid",
+      "url": "https://science.nasa.gov/blogs/psyche/2023/10/13/nasas-psyche-mission-first-to-a-metal-rich-asteroid",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/cards/nasas_psyche_mission_first_to_a_metal_rich_asteroi_846c1d52.md",
+      "source_group": "overseas",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/bodies/nasas_psyche_mission_first_to_a_metal_ri_846c1d52fb69e2e7.txt",
+        "candidate_id": "5f8a63e8c68e5aa4",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": "primary_official"
+      },
+      "evidence_complete": false,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": ""
+    },
+    {
+      "material_id": "20260819_bdf78b16ad",
+      "title": "ESA launches first metal 3D printer to ISS",
+      "url": "https://www.esa.int/Science_Exploration/Human_and_Robotic_Exploration/ESA_launches_first_metal_3D_printer_to_ISS",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/cards/ESA_launches_first_metal_3D_printer_to_ISS_b1a65a19.md",
+      "source_group": "overseas",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/bodies/ESA_launches_first_metal_3D_printer_to_I_b1a65a19a0c46738.txt",
+        "candidate_id": "f792876f5f17c4d2",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": "primary_official"
+      },
+      "evidence_complete": true,
+      "disposition": "CHAPTER_PREP_ONLY",
+      "chapter_hint": 0,
+      "story_axis": ""
+    },
+    {
+      "material_id": "20260819_14fa226b82",
+      "title": "ESA to build first in orbit servicing mission with D Orbit",
+      "url": "https://www.esa.int/Space_Safety/ESA_to_build_first_in-orbit_servicing_mission_with_D-Orbit",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/cards/ESA_to_build_first_in_orbit_servicing_mission_with_0301b7e8.md",
+      "source_group": "overseas",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/bodies/ESA_to_build_first_in_orbit_servicing_mi_0301b7e8f7330c36.txt",
+        "candidate_id": "99747c6e3bea1c19",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": "primary_official"
+      },
+      "evidence_complete": false,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": ""
+    },
+    {
+      "material_id": "20260819_e0b7ce67c9",
+      "title": "capabilities commercial drones",
+      "url": "https://www.darpa.mil/news/2023/capabilities-commercial-drones",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/cards/capabilities_commercial_drones_fd6da102.md",
+      "source_group": "overseas",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/bodies/capabilities_commercial_drones_fd6da102d07bcdc4.txt",
+        "candidate_id": "b92f5eb6d0ecaf49",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": "primary_official"
+      },
+      "evidence_complete": false,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": ""
+    },
+    {
+      "material_id": "20260819_5f159f5bdc",
+      "title": "quantum information science",
+      "url": "https://www.energy.gov/science/quantum-information-science",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/cards/quantum_information_science_adcb5ced.md",
+      "source_group": "overseas",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/bodies/quantum_information_science_adcb5cede8ef3fef.txt",
+        "candidate_id": "078ec664e34007f2",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": "primary_official"
+      },
+      "evidence_complete": false,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": ""
+    },
+    {
+      "material_id": "20260819_3b6784226b",
+      "title": "history nuclear power space",
+      "url": "https://www.energy.gov/articles/history-nuclear-power-space",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/cards/history_nuclear_power_space_0ad2eb72.md",
+      "source_group": "overseas",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/bodies/history_nuclear_power_space_0ad2eb7225b1ebfd.txt",
+        "candidate_id": "64c9d7eda7491af6",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": "primary_official"
+      },
+      "evidence_complete": false,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": ""
+    },
+    {
+      "material_id": "20260819_689d6bf894",
+      "title": "epri fusion blankets report 2024",
+      "url": "https://www.energy.gov/articles/epri-fusion-blankets-report-2024",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/cards/epri_fusion_blankets_report_2024_21b019ba.md",
+      "source_group": "overseas",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/bodies/epri_fusion_blankets_report_2024_21b019ba88da5c68.txt",
+        "candidate_id": "e2eb62868818ff7d",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": "primary_official"
+      },
+      "evidence_complete": true,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": ""
+    },
+    {
+      "material_id": "20260819_3eef90b708",
+      "title": "satellite ocean heat content suite",
+      "url": "https://www.ncei.noaa.gov/products/satellite-ocean-heat-content-suite",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/cards/satellite_ocean_heat_content_suite_dc7ca9c1.md",
+      "source_group": "overseas",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/bodies/satellite_ocean_heat_content_suite_dc7ca9c1b7e4cdcc.txt",
+        "candidate_id": "f41db89017aca1dd",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": "primary_official"
+      },
+      "evidence_complete": true,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": ""
+    },
+    {
+      "material_id": "20260819_d6ad8917e3",
+      "title": "Distributed Quantum Computing:",
+      "url": "https://arxiv.org/html/2410.00609v1",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/cards/Distributed_Quantum_Computing_d7052171.md",
+      "source_group": "overseas",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/bodies/2410_d7052171c2cd58d5.txt",
+        "candidate_id": "94fde7d15ecd98ff",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": "primary_official"
+      },
+      "evidence_complete": true,
+      "disposition": "OUTLINE_PATCH",
+      "chapter_hint": 0,
+      "story_axis": ""
+    },
+    {
+      "material_id": "20260819_c3e7d46254",
+      "title": "Abstract",
+      "url": "https://arxiv.org/html/2603.06130",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/cards/Abstract_222baf6a.md",
+      "source_group": "overseas",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/bodies/2603_222baf6aff2a678f.txt",
+        "candidate_id": "a4988c3fa07a226f",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": "primary_official"
+      },
+      "evidence_complete": true,
+      "disposition": "OUTLINE_PATCH",
+      "chapter_hint": 0,
+      "story_axis": ""
+    },
+    {
+      "material_id": "20260819_5d17f6724c",
+      "title": "长十乙首飞成功 我国首次实现运载火箭可控回收",
+      "url": "https://www.spacechina.com/n25/n2014789/n2414549/c4647268/content.html",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/cards/长十乙首飞成功_我国首次实现运载火箭可控回收_d0f27784.md",
+      "source_group": "domestic",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/bodies/direct_official_长十乙首飞成功_我国首次实现运载火箭可控回收_d0f277843347ed05.txt",
+        "candidate_id": "d0f277843347ed05",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": "primary_official"
+      },
+      "evidence_complete": false,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": ""
+    },
+    {
+      "material_id": "20260819_915f0027ce",
+      "title": "探秘一块锂电池的“重生”之旅",
+      "url": "https://news.cctv.com/2026/08/09/ARTIktaj7MoH87AHHCibikE0260809.shtml",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/cards/探秘一块锂电池的_重生_之旅_2105973e.md",
+      "source_group": "domestic",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/bodies/direct_official_探秘一块锂电池的_重生_之旅_2105973e67bf4fee.txt",
+        "candidate_id": "2105973e67bf4fee",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": "primary_official"
+      },
+      "evidence_complete": false,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": ""
+    }
+  ],
+  "source_card_count": 17,
+  "fresh_news_cards": [
+    {
+      "material_id": "20260819_931d770a33",
+      "title": "具身智能机器人“凌枢”在合肥亮相",
+      "url": "http://www.ah.xinhuanet.com/20250806/7d6ebc034d744f7f8872c1c0b0e249d5/c.html",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/cards/具身智能机器人_凌枢_在合肥亮相_05c9ed1d.md",
+      "source_group": "domestic",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/bodies/c_05c9ed1d65b7e7da.txt",
+        "candidate_id": "e6ec010eef4d43ec",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": "primary_official"
+      },
+      "evidence_complete": true,
+      "disposition": "OUTLINE_PATCH",
+      "chapter_hint": 0,
+      "story_axis": "",
+      "card_family": "fresh_news_card",
+      "bridge_retained": true
+    },
+    {
+      "material_id": "20260819_30773c61e5",
+      "title": "打个“飞的”到机场、乘坐“空中出租车”跨长江、在长城边喝一杯无人机送来的咖啡……低空经济不断上“新”，逐渐走进人们生活。",
+      "url": "https://app.xinhuanet.com/news/article.html?articleId=baec341126e86ffd5d65a388839c9119",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/cards/打个_飞的_到机场_乘坐_空中出租车_跨长江_在长城边喝一杯无人机送来的咖啡__低空经济不断上_新_8add9e2c.md",
+      "source_group": "domestic",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/bodies/article_8add9e2ccc4db32f.txt",
+        "candidate_id": "33b97f3c1c479b83",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": "primary_official"
+      },
+      "evidence_complete": false,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": "",
+      "card_family": "fresh_news_card",
+      "bridge_retained": true
+    },
+    {
+      "material_id": "20260819_b5413335bb",
+      "title": "我国具备执行陆海两栖航天搜索回收任务能力",
+      "url": "http://www.xinhuanet.com/tech/20260211/927c65ff849643899391ed84a8271139/c.html",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/cards/我国具备执行陆海两栖航天搜索回收任务能力_fcb55685.md",
+      "source_group": "domestic",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/bodies/c_fcb55685188dc7e5.txt",
+        "candidate_id": "0468e441b9d10da2",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": "primary_official"
+      },
+      "evidence_complete": true,
+      "disposition": "CHAPTER_PREP_ONLY",
+      "chapter_hint": 0,
+      "story_axis": "",
+      "card_family": "fresh_news_card",
+      "bridge_retained": true
+    },
+    {
+      "material_id": "20260819_530b240e23",
+      "title": "上海市打造的全国首家人工智能大模型专业孵化和加速平台“模速空间”，目前已入驻国内200多家大模型领域最前沿的企业和机构。2025年4月29日，习近平总书记来到上海“模速空间”大模型创新生态社区调研。",
+      "url": "https://news.cctv.com/2026/02/20/ARTIB3j6Q9tE4B30RyB0pYgq260220.shtml",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/cards/上海市打造的全国首家人工智能大模型专业孵化和加速平台_模速空间__目前已入驻国内200多家大模型领域_c1c37899.md",
+      "source_group": "domestic",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/bodies/ARTIB3j6Q9tE4B30RyB0pYgq260220_c1c3789924ec16b9.txt",
+        "candidate_id": "a747c907e3c53120",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": "primary_official"
+      },
+      "evidence_complete": true,
+      "disposition": "OUTLINE_PATCH",
+      "chapter_hint": 0,
+      "story_axis": "",
+      "card_family": "fresh_news_card",
+      "bridge_retained": true
+    },
+    {
+      "material_id": "20260819_58c1202339",
+      "title": "artemis",
+      "url": "https://www.nasa.gov/humans-in-space/artemis",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/cards/artemis_8d279be1.md",
+      "source_group": "overseas",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/bodies/artemis_8d279be15a4247ac.txt",
+        "candidate_id": "5280907ed00de3bf",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": "primary_official"
+      },
+      "evidence_complete": true,
+      "disposition": "CHAPTER_PREP_ONLY",
+      "chapter_hint": 0,
+      "story_axis": "",
+      "card_family": "fresh_news_card",
+      "bridge_retained": true
+    },
+    {
+      "material_id": "20260819_7f9a0601e6",
+      "title": "nasas psyche mission first to a metal rich asteroid",
+      "url": "https://science.nasa.gov/blogs/psyche/2023/10/13/nasas-psyche-mission-first-to-a-metal-rich-asteroid",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/cards/nasas_psyche_mission_first_to_a_metal_rich_asteroi_846c1d52.md",
+      "source_group": "overseas",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/bodies/nasas_psyche_mission_first_to_a_metal_ri_846c1d52fb69e2e7.txt",
+        "candidate_id": "5f8a63e8c68e5aa4",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": "primary_official"
+      },
+      "evidence_complete": false,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": "",
+      "card_family": "fresh_news_card",
+      "bridge_retained": true
+    },
+    {
+      "material_id": "20260819_bdf78b16ad",
+      "title": "ESA launches first metal 3D printer to ISS",
+      "url": "https://www.esa.int/Science_Exploration/Human_and_Robotic_Exploration/ESA_launches_first_metal_3D_printer_to_ISS",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/cards/ESA_launches_first_metal_3D_printer_to_ISS_b1a65a19.md",
+      "source_group": "overseas",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/bodies/ESA_launches_first_metal_3D_printer_to_I_b1a65a19a0c46738.txt",
+        "candidate_id": "f792876f5f17c4d2",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": "primary_official"
+      },
+      "evidence_complete": true,
+      "disposition": "CHAPTER_PREP_ONLY",
+      "chapter_hint": 0,
+      "story_axis": "",
+      "card_family": "fresh_news_card",
+      "bridge_retained": true
+    },
+    {
+      "material_id": "20260819_14fa226b82",
+      "title": "ESA to build first in orbit servicing mission with D Orbit",
+      "url": "https://www.esa.int/Space_Safety/ESA_to_build_first_in-orbit_servicing_mission_with_D-Orbit",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/cards/ESA_to_build_first_in_orbit_servicing_mission_with_0301b7e8.md",
+      "source_group": "overseas",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/bodies/ESA_to_build_first_in_orbit_servicing_mi_0301b7e8f7330c36.txt",
+        "candidate_id": "99747c6e3bea1c19",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": "primary_official"
+      },
+      "evidence_complete": false,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": "",
+      "card_family": "fresh_news_card",
+      "bridge_retained": true
+    },
+    {
+      "material_id": "20260819_e0b7ce67c9",
+      "title": "capabilities commercial drones",
+      "url": "https://www.darpa.mil/news/2023/capabilities-commercial-drones",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/cards/capabilities_commercial_drones_fd6da102.md",
+      "source_group": "overseas",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/bodies/capabilities_commercial_drones_fd6da102d07bcdc4.txt",
+        "candidate_id": "b92f5eb6d0ecaf49",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": "primary_official"
+      },
+      "evidence_complete": false,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": "",
+      "card_family": "fresh_news_card",
+      "bridge_retained": true
+    },
+    {
+      "material_id": "20260819_5f159f5bdc",
+      "title": "quantum information science",
+      "url": "https://www.energy.gov/science/quantum-information-science",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/cards/quantum_information_science_adcb5ced.md",
+      "source_group": "overseas",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/bodies/quantum_information_science_adcb5cede8ef3fef.txt",
+        "candidate_id": "078ec664e34007f2",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": "primary_official"
+      },
+      "evidence_complete": false,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": "",
+      "card_family": "fresh_news_card",
+      "bridge_retained": true
+    },
+    {
+      "material_id": "20260819_3b6784226b",
+      "title": "history nuclear power space",
+      "url": "https://www.energy.gov/articles/history-nuclear-power-space",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/cards/history_nuclear_power_space_0ad2eb72.md",
+      "source_group": "overseas",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/bodies/history_nuclear_power_space_0ad2eb7225b1ebfd.txt",
+        "candidate_id": "64c9d7eda7491af6",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": "primary_official"
+      },
+      "evidence_complete": false,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": "",
+      "card_family": "fresh_news_card",
+      "bridge_retained": true
+    },
+    {
+      "material_id": "20260819_689d6bf894",
+      "title": "epri fusion blankets report 2024",
+      "url": "https://www.energy.gov/articles/epri-fusion-blankets-report-2024",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/cards/epri_fusion_blankets_report_2024_21b019ba.md",
+      "source_group": "overseas",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/bodies/epri_fusion_blankets_report_2024_21b019ba88da5c68.txt",
+        "candidate_id": "e2eb62868818ff7d",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": "primary_official"
+      },
+      "evidence_complete": true,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": "",
+      "card_family": "fresh_news_card",
+      "bridge_retained": true
+    },
+    {
+      "material_id": "20260819_3eef90b708",
+      "title": "satellite ocean heat content suite",
+      "url": "https://www.ncei.noaa.gov/products/satellite-ocean-heat-content-suite",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/cards/satellite_ocean_heat_content_suite_dc7ca9c1.md",
+      "source_group": "overseas",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/bodies/satellite_ocean_heat_content_suite_dc7ca9c1b7e4cdcc.txt",
+        "candidate_id": "f41db89017aca1dd",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": "primary_official"
+      },
+      "evidence_complete": true,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": "",
+      "card_family": "fresh_news_card",
+      "bridge_retained": true
+    },
+    {
+      "material_id": "20260819_d6ad8917e3",
+      "title": "Distributed Quantum Computing:",
+      "url": "https://arxiv.org/html/2410.00609v1",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/cards/Distributed_Quantum_Computing_d7052171.md",
+      "source_group": "overseas",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/bodies/2410_d7052171c2cd58d5.txt",
+        "candidate_id": "94fde7d15ecd98ff",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": "primary_official"
+      },
+      "evidence_complete": true,
+      "disposition": "OUTLINE_PATCH",
+      "chapter_hint": 0,
+      "story_axis": "",
+      "card_family": "fresh_news_card",
+      "bridge_retained": true
+    },
+    {
+      "material_id": "20260819_c3e7d46254",
+      "title": "Abstract",
+      "url": "https://arxiv.org/html/2603.06130",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/cards/Abstract_222baf6a.md",
+      "source_group": "overseas",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/bodies/2603_222baf6aff2a678f.txt",
+        "candidate_id": "a4988c3fa07a226f",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": "primary_official"
+      },
+      "evidence_complete": true,
+      "disposition": "OUTLINE_PATCH",
+      "chapter_hint": 0,
+      "story_axis": "",
+      "card_family": "fresh_news_card",
+      "bridge_retained": true
+    },
+    {
+      "material_id": "20260819_5d17f6724c",
+      "title": "长十乙首飞成功 我国首次实现运载火箭可控回收",
+      "url": "https://www.spacechina.com/n25/n2014789/n2414549/c4647268/content.html",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/cards/长十乙首飞成功_我国首次实现运载火箭可控回收_d0f27784.md",
+      "source_group": "domestic",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/bodies/direct_official_长十乙首飞成功_我国首次实现运载火箭可控回收_d0f277843347ed05.txt",
+        "candidate_id": "d0f277843347ed05",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": "primary_official"
+      },
+      "evidence_complete": false,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": "",
+      "card_family": "fresh_news_card",
+      "bridge_retained": true
+    },
+    {
+      "material_id": "20260819_915f0027ce",
+      "title": "探秘一块锂电池的“重生”之旅",
+      "url": "https://news.cctv.com/2026/08/09/ARTIktaj7MoH87AHHCibikE0260809.shtml",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/cards/探秘一块锂电池的_重生_之旅_2105973e.md",
+      "source_group": "domestic",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/bodies/direct_official_探秘一块锂电池的_重生_之旅_2105973e67bf4fee.txt",
+        "candidate_id": "2105973e67bf4fee",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": "primary_official"
+      },
+      "evidence_complete": false,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": "",
+      "card_family": "fresh_news_card",
+      "bridge_retained": true
+    }
+  ],
+  "fresh_news_card_count": 17,
+  "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/body_fetch_report.json",
+  "raw_bodies_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_0942/raw/bodies",
+  "source_pipeline_state": {
+    "run_id": "cron_20260819_0942",
+    "status": "partial",
+    "valid_content_cards": 18,
+    "query_plan_cards": 0,
+    "body_fetch_success": 23,
+    "card_pass_count": 20
+  },
+  "policy": {
+    "query_plan_excluded": true,
+    "formal_cards_written": false,
+    "production_runner_modified": false,
+    "outline_text_txt_draft_modified": false,
+    "body_success_requires_raw_bodies_txt": true,
+    "expert_gate_required_before_mirofish": true
+  },
+  "valid_input_count": 17,
+  "skipped_count": 110,
+  "skip_reason_counts": {
+    "stale_domestic_article": 2,
+    "no_dyson_tree_match": 18,
+    "low_value_expo_or_conference": 1,
+    "low_value_policy_or_commentary": 2,
+    "http_404|jina_timeout": 1,
+    "query_plan_no_body": 56,
+    "malformed_search_title": 3,
+    "worker_timeout:fetch_body:14s": 1,
+    "http_403|jina_timeout": 1,
+    "body_clean_too_short": 1,
+    "summary_not_body_evidence": 9,
+    "missing_body_path": 4,
+    "not_article_page_url": 1,
+    "duplicate_within_run": 5,
+    "duplicate_url": 1,
+    "stale_news": 4
+  },
+  "body_fetch_evidence_count": 23,
+  "body_fetch_evidence_key_count": 46,
+  "stale_domestic_blocked_count": 2,
+  "missing_cards_by_tier": {
+    "P0": [
+      "具身智能机器人_凌枢_在合肥亮相_05c9ed1d65b7e7da",
+      "我国具备执行陆海两栖航天搜索回收任务能力_fcb55685188dc7e5"
+    ],
+    "P1": [
+      "19810008016_724c724997b52856",
+      "59374_overview_1e34214f1442f5c5",
+      "Abstract_222baf6aff2a678f",
+      "Distributed_Quantum_Computing_d7052171c2cd58d5",
+      "ESA_launches_first_metal_3D_printer_to_ISS_b1a65a19a0c46738",
+      "artemis_8d279be15a4247ac",
+      "epri_fusion_blankets_report_2024_21b019ba88da5c68",
+      "satellite_ocean_heat_content_suite_dc7ca9c1b7e4cdcc",
+      "上海市打造的全国首家人工智能大模型专业孵化和加速平台_模速空间__目前已入驻国内200多家_c1c3789924ec16b9"
+    ]
+  },
+  "p0_missing": true,
+  "p0_missing_cards": [
+    "具身智能机器人_凌枢_在合肥亮相_05c9ed1d65b7e7da",
+    "我国具备执行陆海两栖航天搜索回收任务能力_fcb55685188dc7e5"
+  ],
+  "p1_missing_cards": [
+    "19810008016_724c724997b52856",
+    "59374_overview_1e34214f1442f5c5",
+    "Abstract_222baf6aff2a678f",
+    "Distributed_Quantum_Computing_d7052171c2cd58d5",
+    "ESA_launches_first_metal_3D_printer_to_ISS_b1a65a19a0c46738",
+    "artemis_8d279be15a4247ac",
+    "epri_fusion_blankets_report_2024_21b019ba88da5c68",
+    "satellite_ocean_heat_content_suite_dc7ca9c1b7e4cdcc",
+    "上海市打造的全国首家人工智能大模型专业孵化和加速平台_模速空间__目前已入驻国内200多家_c1c3789924ec16b9"
+  ],
+  "p0_p1_gate_blocked": true,
+  "skipped": [
+    {
+      "candidate_id": "c459166_40299406_db7cd0ad145ede83",
+      "title": "c459166 40299406",
+      "url": "http://cpc.people.com.cn/n1/2024/0815/c459166-40299406.html",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "STALE_DOMESTIC_ARTICLE"
+    },
+    {
+      "candidate_id": "c461139_40620596_356783eeeff11f06",
+      "title": "c461139 40620596",
+      "url": "https://cpc.people.com.cn/n1/2025/1209/c461139-40620596.html",
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "NO_DYSON_TREE_MATCH"
+    },
+    {
+      "candidate_id": "c404214_40769205_6ad43be14e5f9b93",
+      "title": "c404214 40769205",
+      "url": "http://kpzg.people.com.cn/n1/2026/0728/c404214-40769205.html",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "LOW_VALUE_EXPO_OR_CONFERENCE"
+    },
+    {
+      "candidate_id": "c_b38f0b2343fee32e",
+      "title": "c",
+      "url": "https://www.xinhuanet.com/finance/20260215/0783f8b9f59c42b2a760fb2d7d02e4f6/c.html",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "LOW_VALUE_POLICY_OR_COMMENTARY"
+    },
+    {
+      "candidate_id": "article_f63900f532ac1d1b",
+      "title": "article",
+      "url": "https://app.xinhuanet.com/news/article.html?articleId=624ea23ae3c861d37735068e3d82f719",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "HTTP_404|JINA_TIMEOUT"
+    },
+    {
+      "candidate_id": "ARTIWje0u1f2m25yGB3kONlr241123_7dbc32bc7b641895",
+      "title": "ARTIWje0u1f2m25yGB3kONlr241123",
+      "url": "https://news.cctv.com/2024/11/23/ARTIWje0u1f2m25yGB3kONlr241123.shtml",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "STALE_DOMESTIC_ARTICLE"
+    },
+    {
+      "candidate_id": "ARTIynLK1bjZHDmZmSGnA7M8260513_01d91cf801fbd5f0",
+      "title": "ARTIynLK1bjZHDmZmSGnA7M8260513",
+      "url": "https://news.cctv.com/2026/05/13/ARTIynLK1bjZHDmZmSGnA7M8260513.shtml",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "LOW_VALUE_POLICY_OR_COMMENTARY"
+    },
+    {
+      "candidate_id": "QP_cctv_com__新材料_能源_动力装备_eb8aca1a8c1109a7",
+      "title": "[QP:cctv.com] 新材料 能源 动力装备",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cctv_com__航天_深空_探测_78c50ef2068c234e",
+      "title": "[QP:cctv.com] 航天 深空 探测",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_stdaily_com__query_plan_e7e97758b7061b25",
+      "title": "[QP:stdaily.com] query_plan",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_stdaily_com__新材料_先进制造_能源_1e33a24c15ea7197",
+      "title": "[QP:stdaily.com] 新材料 先进制造 能源",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_stdaily_com__人工智能_机器人_量子_b78f9c8f77c64371",
+      "title": "[QP:stdaily.com] 人工智能 机器人 量子",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_stdaily_com__空间核电源_同位素电池_裂变堆_24892c4dac387e43",
+      "title": "[QP:stdaily.com] 空间核电源 同位素电池 裂变堆",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_stdaily_com__星际资源利用_ISRU_在轨制造_59ce1c91c55d2b62",
+      "title": "[QP:stdaily.com] 星际资源利用 ISRU 在轨制造",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_huanqiu_com__科技_国防_航天_b8ade137ef0e228c",
+      "title": "[QP:huanqiu.com] 科技 国防 航天",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_huanqiu_com__地缘_科技_产业链_76479a3fda63046e",
+      "title": "[QP:huanqiu.com] 地缘 科技 产业链",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_guancha_cn__半导体_出口管制_产业链_e65ec3ec54b2524e",
+      "title": "[QP:guancha.cn] 半导体 出口管制 产业链",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_guancha_cn__航天_军事_科技_22aa3cd6aed9f773",
+      "title": "[QP:guancha.cn] 航天 军事 科技",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_miit_gov_cn__新型工业化_先进制造_产业链_57f373f9f8e545f4",
+      "title": "[QP:miit.gov.cn] 新型工业化 先进制造 产业链",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_miit_gov_cn__人工智能_半导体_算力_33f2b8e5a4e172d5",
+      "title": "[QP:miit.gov.cn] 人工智能 半导体 算力",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_miit_gov_cn__出口管制_备件_供应链_84727566d6dbecc8",
+      "title": "[QP:miit.gov.cn] 出口管制 备件 供应链",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_mod_gov_cn__科技_国防_无人机_a023db994eaccf58",
+      "title": "[QP:mod.gov.cn] 科技 国防 无人机",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_mod_gov_cn__航天_网络_信息化_507094a2c08c6e18",
+      "title": "[QP:mod.gov.cn] 航天 网络 信息化",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_most_gov_cn__query_plan_7b22d1f8c24da32e",
+      "title": "[QP:most.gov.cn] query_plan",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_most_gov_cn__人工智能_量子_新材料_560b4a6aa25151d7",
+      "title": "[QP:most.gov.cn] 人工智能 量子 新材料",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cnsa_gov_cn__月球_深空_探测工程_20303b7b884d5ac0",
+      "title": "[QP:cnsa.gov.cn] 月球 深空 探测工程",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cnsa_gov_cn__航天_科技_探测_cf2955ec4106227b",
+      "title": "[QP:cnsa.gov.cn] 航天 科技 探测",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cas_cn__科技突破_重大进展_05d228606419c44d",
+      "title": "[QP:cas.cn] 科技突破 重大进展",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cas_cn__人工智能_量子_新材料_c58a3607244415fd",
+      "title": "[QP:cas.cn] 人工智能 量子 新材料",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cas_cn__航天_深空_机器人_7ea1cbe5f0a40dbb",
+      "title": "[QP:cas.cn] 航天 深空 机器人",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cas_cn__聚变_第一壁_材料_3e839702b81df085",
+      "title": "[QP:cas.cn] 聚变 第一壁 材料",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cas_cn__空间制造_在轨冶炼_超导材料_c3d0ab511ab9842c",
+      "title": "[QP:cas.cn] 空间制造 在轨冶炼 超导材料",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cas_cn__量子计算_容错_纠错_4c6cca6febd69f6d",
+      "title": "[QP:cas.cn] 量子计算 容错 纠错",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_iop_cas_cn__量子_材料_能源_c5aec814225aed6f",
+      "title": "[QP:iop.cas.cn] 量子 材料 能源",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cac_gov_cn__人工智能_治理_数据_6e4102c607c44cc1",
+      "title": "[QP:cac.gov.cn] 人工智能 治理 数据",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cac_gov_cn__网络安全_数据安全_生成式人工智能_ec83078b973194f8",
+      "title": "[QP:cac.gov.cn] 网络安全 数据安全 生成式人工智能",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cmse_gov_cn__载人航天_空间站_天舟_eddcbfcee4b24443",
+      "title": "[QP:cmse.gov.cn] 载人航天 空间站 天舟",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_cmse_gov_cn__发射_火箭_运载_2cc94829804f64aa",
+      "title": "[QP:cmse.gov.cn] 发射 火箭 运载",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_calt_com__长征_火箭_运载_13526e783ee2df73",
+      "title": "[QP:calt.com] 长征 火箭 运载",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_calt_com__发射_成功_回收_7e7b783bb5b8a367",
+      "title": "[QP:calt.com] 发射 成功 回收",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_spacechina_com__长征_火箭_发射_4b86a47786211456",
+      "title": "[QP:spacechina.com] 长征 火箭 发射",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_spacechina_com__运载火箭_可重复使用_88f58593ce879f11",
+      "title": "[QP:spacechina.com] 运载火箭 可重复使用",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "20050238992_962e01bddc1232fd",
+      "title": "20050238992",
+      "url": "https://ntrs.nasa.gov/citations/20050238992",
+      "status": "DISTILLED",
+      "reason": "malformed_search_title"
+    },
+    {
+      "candidate_id": "20080012677_9843b9606a8e15c5",
+      "title": "20080012677",
+      "url": "https://ntrs.nasa.gov/api/citations/20080012677/downloads/20080012677.pdf",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "WORKER_TIMEOUT:fetch_body:14s"
+    },
+    {
+      "candidate_id": "19810008016_724c724997b52856",
+      "title": "19810008016",
+      "url": "https://ntrs.nasa.gov/citations/19810008016",
+      "status": "DISTILLED",
+      "reason": "malformed_search_title"
+    },
+    {
+      "candidate_id": "59374_overview_1e34214f1442f5c5",
+      "title": "59374 overview",
+      "url": "https://exploration.esa.int/web/moon/-/59374-overview",
+      "status": "DISTILLED",
+      "reason": "malformed_search_title"
+    },
+    {
+      "candidate_id": "UNLEASHING_U_S__MILITARY_DRONE_DOMINANCE_7bd80ad2833c589e",
+      "title": "UNLEASHING U.S. MILITARY DRONE DOMINANCE",
+      "url": "https://media.defense.gov/2025/Jul/10/2003752117/-1/-1/1/UNLEASHING-U.S.-MILITARY-DRONE-DOMINANCE.PDF",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "HTTP_403|JINA_TIMEOUT"
+    },
+    {
+      "candidate_id": "41221369_3c9003a8f3f55563",
+      "title": "41221369",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41221369",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "BODY_CLEAN_TOO_SHORT"
+    },
+    {
+      "candidate_id": "w4416906933_3fb526ef6934a052",
+      "title": "w4416906933",
+      "url": "https://openalex.org/works/w4416906933",
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "NO_DYSON_TREE_MATCH"
+    },
+    {
+      "candidate_id": "QP_nature_com__quantum_computing_AI_1fc7e5443e28b9bd",
+      "title": "[QP:nature.com] quantum computing AI",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_science_org__quantum_AI_energy_b2d0d330ae9ba9ee",
+      "title": "[QP:science.org] quantum AI energy",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_ieee_org__AI_chips_robotics_97d6f9830620498a",
+      "title": "[QP:ieee.org] AI chips robotics",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_bis_gov__export_control_semiconductors_39ca2d7d901d69d2",
+      "title": "[QP:bis.gov] export control semiconductors",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_semiconductors_org__semiconductor_industr_c37fa121bae6a837",
+      "title": "[QP:semiconductors.org] semiconductor industry chips",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_g7_canada_ca__G7_Summit_Kananaskis_dd191e1d0205c641",
+      "title": "[QP:g7.canada.ca] G7 Summit Kananaskis",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_g7_canada_ca__Group_of_Seven_1b1923adb322e07e",
+      "title": "[QP:g7.canada.ca] Group of Seven",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_canada_ca__G7_Summit_Kananaskis_f506cc16b9b1d085",
+      "title": "[QP:canada.ca] G7 Summit Kananaskis",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_international_gc_ca__G7_summit_Canada_06647f143574724e",
+      "title": "[QP:international.gc.ca] G7 summit Canada",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_whitehouse_gov__G7_Summit_Kananaskis_8074eab53cd5f181",
+      "title": "[QP:whitehouse.gov] G7 Summit Kananaskis",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_whitehouse_gov__Group_of_Seven_e087eebd6ca1eb94",
+      "title": "[QP:whitehouse.gov] Group of Seven",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_consilium_europa_eu__G7_Summit_Kananaskis_f5c805bd000d841c",
+      "title": "[QP:consilium.europa.eu] G7 Summit Kananaskis",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_consilium_europa_eu__Group_of_Seven_1046ea450400016a",
+      "title": "[QP:consilium.europa.eu] Group of Seven",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_state_gov__ceasefire_Iran_Israel_0f55a66b4180fd62",
+      "title": "[QP:state.gov] ceasefire Iran Israel",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_state_gov__treaty_ceasefire_official_4599e8f7bcdf2c3b",
+      "title": "[QP:state.gov] treaty ceasefire official",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_treasury_gov__sanctions_Iran_technology_a1e7e961933b03c9",
+      "title": "[QP:treasury.gov] sanctions Iran technology",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_treasury_gov__sanctions_export_controls_15a665d244b9c907",
+      "title": "[QP:treasury.gov] sanctions export controls",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_anthropic_com__Claude_model_disabled_f2f2d5cce38e3767",
+      "title": "[QP:anthropic.com] Claude model disabled",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_anthropic_com__model_availability_Claude_1ca730ffaeb55ec3",
+      "title": "[QP:anthropic.com] model availability Claude",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_status_anthropic_com__Claude_model_availa_940d0420ce115d4f",
+      "title": "[QP:status.anthropic.com] Claude model availability",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "QP_openai_com__model_availability_deprecated_8d66dd0bfda19707",
+      "title": "[QP:openai.com] model availability deprecated",
+      "url": "",
+      "status": "DISCOVERY_ONLY_NOT_CARDABLE",
+      "reason": "query_plan_no_body"
+    },
+    {
+      "candidate_id": "7b7b0842e9420267",
+      "title": "NASA’s LRO Images Falcon 9 Crater on Moon, Learns New Details",
+      "url": "https://science.nasa.gov/solar-system/moon/nasas-lro-images-falcon-9-crater-on-moon-learns-new-details",
+      "status": "SUMMARY_ONLY",
+      "reason": "summary_not_body_evidence"
+    },
+    {
+      "candidate_id": "0ef0f43178a1b09d",
+      "title": "NASA Student Aviation Challenge Focuses on Nation’s Infrastructure",
+      "url": "https://www.nasa.gov/aeronautics/nasa-student-aviation-challenge-focuses-on-nations-infrastructure",
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "NO_DYSON_TREE_MATCH"
+    },
+    {
+      "candidate_id": "792a53591cb7d85e",
+      "title": "NASA&#8217;s B777 Gets New Coat of Paint",
+      "url": "https://www.nasa.gov/image-article/nasas-b777-gets-new-coat-of-paint",
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "NO_DYSON_TREE_MATCH"
+    },
+    {
+      "candidate_id": "f6ad74c16bc5ed8a",
+      "title": "NASA Glenn’s Legacy Forged Through Decades of Flight Research",
+      "url": "https://www.nasa.gov/general/nasa-glenn-inflight-research",
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "NO_DYSON_TREE_MATCH"
+    },
+    {
+      "candidate_id": "2b47bb50cd99cfc1",
+      "title": "APOD: 2026 August 18 – Perseids from Perseus",
+      "url": "https://science.nasa.gov/image-article/apod-2026-august-18-perseids-from-perseus",
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "NO_DYSON_TREE_MATCH"
+    },
+    {
+      "candidate_id": "5b0d0421fcc26ca2",
+      "title": "Lala Batters Hawaii",
+      "url": "https://science.nasa.gov/earth/earth-observatory/lala-batters-hawaii",
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "NO_DYSON_TREE_MATCH"
+    },
+    {
+      "candidate_id": "36c4a82fc1aee112",
+      "title": "Wildfires, drought and extreme heat, 2026",
+      "url": "https://www.esa.int/Applications/Observing_the_Earth/FutureEO/Space_for_our_climate/Wildfires_drought_and_extreme_heat_2026",
+      "status": "SUMMARY_ONLY",
+      "reason": "summary_not_body_evidence"
+    },
+    {
+      "candidate_id": "0108515f7bced956",
+      "title": "Hera's Mars flyby guided impact study of Deimos moon",
+      "url": "https://www.esa.int/Space_Safety/Hera/Hera_s_Mars_flyby_guided_impact_study_of_Deimos_moon",
+      "status": "NEED_FETCH_BODY",
+      "reason": "missing_body_path"
+    },
+    {
+      "candidate_id": "e720ad90adfd1ee8",
+      "title": "Total solar eclipse 2026 (Official ESA broadcast)",
+      "url": "https://www.esa.int/ESA_Multimedia/Videos/2026/08/Total_solar_eclipse_2026_Official_ESA_broadcast",
+      "status": "SUMMARY_ONLY",
+      "reason": "summary_not_body_evidence"
+    },
+    {
+      "candidate_id": "567ed83daab60332",
+      "title": "Artificial intelligence for science in quantum, atomistic, and ...",
+      "url": "https://openalex.org/W4412591781",
+      "status": "NEED_FETCH_BODY",
+      "reason": "missing_body_path"
+    },
+    {
+      "candidate_id": "051033c6c6b6eee2",
+      "title": "Asia’s longevity gains must be translated into better health",
+      "url": "https://www.nature.com/articles/d41586-026-02576-4",
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "NO_DYSON_TREE_MATCH"
+    },
+    {
+      "candidate_id": "ffab64a311ebd428",
+      "title": "中国AI深度赋能制造业 形成实打实生产力",
+      "url": "https://news.cctv.com/2026/08/19/ARTIlMbeaSXrkyK0zu13ckJO260819.shtml",
+      "status": "SUMMARY_ONLY",
+      "reason": "summary_not_body_evidence"
+    },
+    {
+      "candidate_id": "97105b9433c2ebcb",
+      "title": "“AI桂林”文旅大模型正式上线 “AI桂林”文旅大模型在第22届中国—东盟博览会正式上线。这是桂林市与人民网深度合作开发的首个聚焦打造“世界级旅游城市”的全域智慧文旅大模型。 了解详情 →",
+      "url": "http://tech.people.com.cn/detail.html",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "NOT_ARTICLE_PAGE_URL"
+    },
+    {
+      "candidate_id": "0dd0cfa69b0789cc",
+      "title": "“十五五”开局·创新看点丨科学家如何科学地造火箭",
+      "url": "https://www.stdaily.com/web/2026-08/19/content_565951.html",
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "NO_DYSON_TREE_MATCH"
+    },
+    {
+      "candidate_id": "c1e874b3b5d6b0e5",
+      "title": "科技成果赋智企业“深度行”（福州站）活动成功举办",
+      "url": "https://www.miit.gov.cn/jgsj/kjs/gzdt/art/2026/art_5de5eec66ad44854827e66d8806031b6.html",
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "NO_DYSON_TREE_MATCH"
+    },
+    {
+      "candidate_id": "4dc9f2dc637f9114",
+      "title": "两部门联合启动2026年度计量支撑产业新质生产力发展项目征集工作",
+      "url": "https://www.miit.gov.cn/jgsj/kjs/gzdt/art/2026/art_ff6feceb3add4d1a993bc059f9d08424.html",
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "NO_DYSON_TREE_MATCH"
+    },
+    {
+      "candidate_id": "128a7b78516b09c9",
+      "title": "科技成果赋智企业“深度行”（拉萨站）活动成功举办",
+      "url": "https://www.miit.gov.cn/jgsj/kjs/gzdt/art/2026/art_e547fc4b4d1044de9a5bb09ff6921fee.html",
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "NO_DYSON_TREE_MATCH"
+    },
+    {
+      "candidate_id": "4d5346b0b47d548c",
+      "title": "阴和俊主持召开人工智能全球治理高级别会议",
+      "url": "https://www.most.gov.cn/kjbgz/202607/t20260720_197087.html",
+      "status": "SUMMARY_ONLY",
+      "reason": "summary_not_body_evidence"
+    },
+    {
+      "candidate_id": "a0e261c3276fe8d5",
+      "title": "hi Treg细胞加剧肥胖炎症新机制\" target=\"_blank\" ignoreapd=\"1\" >研究揭示棕榈酸破坏ICOS hi Treg细胞加剧肥胖炎症新机制",
+      "url": "https://www.cas.cn/../../syky/202608/t20260819_5118566.shtml",
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "NO_DYSON_TREE_MATCH"
+    },
+    {
+      "candidate_id": "c742c41fa5144763",
+      "title": "科学家将量子存储器间纠缠距离提升至420公里",
+      "url": "https://www.cas.cn/../../syky/202608/t20260817_5118473.shtml",
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "NO_DYSON_TREE_MATCH"
+    },
+    {
+      "candidate_id": "d7f45c962f4221b8",
+      "title": "DNA损伤修复调控放疗敏感性研究取得进展",
+      "url": "https://www.cas.cn/../../syky/202608/t20260818_5118509.shtml",
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "NO_DYSON_TREE_MATCH"
+    },
+    {
+      "candidate_id": "7b7b0842e9420267",
+      "title": "NASA’s LRO Images Falcon 9 Crater on Moon, Learns New Details",
+      "url": "https://science.nasa.gov/solar-system/moon/nasas-lro-images-falcon-9-crater-on-moon-learns-new-details",
+      "status": "SUMMARY_ONLY",
+      "reason": "duplicate_within_run"
+    },
+    {
+      "candidate_id": "2b47bb50cd99cfc1",
+      "title": "APOD: 2026 August 18 – Perseids from Perseus",
+      "url": "https://science.nasa.gov/image-article/apod-2026-august-18-perseids-from-perseus",
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "duplicate_within_run"
+    },
+    {
+      "candidate_id": "1860e34ccbc6d3a6",
+      "title": "εpsilon",
+      "url": "https://www.esa.int/Science_Exploration/Human_and_Robotic_Exploration/epsilon",
+      "status": "SKIP_DUPLICATE",
+      "reason": "DUPLICATE_URL"
+    },
+    {
+      "candidate_id": "36c4a82fc1aee112",
+      "title": "Wildfires, drought and extreme heat, 2026",
+      "url": "https://www.esa.int/Applications/Observing_the_Earth/FutureEO/Space_for_our_climate/Wildfires_drought_and_extreme_heat_2026",
+      "status": "SUMMARY_ONLY",
+      "reason": "duplicate_within_run"
+    },
+    {
+      "candidate_id": "0108515f7bced956",
+      "title": "Hera's Mars flyby guided impact study of Deimos moon",
+      "url": "https://www.esa.int/Space_Safety/Hera/Hera_s_Mars_flyby_guided_impact_study_of_Deimos_moon",
+      "status": "NEED_FETCH_BODY",
+      "reason": "duplicate_within_run"
+    },
+    {
+      "candidate_id": "e720ad90adfd1ee8",
+      "title": "Total solar eclipse 2026 (Official ESA broadcast)",
+      "url": "https://www.esa.int/ESA_Multimedia/Videos/2026/08/Total_solar_eclipse_2026_Official_ESA_broadcast",
+      "status": "SUMMARY_ONLY",
+      "reason": "duplicate_within_run"
+    },
+    {
+      "candidate_id": "cb2fb3ba116b9b04",
+      "title": "Watch Sophie Adenot’s spacewalk live",
+      "url": "https://www.esa.int/Science_Exploration/Human_and_Robotic_Exploration/Watch_Sophie_Adenot_s_spacewalk_live",
+      "status": "SUMMARY_ONLY",
+      "reason": "summary_not_body_evidence"
+    },
+    {
+      "candidate_id": "062954d77dc14112",
+      "title": "Should humanoid robots in every household really be a top priority?",
+      "url": "https://www.science.org/doi/abs/10.1126/science.aek2193",
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "NO_DYSON_TREE_MATCH"
+    },
+    {
+      "candidate_id": "0e2f9ef098965972",
+      "title": "FLOPs vs Real Work: The Importance of Replication in AI Efficiency Assessment",
+      "url": "https://arxiv.org/abs/2608.14550",
+      "status": "SUMMARY_ONLY",
+      "reason": "summary_not_body_evidence"
+    },
+    {
+      "candidate_id": "235ec2ea066c7963",
+      "title": "Global AI Regulations for FAIR and Ethics in High-Risk Use Cases: A Comparative Review",
+      "url": "https://arxiv.org/abs/2608.14562",
+      "status": "SUMMARY_ONLY",
+      "reason": "summary_not_body_evidence"
+    },
+    {
+      "candidate_id": "879501499ef51b3e",
+      "title": "Position: AI Lock-In Is in Progress, and We Must Be Prepared",
+      "url": "https://arxiv.org/abs/2608.14565",
+      "status": "SUMMARY_ONLY",
+      "reason": "summary_not_body_evidence"
+    },
+    {
+      "candidate_id": "8dbb2238c30b71eb",
+      "title": "Announcements Jul 9, 2026 Inviting hard questions We’re asking the public for their hardest questions about AI, and committing to show our work as we address them.",
+      "url": "https://www.anthropic.com/news/hard-questions",
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "STALE_NEWS"
+    },
+    {
+      "candidate_id": "37ee7c598376f45a",
+      "title": "Features Jul 6, 2026 The Making of Claude Code The inside story of how Claude Code went from an internal CLI to Anthropic's coding agent, told by researchers, engineers and early u",
+      "url": "https://www.anthropic.com/features/making-of-claude-code",
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "STALE_NEWS"
+    },
+    {
+      "candidate_id": "fdd9745edc3aad4e",
+      "title": "Announcements Jun 30, 2026 Redeploying Fable 5 Fable 5 returns globally July 1. We're also proposing an industry-wide framework for scoring jailbreak severity, together with Amazon",
+      "url": "https://www.anthropic.com/news/redeploying-fable-5",
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "STALE_NEWS"
+    },
+    {
+      "candidate_id": "4307222bc7e5f2e4",
+      "title": "Product Jun 30, 2026 Introducing Claude Sonnet 5 Sonnet 5 delivers frontier performance across coding, agents, and professional work at scale.",
+      "url": "https://www.anthropic.com/news/claude-sonnet-5",
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "STALE_NEWS"
+    },
+    {
+      "candidate_id": "b865bedc16126523",
+      "title": "how far behind the frontier are leading open weight models on cyber",
+      "url": "https://www.aisi.gov.uk/blog/how-far-behind-the-frontier-are-leading-open-weight-models-on-cyber",
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "NO_DYSON_TREE_MATCH"
+    },
+    {
+      "candidate_id": "68742812fb371554",
+      "title": "historic explosion long sought fusion breakthrough",
+      "url": "https://www.science.org/content/article/historic-explosion-long-sought-fusion-breakthrough",
+      "status": "NEED_FETCH_BODY",
+      "reason": "missing_body_path"
+    },
+    {
+      "candidate_id": "8e1a5ee42fc906e1",
+      "title": "breaking it down next generation batteries",
+      "url": "https://www.energy.gov/cmei/ammto/breaking-it-down-next-generation-batteries",
+      "status": "NEED_FETCH_BODY",
+      "reason": "missing_body_path"
+    },
+    {
+      "candidate_id": "b0575c12905ca69e",
+      "title": "两部门部署在全国开展2026年“全民反诈在行动”集中宣传月活动",
+      "url": "https://news.cctv.com/2026/06/10/ARTImWdyfJZtw95kmOJgdob2260610.shtml",
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "NO_DYSON_TREE_MATCH"
+    }
+  ],
+  "decision_cards_path": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260819_0942_final/bridge_runs/cron_20260819_0942/decision_cards.json",
+  "conversion_tasks_path": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260819_0942_final/bridge_runs/cron_20260819_0942/card_conversion_tasks.json",
+  "cross_run_dedupe_path": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260819_0942_final/bridge_run/processed_signatures.json"
+}

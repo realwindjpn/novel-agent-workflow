@@ -1,0 +1,35 @@
+{
+  "updated_at": "2026-08-19T22:16:17",
+  "run_id": "cron_20260819_2144",
+  "run_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260819_2144",
+  "per_run_bridge_dir": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260819_2144_final/bridge_runs/cron_20260819_2144",
+  "valid_input_count": 8,
+  "skipped_count": 118,
+  "disposition_counts": {
+    "OUTLINE_PATCH": 2,
+    "CHAPTER_PREP_ONLY": 2,
+    "ARCHIVE_WITH_REASON": 4
+  },
+  "conversion_task_count": 2,
+  "missing_cards_by_tier": {
+    "P0": [
+      "具身智能机器人_凌枢_在合肥亮相_05c9ed1d65b7e7da"
+    ],
+    "P1": [
+      "19810008016_724c724997b52856",
+      "mission_overview_70c8a4607d4a4f65",
+      "上海市打造的全国首家人工智能大模型专业孵化和加速平台_模速空间__目前已入驻国内200多家_c1c3789924ec16b9"
+    ]
+  },
+  "p0_missing": true,
+  "p0_missing_cards": [
+    "具身智能机器人_凌枢_在合肥亮相_05c9ed1d65b7e7da"
+  ],
+  "report": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260819_2144_final/DRY_RUN_REPORT.md",
+  "p0_p1_gate_blocked": true,
+  "p1_missing_cards": [
+    "19810008016_724c724997b52856",
+    "mission_overview_70c8a4607d4a4f65",
+    "上海市打造的全国首家人工智能大模型专业孵化和加速平台_模速空间__目前已入驻国内200多家_c1c3789924ec16b9"
+  ]
+}

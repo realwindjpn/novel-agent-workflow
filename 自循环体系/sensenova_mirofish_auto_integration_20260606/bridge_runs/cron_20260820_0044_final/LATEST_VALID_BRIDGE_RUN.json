@@ -1,0 +1,35 @@
+{
+  "updated_at": "2026-08-20T01:16:25",
+  "run_id": "cron_20260820_0044",
+  "run_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260820_0044",
+  "per_run_bridge_dir": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260820_0044_final/bridge_runs/cron_20260820_0044",
+  "valid_input_count": 9,
+  "skipped_count": 119,
+  "disposition_counts": {
+    "OUTLINE_PATCH": 1,
+    "CHAPTER_PREP_ONLY": 1,
+    "ARCHIVE_WITH_REASON": 7
+  },
+  "conversion_task_count": 1,
+  "missing_cards_by_tier": {
+    "P0": [
+      "c1004_40781970_8a5b6db065b200c3",
+      "具身智能机器人_凌枢_在合肥亮相_05c9ed1d65b7e7da"
+    ],
+    "P1": [
+      "2月9日上午_习近平总书记来到位于北京亦庄的国家信创园_了解信息技术应用创新和北京加快建设_6036fc2a4b39a27a",
+      "s4i_academic_challenge_finalists_7024fcbb28fa041c"
+    ]
+  },
+  "p0_missing": true,
+  "p0_missing_cards": [
+    "c1004_40781970_8a5b6db065b200c3",
+    "具身智能机器人_凌枢_在合肥亮相_05c9ed1d65b7e7da"
+  ],
+  "report": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260820_0044_final/DRY_RUN_REPORT.md",
+  "p0_p1_gate_blocked": true,
+  "p1_missing_cards": [
+    "2月9日上午_习近平总书记来到位于北京亦庄的国家信创园_了解信息技术应用创新和北京加快建设_6036fc2a4b39a27a",
+    "s4i_academic_challenge_finalists_7024fcbb28fa041c"
+  ]
+}

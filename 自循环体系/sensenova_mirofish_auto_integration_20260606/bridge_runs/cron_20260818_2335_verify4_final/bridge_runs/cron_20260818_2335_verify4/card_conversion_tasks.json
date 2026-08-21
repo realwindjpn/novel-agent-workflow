@@ -1,0 +1,20 @@
+[
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260819_e740e33f04",
+    "title": "算力是数字经济时代的生产力，算力网是支撑数字经济高质量发展的关键基础设施。如今，大模型参数规模迈向万亿级，全国一体化算力网加快构建，算力的竞争逻辑也正被加速改写。",
+    "source_url": "https://business.cctv.com/2026/07/22/ARTIjsaPkl43wPxMvgbLEnfz260722.shtml",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260818_2335_verify4/cards/算力是数字经济时代的生产力_算力网是支撑数字经济高质量发展的关键基础设施_如今_大模型参数规模迈向万_9704fee7.md",
+    "target_chapter_hint": 125,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_Wiki",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_Wiki"
+    ],
+    "not_done_in_dry_run": true
+  }
+]

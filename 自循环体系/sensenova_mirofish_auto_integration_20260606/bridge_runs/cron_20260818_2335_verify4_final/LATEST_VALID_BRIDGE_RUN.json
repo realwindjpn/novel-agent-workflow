@@ -1,0 +1,33 @@
+{
+  "updated_at": "2026-08-19T00:14:33",
+  "run_id": "cron_20260818_2335_verify4",
+  "run_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260818_2335_verify4",
+  "per_run_bridge_dir": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260818_2335_verify4_final/bridge_runs/cron_20260818_2335_verify4",
+  "valid_input_count": 5,
+  "skipped_count": 104,
+  "disposition_counts": {
+    "OUTLINE_PATCH": 1,
+    "CHAPTER_PREP_ONLY": 1,
+    "ARCHIVE_WITH_REASON": 3
+  },
+  "conversion_task_count": 1,
+  "missing_cards_by_tier": {
+    "P0": [
+      "技术破壁与政策护航_低空经济2026开启规模化运营新篇章_43521aa0c165378a",
+      "新材料领域突破不断_惠及多个关键产业_f4bbd37b1475b99d"
+    ],
+    "P1": [
+      "人工智能激活力__新_意盎然促发展_69e8e15f2400ef8e"
+    ]
+  },
+  "p0_missing": true,
+  "p0_missing_cards": [
+    "技术破壁与政策护航_低空经济2026开启规模化运营新篇章_43521aa0c165378a",
+    "新材料领域突破不断_惠及多个关键产业_f4bbd37b1475b99d"
+  ],
+  "report": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260818_2335_verify4_final/DRY_RUN_REPORT.md",
+  "p0_p1_gate_blocked": true,
+  "p1_missing_cards": [
+    "人工智能激活力__新_意盎然促发展_69e8e15f2400ef8e"
+  ]
+}

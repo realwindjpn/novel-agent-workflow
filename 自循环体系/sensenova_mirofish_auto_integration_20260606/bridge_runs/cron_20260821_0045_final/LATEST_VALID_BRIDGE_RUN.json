@@ -1,0 +1,35 @@
+{
+  "updated_at": "2026-08-21T01:24:55",
+  "run_id": "cron_20260821_0045",
+  "run_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260821_0045",
+  "per_run_bridge_dir": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260821_0045_final/bridge_runs/cron_20260821_0045",
+  "valid_input_count": 19,
+  "skipped_count": 111,
+  "disposition_counts": {
+    "OUTLINE_PATCH": 0,
+    "CHAPTER_PREP_ONLY": 6,
+    "ARCHIVE_WITH_REASON": 13
+  },
+  "conversion_task_count": 6,
+  "missing_cards_by_tier": {
+    "P0": [
+      "evade_drone_capabilities_warfighters_b4f86f0d60dc17be"
+    ],
+    "P1": [
+      "doe_explainsdeuterium_tritium_fusion_fuel_feeb33cad54862fc",
+      "hurricane_satellite_imagery_084f7b3edf2ca4e1",
+      "发展新质生产力塑造竞争新优势_n_n正在加载_n_n党的二十届四中全会明确提出_加快高水平_8690f790f4e3daa7"
+    ]
+  },
+  "p0_missing": true,
+  "p0_missing_cards": [
+    "evade_drone_capabilities_warfighters_b4f86f0d60dc17be"
+  ],
+  "report": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260821_0045_final/DRY_RUN_REPORT.md",
+  "p0_p1_gate_blocked": true,
+  "p1_missing_cards": [
+    "doe_explainsdeuterium_tritium_fusion_fuel_feeb33cad54862fc",
+    "hurricane_satellite_imagery_084f7b3edf2ca4e1",
+    "发展新质生产力塑造竞争新优势_n_n正在加载_n_n党的二十届四中全会明确提出_加快高水平_8690f790f4e3daa7"
+  ]
+}

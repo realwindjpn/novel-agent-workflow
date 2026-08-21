@@ -1,0 +1,41 @@
+{
+  "updated_at": "2026-08-20T16:41:23",
+  "run_id": "cron_20260820_1545",
+  "run_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260820_1545",
+  "per_run_bridge_dir": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260820_1545_final/bridge_runs/cron_20260820_1545",
+  "valid_input_count": 11,
+  "skipped_count": 116,
+  "disposition_counts": {
+    "OUTLINE_PATCH": 1,
+    "CHAPTER_PREP_ONLY": 3,
+    "ARCHIVE_WITH_REASON": 7
+  },
+  "conversion_task_count": 3,
+  "missing_cards_by_tier": {
+    "P0": [
+      "上海证券报记者陈芳_张琼斯_9fb966c5983fcdf2",
+      "科技日报___2025-02-11_14_27_01_030e59eab8b49cac"
+    ],
+    "P1": [
+      "19810008016_724c724997b52856",
+      "59374_overview_1e34214f1442f5c5",
+      "ESA_launches_first_metal_3D_printer_to_ISS_b1a65a19a0c46738",
+      "c1004_40736897_ab11d3ab30bbb779",
+      "上海市打造的全国首家人工智能大模型专业孵化和加速平台_模速空间__目前已入驻国内200多家_c1c3789924ec16b9"
+    ]
+  },
+  "p0_missing": true,
+  "p0_missing_cards": [
+    "上海证券报记者陈芳_张琼斯_9fb966c5983fcdf2",
+    "科技日报___2025-02-11_14_27_01_030e59eab8b49cac"
+  ],
+  "report": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260820_1545_final/DRY_RUN_REPORT.md",
+  "p0_p1_gate_blocked": true,
+  "p1_missing_cards": [
+    "19810008016_724c724997b52856",
+    "59374_overview_1e34214f1442f5c5",
+    "ESA_launches_first_metal_3D_printer_to_ISS_b1a65a19a0c46738",
+    "c1004_40736897_ab11d3ab30bbb779",
+    "上海市打造的全国首家人工智能大模型专业孵化和加速平台_模速空间__目前已入驻国内200多家_c1c3789924ec16b9"
+  ]
+}

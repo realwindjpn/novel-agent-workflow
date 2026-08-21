@@ -1,0 +1,44 @@
+{
+  "updated_at": "2026-08-20T13:24:08",
+  "run_id": "cron_20260820_1245",
+  "run_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260820_1245",
+  "per_run_bridge_dir": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260820_1245_final/bridge_runs/cron_20260820_1245",
+  "valid_input_count": 17,
+  "skipped_count": 111,
+  "disposition_counts": {
+    "OUTLINE_PATCH": 1,
+    "CHAPTER_PREP_ONLY": 5,
+    "ARCHIVE_WITH_REASON": 11
+  },
+  "conversion_task_count": 5,
+  "missing_cards_by_tier": {
+    "P1": [
+      "19810008016_724c724997b52856",
+      "2月9日上午_习近平总书记来到位于北京亦庄的国家信创园_了解信息技术应用创新和北京加快建设_6036fc2a4b39a27a",
+      "59374_overview_1e34214f1442f5c5",
+      "artemis_8d279be15a4247ac",
+      "c1004_40736897_ab11d3ab30bbb779",
+      "learning_introspective_control_bbb6712641efe2b4",
+      "s41467_025_65836_3_22079eca51c268a0",
+      "s4i_academic_challenge_finalists_7024fcbb28fa041c",
+      "satellites_ocean_6d07af5cd70f8ba0",
+      "夯实新质生产力发展的先进生产要素基础_4b449ad7155841e9"
+    ]
+  },
+  "p0_missing": false,
+  "p0_missing_cards": [],
+  "report": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260820_1245_final/DRY_RUN_REPORT.md",
+  "p0_p1_gate_blocked": true,
+  "p1_missing_cards": [
+    "19810008016_724c724997b52856",
+    "2月9日上午_习近平总书记来到位于北京亦庄的国家信创园_了解信息技术应用创新和北京加快建设_6036fc2a4b39a27a",
+    "59374_overview_1e34214f1442f5c5",
+    "artemis_8d279be15a4247ac",
+    "c1004_40736897_ab11d3ab30bbb779",
+    "learning_introspective_control_bbb6712641efe2b4",
+    "s41467_025_65836_3_22079eca51c268a0",
+    "s4i_academic_challenge_finalists_7024fcbb28fa041c",
+    "satellites_ocean_6d07af5cd70f8ba0",
+    "夯实新质生产力发展的先进生产要素基础_4b449ad7155841e9"
+  ]
+}

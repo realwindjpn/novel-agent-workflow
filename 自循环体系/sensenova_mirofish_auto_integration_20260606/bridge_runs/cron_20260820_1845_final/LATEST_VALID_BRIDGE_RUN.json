@@ -1,0 +1,39 @@
+{
+  "updated_at": "2026-08-20T19:11:43",
+  "run_id": "cron_20260820_1845",
+  "run_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260820_1845",
+  "per_run_bridge_dir": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260820_1845_final/bridge_runs/cron_20260820_1845",
+  "valid_input_count": 17,
+  "skipped_count": 113,
+  "disposition_counts": {
+    "OUTLINE_PATCH": 1,
+    "CHAPTER_PREP_ONLY": 7,
+    "ARCHIVE_WITH_REASON": 9
+  },
+  "conversion_task_count": 7,
+  "missing_cards_by_tier": {
+    "P0": [
+      "AI赋能千行百业一线观察_从世界人工智能大会看端侧AI智能化趋势_5b7ab4448ef8d189",
+      "evade_drone_capabilities_warfighters_b4f86f0d60dc17be",
+      "科学与健康丨产业加快落地_低空经济_振翅高飞_f5813323961c5dd7",
+      "科技日报___2025-02-11_14_27_01_030e59eab8b49cac"
+    ],
+    "P1": [
+      "artemis_8d279be15a4247ac",
+      "doe_explainsdeuterium_tritium_fusion_fuel_feeb33cad54862fc"
+    ]
+  },
+  "p0_missing": true,
+  "p0_missing_cards": [
+    "AI赋能千行百业一线观察_从世界人工智能大会看端侧AI智能化趋势_5b7ab4448ef8d189",
+    "evade_drone_capabilities_warfighters_b4f86f0d60dc17be",
+    "科学与健康丨产业加快落地_低空经济_振翅高飞_f5813323961c5dd7",
+    "科技日报___2025-02-11_14_27_01_030e59eab8b49cac"
+  ],
+  "report": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260820_1845_final/DRY_RUN_REPORT.md",
+  "p0_p1_gate_blocked": true,
+  "p1_missing_cards": [
+    "artemis_8d279be15a4247ac",
+    "doe_explainsdeuterium_tritium_fusion_fuel_feeb33cad54862fc"
+  ]
+}

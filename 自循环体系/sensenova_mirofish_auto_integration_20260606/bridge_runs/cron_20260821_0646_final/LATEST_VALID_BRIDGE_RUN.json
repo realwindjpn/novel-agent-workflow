@@ -1,0 +1,33 @@
+{
+  "updated_at": "2026-08-21T07:17:36",
+  "run_id": "cron_20260821_0646",
+  "run_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260821_0646",
+  "per_run_bridge_dir": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260821_0646_final/bridge_runs/cron_20260821_0646",
+  "valid_input_count": 18,
+  "skipped_count": 112,
+  "disposition_counts": {
+    "OUTLINE_PATCH": 0,
+    "CHAPTER_PREP_ONLY": 7,
+    "ARCHIVE_WITH_REASON": 11
+  },
+  "conversion_task_count": 7,
+  "missing_cards_by_tier": {
+    "P0": [
+      "n_n正在加载_n_n_本报记者_孙_瑜_n_n2月8日_春节喜庆气氛尚未散去_中国航空_030e59eab8b49cac"
+    ],
+    "P1": [
+      "doe_explainsdeuterium_tritium_fusion_fuel_feeb33cad54862fc",
+      "hurricane_satellite_imagery_084f7b3edf2ca4e1"
+    ]
+  },
+  "p0_missing": true,
+  "p0_missing_cards": [
+    "n_n正在加载_n_n_本报记者_孙_瑜_n_n2月8日_春节喜庆气氛尚未散去_中国航空_030e59eab8b49cac"
+  ],
+  "report": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260821_0646_final/DRY_RUN_REPORT.md",
+  "p0_p1_gate_blocked": true,
+  "p1_missing_cards": [
+    "doe_explainsdeuterium_tritium_fusion_fuel_feeb33cad54862fc",
+    "hurricane_satellite_imagery_084f7b3edf2ca4e1"
+  ]
+}

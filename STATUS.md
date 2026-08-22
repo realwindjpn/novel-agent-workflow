@@ -73,3 +73,10 @@
 - 2026-08-22 16:13 | 第283章《人类共识》SHA 1327a78c CJK 3015 + 第284章《遗迹守护者》SHA 58b63463 CJK 3016，三审+返修定稿，草稿箱保存
 
 - 2026-08-22 18:43 | 283-284 灰区精修完成：283 SHA bef1678a CJK 3014（主语重复修复）；284 SHA 84247370 CJK 2957（不是句式清零+参数密度优化+清单腔拆解）；重审PASS；待发布
+- 2026-08-22 18:50 | 第283章《人类共识》+第284章《遗迹守护者》全闭环完成
+  - 283: SHA bef1678a CJK 3014（首写→编辑REVISE(P0×3)→返修→补字→重审PASS→灰区精修：主语重复修复）
+  - 284: SHA cf972c6e CJK 3019（首写→编辑PASS/读者PASS→灰区精修：不是句式4→0+参数密度分散+清单腔拆解）
+  - G1→G3凭证补签+G4_RELEASE签发（任务运行态/20260822_kewu_selfcycle_manual/）
+  - 草稿箱TXT同步、STATUS/WAL/Git commit
+  - 生图接入：三路验通（aliyun-tokoplan wan2.7/qwen-image + miku Gemini3Pro + agnes），统一脚本 scripts/generate_image.py
+  - 正式发布归用户

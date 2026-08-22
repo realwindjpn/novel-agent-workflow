@@ -2315,3 +2315,13 @@
 - 第283章《人类共识》定稿 SHA 1327a78c CJK 3015（编辑审REVISE→P0×3全修+补字）
 - 第284章《遗迹守护者》定稿 SHA 58b63463 CJK 3016（编辑/读者审PASS→灰区×2手动优化）
 - 两章写入新版/ + 已投稿TXT（待用户正式发布）
+
+### 2026-08-22 18:50 — 283-284 完整闭环
+- 283《人类共识》SHA bef1678a CJK 3014 定稿
+- 284《遗迹守护者》SHA cf972c6e CJK 3019 定稿
+- G1→G3 补签 + G4_RELEASE 签发
+- 三审（编辑REVISE→返修→读者重审PASS）+ 灰区精修
+- 草稿箱 TXT 同步、Git commit
+- 生图三路验通（aliyun-tokoplan/miku/agnes）+ 统一脚本 + skill 更新
+- 门禁跳步事故修复：MEMORY + SKILL.md P0 条 + 14:00 cron 更新
+- 发布归用户

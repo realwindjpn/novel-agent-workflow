@@ -84,6 +84,46 @@ class DeaiHardGateTests(unittest.TestCase):
         text = "# 第999章 测试\n没有偏好。没有先验。没有乡愁。\n"
         self.assertIn("FRAGMENT_PUNCHLINE_SOFT", self.hit_types(text))
 
+    # ---- 混合行（叙述 + 对白同一行）NOT_IS_HARD 只扫叙述层 ----
+
+    def test_strip_paired_quotes_helper(self):
+        """helper 移除中文“”、半角 ""、半角 '' 成对引号内容；单侧引号不吞后文。"""
+        self.assertEqual(scan.strip_paired_quotes("他点头，“不是撤退，是换位。”走开。"), "他点头，走开。")
+        self.assertEqual(scan.strip_paired_quotes('他点头，"不是撤退，是换位。"走开。'), "他点头，走开。")
+        self.assertEqual(scan.strip_paired_quotes("他点头，'不是撤退，是换位。'走开。"), "他点头，走开。")
+        # 未闭合引号保持原样，不得把后文吞掉。
+        self.assertEqual(scan.strip_paired_quotes("他说“不是撤退，是换位。"), "他说“不是撤退，是换位。")
+
+    def test_mixed_line_dialogue_not_is_exempt_cn_quotes(self):
+        """混合行：中文引号内台词的「不是X，是Y」不判硬闸。"""
+        r = scan_text("# 第999章 测试\n他点了下头，“这不是撤退，是换位。”随后关掉频道。\n")
+        self.assertNotIn("NOT_IS_HARD", [h["type"] for h in r["hits"]])
+        self.assertEqual(r["hard_count"], 0)
+        self.assertNotEqual(r["verdict"], "FAIL_HARD")
+
+    def test_mixed_line_dialogue_not_is_exempt_halfwidth_quotes(self):
+        """混合行：半角双引号与单引号内台词同样豁免。"""
+        for line in (
+            '他点了下头，"这不是撤退，是换位。"随后关掉频道。',
+            "他点了下头，'这不是撤退，是换位。'随后关掉频道。",
+        ):
+            with self.subTest(line=line):
+                r = scan_text(f"# 第999章 测试\n{line}\n")
+                self.assertNotIn("NOT_IS_HARD", [h["type"] for h in r["hits"]])
+                self.assertEqual(r["hard_count"], 0)
+
+    def test_mixed_line_narration_outside_quotes_still_hard(self):
+        """同为混合行：引号外叙述层出现「不是X，是Y」仍须 FAIL_HARD。"""
+        r = scan_text("# 第999章 测试\n他要的不是答案，是权限。“交给我。”\n")
+        self.assertIn("NOT_IS_HARD", [h["type"] for h in r["hits"]])
+        self.assertEqual(r["verdict"], "FAIL_HARD")
+
+    def test_mixed_line_narration_hard_with_halfwidth_dialogue(self):
+        """半角引号混合行同理：叙述层命中仍判硬闸。"""
+        r = scan_text('# 第999章 测试\n他要的不是答案，是权限。"交给我。"\n')
+        self.assertIn("NOT_IS_HARD", [h["type"] for h in r["hits"]])
+        self.assertEqual(r["verdict"], "FAIL_HARD")
+
 
 if __name__ == "__main__":
     unittest.main()

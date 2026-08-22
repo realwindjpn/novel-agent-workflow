@@ -84,6 +84,25 @@ WEIGHTS = {
 _DIALOGUE_RE = re.compile(r'^\s*[“”"\'].*[”"\']\s*$')
 _TITLE_RE = re.compile(r'^\s*#?\s*第\d+章\s+\S')
 
+# 成对引号（中文“”、半角 ""、半角 ''）；未闭合的单侧引号不匹配，故不会吞掉后文。
+_PAIRED_QUOTE_RES = (
+    re.compile(r'“[^“”\n]*”'),
+    re.compile(r'"[^"\n]*"'),
+    re.compile(r"'[^'\n]*'"),
+)
+
+
+def strip_paired_quotes(text: str) -> str:
+    """移除所有成对引号及其内容，只留叙述层文字。
+
+    用于 NOT_IS_HARD：对白里的「不是X，是Y」是正常口语，
+    只有引号外的叙述层才该判硬闸。混合行（叙述+对白同一行）因此不再误扫。
+    """
+    out = text
+    for pat in _PAIRED_QUOTE_RES:
+        out = pat.sub('', out)
+    return out
+
 
 def iter_files(paths: list[Path]):
     for root in paths:
@@ -121,7 +140,10 @@ def scan_file(path: Path) -> dict:
             # 完整对白行豁免新增的人味软/硬模式（NOT_IS_HARD 与 9 项 SOFT）。
             if is_dialogue and (typ == 'NOT_IS_HARD' or typ.endswith('_SOFT')):
                 continue
-            if pat.search(line):
+            # NOT_IS_HARD 只扫叙述层：先剥掉所有成对引号内容，避免混合行
+            #（叙述 + 对白同一行）里的台词口语被判硬闸。
+            target = strip_paired_quotes(line) if typ == 'NOT_IS_HARD' else line
+            if pat.search(target):
                 hits.append({'line': i, 'type': typ, 'text': stripped[:260]})
 
     # 跨行检测：连续同主语开头（≥3 句）

@@ -80,3 +80,20 @@
   - 草稿箱TXT同步、STATUS/WAL/Git commit
   - 生图接入：三路验通（aliyun-tokoplan wan2.7/qwen-image + miku Gemini3Pro + agnes），统一脚本 scripts/generate_image.py
   - 正式发布归用户
+- 2026-08-22 21:49 | 同步章节 285
+- 2026-08-22 21:50 | 同步章节 286
+
+## 2026-08-22 21:51｜第285-286章草稿箱闭环
+- 状态: DRAFT_SAVED_NOT_PUBLISHED
+- 第285章《考验开始》: SHA=6c2b15b1, CJK=3080, 草稿箱3724字, 第六卷·火星
+- 第286章《危机应对》: SHA=89a2f4ae, CJK=3621, 草稿箱4334字, 第六卷·火星
+- 五审: 科学PASS / 结构PASS / 编辑REVISE(建议) / 读者REVISE(建议) / 去AI确定性扫描PASS(7处公式句已清除)
+- G1-G4凭证: 任务运行态/20260822_kewu_selfcycle_manual/
+- 草稿箱listing: 285✅(3724字/1分钟前) 286✅(4334字/7秒前)
+- 已投稿/目录前沿: 第286章
+- 正式发布归用户
+
+## 当前前沿
+- 已投稿/目录前沿: 286
+- 草稿箱闭环前沿: 286
+- 下一数值章: 287《黑客攻防》

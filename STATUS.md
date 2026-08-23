@@ -145,4 +145,12 @@
 - 草稿箱listing: 291✅(4161字, count=1, duplicate=false, 第六卷：火星)
 - 草稿箱闭环前沿: 291；已投稿/目录前沿: 291；下一数值章: 292《能源瓶颈》READY_FOR_G4_SIGN
 - 报告: 任务运行态/20260823_kewu_selfcycle_daily/CLOSE_291_AND_PREP_292_STATUS.md
-- 边界: DRAFT_SAVED_NOT_PUBLISHED，正式发布归用户
+|- 边界: DRAFT_SAVED_NOT_PUBLISHED，正式发布归用户
+
+## 2026-08-23 23:20｜291/292 主控复验
+|- 291 R9 候选现场机检通过：SHA=ee92b9c5a1ba76dcc1359a0cb5b3d49c4d432dcb64d319e73344eb283ac343e9；CJK=3574；首尾合规；禁词/wikilink/加粗/三连空行/裸章号均为 0；直双引号 92 成对
+|- 291 六审读回全 PASS：editor/reader/science/military_institution/structure/deai_final 均绑定同 SHA，reviewed_fulltext=true，provider 跨族无 GLM-5.2 同族
+|- 291 定稿同步通过：新版/已投稿TXT/Wiki Full Text/跟踪表机器验收完成
+|- 292 回填通过：G3_prep.json prev_chapter + locked_constraints[-1] 四项功率缺口已读回验证；prep_state=G3_READY_DEPENDENCY_291_BACKFILLED
+|- 草稿箱列表终验：第291章 太空工业 4161字 count=1 duplicate=false 第六卷：火星；saved.saved=false 字段冲突已按 skill 条款以列表命中为准
+|- 边界：未改正文语义、未触碰旧章、未读 KOL/全局队列、未派子席、未正式发布（发布归小哥）

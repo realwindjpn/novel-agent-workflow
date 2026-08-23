@@ -154,3 +154,10 @@
 |- 292 回填通过：G3_prep.json prev_chapter + locked_constraints[-1] 四项功率缺口已读回验证；prep_state=G3_READY_DEPENDENCY_291_BACKFILLED
 |- 草稿箱列表终验：第291章 太空工业 4161字 count=1 duplicate=false 第六卷：火星；saved.saved=false 字段冲突已按 skill 条款以列表命中为准
 |- 边界：未改正文语义、未触碰旧章、未读 KOL/全局队列、未派子席、未正式发布（发布归小哥）
+
+## 2026-08-24 01:05｜第292章 R3 作者返修回收（未审稿）
+|- 稿件: 任务运行态/20260823_kewu_selfcycle_daily/output/candidate_292_r3.md｜SHA=9512bcfb9a6d7101ac05480b307096ba44e9c548475f01050ddf83f266866586｜净CJK=3629
+|- R2 唯一 FAIL: 净CJK=2884 低于硬线3200，差316；R3 只扩容七处，数字链/情节/首尾全保留
+|- 机检+DEAI硬闸: MACHINE_GATE_PASS；DEAI verdict=PASS hard=0 score=12
+|- 绑定: 任务运行态/20260823_kewu_selfcycle_daily/reviews_292_r3/PRE_REVIEW_BINDING_292_R3.json
+|- 状态: R3_READY_FOR_REVIEW（六审未派；未入草稿箱；未发布）

@@ -133,3 +133,16 @@
 - 扫描器行内对白误报已修；15/15测试PASS；289/290 hard_count=0。
 - 289软密度WARN不构成上传硬阻断；正文与草稿箱未改。
 
+- 2026-08-23 23:09 | 291《太空工业》R9 六审同SHA全PASS 定稿同步
+- 2026-08-23 23:10 | 同步章节 291
+- 2026-08-23 23:11 | 291 定稿+草稿箱闭环，补跟踪表行后二次同步
+
+## 2026-08-23 23:13｜第291章 定稿闭环（草稿箱）
+- 第291章《太空工业》: SHA=ee92b9c5a1ba76dcc1359a0cb5b3d49c4d432dcb64d319e73344eb283ac343e9, CJK=3574, 草稿箱4161字, 第六卷：火星
+- 六审: R9 五审（editor/reader/science/military_institution/structure）+ DEAI 终门同SHA全PASS，六席跨provider无主控同族
+- 机检: 禁词0/wikilink0/加粗0/三连空行False/裸章号0/引号92成对/首尾合规
+- 同步: 新版✅ 已投稿TXT✅(ok,issues=[]) Wiki Full Text✅ 跟踪表✅(二次sync Tracking:1)
+- 草稿箱listing: 291✅(4161字, count=1, duplicate=false, 第六卷：火星)
+- 草稿箱闭环前沿: 291；已投稿/目录前沿: 291；下一数值章: 292《能源瓶颈》READY_FOR_G4_SIGN
+- 报告: 任务运行态/20260823_kewu_selfcycle_daily/CLOSE_291_AND_PREP_292_STATUS.md
+- 边界: DRAFT_SAVED_NOT_PUBLISHED，正式发布归用户

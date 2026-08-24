@@ -69,6 +69,13 @@ BOOK_NAME_ENC = '%E7%A7%91%E6%AD%A6%E7%BA%AA%E5%85%83%EF%BC%9A%E6%88%91%E5%9C%A8
 # 草稿箱列表页。2026-08-19 实测：带书名编码的 ?type=2 完整 URL 渲染 0 行（SPA 路由回归），
 # 仅 book_id 的短 URL 稳定渲染草稿行（两次实测 rows=16），采用短 URL。
 DRAFT_URL = f'https://fanqienovel.com/main/writer/chapter-manage/{BOOK_ID}'
+# 2026-08-24 实测回归：短 URL 现在渲染的是「已发布/待发布」表（type=1），草稿行不在其中，
+# 会误报 row_not_found。带 ?type=2 的完整 URL 此时才渲染草稿箱行（第292章命中）。
+# 两者行为随番茄 SPA 路由改版反复，故按顺序尝试，任一命中即用。
+DRAFT_URL_FALLBACK = (
+    f'https://fanqienovel.com/main/writer/chapter-manage/{BOOK_ID}&{BOOK_NAME_ENC}?type=2'
+)
+DRAFT_URL_CANDIDATES = (DRAFT_URL, DRAFT_URL_FALLBACK)
 DEFAULT_SESSION = 'fanqie'
 DEFAULT_STATE = Path('/root/workspace/browser_profiles/fanqie/fanqie_state.json')
 WORD_COUNT_TOLERANCE = 20  # 番茄字数口径与本地字符数存在差异，复核允许 ±20
@@ -177,19 +184,37 @@ def parse_local(project_dir: Path, chapter: int) -> dict:
 
 
 # ---------------------------------------------------------------- 草稿箱定位
-def open_draft_listing(session: str, state_path: Path | None = None) -> str:
-    """打开草稿箱列表页并等列表渲染（SPA 异步，须轮询）。"""
-    ab(session, f"open {shlex.quote(DRAFT_URL)}", timeout=120, state_path=state_path)
-    for _ in range(12):
-        time.sleep(1.2)
-        ready = js_eval(session, """
+def open_draft_listing(
+    session: str, state_path: Path | None = None, needle: str | None = None,
+) -> str:
+    """打开草稿箱列表页并等列表渲染（SPA 异步，须轮询）。
+
+    2026-08-24 补丁：番茄 SPA 路由会在短 URL / `?type=2` 完整 URL 之间反复，
+    短 URL 有时只渲染「已发布/待发布」表。传 needle（'第N章 标题'）时，
+    逐个候选 URL 试到该行出现为止，避免把「路由渲染了另一张表」误报为 row_not_found。
+    """
+    last_url = ''
+    for url in DRAFT_URL_CANDIDATES:
+        ab(session, f"open {shlex.quote(url)}", timeout=120, state_path=state_path)
+        for _ in range(12):
+            time.sleep(1.2)
+            js = """
 (() => {
  const rows = Array.from(document.querySelectorAll('tr.arco-table-tr'));
- return {ok: rows.length > 0, rows: rows.length, url: location.href};
+ const norm = (s) => (s || '').replace(/\\s+/g, ' ').trim();
+ const needle = %s;
+ const hit = needle ? rows.some(r => norm(r.innerText).includes(needle)) : null;
+ return {ok: rows.length > 0, rows: rows.length, hit, url: location.href};
 })()
-""", state_path=state_path)
-        if isinstance(ready, dict) and ready.get('ok'):
-            return str(ready.get('url') or '')
+""" % (json.dumps(needle) if needle else 'null')
+            ready = js_eval(session, js, state_path=state_path)
+            if isinstance(ready, dict) and ready.get('ok'):
+                last_url = str(ready.get('url') or '')
+                if needle is None or ready.get('hit'):
+                    return last_url
+                break  # 该表渲染成功但无目标行 → 换下一个候选 URL
+    if last_url:
+        return last_url
     raise RuntimeError('草稿箱列表未渲染出 tr.arco-table-tr')
 
 
@@ -355,6 +380,30 @@ def replace_body(session: str, data: dict, state_path: Path | None = None) -> di
     r = js_eval(session, js, timeout=180, state_path=state_path)
     if not isinstance(r, dict) or not r.get('ok'):
         raise RuntimeError(f'替换正文失败: {r}')
+
+    # 2026-08-24：页面「正文字数」label 由防抖计时器刷新，紧随 insertText 读会拿到 0/旧值
+    # （第292章实测 afterWords=4915 精确匹配、pageWordCount=0 → 旧实现假 FAIL）。
+    # 这里轮询 label 直到与编辑器 DOM 一致或稳定，再交给硬校验。
+    expect_words = len(_norm_words(data['body']))
+    for _ in range(12):
+        if r.get('pageWordCount') and abs(int(r['pageWordCount']) - expect_words) <= BODY_VERIFY_TOLERANCE:
+            break
+        time.sleep(1.5)
+        again = js_eval(session, """
+(() => {
+ const NW = (s) => (s || '').replace(/\\s+/g, '');
+ const ed = Array.from(document.querySelectorAll('.ProseMirror'))
+   .find(e => e.getBoundingClientRect().x < 1100 && e.getBoundingClientRect().width > 500);
+ const pageTxt = document.body.innerText || '';
+ const pw = pageTxt.match(/正文字数\\s*([0-9]+)/);
+ const n = ed ? NW(ed.innerText) : '';
+ return {afterWords: n.length, head30: n.slice(0,30), tail30: n.slice(-30),
+         pageWordCount: pw ? parseInt(pw[1], 10) : null};
+})()
+""", timeout=90, state_path=state_path)
+        if isinstance(again, dict):
+            r.update({k: v for k, v in again.items() if v is not None})
+
     verify_editor_body(r, data)
     return r
 
@@ -378,8 +427,13 @@ def verify_editor_body(r: dict, data: dict) -> None:
     page_word = r.get('pageWordCount')
 
     fails: list[str] = []
-    if r.get('num') != str(data['chapter']):
-        fails.append(f'章序号不符: num={r.get("num")!r} expect={str(data["chapter"])!r}')
+    num = r.get('num')
+    if num and str(num) != str(data['chapter']):
+        fails.append(f'章序号不符: num={num!r} expect={str(data["chapter"])!r}')
+    elif not num:
+        # 2026-08-24 R9 修复：章序号 input selector 改版导致空值时，不阻断保存；
+        # 身份改以 URL draft_id + 标题输入 + 草稿箱列表唯一行共同验证。
+        pass
     if r.get('hasTitle'):
         fails.append('编辑器正文含章号标题')
     if r.get('hasNote'):
@@ -466,16 +520,26 @@ def save_draft(session: str, state_path: Path | None = None) -> dict:
     return saved
 
 
-def verify_listing(session: str, data: dict, old_word: int | None, state_path: Path | None = None) -> dict:
-    """回草稿箱复核：同名行仍为 1 条，且字数与**本地正文字数**对齐。
+def verify_listing(
+    session: str, data: dict, old_word: int | None,
+    state_path: Path | None = None, page_word: int | None = None,
+) -> dict:
+    """回草稿箱复核：同名行仍为 1 条；正文字数以**页面计数器**为权威判据。
 
-    2026-08-19 判据修正（污染事故后）：
-    旧判据是「字数已更新到新值」，在代词级修订（字数不变，旧=新=本地）时无鉴别力，
-    更致命的是它把「字数变大」也可能当成通过（旧 4645→5328 时 delta 恰落在旁路）。
-    新判据只看绝对偏差：|列表字数 - 本地正文字数| ≤ WORD_COUNT_TOLERANCE 才 PASS；
-    偏大即视为 ProseMirror 追加污染，FAIL 并提示跑 --repair。
+    2026-08-19 判据（污染事故后）：|列表字数 - 本地正文字数| ≤ WORD_COUNT_TOLERANCE。
+
+    2026-08-24 判据修正（第292章实测）：列表字数字段**不是**「去空白字符数」口径。
+    第292章本地 norm=4887 时列表恒显 6434（delta +1547），而同轮 edit_article API
+    逐段比对 remote == local（83/83 段全等）、页面「正文字数」label=4885、
+    编辑器 DOM norm=4887——即正文无污染，纯粹是列表字段口径不同（该章含 302 个空格
+    与 672 个半宽字符；第291章无空格时 listing 与 norm 恰好相等，才掩盖了这个差异）。
+    故硬判据改为页面/编辑器计数器（PM state 驱动，污染会立刻反映），
+    列表字段偏差降级为 `listing_field_unit_mismatch` 警告，不再 raise。
     """
-    open_draft_listing(session, state_path=state_path)
+    open_draft_listing(
+        session, state_path=state_path,
+        needle=f"第{data['chapter']}章 {data['title']}",
+    )
     row = find_draft_row(session, data['chapter'], data['title'], state_path=state_path)
     new_word = row.get('oldWordCount')  # 复核阶段这里读到的是保存后的新字数
     expect = data['body_words']
@@ -490,15 +554,29 @@ def verify_listing(session: str, data: dict, old_word: int | None, state_path: P
         'tolerance': WORD_COUNT_TOLERANCE,
         'rowText': row.get('rowText'),
     }
+    result['page_word_count'] = page_word
     if int(row.get('count') or 0) != 1:
         raise RuntimeError(f'复核失败：同名草稿数 != 1: {result}')
     if new_word is None or delta is None:
         raise RuntimeError(f'复核失败：读不到列表字数: {result}')
-    if abs(delta) > WORD_COUNT_TOLERANCE:
-        kind = '疑似正文追加污染' if delta > 0 else '疑似正文缺失'
+
+    # 权威判据：页面/编辑器「正文字数」计数器（由 ProseMirror state 驱动）
+    if page_word is None:
+        raise RuntimeError(f'复核失败：读不到页面正文字数计数器: {result}')
+    page_delta = int(page_word) - expect
+    result['page_delta'] = page_delta
+    if abs(page_delta) > BODY_VERIFY_TOLERANCE:
+        kind = '疑似正文追加污染' if page_delta > 0 else '疑似正文缺失'
         raise RuntimeError(
-            f'复核失败：列表字数与本地正文偏差 {delta:+d}（容差±{WORD_COUNT_TOLERANCE}），'
-            f'{kind}。请跑 --repair --execute 修复：{result}'
+            f'复核失败：页面正文字数与本地偏差 {page_delta:+d}'
+            f'（容差±{BODY_VERIFY_TOLERANCE}），{kind}。'
+            f'请跑 --repair --execute 修复：{result}'
+        )
+    # 列表字段口径与 norm 不同（半宽字符/空格），仅作警告
+    if abs(delta) > WORD_COUNT_TOLERANCE:
+        result['listing_field_unit_mismatch'] = (
+            f'列表字段 {new_word} 与本地 norm {expect} 偏差 {delta:+d}；'
+            '页面计数器已 PASS，判为列表字段口径差异，非污染'
         )
     result['ok'] = True
     return result
@@ -527,7 +605,10 @@ def main() -> None:
     ))
 
     # 2) 打开草稿箱 + 3) 定位行
-    listing_url = open_draft_listing(args.session, state_path=args.state)
+    listing_url = open_draft_listing(
+        args.session, state_path=args.state,
+        needle=f"第{data['chapter']}章 {data['title']}",
+    )
     row = find_draft_row(args.session, data['chapter'], data['title'], state_path=args.state)
     old_word = row.get('oldWordCount')
 
@@ -540,9 +621,15 @@ def main() -> None:
                 'list_words': int(old_word),
                 'local_words': data['body_words'],
                 'delta': d,
+                # 2026-08-24：列表字段口径 ≠ 去空白字符数（含半宽/空格的章节恒偏大），
+                # 故 dry-run 只能给「可疑」，真伪由 execute 阶段的页面计数器判定。
                 'verdict': (
                     'CLEAN' if abs(d) <= WORD_COUNT_TOLERANCE
-                    else ('POLLUTED_APPEND(需 --repair --execute)' if d > 0 else 'MISSING_BODY')
+                    else ('SUSPECT_APPEND_OR_UNIT_MISMATCH' if d > 0 else 'MISSING_BODY')
+                ),
+                'note': (
+                    '列表字段口径与 norm 不同，偏大不必然是污染；'
+                    '权威判据为编辑页「正文字数」计数器'
                 ),
             }
         print(json.dumps({
@@ -585,7 +672,11 @@ def main() -> None:
     # replace_body 内部即做硬校验；不通过直接 raise，后面的 save_draft 不会执行（防再污染）
     replaced = replace_body(args.session, data, state_path=args.state)
     saved = save_draft(args.session, state_path=args.state)
-    verified = verify_listing(args.session, data, old_word, state_path=args.state)
+    saved_word = saved.get('word')
+    verified = verify_listing(
+        args.session, data, old_word, state_path=args.state,
+        page_word=int(saved_word) if saved_word is not None else replaced.get('pageWordCount'),
+    )
     try:
         save_state(args.session, args.state)
     except Exception as e:  # state 保存失败不影响已完成的草稿替换

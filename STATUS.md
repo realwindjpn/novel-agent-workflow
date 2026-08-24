@@ -161,3 +161,17 @@
 |- 机检+DEAI硬闸: MACHINE_GATE_PASS；DEAI verdict=PASS hard=0 score=12
 |- 绑定: 任务运行态/20260823_kewu_selfcycle_daily/reviews_292_r3/PRE_REVIEW_BINDING_292_R3.json
 |- 状态: R3_READY_FOR_REVIEW（六审未派；未入草稿箱；未发布）
+- 2026-08-24 16:15 | 同步章节 292
+- 2026-08-24 16:15 | 同步章节 292
+- 2026-08-24 16:16 | 同步章节 292
+- 2026-08-24 16:17 | 同步章节 292
+- 2026-08-24 16:29 | 同步章节 292
+
+## 2026-08-24 16:47｜第292章草稿箱闭环
+- 状态: DRAFT_SAVED_NOT_PUBLISHED；正式发布归用户。
+- 第292章《能源瓶颈》: R6 SHA=383549126090ce1d510916a43ec37a29def9d4403d4db1584b6025cbf4fe4524，净CJK=3690。
+- 审核: R6综合降级六职责同SHA PASS，single_route_degraded=true；R4 F1-F6全清。
+- 同步: 新版/TXT/Wiki/跟踪表完成；TXT正文4887、作者说276，ready gate PASS。
+- 草稿箱: 唯一命中6434字，第六卷：火星，draft_id=7677509566518526488，published=false，count=1。
+- 作者说: modifydraft DOM回读首尾匹配且与正文分离。
+- 下一数值章: 293《拉格朗日计划》，G3已回填292 R6 SHA。

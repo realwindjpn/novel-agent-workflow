@@ -188,3 +188,18 @@
 - 验收：verify_292_r8_report.json → R8_VERIFY_PASS，fails=[]
 - G4 已更新 status=R8_READY_FOR_REVIEW，latest_candidate 指向 R8
 - 残留：SHA 已变，R7 及更早审稿全部作废；定稿前须按新 SHA 重派全席审稿。本轮不含审稿/草稿箱/发布。
+- 2026-08-24 22:05 | 同步章节 292
+- 2026-08-24 22:19 | 同步章节 292
+- 2026-08-24 22:19 | R9 close-loop final sync
+
+## 2026-08-24｜第292章 R9 终态闭环
+- round: R9 | 候选: output/candidate_292_r9.md
+- sha256: 20dcb09b37b614c76c3a8605a587f5a815abdcf82e752101e4d794b7cbd53863
+- net_cjk: 3710 / 番茄口径: 4915
+- 六席聚合: reviews_292_r9_final/AGGREGATE.json => PASS，blocking_fail_count=0
+- physics_adjudication: PASS_OLD_STRUCTURE_FAIL_INVALID_RADIUS_DIAMETER_FACTOR2
+- 本地闭环: 新版/第292章.md SHA一致；已投稿/第292章.txt ready gate PASS；sync_kewu --no-git --no-vector 完成；Wiki Full Text 一致；跟踪表292行已同步
+- 草稿箱: draft_id=7677509566518526488；fanqie_modify_uploaded_chapter.py 无 check-login/dry-run；平台浏览器两轮不可用；唯一残留 BLOCKED_FANQIE_MODIFY_LOGIN_OR_BROWSER_UNAVAILABLE
+- 产物: output/takeover_292/FINAL_R9.md / verification_r9.json / MODEL_LEDGER_R9.md
+- Git: 已选择性 exact-path commit，message=chore(科武292): R9 close-loop final
+- 正式发布归用户

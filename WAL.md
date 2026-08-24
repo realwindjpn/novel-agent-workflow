@@ -2423,3 +2423,23 @@
 - 会话: https://chat.qwen.ai/c/fe0337c4-c890-4a79-9253-9679e92eae97 (reused_conversation=false, qwen3.8-max, login_verified=true)
 - 断点: 下一步 = 按新 SHA 8a7dc3db… 重派全席审稿（结构/编辑/读者/科学/军事/去AI），旧 SHA 审稿作废
 - 边界: 未派子席、未审稿、未存草稿箱、未发布（G4 scope_boundary）
+
+### 2026-08-24 22:05
+- 同步章节 292
+
+### 2026-08-24 22:19
+- 同步章节 292
+
+### 2026-08-24 22:19
+- R9 close-loop final sync
+
+## 2026-08-24｜第292章 R9 终态闭环
+- 状态: CLOSE_LOOP_PASS_LOCAL
+- 候选: output/candidate_292_r9.md
+- SHA256: 20dcb09b37b614c76c3a8605a587f5a815abdcf82e752101e4d794b7cbd53863
+- 净CJK: 3710 | 番茄口径: 4915
+- 六席: editor/reader/science/military_institution/structure/deai_final 全PASS；blocking_fail_count=0
+- 旧结构FAIL由跨provider物理仲裁撤销，同SHA结构补位PASS
+- 本地产物: 新版/第292章.md / 已投稿/第292章.txt / wiki/chapters/ch292.md / 跟踪表292行
+- 平台残留: draft_id=7677509566518526488 修改阻塞；脚本无 check-login/dry-run；浏览器不可用；BLOCKED_FANQIE_MODIFY_LOGIN_OR_BROWSER_UNAVAILABLE
+- 下一步: 恢复平台可执行态后重跑 fanqie_modify_uploaded_chapter.py --chapter 292 --execute --volume '第四卷：登月' 并列表复核；正式发布归用户

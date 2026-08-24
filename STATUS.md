@@ -175,3 +175,16 @@
 - 草稿箱: 唯一命中6434字，第六卷：火星，draft_id=7677509566518526488，published=false，count=1。
 - 作者说: modifydraft DOM回读首尾匹配且与正文分离。
 - 下一数值章: 293《拉格朗日计划》，G3已回填292 R6 SHA。
+
+## 2026-08-24 第292章 R8 定点返修（主控直执，未派子席）
+- round: R8 | source: output/candidate_292_r8.md
+- sha256: 8a7dc3dbe500a856f57b737920d300f4cbe5bcbbd2b5a6184603b4fe20e6799e
+- net_cjk: 3697（hard_min 3200 ✅ / safety_max 10000 ✅）| lines: 84
+- prev: R7 sha 72d1dd28…f5eed / cjk 3690
+- 修复三处：L36 5.8GHz→2.45GHz；L40 0.4→0.004 mW/cm²；L70 补「第 14 月停线切并网」
+- 保留锚点：351=1 / 274=1 / 5326=2 / 5600=1
+- diff 改动行位 [36,40,70]，越界改动 0；CJK +7 恰为插入的 7 个汉字
+- 作者席：web_qwen 科武项目新会话 c/fe0337c4-c890-4a79-9253-9679e92eae97，qwen3.8-max，CDP 9223
+- 验收：verify_292_r8_report.json → R8_VERIFY_PASS，fails=[]
+- G4 已更新 status=R8_READY_FOR_REVIEW，latest_candidate 指向 R8
+- 残留：SHA 已变，R7 及更早审稿全部作废；定稿前须按新 SHA 重派全席审稿。本轮不含审稿/草稿箱/发布。

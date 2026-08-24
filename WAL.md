@@ -2412,3 +2412,14 @@
 
 ### 2026-08-24 16:29
 - 同步章节 292
+
+### 2026-08-24 kewu-292-r8-pointfix
+- 阶段: 定点返修完成，待重审
+- 状态: PASS（机器门禁 + diff 范围门禁）
+- 产物: output/candidate_292_r8.md (sha 8a7dc3dbe500a856f57b737920d300f4cbe5bcbbd2b5a6184603b4fe20e6799e, cjk 3697, 84 行)
+- 附产物: candidate_292_r8_raw.md / verify_292_r8_report.json / repair_report_292_r8.md / author_repair_prompt_292_r8.md
+- 脚本: 工具脚本/pack_292_r8_prompt.py（PACKAGING_OK, 17735B>13723B）、工具脚本/verify_292_r8.py（R8_VERIFY_PASS）
+- 证据: old_tokens 全 0；new_tokens 各 1；keep 351/274/5326/5600 全在；changed_src_lines=[36,40,70]；out_of_scope=0
+- 会话: https://chat.qwen.ai/c/fe0337c4-c890-4a79-9253-9679e92eae97 (reused_conversation=false, qwen3.8-max, login_verified=true)
+- 断点: 下一步 = 按新 SHA 8a7dc3db… 重派全席审稿（结构/编辑/读者/科学/军事/去AI），旧 SHA 审稿作废
+- 边界: 未派子席、未审稿、未存草稿箱、未发布（G4 scope_boundary）

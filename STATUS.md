@@ -203,3 +203,18 @@
 - 产物: output/takeover_292/FINAL_R9.md / verification_r9.json / MODEL_LEDGER_R9.md
 - Git: 已选择性 exact-path commit，message=chore(科武292): R9 close-loop final
 - 正式发布归用户
+
+## 2026-08-25 20:18 +08:00｜第293章《拉格朗日计划》定稿
+
+- 状态：PASS（综合审 40/50，编辑+去AI PASS）
+- SHA256：9c478ba2cb26703337b9d676fe4b982315d690b8937cd72c31c8ed6edb49bcb2
+- 净CJK：3863
+- 作者席：网页Qwen项目席 qwen3.8-max
+- 审席：any/Fable-5（综合审 PASS 40/50）
+- 关键处置：
+  - R1双稿拼接→提取稿A（3624CJK）
+  - R2六处修复：载荷账置换口径/CTC 19.3万/时序/铁幕暗线/赫斯特上台/句式惯性
+  - P0技术修：缩比模型口径 4.6米→22米（千分之一对齐22km阵面）
+- 草稿箱：已写回 /root/workspace/科武纪元/新版/第293章 拉格朗日计划.txt
+- P1四项（不阻断）：条款段异议/嗅觉/弦意象/缺口台账反应
+- 发布归用户

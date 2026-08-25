@@ -2443,3 +2443,13 @@
 - 本地产物: 新版/第292章.md / 已投稿/第292章.txt / wiki/chapters/ch292.md / 跟踪表292行
 - 平台残留: draft_id=7677509566518526488 修改阻塞；脚本无 check-login/dry-run；浏览器不可用；BLOCKED_FANQIE_MODIFY_LOGIN_OR_BROWSER_UNAVAILABLE
 - 下一步: 恢复平台可执行态后重跑 fanqie_modify_uploaded_chapter.py --chapter 292 --execute --volume '第四卷：登月' 并列表复核；正式发布归用户
+
+## 2026-08-25 20:18 +08:00｜第293章定稿断点
+
+- 章节：293《拉格朗日计划》
+- SHA256：9c478ba2cb26703337b9d676fe4b982315d690b8937cd72c31c8ed6edb49bcb2
+- 净CJK：3863
+- 状态：PASS，待用户发布
+- 下一步残留：294章待启动；P1四项可下次统一处理
+- 断点文件：/root/workspace/科武纪元/任务运行态/20260825_kewu_selfcycle_daily/output/candidate_293_r2_final.md
+- 草稿箱：/root/workspace/科武纪元/新版/第293章 拉格朗日计划.txt

@@ -267,3 +267,13 @@
 - 关键处置：R2 冷启动回收 `QWEN_RESPONSE_NOT_RECOVERED len=0`，未生成候选；CDP 9223 恢复后同任务包回收成功。机检「没有人交出钥匙」否定句误杀已收窄为仅肯定移交触发。
 - 审稿汇总：`任务运行态/20260827_kewu_297298_g3g4/reviews_299_r2/FINAL_REVIEWS_299_R2.md`
 - 平台边界：草稿箱保存/正式发布归用户，主控不代发
+
+## G4_CLOSED_300 | 2026-08-28 | 300《遗迹反击》定稿闭环
+
+- 定稿 SHA `289d5e949f3036b75627ffab4ff4af72189732aa5d1dd5aa11f987976975b8d3` | 净中文 3427（目标 3300—3500）| 已写回 `已投稿/第300章.txt`（11648 bytes，含作者有话说 98 字）
+- 四席外审同 SHA 全 PASS（通道=mcp dispatch_to_model）：编辑 yi-hydrogel-dsv4/deepseek-v4-pro-0813 107.59s、读者 sotamodel/opus-5 131.98s、科学 yezi-help/deepseek-v4-flash-0731 83.02s、结构 agentrouter/gpt-5.6-sol 142.81s；BLOCKERS: none
+- 作者有话说双审 PASS：编辑 anyrouter/fable-5 86.25s、读者 sotamodel/opus-5 88.21s。R1误写“由人自身发起”与正文零介入冲突，R2纠正后通过。
+- 返修轮次：300=3轮（R1净中文2649、代词错置、公式句、遗迹拟人；R2扩写至3465但两处公式句；R3定点删除/改写至3427，机检PASS）
+- 关键处置：R3 SHA变化后旧审全部作废，全量四席重审；初派编辑 anyrouter/fable-5、科学 yi-hydrogel-dsv4/deepseek-v4-pro-0813 各MCP 300秒超时，均以异构席补齐。
+- 审稿汇总：`任务运行态/20260827_kewu_297298_g3g4/reviews_300_r3/FINAL_REVIEWS_300_R3.md`；作者说复核：`任务运行态/20260827_kewu_297298_g3g4/AFTERWORD_300_REVIEWS.md`
+- 平台边界：草稿箱保存/正式发布归用户，主控不代发

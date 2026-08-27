@@ -2513,3 +2513,13 @@
 - 四席同 SHA PASS：Opus-5(sotamodel)/GLM-5.2(wechat-glm)/Grok-4.6(wahuiliyi-grok)/DSV4-Pro-0813(yi-hydrogel-dsv4)；初派 Fable-5/DSV4-Flash/GPT-5.6-sol 各 MCP 300 秒超时，仅标路由失败，均已异构补席
 - R1 CJK 2573 与方宁/林星辰代词错；R2 定点扩写 CJK 3404，机检 PASS，代词 warning 清零
 - 断点残留：300 尚未起稿；G1 的 124 张 READY 融纲消费仍待跑；草稿箱保存与正式发布归用户
+
+### 2026-08-28（凌晨）
+- 同步章节 300
+
+## [2026-08-28] 300 定稿闭环
+- 300《遗迹反击》SHA `289d5e949f3036b75627ffab4ff4af72189732aa5d1dd5aa11f987976975b8d3` | 净中文 3427 | 已写回 `已投稿/第300章.txt`（正文 SHA 回读一致，作者说 98 字）
+- 四席同 SHA PASS：DSV4-Pro-0813(yi-hydrogel-dsv4)编辑 / Opus-5(sotamodel)读者 / DSV4-Flash-0731(yezi-help)科学 / GPT-5.6-sol(agentrouter)结构；初派编辑Fable-5、科学DSV4-Pro与两次编辑补位MCP 300秒超时，已异构补齐
+- R1 CJK 2649且方宁代词错置、公式句、遗迹拟人；R2 CJK 3465但两处公式句；R3 定点修复为3427，机检PASS并全量重审
+- 作者说R1误写人类发起，R2改正为遗迹自主、人类零介入；编辑+读者双审PASS
+- 断点残留：301《联合防御》待起稿；G1的124张READY融纲消费待跑；草稿箱保存与正式发布归用户

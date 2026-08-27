@@ -239,3 +239,13 @@
 - 296《太虚极限》定稿 SHA f8ce2e6f | 净中文3317 | 六审PASS(编辑/读者/科学/结构+去AI两席交叉) | 草稿箱3873字
 - 返修轮次：295=3轮(r1六审→r2错字+去AI→r3去AI精修)、296=2轮(r1短稿+公式句→r2达标)
 - 四章均已上传草稿箱，无重复，SYNC_OK
+
+## G4_CLOSED_297 | 2026-08-27 | 297《方宁网络扩展》定稿闭环
+
+- 定稿 SHA `8dab00c1cb7590ccb9cd4d9c015ce0445d537b7ee31a095444707b2471121672` | 净中文 3930 | 已写回 `已投稿/第297章.txt`（13452 bytes，含作者有话说）
+- 四席外审全 PASS（通道=mcp dispatch_to_model）：读者 sotamodel/claude-opus-5 108.7s、结构 yezi-help/deepseek-v4-flash-0731 100.0s、编辑 wechat-glm/GLM-5.2 57.7s、科学 yi-hydrogel/qwen3.8-max 143.0s；BLOCKERS: none
+- 返修轮次：297=2轮（r1 净中文 3131 短稿→短锚点补段 405 合稿 3536；R2 修 B1 林星辰 72h 禁令与第12天日历矛盾→3930）
+- 关键处置：R1 四审产物（Agnes/Step 席）随节点删除一并作废，未采信；R2 按白名单八模型池重派
+- 审稿汇总：`任务运行态/20260827_kewu_297298_g3g4/reviews_297_r2/FINAL_REVIEWS_297_R2.md`
+- 平台边界：草稿箱保存/正式发布归用户，主控不代发
+- 路由变更同期落地：删 agnes-text/agnes-image/agnes-video/stepfun-plan/pateway；后备链重排为 Fable-5→Opus-5→GPT-5.6-sol→DSV4-Flash-0731→GLM-5.2→Qwen3.8-Max→DSV4-Pro-0813→Grok-4.6

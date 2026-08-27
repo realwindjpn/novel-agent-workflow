@@ -249,3 +249,12 @@
 - 审稿汇总：`任务运行态/20260827_kewu_297298_g3g4/reviews_297_r2/FINAL_REVIEWS_297_R2.md`
 - 平台边界：草稿箱保存/正式发布归用户，主控不代发
 - 路由变更同期落地：删 agnes-text/agnes-image/agnes-video/stepfun-plan/pateway；后备链重排为 Fable-5→Opus-5→GPT-5.6-sol→DSV4-Flash-0731→GLM-5.2→Qwen3.8-Max→DSV4-Pro-0813→Grok-4.6
+
+## G4_CLOSED_298 | 2026-08-27 | 298《共鸣效应》定稿闭环
+
+- 定稿 SHA `274b5eb5e2ec86ef39ce2bea432f285751903aca9ab92521740a5275c6b2c7ae` | 净中文 3541（目标 3400-3600）| 已写回 `已投稿/第298章.txt`（12476 bytes，含作者有话说）
+- 四席外审全 PASS（通道=mcp dispatch_to_model）：读者 sotamodel/claude-opus-5 117.3s、结构 ds2api/deepseek-v4-pro-0813 118.8s、编辑 wechat-glm/GLM-5.2 96.4s、科学 yezi-help/deepseek-v4-flash-0731 98.9s；BLOCKERS: none
+- 返修轮次：298=4轮（R1 2229 字数FAIL+方宁/林星辰/周棠代词错乱 → R2 1929 字数FAIL 代词已修 → R3 2997 差3字 → R4 3541 PASS）
+- 关键处置：R3 起由重写改定点扩写策略（含现稿全文+逐段着力点）；代词核验入机检工具（性别表来自 wiki 人物卡，降级为 warning 不作自动门禁）
+- 审稿汇总：`任务运行态/20260827_kewu_297298_g3g4/reviews_298_r1/FINAL_REVIEWS_298_R1.md`
+- 平台边界：草稿箱保存/正式发布归用户，主控不代发

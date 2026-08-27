@@ -258,3 +258,12 @@
 - 关键处置：R3 起由重写改定点扩写策略（含现稿全文+逐段着力点）；代词核验入机检工具（性别表来自 wiki 人物卡，降级为 warning 不作自动门禁）
 - 审稿汇总：`任务运行态/20260827_kewu_297298_g3g4/reviews_298_r1/FINAL_REVIEWS_298_R1.md`
 - 平台边界：草稿箱保存/正式发布归用户，主控不代发
+
+## G4_CLOSED_299 | 2026-08-27 | 299《铁幕叛变》定稿闭环
+
+- 定稿 SHA `755d34d3232ab32db2ed120d6d4e11a1c408c43df0f7da188fc724d2ac695235` | 净中文 3404（目标 3400—3600）| 已写回 `已投稿/第299章.txt`（11567 bytes，含作者有话说 94 字）
+- 四席外审同 SHA 全 PASS（通道=mcp dispatch_to_model）：读者 sotamodel/opus-5 164.06s、编辑 wechat-glm/GLM-5.2 88.49s、结构 wahuiliyi-grok/grok-4.6 164.85s、科学 yi-hydrogel-dsv4/deepseek-v4-pro-0813 184.78s；BLOCKERS: none
+- 返修轮次：299=2轮（R1 CJK 2573 且方宁/林星辰代词错乱；R2 网页 Qwen 定点扩写至 3404、代词修正）
+- 关键处置：R2 冷启动回收 `QWEN_RESPONSE_NOT_RECOVERED len=0`，未生成候选；CDP 9223 恢复后同任务包回收成功。机检「没有人交出钥匙」否定句误杀已收窄为仅肯定移交触发。
+- 审稿汇总：`任务运行态/20260827_kewu_297298_g3g4/reviews_299_r2/FINAL_REVIEWS_299_R2.md`
+- 平台边界：草稿箱保存/正式发布归用户，主控不代发

@@ -2504,3 +2504,12 @@
 - 扩写策略定型：R3 起不再重写，现稿全文内联+逐段动作着力点；本轮有效
 - 机检工具固化：machine_check_298.py 8 项（首尾/净中文/拉丁数字/Markdown/公式句/禁入词/越界情节/代词warning）
 - 断点残留：299《铁幕》未起稿（G4_RELEASE_299 未签发）；G1 的 124 张 READY 融纲消费仍待跑；草稿箱保存/发布归用户
+
+### 2026-08-27（夜）
+- 同步章节 299
+
+## [2026-08-27] 299 定稿闭环
+- 299《铁幕叛变》SHA `755d34d3232ab32db2ed120d6d4e11a1c408c43df0f7da188fc724d2ac695235` | 净中文 3404 | 已写回 `已投稿/第299章.txt`（正文 SHA 回读一致，作者说 94 字）
+- 四席同 SHA PASS：Opus-5(sotamodel)/GLM-5.2(wechat-glm)/Grok-4.6(wahuiliyi-grok)/DSV4-Pro-0813(yi-hydrogel-dsv4)；初派 Fable-5/DSV4-Flash/GPT-5.6-sol 各 MCP 300 秒超时，仅标路由失败，均已异构补席
+- R1 CJK 2573 与方宁/林星辰代词错；R2 定点扩写 CJK 3404，机检 PASS，代词 warning 清零
+- 断点残留：300 尚未起稿；G1 的 124 张 READY 融纲消费仍待跑；草稿箱保存与正式发布归用户

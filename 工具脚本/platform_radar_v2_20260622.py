@@ -230,7 +230,8 @@ _STRICT_FAILURE_TAGS = frozenset({'STALE_KOL_ARTICLE', 'DATE_OLD_YEAR'}) | DATE_
 _NO_RESULT_POLICIES = frozenset({'NOISE', 'ARCHIVE_WITH_REASON'})
 
 
-def compute_domain_diagnostics(domain_id: str, domain_items: list[dict], cdp_available: bool) -> dict:
+def compute_domain_diagnostics(domain_id: str, domain_items: list[dict], cdp_available: bool,
+                               queries_executed: int = -1) -> dict:
     """Return independent per-domain counters + failure_reason.
 
     Contract:
@@ -278,7 +279,18 @@ def compute_domain_diagnostics(domain_id: str, domain_items: list[dict], cdp_ava
 
     reasons: list[str] = []
     if total == 0:
-        reasons.append('NO_QUERY_EXECUTED')
+        # 2026-08-22 P0 (mislabel): total==0 was unconditionally reported as
+        # NO_QUERY_EXECUTED, which sent diagnosis after a runtime-budget ghost.
+        # Verified by /tmp/radar_test_budget: all 9 domains DID execute a query
+        # in 35s of a 480s budget; ai/military/energy showed NO_QUERY_EXECUTED
+        # purely because their hits were dropped (0 hits, or all-duplicate URLs).
+        # Distinguish the two so the failure_reason names the real cause.
+        if queries_executed == 0:
+            reasons.append('NO_QUERY_EXECUTED')
+        elif queries_executed > 0:
+            reasons.append(f'QUERY_RAN_NO_ITEM_ADMITTED(queries={queries_executed})')
+        else:
+            reasons.append('NO_ITEMS_UNKNOWN_QUERY_STATE')
     if no_hits_items > 0 and body_fetched == 0 and excerpt_only == 0:
         reasons.append(f'NO_HITS={no_hits_items}')
     if truncated > 0:
@@ -348,11 +360,87 @@ def is_non_article_url(url: str) -> bool:
     return any(re.search(p, u) for p in NON_ARTICLE_URL_PATTERNS)
 
 
+# ── 2026-08-22 P0 (URL hygiene): discovery routes leak malformed URLs.
+# Observed in run sidecar_20260822_0847 + /tmp/radar_test_budget:
+#   1) 'https://mp.weixin.qq.com/s/' (no article id) — search excerpt truncated
+#      the link. It can never fetch a body, so it burns one domain slot as
+#      WECHAT_FETCH_FAIL, and because dedup is global by exact URL it also
+#      silently swallows every LATER domain that resolves the same bare URL
+#      (energy printed '0 new' and then reported NO_QUERY_EXECUTED).
+#   2) 'https://mp.weixin.qq.com/s/XXXX?utm_content=article&email=[EMAIL'
+#      — same article as the clean URL, but the tracking tail makes it a second
+#      dedup key, so one article occupied two slots of the same domain.
+# Fix: normalize the dedup key (strip tracking params) and drop URLs whose
+# article id is missing. No date/NOISE/STALE semantics touched.
+_TRACKING_PARAM_PREFIXES = (
+    'utm_', 'email=', 'from=', 'isappinstalled=', 'scene=', 'clicktime=',
+    'enterid=', 'ascene=', 'devicetype=', 'nettype=', 'exportkey=',
+    'chksm=', 'sharer_', 'srcid=', 'spm_id_from=', 'vd_source=',
+)
+
+
+def canonical_url_key(url: str) -> str:
+    """Dedup key: scheme-insensitive, tracking params stripped, no trailing '/'."""
+    u = (url or '').strip()
+    if not u:
+        return ''
+    u = re.sub(r'^https?://', '', u, flags=re.I)
+    u = re.sub(r'^www\.', '', u, flags=re.I)
+    base, _, query = u.partition('?')
+    kept = [
+        part for part in query.split('&')
+        if part and not any(part.lower().startswith(p) for p in _TRACKING_PARAM_PREFIXES)
+    ]
+    key = base.rstrip('/')
+    if kept:
+        key += '?' + '&'.join(sorted(kept))
+    return key.lower()
+
+
+def is_malformed_article_url(url: str) -> bool:
+    """True when the URL structurally cannot resolve to one article."""
+    u = (url or '').strip()
+    if not u or not re.match(r'^https?://', u, flags=re.I):
+        return True
+    if '[' in u or ']' in u or ' ' in u:
+        return True
+    if 'mp.weixin.qq.com' in u:
+        m = re.search(r'mp\.weixin\.qq\.com/s(?:/|\?|$)([^?&#/]*)', u)
+        if m is not None and len(m.group(1)) < 8:
+            # /s/ with no (or a stub) article id
+            return '__biz=' not in u
+    if re.search(r'bilibili\.com/video/?$', u, flags=re.I):
+        return True
+    return False
+
+
 def evidence_is_body(text: str) -> bool:
     t = re.sub(r'\s+', ' ', text or '').strip()
     if len(t) < 80:
         return False
     return bool(re.search(r'[。！？；：，,.;:]', t))
+
+
+# ── 2026-08-22 P0 (BODY_FETCH_FAIL root cause): the 80-char article threshold was
+# applied to microblogs too. Verified against live m.weibo.cn/statuses/show:
+#   mid 5333679538971449 → 53 chars, a complete 嫦娥七号 launch caption, real body,
+#     rejected as WEIBO_BODY_TOO_SHORT and counted as BODY_FETCH_FAIL.
+#   mid 5334485352844360 → 4 chars ('[思考]'), correctly rejected.
+# A weibo post is short by design, so it gets its own floor. Emoji/sticker-only
+# posts still fail: after stripping [表情] tokens the remainder must clear the
+# floor and carry sentence punctuation, so nothing empty can be promoted.
+_WEIBO_BODY_MIN_CHARS = 40
+
+
+def weibo_evidence_is_body(text: str) -> bool:
+    """Microblog-scoped body check. Never relaxes the article path."""
+    t = re.sub(r'\s+', ' ', text or '').strip()
+    if evidence_is_body(t):
+        return True
+    substantive = re.sub(r'\[[^\]]{1,8}\]', '', t).strip()
+    if len(substantive) < _WEIBO_BODY_MIN_CHARS:
+        return False
+    return bool(re.search(r'[。！？；：，,.;:#、]', substantive))
 
 
 def sha12(s: str) -> str:
@@ -1480,7 +1568,7 @@ def _weibo_guest_body(mid: str, timeout: int = 20) -> tuple[str, str]:
         return '', 'WEIBO_EMPTY_TEXT'
     if any(mk in text for mk in _WEIBO_SHELL_MARKERS):
         return '', 'WEIBO_SHELL_TEXT_ONLY'
-    if not evidence_is_body(text):
+    if not weibo_evidence_is_body(text):
         return '', f'WEIBO_BODY_TOO_SHORT|len={len(text)}'
     return text, ''
 
@@ -1725,7 +1813,7 @@ def fetch_body(url: str, platform: str, timeout: int = 30) -> tuple[str, str]:
                 if data.get('data'):
                     _item = data['data'][0] if isinstance(data['data'], list) else data['data']
                     _wb = _weibo_clean_text(_item.get('text', '') or _item.get('body', ''))
-                    if (_wb and evidence_is_body(_wb)
+                    if (_wb and weibo_evidence_is_body(_wb)
                             and not any(mk in _wb for mk in _WEIBO_SHELL_MARKERS)):
                         return _wb[:500], ''
             except (json.JSONDecodeError, IndexError):
@@ -2054,7 +2142,10 @@ def main():
         try:
             old = json.loads(discovery_path.read_text(encoding='utf-8'))
             existing_items = old.get('items', [])
-            existing_urls = {it['url'] for it in existing_items if it.get('url')}
+            # 2026-08-22: keep the resume dedup set on the same canonical key the
+            # live loop uses, or a resumed run re-admits tracking-param variants.
+            existing_urls = {canonical_url_key(it['url']) for it in existing_items if it.get('url')}
+            existing_urls.discard('')
             mode = 'post-segment' if post_segment else 'resume'
             print(f'[{mode}] loaded {len(existing_items)} existing items from {discovery_path}')
         except Exception:
@@ -2101,11 +2192,22 @@ def main():
             continue
 
         found = 0
+        dropped_malformed = 0
         for hit in hits:
             url = hit.get('url', '')
-            if not url or url in existing_urls:
+            # 2026-08-22 P0: drop structurally dead URLs (bare mp.weixin.qq.com/s/,
+            # bracket-truncated tracking tails) BEFORE they enter the dedup set.
+            # Previously they were admitted, always failed body fetch, and their
+            # exact-string dedup key starved later domains resolving the same stub.
+            if url and is_malformed_article_url(url):
+                dropped_malformed += 1
+                errors.append({'account': name, 'platform': plat,
+                               'error': 'MALFORMED_URL_DROPPED', 'url': url})
                 continue
-            existing_urls.add(url)
+            ukey = canonical_url_key(url)
+            if not url or not ukey or ukey in existing_urls:
+                continue
+            existing_urls.add(ukey)
             item = dict(EMPTY_ITEM)
             item['account'] = name
             item['platform'] = plat
@@ -2129,7 +2231,14 @@ def main():
                 item['evidence'] = ''
             all_items.append(item)
             found += 1
-        print(f'{found} new ({elapsed:.1f}s)')
+        # 2026-08-22: '0 new' had two indistinguishable causes — every hit was a
+        # duplicate, or every hit was malformed. Print the split so the sidecar log
+        # shows which one happened per domain.
+        _drop_note = f', {dropped_malformed} malformed dropped' if dropped_malformed else ''
+        print(f'{found} new ({elapsed:.1f}s){_drop_note}')
+        if found == 0 and dropped_malformed == 0 and hits:
+            errors.append({'account': name, 'platform': plat,
+                           'error': f'ALL_HITS_DUPLICATE={len(hits)}'})
 
     # ── B. Body Fetch — 所有 pending 项都必须尝试抓正文 ──
     body_report = {
@@ -2187,7 +2296,11 @@ def main():
         body_report['attempts'] += 1
         body, ftag = fetch_body(url, plat, 25)
 
-        if body and evidence_is_body(body):
+        # 2026-08-22: the second gate must use the same platform-scoped floor as
+        # fetch_body, otherwise a weibo body validated inside fetch_body is
+        # re-rejected here and still lands as BODY_FETCH_FAIL.
+        _body_ok = weibo_evidence_is_body(body) if plat == 'weibo' else evidence_is_body(body)
+        if body and _body_ok:
             it['evidence'] = body
             it['body_status'] = 'fetched'
             if not it.get('published_at'):
@@ -2414,7 +2527,8 @@ def main():
     for did, acc_names in domain_map.items():
         configured_accounts = len(acc_names)
         output_accounts = len(domain_results.get(did, set()) or set())
-        diag = compute_domain_diagnostics(did, items_by_domain.get(did, []), cdp_available=cdp_available)
+        diag = compute_domain_diagnostics(did, items_by_domain.get(did, []), cdp_available=cdp_available,
+                                          queries_executed=domain_query_counts.get(did, 0))
         domain_health[did] = {
             'domain_name': next((d.get('domain_name', '') for d in watch.get('domains', []) if d.get('domain_id') == did), ''),
             'configured_accounts': configured_accounts,

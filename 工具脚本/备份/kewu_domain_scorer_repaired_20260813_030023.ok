@@ -1,0 +1,949 @@
+#!/usr/bin/env python3
+"""
+kewu_domain_scorer.py  v1  (2026-07-10)
+
+科武纪元 素材域感知评分模块。
+查询组合（域×时间×事件）、评分、动态实体抽取、降噪。
+
+不改小说正文/大纲。
+"""
+from __future__ import annotations
+
+import datetime as dt
+import re
+from functools import lru_cache
+from pathlib import Path
+from typing import Any
+
+from kewu_domain_ontology import (
+    DYSON_SPHERE_CAPABILITY_TREE,
+    ENTITY_PATTERNS,
+    NOISE_DOMAINS,
+    SCORING_WEIGHTS,
+    SOURCE_AUTHORITY,
+    STABLE_DOMAINS,
+    STABLE_DOMAINS as _SD,
+    TEMPORAL_KEYWORDS,
+    DOMAIN_OFFICIAL_SITES,
+    EVENT_SEMANTIC_TEMPLATES,
+    TIMELINESS_DECAY,
+    get_domain_for_keywords,
+    is_noise_domain,
+)
+
+DEFAULT_OUTLINE_PATH = Path('/root/workspace/科武纪元/wiki/raw/outline/科武纪元大纲_latest.md')
+
+
+# ═══════════════════════════════════════════════
+# 1. 域×时间×事件 查询组合
+# ═══════════════════════════════════════════════
+
+def compose_domain_queries(
+    domain_ids: list[str] | None = None,
+    temporal: str = 'today',
+    max_queries_per_domain: int = 3,
+) -> list[dict[str, Any]]:
+    """为指定域生成域×时间×事件组合查询。
+
+    Args:
+        domain_ids: 域 ID 列表，None 则取全部九域
+        temporal: 'today' | 'this_week' | 'this_month'
+        max_queries_per_domain: 每域最大查询数
+
+    Returns:
+        查询列表，每项含 query, domain_id, category, priority
+    """
+    if domain_ids is None:
+        domain_ids = list(STABLE_DOMAINS.keys())
+
+    temporal_kws = TEMPORAL_KEYWORDS.get(temporal, TEMPORAL_KEYWORDS['today'])
+    queries: list[dict[str, Any]] = []
+
+    for domain_id in domain_ids:
+        domain = STABLE_DOMAINS.get(domain_id)
+        if not domain:
+            continue
+        domain_kws = domain['query_keywords'][:6]  # 取前6个高频词
+        domain_label = domain['label']
+        official_sites = DOMAIN_OFFICIAL_SITES.get(domain_id, [])
+
+        count = 0
+        # 模板1: 域×时间×事件
+        for kw in domain_kws[:2]:
+            for tk in temporal_kws[:2]:
+                q = f'{kw} {tk}'
+                queries.append({
+                    'query': q,
+                    'domain_id': domain_id,
+                    'category': f'domain_time_event:{domain_label}',
+                    'priority': 1,
+                    'composition': f'{kw} × {tk}',
+                })
+                count += 1
+                if count >= max_queries_per_domain:
+                    break
+            if count >= max_queries_per_domain:
+                break
+
+        # 模板2: site: 官方源定向
+        if official_sites and count < max_queries_per_domain:
+            site = official_sites[0]
+            kw = domain_kws[0] if domain_kws else domain_label
+            tk = temporal_kws[0]
+            q = f'site:{site} {kw} {tk}'
+            queries.append({
+                'query': q,
+                'domain_id': domain_id,
+                'category': f'domain_official:{domain_label}',
+                'priority': 2,
+                'composition': f'site:{site} × {kw} × {tk}',
+            })
+            count += 1
+
+        # 模板3: 突破发现
+        if count < max_queries_per_domain:
+            kw = domain_kws[0] if domain_kws else domain_label
+            q = f'{kw} 突破 最新 进展'
+            queries.append({
+                'query': q,
+                'domain_id': domain_id,
+                'category': f'domain_breakthrough:{domain_label}',
+                'priority': 3,
+                'composition': f'{kw} × 突破 × 最新',
+            })
+
+    queries.sort(key=lambda x: x['priority'])
+    return queries
+
+
+# ═══════════════════════════════════════════════
+# 1b. latest 大纲动态解析
+# ═══════════════════════════════════════════════
+
+def _clean_outline_field(value: str) -> str:
+    return re.sub(r'\s+', ' ', value or '').strip(' |｜\t\r\n')
+
+
+def _extract_outline_title(fragment: str) -> str:
+    parts = [_clean_outline_field(p) for p in re.split(r'[|｜]', fragment) if _clean_outline_field(p)]
+    if not parts:
+        return ''
+    if len(parts) >= 2 and ('卷' in parts[0] or re.search(r'第[一二三四五六七八九十百\d]+卷', parts[0])):
+        return parts[1][:80]
+    return parts[0][:80]
+
+
+# Structured outline body rows look like:
+#     "   170|第86章 | 第二卷·烽火 | 三秒延迟 | <内容> | <伏笔> | 3600"
+# i.e. an embedded source-line-number prefix, then chapter, volume, title.
+_OUTLINE_BODY_ROW_RE = re.compile(
+    r'^[ \t]*\d{1,4}\|第\s*(\d{1,3})\s*章\s*\|(?P<rest>.*)$',
+    re.M,
+)
+# The canonical body section starts at the "500章大纲" heading; everything above
+# it is the operational header (执行索引/源稿门禁/常驻红线/最新摘要/G2 备注层),
+# which quotes many "第N章" references inside prose and note-layer paragraphs.
+_OUTLINE_BODY_ANCHORS = ('# 科武纪元·500章大纲', '500章大纲V8')
+# Note-layer / operational markers that must never become a chapter title.
+_OUTLINE_TITLE_REJECT = (
+    '备注', 'PATCH', 'NOTE_ONLY', 'CHAPTER_PREP', 'ARCHIVE', 'CARD_PENDING',
+    '素材卡', '准备包', '禁止', '不升版本号', '来源', '裁决', '瘦身',
+)
+
+
+def _outline_body_offset(text: str) -> int:
+    """Offset where the canonical chapter body begins (0 when no anchor found)."""
+    for anchor in _OUTLINE_BODY_ANCHORS:
+        idx = text.find(anchor)
+        if idx != -1:
+            return idx
+    return 0
+
+
+def _is_note_layer_title(title: str) -> bool:
+    """True when a candidate title is note-layer prose rather than a real headline."""
+    t = (title or '').strip()
+    if not t:
+        return True
+    # Real outline titles are short headlines (e.g. 三秒延迟 / 太空巴拿马).
+    if len(t) > 30:
+        return True
+    # Note-layer fragments start mid-sentence after a stripped delimiter.
+    if t[0] in '：:。，,、；;）)】」』”"':
+        return True
+    if any(mark in t for mark in _OUTLINE_TITLE_REJECT):
+        return True
+    if '`' in t or t.startswith('**【'):
+        return True
+    return False
+
+
+def _parse_outline_body_rows(text: str, body_offset: int) -> dict[int, dict[str, Any]]:
+    """Parse structured chapter rows from the canonical body section.
+
+    Each chapter has exactly one authoritative row, so a structured hit always
+    wins over occurrence-based scanning of the header/note layer.
+    """
+    rows: dict[int, dict[str, Any]] = {}
+    body = text[body_offset:]
+    for match in _OUTLINE_BODY_ROW_RE.finditer(body):
+        chapter = int(match.group(1))
+        rest = match.group('rest')
+        # Cut at the next embedded "NNN|第M章" so same-line multi-chapter rows split.
+        nxt = re.search(r'\s*\d{1,4}\|第\s*\d{1,3}\s*章', rest)
+        if nxt:
+            rest = rest[:nxt.start()]
+        title = _extract_outline_title(rest)
+        if _is_note_layer_title(title):
+            continue
+        context = _clean_outline_field(f'第{chapter}章 |{rest}')[:900]
+        previous = rows.get(chapter)
+        if previous and len(previous.get('context', '')) >= len(context):
+            continue
+        rows[chapter] = {
+            'chapter': chapter,
+            'title': title,
+            'context': context,
+            'source': 'body_row',
+        }
+    return rows
+
+
+@lru_cache(maxsize=8)
+def parse_latest_outline(outline_path: str = str(DEFAULT_OUTLINE_PATH)) -> dict[str, Any]:
+    """Parse the current latest outline and return chapter records.
+
+    The outline has historical notes and some table rows containing multiple
+    chapters on one line, so parsing is occurrence-based rather than line-based.
+
+    Parsing is two-pass so the note layer cannot overwrite real headlines:
+      1. structured body rows ("NNN|第N章 | 卷 | 标题 | ...") are authoritative;
+      2. occurrence-based scanning fills chapters the body rows missed, and only
+         appends note-layer text as extra matching context for known chapters.
+    """
+    path = Path(outline_path)
+    text = path.read_text(encoding='utf-8', errors='ignore') if path.exists() else ''
+    body_offset = _outline_body_offset(text)
+    chapters: dict[int, dict[str, Any]] = _parse_outline_body_rows(text, body_offset)
+    matches = list(re.finditer(r'第\s*(\d{1,3})\s*章', text))
+    for idx, match in enumerate(matches):
+        chapter = int(match.group(1))
+        next_start = matches[idx + 1].start() if idx + 1 < len(matches) else len(text)
+        line_end = text.find('\n', match.start(), next_start)
+        end = min(x for x in [next_start, line_end if line_end != -1 else next_start] if x >= match.start())
+        fragment = text[match.end():end]
+        title = _extract_outline_title(fragment)
+        context = _clean_outline_field(text[match.start():min(next_start, match.start() + 900)])
+        previous = chapters.get(chapter)
+        if previous is not None:
+            # Never let header/note-layer prose replace an authoritative headline;
+            # keep its wording only as supplementary matching context.
+            if previous.get('source') == 'body_row':
+                extra = context[:400]
+                if extra and extra not in previous['context']:
+                    previous['context'] = f"{previous['context']} {extra}"[:1600]
+                continue
+            if len(previous.get('context', '')) >= len(context):
+                continue
+        if _is_note_layer_title(title) and match.start() < body_offset:
+            # Header-only reference (e.g. 上传线/禁派清单) with no real row: skip,
+            # a genuine chapter always appears in the body section too.
+            continue
+        chapters[chapter] = {
+            'chapter': chapter,
+            'title': title,
+            'context': context,
+            'source': chapters.get(chapter, {}).get('source', 'occurrence'),
+        }
+    return {
+        'outline_path': str(path),
+        'chapter_count': len(chapters),
+        'chapters': chapters,
+    }
+
+
+def outline_parse_stats(outline_path: str = str(DEFAULT_OUTLINE_PATH)) -> dict[str, Any]:
+    parsed = parse_latest_outline(outline_path)
+    return {
+        'outline_path': parsed['outline_path'],
+        'chapter_count': parsed['chapter_count'],
+    }
+
+
+def match_outline_chapters(
+    text: str,
+    domain_ids: list[str] | None = None,
+    outline_path: str = str(DEFAULT_OUTLINE_PATH),
+    limit: int = 8,
+) -> list[dict[str, Any]]:
+    """Match candidate text to latest-outline chapters by ontology terms.
+
+    Static domain chapter lists are used only as a weak fallback after the
+    latest outline has been parsed and verified to contain those chapters.
+    """
+    parsed = parse_latest_outline(outline_path)
+    chapters: dict[int, dict[str, Any]] = parsed.get('chapters', {})
+    blob = (text or '').lower()
+    if not blob or not chapters:
+        return []
+
+    domain_ids = domain_ids or [d for d, _ in get_domain_for_keywords(text)]
+    candidate_terms: list[tuple[str, str]] = []
+    for domain_id in domain_ids:
+        domain = STABLE_DOMAINS.get(domain_id, {})
+        for kw in domain.get('query_keywords', []) + domain.get('tech_institution_chars', []) + domain.get('plot_threads', []):
+            if kw and kw.lower() in blob:
+                candidate_terms.append((domain_id, kw))
+    for node_id, node in DYSON_SPHERE_CAPABILITY_TREE.items():
+        for kw in node.get('keywords', []):
+            if kw and kw.lower() in blob:
+                candidate_terms.append((f'dyson:{node_id}', kw))
+
+    hits: dict[int, dict[str, Any]] = {}
+    for chapter, rec in chapters.items():
+        ctx = f"{rec.get('title', '')} {rec.get('context', '')}".lower()
+        matched_terms = []
+        matched_domains = set()
+        for domain_id, kw in candidate_terms:
+            if kw.lower() in ctx:
+                matched_terms.append(kw)
+                if not domain_id.startswith('dyson:'):
+                    matched_domains.add(domain_id)
+        if matched_terms:
+            hits[chapter] = {
+                'chapter': chapter,
+                'title': rec.get('title', ''),
+                'score': len(set(matched_terms)) * 2 + len(matched_domains),
+                'matched_terms': sorted(set(matched_terms))[:10],
+                'matched_domains': sorted(matched_domains),
+                'mapping_source': 'latest_outline_keyword',
+            }
+
+    # Weak fallback: domain lists are accepted only against parsed latest chapters.
+    for domain_id in domain_ids:
+        domain = STABLE_DOMAINS.get(domain_id, {})
+        for chapter in domain.get('outline_chapters', []):
+            if chapter not in chapters or chapter in hits:
+                continue
+            hits[chapter] = {
+                'chapter': chapter,
+                'title': chapters[chapter].get('title', ''),
+                'score': 0.5,
+                'matched_terms': [],
+                'matched_domains': [domain_id],
+                'mapping_source': 'latest_outline_static_domain_fallback',
+            }
+
+    return sorted(hits.values(), key=lambda h: (-float(h['score']), int(h['chapter'])))[:limit]
+
+
+def generate_followup_queries(entities: dict[str, list[str]], domain_ids: list[str]) -> list[dict[str, Any]]:
+    """基于动态抽取的实体生成二次查询。
+
+    Args:
+        entities: 抽取结果 {entity_type: [entity_value, ...]}
+        domain_ids: 当前命中的域 ID
+
+    Returns:
+        二次查询列表
+    """
+    queries: list[dict[str, Any]] = []
+
+    # 型号实体 → 以型号为关键词 + 域时间词
+    for model in entities.get('model_designation', []):
+        for domain_id in domain_ids[:3]:
+            domain = STABLE_DOMAINS.get(domain_id, {})
+            domain_label = domain.get('label', '')
+            queries.append({
+                'query': f'{model} 最新 进展',
+                'domain_id': domain_id,
+                'category': f'followup_model:{model}',
+                'priority': 2,
+                'composition': f'entity:{model} × 最新',
+            })
+
+    # 组织实体 → 以组织为关键词 + 域
+    for org in entities.get('organization', []):
+        for domain_id in domain_ids[:2]:
+            domain = STABLE_DOMAINS.get(domain_id, {})
+            domain_kws = domain.get('query_keywords', [])[:2]
+            kw = domain_kws[0] if domain_kws else ''
+            if kw:
+                queries.append({
+                    'query': f'{org} {kw}',
+                    'domain_id': domain_id,
+                    'category': f'followup_org:{org}',
+                    'priority': 2,
+                    'composition': f'entity:{org} × {kw}',
+                })
+
+    return queries
+
+
+# ═══════════════════════════════════════════════
+# 2. 域感知评分
+# ═══════════════════════════════════════════════
+
+def score_item_domain_aware(
+    item: dict[str, Any],
+    outline_chapter_set: set[int] | None = None,
+    outline_path: str = str(DEFAULT_OUTLINE_PATH),
+) -> dict[str, Any]:
+    """对素材卡进行域感知评分。
+
+    Args:
+        item: 素材卡 dict (title, summary, url, source_group_key, published_at, ...)
+        outline_chapter_set: 大纲所有章节号集合（用于命中判断）
+
+    Returns:
+        评分结果 dict，含 total_score, domain_scores, breakdown, noise_flag, ...
+    """
+    title = str(item.get('title') or '')
+    summary = str(item.get('summary') or '')
+    url = str(item.get('url') or '')
+    blob = f'{title} {summary} {url}'
+    source_group = str(item.get('source_group_key') or '')
+    published_at = str(item.get('published_at') or '')
+
+    breakdown: dict[str, float] = {}
+    domain_hits: list[tuple[str, float]] = []
+    outline_hits: list[int] = []
+    outline_match_details: list[dict[str, Any]] = []
+    tech_institution_hits: list[str] = []
+    character_plot_hits: list[str] = []
+    parsed_outline = parse_latest_outline(outline_path)
+    if outline_chapter_set is None:
+        outline_chapter_set = set(parsed_outline.get('chapters', {}).keys())
+
+    # --- 噪声检查（先检查，命中直接返回） ---
+    is_noise, noise_reason = is_noise_domain(blob)
+    if is_noise:
+        return {
+            'total_score': SCORING_WEIGHTS['noise_penalty'],
+            'domain_scores': [],
+            'breakdown': {'noise_penalty': SCORING_WEIGHTS['noise_penalty']},
+            'noise_flag': True,
+            'noise_reason': noise_reason,
+            'outline_chapter_hits': [],
+            'outline_match_details': [],
+            'outline_parse': outline_parse_stats(outline_path),
+            'tech_institution_hits': [],
+            'character_plot_hits': [],
+        }
+
+    # --- 域相关性 ---
+    domain_hits = get_domain_for_keywords(blob)
+    domain_score_sum = 0.0
+    for domain_id, hit_count in domain_hits:
+        domain_score_sum += hit_count
+    breakdown['domain_relevance'] = min(domain_score_sum, 10.0) * (
+        SCORING_WEIGHTS['domain_relevance'] / 10.0
+    )
+
+    # --- 大纲章节命中 ---
+    if outline_chapter_set:
+        outline_match_details = match_outline_chapters(
+            blob,
+            [domain_id for domain_id, _ in domain_hits],
+            outline_path=outline_path,
+        )
+        outline_hits = [
+            int(hit['chapter']) for hit in outline_match_details
+            if int(hit['chapter']) in outline_chapter_set
+        ]
+    breakdown['outline_chapter_hit'] = min(len(outline_hits), 5.0) * (
+        SCORING_WEIGHTS['outline_chapter_hit'] / 5.0
+    )
+
+    # --- 技术-制度关键词 ---
+    for domain_id, _ in domain_hits:
+        domain = STABLE_DOMAINS.get(domain_id, {})
+        for kw in domain.get('tech_institution_chars', []):
+            if kw.lower() in blob.lower():
+                if kw not in tech_institution_hits:
+                    tech_institution_hits.append(kw)
+    breakdown['tech_institution'] = min(len(tech_institution_hits), 5.0) * (
+        SCORING_WEIGHTS['tech_institution'] / 5.0
+    )
+
+    # --- 人物-情节映射 ---
+    for domain_id, _ in domain_hits:
+        domain = STABLE_DOMAINS.get(domain_id, {})
+        for kw in domain.get('plot_threads', []):
+            if kw.lower() in blob.lower():
+                if kw not in character_plot_hits:
+                    character_plot_hits.append(kw)
+    breakdown['character_plot'] = min(len(character_plot_hits), 5.0) * (
+        SCORING_WEIGHTS['character_plot'] / 5.0
+    )
+
+    # --- 来源权威度 ---
+    auth_score = SOURCE_AUTHORITY.get(source_group, 0.3)
+    breakdown['source_authority'] = auth_score * SCORING_WEIGHTS['source_authority']
+
+    # --- 时效性 ---
+    timeliness = _compute_timeliness(published_at)
+    breakdown['timeliness'] = timeliness * SCORING_WEIGHTS['timeliness']
+
+    # --- 可信度 ---
+    source_role = str(item.get('source_role') or '')
+    if source_role == 'primary' or source_group in ('domestic_official', 'overseas_official'):
+        credibility = 1.0
+    elif source_role == 'secondary':
+        credibility = 0.6
+    else:
+        credibility = 0.3
+    breakdown['credibility'] = credibility * SCORING_WEIGHTS['credibility']
+
+    total = sum(breakdown.values())
+
+    return {
+        'total_score': round(total, 2),
+        'domain_scores': [(d, round(s, 2)) for d, s in domain_hits[:3]],
+        'breakdown': {k: round(v, 2) for k, v in breakdown.items()},
+        'noise_flag': False,
+        'noise_reason': '',
+        'outline_chapter_hits': outline_hits[:5],
+        'outline_match_details': outline_match_details[:5],
+        'outline_parse': outline_parse_stats(outline_path),
+        'tech_institution_hits': tech_institution_hits[:5],
+        'character_plot_hits': character_plot_hits[:5],
+    }
+
+
+def _compute_timeliness(published_at: str) -> float:
+    """计算时效性分数。"""
+    if not published_at:
+        return 0.3  # 未知日期给中等分
+
+    try:
+        # 解析各种格式
+        pub = published_at.strip()
+        if 'T' in pub:
+            pub = pub.split('+')[0].split('Z')[0]  # 去时区
+            pub_dt = dt.datetime.fromisoformat(pub)
+        elif re.match(r'^\d{4}-\d{2}-\d{2}$', pub):
+            pub_dt = dt.datetime.strptime(pub, '%Y-%m-%d')
+        else:
+            return 0.3
+
+        now = dt.datetime.now()
+        delta = now - pub_dt
+        days = delta.days
+
+        if days <= 0:
+            return TIMELINESS_DECAY['same_day']
+        elif days <= 7:
+            return TIMELINESS_DECAY['same_week']
+        elif days <= 30:
+            return TIMELINESS_DECAY['same_month']
+        else:
+            return TIMELINESS_DECAY['older']
+    except Exception:
+        return 0.3
+
+
+# ═══════════════════════════════════════════════
+# 3. 动态实体抽取
+# ═══════════════════════════════════════════════
+
+# 补充实体 patterns（2026-08-13 Seat D 修复）：
+# 原 ENTITY_PATTERNS 覆盖不足导致 entities 全空，两类盲区：
+#   1) organization 三段式 pattern（中国+领域+后缀）匹配不到
+#      「中国航天科技集团」这类 中国+领域+行业+后缀 的四段式机构名；
+#   2) model_designation 只有英文型号/长征X，缺中文简称（长六改）、
+#      卫星星座（千帆极轨11组卫星）、AI 型号（π*0.6）。
+# 另补微博话题标签作为事件实体（event），供后续跟查。
+# 全部为标准库 re，零新依赖；不触碰 Dyson 树/大纲解析逻辑。
+_ENTITY_PATTERNS_EXTRA: dict[str, dict[str, Any]] = {
+    'model_designation': {
+        'label': '型号',
+        'patterns': [
+            # 中文火箭/导弹简称：长六改、长三乙、长征六号改
+            r'长(?:征)?[一二三四五六七八九十百\d]+(?:号|改|甲|乙|丙|丁)',
+            # 卫星星座/任务名：千帆极轨11组卫星、千帆星座
+            r'千帆[^\s#，。、；;:：]{1,12}卫星?',
+            # π*0.6 / π0.5 类 AI 型号
+            r'[πΠ]\*?\d+\.\d+',
+        ],
+        'generate_followup': True,
+    },
+    'organization': {
+        'label': '组织',
+        'patterns': [
+            # 四段式中式机构：中国航天科技集团 / 中国航天科工集团 / 中国电子科技集团 /
+            # 中国商用飞机有限责任公司 / 中国航空发动机集团
+            r'(?:中国|国家|美国|欧洲|日本|俄罗斯|印度)(?:航天|军事|科技|能源|量子|航空|电子|网络|信息|工业|空间|商用飞机)(?:科技|工业|科工|空间|电子|网络|信息|自动化|工程|发动机)?(?:集团|公司|研究院|研究所|中心|局|部|院|总院|大学|有限责任公司)',
+            # 中科院系统：中科院物理所 / 中科院分子影像重点实验室 / 中国科学院物理研究所
+            r'中科院[一-龥]{2,8}?(?:重点实验室|实验室|研究所|研究院|所|院|中心|大学)',
+            r'中国科学院[一-龥]{2,8}(?:研究所|研究院|中心|大学)?',
+            # 通用中文高校/科研机构（无国别前缀）：浙江大学、电子科技大学、
+            # 北京计算科学研究中心。固定宽度 lookbehind：机构名前驱须为非汉字
+            #（行首/标点/空白），避免人名+头衔粘连误吞（「香港城市大学王锋教授与新加坡国立大学」）。
+            r'(?<![一-龥])[一-龥]{2,10}(?:大学|学院|研究中心|研究院|研究所|重点实验室)',
+            # 已知 AI/机器人/行业机构（科武关注域）
+            r'(?:上海AI实验室|Physical Intelligence|OpenAI|Anthropic|DeepMind|宇树|智元|银河通用|自变量|毕马威|北京协和医院)',
+        ],
+        'generate_followup': True,
+    },
+    'person': {
+        'label': '人物',
+        'patterns': [
+            # 微博 @ 提名人（如 @毛不易），仅提名人名不带 @
+            r'@([\u4e00-\u9fff]{2,6})',
+        ],
+        'generate_followup': False,
+    },
+    'event': {
+        'label': '事件',
+        'patterns': [
+            # 微博话题标签即事件/主题：#长六改火箭成功发射千帆极轨11组卫星#
+            r'#[\u4e00-\u9fffA-Za-z0-9]{3,30}#',
+        ],
+        'generate_followup': False,
+    },
+}
+
+
+def extract_entities(text: str) -> dict[str, list[str]]:
+    """从文本中动态抽取新实体（型号/组织/人物/事件）。
+
+    先跑 ontology 的 ENTITY_PATTERNS，再叠加 _ENTITY_PATTERNS_EXTRA
+    （补齐四段式机构、中文型号简称、微博话题），同类型结果去重合并。
+
+    Returns:
+        {entity_type: [entity_value, ...]}
+    """
+    results: dict[str, list[str]] = {}
+
+    def _collect(entity_type: str, patterns: list[str]) -> None:
+        found: list[str] = list(results.get(entity_type, []))
+        for pattern in patterns:
+            try:
+                matches = re.findall(pattern, text)
+                for m in matches:
+                    # 捕获组 pattern 取第一组；无组 pattern 取整串
+                    if isinstance(m, tuple):
+                        m = next((g for g in m if g), '')
+                    m = str(m).strip()
+                    # 账号噪声过滤：@沈逸的微博 / @某某微博号 非人名
+                    if entity_type == 'person' and re.search(r'微博|号$', m):
+                        continue
+                    if m and len(m) >= 2 and m not in found:
+                        found.append(m)
+            except re.error:
+                continue
+        if found:
+            results[entity_type] = found
+
+    for entity_type, config in ENTITY_PATTERNS.items():
+        _collect(entity_type, config['patterns'])
+    for entity_type, config in _ENTITY_PATTERNS_EXTRA.items():
+        _collect(entity_type, config['patterns'])
+    return results
+
+
+def should_generate_followup(entities: dict[str, list[str]]) -> bool:
+    """判断是否需要生成二次查询。"""
+    # 有新型号或新组织时生成
+    return bool(entities.get('model_designation') or entities.get('organization'))
+
+
+# ═══════════════════════════════════════════════
+# 4. 降噪判断
+# ═══════════════════════════════════════════════
+
+def is_noise_like_title(title: str) -> bool:
+    """True when title is path-stem noise (c/article/ARTI...) rather than a real headline."""
+    t = (title or '').strip()
+    if not t:
+        return True
+    if len(t) < 6:
+        return True
+    low = t.lower()
+    if low in {'c', 'article', 'gateway', 'entity list', 'latest news', 'announcements', 'announcement'}:
+        return True
+    if re.match(r'^ARTI[A-Za-z0-9]+$', t):
+        return True
+    if re.match(r'^\[QP:', t):
+        return True
+    if re.match(r'^(c|article|gateway)\b', low):
+        # bare path stems like "c 1127368611" / "c1003 27943628"
+        if re.match(r'^(c|article)\s*\d', low) or re.match(r'^c\d', low):
+            return True
+        if low in {'c', 'article', 'gateway'}:
+            return True
+    # pure slug of alnum/underscore/hyphen without spaces and no CJK
+    if re.fullmatch(r'[A-Za-z0-9_\-]{6,}', t) and not re.search(r'[\u4e00-\u9fff]', t):
+        # allow multi-word english titles with spaces only; slug-like single token often path stem
+        if '_' in t or t.isupper() or t.lower().startswith('arti'):
+            return True
+    return False
+
+
+def recover_title_from_body(title: str, body: str = '', url: str = '') -> tuple[str, str]:
+    """Recover a usable headline from body when title is path-stem noise.
+
+    Returns (title, reason) where reason is KEEP / FROM_* / RECOVER_FAILED / NO_BODY.
+    """
+    t = (title or '').strip()
+    b = (body or '').strip()
+    if not is_noise_like_title(t):
+        return t, 'KEEP'
+    if not b:
+        return t, 'NO_BODY'
+    m = re.search(r'原标题[：:]\s*([^\n]{6,120})', b)
+    if m:
+        cand = m.group(1).strip()
+        cand = re.sub(r'[*_`#]+', '', cand).strip()
+        if len(cand) >= 6 and not is_noise_like_title(cand):
+            return cand[:120], 'FROM_ORIGINAL_TITLE'
+    for line in b.splitlines():
+        line = line.strip()
+        if not line.startswith('#'):
+            continue
+        h = re.sub(r'^#+\s*', '', line).strip()
+        h = re.sub(r'[*_`]+', '', h).strip()
+        if len(h) >= 6 and not re.match(r'^(来源|字体|分享|副标题|正在加载)', h) and not is_noise_like_title(h):
+            return h[:120], 'FROM_MD_HEADING'
+    for line in b.splitlines():
+        line = re.sub(r'!\[[^\]]*\]\([^)]*\)', '', line)
+        line = re.sub(r'\[[^\]]*\]\([^)]*\)', '', line)
+        line = re.sub(r'<[^>]+>', '', line)
+        line = line.strip(' #*-|\t')
+        if len(line) < 8:
+            continue
+        if re.match(r'^(来源|字体|分享到|记者|编辑|发布时间|http|www\.|\d{1,2}:\d{2}|新华社|人民网|央视网)', line):
+            continue
+        if re.match(r'^\d{4}[-年/]\d{1,2}', line):
+            continue
+        if 'javascript' in line.lower():
+            continue
+        if re.search(r'[\u4e00-\u9fff]{4,}', line) or re.search(r'[A-Za-z]{6,}', line):
+            if not is_noise_like_title(line):
+                return line[:120], 'FROM_BODY_LINE'
+    # last resort: url stem only if better than noise single letter
+    try:
+        from urllib.parse import urlparse, unquote
+        import pathlib as _pathlib
+        stem = _pathlib.Path(unquote(urlparse(url or '').path or '')).stem
+        stem = re.sub(r'[_\-]+', ' ', stem).strip()
+        if stem and not is_noise_like_title(stem) and len(stem) >= 8:
+            return stem[:120], 'FROM_URL_STEM'
+    except Exception:
+        pass
+    return t, 'RECOVER_FAILED'
+
+
+def classify_noise_degradation(
+    title: str,
+    summary: str = '',
+    url: str = '',
+    published_at: str = '',
+    source_group: str = '',
+) -> tuple[bool, str]:
+    """综合降噪判断：泛科普、娱乐、消费评测、旧闻。
+
+    Returns:
+        (should_degrade, reason)
+    """
+    blob = f'{title} {summary} {url}'
+
+    # 1. 关键词噪声域
+    is_noise, reason = is_noise_domain(blob)
+    if is_noise:
+        return True, reason
+
+    # 2. 旧闻判断
+    #    Platform-commentary discovery items (source_group_key=*_platform_commentary)
+    #    are KOL viewpoint signals, not same-day news. Their freshness is gated
+    #    upstream by is_stale_kol_item with the policy-dependent viewpoint window
+    #    (PLATFORM_SIGNAL=365d / DISCOVERY_ONLY=270d, prior-calendar-year kept).
+    #    The 14/180-day news-staleness rule below is for primary-fact cards;
+    #    applying it here evicted every dated in-window commentary item as
+    #    STALE_NEWS before Dyson matching, producing fresh_dated_count=0.
+    if published_at and not source_group.endswith('_platform_commentary'):
+        max_age = _get_max_age(source_group)
+        if _is_stale_by_date(published_at, max_age):
+            return True, 'STALE_NEWS'
+
+    # 3. 标题过短或无意义 —— 若 summary/body 已有实质正文，不在此处误杀；
+    #    由 score_and_classify_item 先做 title-from-body 恢复后再评分。
+    if is_noise_like_title(title):
+        substantive = (summary or '').strip()
+        # body-like summary: enough chars and not just URL echo
+        if len(substantive) >= 80 and (
+            re.search(r'[\u4e00-\u9fff]{8,}', substantive)
+            or re.search(r'[A-Za-z]{20,}', substantive)
+        ):
+            return False, ''
+        return True, 'TITLE_TOO_SHORT'
+
+    return False, ''
+
+
+def _get_max_age(source_group: str) -> int:
+    """获取来源组的最大允许天数。"""
+    if source_group and 'domestic' in source_group:
+        return NOISE_DOMAINS['stale_news']['max_age_days_domestic']
+    return NOISE_DOMAINS['stale_news']['max_age_days_overseas']
+
+
+def _is_stale_by_date(published_at: str, max_age_days: int) -> bool:
+    """判断是否为旧闻。"""
+    try:
+        pub = published_at.strip()
+        if 'T' in pub:
+            pub = pub.split('+')[0].split('Z')[0]
+            pub_dt = dt.datetime.fromisoformat(pub)
+        elif re.match(r'^\d{4}-\d{2}-\d{2}$', pub):
+            pub_dt = dt.datetime.strptime(pub, '%Y-%m-%d')
+        else:
+            return False  # 无法解析不判旧闻
+
+        now = dt.datetime.now()
+        return (now - pub_dt).days > max_age_days
+    except Exception:
+        return False
+
+
+# ═══════════════════════════════════════════════
+# 5. 戴森球能力树匹配
+# ═══════════════════════════════════════════════
+
+def match_dyson_tree(text: str, outline_chapter_hits: list[int] | None = None) -> list[dict[str, Any]]:
+    """匹配文本与戴森球能力树节点。
+
+    Returns:
+        匹配的节点列表，含 node_id, label, level, chapter_hits, tech_constraints
+    """
+    text_lower = text.lower()
+    matches: list[dict[str, Any]] = []
+
+    outline_chapter_hits = outline_chapter_hits or []
+    for node_id, node in DYSON_SPHERE_CAPABILITY_TREE.items():
+        kw_hits = [kw for kw in node['keywords'] if kw.lower() in text_lower]
+        chapter_hits = [ch for ch in outline_chapter_hits if ch in node.get('outline_chapters', [])]
+        if kw_hits or chapter_hits:
+            matches.append({
+                'node_id': node_id,
+                'label': node['label'],
+                'level': node['level'],
+                'keyword_hits': kw_hits[:5],
+                'chapter_hits': chapter_hits[:5],
+                'outline_chapters': node.get('outline_chapters', []),
+                'tech_constraints': node.get('tech_constraints', []),
+                'depends_on': node.get('depends_on', []),
+                'match_source': 'keyword' if kw_hits else 'latest_outline_chapter',
+            })
+
+    return matches
+
+
+# ═══════════════════════════════════════════════
+# 6. 综合域评分报告
+# ═══════════════════════════════════════════════
+
+def score_and_classify_item(
+    item: dict[str, Any],
+    outline_chapter_set: set[int] | None = None,
+    seen_urls: set[str] | None = None,
+    outline_path: str = str(DEFAULT_OUTLINE_PATH),
+) -> dict[str, Any]:
+    """综合评分：域感知 + 降噪 + 实体抽取 + 戴森球匹配 + 去重。
+
+    Args:
+        item: 素材卡
+        outline_chapter_set: 大纲章节号集合
+        seen_urls: 已见 URL 集合（用于去重）
+
+    Returns:
+        综合评分结果
+    """
+    title = str(item.get('title') or '')
+    summary = str(item.get('summary') or '')
+    url = str(item.get('url') or '')
+    published_at = str(item.get('published_at') or '')
+    source_group = str(item.get('source_group_key') or item.get('source_group') or '')
+    body_for_title = str(item.get('body') or item.get('_body_text') or summary or '')
+    recovered_title, title_recover_reason = recover_title_from_body(title, body_for_title, url)
+    if title_recover_reason not in ('KEEP', 'NO_BODY', 'RECOVER_FAILED') and recovered_title:
+        item = dict(item)
+        item['_title_original'] = title
+        item['_title_recover_reason'] = title_recover_reason
+        item['title'] = recovered_title
+        title = recovered_title
+    # Prefer body+summary for scoring blob so path-stem titles cannot zero Dyson hits.
+    body_extra = str(item.get('body') or item.get('_body_text') or '')
+    if body_extra and body_extra not in summary:
+        summary_for_score = (summary + '\n' + body_extra[:4000]).strip()
+    else:
+        summary_for_score = summary
+    blob = f'{title} {summary_for_score} {url}'
+
+    # 1. 降噪判断（用恢复后标题 + 正文摘要，避免 c/article/ARTI 误杀）
+    should_degrade, degrade_reason = classify_noise_degradation(
+        title, summary_for_score, url, published_at, source_group
+    )
+    if should_degrade:
+        return {
+            'total_score': SCORING_WEIGHTS['noise_penalty'],
+            'domain_scores': [],
+            'breakdown': {'noise_penalty': SCORING_WEIGHTS['noise_penalty']},
+            'noise_flag': True,
+            'noise_reason': degrade_reason,
+            'outline_chapter_hits': [],
+            'outline_match_details': [],
+            'outline_parse': outline_parse_stats(outline_path),
+            'tech_institution_hits': [],
+            'character_plot_hits': [],
+            'dyson_tree_matches': [],
+            'dyson_gate_status': 'ARCHIVE_NO_DYSON_TREE_MATCH',
+            'archive_reason': degrade_reason,
+            'entities': {},
+            'dedup_flag': False,
+            'followup_needed': False,
+        }
+
+    # 2. 域感知评分（喂恢复后标题 + 正文）
+    score_item = dict(item)
+    score_item['title'] = title
+    score_item['summary'] = summary_for_score
+    score_result = score_item_domain_aware(score_item, outline_chapter_set, outline_path=outline_path)
+
+    # 3. 去重
+    dedup_flag = False
+    if seen_urls and url:
+        normalized = url.rstrip('/').lower()
+        if normalized in seen_urls:
+            dedup_flag = True
+            score_result['total_score'] += SCORING_WEIGHTS['dedup_penalty']
+            score_result['breakdown']['dedup_penalty'] = SCORING_WEIGHTS['dedup_penalty']
+
+    # 4. 戴森球匹配
+    dyson_matches = match_dyson_tree(blob, score_result.get('outline_chapter_hits', []))
+    if dyson_matches:
+        score_result['total_score'] += 2.5
+        score_result['breakdown']['dyson_tree_gate'] = 2.5
+        score_result['dyson_gate_status'] = 'PASS_DYSON_TREE'
+        score_result['archive_reason'] = ''
+    else:
+        score_result['dyson_gate_status'] = 'ARCHIVE_NO_DYSON_TREE_MATCH'
+        score_result['archive_reason'] = 'NO_DYSON_TREE_MATCH'
+
+    # 5. 实体抽取
+    entities = extract_entities(blob)
+
+    # 6. 是否需要二次查询
+    followup = should_generate_followup(entities)
+
+    score_result['dyson_tree_matches'] = dyson_matches
+    score_result['entities'] = entities
+    score_result['dedup_flag'] = dedup_flag
+    score_result['followup_needed'] = followup
+    score_result['title_used'] = title
+    score_result['title_recover_reason'] = locals().get('title_recover_reason', item.get('_title_recover_reason', 'KEEP'))
+    if item.get('_title_original'):
+        score_result['title_original'] = item.get('_title_original')
+
+    return score_result

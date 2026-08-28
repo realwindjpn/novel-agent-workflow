@@ -2541,3 +2541,8 @@
 - 跟踪表缺口：补录 295-301 共 7 行（`工具脚本/backfill_tracking_295_301.py`），295/296 标「审稿闭环记录待补证」
 - 工具事实：`direct_model_call.py` 不支持 `codex_responses`（agentrouter 须走 dispatch_to_model）；CDP 9223 未起，网页作者全程 `--cdp-url ""` 冷启动 + 3 次重试绕 Playwright `setDeviceMetricsOverride` 竞态
 - 断点残留：302 待起稿；G1 的 124 张 READY 融纲消费待跑；草稿箱与正式发布归用户
+
+### 2026-08-28 21:25 | 302 闭环
+- ch302 SHA 507c2935 CJK 3370 四审全 PASS（reader aliyun-qwen38 / structure wechat-glm / editor wechat-glm / science aliyun-qwen38）
+- 已落盘: 已投稿/第302章.txt、新版正文/ch302.md、章节跟踪表、STATUS
+- 残留: 发布归小哥；下一步可起 303

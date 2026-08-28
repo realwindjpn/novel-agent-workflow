@@ -1,0 +1,962 @@
+1|#!/usr/bin/env python3
+2|"""platform_radar_v2.py — 多路由KOL/平台号观点雷达采集 v2
+3|
+4|替代旧版 ddgs-only 串行超时脚本。
+5|流程：工具采URL → platform_discovery.json → 观点推演/筛噪 → platform_mirofish_feed_package.json
+6|
+7|用法：
+8|  python3 platform_radar_v2.py                           # 全量跑
+9|  python3 platform_radar_v2.py --platform wechat         # 只跑微信
+10|  python3 platform_radar_v2.py --limit 3                 # 只跑前3个account
+11|  python3 platform_radar_v2.py --resume                  # 从已有discovery续跑
+12|  python3 platform_radar_v2.py --timeout-sec 10          # ddgs单条超时
+13|  python3 platform_radar_v2.py --dry-run-mirofish        # 只产出discovery不跑模型
+14|  python3 platform_radar_v2.py --discovery-json /path/x.json  # 用已有discovery做后段
+15|"""
+16|from __future__ import annotations
+17|import argparse, datetime, hashlib, json, os, re, subprocess, sys, time
+18|from pathlib import Path
+19|
+20|# ── paths ──
+21|BASE = Path('/root/workspace/科武纪元')
+22|TOOL = BASE / '工具脚本'
+23|OUT_BASE = BASE / '学习记录/平台号观点雷达/runs'
+24|WATCH = BASE / '学习记录/平台号观点雷达/platform_watchlist.json'
+25|COLLECT_WEB = Path('/root/.hermes/skills/research/web-data-collection-suite/scripts/collect_web.py')
+26|ANYSEARCH_CLI = Path('/root/workspace/IMA素材/external_skills/anysearch-skill_20260604/repo/scripts/anysearch_cli.py')
+27|
+28|TODAY = datetime.date.today().isoformat()
+29|RUN_DIR = OUT_BASE / f'run_{TODAY}_v2'
+30|
+31|# ── standard item schema ──
+32|EMPTY_ITEM = {
+33|    'account': '', 'platform': '', 'query': '', 'url': '',
+34|    'title': '', 'author': '', 'published_at': '',
+35|    'source_route': '', 'discovery_status': '', 'body_status': '',
+36|    'evidence': '', 'viewpoint_inference': '', 'material_policy': '',
+37|    'failure_tag': '',
+38|}
+39|
+40|NOISE_TERMS = [
+41|    'bw2026', '哔哩哔哩游戏', '直播', '下载中心', '微信公众平台接口调试',
+42|    'miniprogram/landing_page', '客服服务', 'login', 'signup',
+43|    'register', 'download app',
+44|]
+45|SIGNAL_KW = [
+46|    'ai', '人工智能', '芯片', '半导体', '中美', '地缘', '科技',
+47|    '量子', '航天', '出口管制', '产业链', '数据安全', '互联网',
+48|]
+49|
+NON_ARTICLE_URL_PATTERNS = [
+    r'/search\?', r'/search$', r'/tag/', r'/channel/', r'/account/',
+    r'space\.bilibili\.com/\d+/?$', r'm\.bilibili\.com/search\?',
+    r'weibo\.com/\d+/?$', r'weibo\.com/u/\d+/?$',
+    r'weibo\.com/[A-Za-z0-9_\-]+/?$',
+    r'h5\.video\.weibo\.com/',
+    r'zhihu\.com/people/', r'zhihu\.com/search\?',
+    r'\.pdf($|\?)', r'\.pdf#',
+    r'youtube\.com/@', r'youtube\.com/c/', r'youtube\.com/channel/',
+]
+60|
+61|
+62|def is_non_article_url(url: str) -> bool:
+63|    u = (url or '').strip().lower()
+64|    if not u:
+65|        return True
+66|    return any(re.search(p, u) for p in NON_ARTICLE_URL_PATTERNS)
+67|
+68|
+69|def evidence_is_body(text: str) -> bool:
+70|    t = re.sub(r'\s+', ' ', text or '').strip()
+71|    if len(t) < 80:
+72|        return False
+73|    return bool(re.search(r'[。！？；：，,.;:]', t))
+74|
+75|
+76|def sha12(s: str) -> str:
+77|    return hashlib.sha256(s.encode()).hexdigest()[:12]
+78|
+79|
+80|def now_iso() -> str:
+81|    return datetime.datetime.now().isoformat(timespec='seconds')
+82|
+83|
+84|def run_cmd(cmd: list[str], timeout: int = 30) -> tuple[int, str, str]:
+85|    try:
+86|        p = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout, check=False)
+87|        return p.returncode, p.stdout, p.stderr
+88|    except subprocess.TimeoutExpired:
+89|        return -1, '', 'TIMEOUT'
+90|    except Exception as e:
+91|        return -2, '', repr(e)
+92|
+93|
+94|def score_item(account: str, platform: str, hit: dict) -> int:
+95|    text = (hit.get('title', '') + ' ' + hit.get('body', '') + ' ' + hit.get('url', '')).lower()
+96|    s = 0
+97|    if account.lower() in text:
+98|        s += 3
+99|    if platform in hit.get('url', ''):
+100|        s += 1
+101|    if any(k in text for k in SIGNAL_KW):
+102|        s += 2
+103|    if any(t in text for t in NOISE_TERMS):
+104|        s -= 5
+105|    return s
+106|
+107|
+108|# ══════════════════════════════════════════
+109|#  A. URL Discovery — 多路由
+110|# ══════════════════════════════════════════
+111|
+112|def discover_anysearch(query: str, max_results: int = 3, timeout: int = 20) -> list[dict]:
+113|    """AnySearch CLI — 本地API, ~1-3s, 最稳定。"""
+114|    if not ANYSEARCH_CLI.exists():
+115|        return []
+116|    rc, out, err = run_cmd(
+117|        [sys.executable, str(ANYSEARCH_CLI), 'search', query, '--max_results', str(max_results)],
+118|        timeout=timeout,
+119|    )
+120|    if rc != 0 or not out.strip():
+121|        return []
+122|    hits = []
+123|    # parse CLI text output: each result has ### N. title + - **URL**: ... + - > excerpt
+124|    blocks = re.split(r'### \d+\.', out)
+125|    for blk in blocks[1:]:
+126|        lines = blk.strip().splitlines()
+127|        title = lines[0].strip() if lines else ''
+128|        url_m = re.search(r'\*\*URL\*\*:\s*(\S+)', blk)
+129|        url = url_m.group(1) if url_m else ''
+130|        body_lines = [l.lstrip('- > ').strip() for l in lines if l.strip().startswith('- >')]
+131|        body = ' '.join(body_lines)[:300]
+132|        if url:
+133|            hits.append({'title': title, 'url': url, 'body': body})
+134|    return hits
+135|
+136|
+137|def discover_collect_web_search(query: str, platform: str, max_items: int = 3, timeout: int = 30) -> list[dict]:
+138|    """collect_web --source <platform>_search / anysearch 路由。"""
+139|    source_map = {
+140|        'wechat': 'wechat_search',
+141|        'bilibili': 'anysearch',   # bili API需cookie，先用anysearch site:
+142|        'weibo': 'anysearch',      # weibo同理
+143|        'zhihu': 'anysearch',
+144|    }
+145|    source = source_map.get(platform, 'anysearch')
+146|    url_arg = query  # collect_web --url 接受query字符串
+147|    if platform in ('bilibili', 'weibo', 'zhihu'):
+148|        site_map = {'bilibili': 'bilibili.com', 'weibo': 'weibo.com', 'zhihu': 'zhihu.com'}
+149|        url_arg = f'site:{site_map[platform]} {query}'
+150|    cmd = [sys.executable, str(COLLECT_WEB), '--source', source, '--url', url_arg, '--max-items', str(max_items)]
+151|    rc, out, err = run_cmd(cmd, timeout=timeout)
+152|    if rc != 0 or not out.strip():
+153|        return []
+154|    try:
+155|        data = json.loads(out.strip())
+156|    except json.JSONDecodeError:
+157|        return []
+158|    hits = []
+159|    for item in data.get('data', []):
+160|        url = item.get('url', '')
+161|        title = item.get('title', item.get('source', ''))
+162|        body = item.get('body', item.get('excerpt', ''))
+163|        if url:
+164|            hits.append({'title': title or '', 'url': url, 'body': body or ''})
+165|    return hits
+166|
+167|
+168|def discover_ddgs(query: str, max_results: int = 3, timeout: int = 8) -> list[dict]:
+169|    """ddgs fallback — 从进程内直接调用，不spawn子进程。"""
+170|    try:
+171|        from ddgs import DDGS
+172|        hits = []
+173|        with DDGS(timeout=timeout) as d:
+174|            for r in d.text(query, max_results=max_results):
+175|                hits.append({
+176|                    'title': r.get('title', ''),
+177|                    'url': r.get('href') or r.get('url', ''),
+178|                    'body': r.get('body', ''),
+179|                })
+180|        return hits
+181|    except Exception:
+182|        return []
+183|
+184|
+185|
+def _resolve_weibo_uid(name: str, cookie_str: str) -> str:
+    """Resolve weibo username to UID via s.weibo.com user search."""
+    import urllib.request, urllib.parse
+    UA = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+    q = urllib.parse.quote(name)
+    url = f'https://s.weibo.com/user?q={q}&Refer=weibo_user'
+    try:
+        req = urllib.request.Request(url, headers={
+            'User-Agent': UA, 'Cookie': cookie_str,
+            'Accept': 'text/html', 'Referer': 'https://weibo.com/',
+        })
+        resp = urllib.request.urlopen(req, timeout=15)
+        raw = resp.read().decode('utf-8', 'ignore')
+        # Extract UIDs from /u/NNNN links
+        uids = re.findall(r'/u/(\d{8,12})', raw)
+        if uids:
+            # Verify first candidate via profile API
+            for uid in dict.fromkeys(uids):  # dedupe preserving order
+                api = f'https://weibo.com/ajax/profile/info?uid={uid}'
+                req2 = urllib.request.Request(api, headers={
+                    'User-Agent': UA, 'Cookie': cookie_str,
+                    'Referer': f'https://weibo.com/u/{uid}',
+                })
+                try:
+                    resp2 = urllib.request.urlopen(req2, timeout=8)
+                    data = json.loads(resp2.read().decode('utf-8', 'ignore'))
+                    user = data.get('data', {}).get('user', {})
+                    screen_name = user.get('screen_name', '')
+                    followers = user.get('followers_count', 0)
+                    # Must match name and have significant following
+                    if (name in screen_name or screen_name in name) and followers > 10000:
+                        return uid
+                except Exception:
+                    continue
+    except Exception:
+        pass
+    return ''
+
+def discover_weibo_mobile(query: str, max_results: int = 3, timeout: int = 20) -> list[dict]:
+186|    """Weibo desktop API (weibo.com/ajax) with cookie. Returns actual post URLs."""
+187|    import urllib.request, urllib.parse
+188|    cookie_file = Path('/root/.hermes/weibo_cookies.txt')
+189|    if not cookie_file.exists():
+190|        return []
+191|    cookies = {}
+192|    for line in cookie_file.read_text(encoding='utf-8', errors='ignore').splitlines():
+193|        line = line.strip()
+194|        if not line or (line.startswith('#') and not line.startswith('#HttpOnly_')):
+195|            continue
+196|        if line.startswith('#HttpOnly_'):
+197|            line = line[10:]
+198|        parts = line.split('\t')
+199|        if len(parts) >= 7:
+200|            cookies[parts[5]] = parts[6]
+201|    if not cookies:
+202|        return []
+203|    cookie_str = '; '.join(f'{k}={v}' for k, v in cookies.items())
+204|    # Known UIDs for watchlist accounts
+205|    uid_map = {
+206|        '沈逸': '5197694130', '差评君': '5617684017',
+207|        '高志凯': '1727858281', '金灿荣': '1678020401',
+208|    }
+209|    uid = ''
+210|    for name, id_ in uid_map.items():
+211|        if name in query:
+212|            uid = id_
+213|            break
+214|    if not uid:
+215|        # Try extracting UID from query
+216|        m = re.search(r'(\d{8,12})', query)
+217|        if m:
+218|            uid = m.group(1)
+219|    if not uid:
+220|        return []
+221|    api = f'https://weibo.com/ajax/statuses/mymblog?uid={uid}&page=1&feature=0'
+222|    headers = {
+223|        'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+224|        'Cookie': cookie_str,
+225|        'Referer': f'https://weibo.com/u/{uid}',
+226|    }
+227|    try:
+228|        req = urllib.request.Request(api, headers=headers)
+229|        resp = urllib.request.urlopen(req, timeout=timeout)
+230|        raw = resp.read().decode('utf-8', 'ignore')
+231|        data = json.loads(raw)
+232|    except Exception:
+233|        return []
+234|    hits = []
+235|    for post in (data.get('data', {}).get('list', [])):
+236|        mid = post.get('mid', '')
+237|        if not mid:
+238|            continue
+239|        text = post.get('text_raw', '') or re.sub(r'<[^>]+>', '', post.get('text', ''))
+240|        url = f'https://m.weibo.cn/detail/{mid}'
+241|        hits.append({'title': text[:120], 'url': url, 'body': text[:500]})
+242|        if len(hits) >= max_results:
+243|            break
+244|    return hits
+245|    return hits
+246|
+247|
+248|def discover_for_account(account: dict, platform: str, timeout_sec: int, limit_per_platform: int = 3) -> list[dict]:
+249|    """对单个account+platform，多路由发现URL。"""
+250|    name = account['name']
+251|    kws = account.get('keywords', [])[:2]
+252|    # 清理query：去重复词、特殊字符
+253|    kw_str = ' '.join(dict.fromkeys(kws))  # 去重保序
+254|    site_map = {
+255|        'wechat': 'mp.weixin.qq.com',
+256|        'bilibili': 'bilibili.com',
+257|        'weibo': 'weibo.com',
+258|        'zhihu': 'zhihu.com',
+259|    }
+260|    site = site_map.get(platform, '')
+261|    base_q = f'site:{site} {name} {kw_str} {TODAY[:4]}' if site else f'{name} {kw_str} {TODAY[:4]}'
+262|    base_q = re.sub(r'[/／]', ' ', base_q).strip()  # 去斜杠
+263|    base_q = re.sub(r'\s+', ' ', base_q)  # 合并空格
+264|
+265|    all_hits = []
+266|    seen_urls = set()
+267|
+268|    def _add(hits: list[dict], route: str):
+269|        for h in hits:
+270|            u = h.get('url', '')
+271|            if u and u not in seen_urls:
+272|                seen_urls.add(u)
+273|                h['_route'] = route
+274|                all_hits.append(h)
+275|
+276|    # Route 1: collect_web platform-aware (wechat_search最优先)
+277|    if platform == 'wechat':
+278|        cw_hits = discover_collect_web_search(f'{name} {" ".join(kws)}', 'wechat', limit_per_platform, 30)
+279|        _add(cw_hits, 'collect_web_wechat_search')
+280|
+281|    # Route 1b: Weibo mobile search API (weibo only, needs cookie)
+282|    if platform == 'weibo':
+283|        wb_hits = discover_weibo_mobile(f'{name} {" ".join(kws)}', limit_per_platform, 20)
+284|        _add(wb_hits, 'weibo_mobile_api')
+285|
+286|    # Route 2: AnySearch
+287|    as_query = f'site:{site} {name} {" ".join(kws)}' if site else f'{name} {" ".join(kws)}'
+288|    as_query = re.sub(r'[/／]', ' ', as_query).strip()
+289|    as_hits = discover_anysearch(as_query, limit_per_platform, 20)
+290|    _add(as_hits, 'anysearch')
+291|
+292|    # Route 2b: Filter out off-domain URLs (anysearch may return cross-platform results)
+293|    weibo_domains = ('weibo.com', 'm.weibo.cn', 'weibo.cn', 'h5.video.weibo.com')
+294|    if platform == 'weibo':
+295|        all_hits = [h for h in all_hits if any(d in h.get('url', '') for d in weibo_domains)]
+296|    elif site:
+297|        site_clean = site.replace('www.', '')
+298|        all_hits = [h for h in all_hits if site_clean in h.get('url', '')]
+299|
+300|    # Route 3: ddgs fallback (only if still < 1 result)
+301|    if len(all_hits) < 1:
+302|        ddgs_hits = discover_ddgs(base_q, limit_per_platform, timeout_sec)
+303|        _add(ddgs_hits, 'ddgs')
+304|
+305|    return all_hits[:limit_per_platform]
+306|
+307|
+308|# ══════════════════════════════════════════
+309|#  B. Body Fetch — 平台感知正文抓取
+310|# ══════════════════════════════════════════
+311|
+312|def fetch_body(url: str, platform: str, timeout: int = 30) -> tuple[str, str]:
+313|    """返回 (body_snippet[:500], failure_tag or '')."""
+314|    if not url:
+315|        return '', 'NO_URL'
+316|
+317|    # ── 微信铁律：collect_web --source wechat + light_crawler fallback ──
+318|    if 'mp.weixin.qq.com' in url:
+319|        rc, out, err = run_cmd(
+320|            [sys.executable, str(COLLECT_WEB), '--source', 'wechat', '--url', url],
+321|            timeout=timeout,
+322|        )
+323|        if rc == 0 and out.strip():
+324|            try:
+325|                data = json.loads(out.strip())
+326|                _item = data.get('data', [{}])[0] if data.get('data') else {}
+327|                body = _item.get('body', '') or _item.get('text', '')
+328|                if body and len(body) > 50:
+329|                    return body[:500], ''
+330|                # partial: got metadata but body restricted
+331|                if data.get('status') == 'partial':
+332|                    meta_title = data.get('meta', {}).get('title', '')
+333|                    if meta_title and meta_title != '微信文章':
+334|                        return meta_title[:500], 'BODY_RESTRICTED_META_ONLY'
+335|            except (json.JSONDecodeError, IndexError):
+336|                pass
+337|        # Fallback: light_crawler with browser mode
+338|        try:
+339|            script = Path('/root/.hermes/skills/research/web-data-collection-suite/scripts/light_crawler.py')
+340|            if script.exists():
+341|                rc2, out2, err2 = run_cmd(
+342|                    [sys.executable, str(script), url, '--mode', 'browser'],
+343|                    timeout=25,
+344|                )
+345|                if rc2 == 0 and out2.strip():
+346|                    data2 = json.loads(out2.strip())
+347|                    body2 = data2.get('body', '') or data2.get('text', '')
+348|                    if body2 and len(body2) > 50:
+349|                        return body2[:500], ''
+350|        except Exception:
+351|            pass
+352|        return '', 'WECHAT_FETCH_FAIL'
+353|
+354|    # ── B站视频：API → yt-dlp → urllib ──
+355|    bv_match = re.search(r'(BV[a-zA-Z0-9]+)', url)
+356|    if bv_match and 'bilibili.com' in url:
+357|        bvid = bv_match.group(1)
+358|        # Route 1: B站公开API（快，<1s）
+359|        try:
+360|            import urllib.request, json as _json
+361|            api_url = f'https://api.bilibili.com/x/web-interface/view?bvid={bvid}'
+362|            req = urllib.request.Request(api_url, headers={
+363|                'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36',
+364|                'Referer': 'https://www.bilibili.com/',
+365|            })
+366|            with urllib.request.urlopen(req, timeout=10) as resp:
+367|                api_data = _json.loads(resp.read())
+368|                if api_data.get('code') == 0:
+369|                    d = api_data['data']
+370|                    parts = []
+371|                    if d.get('title'):
+372|                        parts.append(d['title'])
+373|                    if d.get('desc'):
+374|                        parts.append(d['desc'])
+375|                    # tag API for richer context
+376|                    try:
+377|                        tag_url = f'https://api.bilibili.com/x/tag/archive/tags?bvid={bvid}'
+378|                        tag_req = urllib.request.Request(tag_url, headers={
+379|                            'User-Agent': 'Mozilla/5.0', 'Referer': 'https://www.bilibili.com/',
+380|                        })
+381|                        with urllib.request.urlopen(tag_req, timeout=8) as tag_resp:
+382|                            tag_data = _json.loads(tag_resp.read())
+383|                            if tag_data.get('code') == 0:
+384|                                tags = [t.get('tag_name', '') for t in tag_data.get('data', [])[:5]]
+385|                                if tags:
+386|                                    parts.append('标签: ' + '、'.join(tags))
+387|                    except Exception:
+388|                        pass
+389|                    body = ' '.join(parts)
+390|                    if len(body) > 30:
+391|                        return body[:500], ''
+392|        except Exception:
+393|            pass
+394|        # Route 2: yt-dlp metadata（中速，5-15s）
+395|        try:
+396|            rc, out, err = run_cmd(
+397|                ['yt-dlp', '--dump-json', '--no-download', '--socket-timeout', '10', url],
+398|                timeout=25,
+399|            )
+400|            if rc == 0 and out.strip():
+401|                meta = json.loads(out.splitlines()[0])
+402|                parts = []
+403|                if meta.get('title'):
+404|                    parts.append(meta['title'])
+405|                if meta.get('description'):
+406|                    parts.append(meta['description'][:400])
+407|                if meta.get('tags'):
+408|                    parts.append('标签: ' + ', '.join(meta['tags'][:5]))
+409|                body = ' '.join(parts)
+410|                if len(body) > 30:
+411|                    return body[:500], ''
+412|        except Exception:
+413|            pass
+414|        # Route 3: urllib HTML scrape (B站SPA，可能只拿到壳)
+415|        try:
+416|            import urllib.request, html as html_mod
+417|            req = urllib.request.Request(url, headers={
+418|                'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36',
+419|                'Accept-Language': 'zh-CN,zh;q=0.9',
+420|            })
+421|            with urllib.request.urlopen(req, timeout=15) as resp:
+422|                raw = resp.read(512000).decode('utf-8', errors='ignore')
+423|                # 尝试从 __INITIAL_STATE__ JSON 提取
+424|                m = re.search(r'window\.__INITIAL_STATE__\s*=\s*(\{.*?\});\s*\(function', raw, re.S)
+425|                if m:
+426|                    try:
+427|                        state = json.loads(m.group(1))
+428|                        vid = state.get('videoData', {})
+429|                        parts = []
+430|                        if vid.get('title'):
+431|                            parts.append(vid['title'])
+432|                        if vid.get('desc'):
+433|                            parts.append(vid['desc'])
+434|                        body = ' '.join(parts)
+435|                        if len(body) > 30:
+436|                            return body[:500], ''
+437|                    except Exception:
+438|                        pass
+439|                # fallback: strip tags
+440|                text = re.sub(r'<script[^>]*>.*?</script>', '', raw, flags=re.S|re.I)
+441|                text = re.sub(r'<style[^>]*>.*?</style>', '', text, flags=re.S|re.I)
+442|                text = re.sub(r'<[^>]+>', ' ', text)
+443|                text = html_mod.unescape(text)
+444|                text = re.sub(r'\s+', ' ', text).strip()
+445|                if len(text) > 80:
+446|                    return text[:500], ''
+447|        except Exception:
+448|            pass
+449|        return '', 'BILIBILI_FETCH_FAIL'
+450|
+451|    # ── YouTube：yt-dlp → urllib ──
+452|    if 'youtube.com' in url or 'youtu.be' in url:
+453|        try:
+454|            rc, out, err = run_cmd(
+455|                ['yt-dlp', '--dump-json', '--no-download', '--socket-timeout', '10', url],
+456|                timeout=25,
+457|            )
+458|            if rc == 0 and out.strip():
+459|                meta = json.loads(out.splitlines()[0])
+460|                parts = []
+461|                if meta.get('title'):
+462|                    parts.append(meta['title'])
+463|                if meta.get('description'):
+464|                    parts.append(meta['description'][:400])
+465|                body = ' '.join(parts)
+466|                if len(body) > 30:
+467|                    return body[:500], ''
+468|        except Exception:
+469|            pass
+470|        return '', 'YOUTUBE_FETCH_FAIL'
+471|
+472|    # ── 微博：mobile API with cookie → collect_web → urllib ──
+473|    if 'weibo.com' in url or 'm.weibo.cn' in url or 'h5.video.weibo.com' in url:
+474|        import urllib.request, urllib.parse
+475|        # Extract status_id from URL
+476|        _status_id = ''
+477|        for _sp in [
+478|            r'h5\.video\.weibo\.com/show/\d+:([0-9A-Za-z]+)',
+479|            r'm\.weibo\.cn/detail/([0-9A-Za-z]+)',
+480|            r'm\.weibo\.cn/status/([0-9A-Za-z]+)',
+481|            r'weibo\.com/[^/\s]+/status/([0-9A-Za-z]+)',
+482|        ]:
+483|            _sm = re.search(_sp, url)
+484|            if _sm:
+485|                _status_id = _sm.group(1)
+486|                break
+487|        if not _status_id:
+488|            # Try last path segment as status_id (for weibo.com/uid/mid format)
+489|            _parts = url.rstrip('/').split('/')
+490|            if len(_parts) >= 2 and re.fullmatch(r'[0-9A-Za-z]+', _parts[-1]):
+491|                _status_id = _parts[-1]
+492|        if _status_id:
+493|            # Read cookies
+494|            _cookie_file = Path('/root/.hermes/weibo_cookies.txt')
+495|            _cookies = {}
+496|            if _cookie_file.exists():
+497|                for _line in _cookie_file.read_text(encoding='utf-8', errors='ignore').splitlines():
+498|                    _line = _line.strip()
+499|                    if not _line or (_line.startswith('#') and not _line.startswith('#HttpOnly_')):
+500|                        continue
+501|                    if _line.startswith('#HttpOnly_'):
+502|                        _line = _line[10:]
+503|                    _parts = _line.split('\t')
+504|                    if len(_parts) >= 7:
+505|                        _cookies[_parts[5]] = _parts[6]
+506|            if _cookies:
+507|                _cookie_str = '; '.join(f'{k}={v}' for k, v in _cookies.items())
+508|                # Desktop API: try status detail endpoint
+509|                _api = f'https://weibo.com/ajax/statuses/show?id={_status_id}'
+510|                _headers = {
+511|                    'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+512|                    'Cookie': _cookie_str,
+513|                    'Referer': f'https://weibo.com/',
+514|                }
+515|                try:
+516|                    _req = urllib.request.Request(_api, headers=_headers)
+517|                    _resp = urllib.request.urlopen(_req, timeout=20)
+518|                    _raw = _resp.read().decode('utf-8', 'ignore')
+519|                    if '<html' not in _raw.lower():
+520|                        _data = json.loads(_raw)
+521|                        _text = _data.get('data', {}).get('text_raw', '') or re.sub(r'<[^>]+>', '', _data.get('data', {}).get('text', ''))
+522|                        if _text and len(_text) > 30:
+523|                            return _text[:500], ''
+524|                except Exception:
+525|                    pass
+526|        # collect_web fallback
+527|        rc, out, err = run_cmd(
+528|            [sys.executable, str(COLLECT_WEB), '--source', 'weibo', '--url', url],
+529|            timeout=timeout,
+530|        )
+531|        if rc == 0 and out.strip():
+532|            try:
+533|                data = json.loads(out.strip())
+534|                if data.get('data'):
+535|                    _item = data['data'][0] if isinstance(data['data'], list) else data['data']
+536|                    _wb = _item.get('text', '') or _item.get('body', '')
+537|                    if _wb and len(_wb) > 30:
+538|                        return _wb[:500], ''
+539|            except (json.JSONDecodeError, IndexError):
+540|                pass
+541|
+542|    # ── 通用网页：collect_web light → urllib ──
+543|    try:
+544|        rc, out, err = run_cmd(
+545|            [sys.executable, str(COLLECT_WEB), '--source', 'light', '--url', url],
+546|            timeout=timeout,
+547|        )
+548|        if rc == 0 and out.strip():
+549|            data = json.loads(out.strip())
+550|            body = ''
+551|            if data.get('data'):
+552|                body = data['data'][0].get('body', '') if isinstance(data['data'], list) else data['data'].get('body', '')
+553|            if body and len(body) > 30:
+554|                return body[:500], ''
+555|    except Exception:
+556|        pass
+557|
+558|    # urllib fallback
+559|    try:
+560|        import urllib.request, html as html_mod
+561|        req = urllib.request.Request(url, headers={
+562|            'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+563|            'Accept': 'text/html,application/xhtml+xml',
+564|            'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+565|        })
+566|        with urllib.request.urlopen(req, timeout=15) as resp:
+567|            raw = resp.read(512000)
+568|            text = raw.decode('utf-8', errors='ignore')
+569|            # 提取 <article> 或 <main> 内容（优先）
+570|            article = re.search(r'<article[^>]*>(.*?)</article>', text, re.S|re.I)
+571|            if article:
+572|                text = article.group(1)
+573|            else:
+574|                main = re.search(r'<main[^>]*>(.*?)</main>', text, re.S|re.I)
+575|                if main:
+576|                    text = main.group(1)
+577|            text = re.sub(r'<script[^>]*>.*?</script>', '', text, flags=re.S|re.I)
+578|            text = re.sub(r'<style[^>]*>.*?</style>', '', text, flags=re.S|re.I)
+579|            text = re.sub(r'<[^>]+>', ' ', text)
+580|            text = html_mod.unescape(text)
+581|            text = re.sub(r'\s+', ' ', text).strip()
+582|            if len(text) > 50:
+583|                return text[:500], ''
+584|    except Exception:
+585|        pass
+586|
+587|    return '', 'BODY_FETCH_FAIL'
+588|
+589|
+590|# ══════════════════════════════════════════
+591|#  C. 观点推演 / 筛噪（规则层，不调模型）
+592|# ══════════════════════════════════════════
+593|
+594|def infer_viewpoint(item: dict) -> str:
+595|    """规则推演：从body+title提取关键词匹配的初步观点标签。"""
+596|    text = (item.get('title', '') + ' ' + item.get('evidence', '')).lower()
+597|    tags = []
+598|    topic_map = {
+599|        'ai': 'AI治理', '人工智能': 'AI治理', '芯片': '半导体产业链',
+600|        '半导体': '半导体产业链', '中美': '中美博弈', '地缘': '地缘政治',
+601|        '科技': '科技前沿', '量子': '量子科技', '航天': '航天探索',
+602|        '出口管制': '贸易管制', '产业链': '产业链重构', '数据安全': '数据安全',
+603|    }
+604|    for kw, tag in topic_map.items():
+605|        if kw in text and tag not in tags:
+606|            tags.append(tag)
+607|    return '|'.join(tags) if tags else '待模型审'
+608|
+609|
+610|def material_policy_tag(item: dict) -> str:
+611|    """素材政策：signal强→可入素材池，弱→只留线索。"""
+612|    score = 0
+613|    text = (item.get('title', '') + ' ' + item.get('evidence', '')).lower()
+614|    if item['account'].lower() in text:
+615|        score += 2
+616|    if any(k in text for k in SIGNAL_KW):
+617|        score += 2
+618|    if any(t in text for t in NOISE_TERMS):
+619|        score -= 3
+620|    if score >= 3:
+621|        return 'PLATFORM_SIGNAL'
+622|    elif score >= 1:
+623|        return 'DISCOVERY_ONLY'
+624|    else:
+625|        return 'NOISE'
+626|
+627|
+628|# ══════════════════════════════════════════
+629|#  D. MiroFish Feed Package
+630|# ══════════════════════════════════════════
+631|
+632|def build_mirofish_package(items: list[dict]) -> dict:
+633|    """将discovery items转为MiroFish入口格式。"""
+634|    cards = []
+635|    for it in items:
+636|        if it.get('material_policy') == 'NOISE':
+637|            continue
+638|        if it.get('body_status') != 'fetched':
+639|            continue
+640|        if is_non_article_url(it.get('url', '')):
+641|            continue
+642|        if not evidence_is_body(it.get('evidence', '')):
+643|            continue
+644|        cards.append({
+645|            'source_expert': f"{it['account']}@{it['platform']}",
+646|            'source_reference': it.get('url', ''),
+647|            'title': it.get('title', ''),
+648|            'content_excerpt': it.get('evidence', '')[:300],
+649|            'analysis_angle': it.get('viewpoint_inference', ''),
+650|            'chapter_target': '',  # 待模型填
+651|            'confidence_score': 0,  # 待模型评
+652|            'published_at': it.get('published_at', ''),
+653|            'source_route': it.get('source_route', ''),
+654|            'discovery_status': it.get('discovery_status', ''),
+655|        })
+656|    return {
+657|        'created_at': now_iso(),
+658|        'schema_version': 'mirofish_feed_v1',
+659|        'total_cards': len(cards),
+660|        'cards': cards,
+661|    }
+662|
+663|
+664|# ══════════════════════════════════════════
+665|#  Main
+666|# ══════════════════════════════════════════
+667|
+668|def main():
+669|    ap = argparse.ArgumentParser(description='KOL/平台号观点雷达 v2 — 多路由采集')
+670|    ap.add_argument('--resume', action='store_true', help='从已有discovery.json续跑')
+671|    ap.add_argument('--discovery-json', type=str, default='', help='指定已有discovery json路径')
+672|    ap.add_argument('--timeout-sec', type=int, default=8, help='ddgs单条超时秒数')
+673|    ap.add_argument('--platform', type=str, default='', help='只跑指定平台: wechat/bilibili/weibo/zhihu')
+674|    ap.add_argument('--limit', type=int, default=0, help='只跑前N个account')
+675|    ap.add_argument('--dry-run-mirofish', action='store_true', help='只产出discovery，不跑MiroFish后段')
+676|    ap.add_argument('--out-dir', type=str, default='', help='输出目录')
+677|    args = ap.parse_args()
+678|
+679|    out_dir = Path(args.out_dir) if args.out_dir else RUN_DIR
+680|    out_dir.mkdir(parents=True, exist_ok=True)
+681|
+682|    discovery_path = Path(args.discovery_json) if args.discovery_json else out_dir / 'platform_discovery.json'
+683|    mirofish_path = out_dir / 'platform_mirofish_feed_package.json'
+684|    body_report_path = out_dir / 'body_fetch_report.json'
+685|
+686|    # load watchlist
+687|    if not WATCH.exists():
+688|        print(f'ERROR: watchlist not found: {WATCH}', file=sys.stderr)
+689|        sys.exit(1)
+690|    watch = json.loads(WATCH.read_text(encoding='utf-8'))
+691|    accounts = watch['accounts']
+692|    if args.limit > 0:
+693|        accounts = accounts[:args.limit]
+694|
+695|    # platform filter
+696|    plat_filter = set()
+697|    if args.platform:
+698|        plat_map = {'wechat': '微信公众号', 'bilibili': 'B站', 'weibo': '微博', 'zhihu': '知乎'}
+699|        plat_filter.add(plat_map.get(args.platform, args.platform))
+700|
+701|    # resume: load existing items
+702|    existing_items: list[dict] = []
+703|    existing_urls: set[str] = set()
+704|    if args.resume and discovery_path.exists():
+705|        try:
+706|            old = json.loads(discovery_path.read_text(encoding='utf-8'))
+707|            existing_items = old.get('items', [])
+708|            existing_urls = {it['url'] for it in existing_items if it.get('url')}
+709|            print(f'[resume] loaded {len(existing_items)} existing items from {discovery_path}')
+710|        except Exception:
+711|            pass
+712|
+713|    # ── A. URL Discovery ──
+714|    all_items: list[dict] = list(existing_items)
+715|    errors: list[dict] = []
+716|    total_queries = 0
+717|
+718|    platform_aliases = {
+719|        '微信公众号': 'wechat', '公众号': 'wechat',
+720|        'B站': 'bilibili', '微博': 'weibo', '知乎': 'zhihu', '网站': 'generic',
+721|    }
+722|
+723|    for acc in accounts:
+724|        name = acc['name']
+725|        platforms = acc.get('platform_candidates', [])
+726|        for plat_raw in platforms:
+727|            plat: str = platform_aliases.get(plat_raw, plat_raw) or plat_raw
+728|            if plat == 'generic':
+729|                continue
+730|            if plat_filter and plat_raw not in plat_filter and plat not in plat_filter:
+731|                continue
+732|            total_queries += 1
+733|            print(f'  [{total_queries}] {name} · {plat} ...', end=' ', flush=True)
+734|            t0 = time.time()
+735|            hits = discover_for_account(acc, plat, args.timeout_sec)
+736|            dt = time.time() - t0
+737|            if not hits:
+738|                err_tag = 'NO_HITS'
+739|                errors.append({'account': name, 'platform': plat, 'error': err_tag,
+740|                               'fallback_tried': ['collect_web', 'anysearch', 'ddgs']})
+741|                print(f'0 hits ({dt:.1f}s)')
+742|                continue
+743|
+744|            found = 0
+745|            for h in hits:
+746|                url = h.get('url', '')
+747|                if not url or url in existing_urls:
+748|                    continue
+749|                existing_urls.add(url)
+750|                item = dict(EMPTY_ITEM)
+751|                item['account'] = name
+752|                item['platform'] = plat
+753|                item['query'] = h.get('_route', '')
+754|                item['url'] = url
+755|                item['title'] = h.get('title', '')
+756|                item['source_route'] = h.get('_route', 'unknown')
+757|                item['discovery_status'] = 'discovered'
+758|                item['failure_tag'] = ''
+759|
+760|                # score for noise filter
+761|                sc = score_item(name, plat, h)
+762|                item['body_status'] = 'pending'
+763|                disc_body = h.get('body', '') or ''
+764|                disc_title = h.get('title', '') or ''
+765|                # 优先用body，其次用真实title（排除占位符）
+766|                if disc_body and len(disc_body) > 5:
+767|                    item['evidence'] = disc_body[:500]
+768|                elif disc_title and 'candidate' not in disc_title.lower() and len(disc_title) > 10:
+769|                    item['evidence'] = disc_title[:500]
+770|                else:
+771|                    item['evidence'] = ''
+772|
+773|                all_items.append(item)
+774|                found += 1
+775|            print(f'{found} new ({dt:.1f}s)')
+776|
+777|    # ── B. Body Fetch — 所有 pending 项都必须尝试抓正文 ──
+778|    body_report = {
+779|        'created_at': now_iso(),
+780|        'attempts': 0, 'success': 0, 'fail': 0, 'skipped_non_article': 0,
+781|        'by_platform': {}, 'by_failure_tag': {}, 'details': [],
+782|    }
+783|    for it in all_items:
+784|        if it.get('body_status') != 'pending':
+785|            continue
+786|        url = it.get('url', '')
+787|        plat = it.get('platform', '')
+788|        detail = {'url': url, 'platform': plat, 'account': it.get('account', '')}
+789|
+790|        # 跳过非文章URL（主页/空间/搜索页），但仍标记而非静默吞掉
+791|        if is_non_article_url(url):
+792|            it['body_status'] = 'skipped_non_article'
+793|            it['failure_tag'] = 'NON_ARTICLE_URL'
+794|            body_report['skipped_non_article'] += 1
+795|            detail['result'] = 'skipped_non_article'
+796|            body_report['details'].append(detail)
+797|            continue
+798|
+799|        body_report['attempts'] += 1
+800|        body, ftag = fetch_body(url, plat, 25)
+801|
+802|        if body and evidence_is_body(body):
+803|            it['evidence'] = body
+804|            it['body_status'] = 'fetched'
+805|            body_report['success'] += 1
+806|            detail['result'] = 'fetched'
+807|            detail['body_len'] = len(body)
+808|        else:
+809|            # fetch失败：保留已有snippet，但不冒充body_fetched
+810|            if it.get('evidence') and len(it['evidence']) > 15:
+811|                it['body_status'] = 'excerpt_only'
+812|            else:
+813|                it['body_status'] = 'fetch_fail'
+814|            if ftag:
+815|                it['failure_tag'] = ftag
+816|            body_report['fail'] += 1
+817|            detail['result'] = it['body_status']
+818|            detail['failure_tag'] = ftag or ''
+819|
+820|        # 聚合 by_platform
+821|        pp = body_report['by_platform'].setdefault(plat, {'attempts': 0, 'success': 0, 'fail': 0})
+822|        pp['attempts'] += 1
+823|        if detail['result'] == 'fetched':
+824|            pp['success'] += 1
+825|        else:
+826|            pp['fail'] += 1
+827|        # 聚合 by_failure_tag
+828|        if ftag:
+829|            body_report['by_failure_tag'][ftag] = body_report['by_failure_tag'].get(ftag, 0) + 1
+830|        body_report['details'].append(detail)
+831|
+832|    # ── C. 观点推演 + 筛噪 ──
+833|    for it in all_items:
+834|        if it.get('viewpoint_inference', '') in ('', '待模型审'):
+835|            it['viewpoint_inference'] = infer_viewpoint(it)
+836|        it['material_policy'] = material_policy_tag(it)
+837|
+838|    # ── D. Save platform_discovery.json ──
+839|    stats = {
+840|        'total_queries': total_queries,
+841|        'discovered': sum(1 for i in all_items if i.get('discovery_status') == 'discovered'),
+842|        'body_fetched': sum(1 for i in all_items if i.get('body_status') == 'fetched'),
+843|        'excerpt_only': sum(1 for i in all_items if i.get('body_status') == 'excerpt_only'),
+844|        'fetch_fail': sum(1 for i in all_items if i.get('body_status') == 'fetch_fail'),
+845|        'skipped_non_article': sum(1 for i in all_items if i.get('body_status') == 'skipped_non_article'),
+846|        'errors': len(errors),
+847|        'platform_signal': sum(1 for i in all_items if i.get('material_policy') == 'PLATFORM_SIGNAL'),
+848|        'discovery_only': sum(1 for i in all_items if i.get('material_policy') == 'DISCOVERY_ONLY'),
+849|        'noise': sum(1 for i in all_items if i.get('material_policy') == 'NOISE'),
+850|    }
+851|
+852|    discovery_doc = {
+853|        'created_at': now_iso(),
+854|        'run_id': f'radar_v2_{TODAY.replace("-", "")}',
+855|        'watchlist_source': str(WATCH),
+856|        'discovery_method': 'multi_route_v2',
+857|        'items': all_items,
+858|        'errors': errors,
+859|        'stats': stats,
+860|    }
+861|    discovery_path.parent.mkdir(parents=True, exist_ok=True)
+862|    discovery_path.write_text(json.dumps(discovery_doc, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+863|    print(f'\n[discovery] saved {len(all_items)} items → {discovery_path}')
+864|    print(f'[stats] {json.dumps(stats, ensure_ascii=False)}')
+865|
+866|    # ── D2. Save body_fetch_report.json ──
+867|    body_report_path.parent.mkdir(parents=True, exist_ok=True)
+868|    body_report_path.write_text(json.dumps(body_report, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+869|    print(f'[body_report] attempts={body_report["attempts"]} success={body_report["success"]} fail={body_report["fail"]} skipped={body_report["skipped_non_article"]} → {body_report_path}')
+870|
+871|    # ── E. MiroFish Feed Package ──
+872|    if not args.dry_run_mirofish:
+873|        mf = build_mirofish_package(all_items)
+874|        mirofish_path.parent.mkdir(parents=True, exist_ok=True)
+875|        mirofish_path.write_text(json.dumps(mf, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+876|        print(f'[mirofish] {mf["total_cards"]} cards → {mirofish_path}')
+877|    else:
+878|        print('[dry-run] skipped MiroFish package generation')
+879|
+880|    # ── F. Summary ──
+881|    summary_path = out_dir / 'radar_v2_summary.md'
+882|    md = [
+883|        f'# 平台号观点雷达 v2 — {TODAY}',
+884|        '',
+885|        f'- queries: {stats["total_queries"]}',
+886|        f'- discovered: {stats["discovered"]}',
+887|        f'- body_fetched: {stats["body_fetched"]}',
+888|        f'- excerpt_only: {stats["excerpt_only"]}',
+889|        f'- fetch_fail: {stats["fetch_fail"]}',
+890|        f'- skipped_non_article: {stats["skipped_non_article"]}',
+891|        f'- platform_signal: {stats["platform_signal"]}',
+892|        f'- discovery_only: {stats["discovery_only"]}',
+893|        f'- noise: {stats["noise"]}',
+894|        f'- errors: {stats["errors"]}',
+895|        '',
+896|        '## 平台信号',
+897|    ]
+898|    for it in sorted(all_items, key=lambda x: x.get('material_policy', ''), reverse=True):
+899|        if it.get('material_policy') in ('PLATFORM_SIGNAL', 'DISCOVERY_ONLY'):
+900|            md.append(f"- [{it['material_policy']}] {it['account']}@{it['platform']} | {it['title'][:60]}")
+901|            md.append(f"  {it['url']}")
+902|            if it.get('viewpoint_inference'):
+903|                md.append(f"  → {it['viewpoint_inference']}")
+904|    if errors:
+905|        md += ['', '## 失败']
+906|        for e in errors:
+907|            md.append(f"- {e['account']}@{e['platform']}: {e['error']}")
+908|    summary_path.write_text('\n'.join(md) + '\n', encoding='utf-8')
+909|    print(f'[summary] → {summary_path}')
+910|
+911|    # final json output
+912|    print(json.dumps({
+913|        'status': 'ok',
+914|        'discovery_json': str(discovery_path),
+915|        'mirofish_json': str(mirofish_path) if not args.dry_run_mirofish else None,
+916|        'summary': str(summary_path),
+917|        'stats': stats,
+918|    }, ensure_ascii=False, indent=2))
+919|
+920|
+921|if __name__ == '__main__':
+922|    main()
+923|

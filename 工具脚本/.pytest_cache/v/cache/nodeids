@@ -1,0 +1,12 @@
+[
+  "tests/test_kewu_deai_hard_gate_scan.py::DeaiHardGateTests::test_dialogue_not_x_is_y_is_exempt",
+  "tests/test_kewu_deai_hard_gate_scan.py::DeaiHardGateTests::test_existing_clean_dialogue_stays_pass",
+  "tests/test_kewu_deai_hard_gate_scan.py::DeaiHardGateTests::test_extended_soft_patterns",
+  "tests/test_kewu_deai_hard_gate_scan.py::DeaiHardGateTests::test_fragment_punchline_soft",
+  "tests/test_kewu_deai_hard_gate_scan.py::DeaiHardGateTests::test_normal_prose_not_hit_by_placeholder_rules",
+  "tests/test_kewu_deai_hard_gate_scan.py::DeaiHardGateTests::test_not_x_is_y_narration_is_hard",
+  "tests/test_kewu_deai_hard_gate_scan.py::DeaiHardGateTests::test_repeated_subject_opening_soft",
+  "tests/test_kewu_deai_hard_gate_scan.py::DeaiHardGateTests::test_three_sentence_repeated_subject_still_hits",
+  "tests/test_kewu_deai_hard_gate_scan.py::DeaiHardGateTests::test_three_short_fragments_still_hit",
+  "tests/test_kewu_deai_hard_gate_scan.py::DeaiHardGateTests::test_title_line_not_hit_by_placeholder_rules"
+]

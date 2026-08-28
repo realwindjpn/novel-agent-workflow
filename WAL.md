@@ -2523,3 +2523,21 @@
 - R1 CJK 2649且方宁代词错置、公式句、遗迹拟人；R2 CJK 3465但两处公式句；R3 定点修复为3427，机检PASS并全量重审
 - 作者说R1误写人类发起，R2改正为遗迹自主、人类零介入；编辑+读者双审PASS
 - 断点残留：301《联合防御》待起稿；G1的124张READY融纲消费待跑；草稿箱保存与正式发布归用户
+
+### 2026-08-28 18:34
+- 同步章节 301
+
+### 2026-08-28 18:36
+- 同步章节 301
+
+### 2026-08-28 第301章《联合防御》闭环完成
+
+- 定稿 SHA `ea9ccb03ee85970044e429d26f09456721da3dece31bbff81c5ed74e9c11a487`，净中文 3164，番茄口径 3640
+- 源稿链：`output/qwen_301_r3_raw.md`（fa526f00，编辑 FAIL 7 条）→ R4 返修包（17096 字节，内联全文，10 锚点 count 全 1）→ `output/qwen_301_r4_clean.md`
+- R4 验收脚本 `工具脚本/verify_301_r4.py` → `output/VERIFY_301_R4.json` VERIFY_PASS
+- 四审报告落 `output/reviews_301_r4/{reader,structure,editor,science}_review.md`，全 PASS
+- 作者说 `output/AUTHOR_NOTE_301.txt`（aliyun-qwen38），前两派因公式句作废留档 `_r1_FORMULA_FAIL.txt` / `_r2_FORMULA_FAIL.txt`
+- 闭环脚本 `工具脚本/close_loop_301.py` → `output/CLOSE_LOOP_301.json` CLOSE_LOOP_TXT_READY
+- 跟踪表缺口：补录 295-301 共 7 行（`工具脚本/backfill_tracking_295_301.py`），295/296 标「审稿闭环记录待补证」
+- 工具事实：`direct_model_call.py` 不支持 `codex_responses`（agentrouter 须走 dispatch_to_model）；CDP 9223 未起，网页作者全程 `--cdp-url ""` 冷启动 + 3 次重试绕 Playwright `setDeviceMetricsOverride` 竞态
+- 断点残留：302 待起稿；G1 的 124 张 READY 融纲消费待跑；草稿箱与正式发布归用户

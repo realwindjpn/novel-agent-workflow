@@ -1,6 +1,6 @@
 # 角色·势力总索引
 
-更新时间：2026-08-24 22:19
+更新时间：2026-08-28 18:36
 
 > 聚合脚本生成，不调用模型。角色详情 → wiki/characters/；势力详情 → wiki/factions/
 > 伏笔关联 → wiki/plot-threads/foreshadowing-index.md

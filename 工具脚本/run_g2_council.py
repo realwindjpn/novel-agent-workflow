@@ -24,12 +24,15 @@ DEFAULT_OUTPUT = PROJECT / '审核记录/G2_council_decision.md'
 
 # 六席定义：(席名, 角色, provider, model)
 COUNCIL_SEATS = [
-    ('主席/结构',     '结构审查', 'aiai137269', 'gpt-5.5'),
-    ('编辑/连续性',   '编辑连续性审查', 'aerolink', 'claude-fable-5'),
-    ('科学顾问',     '科学准确性审查', 'zai', 'glm-5.2'),
-    ('军事制度',     '军事制度审查', 'ds4pro', 'deepseek-v4-pro'),
-    ('读者视角',     '读者体验审查', 'xiaomi', 'mimo-v2.5-pro'),
-    ('海外新鲜度',   '海外素材新鲜度审查', 'jiuuij', 'grok-4.3-high'),
+    # 2026-08-29 换席：原六席（aiai137269/aerolink/zai/ds4pro/xiaomi）provider 已失效，
+    # 实测五席全部 fallback 到同一模型，等于六席同模造假。
+    # 改用 2026-08-27 用户指定白名单八模型，实测 8/8 零 fallback。
+    ('主席/结构',     '结构审查', 'custom:sotamodel', 'opus-5'),
+    ('编辑/连续性',   '编辑连续性审查', 'custom:anyrouter', 'claude-fable-5'),
+    ('科学顾问',     '科学准确性审查', 'astrdark', 'glm-5.2'),
+    ('军事制度',     '军事制度审查', 'custom:agentrouter', 'deepseekv4-pro-0813'),
+    ('读者视角',     '读者体验审查', 'custom:agentrouter', 'qwen3.8-max'),
+    ('海外新鲜度',   '海外素材新鲜度审查', 'grok2api-seeseed1ck', 'grok-4.6'),
 ]
 
 
@@ -71,8 +74,8 @@ def call_hermes_model(provider: str, model: str, prompt: str, timeout: int = 180
     """调用 hermes chat -P provider -M model -Q -q prompt，返回结果字典。"""
     cmd = [
         'hermes', 'chat',
-        '-P', provider,
-        '-M', model,
+        '--provider', provider,
+        '-m', model,
         '-Q', '-q', prompt,
     ]
     t0 = time.time()
@@ -141,7 +144,15 @@ def extract_outline_excerpt(outline_text: str, max_chars: int = 4000) -> str:
 
 
 def parse_verdict(text: str) -> str:
-    """从模型输出中解析裁决。"""
+    """从模型输出中解析裁决。
+
+    空输出或无法解析 → SEAT_FAILED，禁止静默降级为 NO_PATCH。
+    2026-08-29 修复：此前 CLI 参数写错（-P/-M 应为 --provider/-m），
+    六席全部 argparse 报错退出，脚本把失败当 NO_PATCH 输出，
+    导致历史所有 NO_PATCH 裁决均为假信号。
+    """
+    if not text or not text.strip():
+        return 'SEAT_FAILED'
     m = re.search(r'VERDICT:\s*(OUTLINE_PATCH|NOTE_ONLY|NO_PATCH)', text, re.IGNORECASE)
     if m:
         return m.group(1).upper()
@@ -151,13 +162,22 @@ def parse_verdict(text: str) -> str:
         return 'OUTLINE_PATCH'
     if 'NOTE_ONLY' in t:
         return 'NOTE_ONLY'
-    return 'NO_PATCH'
+    if 'NO_PATCH' in t:
+        return 'NO_PATCH'
+    return 'SEAT_FAILED'
 
 
 def aggregate_verdict(verdicts: list[str]) -> str:
-    """多数裁决聚合。"""
+    """多数裁决聚合。
+
+    HARD 门禁：过半席位失败 → COUNCIL_FAILED，不得输出可用裁决。
+    """
     from collections import Counter
-    c = Counter(verdicts)
+    failed = len([v for v in verdicts if v == 'SEAT_FAILED'])
+    if failed * 2 >= len(verdicts):
+        return 'COUNCIL_FAILED'
+    valid = [v for v in verdicts if v != 'SEAT_FAILED']
+    c = Counter(valid)
     most = c.most_common(1)[0]
     return most[0]
 

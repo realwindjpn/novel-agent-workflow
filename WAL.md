@@ -2602,3 +2602,25 @@
 - yi-hydrogel：qwen3.8-max 无权访问 nv 分组、mistral-large 无通道，grok-4.6 本轮 524
 - grok-4.6 记 TASK_FIT_FAIL（三次三模板：逐字雷同 / 全「结果是」/ 全「一格空缺」）
 - 断点残留：306+ 起稿可用新大纲；本轮未动正文、未动 G1-G4 队列
+
+### 2026-08-31 22:50
+- 同步章节 306
+
+### 2026-08-31 22:51｜306 定稿闭环 + 草稿箱保存
+- 章节：第306章《铁幕升起》，第七卷·铁幕卷首章（306-355，2031年）
+- 正文双写回：新版/第306章.md、已投稿/第306章.txt，回读SHA一致
+- 正文SHA a291cc658e8023c1；上传TXT SHA 4fb07b2664674504（含作者有话说170字）
+- G3_prep：306 FINALIZED_WRITTEN_BACK；307 prev_sha回填、state=G3_READY_DEPENDENCY_306_FINALIZED
+- G4_RELEASE_307 已签；AUTHOR_307_PROMPT.md 已生成(4167字符)但**尚未投递**
+- 工具事实：
+  - 派工脚本禁硬编码base_url（手写agentrouter.org/api.astrdark.com三席全timeout
+    210-271s；真身ps.air-outer.com/api.astrdark.cyou，须从config.yaml读）
+  - 全池22候选烟测只4活：chun-grok46、wechat-glm、token-x、yi-hydrogel
+  - yi-hydrogel 的 qwen3.8-max 在 YI_HYDROGEL_DSV4_API_KEY 下可用
+    （real=qwen3.8-max 真身一致 6.8s finish=stop，非别名回落；主key的60模型无qwen系）
+  - 审席空意见三形态已固化 novel-six-role-cpa-lite/references/
+    empty-review-opinion-machine-detection-20260831.md
+- 断点残留：
+  1. 307 待投递（任务书+dispatch_307_author.sh 均已就绪）
+  2. 采集线停摆：SenseNova候选URL池不轮换(added恒0)、weibo URL抽取失败、
+     276张NEEDS_BODY待补正文、110张孤儿卡无章号

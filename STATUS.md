@@ -359,3 +359,13 @@
   deepseek-v4-flash-0731 质量够（8s 双过）但格式稳定性弱一档，可作后期主席
 - Git: b119dc8a5
 - 残留：306+ 起稿可直接引用充实后大纲；G2 素材 40 卡力量线仍 CARD_PENDING
+- 2026-08-31 22:50 | 同步章节 306
+
+- 2026-08-31 22:51 | 第306章《铁幕升起》定稿闭环+草稿箱 | 第七卷·铁幕卷首章
+  - 正文 SHA a291cc658e8023c1 | 净中文 3681 | 56 段 | 机检 MACHINE_GATE_PASS 零fail零warn
+  - 返修 R1(裸拉丁N+公式句×3)→R2(禁词「真正」)→R3(机检PASS)→R4(补蜂群消耗比缺环71字)
+  - 四席: fact/gpt-5.6-terra PASS、reader/grok-4.6 PASS、science/grok-4.6 R4复审PASS
+  - editor/grok-4.6 判FAIL→三条全驳回(替换=原文、重复粘贴、抢307剧情且含硬禁词「真正」)
+  - 作者有话说 170字(现实军事经济学角度)，ready gate ok:true issues:[]
+  - 草稿箱: 第七卷：铁幕 | 4052字 | listing count=1 duplicate=false SYNC_OK
+  - 上传TXT SHA 4fb07b2664674504 | 边界 DRAFT_SAVED_NOT_PUBLISHED，正式发布归小哥

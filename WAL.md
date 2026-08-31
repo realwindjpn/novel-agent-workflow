@@ -2624,3 +2624,22 @@
   1. 307 待投递（任务书+dispatch_307_author.sh 均已就绪）
   2. 采集线停摆：SenseNova候选URL池不轮换(added恒0)、weibo URL抽取失败、
      276张NEEDS_BODY待补正文、110张孤儿卡无章号
+
+### 2026-08-31 23:22
+- 同步章节 307
+
+### 2026-08-31 23:22｜307 定稿闭环 + 草稿箱保存
+- 章节：第307章《分兵之策》，第七卷·铁幕
+- 正文双写回：新版/第307章.md、已投稿/第307章.txt，回读SHA一致
+- 正文SHA 9fb772bf361a44e3；上传TXT SHA fd1e8e3edc1ee9be（含作者有话说155字）
+- G3_prep：307 FINALIZED_WRITTEN_BACK
+- 四席审稿四真身各不相同，无别名回落；reader 首用 qwen3.8-max（用户告知可用后验真）
+- 工具事实：
+  - yi-hydrogel 同 base_url 两把 key 开出不同模型池：YI_HYDROGEL_API_KEY 列60模型
+    无qwen系；YI_HYDROGEL_DSV4_API_KEY 仅4模型含 qwen3.8-max（real验真一致 6.8s）
+  - 作者有话说硬门禁只有 ≤300字（ensure_fanqie_upload_txt_ready.py），
+    140-170 是主控自设体感区间，不得当FAIL依据（306 曾按自设阈值判172字FAIL，属自造更严标准）
+- 断点残留：
+  1. 308《芯片断供》待起稿（G3_prep 尚无308条目，下轮 G3_prep 生成）
+  2. 采集线停摆未修：SenseNova候选URL池不轮换(added恒0)、weibo URL抽取失败
+     (WEIBO_AGGREGATOR_PAGE/NO_STATUS_ID)、276张NEEDS_BODY待补正文、110张孤儿卡无章号

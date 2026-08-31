@@ -369,3 +369,15 @@
   - 作者有话说 170字(现实军事经济学角度)，ready gate ok:true issues:[]
   - 草稿箱: 第七卷：铁幕 | 4052字 | listing count=1 duplicate=false SYNC_OK
   - 上传TXT SHA 4fb07b2664674504 | 边界 DRAFT_SAVED_NOT_PUBLISHED，正式发布归小哥
+- 2026-08-31 23:22 | 同步章节 307
+
+- 2026-08-31 23:22 | 第307章《分兵之策》定稿闭环+草稿箱 | 第七卷·铁幕
+  - 正文 SHA 9fb772bf361a44e3 | 净中文 3700 | 78 段 | 机检 MACHINE_GATE_PASS 零fail零warn
+  - 返修 R1(禁词「意味着」)→R2(机检PASS, fact判章首计时矛盾)→R3(改倒计时读数)
+  - 四席全PASS 四真身各异: editor/chun-grok46 grok-4.6、science/wechat-glm GLM-5.2、
+    reader/yi-hydrogel-dsv4 qwen3.8-max、fact/token-x gpt-5.6-terra(R3同席新SHA复审)
+  - fact唯一FAIL: 章首「三分十二秒过去了两秒」计时冲突→改「倒计时刚跳到三分十秒」
+    (承接306末「审批窗口剩余三分十二秒」往下走两秒)；复审确认其余六项账目不受影响
+  - 作者有话说 155字(qwen3.8-max一轮出稿,边缘推理攻击面角度)，ready gate ok:true issues:[]
+  - 草稿箱: 第七卷：铁幕 | 4196字 | listing count=1 duplicate=false SYNC_OK
+  - 上传TXT SHA fd1e8e3edc1ee9be | 边界 DRAFT_SAVED_NOT_PUBLISHED，正式发布归小哥

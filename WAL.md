@@ -2590,3 +2590,15 @@
   - 产物：已投稿/第305章.txt、新版/第305章.md（双份 SHA 一致）
 - 边界：DRAFT_SAVED_NOT_PUBLISHED — 正式发布归小哥
 - 残留：306 尚无 G3 条目，下轮 G3_prep 生成后可起稿；G2 素材 40 卡力量线全空维持 CARD_PENDING，回压采集侧未决
+
+### 2026-08-31 10:10｜311-355 大纲充实写回
+- 45 章（311-355）剧情+伏笔充实完成并写回双份大纲，git b119dc8a5
+- 产出席 aliyun-qwen38/qwen3.8-max ×12 批 + nofx/gpt-5.6-terra ×1 批（batch04）
+- 机检脚本：任务运行态/20260830_kewu_selfcycle_daily/scripts/
+  dispatch_outline_batches.py（派工+单批机检）、global_check_outline.py（全局）、
+  write_back_outline.py（写回+回读）
+- 工具事实：aliyun-qwen38 的 qwen3.8-max 与 deepseek-v4-flash-0731 均默认开 thinking，
+  须顶层 thinking:{"type":"disabled"}；4000 预算下 text 全空、16000 预算下 280s 超时空返
+- yi-hydrogel：qwen3.8-max 无权访问 nv 分组、mistral-large 无通道，grok-4.6 本轮 524
+- grok-4.6 记 TASK_FIT_FAIL（三次三模板：逐字雷同 / 全「结果是」/ 全「一格空缺」）
+- 断点残留：306+ 起稿可用新大纲；本轮未动正文、未动 G1-G4 队列

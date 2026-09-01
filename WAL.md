@@ -2663,3 +2663,43 @@
 - 308 草稿箱：第七卷：铁幕；draft_id `7680244796467724824`；列表唯一命中；编辑页正文首尾、作者说独立节点、章号、标题、卷名、modifydraft 路由等13/13 PASS；未发布。
 - 证据：`任务运行态/20260831_kewu_selfcycle_daily/output/DRAFT_308_READBACK.json`、`TXT_READY_308.json`、`MACHINE_CHECK_308_R3.json`、`VERIFY_308_R3.json`。
 - 下一步残留：正式发布归小哥；本任务无业务残留。
+
+## 2026-09-01 21:25 | 主控接管：309 R2 断链续投
+- 接管席：主控 custom:sotamodel/opus-5（调度/验收，不下场写正文）
+- 事实纠正：TAKEOVER.md 称「今日无任务目录/无 G1-G4 凭证」为误。实测
+  `任务运行态/20260901_kewu_selfcycle_daily/` 14:03 已建，G1(14:05)、
+  G2(14:16 六席真调用 89-171s 全 NOTE_ONLY)、G3(14:17)、
+  G4_RELEASE_309(14:17 SIGNED)、DAILY_DIGEST_COMPLETE(valid_until 2026-09-02T00:00) 五件齐全。
+- 真实断链点：309 R1 已回稿（cjk 3039，SHA 04a35f8fa689a1be），机检 FAIL
+  （CJK 3030<3200；「不是…是」公式句 x3）；R2 任务书 AUTHOR_309_R2_PROMPT.md(14:44)
+  与 scripts/dispatch_309_r2.sh 均就绪但**从未执行**（output 无任何 r2 产物）。
+  形态 = 任务包生成不等于已派工。
+- 接管动作：21:25 投递 dispatch_309_r2.sh（PID 1870388），网页 Qwen 科武项目
+  p/18dab9a0 新会话，min_chars 3150，内置 3 attempt 止损。禁 hermes chat。
+- 并发隔离：21:10-21:23 热点稿 R9（PID 1865717）占用同一 CDP Chrome 9223，
+  等其落幕后才投递，避免双 Qwen 会话回收污染。
+- 目标链：309 定稿→写回/作者说/TXT/草稿箱→310 补独立 G3 条目
+  （当前 PENDING_DEPENDENCY_309）→签 G4_RELEASE_310→同链路。
+- 边界：不重做 304/305/308；正式发布归小哥。
+- 审计台账：/root/workspace/任务运行态/20260901_kewu_selfcycle_takeover/TAKEOVER_AUDIT.md
+
+### 2026-09-01 22:29
+- 同步章节 309
+
+### 2026-09-01 22:32
+- 同步章节 309
+
+### 2026-09-01 22:36
+- 同步章节 309
+
+### 2026-09-01 22:43
+- 同步章节 309
+
+### 2026-09-01 22:55
+- 309 闭环完成：正文 SHA a5dcc37b7553 | 净中文 3627 | 57段 | 机检 PASS | 四席同SHA全PASS
+- 草稿箱 SAVED: draft_id 7680577565735518744 | 4088字 | 第七卷：铁幕 | count=1 无重复
+- 草稿正文与本地 body 逐段一致（md5 3d76139f069f83b7671e39670e70477c），非仅列表命中
+- 已投稿TXT SHA 55444e5f8ded | Wiki Full Text 已镜像 | 跟踪表第463行已录
+- 残留：310《火星秘藏》prep_state=PENDING_DEPENDENCY_309，须回填 prev_sha256
+  与 entry_interface 末条，再签 G4_RELEASE_310 → 派作者席。
+- 下一步：310 全链（回填G3→签G4→作者席→机检→四席同SHA→定稿→草稿箱）

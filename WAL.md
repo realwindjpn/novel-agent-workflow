@@ -2716,3 +2716,13 @@
 
 ### 2026-09-02 10:09
 - 同步章节 310
+
+### 2026-09-02 15:15
+- 同步章节 311
+
+### 2026-09-02 15:17｜311 草稿箱闭环
+- DRAFT_SAVED_NOT_PUBLISHED：定稿 SHA `c401a31edc2c2aca45e17ab3e2fdd2d528c9e0c24245ed84a5c1a413ac67129f`，净中文4791，机检 PASS。
+- 同 SHA 四席（编辑 GLM-5.2／读者 gpt-5.6-terra／科学 GLM-5.2／结构 claude-opus-5）与 DEAI 终审均 PASS；DEAI五个近等句长窗口均裁功能非同构，未阻断。
+- 新版/TXT/Wiki/伏笔角色索引/跟踪表已同步；TXT SHA `074900c08530ec1a1276e17fc99f5de9d89bf277b937d99f0b22efdb13eb0767`，番茄口径5282，作者有话说133字。
+- 草稿箱外部回读：第七卷：铁幕／第311章 边谈边打／5282字／draft_id `7680833065404351000`／count=1／duplicate=false／未发布。
+- 312 依赖已回填311 SHA，G4_RELEASE_312=SIGNED；下一步网页Qwen新会话写312。

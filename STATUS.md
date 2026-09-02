@@ -404,3 +404,13 @@
     作者有话说137字一致，正文内无「作者有话说」，拉丁残留仅白名单 L1×12，尾行（本章完）
   - 上传TXT SHA 55444e5f8dedd6ed(含作者说) | Wiki Full Text 已镜像(3636 CJK 一致)
   - 边界 DRAFT_SAVED_NOT_PUBLISHED，正式发布归小哥
+
+- 2026-09-01 23:05 | 310《火星秘藏》全链启动 | 第七卷：铁幕
+  - G3 依赖回填 OK：prev_sha256=a5dcc37b7553 net_cjk=3627 state=READY_FOR_G4
+  - G4_RELEASE_310 已签 state=SIGNED（G1 DONE / G2 NOTE_ONLY 六席真实 / G3 PREP_COMPLETE / DIGEST COMPLETE，非倒签）
+  - 作者任务书 output/AUTHOR_310_PROMPT.md，已前置注入 309 三轮返修账（贴线字数/公式句/算术三类）
+  - 作者席：网页 Qwen 项目内新建对话 qwen3.8-max，PID 1914526，min-chars 3400，三次重试
+  - 硬门禁 cjk_min 3200（目标 3500+），拉丁白名单仅 L1
+- 2026-09-02 10:07 | 第310章《火星秘藏》R3四席同SHA全PASS定稿
+- 2026-09-02 10:08 | 第310章跟踪表补录后二次同步
+- 2026-09-02 10:09 | 同步章节 310

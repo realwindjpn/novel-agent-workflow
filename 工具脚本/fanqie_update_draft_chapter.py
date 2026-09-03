@@ -250,14 +250,23 @@ def find_draft_row(session: str, chapter: int, title: str, state_path: Path | No
    const m = norm(row.innerText).match(/\\s(\\d{{3,6}})\\s/);
    word = m ? parseInt(m[1], 10) : null;
  }}
+ // Fallback: 待发布章节无 modifydraft 链接，从 previewHref 构造编辑 URL
+ let editHref = editA ? editA.getAttribute('href') : null;
+ if (!editHref && previewA) {{
+   const prevHref = previewA.getAttribute('href') || '';
+   const m = prevHref.match(/\\/main\\/writer\\/preview\\/(\\d+)&(\\d+)/);
+   if (m) {{
+     editHref = `/main/writer/${{m[1]}}/publish/${{m[2]}}/?enter_from=modifydraft`;
+   }}
+ }}
  return {{
-   ok: !!editA,
-   reason: editA ? null : 'edit_link_not_found',
+   ok: !!editHref,
+   reason: editHref ? null : 'edit_link_not_found',
    count: hits.length,
    needle,
    rowText: norm(row.innerText),
    oldWordCount: word,
-   editHref: editA ? editA.getAttribute('href') : null,
+   editHref: editHref,
    editCls: editA ? String(editA.className) : null,
    previewHref: previewA ? previewA.getAttribute('href') : null,
  }};

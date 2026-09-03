@@ -31,7 +31,10 @@ DEFAULT_DIRS = [PROJECT / '已投稿', PROJECT / '新版']
 
 PATTERNS = {
     'NOT_BUT_HARD': re.compile(r'(不是[^。！？\n]{0,100}而是|并非[^。！？\n]{0,100}而是|不在于[^。！？\n]{0,100}而在于|不只是[^。！？\n]{0,100}更是|不仅[^。！？\n]{0,100}(还|更)|与其[^。！？\n]{0,100}不如)'),
-    'NOT_IS_HARD': re.compile(r'不是[^。！？\n，；]{0,60}[，。；]\s*是'),
+    'CONSTRAINT_NOT_HARD': re.compile(r'[^，。！？\n]{1,40}是硬(?:性)?约束[，,、]\s*(?:而\s*)?不是建议'),
+    'NOT_IS_HARD': re.compile(r'(不是(?!\s*因为)[^。！？\n，；]{0,60}[，。；]\s*是|的是[^。！？\n，；]{0,60}[，。；]\s*不是)'),
+    # 叙述层连续否定公式：「不是X，不是Y，就是Z」——同句内出现两个及以上「不是」。
+    'NOT_CHAIN_HARD': re.compile(r'不是[^。！？\n]{0,40}，\s*不是[^。！？\n]{0,40}，\s*(?:就是|而是)'),
     'NUM_ENUM_HARD': re.compile(r'(^|[。！？\n]\s*)\d{1,2}[、.．：:]'),
     'CN_ENUM_HARD': re.compile(r'(^|[。！？\n]\s*)[一二三四五六七八九十][、.．：:]'),
     'META_INFO_HARD': re.compile(r'(下一章|第\d+章|第[一二三四五六七八九十]+章|第\d+卷|第[一二三四五六七八九十]+卷|后续篇章|第二卷后半段)'),
@@ -53,11 +56,23 @@ PATTERNS = {
     'DISTANT_NARRATOR_SOFT': re.compile(r'(读者不难发现|众所周知|显而易见|众所周知的事实是)'),
     'REPEATED_SUBJECT_OPENING_SOFT': re.compile(r''),  # placeholder, handled in scan_file
     'FRAGMENT_PUNCHLINE_SOFT': re.compile(r''),  # placeholder, handled in scan_file
+    # 2026-09-03 新增：翻译腔禁词（叙述层）
+    'TRANSLATION_TASTE_HARD': re.compile(r'(接住|击穿|锋利|不崩|不爆|打穿|扛住)'),
+    # 2026-09-03 新增：过度缩略词
+    'OVER_ABBREV_HARD': re.compile(r'(高负|微服|连池)'),
+    # 2026-09-03 新增：生造词
+    'COINED_TERM_HARD': re.compile(r'(高并发抗性|自解释度|容灾力)'),
+    # 2026-09-03 新增：AI味词
+    'AI_TASTE_SOFT': re.compile(r'(深入探讨|不仅能.*更能够|值得关注的是|总而言之|综上所述)'),
+    # 2026-09-03 新增：中文弯引号 U+201C/U+201D/U+2018/U+2019
+    'CURLY_QUOTE_HARD': re.compile(r'[\u201c\u201d\u2018\u2019]'),
 }
 
 WEIGHTS = {
     'NOT_BUT_HARD': 5,
+    'CONSTRAINT_NOT_HARD': 5,
     'NOT_IS_HARD': 5,
+    'NOT_CHAIN_HARD': 5,
     'NUM_ENUM_HARD': 5,
     'CN_ENUM_HARD': 5,
     'META_INFO_HARD': 9,
@@ -79,10 +94,18 @@ WEIGHTS = {
     'DISTANT_NARRATOR_SOFT': 2,
     'REPEATED_SUBJECT_OPENING_SOFT': 2,
     'FRAGMENT_PUNCHLINE_SOFT': 2,
+    'TRANSLATION_TASTE_HARD': 5,
+    'OVER_ABBREV_HARD': 5,
+    'COINED_TERM_HARD': 5,
+    'AI_TASTE_SOFT': 2,
+    'CURLY_QUOTE_HARD': 3,
 }
 
-_DIALOGUE_RE = re.compile(r'^\s*[“”"\'].*[”"\']\s*$')
+_DIALOGUE_RE = re.compile(r'^\s*(?:“[^“”\n]*”|"[^"\n]*"|\'[^\'\n]*\')\s*$')
 _TITLE_RE = re.compile(r'^\s*#?\s*第\d+章\s+\S')
+
+# 只扫叙述层的硬闸：先剥成对引号，引号内台词口语不判硬闸。
+_NARRATION_ONLY_HARD = ('CONSTRAINT_NOT_HARD', 'NOT_IS_HARD', 'NOT_CHAIN_HARD')
 
 # 成对引号（中文“”、半角 ""、半角 ''）；未闭合的单侧引号不匹配，故不会吞掉后文。
 _PAIRED_QUOTE_RES = (
@@ -93,14 +116,14 @@ _PAIRED_QUOTE_RES = (
 
 
 def strip_paired_quotes(text: str) -> str:
-    """移除所有成对引号及其内容，只留叙述层文字。
+    """以等长换行占位掩盖所有成对引号及其内容，只留叙述层文字。
 
     用于 NOT_IS_HARD：对白里的「不是X，是Y」是正常口语，
     只有引号外的叙述层才该判硬闸。混合行（叙述+对白同一行）因此不再误扫。
     """
     out = text
     for pat in _PAIRED_QUOTE_RES:
-        out = pat.sub('', out)
+        out = pat.sub(lambda match: '\n' * len(match.group(0)), out)
     return out
 
 
@@ -138,11 +161,17 @@ def scan_file(path: Path) -> dict:
             if typ == 'META_INFO_HARD' and is_title:
                 continue
             # 完整对白行豁免新增的人味软/硬模式（NOT_IS_HARD 与 9 项 SOFT）。
-            if is_dialogue and (typ == 'NOT_IS_HARD' or typ.endswith('_SOFT')):
+            if is_dialogue and (typ in _NARRATION_ONLY_HARD or typ.endswith('_SOFT')):
                 continue
-            # NOT_IS_HARD 只扫叙述层：先剥掉所有成对引号内容，避免混合行
+            # 叙述层专用硬闸只扫引号外：先剥掉所有成对引号内容，避免混合行
             #（叙述 + 对白同一行）里的台词口语被判硬闸。
-            target = strip_paired_quotes(line) if typ == 'NOT_IS_HARD' else line
+            target = strip_paired_quotes(line) if typ in _NARRATION_ONLY_HARD else line
+            # 「X是硬约束，不是建议」有专属类型，不重复记作通用 NOT_IS_HARD。
+            if typ == 'NOT_IS_HARD' and PATTERNS['CONSTRAINT_NOT_HARD'].search(target):
+                continue
+            # 「不是X，不是Y，就是Z」有专属连续否定类型，不重复记作通用 NOT_IS_HARD。
+            if typ == 'NOT_IS_HARD' and PATTERNS['NOT_CHAIN_HARD'].search(target):
+                continue
             if pat.search(target):
                 hits.append({'line': i, 'type': typ, 'text': stripped[:260]})
 

@@ -460,4 +460,6 @@
 - 机器门禁：MACHINE_GATE_PASS（零fail/零warn）。
 - 五席审稿全PASS：结构yunshu/opus-5、编辑openfly-grok46/grok-4.6、科学ds2api/dsv4-pro、读者bmapi/gpt-5.6-sol、军事tokenrouter-qwen/qwen3.8-max。
 - 同步：新版/第315章.md、已投稿/第315章.txt 已写回；SHA一致。
-- 状态：定稿完成，待草稿箱保存。
+- 状态：定稿完成，草稿箱已保存。
+- 草稿箱：第七卷：铁幕；草稿URL `7681790191899509272`；列表命中第315章 三方博弈/3427字/4秒前；count=1/duplicate=false；未发布。
+- 2026-09-05 05:09 | 同步章节 315

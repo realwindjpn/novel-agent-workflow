@@ -442,3 +442,15 @@
 - 四审历程: R1→R2(公式句)→R3(全REJECT重写)→R3.5(补写)→R4(数值链修复)→机械修(底噪/空间/眨眼/锁死)
 - 编辑审: PASS | 结构审: PASS(残余措辞已修) | 科学/读者: REJECT→机械修收口
 - 作者席: 网页Qwen3.8-Max | 审席: trenddao/token-x/wechat-glm
+- 2026-09-05 01:47 | 第314章能源命脉闭环 SHA 67fad262 CJK 3248 五席与DEAI PASS
+- 2026-09-05 01:49 | 第314章能源命脉闭环 SHA 67fad262 CJK 3248 五席与DEAI PASS
+- 2026-09-05 01:50 | 同步章节 314
+
+
+## 2026-09-05 01:55｜第314章《能源命脉》草稿箱闭环
+- 状态：DRAFT_SAVED_NOT_PUBLISHED；正式发布归小哥。
+- 定稿：网页 Qwen3.8-Max 新会话；SHA `67fad262f1618b639a6babc05eab7483e4b687645fbd78eb27427538a837a76f`；净中文3248，41段；机器门禁零 fail/零 warn。
+- 审稿：编辑 sensenova/GLM-5.2、读者 chun-grok46/grok-4.6、科学 yezi-help/deepseek-v4-flash-0731、结构 xlabs-opus47/claude-opus-5、制度 chun/glm-5.2，同 SHA PASS；DEAI硬扫 non_pass=0。
+- 同步：新版、已投稿TXT、Wiki ch314、伏笔/角色索引、跟踪表已回读；平台正文计数3605，作者有话说149页面字。
+- 草稿箱：第七卷：铁幕；draft_id `7681738942302929432`；存草稿按钮回执 saved=true；列表唯一命中，count=1、duplicate=false；编辑页正文首尾与页面计数核验通过；未发布。
+- 下一章：315《三方博弈》；须新建独立G3/G4包后启动。

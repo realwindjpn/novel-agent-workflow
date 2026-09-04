@@ -454,3 +454,10 @@
 - 同步：新版、已投稿TXT、Wiki ch314、伏笔/角色索引、跟踪表已回读；平台正文计数3605，作者有话说149页面字。
 - 草稿箱：第七卷：铁幕；draft_id `7681738942302929432`；存草稿按钮回执 saved=true；列表唯一命中，count=1、duplicate=false；编辑页正文首尾与页面计数核验通过；未发布。
 - 下一章：315《三方博弈》；须新建独立G3/G4包后启动。
+
+## 2026-09-05 05:10｜第315章《三方博弈》定稿（审稿闭环）
+- 定稿：网页 Qwen3.8-Max 扩写二轮；SHA `4ac44e471476b31f5a4949e916b98c7f3ea37332c7ed5154c53af50f383e2941`；净中文3087，30段。
+- 机器门禁：MACHINE_GATE_PASS（零fail/零warn）。
+- 五席审稿全PASS：结构yunshu/opus-5、编辑openfly-grok46/grok-4.6、科学ds2api/dsv4-pro、读者bmapi/gpt-5.6-sol、军事tokenrouter-qwen/qwen3.8-max。
+- 同步：新版/第315章.md、已投稿/第315章.txt 已写回；SHA一致。
+- 状态：定稿完成，待草稿箱保存。

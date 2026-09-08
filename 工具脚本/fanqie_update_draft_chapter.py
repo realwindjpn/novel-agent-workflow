@@ -32,14 +32,16 @@
 事务基于旧 state 的选区位置落点，于是把新正文**追加**到旧文档尾部而非替换。
 
 逐方案实测（判据 = DOM 去空白字数 + 页面「正文字数」计数器，二者均由 PM state 驱动）：
-- 方案 d（view.dispatch）**不可用**：`ed.pmViewDesc` 存在，但其 keys 仅
+
+【2026-08-19 探测（旧 UI，第275章编辑页）】
+- 方案 d（view.dispatch）当时**不可用**：`ed.pmViewDesc` 存在，但其 keys 仅
   [parent,children,dom,contentDOM,dirty,node,outerDeco,innerDeco,nodeDOM]，
   深度 3 递归遍历找不到任何带 `state.doc`+`dispatch()` 的对象（viewFound=false）。
-  番茄未把 EditorView 挂到 DOM/window，拿不到实例。
+  旧 UI 未把 EditorView 挂到 DOM/window，拿不到实例。
   ⚠ 附带教训：`ed.pmViewDesc.node` 是**陈旧快照**——探测三阶段中 DOM 从 4645→0→7→4645
   变化时，pmViewDesc.node.textContent 恒为 4645、content.size 恒为 4959，
   完全不跟随。故它**绝不能**用作写入后的校验判据，只能用 DOM innerText / 页面计数器。
-- 方案 a（focus + execCommand('selectAll') + execCommand('delete') + insertText）**有效**，采纳：
+- 方案 a（focus + execCommand('selectAll') + execCommand('delete') + insertText）当时**有效**：
   · selectAll 返回 true，选区落在编辑器内（anchor/focus 均 ed.contains=true），
     选中文本去空白 4645 字 = 全文，未溢出到 note 编辑器（页面另有 4 个 x=1737 的小 ProseMirror）。
   · delete 后 DOM 去空白字数 0、children 1（PM 归一为单空段落）——真清空且经事务路径。
@@ -50,6 +52,17 @@
   且 selectAll 由浏览器保证归一化边界，故不采用；保留为 a 失败时的 fallback（见 _JS_CLEAR_FALLBACK 注释）。
 - 方案 c（合成 Ctrl+A/Delete 键事件）：未采纳。合成 KeyboardEvent 不触发浏览器默认编辑行为，
   ProseMirror 的 handleKeyDown 也未必接管，可靠性低于 a，且 a 已实测通过。
+
+【2026-09-08 再探测（新 UI，第317章编辑页）——方案 d 转正为主路径】
+番茄新 UI 暴露 window.adapter：adapter.view 即 ProseMirror EditorView（含 state+dispatch）。
+方案 d（adapter.view.dispatch）成为主路径：state.tr 建事务 → setSelection 全选 →
+deleteSelection 清空 → insertText(body) → view.dispatch(tr) 提交 → PM state 更新 →
+页面「正文字数」计数器刷新 → 触发自动保存。
+新 UI 下旧方案 a（execCommand）仍可改变 DOM，但不触发 PM 事务 → 计数器不刷新 →
+自动保存不触发 → 重进编辑页回落旧稿（正文替换未持久化），故降级为 fallback。
+实现见 replace_body()。save_draft 零 fetch：只点 button.auto-editor-save-btn，
+按钮不存在/disabled 即 raise PENDING_OR_PUBLISHED_REJECT（2026-09-08 317事故：误用
+publish_article 端点把待发布章节直接发布）。
 """
 from __future__ import annotations
 
@@ -312,16 +325,25 @@ def _norm_words(s: str) -> str:
 
 
 def replace_body(session: str, data: dict, state_path: Path | None = None) -> dict:
-    """用编辑器自己的事务路径整篇替换正文（方案 a，探测依据见模块 docstring）。
+    """用编辑器自己的事务路径整篇替换正文。
 
-    绝不再用 `ed.innerHTML = ''`：那会绕过 ProseMirror 事务，PM state 仍持旧文档，
-    后续 insertText 变成「追加」，正是 275 章 4645→5154→5328 污染的根因。
-
-    流程：focus → execCommand('selectAll') → execCommand('delete')
-          → 断言 DOM 已空（清空未生效立即 raise，绝不带着旧文写入）
-          → execCommand('insertText', body) → 读回。
-    读回判据只用 DOM innerText 与页面「正文字数」计数器；
-    `ed.pmViewDesc.node` 实测为陈旧快照，不可作判据。
+    2026-09-08 实测（第317章编辑页，新 UI 改版后）：
+    旧方案 a（execCommand selectAll+delete+insertText）仍可改变 DOM，
+    但不触发 ProseMirror 事务 → 页面计数器不更新 → 自动保存不触发 → 
+    重进编辑页回落旧稿（正文替换未持久化）。
+    
+    新方案（adapter.view.dispatch）：番茄新 UI 暴露 window.adapter 对象，
+    adapter.view 即 ProseMirror EditorView（含 state+dispatch）。
+    通过 view.dispatch(tr) 创建真实 PM 事务：
+    - state.tr 创建 transaction
+    - 全选 + deleteSelection 清空旧文档
+    - insertText(body) 写入新正文
+    - view.dispatch(tr) 提交事务 → PM state 更新 → 页面计数器刷新 → 自动保存触发
+    
+    adapter.getHTML() 返回编辑器 HTML（仅诊断/读回用，不用于任何写请求）。
+    
+    绝不再用 `ed.innerHTML = ''`：那会绕过 ProseMirror 事务。
+    execCommand 方案保留为 fallback（adapter 不可用时）。
     """
     js = f"""
 (() => {{
@@ -340,7 +362,46 @@ def replace_body(session: str, data: dict, state_path: Path | None = None) -> di
  const before = ed.innerText;
  const beforeWords = W(before);
 
- // ① 全选 + 删除，走浏览器编辑命令 → ProseMirror 会生成真实事务，state 与 DOM 同步
+ // 2026-09-08 新方案：优先使用 window.adapter.view.dispatch（真实 PM 事务）
+ const adapter = window.adapter;
+ if (adapter && adapter.view && adapter.view.state && typeof adapter.view.dispatch === 'function') {{
+   try {{
+     const view = adapter.view;
+     const state = view.state;
+     const tr = state.tr;
+     // 全选并删除
+     const allSel = state.selection.constructor.create(state.doc, 0, state.doc.content.size);
+     tr.setSelection(allSel);
+     tr.deleteSelection();
+     // 插入新正文
+     tr.insertText(body);
+     // 提交事务 → PM state 更新 → 页面计数器刷新
+     view.dispatch(tr);
+     
+     const after = ed.innerText;
+     const afterN = NW(after);
+     const pageTxt = document.body.innerText || '';
+     const pw = pageTxt.match(/正文字数\\s*([0-9]+)/);
+     return {{
+       ok: true, num, title, method: 'adapter.view.dispatch',
+       selectAllOk: true, deleteOk: true, insertOk: true, selInEditor: true,
+       beforeWords, clearedWords: 0,
+       start: after.slice(0, 40), end: after.slice(-80),
+       len: ed.textContent.length,
+       afterWords: afterN.length,
+       head30: afterN.slice(0, 30),
+       tail30: afterN.slice(-30),
+       pageWordCount: pw ? parseInt(pw[1], 10) : null,
+       hasTitle: after.trim().startsWith('第{data['chapter']}章'),
+       hasNote: after.includes('作者有话说'),
+       blankRun: /\\n{{3,}}/.test(after),
+     }};
+   }} catch(e) {{
+     // adapter 方案失败，回退到 execCommand
+   }}
+ }}
+
+ // ① Fallback: 全选 + 删除，走浏览器编辑命令
  ed.focus();
  const selectAllOk = document.execCommand('selectAll');
  const sel = window.getSelection();
@@ -505,25 +566,58 @@ def read_editor_state(session: str, chapter: int, state_path: Path | None = None
 
 
 def save_draft(session: str, state_path: Path | None = None) -> dict:
-    """只点「存草稿」（button.auto-editor-save-btn）。绝不碰下一步/提交/确认发布。"""
-    ab(session, "click 'button.auto-editor-save-btn'", timeout=30, state_path=state_path)
+    """只点「存草稿」按钮（button.auto-editor-save-btn）保存。零 fetch。
+
+    2026-09-08 第317章事故：
+    旧实现误用 POST /api/author/publish_article/v0/（form, publish_status=0,
+    timer_status=0）「保存草稿」，但该端点是**发布端点**，对待发布章节会直接发布，
+    导致第317章提前上线。本实现已彻底移除该路径，零 fetch 兜底。
+
+    铁律：
+    - 保存动作只能点击 DOM 中「存在且 enabled」的 button.auto-editor-save-btn。
+    - 该按钮渲染条件为 0===publishStatus（仅「未发布草稿」状态才渲染）。
+    - 按钮不存在 / disabled → 章节处于待发布/已发布，立即 raise，不发任何写请求。
+
+    绝不查找、不点击「下一步 / 提交 / 确认发布」。
+    """
+    js = r"""
+(() => {
+  const btn = document.querySelector('button.auto-editor-save-btn');
+  if (!btn) {
+    return {exists: false, disabled: null, reason: 'no_save_btn'};
+  }
+  const disabled = btn.disabled === true
+      || btn.getAttribute('aria-disabled') === 'true'
+      || btn.classList.contains('disabled');
+  if (disabled) {
+    return {exists: true, disabled: true, reason: 'save_btn_disabled'};
+  }
+  btn.click();
+  return {exists: true, disabled: false, clicked: true};
+})()
+"""
+    state = js_eval(session, js, timeout=30, state_path=state_path)
+    if not isinstance(state, dict) or not state.get('exists') or state.get('disabled'):
+        raise RuntimeError(
+            'PENDING_OR_PUBLISHED_REJECT: 章节非「未发布草稿」状态，'
+            'button.auto-editor-save-btn 不存在或不可用，拒绝保存以防误发布。'
+            '（2026-09-08 317事故：误用 publish_article 端点直接发布）'
+            f' | state={state}'
+        )
+
     time.sleep(3)
-    js = """
+    js_readback = r"""
 (() => {
  const txt = document.body.innerText || '';
- const m = txt.match(new RegExp('正文字数\\\\s*([0-9]+)'));
+ const m = txt.match(/正文字数\s*([0-9]+)/);
  return {
    url: location.href,
-   saved: txt.includes('已保存到云端') || txt.includes('已保存'),
+   saved: txt.includes('已保存'),
    word: m ? m[1] : null,
-   num: Array.from(document.querySelectorAll('input'))
-     .find(e => String(e.className).includes('byte-input') && !e.placeholder)?.value,
-   title: Array.from(document.querySelectorAll('input'))
-     .find(e => e.placeholder === '请输入标题')?.value,
  };
 })()
 """
-    saved = js_eval(session, js, state_path=state_path)
+    saved = js_eval(session, js_readback, state_path=state_path)
     if not isinstance(saved, dict):
         raise RuntimeError(f'存草稿后读回异常: {saved}')
     return saved

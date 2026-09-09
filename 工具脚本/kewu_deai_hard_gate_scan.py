@@ -56,6 +56,9 @@ PATTERNS = {
     'DISTANT_NARRATOR_SOFT': re.compile(r'(读者不难发现|众所周知|显而易见|众所周知的事实是)'),
     'REPEATED_SUBJECT_OPENING_SOFT': re.compile(r''),  # placeholder, handled in scan_file
     'FRAGMENT_PUNCHLINE_SOFT': re.compile(r''),  # placeholder, handled in scan_file
+    # 2026-09-09 r9b 新增：拆句公式（句号变体）——「不是X。」后接「而是/这是/是」开头的句子，
+    # 同段内跨句号匹配，模型用句号拆行规避「不是…而是/这是」公式闸。placeholder，见 _detect_split_formula。
+    'SPLIT_FORMULA_HARD': re.compile(r''),  # placeholder, handled in scan_file
     # 2026-09-03 新增：翻译腔禁词（叙述层）
     'TRANSLATION_TASTE_HARD': re.compile(r'(接住|击穿|锋利|不崩|不爆|打穿|扛住)'),
     # 2026-09-03 新增：过度缩略词
@@ -94,6 +97,7 @@ WEIGHTS = {
     'DISTANT_NARRATOR_SOFT': 2,
     'REPEATED_SUBJECT_OPENING_SOFT': 2,
     'FRAGMENT_PUNCHLINE_SOFT': 2,
+    'SPLIT_FORMULA_HARD': 5,
     'TRANSLATION_TASTE_HARD': 5,
     'OVER_ABBREV_HARD': 5,
     'COINED_TERM_HARD': 5,
@@ -155,7 +159,7 @@ def scan_file(path: Path) -> dict:
         for typ, pat in PATTERNS.items():
             # 跨行/跨句检测键由专用函数添加，主循环必须跳过——
             # 其正则为占位 r''，search 对任意非空行无条件命中，会导致分数通胀。
-            if typ in ('REPEATED_SUBJECT_OPENING_SOFT', 'FRAGMENT_PUNCHLINE_SOFT'):
+            if typ in ('REPEATED_SUBJECT_OPENING_SOFT', 'FRAGMENT_PUNCHLINE_SOFT', 'SPLIT_FORMULA_HARD'):
                 continue
             # 标题行“第X章 标题”/“# 第X章 标题”是合法格式，不算章节元信息。
             if typ == 'META_INFO_HARD' and is_title:
@@ -179,6 +183,8 @@ def scan_file(path: Path) -> dict:
     _detect_repeated_subject_opening(lines, hits)
     # 跨行检测：碎片式打点（≥3 个等长短句排比）
     _detect_fragment_punchline(lines, hits)
+    # 拆句公式（句号变体）：「不是X。」后接「而是/这是/是」开头
+    _detect_split_formula(lines, hits)
 
     score = sum(WEIGHTS.get(h['type'], 1) for h in hits)
     hard_hits = [h for h in hits if h['type'].endswith('_HARD')]
@@ -200,6 +206,10 @@ def scan_file(path: Path) -> dict:
 
 # 句子切分：只按 。！？（含半角 !?）切，不切 '.'，避免 3.5 这类小数被拆断。
 _SENT_SPLIT_RE = re.compile(r'[。！？!?]+')
+# 拆句公式预筛（r9b）：「不是…。」后 20 字内以「而是/这是/是」开头的句首。
+# 仅第一道闸（防无效行空转）；是否真实命中由 _detect_split_formula 按相邻句起始做字面二次校验，
+# 防「不是X。这堆东西是Y。」这类句2中间含「是」的假阳性。
+_SPLIT_FORMULA_RE = re.compile(r'不是[^。！？\n]{0,100}[。！？!?]\s*[^。！？\n]{0,20}?(?:而是|这是|是)')
 # 代词主语精确匹配，长词在前，避免「他们」被截成「他」。
 _PRONOUN_SUBJECTS = ('他们', '她们', '它们', '我们', '他', '她', '它', '我')
 # 名字主语候选：取行首连续汉字（最多 6 字），后续用公共前缀收敛出真正主语。
@@ -305,6 +315,33 @@ def _detect_fragment_punchline(lines: list[str], hits: list[dict]) -> None:
                 'text': raw.strip()[:260],
             })
             return
+
+
+def _detect_split_formula(lines: list[str], hits: list[dict]) -> None:
+    """同段内跨句号「不是…。」后接「而是/这是/是」开头 = SPLIT_FORMULA_HARD。
+
+    模型用句号拆行规避「不是…而是/这是」公式闸，属真漏洞，须按叙述层补抓。
+    - 对白整行（_DIALOGUE_RE）自然排除：strip_paired_quotes 后整行变空占位，无句子可配。
+    - 混合行引号内台词被剥，只留叙述层判断（与 NOT_IS_HARD 同一叙事规则）。
+    - 字面二次校验：含「不是」句与其后紧邻句以 而是/这是/是 起首，防跨段假阳性。
+    - 单句（逗号合写式「不是X，而是Y」）无跨句关系，交给既有 NOT_BUT_HARD。
+    """
+    for idx, raw in enumerate(lines, 1):
+        s = raw.strip()
+        if not s or _TITLE_RE.match(s):
+            continue
+        target = strip_paired_quotes(s)
+        if not _SPLIT_FORMULA_RE.search(target):
+            continue
+        parts = [p.strip() for p in _SENT_SPLIT_RE.split(target) if p.strip()]
+        for a, b in zip(parts, parts[1:]):
+            if '不是' in a and (b.startswith('而是') or b.startswith('这是') or b.startswith('是')):
+                hits.append({
+                    'line': idx,
+                    'type': 'SPLIT_FORMULA_HARD',
+                    'text': s[:260],
+                })
+                break
 
 
 def main():

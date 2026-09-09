@@ -19,6 +19,9 @@
 - 路由笔记：`/root/workspace/记忆体系/model-routing-notes.md`。
 
 ## 最新进展
+- 2026-09-09 20:15：第320章《月面突围》草稿箱闭环（DRAFT_SAVED_NOT_PUBLISHED）。定稿 SHA `f9d12edd23018fb55233fb62af792034d16113d97c1d221d648a7ef2824aaf3a`，净中文3611；同SHA五席账本 `FINAL_REVIEW_LEDGER_320.json` overall_pass=true（editor nofx/gpt-5.6-terra FAIL两条计时口径被终审仲裁席逐句驳回、science chun-grok46/grok-4.6 PASS、reader aliyun-qwen38-compatible/MiniMax-M2.5 PASS、continuity chun-grok46/grok-4.6 v3 PASS、arbiter aliyun-qwen38-compatible/MiniMax-M2.5 PASS）；DEAI 机器硬扫 non_pass=0。写回 `新版/第320章.md`（SHA 一致）；`已投稿/第320章.txt` 番茄口径4251、作者说110字（320: 起头两句），ready gate ok=true issues=[]；Wiki Full Text=新版；跟踪表320行已补并二次 sync（Tracking=1）。20:15 本席现场回读：login OK；列表唯一命中「第320章 月面突围」count=1 duplicate=false；draft_id `7683505614051344920`；卷名第七卷：铁幕；页面正文字数4251；compact SHA `08ebe778de0440e7f942c49259874082542c006b281def7133216df907ed1636` 与本地 TXT 去标题全等；正文头「座舱温度三百一十八开尔文。」尾「（本章完）」；作者说一致；未点下一步/未发布。正式发布前沿仍317（318待发布09-12 20:00 不动）。证据：`任务运行态/20260909_ch320_closeout/output/FANQIE_READBACK_320.json`；不 git commit（主控另派）。下一章321。
+- 2026-09-09 10:23：第319章《代理人真相》草稿箱闭环（DRAFT_SAVED_NOT_PUBLISHED）。定稿 SHA `920917069b4fce62fef034debf4b6972c4b3a20dd84d1e3ee63368640af950e5`，净中文3593；四审同 SHA 全 PASS，FINAL_REVIEW_LEDGER overall_pass=true。写回 `新版/第319章.md`（SHA 一致）；`已投稿/第319章.txt` 番茄口径4349、作者说46字，ready gate ok=true；Wiki Full Text=新版。10:23 本席现场回读：login OK；列表唯一命中 count=1；draft_id `7683350517128364568`；卷名第七卷：铁幕；页面正文字数4349；compact SHA `80e3d454071e28ff93de783a2bff3206a8a6d10d9a24a4af533547cd9cbe504c` 与本地全等；未点下一步/未发布。正式发布前沿仍317（318待发布09-12 20:00 不动）。证据：`任务运行态/20260909_ch319_closeout/output/FANQIE_READBACK_319.json`。
+- 2026-09-06 09:55：遗留缺口补账。第313章草稿箱外部回读唯一命中，draft_id `7682219391496241688`、3763字、count=1、duplicate=false、未发布；TXT作者说182净中文，ready gate PASS。第315章跟踪表专属行已补。通用 `closure_guard.py` 已新增草稿箱终态闸（draft_id/listing/未发布/TXT SHA），聚焦测试5/5 PASS。
 - 2026-08-18：用户确认第258章早已发布；2026-08-14 的 BLOCKED_WEB_AUTHOR 上传线任务作废，统一标记为已发布/闭环注销（CLOSED_PUBLISHED_SUPERSEDED）。
 - 2026-09-01 01:15：第304/305/308章闭环收束。304/305既有草稿事务重存并唯一命中；308 R3 SHA `ae751dd72ca4d22a`、净中文3907，四席+DEAI双终审同SHA PASS，作者说135字，草稿箱第七卷：铁幕唯一命中，draft_id `7680244796467724824`，正文4479，硬回读13/13 PASS；三章均未发布。
 - 2026-08-14：确定性状态收口（254/257/258 前沿不变）；258 复核为 BLOCKED_WEB_AUTHOR，不得抬为草稿闭环；261/262 非草稿箱证据，不抬高前沿；G2 候选 108d415718 终态 NOTE_ONLY_ARCHIVED_PENDING_PRIMARY_SOURCE。
@@ -475,3 +478,20 @@
 - 同步：新版、已投稿TXT、Wiki ch316、伏笔/角色索引、综合跟踪表已回读；TXT含专属作者说60字。
 - 草稿箱：第七卷：铁幕；draft_id `7682016146614141464`；正文3764字；列表唯一命中，count=1、duplicate=false；未发布。
 - 下一章：317；须走下一自然日/下一批 G1→G4，不倒签、不复用316会话。
+- 2026-09-06 08:57 | 同步章节 313
+
+## 2026-09-06 12:25｜遗留缺口闭环（B1–B6 六线）终态
+- 状态：DONE_TARGET_VERIFIED。任务包 `任务运行态/20260906_kewu_gap_closure/`。
+- 313《算力之战》：DRAFT_SAVED_NOT_PUBLISHED；draft_id `7682219391496241688`；列表唯一命中 count=1/duplicate=false/未发布；TXT SHA `2d647a0b…`、MD SHA `b3e230c3…` 与 `output/FANQIE_READBACK_313.json` 逐字一致。315 跟踪表行已补（表 470 行，313/314/315/316 齐）。
+- 代码线：热点采集统计根修（A1，24 passed 净增 3、聚焦子集 5 passed）、KOL 覆盖口径修复（A2，18 passed）、agentrouter 跨模型 failover + closure_guard 草稿箱闸（A3/B4，102 passed；沙箱独立验证 `FAILED_CHECKS=NONE`；真实 probe 判 `FALLBACK_CONTAMINATED`）。
+- 生产线：每日双章确定性控制 tick cron `8ae4a605167c` active，42/42 self-test 全绿，队列 `KEWU_DAILY`=0。
+- 总审：`output/FINAL_REVIEW.md` SHA `ca194834…` 首行 `FINAL_STATUS=PASS`，missing=[]。closure_guard `overall=PASS`（evidence/sync/git/draftbox 全 PASS）。
+- P1 事故已闭：B6 fallback 腿（chun/gemini-3.8-flash）在只读审计任务中整文件回滚 A1 两文件并覆写前腿报告，主控由测试计数掉档发现，快照隔离 → 停腿 → 按 SHA 复原 → 复验 24 passed。脏态存证 `output/incident_a1_rollback_20260906_1157/`。
+- 残留：正式发布归小哥；14 点真实生产窗口待观测；R-A1-1 规格漂移、R-A1-2 生产 cron 未传 `--limit-candidates`、R-TAKEOVER-1 `--dry-run` 名义只读实际写盘、R-P1-1 fallback 写盘闸须写回 patrol-discipline。
+- 2026-09-07 19:46 | 同步章节 317
+- 2026-09-08 11:13 | 同步章节 318
+- 2026-09-09 10:03 | 同步章节 319
+- 2026-09-09 10:04 | 同步章节 319
+- 2026-09-09 20:04 | 同步章节 320
+- 2026-09-09 20:04 | 同步章节 320
+- 2026-09-09 20:06 | 同步章节 320

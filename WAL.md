@@ -1,5 +1,26 @@
 
 
+## 2026-09-09 20:15｜第320章草稿箱闭环（现场回读）
+- 状态: DRAFT_SAVED_NOT_PUBLISHED
+- 定稿: `新版/第320章.md` SHA `f9d12edd23018fb55233fb62af792034d16113d97c1d221d648a7ef2824aaf3a` 净CJK 3611；首行「第320章 月面突围」尾行「（本章完）」；与 `qwen_320_candidate_r8.md` 字节一致。
+- 审稿: FINAL_REVIEW_LEDGER_320 overall_pass=true；五席同 SHA（editor nofx/gpt-5.6-terra FAIL 两条计时口径被终审仲裁席逐句驳回、science chun-grok46/grok-4.6 PASS、reader aliyun-qwen38-compatible/MiniMax-M2.5 PASS、continuity chun-grok46/grok-4.6 v3 PASS、arbiter aliyun-qwen38-compatible/MiniMax-M2.5 PASS）；DEAI 硬扫 non_pass=0。
+- TXT: `已投稿/第320章.txt` SHA `447e4704fcc85c020aaa0a65a51862fbaa91f30898b9f021ec88683485f506ef`；ready gate ok=true issues=[]，fanqie_body_chars=4251，作者说110字（320: 起头两句，由 aliyun-qwen38-compatible/MiniMax-M2.5 撰写）。
+- Wiki Full Text = 新版正文（首尾一致）；跟踪表320行已补，二次 sync Tracking=1。
+- 草稿箱现场回读 20:15：login writer/home OK（reuse_daemon）；列表唯一命中「第320章 月面突围」count=1 duplicate=false；draft_id `7683505614051344920`；卷名「科武纪元：我在末世修仙 第七卷：铁幕」；编辑页头「座舱温度三百一十八开尔文。」尾「（本章完）」；页面正文字数4251；compact SHA `08ebe778de0440e7f942c49259874082542c006b281def7133216df907ed1636` 与本地 TXT 去标题全等；作者说一致；按钮含「存草稿/下一步」，未点下一步/提交/发布。
+- 证据: `任务运行态/20260909_ch320_closeout/output/FANQIE_READBACK_320.json`
+- 边界: 未 git commit（主控另派）；正式发布前沿仍317；318 待发布 09-12 20:00 不动。
+- 下一步: 第321章。
+
+## 2026-09-09 10:23｜第319章草稿箱闭环（现场回读）
+- 状态: DRAFT_SAVED_NOT_PUBLISHED
+- 定稿: `新版/第319章.md` SHA `920917069b4fce62fef034debf4b6972c4b3a20dd84d1e3ee63368640af950e5` 净CJK 3593；首行「第319章 代理人真相」尾行「（本章完）」；与 `qwen_319_r1.md` 字节一致。
+- 审稿: FINAL_REVIEW_LEDGER overall_pass=true；四席同 SHA 首行 PASS（编辑 grok-4.6 / 读者 qwen3.8-flash / 军事 qwen3.8-flash / 科学 deepseek-v4-flash）。
+- TXT: `已投稿/第319章.txt` SHA `79d80616cd560f88efdc9a4682f46fec4d20e3f98a4a9a1e97a53b4d0810e2ca`；ready gate ok=true，fanqie_body_chars=4349，作者说46字。
+- Wiki Full Text = 新版正文（CJK 3593，首尾一致）。
+- 草稿箱现场回读 10:23：login writer/home OK；列表唯一命中「第319章 代理人真相」count=1；draft_id `7683350517128364568`；卷名「科武纪元：我在末世修仙 第七卷：铁幕」；编辑页头「周棠把第三十七份箱单压在镇纸下。」尾「（本章完）」；页面正文字数4349；compact SHA `80e3d454071e28ff93de783a2bff3206a8a6d10d9a24a4af533547cd9cbe504c` 与本地全等；作者说一致；按钮含「存草稿/下一步」，未点发布。列表字段字数4526与页面计数口径不同，以页面/compact 为准。
+- 边界: 未点下一步/提交/发布；正式发布前沿仍317；318 待发布 09-12 20:00 不动。
+- 下一步: 第320章（主控另派；本任务不 git commit）。
+
 ## 2026-08-24 16:47｜第292章草稿箱闭环
 - DRAFT_SAVED_NOT_PUBLISHED；定稿R6 SHA=383549126090ce1d510916a43ec37a29def9d4403d4db1584b6025cbf4fe4524，净CJK=3690。
 - 新版/TXT/Wiki/跟踪表同步完成；草稿箱唯一命中6434字，第六卷：火星，draft_id=7677509566518526488，未发布。
@@ -265,6 +286,14 @@
 - 同步：STATUS/WAL/queue/events已更新；Wiki/跟踪表/RAG待后续同步
 
 # 科武纪元 WAL
+
+## 2026-09-06 09:55｜第313/315章遗留缺口补账
+- 状态：PARTIAL_CLOSED；313草稿箱与315跟踪表缺口已闭，A3/14点生产线仍在返修验收。
+- 第313章：平台草稿列表外部回读 `第313章 算力之战` 唯一命中，3763字，draft_id `7682219391496241688`，count=1，duplicate=false，未发布；TXT SHA `2d647a0b206d9a50c`，ready gate PASS，作者说182净中文。
+- 第315章：按既有 STATUS/WAL 的外部回执补入小说综合跟踪表；draft_id `7681790191899509272`，3427字，count=1，duplicate=false，未发布。
+- 根修：`scripts/closure_guard.py` 新增可选草稿箱终态闸，强验 draft_id、章名、listing唯一、duplicate=false、published=false、TXT SHA；`scripts/tests/test_closure_guard_draftbox.py` 5/5 PASS；313目标级 closure_guard PASS。
+- 证据：`任务运行态/20260906_kewu_gap_closure/output/FANQIE_READBACK_313.json`、`TXT_READY_313.json`、`FANQIE_EXECUTE_313.json`。
+- 边界：仅保存草稿，未发布；未改小说正文语义。
 
 ## 2026-08-01 00:12｜第235-236章草稿箱闭环
 - 状态：DRAFT_SAVED_NOT_PUBLISHED。
@@ -2784,3 +2813,33 @@
 - 新版、已投稿TXT、Wiki Full Text、伏笔/角色索引、综合跟踪表同步完成；TXT专属作者说60字。
 - 草稿箱外部回读：第七卷：铁幕／第316章 暗流涌动／draft_id `7682016146614141464`／3764字／count=1／duplicate=false／未发布。
 - 残留：正式发布归用户；上游SenseNova/KOL生产线仍PARTIAL，另线根修。下一章317。
+
+### 2026-09-06 08:57
+- 同步章节 313
+
+### 2026-09-06 12:25｜遗留缺口闭环终验（主控巡检）
+- 状态: DONE（B1–B6 六线 TARGET_VERIFIED_PASS；含 1 起 P1 事故已闭）
+- 证据（本轮主控亲跑复验）: A1 `4 failed, 24 passed`＋聚焦 `5 passed`；A2 `18 passed`；A3/B4 `102 passed`＋`a3_controller_independent_verify.py` → `FAILED_CHECKS=NONE`；B5 `b5_selftest_summary.py` seed 8/8、control_tick 20/20、dispatcher 14/14 RC=0；B3 `已投稿/第313章.txt` `2d647a0b…`、`新版/第313章.md` `b3e230c3…` 与 `FANQIE_READBACK_313.json` 一致；跟踪表 470 行含 313/314/315/316；`FINAL_REVIEW.md` `ca194834…` `FINAL_STATUS=PASS`；closure_guard `overall=PASS`（sha 项 WARN，未指定 --sha-file）。
+- 下一步: Git 精确提交本轮 79 项 staged 变更（scripts 6 文件 + 任务包）→ 暂停巡检 cron `283f698c36ab`。owner=主控。
+- 阻塞项: 无。残留见 STATUS 同日条目（R-P1-1 / R7-R8 14:00 窗口 / R-A1-1 / R-A1-2 / R-TAKEOVER-1 / R5；正式发布归小哥）。
+
+### 2026-09-07 19:46
+- 同步章节 317
+
+### 2026-09-08 11:13
+- 同步章节 318
+
+### 2026-09-09 10:03
+- 同步章节 319
+
+### 2026-09-09 10:04
+- 同步章节 319
+
+### 2026-09-09 20:04
+- 同步章节 320
+
+### 2026-09-09 20:04
+- 同步章节 320
+
+### 2026-09-09 20:06
+- 同步章节 320

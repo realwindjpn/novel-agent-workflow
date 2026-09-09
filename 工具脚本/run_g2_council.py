@@ -24,15 +24,17 @@ DEFAULT_OUTPUT = PROJECT / '审核记录/G2_council_decision.md'
 
 # 六席定义：(席名, 角色, provider, model)
 COUNCIL_SEATS = [
-    # 2026-08-29 换席：原六席（aiai137269/aerolink/zai/ds4pro/xiaomi）provider 已失效，
-    # 实测五席全部 fallback 到同一模型，等于六席同模造假。
-    # 改用 2026-08-27 用户指定白名单八模型，实测 8/8 零 fallback。
-    ('主席/结构',     '结构审查', 'custom:sotamodel', 'opus-5'),
-    ('编辑/连续性',   '编辑连续性审查', 'custom:anyrouter', 'claude-fable-5'),
-    ('科学顾问',     '科学准确性审查', 'astrdark', 'glm-5.2'),
-    ('军事制度',     '军事制度审查', 'custom:agentrouter', 'deepseekv4-pro-0813'),
-    ('读者视角',     '读者体验审查', 'custom:agentrouter', 'qwen3.8-max'),
-    ('海外新鲜度',   '海外素材新鲜度审查', 'grok2api-seeseed1ck', 'grok-4.6'),
+    # 2026-09-09 席位重校（当日五席直测实证）：原六席中 sotamodel 全组 429
+    # （daily_free_credits_exhausted）、ds2api account_muted 403、cpa 无 base_url、
+    # sensenova 模型路由 404 —— 四席死。席位表按当日实测活口重排；
+    # 主控占 aliyun-qwen38（qwen3.8-flash），qwen 族与 gpt-5.6 族禁入席。
+    # 跨 provider 跨族：grok / gpt-5.6-terra(异节点) / kimi / MiniMax / glm / dsv4。
+    ('主席/结构',     '结构审查', 'custom:chun-grok46', 'grok-4.6'),
+    ('编辑/连续性',   '编辑连续性审查', 'custom:token-x', 'gpt-5.6-terra'),
+    ('科学顾问',     '科学准确性审查', 'custom:aliyun-qwen38-compatible', 'kimi-k2.6'),
+    ('军事制度',     '军事制度审查', 'custom:aliyun-qwen38-compatible', 'MiniMax-M2.5'),
+    ('读者视角',     '读者体验审查', 'custom:yi-hydrogel', 'z-ai/glm-5.3-free'),
+    ('海外新鲜度',   '海外素材新鲜度审查', 'custom:trenddao', 'deepseek-v4-flash'),
 ]
 
 

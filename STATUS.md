@@ -19,6 +19,8 @@
 - 路由笔记：`/root/workspace/记忆体系/model-routing-notes.md`。
 
 ## 最新进展
+- 2026-09-10 22:13：第322章《人机危机》草稿箱闭环（DRAFT_SAVED_NOT_PUBLISHED）。网页Qwen R1→R6，定稿 SHA `60db32ef2b51fa42…`、CJK 3252；四审R5全FAIL→astra/gpt-6-astra 仲裁 6 SUSTAIN/4 VACATE→R6 六处必修逐处机验落地、VACATE 三区原样保留、DEAI non_pass=0、TXT ready 绿（番茄口径3802+作者说151）；listing 回读 count=1 双章在（321/322）。草稿箱第七卷：铁幕，发布归用户。
+- 2026-09-10 22:13：第321章《身体代价》草稿箱闭环补账（DRAFT_SAVED_NOT_PUBLISHED）。R6 定稿 SHA `4ac110e6df3dbdc3…`、CJK 3258；四席同SHA全PASS、editor十条被仲裁VACATE、reviewA VERIFIED；21:47 登录修复后 execute+listing 回读 count=1（3480字）。发布归用户。
 - 2026-09-09 20:15：第320章《月面突围》草稿箱闭环（DRAFT_SAVED_NOT_PUBLISHED）。定稿 SHA `f9d12edd23018fb55233fb62af792034d16113d97c1d221d648a7ef2824aaf3a`，净中文3611；同SHA五席账本 `FINAL_REVIEW_LEDGER_320.json` overall_pass=true（editor nofx/gpt-5.6-terra FAIL两条计时口径被终审仲裁席逐句驳回、science chun-grok46/grok-4.6 PASS、reader aliyun-qwen38-compatible/MiniMax-M2.5 PASS、continuity chun-grok46/grok-4.6 v3 PASS、arbiter aliyun-qwen38-compatible/MiniMax-M2.5 PASS）；DEAI 机器硬扫 non_pass=0。写回 `新版/第320章.md`（SHA 一致）；`已投稿/第320章.txt` 番茄口径4251、作者说110字（320: 起头两句），ready gate ok=true issues=[]；Wiki Full Text=新版；跟踪表320行已补并二次 sync（Tracking=1）。20:15 本席现场回读：login OK；列表唯一命中「第320章 月面突围」count=1 duplicate=false；draft_id `7683505614051344920`；卷名第七卷：铁幕；页面正文字数4251；compact SHA `08ebe778de0440e7f942c49259874082542c006b281def7133216df907ed1636` 与本地 TXT 去标题全等；正文头「座舱温度三百一十八开尔文。」尾「（本章完）」；作者说一致；未点下一步/未发布。正式发布前沿仍317（318待发布09-12 20:00 不动）。证据：`任务运行态/20260909_ch320_closeout/output/FANQIE_READBACK_320.json`；不 git commit（主控另派）。下一章321。
 - 2026-09-09 10:23：第319章《代理人真相》草稿箱闭环（DRAFT_SAVED_NOT_PUBLISHED）。定稿 SHA `920917069b4fce62fef034debf4b6972c4b3a20dd84d1e3ee63368640af950e5`，净中文3593；四审同 SHA 全 PASS，FINAL_REVIEW_LEDGER overall_pass=true。写回 `新版/第319章.md`（SHA 一致）；`已投稿/第319章.txt` 番茄口径4349、作者说46字，ready gate ok=true；Wiki Full Text=新版。10:23 本席现场回读：login OK；列表唯一命中 count=1；draft_id `7683350517128364568`；卷名第七卷：铁幕；页面正文字数4349；compact SHA `80e3d454071e28ff93de783a2bff3206a8a6d10d9a24a4af533547cd9cbe504c` 与本地全等；未点下一步/未发布。正式发布前沿仍317（318待发布09-12 20:00 不动）。证据：`任务运行态/20260909_ch319_closeout/output/FANQIE_READBACK_319.json`。
 - 2026-09-06 09:55：遗留缺口补账。第313章草稿箱外部回读唯一命中，draft_id `7682219391496241688`、3763字、count=1、duplicate=false、未发布；TXT作者说182净中文，ready gate PASS。第315章跟踪表专属行已补。通用 `closure_guard.py` 已新增草稿箱终态闸（draft_id/listing/未发布/TXT SHA），聚焦测试5/5 PASS。
@@ -495,3 +497,7 @@
 - 2026-09-09 20:04 | 同步章节 320
 - 2026-09-09 20:04 | 同步章节 320
 - 2026-09-09 20:06 | 同步章节 320
+- 2026-09-10 20:01 | 同步章节 321
+- 2026-09-10 21:47 | 同步章节 321
+- 2026-09-10 22:11 | 同步章节 322
+- 2026-09-10 22:11 | 同步章节 322

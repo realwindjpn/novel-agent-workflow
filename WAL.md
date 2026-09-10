@@ -2861,3 +2861,11 @@
 - 322：R5 四审FAIL→astra仲裁6必修4驳回→R6 定向修全落地 sha=60db32ef CJK3252→DEAI PASS→TXT ready→execute→listing count=1。
 - codecraft/glm-5.3、astra/gpt-6-astra 入可用池（原生双测）；主控未动（用户否决 astra 主控）。
 - 残留：G4_RELEASE_322.json 未签（dispatcher authorB 链未走完）；发布归用户。
+
+### 2026-09-11 01:08
+- 同步章节 323
+
+### 2026-09-11 01:12
+- 同步章节 323
+
+- 2026-09-11 01:12 | 323断点：已入草稿箱（3764字listing坐实），未发布；324未起跑，链推cron 2866dc1cbe1b（01:51）从「324起稿卡」断点续跑；作者说/ledger/TXT在 20260911_ch323_author/output。

@@ -105,7 +105,7 @@ WEIGHTS = {
     'CURLY_QUOTE_HARD': 3,
 }
 
-_DIALOGUE_RE = re.compile(r'^\s*(?:“[^“”\n]*”|"[^"\n]*"|\'[^\'\n]*\')\s*$')
+_DIALOGUE_RE = re.compile(r'^\s*(?:“[^“”\n]*”|「[^「」\n]*」|"[^"\n]*"|\'[^\'\n]*\')\s*$')
 _TITLE_RE = re.compile(r'^\s*#?\s*第\d+章\s+\S')
 
 # 只扫叙述层的硬闸：先剥成对引号，引号内台词口语不判硬闸。
@@ -113,6 +113,7 @@ _NARRATION_ONLY_HARD = ('CONSTRAINT_NOT_HARD', 'NOT_IS_HARD', 'NOT_CHAIN_HARD')
 
 # 成对引号（中文“”、半角 ""、半角 ''）；未闭合的单侧引号不匹配，故不会吞掉后文。
 _PAIRED_QUOTE_RES = (
+    re.compile(r'「[^「」\n]*」'),
     re.compile(r'“[^“”\n]*”'),
     re.compile(r'"[^"\n]*"'),
     re.compile(r"'[^'\n]*'"),

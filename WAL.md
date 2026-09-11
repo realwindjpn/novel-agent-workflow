@@ -2898,3 +2898,15 @@
 - 回执字段冲突：saved.saved=false 但 listing 命中，按列表命中为终验（同 324 口径）。
 - 跟踪表已插 325 行并二次 sync Tracking=1。状态 DRAFT_SAVED_NOT_PUBLISHED，发布归用户。
 - 残留：326-330 未起稿。
+
+### 2026-09-11 10:59
+- 同步章节 325
+
+## 2026-09-11 11:24 第325章 R7 定稿 - 本地闭环完成 / 平台草稿正文替换失败（PARTIAL）
+- R7 定稿 SHA 4d119dfd869e61ee877cabd722c469362f97fa1dd9b3ec470949ac2b728e4f4c，净中文 3314。
+- 两条 R5 真阻断已消：阵营归属（第2行改为己方后勤序列按关永棠调拨令连夜启运，铁幕盯这批装备）；押运责任链（第6行第二检查点改为加派两名押运员、贺鸣秋签增员栏、责任仍在他身上）。
+- 机验：kewu_deai_hard_gate_scan non_pass=0；弯引号 0；正文阿拉伯数字 0；首行与末锚合规；反作弊 19/19 段 diff 仅点名两段，真删除 0。
+- 复审：chun/grok-4.6 与 token-x/gpt-5.6-terra 均确认两条原阻断消失；token-x 新提「压制窗口预警时点」1 条落在未改动段落，跨族仲裁 sotamodel/claude-opus-5-max 判 VERDICT: PASS 指控不成立（十四分钟窗口结束前两分钟即第十二分钟，与原文一致；第十道竖线为预备动作）。R7 收口，不开 R8。
+- 本地已同步：新版/第325章.md、wiki/chapters/ch325.md（Full Text 已验 R7 新句命中、R5 旧句清零）、小说综合跟踪表.md、伏笔与角色索引、已投稿/第325章.txt（番茄口径 3727、作者说 66 字、issues=[]）。
+- 平台残留 BLOCKED：fanqie_update_draft_chapter.py --execute 连跑两次均回 saved=true 且 verified.ok=true，但编辑页 .ProseMirror[0] 与服务端预览页双通道回读 compact SHA 恒为 R5（4e9f12e35aee），R7 新句 needle 0 命中、R5 旧句仍在。页面正文字数计数器恒为 3710 未变，listing 字段 3710 至 3800 至 3890 递增。作者说字段 occur=1 未重复污染。按两次同类失败止损，未做第三次盲传，需人工裁决。
+- 证据：任务运行态/20260911_ch325_author/output/draft_readback_325_v3.txt、output/preview_readback_325.txt、reviews/review_continuity_r7_token-x.md、reviews/arb_r7_sotamodel.md。

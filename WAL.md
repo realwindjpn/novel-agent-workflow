@@ -2878,3 +2878,23 @@
 
 ### 2026-09-11 06:19
 - 同步章节 324
+
+### 2026-09-11 08:56
+- 同步章节 325
+
+### 2026-09-11 08:58
+- 同步章节 325
+
+### 2026-09-11 09:00
+- 同步章节 325
+
+
+## 2026-09-11 09:05 第325章《三线联动》草稿箱闭环
+- 定稿 output/qwen_325_candidate_r5.md，SHA 6390280d…，CJK 3301，首行「第325章 三线联动」末行「（本章完）」。
+- R4(SHA 012bc3bc) 四审：editor PASS(sensenova/glm-5.2)、science PASS(chun/grok-4.6)、reader_r2 PASS(cpa/gpt-5.6-sol)、continuity_r2 REPAIR。
+- continuity 唯一阻断=补给艇数量矛盾（第12行「第三艘」与第18行「两艘」及泊位灯两绿两灭冲突）→R5 定点改一字（三→二），diff 仅 1 字符、CJK 不变。
+- 重扫：kewu_deai_hard_gate_scan non_pass=0、弯引号=0、阿拉伯数字仅首行标题；同 SHA 6390280d continuity 复审 PASS(sensenova/glm-5.2)。
+- 收口：写回 新版/第325章.md → sync_kewu（Wiki Full Text 已镜像）→ 作者说 66 字 → ensure_fanqie_upload_txt_ready issues=[]（番茄 3713 字）→ dry DRY_RUN_OK → execute → listing 回读 count=1 / 3710 字 / duplicate=false / 保存页卷名 第七卷：铁幕。
+- 回执字段冲突：saved.saved=false 但 listing 命中，按列表命中为终验（同 324 口径）。
+- 跟踪表已插 325 行并二次 sync Tracking=1。状态 DRAFT_SAVED_NOT_PUBLISHED，发布归用户。
+- 残留：326-330 未起稿。

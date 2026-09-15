@@ -2910,3 +2910,9 @@
 - 本地已同步：新版/第325章.md、wiki/chapters/ch325.md（Full Text 已验 R7 新句命中、R5 旧句清零）、小说综合跟踪表.md、伏笔与角色索引、已投稿/第325章.txt（番茄口径 3727、作者说 66 字、issues=[]）。
 - 平台残留 BLOCKED：fanqie_update_draft_chapter.py --execute 连跑两次均回 saved=true 且 verified.ok=true，但编辑页 .ProseMirror[0] 与服务端预览页双通道回读 compact SHA 恒为 R5（4e9f12e35aee），R7 新句 needle 0 命中、R5 旧句仍在。页面正文字数计数器恒为 3710 未变，listing 字段 3710 至 3800 至 3890 递增。作者说字段 occur=1 未重复污染。按两次同类失败止损，未做第三次盲传，需人工裁决。
 - 证据：任务运行态/20260911_ch325_author/output/draft_readback_325_v3.txt、output/preview_readback_325.txt、reviews/review_continuity_r7_token-x.md、reviews/arb_r7_sotamodel.md。
+
+## 2026-09-15 23:47 ｜第327章终态
+- R12 同 SHA 四审通过（编辑DEAI/读者/科学/军政制度）。候选与新版 SHA `8a546d1f584082dd58e1fdb458ad1958c0130c1f13b5a61e1cf0cefc1fbfad0e`，正文 4073 CJK。
+- 已投稿TXT SHA `a40507a49cbfad33c5bd9117d8d1a112c8d195345cb08db1841fc6649c7572b3`，网页Qwen作者说 200 CJK；番茄草稿箱第327章《能源革命》、第七卷：铁幕，草稿唯一，复开正文/作者说逐项一致。
+- 草稿箱已保存，**未发布**；正式发布归用户。
+- 事故记录：一次收尾子代理误执行 git reset 导致本地产物丢失；主控改为从番茄草稿箱编辑页只读回收正文与作者说，确定性重建本地件并复验同一 SHA。

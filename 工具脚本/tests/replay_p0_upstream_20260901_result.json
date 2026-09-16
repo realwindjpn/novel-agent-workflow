@@ -1,0 +1,320 @@
+{
+  "checks": [
+    {
+      "label": "第1轮 exit 0",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "label": "第1轮打印游标 before/after",
+      "pass": true,
+      "detail": "\"dynamic_entity\",\n        \"body_or_excerpt\"\n      ],\n      \"mapping_baseline\": \"stable_nine_domains_dyson_tree_latest_outline_post_discovery_filter\",\n      \"full_list_health_claim\": false\n    }\n  }\n}\n"
+    },
+    {
+      "label": "第2轮 exit 0",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "label": "第2轮打印游标 before/after",
+      "pass": true,
+      "detail": "\"dynamic_entity\",\n        \"body_or_excerpt\"\n      ],\n      \"mapping_baseline\": \"stable_nine_domains_dyson_tree_latest_outline_post_discovery_filter\",\n      \"full_list_health_claim\": false\n    }\n  }\n}\n"
+    },
+    {
+      "label": "第3轮 exit 0",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "label": "第3轮打印游标 before/after",
+      "pass": true,
+      "detail": "\"dynamic_entity\",\n        \"body_or_excerpt\"\n      ],\n      \"mapping_baseline\": \"stable_nine_domains_dyson_tree_latest_outline_post_discovery_filter\",\n      \"full_list_health_claim\": false\n    }\n  }\n}\n"
+    },
+    {
+      "label": "第4轮 exit 0",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "label": "第4轮打印游标 before/after",
+      "pass": true,
+      "detail": "\"dynamic_entity\",\n        \"body_or_excerpt\"\n      ],\n      \"mapping_baseline\": \"stable_nine_domains_dyson_tree_latest_outline_post_discovery_filter\",\n      \"full_list_health_claim\": false\n    }\n  }\n}\n"
+    },
+    {
+      "label": "第5轮 exit 0",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "label": "第5轮打印游标 before/after",
+      "pass": true,
+      "detail": "\"dynamic_entity\",\n        \"body_or_excerpt\"\n      ],\n      \"mapping_baseline\": \"stable_nine_domains_dyson_tree_latest_outline_post_discovery_filter\",\n      \"full_list_health_claim\": false\n    }\n  }\n}\n"
+    },
+    {
+      "label": "第6轮 exit 0",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "label": "第6轮打印游标 before/after",
+      "pass": true,
+      "detail": "\"dynamic_entity\",\n        \"body_or_excerpt\"\n      ],\n      \"mapping_baseline\": \"stable_nine_domains_dyson_tree_latest_outline_post_discovery_filter\",\n      \"full_list_health_claim\": false\n    }\n  }\n}\n"
+    },
+    {
+      "label": "每轮游标都落盘",
+      "pass": true,
+      "detail": "[{'frontier_tech': 1, 'geopolitics': 1, 'biology': 1, 'space': 1, 'aviation': 1, 'ai': 2, 'military': 1, 'materials': 2, 'energy': 3}, {'frontier_tech': 2, 'geopolitics': 2, 'biology': 2, 'space': 2, 'aviation': 2, 'ai': 3, 'military': 3, 'materials': 0, 'energy': 4}]"
+    },
+    {
+      "label": "游标跨进程发生推进（相邻轮不同）",
+      "pass": true,
+      "detail": "[{'frontier_tech': 1, 'geopolitics': 1, 'biology': 1, 'space': 1, 'aviation': 1, 'ai': 2, 'military': 1, 'materials': 2, 'energy': 3}, {'frontier_tech': 2, 'geopolitics': 2, 'biology': 2, 'space': 2, 'aviation': 2, 'ai': 3, 'military': 3, 'materials': 0, 'energy': 4}, {'frontier_tech': 3, 'geopolitics': 3, 'biology': 3, 'space': 3, 'aviation': 0, 'ai': 4, 'military': 4, 'materials': 0, 'energy': 5}, {'frontier_tech': 4, 'geopolitics': 4, 'biology': 0, 'space': 4, 'aviation': 1, 'ai': 0, 'military': 5, 'materials': 1, 'energy': 6}, {'frontier_tech': 5, 'geopolitics': 0, 'biology': 1, 'space': 5, 'aviation': 2, 'ai': 1, 'military': 6, 'materials': 2, 'energy': 0}, {'frontier_tech': 0, 'geopolitics': 1, 'biology': 2, 'space': 6, 'aviation': 0, 'ai': 2, 'military': 0, 'materials': 0, 'energy': 1}]"
+    },
+    {
+      "label": "第6轮游标非全零（未归零）",
+      "pass": true,
+      "detail": "{'frontier_tech': 0, 'geopolitics': 1, 'biology': 2, 'space': 6, 'aviation': 0, 'ai': 2, 'military': 0, 'materials': 0, 'energy': 1}"
+    },
+    {
+      "label": "6 轮实查账号并集 24 > 单轮最大 7（旧行为下相等）",
+      "pass": true,
+      "detail": "['AI芯片带路党', '中国航天报', '中国航天科技集团', '中科院物理所', '出口管制合规研究', '可控核聚变', '合成生物学网', '商业航天Online', '商业航天er', '地缘看世界', '差评君', '无人机', '果壳', '每日中天', '沈逸', '环球科学', '科技日报/央视/新华社科技号', '脑机接口社区', '航空知识', '蒋院长讲航天', '见证核聚变', '观察者网科技/风闻社区', '量子位', '高志凯']"
+    },
+    {
+      "label": "相邻轮实查账号不完全相同",
+      "pass": true,
+      "detail": "[['中国航天科技集团', '中科院物理所', '差评君', '每日中天', '沈逸', '航空知识', '量子位'], ['中国航天报', '果壳', '科技日报/央视/新华社科技号', '观察者网科技/风闻社区', '高志凯'], ['中科院物理所', '环球科学', '观察者网科技/风闻社区'], ['AI芯片带路党', '出口管制合规研究', '合成生物学网', '脑机接口社区', '航空知识', '蒋院长讲航天'], ['中科院物理所', '可控核聚变', '商业航天Online', '地缘看世界', '观察者网科技/风闻社区'], ['商业航天er', '无人机', '果壳', '沈逸', '见证核聚变', '量子位']]"
+    },
+    {
+      "label": "supplement 显式入账",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "label": "主线 0",
+      "pass": true,
+      "detail": "0"
+    },
+    {
+      "label": "补充 4",
+      "pass": true,
+      "detail": "4"
+    },
+    {
+      "label": "总新增 4（主0补N计N）",
+      "pass": true,
+      "detail": "4"
+    },
+    {
+      "label": "bus 增量 4",
+      "pass": true,
+      "detail": "4"
+    },
+    {
+      "label": "真实总线行数未变",
+      "pass": true,
+      "detail": "622 -> 622"
+    },
+    {
+      "label": "真实总线 sha 未变",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "label": "生产游标 sha 未变",
+      "pass": true,
+      "detail": "67a215c504cb97d6 -> 67a215c504cb97d6"
+    }
+  ],
+  "metrics": {
+    "replay_union_queried_names": 24,
+    "replay_max_single_round_names": 7,
+    "replay_union_list": [
+      "AI芯片带路党",
+      "中国航天报",
+      "中国航天科技集团",
+      "中科院物理所",
+      "出口管制合规研究",
+      "可控核聚变",
+      "合成生物学网",
+      "商业航天Online",
+      "商业航天er",
+      "地缘看世界",
+      "差评君",
+      "无人机",
+      "果壳",
+      "每日中天",
+      "沈逸",
+      "环球科学",
+      "科技日报/央视/新华社科技号",
+      "脑机接口社区",
+      "航空知识",
+      "蒋院长讲航天",
+      "见证核聚变",
+      "观察者网科技/风闻社区",
+      "量子位",
+      "高志凯"
+    ],
+    "replay_rounds": [
+      {
+        "round": 0,
+        "rc": 0,
+        "cursor_after": {
+          "frontier_tech": 1,
+          "geopolitics": 1,
+          "biology": 1,
+          "space": 1,
+          "aviation": 1,
+          "ai": 2,
+          "military": 1,
+          "materials": 2,
+          "energy": 3
+        },
+        "queried_accounts": 7,
+        "queried_domains": 7,
+        "account_names": [
+          "中国航天科技集团",
+          "中科院物理所",
+          "差评君",
+          "每日中天",
+          "沈逸",
+          "航空知识",
+          "量子位"
+        ],
+        "cursor_log": "[coverage_cursor] /tmp/tmp9n2atz8l/replay_cursor.json saved=True before={} after={\"ai\": 2, \"aviation\": 1, \"biology\": 1, \"energy\": 3, \"frontier_tech\": 1, \"geopolitics\": 1, \"materials\": 2, \"military\": 1"
+      },
+      {
+        "round": 1,
+        "rc": 0,
+        "cursor_after": {
+          "frontier_tech": 2,
+          "geopolitics": 2,
+          "biology": 2,
+          "space": 2,
+          "aviation": 2,
+          "ai": 3,
+          "military": 3,
+          "materials": 0,
+          "energy": 4
+        },
+        "queried_accounts": 5,
+        "queried_domains": 5,
+        "account_names": [
+          "中国航天报",
+          "果壳",
+          "科技日报/央视/新华社科技号",
+          "观察者网科技/风闻社区",
+          "高志凯"
+        ],
+        "cursor_log": "[coverage_cursor] /tmp/tmp9n2atz8l/replay_cursor.json saved=True before={\"ai\": 2, \"aviation\": 1, \"biology\": 1, \"energy\": 3, \"frontier_tech\": 1, \"geopolitics\": 1, \"materials\": 2, \"military\": 1, \"space\""
+      },
+      {
+        "round": 2,
+        "rc": 0,
+        "cursor_after": {
+          "frontier_tech": 3,
+          "geopolitics": 3,
+          "biology": 3,
+          "space": 3,
+          "aviation": 0,
+          "ai": 4,
+          "military": 4,
+          "materials": 0,
+          "energy": 5
+        },
+        "queried_accounts": 3,
+        "queried_domains": 3,
+        "account_names": [
+          "中科院物理所",
+          "环球科学",
+          "观察者网科技/风闻社区"
+        ],
+        "cursor_log": "[coverage_cursor] /tmp/tmp9n2atz8l/replay_cursor.json saved=True before={\"ai\": 3, \"aviation\": 2, \"biology\": 2, \"energy\": 4, \"frontier_tech\": 2, \"geopolitics\": 2, \"materials\": 0, \"military\": 3, \"space\""
+      },
+      {
+        "round": 3,
+        "rc": 0,
+        "cursor_after": {
+          "frontier_tech": 4,
+          "geopolitics": 4,
+          "biology": 0,
+          "space": 4,
+          "aviation": 1,
+          "ai": 0,
+          "military": 5,
+          "materials": 1,
+          "energy": 6
+        },
+        "queried_accounts": 6,
+        "queried_domains": 6,
+        "account_names": [
+          "AI芯片带路党",
+          "出口管制合规研究",
+          "合成生物学网",
+          "脑机接口社区",
+          "航空知识",
+          "蒋院长讲航天"
+        ],
+        "cursor_log": "[coverage_cursor] /tmp/tmp9n2atz8l/replay_cursor.json saved=True before={\"ai\": 4, \"aviation\": 0, \"biology\": 3, \"energy\": 5, \"frontier_tech\": 3, \"geopolitics\": 3, \"materials\": 0, \"military\": 4, \"space\""
+      },
+      {
+        "round": 4,
+        "rc": 0,
+        "cursor_after": {
+          "frontier_tech": 5,
+          "geopolitics": 0,
+          "biology": 1,
+          "space": 5,
+          "aviation": 2,
+          "ai": 1,
+          "military": 6,
+          "materials": 2,
+          "energy": 0
+        },
+        "queried_accounts": 5,
+        "queried_domains": 5,
+        "account_names": [
+          "中科院物理所",
+          "可控核聚变",
+          "商业航天Online",
+          "地缘看世界",
+          "观察者网科技/风闻社区"
+        ],
+        "cursor_log": "[coverage_cursor] /tmp/tmp9n2atz8l/replay_cursor.json saved=True before={\"ai\": 0, \"aviation\": 1, \"biology\": 0, \"energy\": 6, \"frontier_tech\": 4, \"geopolitics\": 4, \"materials\": 1, \"military\": 5, \"space\""
+      },
+      {
+        "round": 5,
+        "rc": 0,
+        "cursor_after": {
+          "frontier_tech": 0,
+          "geopolitics": 1,
+          "biology": 2,
+          "space": 6,
+          "aviation": 0,
+          "ai": 2,
+          "military": 0,
+          "materials": 0,
+          "energy": 1
+        },
+        "queried_accounts": 6,
+        "queried_domains": 6,
+        "account_names": [
+          "商业航天er",
+          "无人机",
+          "果壳",
+          "沈逸",
+          "见证核聚变",
+          "量子位"
+        ],
+        "cursor_log": "[coverage_cursor] /tmp/tmp9n2atz8l/replay_cursor.json saved=True before={\"ai\": 1, \"aviation\": 2, \"biology\": 1, \"energy\": 0, \"frontier_tech\": 5, \"geopolitics\": 0, \"materials\": 2, \"military\": 6, \"space\""
+      }
+    ],
+    "replay_total_new_cards": 4,
+    "replay_event_status": "KOL_RADAR_SIDECAR_PARTIAL_DISCOVERY_ONLY",
+    "real_bus_lines": 622,
+    "real_bus_sha16": "d81f4ce7a12539e8",
+    "prod_cursor_sha16": "67a215c504cb97d6"
+  },
+  "pass": 25,
+  "fail": 0
+}

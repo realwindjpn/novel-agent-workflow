@@ -1,0 +1,148 @@
+{"ts":"2026-09-10 16:35:03","msg":"KEWU_SEAT DEAD_NO_ARTIFACT | kewu-321-webqwen-r4-numattr exit=1 missing=RESULT_R4.md"}
+{"ts":"2026-09-10 17:35:07","msg":"KEWU_SEAT DEAD_NO_ARTIFACT | kewu-321-webqwen-r4-harvest exit=1 missing=RESULT_R4.md"}
+{"ts":"2026-09-10 18:00:09","msg":"KEWU_SEAT DEAD_NO_ARTIFACT | kewu-321-webqwen-r5-repair exit=1 missing=RESULT_R5.md"}
+{"ts":"2026-09-10 19:00:12","msg":"KEWU_SEAT DONE | kewu-321-webqwen-r5-repair artifact=RESULT_R5.md exit=?"}
+{"ts":"2026-09-10 19:00:12","msg":"KEWU_SEAT DONE | kewu-321-webqwen-r5-repair-b artifact=RESULT_R5.md "}
+{"ts":"2026-09-11 22:40:30","msg":"KEWU_SEAT DEAD_NO_ARTIFACT | anyrouter_header_bug_audit_20260911 exit=1 missing=anyrouter_header_rootcause.md"}
+{"ts":"2026-09-12 08:15:05","msg":"KEWU_SEAT DEAD_NO_ARTIFACT | kewu-327-webqwen-probe-agentrouter exit=1 missing=QWEN_327_PROBE_RESULT.md"}
+{"ts":"2026-09-12 09:15:10","msg":"KEWU_SEAT DONE | goal330-gate-recovery-327 artifact=GATE_RECOVERY_327.md exit=0"}
+{"ts":"2026-09-12 09:20:10","msg":"KEWU_SEAT DONE | goal330-g2-g4-sign-327 artifact=G4_RELEASE.json "}
+{"ts":"2026-09-12 09:25:10","msg":"KEWU_SEAT DONE | goal330-repair-g4-sha-327 artifact=G4_RELEASE.json exit=1"}
+{"ts":"2026-09-12 09:30:11","msg":"KEWU_SEAT DONE | goal330-repair-g4-sha-327-ds2 artifact=G4_RELEASE.json exit=0"}
+{"ts":"2026-09-12 11:30:19","msg":"KEWU_SEAT DONE | kewu-327-control-tick-repair-gpt56 artifact=REPAIR_CONTROL_TICK_RESULT.md "}
+{"ts":"2026-09-12 12:40:24","msg":"KEWU_SEAT DEAD_NO_ARTIFACT | kewu-327-deepseek-web-probe exit=1 missing=DEEPSEEK_WEB_PROBE_RESULT.md"}
+{"ts":"2026-09-12 12:55:25","msg":"KEWU_SEAT DONE | kewu-327-deepseek-web-probe artifact=DEEPSEEK_WEB_PROBE_RESULT.md exit=1"}
+{"ts":"2026-09-12 12:55:25","msg":"KEWU_SEAT DONE | kewu-327-deepseek-web-probe-recovery artifact=DEEPSEEK_WEB_PROBE_RESULT.md exit=0"}
+{"ts":"2026-09-12 13:05:26","msg":"KEWU_SEAT DEAD_NO_ARTIFACT | kewu-327-chun-toolprobe-browser-recovery exit=-1 missing=chun_browser_recovery_toolprobe.txt"}
+{"ts":"2026-09-12 13:35:28","msg":"KEWU_SEAT DEAD_NO_ARTIFACT | kewu-327-restore-qwen-web-author exit=1 missing=QWEN_WEB_RESTORE_RESULT.md"}
+{"ts":"2026-09-12 14:00:31","msg":"KEWU_SEAT DONE | kewu-327-restore-qwen-web-author artifact=QWEN_WEB_RESTORE_RESULT.md exit=1"}
+{"ts":"2026-09-12 14:35:35","msg":"KEWU_SEAT DEAD_NO_ARTIFACT | kewu-327-qwen-cookie-refresh-probe exit=1 missing=QWEN_COOKIE_REFRESH_PROBE_RESULT.md"}
+{"ts":"2026-09-12 14:45:36","msg":"KEWU_SEAT DONE | kewu-327-qwen-cookie-refresh-probe artifact=QWEN_COOKIE_REFRESH_PROBE_RESULT.md exit=1"}
+{"ts":"2026-09-12 18:35:53","msg":"KEWU_SEAT DEAD_NO_ARTIFACT | social-login-profile-rebuild-20260912 exit=1 missing=FINAL_STATUS.md"}
+{"ts":"2026-09-12 18:55:55","msg":"KEWU_SEAT DONE | social-login-profile-rebuild-20260912 artifact=FINAL_STATUS.md exit=1"}
+{"ts":"2026-09-12 18:55:55","msg":"KEWU_SEAT DONE | social-login-profile-rebuild-r2-20260912 artifact=FINAL_STATUS.md exit=1"}
+{"ts":"2026-09-12 18:55:55","msg":"KEWU_SEAT DONE | social_login_profile_rebuild_executor artifact=FINAL_STATUS.md exit=0"}
+{"ts":"2026-09-12 18:55:55","msg":"KEWU_SEAT DONE | social_login_profile_rebuild_verifyB_repair artifact=FINAL_STATUS.md "}
+{"ts":"2026-09-12 19:10:56","msg":"KEWU_SEAT DONE | ch327-qwen-web-probe-retry-20260912 artifact=QWEN_327_PROBE_RESULT.md exit=0"}
+{"ts":"2026-09-12 19:10:56","msg":"KEWU_SEAT DONE | kewu-327-webqwen-probe-agentrouter artifact=QWEN_327_PROBE_RESULT.md exit=1"}
+{"ts":"2026-09-12 21:20:06","msg":"KEWU_SEAT DONE | ch327-webqwen-author-r7-20260912 artifact=qwen_327_candidate_r7.md "}
+{"ts":"2026-09-12 21:40:09","msg":"KEWU_SEAT DEAD_NO_ARTIFACT | social-profile-refresh-weibo-zhihu-20260912 exit=1 missing=weibo_zhihu_refresh_verify.json"}
+{"ts":"2026-09-12 21:45:11","msg":"KEWU_SEAT DONE | ch327-webqwen-supplement-r8-20260912 artifact=qwen_327_candidate_r8.md "}
+{"ts":"2026-09-12 21:45:11","msg":"KEWU_SEAT DEAD_NO_ARTIFACT | social-cookie-tool-probe-20260912 exit=0 missing=tool_probe.txt"}
+{"ts":"2026-09-12 21:50:10","msg":"KEWU_SEAT DEAD_NO_ARTIFACT | social-cookie-refresh-toolprobe-sensenova-20260912 exit=0 missing=tool_canary_sensenova.txt"}
+{"ts":"2026-09-12 21:55:11","msg":"KEWU_SEAT DONE | bili-cookie-refresh-verify-20260912 artifact=bilibili_refresh_verify.json exit=0"}
+{"ts":"2026-09-12 21:55:11","msg":"KEWU_SEAT DEAD_NO_ARTIFACT | social-cookie-refresh-toolprobe-chun-20260912 exit=1 missing=tool_canary_chun.txt"}
+{"ts":"2026-09-12 21:55:11","msg":"KEWU_SEAT DONE | social-profile-refresh-bilibili-20260912 artifact=bilibili_refresh_verify.json exit=1"}
+{"ts":"2026-09-12 22:00:11","msg":"KEWU_SEAT DONE | social-cookie-refresh-import-verify-20260912 artifact=xiaoheihe_xiaohongshu_refresh_verify.json "}
+{"ts":"2026-09-12 22:00:11","msg":"KEWU_SEAT DONE | social-profile-refresh-xhh-xhs-20260912 artifact=xiaoheihe_xiaohongshu_refresh_verify.json exit=1"}
+{"ts":"2026-09-12 22:20:13","msg":"KEWU_SEAT DONE | kewu-material-backlog-audit-20260912 artifact=BACKLOG_AUDIT.json exit=0"}
+{"ts":"2026-09-12 22:40:15","msg":"KEWU_SEAT DEAD_NO_ARTIFACT | kewu-mirofish-backlog-batch01-20260912 exit=1 missing=BRIDGE_EXECUTION_REPORT.md"}
+{"ts":"2026-09-12 22:45:15","msg":"KEWU_SEAT DONE | ch327-webqwen-supplement-r9-20260912 artifact=qwen_327_candidate_r9.md exit=0"}
+{"ts":"2026-09-13 00:35:24","msg":"KEWU_SEAT DONE | ch327-r9-machine-gate-20260912 artifact=R9_MACHINE_GATE.json exit=0"}
+{"ts":"2026-09-13 00:40:24","msg":"KEWU_SEAT DEAD_NO_ARTIFACT | kewu-callback-takeover-repair-glm53-20260913 exit=1 missing=FINAL_STATUS.md"}
+{"ts": "2026-09-13 00:45:25", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | kewu_callback_takeover_repair_impl_20260913 exit=1 missing=report.md"}
+{"ts": "2026-09-13 00:45:25", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | kewu_callback_watchdog_repair_glm52_20260913 exit=1 missing=FINAL_STATUS.md"}
+{"ts": "2026-09-13 08:35:24", "msg": "KEWU_SEAT DONE | ch327-r9-review-preflight-20260913 artifact=PRE_REVIEW_BINDING_R9.json "}
+{"ts": "2026-09-13 08:40:25", "msg": "KEWU_SEAT DONE | ch327-r9-continuity-review-20260913 artifact=R9_continuity_tokenx.md exit=0"}
+{"ts": "2026-09-13 08:40:25", "msg": "KEWU_SEAT DONE | ch327-r9-editor-review-20260913 artifact=R9_editor_sensenova.md exit=0"}
+{"ts": "2026-09-13 08:40:25", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | ch327-r9-reader-review-20260913 exit=1 missing=R9_reader_chun.md"}
+{"ts": "2026-09-13 08:45:25", "msg": "KEWU_SEAT DONE | ch327-r9-reader-review-r2-20260913 artifact=R9_reader_agentrouter.md exit=0"}
+{"ts": "2026-09-13 08:45:25", "msg": "KEWU_SEAT DONE | ch327-r9-science-review-20260913 artifact=R9_science_sotamodel.md exit=0"}
+{"ts": "2026-09-13 08:50:25", "msg": "KEWU_SEAT DONE | ch327-r10-webqwen-targeted-repair-20260913 artifact=qwen_327_candidate_r10.md "}
+{"ts": "2026-09-13 09:00:27", "msg": "KEWU_SEAT DONE | ch327-r10-webqwen-targeted-repair-20260913 artifact=qwen_327_candidate_r10.md pid=1075216 gone"}
+{"ts": "2026-09-13 09:00:27", "msg": "KEWU_SEAT DONE | ch327-r10-webqwen-targeted-repair-tokenx-20260913 artifact=qwen_327_candidate_r10.md pid=1078251 gone"}
+{"ts": "2026-09-13 09:05:27", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | ch327-r11-webqwen-real-submit-20260913 pid=1081074 gone missing=qwen_327_candidate_r11.md"}
+{"ts": "2026-09-13 09:15:28", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | ch327-r12-science-repair-spec-20260913 exit=1 missing=R12_SCIENCE_REPAIR_SPEC.md"}
+{"ts": "2026-09-13 09:15:28", "msg": "KEWU_SEAT DONE | ch327-r12-science-repair-spec-tokenx-20260913 artifact=R12_SCIENCE_REPAIR_SPEC_TOKENX.md exit=0"}
+{"ts": "2026-09-13 09:40:30", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | controller-master-tick-queue-hygiene-20260913 pid=1095949 gone missing=FINAL_STATUS.md"}
+{"ts": "2026-09-13 09:40:30", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | controller-master-tick-queue-hygiene-tokenx-20260913 exit=1 missing=FINAL_STATUS.md"}
+{"ts": "2026-09-13 09:50:31", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | controller_queue_hygiene_repair_20260913 exit=1 missing=FINAL_STATUS.md"}
+{"ts": "2026-09-13 14:10:52", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | ch327-r10-webqwen-targeted-repair-20260913 pid=1075216 gone missing=qwen_327_candidate_r10.md"}
+{"ts": "2026-09-13 14:10:52", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | ch327-r10-webqwen-targeted-repair-tokenx-20260913 pid=1078251 gone missing=qwen_327_candidate_r10.md"}
+{"ts": "2026-09-13 14:10:52", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | controller-queue-history-finalization-glm52-20260913 exit=1 missing=FINAL_STATUS.md"}
+{"ts": "2026-09-13 14:30:54", "msg": "KEWU_SEAT DONE | controller-queue-history-finalization-glm52-20260913 artifact=FINAL_STATUS.md exit=1"}
+{"ts": "2026-09-13 14:30:54", "msg": "KEWU_SEAT DONE | controller-queue-history-finalization-glm52-r2-20260913 artifact=FINAL_STATUS.md exit=1"}
+{"ts": "2026-09-13 14:40:55", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | ch327-r12-webqwen-author-repair-20260913 exit=1 missing=qwen_327_candidate_r12.md"}
+{"ts": "2026-09-13 14:45:55", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | ch327-r12-webqwen-author-repair-r2-20260913 exit=1 missing=qwen_327_candidate_r12.md"}
+{"ts": "2026-09-13 15:10:57", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | browser-harness-cdp-bridge-repair-tokenx-20260913 exit=1 missing=FINAL_STATUS.md"}
+{"ts": "2026-09-13 15:45:59", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | patrol-rootfix-implementation-20260913 exit=1 missing=PATCH_LOG.md"}
+{"ts": "2026-09-13 15:45:59", "msg": "KEWU_SEAT DONE | patrol-takeover-rootfix-independent-audit-20260913 artifact=INDEPENDENT_ACCEPTANCE_CRITERIA.md exit=0"}
+{"ts": "2026-09-13 15:55:00", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | patrol-rootfix-identity-20260913 exit=1 missing=PATCH_LOG_identity.md"}
+{"ts": "2026-09-13 16:00:01", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | patrol-rootfix-g2-triage-20260913 exit=1 missing=PATCH_LOG_g2_triage.md"}
+{"ts": "2026-09-13 16:00:01", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | patrol-takeover-rootfix-glm52-20260913 exit=1 missing=FINAL_STATUS.md"}
+{"ts": "2026-09-13 18:50:15", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | patrol-rootfix-diagnosis-gpt56-20260913 exit=1 missing=DIAG_GPT56.md"}
+{"ts": "2026-09-13 18:50:15", "msg": "KEWU_SEAT DONE | patrol-rootfix-diagnosis-opus-20260913 artifact=DIAG_OPUS.md exit=1"}
+{"ts": "2026-09-13 18:50:15", "msg": "KEWU_SEAT DONE | patrol_rootfix_independent_opus_audit artifact=DIAG_OPUS.md "}
+{"ts": "2026-09-13 19:05:16", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | patrol-core-identity-mastertick-gpt56-20260913 pid=1302771 gone missing=PATCH_LOG_CORE.md"}
+{"ts": "2026-09-13 19:10:16", "msg": "KEWU_SEAT DONE | patrol-core-identity-mastertick-gpt56-20260913 artifact=PATCH_LOG_CORE.md pid=1302771 gone"}
+{"ts": "2026-09-13 19:10:16", "msg": "KEWU_SEAT DONE | patrol-core-narrow-opus-20260913 artifact=PATCH_LOG_CORE.md pid=1307647 gone"}
+{"ts": "2026-09-13 19:10:16", "msg": "KEWU_SEAT DONE | patrol_corefix_implementation_20260913 artifact=PATCH_LOG_CORE.md "}
+{"ts": "2026-09-13 19:15:17", "msg": "KEWU_SEAT DONE | patrol-core-narrow-opus-r2-20260913 artifact=PATCH_LOG_CORE.md exit=0"}
+{"ts": "2026-09-13 19:15:17", "msg": "KEWU_SEAT DONE | patrol-takeover-rootfix-core-opus-20260913 artifact=PATCH_LOG_CORE.md "}
+{"ts": "2026-09-13 19:20:17", "msg": "KEWU_SEAT DONE | patrol_corefix_implementation_20260913_reroute artifact=PATCH_LOG_CORE.md "}
+{"ts": "2026-09-13 19:25:18", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | patrol-core-independent-audit-gpt6-20260913 exit=1 missing=INDEPENDENT_CORE_VERIFY.md"}
+{"ts": "2026-09-13 19:30:18", "msg": "KEWU_SEAT DONE | patrol-core-audit-r2-tokenx-20260913 artifact=INDEPENDENT_CORE_VERIFY_R2.md exit=0"}
+{"ts": "2026-09-13 19:30:18", "msg": "KEWU_SEAT DONE | patrol-core-regression-r3-tokenx-20260913 artifact=PATCH_LOG_CORE_R3.md "}
+{"ts": "2026-09-13 19:30:18", "msg": "KEWU_SEAT DONE | patrol_corefix_implementation_20260913_compact artifact=PATCH_LOG_CORE.md "}
+{"ts": "2026-09-13 19:35:19", "msg": "KEWU_SEAT DONE | patrol_takeover_core_rootfix_impl_20260913 artifact=PATCH_LOG_CORE.md exit=0"}
+{"ts": "2026-09-13 19:45:19", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | patrol-active-stale-r4-tokenx-20260913 exit=1 missing=PATCH_LOG_R4.md"}
+{"ts": "2026-09-13 20:50:25", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | launch_fix_real_canary_20260913 pid=1517525 gone missing=REAL_CANARY_20260913.txt"}
+{"ts": "2026-09-13 21:40:28", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | parallel-recovery-lane-b-g1-readable-20260913 exit=1 missing=FINAL_STATUS.md"}
+{"ts": "2026-09-13 21:40:28", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | parallel-recovery-lane-c-bridge-adapter-20260913 exit=1 missing=FINAL_STATUS.md"}
+{"ts": "2026-09-13 21:40:28", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | parallel-recovery-lane-d-backlog-reconcile-20260913 exit=1 missing=FINAL_STATUS.md"}
+{"ts": "2026-09-13 21:45:29", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | parallel-recovery-lane-a-launch-channel-20260913 exit=1 missing=FINAL_STATUS.md"}
+{"ts": "2026-09-13 22:00:30", "msg": "KEWU_SEAT DONE | parallel-recovery-lane-b-g1-readable-20260913 artifact=FINAL_STATUS.md exit=1"}
+{"ts": "2026-09-13 22:20:31", "msg": "KEWU_SEAT DONE | parallel-recovery-lane-d-backlog-reconcile-20260913 artifact=FINAL_STATUS.md exit=1"}
+{"ts": "2026-09-13 22:25:32", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | launch-channel-online-canary-20260913-r1 exit=0 missing=CANARY_FINAL_STATUS.md"}
+{"ts": "2026-09-13 22:25:32", "msg": "KEWU_SEAT DONE | parallel-recovery-lane-a-launch-channel-20260913 artifact=FINAL_STATUS.md exit=1"}
+{"ts": "2026-09-13 22:35:33", "msg": "KEWU_SEAT DONE | parallel-recovery-lane-c-adapter-r2-20260913 artifact=FINAL_STATUS.md pid=1681519 gone"}
+{"ts": "2026-09-13 22:35:33", "msg": "KEWU_SEAT DONE | parallel-recovery-lane-c-bridge-adapter-20260913 artifact=FINAL_STATUS.md exit=1"}
+{"ts": "2026-09-13 22:35:33", "msg": "KEWU_SEAT DONE | parallel-recovery-lane-c-dsv4-r3-20260913 artifact=FINAL_STATUS.md "}
+{"ts": "2026-09-14 00:00:39", "msg": "KEWU_SEAT DONE | mirofish-c-independent-audit-grok46-r2-20260913 artifact=C_INDEPENDENT_AUDIT_GROK46.md exit=0"}
+{"ts": "2026-09-14 00:20:40", "msg": "KEWU_SEAT DONE | mirofish-c-evidence-recovery-batch-a-20260913 artifact=RECOVERY_MANIFEST.json exit=0"}
+{"ts": "2026-09-14 00:30:41", "msg": "KEWU_SEAT DONE | mirofish-c-batch-a-evidence-audit-glm52-20260914 artifact=GLM52_EVIDENCE_AUDIT.md exit=0"}
+{"ts": "2026-09-14 01:10:44", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | mirofish-c-evidence-recovery-batch-b-20260914 exit=1 missing=RECOVERY_MANIFEST.json"}
+{"ts": "2026-09-14 01:15:44", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | kewu-c-lane-evidence-recovery-batch-b exit=1 missing=RECOVERY_MANIFEST.json"}
+{"ts": "2026-09-14 01:20:45", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | batch_b_evidence_recovery_opus5_20260914 exit=1 missing=RECOVERY_MANIFEST.json"}
+{"ts": "2026-09-14 01:20:45", "msg": "KEWU_SEAT DONE | mirofish-c-evidence-recovery-batch-c-20260914 artifact=RECOVERY_MANIFEST.json exit=1"}
+{"ts": "2026-09-14 01:25:45", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | batch_b_evidence_recovery_glm52_takeover_20260914 exit=0 missing=RECOVERY_MANIFEST.json"}
+{"ts": "2026-09-14 01:25:45", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | mirofish-c-evidence-recovery-batch-b-r2-20260914 exit=0 missing=RECOVERY_MANIFEST.json"}
+{"ts": "2026-09-14 01:30:45", "msg": "KEWU_SEAT DONE | mirofish-c-evidence-recovery-batch-b1-r3-20260914 artifact=RECOVERY_MANIFEST.json "}
+{"ts": "2026-09-14 02:30:53", "msg": "KEWU_SEAT DONE | kewu-g2-counterfactual-grok46-20260914 artifact=COUNTERFACTUAL_GROK46.md exit=0"}
+{"ts": "2026-09-14 02:30:53", "msg": "KEWU_SEAT DONE | kewu-g2-science-glm52-20260914 artifact=SCIENCE_SENSENOVA_GLM52.md exit=0"}
+{"ts": "2026-09-14 02:35:53", "msg": "KEWU_SEAT DONE | kewu-g2-structure-astra-20260914 artifact=STRUCTURE_ANYROUTER_ASTRA.md exit=0"}
+{"ts": "2026-09-14 09:10:22", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | hotarticle-20260914-collection-q0q3-sensenova pid=2274912 gone missing=evidence_ledger.md"}
+{"ts": "2026-09-14 09:20:24", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | hotarticle-20260914-q1-agentrouter-recovery exit=1 missing=collection_report.md"}
+{"ts": "2026-09-14 09:50:26", "msg": "KEWU_SEAT DONE | kewu-g2-chair-opus5-20260914 artifact=G2_verdict.json "}
+{"ts": "2026-09-14 10:30:29", "msg": "KEWU_SEAT DONE | patrol-takeover-audit-opus5-20260914 artifact=AUDIT_SPEC.md exit=0"}
+{"ts": "2026-09-14 10:30:29", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | weekly-selfevo-evidence-recovery-grok46-20260914 exit=1 missing=WEEKLY_SELF_EVO_20260914.md"}
+{"ts": "2026-09-14 10:55:31", "msg": "KEWU_SEAT DONE | hermes-daily-learning-takeover-astra-20260914 artifact=20260914_takeover.md exit=0"}
+{"ts": "2026-09-14 11:30:35", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | hermes-daily-learning-skill-landing-fable51-20260914 exit=1 missing=20260914_skill_landing.md"}
+{"ts": "2026-09-14 11:30:35", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | mirofish-c-b1-audit-opus5-20260914 exit=1 missing=OPUS5_EVIDENCE_AUDIT.md"}
+{"ts": "2026-09-14 11:35:36", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | kewu-g2-blocker-evidence-recovery-astra-20260914 exit=1 missing=EVIDENCE_REPAIR_MANIFEST.json"}
+{"ts": "2026-09-14 11:35:36", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | mirofish-c-b1-evidence-metadata-repair-glm52-20260914 exit=1 missing=REPAIR_REPORT.md"}
+{"ts": "2026-09-14 11:40:37", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | mirofish-c-b2-url-recovery-astra-r2-20260914 exit=1 missing=R2_RECOVERY_MANIFEST.json"}
+{"ts": "2026-09-14 11:45:37", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | kewu-g2-blocker-evidence-recovery-astra-r2-20260914 exit=1 missing=R2_EVIDENCE_REPAIR_MANIFEST.json"}
+{"ts": "2026-09-14 11:45:37", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | patrol-takeover-r2-concurrency-fix-astra-20260914 exit=1 missing=R2_EXECUTION_REPORT.md"}
+{"ts": "2026-09-14 11:45:37", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | r2_concurrency_repair_glm52 exit=1 missing=R2_EXECUTION_REPORT.md"}
+{"ts": "2026-09-14 11:50:37", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | generic-dead-artifact-auto-takeover-opus5-20260914 exit=1 missing=AUTO_TAKEOVER_EXECUTION_REPORT.md"}
+{"ts": "2026-09-14 11:50:37", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | kewu-g2-evidence-recovery-glm52-r3-20260914 exit=1 missing=R3_EVIDENCE_REPAIR_MANIFEST.json"}
+{"ts": "2026-09-14 11:50:37", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | mirofish-c-b2-recovery-glm52-r3-20260914 exit=1 missing=R3_RECOVERY_MANIFEST.json"}
+{"ts": "2026-09-14 11:50:37", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | patrol-takeover-concurrency-fix-glm52-r3-20260914 exit=1 missing=R3_EXECUTION_REPORT.md"}
+{"ts": "2026-09-14 11:50:37", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | r2-concurrency-repair-opus5 exit=1 missing=R2_EXECUTION_REPORT.md"}
+{"ts": "2026-09-14 11:55:37", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | mirofish-c-b1-r2-reaudit-opus5-20260914 exit=1 missing=R2_OPUS5_AUDIT.md"}
+{"ts": "2026-09-14 12:00:38", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | mirofish-b2-xinhua-recovery-grok46-20260914 exit=1 missing=item_manifest.json"}
+{"ts": "2026-09-14 12:05:39", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | mirofish-b2-arxiv-recovery-astra-20260914 exit=1 missing=item_manifest.json"}
+{"ts": "2026-09-14 12:15:39", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | kewu-g2-evidence-disposition-opus5-20260914 exit=1 missing=INDEPENDENT_DISPOSITION.md"}
+{"ts": "2026-09-14 12:15:39", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | mirofish-c-aggregate-17-astra-20260914 exit=1 missing=FINAL_STATUS.md"}
+{"ts": "2026-09-14 12:15:39", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | mirofish-c-line-sensenova-tool-canary-20260914 exit=0 missing=.sensenova_launch_canary.txt"}
+{"ts": "2026-09-14 12:30:40", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | kewu-g2-whole-outline-science-glm52-20260914 exit=1 missing=SCIENCE_GLM52.md"}
+{"ts": "2026-09-14 12:30:40", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | kewu-g2-whole-outline-structure-astra-20260914 exit=1 missing=STRUCTURE_ASTRA.md"}
+{"ts": "2026-09-14 12:30:40", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | mirofish-c-aggregate-17-glm52-r2-20260914 exit=1 missing=FINAL_STATUS.md"}
+{"ts": "2026-09-14 12:35:41", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | kewu-g2-whole-outline-counterfactual-grok46-20260914 exit=1 missing=COUNTERFACTUAL_GROK46.md"}
+{"ts": "2026-09-14 13:00:43", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | kewu-g2-whole-outline-counterfactual-chun-r2-20260914 exit=1 missing=COUNTERFACTUAL_GROK46_R2.md"}
+{"ts": "2026-09-14 13:40:46", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | generic-dead-artifact-auto-takeover-astra-r3-20260914 exit=1 missing=AUTO_TAKEOVER_R2_REPORT.md"}
+{"ts": "2026-09-14 13:55:47", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | generic-dead-artifact-auto-takeover-glm52-r4-20260914 exit=1 missing=AUTO_TAKEOVER_R2_REPORT.md"}
+{"ts": "2026-09-14 13:55:47", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | patrol-takeover-r2-xingya-implementation pid=2473523 gone missing=AUTO_TAKEOVER_R2_REPORT.md"}
+{"ts": "2026-09-14 14:30:50", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | generic-dead-artifact-auto-takeover-astra-r5-20260914 exit=1 missing=AUTO_TAKEOVER_R5_REPORT.md"}
+{"ts": "2026-09-14 18:20:08", "msg": "KEWU_SEAT DEAD_NO_ARTIFACT | chapter-prep-master-tick-implementation-sotamodel-20260914 exit=1 missing=CHAPTER_PREP_MASTER_TICK_REPORT.md"}

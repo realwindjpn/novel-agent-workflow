@@ -1,0 +1,38 @@
+[
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260913_2fb89a68e4",
+    "title": "科技新观察丨创新驱动三大指标提前实现 中国科技\"十四五\"乘风破浪",
+    "source_url": "https://www.stdaily.com/web/gdxw/2025-10/20/content_417847.html",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260913_1126/cards/科技新观察丨创新驱动三大指标提前实现_中国科技_十四五_乘风破浪_a5940b5b.md",
+    "target_chapter_hint": 125,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_Wiki",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_Wiki"
+    ],
+    "not_done_in_dry_run": true
+  },
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260913_bacbeced60",
+    "title": "2025年度\"中国科学十大进展\"出炉 --科普时报--数字报",
+    "source_url": "https://digitalpaper.stdaily.com/http_www.kjrb.com/kjwzb/html/2026-03/27/content_602822.htm",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260913_1126/cards/2025年度_中国科学十大进展_出炉_--科普时报--数字报_c8de7542.md",
+    "target_chapter_hint": 156,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_Wiki",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_Wiki"
+    ],
+    "not_done_in_dry_run": true
+  }
+]

@@ -1,0 +1,711 @@
+{
+  "schema": "sensenova_mirofish_feed_package_v1",
+  "created_at": "2026-09-14T17:02:39",
+  "source_run_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428",
+  "mirofish_input_gate": {
+    "status": "ALLOW_MIROFISH_INPUT",
+    "reason": "",
+    "status_hint": "after_card_distill",
+    "valid_content_cards": 5,
+    "body_valid_cards": 8,
+    "story_value_cards": 5,
+    "low_story_value_cards": 3,
+    "mirofish_ready_cards": 5,
+    "p0_p1_story_value_cards": 5,
+    "material_relevance_status": "PASS",
+    "domestic_body_success": 8,
+    "body_fetch_success": 11,
+    "body_files_written": 13,
+    "body_fetch_success_metric": "raw/bodies/*.txt with BODY_FETCHED report item",
+    "story_value_threshold": {
+      "story_value_cards_min": 3,
+      "p0_p1_story_value_cards_min": 1,
+      "body_only_path_rejected": true
+    },
+    "bridge_mirofish_cron_recoverable": true
+  },
+  "mirofish_input_gate_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/raw/mirofish_input_gate.json",
+  "expert_gate_report": {
+    "schema": "sensenova_expert_gate_v1",
+    "created_at": "2026-09-14T14:41:54",
+    "status": "PASS",
+    "expert_gate_pass": true,
+    "required_experts": [
+      "沈逸",
+      "高志凯"
+    ],
+    "missing_experts": [],
+    "failure_tags": [],
+    "fields": {
+      "expert_voice_cards": [
+        {
+          "expert": "shenyi",
+          "expert_name": "沈逸",
+          "title": "沈逸公开文章",
+          "url": "https://www.guancha.cn/ShenYi/2026_08_11_826895.shtml",
+          "commentator": "沈逸",
+          "published_at": "2026-08-11",
+          "captured_at": "2026-09-14T14:41:47",
+          "source_type": "primary_article",
+          "body_chars": 7330,
+          "summary": "",
+          "material_axis": "expert_voice",
+          "g2_g3_hint": "",
+          "usable_for_mirofish": true,
+          "failure_tags": []
+        },
+        {
+          "expert": "gaozhikai",
+          "expert_name": "高志凯",
+          "title": "高志凯公开文章",
+          "url": "https://www.guancha.cn/gaozhikai/2026_09_11_900074.shtml",
+          "commentator": "高志凯",
+          "published_at": "2026-09-11",
+          "captured_at": "2026-09-14T14:41:54",
+          "source_type": "primary_article",
+          "body_chars": 5820,
+          "summary": "",
+          "material_axis": "expert_voice",
+          "g2_g3_hint": "",
+          "usable_for_mirofish": true,
+          "failure_tags": []
+        }
+      ],
+      "p0_p1_expert_cards": [
+        {
+          "expert": "shenyi",
+          "expert_name": "沈逸",
+          "title": "沈逸公开文章",
+          "url": "https://www.guancha.cn/ShenYi/2026_08_11_826895.shtml",
+          "commentator": "沈逸",
+          "published_at": "2026-08-11",
+          "captured_at": "2026-09-14T14:41:47",
+          "source_type": "primary_article",
+          "body_chars": 7330,
+          "summary": "",
+          "material_axis": "expert_voice",
+          "g2_g3_hint": "",
+          "usable_for_mirofish": true,
+          "failure_tags": []
+        },
+        {
+          "expert": "gaozhikai",
+          "expert_name": "高志凯",
+          "title": "高志凯公开文章",
+          "url": "https://www.guancha.cn/gaozhikai/2026_09_11_900074.shtml",
+          "commentator": "高志凯",
+          "published_at": "2026-09-11",
+          "captured_at": "2026-09-14T14:41:54",
+          "source_type": "primary_article",
+          "body_chars": 5820,
+          "summary": "",
+          "material_axis": "expert_voice",
+          "g2_g3_hint": "",
+          "usable_for_mirofish": true,
+          "failure_tags": []
+        }
+      ],
+      "expert_gate_pass": true
+    },
+    "per_expert": {
+      "shenyi": {
+        "expert_name": "沈逸",
+        "usable_count": 1,
+        "usable_cards": [
+          {
+            "expert": "shenyi",
+            "expert_name": "沈逸",
+            "title": "沈逸公开文章",
+            "url": "https://www.guancha.cn/ShenYi/2026_08_11_826895.shtml",
+            "commentator": "沈逸",
+            "published_at": "2026-08-11",
+            "captured_at": "2026-09-14T14:41:47",
+            "source_type": "primary_article",
+            "body_chars": 7330,
+            "summary": "",
+            "material_axis": "expert_voice",
+            "g2_g3_hint": "",
+            "usable_for_mirofish": true,
+            "failure_tags": []
+          }
+        ],
+        "rejected_count": 0,
+        "rejected_cards": [],
+        "pass": true,
+        "failure_tags": []
+      },
+      "gaozhikai": {
+        "expert_name": "高志凯",
+        "usable_count": 1,
+        "usable_cards": [
+          {
+            "expert": "gaozhikai",
+            "expert_name": "高志凯",
+            "title": "高志凯公开文章",
+            "url": "https://www.guancha.cn/gaozhikai/2026_09_11_900074.shtml",
+            "commentator": "高志凯",
+            "published_at": "2026-09-11",
+            "captured_at": "2026-09-14T14:41:54",
+            "source_type": "primary_article",
+            "body_chars": 5820,
+            "summary": "",
+            "material_axis": "expert_voice",
+            "g2_g3_hint": "",
+            "usable_for_mirofish": true,
+            "failure_tags": []
+          }
+        ],
+        "rejected_count": 0,
+        "rejected_cards": [],
+        "pass": true,
+        "failure_tags": []
+      }
+    },
+    "rescue_queue": [],
+    "policy": {
+      "search_summary_is_not_source_body": true,
+      "no_search_result_is_not_no_advice": true,
+      "does_not_modify_novel_text": true,
+      "mirofish_must_block_when_expert_gate_pass_false": true
+    },
+    "source_run_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428",
+    "input_cards_file": ""
+  },
+  "expert_gate_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/raw/expert_gate_report.json",
+  "expert_voice_cards": [
+    {
+      "expert": "shenyi",
+      "expert_name": "沈逸",
+      "title": "沈逸公开文章",
+      "url": "https://www.guancha.cn/ShenYi/2026_08_11_826895.shtml",
+      "commentator": "沈逸",
+      "published_at": "2026-08-11",
+      "captured_at": "2026-09-14T14:41:47",
+      "source_type": "primary_article",
+      "body_chars": 7330,
+      "summary": "",
+      "material_axis": "expert_voice",
+      "g2_g3_hint": "",
+      "usable_for_mirofish": true,
+      "failure_tags": []
+    },
+    {
+      "expert": "gaozhikai",
+      "expert_name": "高志凯",
+      "title": "高志凯公开文章",
+      "url": "https://www.guancha.cn/gaozhikai/2026_09_11_900074.shtml",
+      "commentator": "高志凯",
+      "published_at": "2026-09-11",
+      "captured_at": "2026-09-14T14:41:54",
+      "source_type": "primary_article",
+      "body_chars": 5820,
+      "summary": "",
+      "material_axis": "expert_voice",
+      "g2_g3_hint": "",
+      "usable_for_mirofish": true,
+      "failure_tags": []
+    }
+  ],
+  "expert_voice_card_count": 2,
+  "source_cards": [
+    {
+      "material_id": "20260914_9e5c184076",
+      "title": "{\"url\":\"http://www.zj.xinhuanet.com/20260821/cdd023c1b641446882d73da55c83d712/c.html\",\"title\":\"“AI”在余姚丨“AI之眼”与“算力根基”同频闪耀",
+      "url": "http://www.zj.xinhuanet.com/20260821/cdd023c1b641446882d73da55c83d712/c.html",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/cards/url___http___www_zj_xinhuanet_com_20260821_cdd02_85ed825a.md",
+      "source_group": "domestic",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/raw/bodies/c_85ed825a00c59934.txt",
+        "candidate_id": "e6ec010eef4d43ec",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": "primary_official"
+      },
+      "evidence_complete": false,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": ""
+    },
+    {
+      "material_id": "20260914_d87c8c233b",
+      "title": "{\"url\":\"http://www.xinhuanet.com/20260410/0a421db3567641f4acd9d437d976734e/c.html\",\"title\":\"科学与健康丨产业加快落地 低空经济“振翅高飞”-新华网\"",
+      "url": "http://www.xinhuanet.com/20260410/0a421db3567641f4acd9d437d976734e/c.html",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/cards/url___http___www_xinhuanet_com_20260410_0a421db3_f5813323.md",
+      "source_group": "domestic",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/raw/bodies/c_f5813323961c5dd7.txt",
+        "candidate_id": "33b97f3c1c479b83",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": "primary_official"
+      },
+      "evidence_complete": false,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": ""
+    },
+    {
+      "material_id": "20260914_1489302a93",
+      "title": "{\"url\":\"http://www.xinhuanet.com/tech/20250608/80ddb31da03d47c4bdc4e41211323167/c.html\",\"title\":\"记者手记：从零跃迁向深空进发-新华网\",\"co",
+      "url": "http://www.xinhuanet.com/tech/20250608/80ddb31da03d47c4bdc4e41211323167/c.html",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/cards/url___http___www_xinhuanet_com_tech_20250608_80d_02d0d0c3.md",
+      "source_group": "domestic",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/raw/bodies/c_02d0d0c33d49adee.txt",
+        "candidate_id": "0468e441b9d10da2",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": "primary_official"
+      },
+      "evidence_complete": false,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": ""
+    },
+    {
+      "material_id": "20260914_d906ee53d7",
+      "title": "A team of teams like never before: rehearsing a unique launch at ESA mission control",
+      "url": "https://www.esa.int/Enabling_Support/Operations/A_team_of_teams_like_never_before_rehearsing_a_unique_launch_at_ESA_mission_control",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/cards/A_team_of_teams_like_never_before__rehearsing_a_un_bc2b6086.md",
+      "source_group": "overseas",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/raw/bodies/A_team_of_teams_like_never_before__rehea_bc2b608662c490e8.txt",
+        "candidate_id": "bc2b608662c490e8",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": ""
+      },
+      "evidence_complete": false,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": ""
+    },
+    {
+      "material_id": "20260914_d195f0fd78",
+      "title": "Watch: FLEX and Sentinel-3C launch on Vega-C",
+      "url": "https://www.esa.int/Applications/Observing_the_Earth/Watch_FLEX_and_Sentinel-3C_launch_on_Vega-C",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/cards/Watch__FLEX_and_Sentinel-3C_launch_on_Vega-C_c2a79835.md",
+      "source_group": "overseas",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/raw/bodies/Watch__FLEX_and_Sentinel-3C_launch_on_Ve_c2a79835b3831d43.txt",
+        "candidate_id": "c2a79835b3831d43",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": ""
+      },
+      "evidence_complete": false,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": ""
+    },
+    {
+      "material_id": "20260914_76e24bcd42",
+      "title": "Briefing Chat: The Bunsen burner myth that turns out to be just hot air",
+      "url": "https://www.nature.com/articles/d41586-026-02893-8",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/cards/Briefing_Chat__The_Bunsen_burner_myth_that_turns_o_d36f159b.md",
+      "source_group": "overseas",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/raw/bodies/Briefing_Chat__The_Bunsen_burner_myth_th_d36f159bec16a6a0.txt",
+        "candidate_id": "d36f159bec16a6a0",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": ""
+      },
+      "evidence_complete": false,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": ""
+    },
+    {
+      "material_id": "20260914_fa7a1ad7dd",
+      "title": "两部门联合启动2026年度计量支撑产业新质生产力发展项目征集工作",
+      "url": "https://www.miit.gov.cn/jgsj/kjs/gzdt/art/2026/art_ff6feceb3add4d1a993bc059f9d08424.html",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/cards/两部门联合启动2026年度计量支撑产业新质生产力发展项目征集工作_4dc9f2dc.md",
+      "source_group": "domestic",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/raw/bodies/两部门联合启动2026年度计量支撑产业新质生产力发展项目征集工作_4dc9f2dc637f9114.txt",
+        "candidate_id": "4dc9f2dc637f9114",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": ""
+      },
+      "evidence_complete": true,
+      "disposition": "CHAPTER_PREP_ONLY",
+      "chapter_hint": 0,
+      "story_axis": ""
+    },
+    {
+      "material_id": "20260914_513d63ff7b",
+      "title": "神舟二十三号航天员乘组圆满完成出舱活动",
+      "url": "https://www.cmse.gov.cn/xwzx/202608/t20260828_57758.html",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/cards/神舟二十三号航天员乘组圆满完成出舱活动_a363863f.md",
+      "source_group": "domestic",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/raw/bodies/神舟二十三号航天员乘组圆满完成出舱活动_a363863f4f475a2b.txt",
+        "candidate_id": "a363863f4f475a2b",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": ""
+      },
+      "evidence_complete": true,
+      "disposition": "CHAPTER_PREP_ONLY",
+      "chapter_hint": 0,
+      "story_axis": ""
+    }
+  ],
+  "source_card_count": 8,
+  "fresh_news_cards": [
+    {
+      "material_id": "20260914_9e5c184076",
+      "title": "{\"url\":\"http://www.zj.xinhuanet.com/20260821/cdd023c1b641446882d73da55c83d712/c.html\",\"title\":\"“AI”在余姚丨“AI之眼”与“算力根基”同频闪耀",
+      "url": "http://www.zj.xinhuanet.com/20260821/cdd023c1b641446882d73da55c83d712/c.html",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/cards/url___http___www_zj_xinhuanet_com_20260821_cdd02_85ed825a.md",
+      "source_group": "domestic",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/raw/bodies/c_85ed825a00c59934.txt",
+        "candidate_id": "e6ec010eef4d43ec",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": "primary_official"
+      },
+      "evidence_complete": false,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": "",
+      "card_family": "fresh_news_card",
+      "bridge_retained": true
+    },
+    {
+      "material_id": "20260914_d87c8c233b",
+      "title": "{\"url\":\"http://www.xinhuanet.com/20260410/0a421db3567641f4acd9d437d976734e/c.html\",\"title\":\"科学与健康丨产业加快落地 低空经济“振翅高飞”-新华网\"",
+      "url": "http://www.xinhuanet.com/20260410/0a421db3567641f4acd9d437d976734e/c.html",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/cards/url___http___www_xinhuanet_com_20260410_0a421db3_f5813323.md",
+      "source_group": "domestic",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/raw/bodies/c_f5813323961c5dd7.txt",
+        "candidate_id": "33b97f3c1c479b83",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": "primary_official"
+      },
+      "evidence_complete": false,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": "",
+      "card_family": "fresh_news_card",
+      "bridge_retained": true
+    },
+    {
+      "material_id": "20260914_1489302a93",
+      "title": "{\"url\":\"http://www.xinhuanet.com/tech/20250608/80ddb31da03d47c4bdc4e41211323167/c.html\",\"title\":\"记者手记：从零跃迁向深空进发-新华网\",\"co",
+      "url": "http://www.xinhuanet.com/tech/20250608/80ddb31da03d47c4bdc4e41211323167/c.html",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/cards/url___http___www_xinhuanet_com_tech_20250608_80d_02d0d0c3.md",
+      "source_group": "domestic",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/raw/bodies/c_02d0d0c33d49adee.txt",
+        "candidate_id": "0468e441b9d10da2",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": "primary_official"
+      },
+      "evidence_complete": false,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": "",
+      "card_family": "fresh_news_card",
+      "bridge_retained": true
+    },
+    {
+      "material_id": "20260914_d906ee53d7",
+      "title": "A team of teams like never before: rehearsing a unique launch at ESA mission control",
+      "url": "https://www.esa.int/Enabling_Support/Operations/A_team_of_teams_like_never_before_rehearsing_a_unique_launch_at_ESA_mission_control",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/cards/A_team_of_teams_like_never_before__rehearsing_a_un_bc2b6086.md",
+      "source_group": "overseas",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/raw/bodies/A_team_of_teams_like_never_before__rehea_bc2b608662c490e8.txt",
+        "candidate_id": "bc2b608662c490e8",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": ""
+      },
+      "evidence_complete": false,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": "",
+      "card_family": "fresh_news_card",
+      "bridge_retained": true
+    },
+    {
+      "material_id": "20260914_d195f0fd78",
+      "title": "Watch: FLEX and Sentinel-3C launch on Vega-C",
+      "url": "https://www.esa.int/Applications/Observing_the_Earth/Watch_FLEX_and_Sentinel-3C_launch_on_Vega-C",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/cards/Watch__FLEX_and_Sentinel-3C_launch_on_Vega-C_c2a79835.md",
+      "source_group": "overseas",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/raw/bodies/Watch__FLEX_and_Sentinel-3C_launch_on_Ve_c2a79835b3831d43.txt",
+        "candidate_id": "c2a79835b3831d43",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": ""
+      },
+      "evidence_complete": false,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": "",
+      "card_family": "fresh_news_card",
+      "bridge_retained": true
+    },
+    {
+      "material_id": "20260914_76e24bcd42",
+      "title": "Briefing Chat: The Bunsen burner myth that turns out to be just hot air",
+      "url": "https://www.nature.com/articles/d41586-026-02893-8",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/cards/Briefing_Chat__The_Bunsen_burner_myth_that_turns_o_d36f159b.md",
+      "source_group": "overseas",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/raw/bodies/Briefing_Chat__The_Bunsen_burner_myth_th_d36f159bec16a6a0.txt",
+        "candidate_id": "d36f159bec16a6a0",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": ""
+      },
+      "evidence_complete": false,
+      "disposition": "ARCHIVE_WITH_REASON",
+      "chapter_hint": 0,
+      "story_axis": "",
+      "card_family": "fresh_news_card",
+      "bridge_retained": true
+    },
+    {
+      "material_id": "20260914_fa7a1ad7dd",
+      "title": "两部门联合启动2026年度计量支撑产业新质生产力发展项目征集工作",
+      "url": "https://www.miit.gov.cn/jgsj/kjs/gzdt/art/2026/art_ff6feceb3add4d1a993bc059f9d08424.html",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/cards/两部门联合启动2026年度计量支撑产业新质生产力发展项目征集工作_4dc9f2dc.md",
+      "source_group": "domestic",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/raw/bodies/两部门联合启动2026年度计量支撑产业新质生产力发展项目征集工作_4dc9f2dc637f9114.txt",
+        "candidate_id": "4dc9f2dc637f9114",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": ""
+      },
+      "evidence_complete": true,
+      "disposition": "CHAPTER_PREP_ONLY",
+      "chapter_hint": 0,
+      "story_axis": "",
+      "card_family": "fresh_news_card",
+      "bridge_retained": true
+    },
+    {
+      "material_id": "20260914_513d63ff7b",
+      "title": "神舟二十三号航天员乘组圆满完成出舱活动",
+      "url": "https://www.cmse.gov.cn/xwzx/202608/t20260828_57758.html",
+      "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/cards/神舟二十三号航天员乘组圆满完成出舱活动_a363863f.md",
+      "source_group": "domestic",
+      "source_type": "official",
+      "verification_status": "official_verified",
+      "body_fetch_evidence": {
+        "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/raw/body_fetch_report.json",
+        "body_path": "/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/raw/bodies/神舟二十三号航天员乘组圆满完成出舱活动_a363863f4f475a2b.txt",
+        "candidate_id": "a363863f4f475a2b",
+        "status": "BODY_FETCHED",
+        "counts_as_body_success": true,
+        "source_role": "primary_official",
+        "source_confidence": ""
+      },
+      "evidence_complete": true,
+      "disposition": "CHAPTER_PREP_ONLY",
+      "chapter_hint": 0,
+      "story_axis": "",
+      "card_family": "fresh_news_card",
+      "bridge_retained": true
+    }
+  ],
+  "fresh_news_card_count": 8,
+  "body_fetch_report_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/raw/body_fetch_report.json",
+  "raw_bodies_dir": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1428/raw/bodies",
+  "source_pipeline_state": {
+    "run_id": "cron_20260914_1428",
+    "status": "partial",
+    "valid_content_cards": 5,
+    "query_plan_cards": 0,
+    "body_fetch_success": 11,
+    "card_pass_count": 8
+  },
+  "policy": {
+    "query_plan_excluded": true,
+    "formal_cards_written": false,
+    "production_runner_modified": false,
+    "outline_text_txt_draft_modified": false,
+    "body_success_requires_raw_bodies_txt": true,
+    "expert_gate_required_before_mirofish": true
+  },
+  "valid_input_count": 8,
+  "skipped_count": 12,
+  "skip_reason_counts": {
+    "stale_domestic_article": 3,
+    "low_value_policy_theory_source": 1,
+    "low_value_expo_or_conference": 1,
+    "low_value_policy_or_commentary": 1,
+    "no_dyson_tree_match": 3,
+    "body_too_short_link_only": 1,
+    "not_article_page_url": 1,
+    "summary_not_body_evidence": 1
+  },
+  "body_fetch_evidence_count": 11,
+  "body_fetch_evidence_key_count": 22,
+  "stale_domestic_blocked_count": 3,
+  "missing_cards_by_tier": {},
+  "p0_missing": false,
+  "p0_missing_cards": [],
+  "p1_missing_cards": [],
+  "p0_p1_gate_blocked": false,
+  "skipped": [
+    {
+      "candidate_id": "c1024_40247782_d6c60e51c6d3719f",
+      "title": "c1024 40247782",
+      "url": "http://politics.people.com.cn/n1/2024/0531/c1024-40247782.html",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "STALE_DOMESTIC_ARTICLE"
+    },
+    {
+      "candidate_id": "c40531_40521652_6e2aaacb1328ead0",
+      "title": "c40531 40521652",
+      "url": "http://theory.people.com.cn/n1/2025/0715/c40531-40521652.html",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "LOW_VALUE_POLICY_THEORY_SOURCE"
+    },
+    {
+      "candidate_id": "c461001_40760511_0271d1dfa1997686",
+      "title": "c461001 40760511",
+      "url": "http://politics.people.com.cn/n1/2026/0714/c461001-40760511.html",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "LOW_VALUE_EXPO_OR_CONFERENCE"
+    },
+    {
+      "candidate_id": "c_5e11b4c75fe4b04b",
+      "title": "c",
+      "url": "http://www.xinhuanet.com/gangao/20241205/12ec4b8c0ed84ac18a4839d5f5dd3bd9/c.html",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "STALE_DOMESTIC_ARTICLE"
+    },
+    {
+      "candidate_id": "c_1126414617_952f9868550b0927",
+      "title": "c 1126414617",
+      "url": "https://www.xinhuanet.com/politics/xxjxs/2020-08/26/c_1126414617.htm",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "STALE_DOMESTIC_ARTICLE"
+    },
+    {
+      "candidate_id": "VIDEYJbZOqLQkNYmpT9iw4N4251009_ccd36f0553530146",
+      "title": "VIDEYJbZOqLQkNYmpT9iw4N4251009",
+      "url": "https://tv.cctv.com/2025/10/09/VIDEYJbZOqLQkNYmpT9iw4N4251009.shtml",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "LOW_VALUE_POLICY_OR_COMMENTARY"
+    },
+    {
+      "candidate_id": "url___https___news_cctv_com_2025_11_26_ARTI_4983e293691c65dd",
+      "title": "{\"url\":\"https://news.cctv.com/2025/11/26/ARTI7XraTEChYOxYIUjpqqzR251126.shtml\",\"title\":\"推动科技创新和产业创新深度融合（学习贯彻党的二十届四中全会精神）",
+      "url": "https://news.cctv.com/2025/11/26/ARTI7XraTEChYOxYIUjpqqzR251126.shtml",
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "NO_DYSON_TREE_MATCH"
+    },
+    {
+      "candidate_id": "150bded5762ab16a",
+      "title": "国产人形机器人服贸会上展现“硬核实力”",
+      "url": "https://news.cctv.com/2026/09/14/ARTIFwsNmqcZgNQZVTBNEZ28260913.shtml",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "BODY_TOO_SHORT_LINK_ONLY"
+    },
+    {
+      "candidate_id": "97105b9433c2ebcb",
+      "title": "“AI桂林”文旅大模型正式上线 “AI桂林”文旅大模型在第22届中国—东盟博览会正式上线。这是桂林市与人民网深度合作开发的首个聚焦打造“世界级旅游城市”的全域智慧文旅大模型。 了解详情 →",
+      "url": "http://tech.people.com.cn/detail.html",
+      "status": "BODY_FETCH_FAIL",
+      "reason": "NOT_ARTICLE_PAGE_URL"
+    },
+    {
+      "candidate_id": "c1e874b3b5d6b0e5",
+      "title": "科技成果赋智企业“深度行”（福州站）活动成功举办",
+      "url": "https://www.miit.gov.cn/jgsj/kjs/gzdt/art/2026/art_5de5eec66ad44854827e66d8806031b6.html",
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "NO_DYSON_TREE_MATCH"
+    },
+    {
+      "candidate_id": "80e00f988ad33502",
+      "title": "为建设高素质专业化事业单位领导人员队伍提供更加有力的制度保障——中央组织部等5部委负责人就修订行业事业单位领导人员管理“5个办法”答记者问",
+      "url": "https://www.most.gov.cn/kjbgz/202609/t20260913_197317.html",
+      "status": "ARCHIVE_WITH_REASON",
+      "reason": "NO_DYSON_TREE_MATCH"
+    },
+    {
+      "candidate_id": "0e3939742b76005a",
+      "title": "嫦娥七号任务不满足发射条件 不能在今年预定窗口实施",
+      "url": "https://www.cmse.gov.cn/xwzx/202608/t20260823_57750.html",
+      "status": "SUMMARY_ONLY",
+      "reason": "summary_not_body_evidence"
+    }
+  ],
+  "decision_cards_path": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260914_1428_final/bridge_runs/cron_20260914_1428/decision_cards.json",
+  "conversion_tasks_path": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260914_1428_final/bridge_runs/cron_20260914_1428/card_conversion_tasks.json",
+  "cross_run_dedupe_path": "/root/workspace/科武纪元/自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs/cron_20260914_1428_final/bridge_run/processed_signatures.json"
+}

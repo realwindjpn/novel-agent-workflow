@@ -1,0 +1,38 @@
+[
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260914_fa7a1ad7dd",
+    "title": "两部门联合启动2026年度计量支撑产业新质生产力发展项目征集工作",
+    "source_url": "https://www.miit.gov.cn/jgsj/kjs/gzdt/art/2026/art_ff6feceb3add4d1a993bc059f9d08424.html",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1729/cards/两部门联合启动2026年度计量支撑产业新质生产力发展项目征集工作_4dc9f2dc.md",
+    "target_chapter_hint": 156,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_Wiki",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_Wiki"
+    ],
+    "not_done_in_dry_run": true
+  },
+  {
+    "task": "FORMAL_CARD_CANDIDATE_AFTER_HUMAN_OR_CONTROLLER_REVIEW",
+    "material_id": "20260914_513d63ff7b",
+    "title": "神舟二十三号航天员乘组圆满完成出舱活动",
+    "source_url": "https://www.cmse.gov.cn/xwzx/202608/t20260828_57758.html",
+    "source_card_path": "/root/workspace/科武纪元/学习记录/SenseNova分段任务化/cron_20260914_1729/cards/神舟二十三号航天员乘组圆满完成出舱活动_a363863f.md",
+    "target_chapter_hint": 156,
+    "required_checks_before_write": [
+      "read_source_card",
+      "verify_body_evidence",
+      "dedupe_TS_INDEX_KB_INDEX_Wiki",
+      "write_formal_card",
+      "append_TS_INDEX",
+      "copy_or_link_KB_INDEX",
+      "append_Wiki"
+    ],
+    "not_done_in_dry_run": true
+  }
+]

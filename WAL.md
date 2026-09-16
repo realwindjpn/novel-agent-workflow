@@ -2922,3 +2922,21 @@
 
 ### 2026-09-16 10:03
 - 同步章节 328
+
+## 2026-09-16 10:45｜第328章《内部裂痕》草稿箱闭环（本地+平台）
+
+- 正文定稿 v5d：SHA `2b1b74c7e378cdd377d521c5d10312d5dcef3d81608424e44a1b85ecc2700c0a`，净中文 3247；`新版/第328章.md`、`已投稿/第328章.txt`（番茄口径 3829，作者说 177 字）。
+- 同 SHA 四席审稿全 PASS（科学 rsiai/claude-opus-5、读者 rsiai/claude-opus-4-8、复核 onefor/gpt-5.6-sol、军政 sotamodel/claude-opus-5-max），quote 失配 0；DEAI 硬闸 `non_pass=0`。编辑席风格轴按用户 2026-09-16 裁决「甲」退役，留痕 `任务运行态/20260915_kewu_328_330/328_已知风格项与设定项台账.md`（S1–S4／P1–P16／C1–C3）。
+- 草稿箱：第七卷：铁幕；draft_id `7685948129987789336`；正文 3756 字；作者有话说 177 CJK 存于 `author-speak-input-view` 模块（硬刷新后仍在）；重开编辑页与本地 v5d 逐段比对 0 失配；列表唯一命中 count=1。**未发布，正式发布归用户。**
+- G4：`任务运行态/20260915_kewu_328_330/G4_RELEASE.json` 已签发（POST_AUTHOR_BINDING，候选 SHA 已核；327 凭证未动）。
+- 用户口径（2026-09-16）：327、328 由用户自行发布；本轮转入 329/330。
+- 待核缺口：第326章仅存 `正文/第326章 算力黑洞.txt`（无 新版/·已投稿TXT·审稿记录），已登记于跟踪表 `LOCAL_BODY_ONLY_UNVERIFIED`。
+
+## 2026-09-16 15:43 第329章定稿（自循环 329/330 链）
+- 定稿：`author_329_candidate_v14.md`，SHA256 `7f1f8a21046e35b6359d64e21e76e0fd7a79c7d4dd9c0480d09e0ae9a98923e1`（正文净中文 3242，≥准备包硬线3200）
+- 门禁：去AI硬闸 PASS（hard 0 / score 6）；弯引号 0、半角引号 0、阿拉伯数字 0
+- 审读：四席同 SHA 全 PASS —— 科学 rsiai/claude-opus-5、读者 xingya/[芽]claude-opus-4-8、军政 yezi-gemini/gemini-3.8-flash、复核 rsiai/claude-opus-4-8（复核与科学同节点，已披露）
+- 已裁定台账：`任务运行态/20260916_kewu_selfcycle_daily/REVIEW_LEDGER_329.md`（温度口径、四百一十公斤锚点、回水阀、权限口径四项）
+- 硬闸史：FAIL_HARD(12) → 2 → PASS → 多轮返修后 PASS；返修轮次 fix1–fix8 + 口径/标点确定性对齐
+- TXT：`已投稿/第329章.txt`（待并入「作者有话说」后重写）
+- 残留：330 G4B 待以 329 定稿 SHA 签发；作者有话说产出中

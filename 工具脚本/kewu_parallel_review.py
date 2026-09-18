@@ -110,8 +110,10 @@ SEATS = {
             "若非 PASS，逐条引原文并给改写建议。\n\n正文：\n{body}"
         ),
         'fallbacks': [
-            ('nous', 'solar-pro4:free'),
-            ('rsiai', 'claude-opus-5'),
+            # 2026-09-18 22:05 实测：nous solar-pro4:free 已 404 下架，rsiai 余额耗尽(403)，
+            # 换 tokeasy/deepseek-v4-flash（当轮语义 smoke 通过，未与其他席撞 provider）。
+            ('tokeasy', 'deepseek-v4-flash'),
+            ('bmapi', 'gpt-5.6-sol'),
         ],
     },
 }

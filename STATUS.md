@@ -615,3 +615,13 @@
 - 落盘: 新版/第335章.md + 已投稿/第335章.txt + 正文/335.md (SHA一致)
 - 科学席残留(后续优化): 电极16枚vs第三触点通道数矛盾/授权时戳5分钟对不上/326章降额基线缺失/双向通道能量参数
 - G4B 336已签发(SHA 55dd4f99)
+
+## 2026-09-18 22:20 | 第336章 外星真相 | 定稿
+
+- SHA: 680f512826b3e6562df5e2528aec54b8c69a4d23862a611411cda13564883e4b
+- cjk: 3347（硬线 3200）
+- 去AI硬闸: PASS (hard 0, score 11)
+- 五席: editor PASS | science PASS_WITH_NOTES | structure/reader/deai PASS_WITH_NOTES（零 FAIL）
+- deai 补审换路: nous solar-pro4:free 404 下架 + rsiai 余额耗尽 → tokeasy/deepseek-v4-flash
+- 处置: 落盘 新版/正文/已投稿 三处 SHA 一致
+- 时间: 2026-09-18 22:20

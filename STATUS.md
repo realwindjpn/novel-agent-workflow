@@ -732,3 +732,12 @@
 - 审稿席：deepseek-v4.1-flash FAIL → 修复L19公式句后 PASS
 - 关键处置：修复L19「不是…是」公式句
 - 日期时间：2026-09-21 20:34 CST
+
+## 2026-09-21 349章闭环
+- 章号：349
+- SHA：$(sha256sum $TASK19/output/qwen_349_draft.md | cut -d' ' -f1)
+- CJK：3053
+- DEAI：0 HARD
+- 审稿席：glm-5.2 FAIL → 修复3处公式句后 PASS
+- 关键处置：修复L69/L81/L84「不是…是」公式句
+- 日期时间：2026-09-21 20:50 CST

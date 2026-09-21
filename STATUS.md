@@ -741,3 +741,12 @@
 - 审稿席：glm-5.2 FAIL → 修复3处公式句后 PASS
 - 关键处置：修复L69/L81/L84「不是…是」公式句
 - 日期时间：2026-09-21 20:50 CST
+
+## 2026-09-21 339章五审闭环
+- 章号：339
+- SHA：3d8d94bfdc9359fc5b53edb5f0e242cedcb44fde32d7935b85bae9027c83f9fb
+- CJK：3241
+- DEAI：0 HARD
+- 五审：editor(chun/glm-5.2) PASS / reader(workbuddy-hy3/global:hy3) PASS / science(yyt/deepseek-v4.1-flash) PASS / military(sensenova/deepseek-v4.1-flash) PASS / structure(workbuddy-hy3/cn:hy4-preview) PASS
+- 关键处置：修复L21/L140「并非…是」公式句、L87同句重复、L143禁词「倒吸一口凉气」、L80/L155「死寂」重复、L3/L75「刺眼」重复、L162首尾重复
+- 日期时间：2026-09-21 22:15 CST

@@ -776,3 +776,12 @@
 - 五审：editor(sensenova/glm-5.2) PASS / reader(workbuddy-hy3/deepseek-v4.1-flash) PASS / science(chun/[opencode]deepseek-v4-flash) PASS / military(yezi-gemini/gemini-3.8-flash) PASS / structure(workbuddy-hy3/global:hy3) PASS
 - 关键处置：修复公式句×8、弯引号×178、数值矛盾×1（峰谷落差→最大振幅）、脉率→脉上震颤频率、重复句×2
 - 日期时间：2026-09-22 03:08 CST
+
+## 2026-09-22 343章五审闭环
+- 章号：343
+- SHA：b36f3b47ccde122d6cbbe9d38eaa7030737fb4532f6521c1a162753e26342b1e
+- CJK：3395
+- DEAI：0 HARD
+- 五审：editor(sensenova/glm-5.2) PASS / reader(workbuddy-hy3/deepseek-v4.1-flash) PASS / science(chun/[opencode]deepseek-v4-flash) PASS / military(yezi-gemini/gemini-3.8-flash) PASS / structure(workbuddy-hy3/global:hy3) PASS
+- 关键处置：修复公式句×3（L9/L17/L32）、重复句×1（L6/L21）、禁词「核心」×2、破折号×1、数值矛盾×1（管壁烫得发红→突破安全阈值）、数字体例（13.7→十三点七）
+- 日期时间：2026-09-22 10:25 CST

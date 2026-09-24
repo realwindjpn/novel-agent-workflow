@@ -165,12 +165,13 @@ def scan_file(path: Path) -> dict:
             # 标题行“第X章 标题”/“# 第X章 标题”是合法格式，不算章节元信息。
             if typ == 'META_INFO_HARD' and is_title:
                 continue
-            # 完整对白行豁免新增的人味软/硬模式（NOT_IS_HARD 与 9 项 SOFT）。
-            if is_dialogue and (typ in _NARRATION_ONLY_HARD or typ.endswith('_SOFT')):
+            # 完整对白行豁免新增的人味软/硬模式（NOT_IS_HARD 与 9 项 SOFT）+ CURLY_QUOTE_HARD。
+            if is_dialogue and (typ in _NARRATION_ONLY_HARD or typ.endswith('_SOFT') or typ == 'CURLY_QUOTE_HARD'):
                 continue
             # 叙述层专用硬闸只扫引号外：先剥掉所有成对引号内容，避免混合行
             #（叙述 + 对白同一行）里的台词口语被判硬闸。
-            target = strip_paired_quotes(line) if typ in _NARRATION_ONLY_HARD else line
+            # CURLY_QUOTE_HARD 同样只扫引号外（对白里的引号不算违规）。
+            target = strip_paired_quotes(line) if typ in _NARRATION_ONLY_HARD or typ == 'CURLY_QUOTE_HARD' else line
             # 「X是硬约束，不是建议」有专属类型，不重复记作通用 NOT_IS_HARD。
             if typ == 'NOT_IS_HARD' and PATTERNS['CONSTRAINT_NOT_HARD'].search(target):
                 continue

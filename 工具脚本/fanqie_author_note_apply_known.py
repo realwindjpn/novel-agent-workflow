@@ -22,12 +22,12 @@ def run(cmd: str, timeout=90) -> str:
 
 
 def ab(cmd: str, timeout=90) -> str:
-    return run(f"agent-browser --session-name fanqie {cmd}", timeout=timeout)
+    return run(f"agent-browser --session-name fanqie --cdp 9223 {cmd}", timeout=timeout)
 
 
 def js(s: str, timeout=90):
     # use stdin to avoid shell quoting mess
-    p = subprocess.run(['agent-browser','--session-name','fanqie','eval',s], text=True, capture_output=True, timeout=timeout)
+    p = subprocess.run(['agent-browser','--session-name','fanqie','--cdp','9223','eval',s], text=True, capture_output=True, timeout=timeout)
     out=(p.stdout+p.stderr).strip()
     try:
         return json.loads(out)

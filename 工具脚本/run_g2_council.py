@@ -24,17 +24,15 @@ DEFAULT_OUTPUT = PROJECT / '审核记录/G2_council_decision.md'
 
 # 六席定义：(席名, 角色, provider, model)
 COUNCIL_SEATS = [
-    # 2026-09-09 席位重校（当日五席直测实证）：原六席中 sotamodel 全组 429
-    # （daily_free_credits_exhausted）、ds2api account_muted 403、cpa 无 base_url、
-    # sensenova 模型路由 404 —— 四席死。席位表按当日实测活口重排；
-    # 主控占 aliyun-qwen38（qwen3.8-flash），qwen 族与 gpt-5.6 族禁入席。
-    # 跨 provider 跨族：grok / gpt-5.6-terra(异节点) / kimi / MiniMax / glm / dsv4。
-    ('主席/结构',     '结构审查', 'custom:chun-grok46', 'grok-4.6'),
-    ('编辑/连续性',   '编辑连续性审查', 'custom:token-x', 'gpt-5.6-terra'),
-    ('科学顾问',     '科学准确性审查', 'custom:aliyun-qwen38-compatible', 'kimi-k2.6'),
-    ('军事制度',     '军事制度审查', 'custom:aliyun-qwen38-compatible', 'MiniMax-M2.5'),
-    ('读者视角',     '读者体验审查', 'custom:yi-hydrogel', 'z-ai/glm-5.3-free'),
-    ('海外新鲜度',   '海外素材新鲜度审查', 'custom:trenddao', 'deepseek-v4-flash'),
+    # 2026-09-24 席位重校。跨 provider 跨族。
+    # 结构/科学/读者三席当日语义 smoke PASS。
+    # 主席、军事、海外沿用 2026-09-18 活口，会后按耗时与回包验真。
+    ('主席/结构',     '结构审查', 'custom:rsiai', 'claude-opus-5'),
+    ('编辑/连续性',   '编辑连续性审查', 'custom:workbuddy-hy3', 'cn:glm-5.3-flash'),
+    ('科学顾问',     '科学准确性审查', 'custom:agentrouter-dsv4', 'deepseek-v4-flash'),
+    ('军事制度',     '军事制度审查', 'custom:chun-grok46', 'grok-4.6'),
+    ('读者视角',     '读者体验审查', 'qoder', 'Qwen3.8-Flash'),
+    ('海外新鲜度',   '海外素材新鲜度审查', 'custom:tokeasy', 'deepseek-v4-flash'),
 ]
 
 

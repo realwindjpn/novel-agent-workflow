@@ -1,0 +1,22 @@
+{
+  "ts": "2026-09-24T13:49:17",
+  "source": "/workspace/素材总线/kewu/audit/usable_unconsumed_readable_20260924.json",
+  "total_bus_cards": 226,
+  "after_min_body_filter": 93,
+  "selected": 40,
+  "min_body": 800,
+  "max_cards": 40,
+  "domains": {
+    "space": 18,
+    "ai": 8,
+    "unknown": 7,
+    "frontier_tech": 4,
+    "geopolitics": 1,
+    "energy": 2
+  },
+  "bands": {
+    "NO_NUMERIC_CHAPTER": 38,
+    "P1_356_385": 2
+  },
+  "fresh_le3d": 15
+}

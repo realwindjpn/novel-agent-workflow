@@ -16,7 +16,7 @@ OUTDIR.mkdir(parents=True, exist_ok=True)
 
 
 def ab(args: list[str], timeout=120) -> str:
-    p = subprocess.run(['agent-browser','--session-name','fanqie',*args], text=True, capture_output=True, timeout=timeout)
+    p = subprocess.run(['agent-browser','--session-name','fanqie','--cdp','9223',*args], text=True, capture_output=True, timeout=timeout)
     out = (p.stdout+p.stderr).strip()
     return out
 

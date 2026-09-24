@@ -123,14 +123,11 @@ def ab(session: str, command: str, timeout: int = 60, state_path: Path | None = 
 
 
 def js_eval(session: str, js: str, timeout: int = 60, state_path: Path | None = None):
-    """把 JS 写临时文件再 eval，避免长脚本被 shell 引号拆坏。"""
-    with tempfile.NamedTemporaryFile('w', encoding='utf-8', suffix='.js', delete=False) as f:
-        f.write(js)
-        path = f.name
-    try:
-        out = ab(session, f"eval \"$(cat {shlex.quote(path)})\"", timeout=timeout, state_path=state_path)
-    finally:
-        Path(path).unlink(missing_ok=True)
+    """用 subprocess 直接调用 agent-browser eval，避免 shell 转义问题。"""
+    import subprocess as _sp
+    cmd = ["agent-browser", "--session-name", session, "eval", js]
+    r = _sp.run(cmd, capture_output=True, text=True, timeout=timeout)
+    out = r.stdout.strip() or r.stderr.strip()
     try:
         value = json.loads(out)
         # agent-browser 某些版本会把 eval 的 JSON 再包一层字符串
@@ -345,9 +342,11 @@ def replace_body(session: str, data: dict, state_path: Path | None = None) -> di
     绝不再用 `ed.innerHTML = ''`：那会绕过 ProseMirror 事务。
     execCommand 方案保留为 fallback（adapter 不可用时）。
     """
+    import json as _json
+    body_json = _json.dumps(data['body'], ensure_ascii=False)  # keep Chinese chars literal, avoid \uXXXX in JS string
     js = f"""
 (() => {{
- const body = {data['body']!r};
+ const body = __BODY_PLACEHOLDER__;
  const W = (s) => (s || '').replace(/\\s+/g, '').length;
  const NW = (s) => (s || '').replace(/\\s+/g, '');
  const num = Array.from(document.querySelectorAll('input'))
@@ -373,8 +372,17 @@ def replace_body(session: str, data: dict, state_path: Path | None = None) -> di
      const allSel = state.selection.constructor.create(state.doc, 0, state.doc.content.size);
      tr.setSelection(allSel);
      tr.deleteSelection();
-     // 插入新正文
-     tr.insertText(body);
+     // 插入新正文（按行分段，ProseMirror insertText 不转换 \n 为段落）
+     const lines = body.split('\\n');
+     for (let i = 0; i < lines.length; i++) {{
+       if (i > 0) {{
+         // 段落间插入换行（hard_break 或新段落）
+         tr.insertText('\\n');
+       }}
+       if (lines[i]) {{
+         tr.insertText(lines[i]);
+       }}
+     }}
      // 提交事务 → PM state 更新 → 页面计数器刷新
      view.dispatch(tr);
      
@@ -447,6 +455,7 @@ def replace_body(session: str, data: dict, state_path: Path | None = None) -> di
  }};
 }})()
 """
+    js = js.replace('__BODY_PLACEHOLDER__', body_json)
     r = js_eval(session, js, timeout=180, state_path=state_path)
     if not isinstance(r, dict) or not r.get('ok'):
         raise RuntimeError(f'替换正文失败: {r}')

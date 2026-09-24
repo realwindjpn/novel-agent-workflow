@@ -46,9 +46,7 @@ SEATS = {
             "若非 PASS，逐条列必改项并引原文片段。\n\n正文：\n{body}"
         ),
         'fallbacks': [
-            # 2026-09-18 席位重校：chun/gemma 未过当轮 smoke，换 chun-grok46/grok-4.6。
-            ('bmapi', 'gpt-5.6-sol'),
-            ('chun-grok46', 'grok-4.6'),
+            ('bmapi', 'gpt-5.6-sol')
         ],
     },
     'structure': {
@@ -61,9 +59,7 @@ SEATS = {
             "若非 PASS，逐条列必改项并引原文片段。\n\n正文：\n{body}"
         ),
         'fallbacks': [
-            # 2026-09-18 席位重校：yezi-gemini 未过当轮 smoke，agnes 提为 primary。
-            ('agnes-text', 'agnes-3.0-flash'),
-            ('bytecat', 'glm-5.3'),
+            ('custom:workbuddy-hy3', 'global:hy3')
         ],
     },
     'science_military': {
@@ -76,9 +72,7 @@ SEATS = {
             "若非 PASS，逐条列必改项并引原文片段，给出正确参数或机制。\n\n正文：\n{body}"
         ),
         'fallbacks': [
-            # 2026-09-18 席位重校：yezi-gemini 未过当轮 smoke，换 chun-grok46/grok-4.6。
-            ('rsiai', 'claude-opus-5'),
-            ('chun-grok46', 'grok-4.6'),
+            ('chun-grok46', 'grok-4.6')
         ],
     },
     'reader': {
@@ -91,9 +85,7 @@ SEATS = {
             "次行写「追读评分：N/5」。若非 PASS，逐条列必改项并引原文片段。\n\n正文：\n{body}"
         ),
         'fallbacks': [
-            # 2026-09-18 席位重校：yi-hydrogel/GLM-5.2 未过当轮 smoke，换 bytecat/glm-5.3。
-            ('bytecat', 'glm-5.3'),
-            ('tokeasy', 'deepseek-v4-flash'),
+            ('yezi-gemini', 'gemini-3.6-flash')
         ],
     },
     'deai': {
@@ -110,10 +102,7 @@ SEATS = {
             "若非 PASS，逐条引原文并给改写建议。\n\n正文：\n{body}"
         ),
         'fallbacks': [
-            # 2026-09-18 22:05 实测：nous solar-pro4:free 已 404 下架，rsiai 余额耗尽(403)，
-            # 换 tokeasy/deepseek-v4-flash（当轮语义 smoke 通过，未与其他席撞 provider）。
-            ('tokeasy', 'deepseek-v4-flash'),
-            ('bmapi', 'gpt-5.6-sol'),
+            ('agnes-text', 'agnes-3.0-flash')
         ],
     },
 }

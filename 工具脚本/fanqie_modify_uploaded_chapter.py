@@ -30,7 +30,7 @@ def run(cmd: str, timeout: int = 60) -> str:
 
 
 def ab(session: str, command: str, timeout: int = 60) -> str:
-    return run(f"agent-browser --session-name {shlex.quote(session)} {command}", timeout=timeout)
+    return run(f"agent-browser --session-name {shlex.quote(session)} --cdp 9223 {command}", timeout=timeout)
 
 
 def js_eval(session: str, js: str, timeout: int = 60):

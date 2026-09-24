@@ -2037,6 +2037,7 @@ def build_mirofish_package(items: list[dict]) -> dict:
             'platform': it.get('platform', ''),
             'title': it.get('title', ''),
             'content_excerpt': it.get('evidence', '')[:300],
+            'body': it.get('evidence', '')[:300],
             'analysis_angle': it.get('viewpoint_inference', ''),
             'chapter_target': _infer_chapter_target(it),
             'confidence_score': _infer_confidence_score(it),

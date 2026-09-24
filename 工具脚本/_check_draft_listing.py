@@ -13,7 +13,7 @@ DRAFT_URL = f'https://fanqienovel.com/main/writer/chapter-manage/{BOOK_ID}&{BOOK
 
 def ab(cmd: str, timeout: int = 90) -> str:
     p = subprocess.run(
-        f'agent-browser --session-name fanqie {cmd}',
+        f'agent-browser --session-name fanqie --cdp 9223 {cmd}',
         shell=True, text=True,
         stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
         timeout=timeout,

@@ -17,7 +17,7 @@ BOOK_ID = '7628216044850531352'
 
 
 def run_ab(args: list[str], timeout: int = 180) -> str:
-    p = subprocess.run(['agent-browser', '--session-name', 'fanqie', *args], text=True, capture_output=True, timeout=timeout)
+    p = subprocess.run(['agent-browser', '--session-name', 'fanqie', '--cdp', '9223', *args], text=True, capture_output=True, timeout=timeout)
     out = (p.stdout + p.stderr).strip()
     return out
 

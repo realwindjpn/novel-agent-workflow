@@ -1,0 +1,22 @@
+{
+  "test_deai_split_formula.py::DeaiSplitFormulaTests": true,
+  "test_kewu_deai_hard_gate_scan.py::DeaiHardGateTests::test_constraint_not_hard_full_dialogue_is_exempt": true,
+  "test_kewu_deai_hard_gate_scan.py::DeaiHardGateTests::test_full_dialogue_not_is_remains_exempt": true,
+  "test_kewu_deai_hard_gate_scan.py::DeaiHardGateTests::test_is_x_not_y_dialogue_is_exempt": true,
+  "test_kewu_deai_hard_gate_scan.py::DeaiHardGateTests::test_mixed_line_dialogue_not_is_exempt_cn_quotes": true,
+  "test_kewu_daily_g3_builder.py::test_01_dual_chapter_success_fields_and_sha": true,
+  "test_kewu_daily_g3_builder.py::test_02a_missing_one_chapter_not_verified": true,
+  "test_kewu_daily_g3_builder.py::test_02b_wrong_chapter_number_invalid": true,
+  "test_kewu_daily_g3_builder.py::test_02c_empty_plot_seed_invalid": true,
+  "test_kewu_daily_g3_builder.py::test_04a_outline_chapter_missing_hard_fail": true,
+  "test_kewu_daily_g3_builder.py::test_04b_outline_chapter_duplicate_hard_fail": true,
+  "test_kewu_daily_g3_builder.py::test_05a_prev_chapter_missing_hard_fail": true,
+  "test_kewu_daily_g3_builder.py::test_06_g2_chapter_constraints_preserved": true,
+  "test_kewu_daily_g3_builder.py::test_07_idempotent_bytes_and_mtime": true,
+  "test_kewu_daily_g3_builder.py::test_08_input_change_triggers_rebuild": true,
+  "test_kewu_daily_g3_builder.py::test_09_single_tick_autoruns_builder_then_acks_g3": true,
+  "test_kewu_daily_g3_builder.py::test_10_mutation_disabling_autorun_breaks_test_09": true,
+  "test_kewu_daily_g3_builder.py::test_11b_artifacts_only_contain_fixture_facts": true,
+  "test_kewu_daily_g3_builder.py::test_11c_dry_run_writes_nothing": true,
+  "test_kewu_daily_g3_builder.py::test_11d_chapters_resolved_from_seed_when_not_given": true
+}

@@ -824,3 +824,41 @@
 - 2026-09-25 01:38 | 同步章节 353
 - 2026-09-25 03:00 | 同步章节 354
 - 2026-09-25 09:08 | 同步章节 355
+
+
+## 2026-09-25 17:05 | 第355章重写定稿（v10）+ 五席R2全PASS；第351章谢云性别修正并覆盖草稿箱
+
+### 第355章（重写线，用户纠偏驱动）
+- 章号：355《铁幕溃败》
+- SHA：`81ef715d250e1076`（旧 `7464c938`）｜CJK：3003
+- 纠偏来源：用户指出「354 把手伤写尽了，355 还在接，让读者疲劳」
+- 处置：伤处从方宁右手碳化换到谢云颅脑过载；方宁只一句带过
+- 机检：DEAI 硬闸 PASS hard 0；拆否定句 0；碳化/筋膜/组织液/抽搐 0；
+  跨章重复扫描通过；阿拉伯数字仅章名
+- 新闸：`工具脚本/kewu_cross_chapter_repeat_scan.py`
+  （抓到 354 单章手伤命中 49 次、散热/灼痕/倒计时连续 6 章复述）
+- 五席R2（跨provider跨族，dispatch_to_model 通道）：
+  editor bmapi/gpt-5.6-sol PASS 120.9s
+  structure sensenova/glm-5.2 PASS 266.9s（首轮误报FAIL，系任务包混入旧版正文，修包后PASS）
+  science_mil chun-grok46/grok-4.6 PASS 39.2s
+  reader yezi-gemini/gemini-3.8-flash PASS 29.8s（追读5分）
+  deai sensenova2/glm-5.2 PASS 270.5s（原席 yi-hydrogel/grok-4.7 fallback全挂，换异provider补席）
+- 产物：`审核记录/ch355_review_r2/`
+- 边界：未生成TXT、未进草稿箱
+
+### 第351章（性别连续性修正）
+- 根因：知识库 B 文件 L16「谢云 性别：男」，351 定稿写成「她」
+- 处置：9 处人称改为「他」（L10/40/80/93/94/96/99/100），方宁的「她」保留
+- 本地：新版 SHA `fb6daecc` CJK 3219；已投稿 TXT 同步
+- 平台：**仅草稿箱，未发布**。第七卷已发布页只到 349
+- 草稿箱回读验真：字数 4442→**3661**，平台正文字数计数器 3661，
+  重开 modifydraft 编辑页回读 他43/她2、`谢云…她`=false，作者有话说存在
+- 教训：先用错脚本（给 modifychapter 打草稿补丁）误报完成；
+  真判据是「列表字数变化 + 平台计数器 + 重开回读」三条同过
+
+### 本轮流程纠偏（用户点名）
+- 跳步：全程未读 `AGENT_MEMORY_INDEX.md` §3 总路由表，未打开 `kewu-close-loop`
+  → 状态 ROUTER_GATE_SKIPPED
+- 已固化：`kewu-close-loop` 新增 P0「开工先查路由表 + 草稿写回只认规范脚本」
+  + reference `session-20260925-router-skip-and-draft-writeback-wrong-script.md`
+- 日期时间：2026-09-25 17:05 CST

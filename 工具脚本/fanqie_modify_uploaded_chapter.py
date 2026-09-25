@@ -19,6 +19,7 @@ PROJECT_DIR = Path('/root/workspace/科武纪元')
 BOOK_ID = '7628216044850531352'
 BOOK_NAME_ENC = '%E7%A7%91%E6%AD%A6%E7%BA%AA%E5%85%83%EF%BC%9A%E6%88%91%E5%9C%A8%E6%9C%AB%E4%B8%96%E4%BF%AE%E4%BB%99'
 MANAGE_URL = f'https://fanqienovel.com/main/writer/chapter-manage/{BOOK_ID}&{BOOK_NAME_ENC}?type=1'
+DRAFT_URL = f'https://fanqienovel.com/main/writer/chapter-manage/{BOOK_ID}&{BOOK_NAME_ENC}?type=2'
 DEFAULT_SESSION = 'fanqie'
 
 
@@ -259,15 +260,26 @@ def main():
     ap.add_argument('--project-dir', type=Path, default=PROJECT_DIR)
     ap.add_argument('--session', default=DEFAULT_SESSION)
     ap.add_argument('--volume', default=None, help='覆盖大纲自动推断分卷；默认按大纲第N章行解析')
+    ap.add_argument('--area', type=int, default=1, choices=[1, 2],
+                    help='1=已发布章节（type=1，默认）；2=草稿箱（type=2）。'
+                         '2026-09-25：351 只在草稿箱未发布，需 --area 2 才能定位到。')
+    ap.add_argument('--skip-volume', action='store_true',
+                    help='跳过分卷切换（草稿箱列表无分卷筛选器时必须跳过）')
     ap.add_argument('--execute', action='store_true')
     args=ap.parse_args()
     data=parse_txt(args.project_dir,args.chapter)
     volume = args.volume or infer_volume(args.project_dir, args.chapter)
-    print(json.dumps({**{k:v for k,v in data.items() if k!='body'}, 'volume': volume}, ensure_ascii=False, indent=2))
+    print(json.dumps({**{k:v for k,v in data.items() if k!='body'}, 'volume': volume,
+                      'area': args.area}, ensure_ascii=False, indent=2))
     if not args.execute:
         print('DRY_RUN_OK')
         return
-    choose_volume(args.session,volume)
+    if args.area == 2:
+        # 导航到草稿箱列表
+        ab(args.session, f'navigate {shlex.quote(DRAFT_URL)}', timeout=90)
+        time.sleep(6)
+    if args.area == 1 or not args.skip_volume:
+        choose_volume(args.session,volume)
     opened=search_and_open(args.session,data)
     replaced=replace_body(args.session,data)
     submitted=submit(args.session,data)

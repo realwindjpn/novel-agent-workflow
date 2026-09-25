@@ -3175,3 +3175,20 @@
        2) G2 海外新鲜度席未补（无第六个跨族活口）
        3) fanqie_update_draft_chapter.py 的 saved:true 假信号未修（根因未明）
 - 下一步：拿到登录态即派 356 首写（网页项目席，非裸 API）
+科武纪元写作·20260924 = https://chat.qwen.ai/p/fb4a25fd-6ef1-46ae-a5c4-07df7c138b3d
+旧：8c20e458 / 2eadf16e 均已失效（重定向到根）
+获取方式：CDP Target.createTarget → 等15s → 真实鼠标点击侧栏项目项 → 读 location.href
+注意：注入cookie后必须用 NEW tab，旧tab refresh无效
+
+## 2026-09-25 ch356 返修断点
+
+- r0 qoder裸席 SHA 40721b35 CJK3133 朱雀 人工0%/AI13.6%
+- r1 项目席返修 SHA f4bf07cd CJK3731 DEAI hard=0 三条阻断已修 朱雀仍 人工0%/AI17.5%
+- 止损计数 2/3
+- 根因判断：网页席实测**读不到本地文件**（回「读不到」）；且 textarea 注入上限约 5140 字符，整章贴不进
+- 项目「科武纪元写作·20260924」= chat.qwen.ai/p/fb4a25fd-6ef1-46ae-a5c4-07df7c138b3d
+  知识库三件套已确认在位：A_写作OS与人味去AI规范.md / B_角色势力与连续性.md / C_大纲窗口与近窗边界.md
+- 会话 /c/d8987d58-8f05-4fe6-b55b-aad13e1449f3 已进入作家状态（读了 A+B）
+- 9227 密码登录可用；9225 cookie 口发消息 401，弃用
+- 下一步：在该会话内发 r2 指令（/tmp/p3.txt 已写好，509字符），让它按作家OS重写**它上一条输出的那一章**
+  发不出时用发送按钮或 Ctrl+Enter；产物抓取用 last message container innerHTML -> 段落还原

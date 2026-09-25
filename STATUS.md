@@ -896,3 +896,14 @@
   不碰 Emulation，绕开 qwen_cookie_profile.py 的 metrics-override 坑）
 - 端口账：9223=fanqie(勿动) / 9225=Qwen / 9226=deepseek
 - 日期时间：2026-09-25 18:50 CST
+
+## 2026-09-26 02:00 | 第356章五审写回（REVIEW_PASS_WRITTEN）
+
+- 章号：356《谈判桌上的刀光》｜第八卷：博弈
+- 定稿：`新版/第356章.md` SHA `d4d973784723f4f6932e174c2948a211e9f716443e8904b01dc98c1ac7897f45` CJK 3009
+- 作者席：网页项目「科武纪元写作·20260924」会话 `67c07e61`，模型 Qwen3.8-Max
+- 硬闸：`kewu_deai_hard_gate_scan.py` hard_count=0（WARN_DENSE_SOFT 不挡）
+- 五审同 SHA：制度 cn:deepseek-v4-flash PASS；编辑 cn:glm-5.3-flash PASS；读者 cn:minimax-m3 PASS；事实 cn:hy3 PASS；科学 cn:kimi-k2.6 PASS。节点均为 workbuddy-hy3，模型五族互异，非作者席
+- 作废：科学席早先一份行号对不上的 PASS；制度席读反触发词的 FAIL
+- 未做：TXT、草稿箱、发布。发布归用户
+- 日期时间：2026-09-26 02:00 CST

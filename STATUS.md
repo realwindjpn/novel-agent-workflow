@@ -880,3 +880,19 @@
   但重开编辑页 + 预览页均为旧版。真替换由手动路径完成。
   → saved:true ≠ 正文落库；判据只能是列表字数 + 编辑页回读 + 预览页回读三条
 - 日期时间：2026-09-25 18:20 CST
+
+
+## 2026-09-25 18:50 | 356 链：G1-G4 全通，卡作者席登录态
+
+- 356《谈判桌上的刀光》/ 357《地球咽喉》｜第八卷：博弈
+- G1 ALLOW_G2 → G2 NO_PATCH(g3_gate ALLOW, 5存1失) → G3_PREP_356 G3_READY → G4_RELEASE_356 已签
+- 作者席三路全废（实测，非推测）：
+  1. Qwen 网页席：9225 起专用 Chrome(.qwen-browser-profile)，CDP 注入 21 cookie 全成功，
+     独立 session + 硬刷新后仍 `Log in / Sign up`，localStorage token 长度 0 → token 已吊销
+  2. deepseek 网页席：secrets 解密 8 行，`ds_session_id` 过期(1790302034 < now)，
+     9226 注入 5 cookie，导航跳 /sign_in，要手机验证码 → 不通
+  3. kimi / qianwen 备份：过期时间字段已是三位数残留，全废；z.ai 无落盘备份
+- 新建脚本：`工具/web_agents_qwen/scripts/qwen_cookie_inject_cdp.py`（只走 Network.setCookie，
+  不碰 Emulation，绕开 qwen_cookie_profile.py 的 metrics-override 坑）
+- 端口账：9223=fanqie(勿动) / 9225=Qwen / 9226=deepseek
+- 日期时间：2026-09-25 18:50 CST

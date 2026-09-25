@@ -24,15 +24,16 @@ DEFAULT_OUTPUT = PROJECT / '审核记录/G2_council_decision.md'
 
 # 六席定义：(席名, 角色, provider, model)
 COUNCIL_SEATS = [
-    # 2026-09-24 席位重校。跨 provider 跨族。
-    # 结构/科学/读者三席当日语义 smoke PASS。
-    # 主席、军事、海外沿用 2026-09-18 活口，会后按耗时与回包验真。
-    ('主席/结构',     '结构审查', 'custom:rsiai', 'claude-opus-5'),
+    # 2026-09-25 当轮原生 smoke 重校（dispatch_to_model 通道，timeout 280）。
+    # 旧表 rsiai/claude-opus-5、agentrouter-dsv4、tokeasy、qoder 本轮全挂（未过 smoke）。
+    # 注意：bmapi/gpt-5.6-sol 与 chun-grok46/grok-4.6 在 90s 探针里超时，
+    # 但 280s 窗口内回包（71s/71s）——MCP 超时是上游拥堵，不等于节点失效，勿据短探针判死。
+    ('主席/结构',     '结构审查', 'custom:bmapi', 'gpt-5.6-sol'),
     ('编辑/连续性',   '编辑连续性审查', 'custom:workbuddy-hy3', 'cn:glm-5.3-flash'),
-    ('科学顾问',     '科学准确性审查', 'custom:agentrouter-dsv4', 'deepseek-v4-flash'),
+    ('科学顾问',     '科学准确性审查', 'custom:sensenova', 'glm-5.2'),
     ('军事制度',     '军事制度审查', 'custom:chun-grok46', 'grok-4.6'),
-    ('读者视角',     '读者体验审查', 'qoder', 'Qwen3.8-Flash'),
-    ('海外新鲜度',   '海外素材新鲜度审查', 'custom:tokeasy', 'deepseek-v4-flash'),
+    ('读者视角',     '读者体验审查', 'custom:sensenova2', 'glm-5.2'),
+    ('海外新鲜度',   '海外素材新鲜度审查', 'custom:yi-hydrogel', 'grok-4.7'),
 ]
 
 
@@ -232,7 +233,7 @@ def main():
             continue
 
         print(f'调用 {seat_name} ({provider}/{model})...', file=sys.stderr)
-        res = call_hermes_model(provider, model, prompt)
+        res = call_hermes_model(provider, model, prompt, timeout=280)
         verdict = parse_verdict(res.get('stdout', ''))
         results.append({
             'seat': seat_name, 'role': role,

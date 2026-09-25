@@ -3167,3 +3167,11 @@
        2) fanqie_update_draft_chapter.py 的 saved/verified 自报不可信，待修（根因未明）
        3) fanqie_draft_upload_chapter.py 遇同名草稿报 DRAFT_ALREADY_EXISTS，属预期行为
 - 下一步：356《谈判桌上的刀光》首写（第八卷：博弈）
+
+### 2026-09-25 18:50
+- 356 G1→G4 全通并签发；作者席三路（Qwen/deepseek/kimi-zai）实测全废，缺登录态停在这里
+- 端口账：9223=fanqie / 9225=Qwen / 9226=deepseek；Qwen 必须挂 .qwen-browser-profile
+- 残留：1) 需用户给新 Qwen cookie（或任一可用网页作者席登录态）
+       2) G2 海外新鲜度席未补（无第六个跨族活口）
+       3) fanqie_update_draft_chapter.py 的 saved:true 假信号未修（根因未明）
+- 下一步：拿到登录态即派 356 首写（网页项目席，非裸 API）

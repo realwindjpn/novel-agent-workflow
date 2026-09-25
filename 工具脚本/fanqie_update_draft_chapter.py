@@ -372,7 +372,7 @@ def replace_body(session: str, data: dict, state_path: Path | None = None) -> di
      const allSel = state.selection.constructor.create(state.doc, 0, state.doc.content.size);
      tr.setSelection(allSel);
      tr.deleteSelection();
-     // 插入新正文（按行分段，ProseMirror insertText 不转换 \n 为段落）
+     // 按行分段写入（避免把换行符依赖交给 insertText 自动转换段落）
      const lines = body.split('\\n');
      for (let i = 0; i < lines.length; i++) {{
        if (i > 0) {{

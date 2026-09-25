@@ -862,3 +862,21 @@
 - 已固化：`kewu-close-loop` 新增 P0「开工先查路由表 + 草稿写回只认规范脚本」
   + reference `session-20260925-router-skip-and-draft-writeback-wrong-script.md`
 - 日期时间：2026-09-25 17:05 CST
+
+
+## 2026-09-25 18:20 | 第355章草稿箱覆盖闭环（DRAFT_SAVED_NOT_PUBLISHED）
+
+- 章号：355《铁幕溃败》｜草稿ID `7689273549055345176`｜卷属 第七卷：铁幕
+- 本地：`新版/第355章.md` SHA `81ef715d` CJK 3003
+- TXT：`已投稿/第355章.txt` SHA `be3dcea4` 番茄口径 3470（旧 644B 残件已备份 archive/ch355_txt_pre_rebuild_20260925.txt）
+  - 旧 TXT 是被废弃的「合成她」版（主角/性别错乱），按 v10 重建
+- 作者有话说：派席 bmapi/gpt-5.6-sol 撰写，182 字，过四门禁（首行全角冒号 / 120-260 / 无禁词 / 技术锚点4）
+- 草稿箱验真（三条同过）：
+  1. 列表：3468 字 / 25秒前 / count=1
+  2. 重开 modifydraft 编辑页：正文首句「林星辰的左手无名指在抖。」，作者说 noteHit=true
+  3. 预览页回读：hasLin=true, hasOld=false（旧版已替净）
+- **假信号事故**：`fanqie_update_draft_chapter.py --execute` 报
+  ok/saved/verified 全绿（saved:true、pageWordCount:3468、rowText 3957），
+  但重开编辑页 + 预览页均为旧版。真替换由手动路径完成。
+  → saved:true ≠ 正文落库；判据只能是列表字数 + 编辑页回读 + 预览页回读三条
+- 日期时间：2026-09-25 18:20 CST

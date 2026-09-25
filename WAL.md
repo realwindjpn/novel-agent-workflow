@@ -3159,3 +3159,11 @@
      最终由主控手动点「存草稿」完成；脚本需修
   4) 审稿任务包构建器存在「卡片自带旧版正文」坑，已加 strip_stale_body 剥除
 - 下一步：355 生成TXT + 草稿箱保存（按 kewu-close-loop §直接草稿授权边界）
+
+### 2026-09-25 18:20
+- 第355章草稿箱覆盖闭环：3468字/25秒前/编辑页回读新版/预览页 hasLin=true hasOld=false/作者说落库
+- 假信号：fanqie_update_draft_chapter.py 报 saved:true 但正文未落库，真替换走手动路径
+- 残留：1) 350-354 仍在草稿箱未发布（已发布页止于 349）
+       2) fanqie_update_draft_chapter.py 的 saved/verified 自报不可信，待修（根因未明）
+       3) fanqie_draft_upload_chapter.py 遇同名草稿报 DRAFT_ALREADY_EXISTS，属预期行为
+- 下一步：356《谈判桌上的刀光》首写（第八卷：博弈）

@@ -25,15 +25,22 @@ DEFAULT_OUTPUT = PROJECT / '审核记录/G2_council_decision.md'
 # 六席定义：(席名, 角色, provider, model)
 COUNCIL_SEATS = [
     # 2026-09-25 当轮原生 smoke 重校（dispatch_to_model 通道，timeout 280）。
-    # 旧表 rsiai/claude-opus-5、agentrouter-dsv4、tokeasy、qoder 本轮全挂（未过 smoke）。
+    # 旧表 rsiai/claude-opus-5、agentrouter-dsv4、tokeasy、qoder(MCP) 本轮全挂。
     # 注意：bmapi/gpt-5.6-sol 与 chun-grok46/grok-4.6 在 90s 探针里超时，
     # 但 280s 窗口内回包（71s/71s）——MCP 超时是上游拥堵，不等于节点失效，勿据短探针判死。
+    # 海外新鲜度席 yi-hydrogel/grok-4.7 首轮 280s 超时，改用 qoder CLI（qoder-cn）补席。
     ('主席/结构',     '结构审查', 'custom:bmapi', 'gpt-5.6-sol'),
     ('编辑/连续性',   '编辑连续性审查', 'custom:workbuddy-hy3', 'cn:glm-5.3-flash'),
     ('科学顾问',     '科学准确性审查', 'custom:sensenova', 'glm-5.2'),
     ('军事制度',     '军事制度审查', 'custom:chun-grok46', 'grok-4.6'),
     ('读者视角',     '读者体验审查', 'custom:sensenova2', 'glm-5.2'),
-    ('海外新鲜度',   '海外素材新鲜度审查', 'custom:yi-hydrogel', 'grok-4.7'),
+    ('海外新鲜度',   '海外素材新鲜度审查', 'qoder', 'Qwen3.8-Flash'),
+    # 2026-09-26 新增：中文文风席。走张老师号（cn:hy4-preview），实测原生 smoke
+    # 13.1s 回 153，免费档。夏文华已手动停用 → cn 域只剩张老师一个候选号，
+    # cn: 前缀的模型请求确定落到张老师号，不再靠权重抽签。
+    # 注意与「编辑/连续性」席同 provider（custom:workbuddy-hy3）但不同账号/模型，
+    # 本脚本不设一席一 provider 门禁（那是 kewu_parallel_review.py 的 HARD 门）。
+    ('中文文风',     '中文文风与人味审查', 'custom:workbuddy-hy3', 'cn:hy4-preview'),
 ]
 
 

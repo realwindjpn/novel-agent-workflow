@@ -69,6 +69,54 @@ PATTERNS = {
     'AI_TASTE_SOFT': re.compile(r'(深入探讨|不仅能.*更能够|值得关注的是|总而言之|综上所述)'),
     # 2026-09-03 新增：中文弯引号 U+201C/U+201D/U+2018/U+2019
     'CURLY_QUOTE_HARD': re.compile(r'[\u201c\u201d\u2018\u2019]'),
+
+    # ── 2026-09-26 人味审计补闸 ─────────────────────────────────────────
+    # 缺口来源：kewu_deai_hard_gate_scan.py 原先只有 NOT_BUT/NUM_ENUM/CN_ENUM
+    # 等公式类规则，bad_phrases.md 的 13 条禁用词表**从未接入**，导致
+    # 第356章 L18「意味着」/ L88「微微」这类明文禁用词扫出 hard_count=0。
+    # 「仅写 spec 文件≠生效」——禁用词必须同轮落成机器闸。
+    #
+    # 口径纪律（2026-09-26 用户定调：按上下文语境判定，不生硬机械判定）：
+    # 全库实测 13 条禁用词中 3 条会大面积误伤，硬套原表等于把 255+ 处合法写法判 FAIL。
+    #   意味着 109 处——「100%意味着人机完全合一」「这个名字意味着什么？」多为合法推断/角色口语
+    #   微微   120+ 处——「微微发白/发颤/发抖/下沉/倾斜/发亮/凸起」全是物理量，可拍可测，
+    #                      而 bad_phrases.md 自己的检验句「不能被摄像机拍到就不算合格」恰与之矛盾
+    #   缓缓    26 处——「缓缓流动/下降/后移/推入」全是具体慢动作，本就是「替代成具体动作」的示范
+    # 故拆为三档：
+    #   HARD  —— 语义确定是 AI 腔，无合法小说用法
+    #   CONTEXT_SOFT —— 语境相关，配物理/感官谓语放行，配情绪层或裸用才提示
+    #   不进闸 —— 合法用法占绝大多数，交审稿席语境判断
+    'BANNED_WORD_HARD': re.compile(
+        r'(仿佛|宛如|不禁|不由得|某种意义|这不仅是|时代洪流|命运齿轮)'
+    ),
+    # 微微/缓缓：语境档。下列物理/感官谓语出现时视为「数据落到身体/仪表/延迟」的具体手段，放行。
+    # 情绪层名词（眼神/瞳孔/神色/嘴角/呼吸/语调/目光/眉心…）在 微微 前出现，或无谓语跟随时才提示。
+    'CONTEXT_ADVERB_SOFT': re.compile(
+        r'(微微|缓缓)(?![一-鿿]{0,2}(?:'
+        r'发白|发颤|发抖|发烫|发亮|发热|发紧|发麻|发虚|发涩|发红|发青|发胀|发痒|发酸|'
+        r'颤动|颤抖|搏动|收紧|蜷着|蜷起|弓起|绷紧|下沉|倾斜|变形|凸起|凹陷|鼓起|'
+        r'滑动|打滑|翘起|翻卷|下弯|上浮|明暗|'
+        r'流动|下降|上升|后移|前移|推入|抽出|合拢|张开|抬起|落下|移动|漂移|流转|贯通|旋转|摇晃|'
+        r'闪动|闪烁|跳动|滚动|推移|晃动|摇摆)'
+        r')'
+    ),
+    # 「不得用引号包裹普通缩写、行业黑话、四字短句或一般性结论」
+    # —— DEAI 规范第三节后半句，**长期无机器闸**。第356章 L22「部署」/L28「连带」
+    # /L58「逐节点」/L88「部署方」4 处实证违规。
+    # 排除对白：引号内带句末标点的是台词，不是「包裹词条」。
+    #
+    # 口径再收（2026-09-26 实测回归）：初版按 1–6 字全判 HARD，误伤公文原词与术语——
+    # 第323章「轨维」（封存流水号前缀）、第324章「待确认」（事由栏）、
+    # 第330章「沉肩坠肘」「含胸拔背」（书法术语→战术映射）、第331章「冗余」（图纸标注）。
+    # 这些恰是 DEAI 规范要保留的实义引用。现按长度分档：
+    #   2–4 字 —— 绝大多数是公文原词/术语/屏幕字段，**降为 SOFT 交审稿席语境判**
+    #   5–6 字 —— 已是一般性结论或四字短句，保留 HARD
+    'QUOTED_TERM_HARD': re.compile(r'「[^「」\n，。！？、；：]{5,6}」'),
+    'QUOTED_TERM_SOFT': re.compile(r'「[^「」\n，。！？、；：]{1,4}」'),
+    # 连续同型段（BURSTINESS_FLAT 的局部形态）：placeholder，见 _detect_consec_same_shape。
+    # 聚合统计会漏——第356章全章同类微动作段仅占 6%，但 L88/89/90 连续三段同骨架，
+    # L96 再把三人动作复述一遍。只看均值/标准差判不出来，必须查连续窗口。
+    'CONSEC_SAME_SHAPE_SOFT': re.compile(r''),  # placeholder, handled in scan_file
 }
 
 WEIGHTS = {
@@ -103,6 +151,11 @@ WEIGHTS = {
     'COINED_TERM_HARD': 5,
     'AI_TASTE_SOFT': 2,
     'CURLY_QUOTE_HARD': 3,
+    'BANNED_WORD_HARD': 4,
+    'CONTEXT_ADVERB_SOFT': 1,
+    'QUOTED_TERM_HARD': 3,
+    'QUOTED_TERM_SOFT': 1,
+    'CONSEC_SAME_SHAPE_SOFT': 2,
 }
 
 _DIALOGUE_RE = re.compile(r'^\s*(?:“[^“”\n]*”|「[^「」\n]*」|"[^"\n]*"|\'[^\'\n]*\')\s*$')
@@ -160,7 +213,10 @@ def scan_file(path: Path) -> dict:
         for typ, pat in PATTERNS.items():
             # 跨行/跨句检测键由专用函数添加，主循环必须跳过——
             # 其正则为占位 r''，search 对任意非空行无条件命中，会导致分数通胀。
-            if typ in ('REPEATED_SUBJECT_OPENING_SOFT', 'FRAGMENT_PUNCHLINE_SOFT', 'SPLIT_FORMULA_HARD'):
+            if typ in ('REPEATED_SUBJECT_OPENING_SOFT', 'FRAGMENT_PUNCHLINE_SOFT', 'SPLIT_FORMULA_HARD', 'CONSEC_SAME_SHAPE_SOFT'):
+                continue
+            # 语境档副词闸：对白整行豁免——角色口语里的「微微/缓缓」是正常表达。
+            if is_dialogue and typ == 'CONTEXT_ADVERB_SOFT':
                 continue
             # 标题行“第X章 标题”/“# 第X章 标题”是合法格式，不算章节元信息。
             if typ == 'META_INFO_HARD' and is_title:
@@ -187,6 +243,8 @@ def scan_file(path: Path) -> dict:
     _detect_fragment_punchline(lines, hits)
     # 拆句公式（句号变体）：「不是X。」后接「而是/这是/是」开头
     _detect_split_formula(lines, hits)
+    # 连续同型微动作段（BURSTINESS_FLAT 局部形态，均值法漏检）
+    _detect_consec_same_shape(lines, hits)
 
     score = sum(WEIGHTS.get(h['type'], 1) for h in hits)
     hard_hits = [h for h in hits if h['type'].endswith('_HARD')]
@@ -346,13 +404,74 @@ def _detect_split_formula(lines: list[str], hits: list[dict]) -> None:
                 break
 
 
+# 「某人+微动作+否定/重复+回到静止」段的形态指纹。
+# 用于抓 BURSTINESS_FLAT 的**局部**形态：连续 3 段同骨架、动作趋同。
+# 刻意不统计全章均值/标准差——第356章实证：全章同类段仅 6%（聚合达标），
+# 但 L88/L89/L90 连续三段同骨架、L96 复述三人动作，均值法完全判不出。
+_MICROACT_VERB = re.compile(r'(合拢|压住|按住|按在|压在|停在|收回来|翻过来|翻过去|敲|点了一下|端起|放下|没接话|没有抬头)')
+_MICROACT_NEG = re.compile(r'(没有|又|还|再|仍|依旧)')
+_CJK_ONLY = re.compile(r'[\u4e00-\u9fff]')
+# 母题豁免：同一意象 ≥3 次且每次有变奏不算过度对称（依 C 席审计第4条打架）。
+# 豁免口径落在「动作动词各不相同」上——全用同一动词才算真同型。
+_MICROACT_MAXLEN = 60  # 超过此长度的段落不是「微动作段」
+
+
+def _detect_consec_same_shape(lines: list[str], hits: list[dict]) -> None:
+    """连续同型段检测（BURSTINESS_FLAT 局部形态）。
+
+    连续 3 个有效叙述段均命中「微动作+否定」形态、且三段的微动作动词互不相同
+    （说明是同一骨架换道具，正是第356章 L88/89/90 的形态）→ 记一次软命中，
+    标在窗口末段行号上。
+
+    标题行、对白整行、被引号剥空后无实质内容的行一律跳过。
+    """
+    cands: list[tuple[int, str, set[str]]] = []
+    for idx, raw in enumerate(lines, 1):
+        s = raw.strip()
+        if not s or _TITLE_RE.match(s) or _DIALOGUE_RE.match(s):
+            continue
+        cjk = len(_CJK_ONLY.findall(s))
+        if cjk == 0 or cjk > _MICROACT_MAXLEN:
+            continue
+        if not (_MICROACT_VERB.search(s) and _MICROACT_NEG.search(s)):
+            continue
+        cands.append((idx, s, set(_MICROACT_VERB.findall(s))))
+
+    for i in range(len(cands) - 2):
+        win = cands[i:i + 3]
+        verbs: set[str] = set()
+        for _, _, v in win:
+            verbs |= v
+        # 三段同骨架 + 动词各异 = 换道具式重复；若三段动词完全相同则是母题变奏，豁免。
+        if len(win) == 3 and len(verbs) >= 3:
+            last = win[-1]
+            hits.append({
+                'line': last[0],
+                'type': 'CONSEC_SAME_SHAPE_SOFT',
+                'text': (f"连续3段同型微动作段 L{win[0][0]}/L{win[1][0]}/L{last[0]}："
+                         f"动作{'/'.join(sorted(verbs))}｜末段 {last[1][:120]}"),
+            })
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('paths', nargs='*', help='文件或目录；默认扫描 已投稿/ 与 新版/')
     ap.add_argument('--start', type=int)
     ap.add_argument('--end', type=int)
     ap.add_argument('--outdir', default=str(PROJECT / '审核记录' / '去AI硬闸扫描'))
+    # 2026-09-26 补：基线回归用。停用当日新增的三条闸，用于回答
+    # 「新增闸把多少原本 PASS 的文件推成 FAIL」——没有基线就报命中数等于瞎报。
+    ap.add_argument('--disable-new', action='store_true',
+                    help='停用 2026-09-26 新增的五条闸（BANNED_WORD_HARD / CONTEXT_ADVERB_SOFT / '
+                         'QUOTED_TERM_HARD / QUOTED_TERM_SOFT / CONSEC_SAME_SHAPE_SOFT）')
     args = ap.parse_args()
+    if args.disable_new:
+        for k in ('BANNED_WORD_HARD', 'CONTEXT_ADVERB_SOFT', 'QUOTED_TERM_HARD',
+                  'QUOTED_TERM_SOFT', 'CONSEC_SAME_SHAPE_SOFT'):
+            PATTERNS.pop(k, None)
+            WEIGHTS.pop(k, None)
+        global _detect_consec_same_shape
+        _detect_consec_same_shape = lambda lines, hits: None  # noqa: E731
 
     roots = [Path(p) for p in args.paths] if args.paths else DEFAULT_DIRS
     records = []

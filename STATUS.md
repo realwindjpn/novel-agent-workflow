@@ -923,3 +923,12 @@
 - 356 现行：WARN_DENSE_SOFT 硬闸=0 分数=31，命中项均为语境档/结构档
 - 残留：11 文件仍硬FAIL（约6章）未返修；九信号审稿表未补对应判定项；QUOTED_TERM_SOFT 14处待审稿席判语境
 - 报告：审核记录/humanize_audit_20260926.md
+
+### 2026-09-26 补：审稿表判定项补齐（闭合审计最后缺口）
+
+- humanize_ai_check_absorption_20260710.md 新增 §1b 谈判/会议体裁五项专判（VOICE_FINGERPRINT / INFO_ASYMMETRY / SURROUND_RETREAT / SILENCE_ANCHOR / SIX_LAYER），与 voice_rules.md 五节一一对应
+- 新增 §1c 九信号自身三处打架裁决：不是…而是钉死为「而是」20字内搭配、三点式豁免正文内文书列表、过度对称豁免有意母题变奏；BURSTINESS_FLAT 改只查连续窗口不查聚合
+- 写后报告新增 NEGOTIATION_CHECK 字段块与判定纪律（五项不得整体省略，漏项视同 FAIL；缺「撤」可跨章成立判 WARN 不判 FAIL）
+- 写前任务卡补两条：禁词表是语境判断起点不是判完即结清单（附 146 处实证）；机器闸只做粗筛与粗放行，SOFT 命中项一律交审稿席判语境
+- 至此三席审计的全部建议已落地：执行层 voice_rules/author_prompt_patch、技法层接入、机器闸五条、审稿表五项
+- 朱雀来源轴实验结案：21章目标仅跑出1条，全程429，第6章 0.0% 已否掉来源轴；朱雀按用户叫停不作返修判据

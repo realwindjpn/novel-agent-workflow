@@ -944,3 +944,19 @@
 - 番茄覆盖：6 章全部经 `fanqie_modify_uploaded_chapter.py --execute` 提交，平台状态「已发布→修改审核中→已发布」；350 为「待发布」队列（9-28 定时）
 - 新增验真脚本 `工具脚本/verify_uploaded_body.py`：按分卷定位+翻页遍历+ProseMirror 段落序列逐段相等（修正了 ProseMirror innerText 段落间多一换行导致的假不等）
 - 验真结果：**6/6 章逐段相等**，CJK 与段落数全部一致
+
+## 2026-09-26 科武自循环 G2 打通（接续 authorA）
+
+- 根因：kewu_daily_control_tick.py 只写 PENDING/ACTION_DISPATCHED，不执行 G2；19 条 cron 无一调用 run_g2_council.py。G1 放行后 G2 永无产物，watchdog 空转 3 次升 HUMAN_ADJUDICATION_REQUIRED
+- 修复：新增 /root/.hermes/scripts/kewu_g2_dispatch_runner.py（PENDING G2 → 七席会审 → g2_emit_verdict.py 转接 → 退出码交 watchdog；已 ACK 幂等跳过；派工 3 次无产物退 4 止损；产物已存在退 5 防覆盖）
+- 挂 cron c750197ba305「科武G2会审派工」every 20m
+- 修派工器 bug：素材目录原按字典序取会选中 verify_bodyfetch_after_patch_20260610_1148 测试残留，改为按 mtime + 排除测试前缀，现正确取 bus_bridge_2026-09-25
+- 首轮七席：5 活 2 失败（bmapi 全链失败 / qoder 无输出），缺席恰为结构审查与海外新鲜度
+- 补位：sensenova/glm-5.2（结构审查，NOTE_ONLY 104.4s）+ agnes-text/agnes-3.0-flash（海外新鲜度，NOTE_ONLY 146.2s），两席均当轮 smoke PASS，prompt 与首轮同构
+- 合并后 7 席全活 0 失败，票型 NOTE_ONLY 5 : OUTLINE_PATCH 1 : NO_PATCH 1
+- 裁决：**NOTE_ONLY** / g3_gate=ALLOW / 目标章 [357,358]
+- 权威产物：任务运行态/20260926_kewu_selfcycle_daily/output/G2_verdict.json（council_sha256=8eb24057）
+- 链路自证推进：G2 ACK → G3 AUTO_BUILD 双章准备包 → G4A 签发通过 → 现 PENDING authorA（Qwen 网页作者席，357章）
+- G3 硬门槛：净中文 3200 起，无业务上限，禁据大纲目标 3000 判超长或短稿
+- 踩坑记录：早先 nohup 起的首轮进程与正式会审同路径，可能静默覆盖；已验未污染（权威 json 17:56 生成含 substitution 标记），md 加旧快照警示，脚本加存在即拒跑护栏
+- 残留：Qwen 作者席浏览器 CDP 9225 未运行，authorA 派工待拉起；其后 reviewA/closeA 未跑；358 章排队

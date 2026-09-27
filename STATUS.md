@@ -972,3 +972,12 @@
 - 写回：新版/第357章.md 回读一致；审稿记录 output/reviews_357_r5/
 - 残留：草稿箱写回未做（番茄后台）；358 排队
 - 2026-09-27 07:58 | SHA af8573a9704aebf9 | CJK 3212
+- 2026-09-27 09:14 | 同步章节 357
+
+### 2026-09-27 09:20 第357章 草稿箱上传补全（闭环修正）
+
+- 用户纠偏：草稿箱未写回即报「闭环完成」不成立；Task Closure Checklist 第6步补执行
+- ensure_fanqie_upload_txt_ready ok:true（fanqie_body_chars 3715 / note 167，作者有话说标记错字「说说」已纠「话说」）
+- fanqie_draft_upload_chapter --execute：fill/note/saved/listing 全 ok；草稿箱「第357章 地球咽喉 3715字」无重复；SYNC_OK
+- 番茄后台字数 3715 = 本地番茄口径 3715（一致，无截断）
+- 残留：358 排队

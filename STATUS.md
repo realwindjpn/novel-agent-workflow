@@ -961,3 +961,14 @@
 - 踩坑记录：早先 nohup 起的首轮进程与正式会审同路径，可能静默覆盖；已验未污染（权威 json 17:56 生成含 substitution 标记），md 加旧快照警示，脚本加存在即拒跑护栏
 - 残留：Qwen 作者席浏览器 CDP 9225 未运行，authorA 派工待拉起；其后 reviewA/closeA 未跑；358 章排队
 - 2026-09-26 19:42 | 同步章节 356
+
+## 2026-09-27 第357章《地球咽喉》作者席出稿闭环（自循环续跑）
+
+- 根因链修复：Qwen 项目知识库陈旧（B 缺性别表、C 停在 240-260 旧窗口）是 357 三轮短稿/偏题根源；项目页实测存在「文件」弹窗（含删除+添加入口），推翻 skill 旧结论「项目创建后无补传入口」
+- 知识库换新：qwen_project_kb_update.py 删旧传新 B（2194B 性别表）/C（6821B 353-362 窗口），API 回读 + OSS 正文逐字节验真 KB_UPDATE_OK
+- 作者席链路：全关浏览器重开 CDP 9225；正路=项目页 composer 直发（侧栏「新建对话」会跳首页开全局会话=断链根因）；新会话 /c/ab2ed0be 严探针全对
+- 正文产出：首稿 CJK 1944 → 四锚点补段 +1283 → 合并 CJK 3212（SHA af8573a9704aebf9）；DEAI 硬闸 non_pass=0；跨章重复自检通过；首末行/弯引号/阿拉伯数字/破折号全零
+- 五席审稿全 PASS（免费 global 域五族互异，EVIDENCE 验真无幻觉）：editor=hy3 / reader=kimi-k2.6 / science=gemini-3.5-flash / structure=deepseek-v4.1-flash / fact=hy4-preview-f（max_tokens 须 32768，8192 被 thinking 吃光回空包）
+- 写回：新版/第357章.md 回读一致；审稿记录 output/reviews_357_r5/
+- 残留：草稿箱写回未做（番茄后台）；358 排队
+- 2026-09-27 07:58 | SHA af8573a9704aebf9 | CJK 3212

@@ -981,3 +981,13 @@
 - fanqie_draft_upload_chapter --execute：fill/note/saved/listing 全 ok；草稿箱「第357章 地球咽喉 3715字」无重复；SYNC_OK
 - 番茄后台字数 3715 = 本地番茄口径 3715（一致，无截断）
 - 残留：358 排队
+- 2026-09-27 13:52 | 同步章节 358
+
+## 2026-09-27 第358章《舆论战场》全链闭环
+
+- 作者席：项目页 composer 新会话 /c/614e6147，r1→r8 五轮定点返修（DEAI公式句/破折号/与其不如/时间链因果/现实名内化），终稿 CJK 3714，SHA 60fe96a1f516c5fc
+- 机检：DEAI non_pass=0、跨章重复通过、首末行/弯引号/阿拉伯数字/破折号全零
+- 审稿风波与纠偏：原五席配方含主控族（hy3/hy4）与付费席——用户纠偏「仅 hy4 免费、hy3 属主控节点、席位变更须审批」。reader/science/structure 三席跨族 PASS 保留；editor 与 fact 两席由 nim/moonshotai/kimi-k3 补审，均 PASS（EVIDENCE 验真，一条为省略号缩写非幻觉）。nim/k3 需 max_tokens 32768，偶发空回重试即恢复
+- 草稿箱：第358章 舆论战场 4539字 listing 命中无重复，SYNC_OK，番茄口径=本地一致
+- 写回：新版/第358章.md 回读一致；TXT 作者有话说 109 字
+- 357+358 双章完成，358 之后下一章待 G1/G2/G3 链续跑

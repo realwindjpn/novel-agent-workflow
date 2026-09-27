@@ -3230,3 +3230,13 @@
 
 - 357《地球咽喉》：定稿 SHA af8573a9704aebf9 / CJK 3212 / 番茄 3715 字已进草稿箱，listing 回读无重复，SYNC_OK
 - 下一动作：358 任务卡（G3_PREP_358.json 已有）→ 投作者会话 /c/ab2ed0be → 机检+五审 → TXT+草稿箱
+
+### 2026-09-27 13:52
+- 同步章节 358
+
+## 2026-09-27 14:xx 断点：358 闭环，席位表待用户定
+
+- 358《舆论战场》：SHA 60fe96a1f516c5fc / CJK 3714 / 番茄 4539 字已进草稿箱，listing 无重复
+- 审席表当前合规可用：hy4（免费）、nim/kimi-k3（用户点名）；agentrouter deepseek-v4-flash 曾 smoke PASS 但补审时 502；any/anyrouter 503、sotamodel 403、agentrouter claude/gpt 系 402 欠费
+- 待用户裁决：五审席位固定名单（免费席不足五族，凑不齐跨族五席，需用户定名单或减席方案）
+- 下一动作：G1 素材采集 → G2 会审 → G3 准备 359

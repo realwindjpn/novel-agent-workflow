@@ -3240,3 +3240,23 @@
 - 审席表当前合规可用：hy4（免费）、nim/kimi-k3（用户点名）；agentrouter deepseek-v4-flash 曾 smoke PASS 但补审时 502；any/anyrouter 503、sotamodel 403、agentrouter claude/gpt 系 402 欠费
 - 待用户裁决：五审席位固定名单（免费席不足五族，凑不齐跨族五席，需用户定名单或减席方案）
 - 下一动作：G1 素材采集 → G2 会审 → G3 准备 359
+
+## 2026-09-28 10:35 断点：359 返修至 r4，五审在跑
+
+- r4 候选：SHA16 e5c6c1c5d898cbda / CJK 11482 / 628 行 / 首行「第359章 人才争夺」末行「（本章完）」
+- 已闭环的机检：DEAI hard_count=0（30 SOFT, score 41）、8行窗口重复=0、人物字段零冲突、回访报数链 19 到 1 严格递减、倒计时残留 0
+- 断点1：五席审稿未回收（目录 output/reviews_359_r4/，run_reviews.py 后台跑，五席五个 provider）
+- 断点2：草稿箱上传与已投稿 TXT/MD 写回未做
+- 断点3：STATUS/WAL/Git 提交待五审结果出来后一并做
+- 下一步：五审全 PASS 则写回 + 草稿箱回读 + Git，随后直接续跑 360（G3_PREP_360/G4 已签发）
+- 环境：CDP 9225 常驻（生产 profile），登录态 LOGIN_OK；author_wrapper.py 两处判定 bug 已修
+
+## 2026-09-30 02:30 断点：359 全链闭环（r8 定稿）
+
+- 359《人才争夺》r8：SHA b30ce9e35001fb29dac6dfa6aacecf119d2ec78aa7c5c90ec910aa95a8fe705c / CJK 6025 / 正文544行 / 番茄7216字
+- 五审全 PASS（editor/structure/reader/fact/science），硬伤修复：92/45 vs 50/87 矛盾消除 + 中段压缩
+- 写回：新版/第359章.md + 已投稿/第359章.txt（SYNC_OK）
+- 作者席新路线：qodercli（qoderclicn -p -m Qwen3.8-Flash）替代失效网页 Qwen，任务包自读 KB，用户 2026-09-30 点名固化
+- 断点1：番茄草稿箱 listing 回读未做（发布归用户，主控不代发）
+- 断点2：360 章 G3_PREP_360.json 已存在，下一章待启动（按"能跑就一直跑"续跑）
+- 环境：9223 旧实例已关；9227 account1 仍登录但本轮未用；sing-box 代理常驻

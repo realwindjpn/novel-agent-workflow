@@ -991,3 +991,29 @@
 - 草稿箱：第358章 舆论战场 4539字 listing 命中无重复，SYNC_OK，番茄口径=本地一致
 - 写回：新版/第358章.md 回读一致；TXT 作者有话说 109 字
 - 357+358 双章完成，358 之后下一章待 G1/G2/G3 链续跑
+
+## 2026-09-28 第359章《人才争夺》返修至 r4 候选（五审在跑）
+
+- 环境恢复：断电后 CDP 9225 未起、profile SingletonLock 陈旧（PID 2973115 已死）。清锁后以生产 profile `.qwen-browser-profile` + Chrome 147 重起，`qwen_auto_login.py 9225` 回 LOGIN_OK
+- 上一轮 fix2 空包根因定案：返修卡只给改法清单、未内联源稿，网页 Qwen 无稿可依（回执 95 字）。改走 skill 的短块路径：每卡 ≤7KB、内联相关段落全文、每批新会话
+- 本地确定性修复（r3a→r3c）：删 L246-277 逐字重复块（与 L164-195 逐字相同已坐实，连带 L278-281 二次重复），删后 8 行窗口 dup=0；全文 20 处「倒计时」改「窗口还剩/窗口时间走完」，与 358 章末「正向计时从零起跳」对齐
+- 作者席三轮短块返修：fix3（计数口径切换+全名录口径句+「最后一个人」去重，390字）、fix4（回访段 11 处报数，278字）、fix5（同人物字段一致性 3 处+重点目标个数口径 1 处，207字）
+- 数字链定案：算法为「每处报数 = 该行之后本章还会发生的拨通次数」，14 次拨通给出唯一解 19→12→11→10→9→8→7→6→5→4→3→2→1，机检严格递减
+- r4 候选：628 行 / CJK 11482 / SHA16 `e5c6c1c5d898cbda`。人物字段零冲突、重复块零、倒计时零
+- DEAI 硬闸：hard_count=0，30 处全 SOFT（score 41，r2 为 44）
+- 基建修复两处（author_wrapper.py）：①只认 `LOGIN_OK` 漏 `ALREADY_LOGGED_IN`，把「已登录」误判 FAIL 空跑两轮；②重试白名单缺 `QWEN_RESPONSE_NOT_RECOVERED` 等登录态掉线族，失败直接退出。修后 fix4 attempt 1 失败、attempt 2 自动重登重投救回
+- 审席换线（2026-09-28 当轮 smoke，max_tokens 8192）：editor=onefor/gpt-5.6-sol、reader=siliconflow/deepseek-ai/DeepSeek-V3、science=sensenova2/glm-5.2、structure=tingfeng/deepseek-v4-flash、fact=workbuddy global:hy4-preview。五席五个 provider，无 PROVIDER_COLLAPSE。原 nim/kimi-k3 当轮超时、yi-hydrogel/grok-4.7 502 倒席
+- 残留：五审在跑（reviews_359_r4/），未回收；草稿箱/写回/Git 未做
+- 2026-09-28 10:35 | r4 SHA e5c6c1c5d898cbda | CJK 11482
+
+## 2026-09-30 第359章《人才争夺》全链闭环（r8 定稿）
+
+- 作者席切换：旧网页 Qwen 实例（CDP 9223）登录态失效（token 空），已关闭；转 qodercli（qoderclicn -p -m Qwen3.8-Flash）当作家席，任务包自读 KB 文件，用户 2026-09-30 点名采用
+- 返修链路：r5_repair2（机检 PASS，editor/structure/reader PASS，science/fact FAIL）→ r6（qoder 修两硬伤但破坏报数链）→ r7（补报数链 9→1，fact PASS，science 仍 FAIL 因前半段10路同构）→ r8（压缩前半段10路为3代表+概括，science PASS）
+- 两处真实硬伤已修：①92留/45走 vs 50留/87走 矛盾——L509 加「最坏预估/多拉回42」消除；②中段电话流水账节奏疲劳——前半段10路压为张远/陈雅琳/黄志远3代表+系统标注概括
+- 报数链：20(L287)→19(L289)→9→8→7→6→5→4→3→1(L385) 严格单调递减，加法闭合（92+45=137，50+87=137，差42双向一致）
+- 五审全 PASS：editor=tingfeng/deepseek-v4-pro、structure=workbuddy-hy3/cn:hy4-preview-f、reader=any/claude-opus-5-5、fact=any/claude-opus-5-5、science=any/claude-opus-5-5（后三席走 dispatch_to_model 短核对，因 chat_completions 协议 404/空回，dispatch 内部路由通）
+- 定稿：SHA b30ce9e35001fb29dac6dfa6aacecf119d2ec78aa7c5c90ec910aa95a8fe705c / CJK 6025（含注）/ 正文 544行 / 番茄 body 7216字
+- 写回：新版/第359章.md（SYNC_OK）、已投稿/第359章.txt（ensure 脚本 ok=true，note 112字）
+- 残留：番茄草稿箱 listing 回读未做（发布归用户）；9227 account1 实例仍登录但本轮未用
+- 2026-09-30 02:30 | r8 SHA b30ce9e3... | CJK 6025

@@ -3268,8 +3268,14 @@
 - 358《舆论战场》：SHA 60fe96a1f516c5fc / CJK 3714 / 番茄 4539 字已进草稿箱，listing 无重复
 - 审席表当前合规可用：hy4（免费）、nim/kimi-k3（用户点名）；agentrouter deepseek-v4-flash 曾 smoke PASS 但补审时 502；any/anyrouter 503、sotamodel 403、agentrouter claude/gpt 系 402 欠费
 - 待用户裁决：五审席位固定名单（免费席不足五族，凑不齐跨族五席，需用户定名单或减席方案）
-- 下一动作：G1 素材采集 → G2 会审 → G3 准备 359
+- 下一步：G1 素材采集 → G2 会审 → G3 准备 359
 
+## 2026-09-30 14:34｜前两章人味五审精修写回
+- 状态: REVIEW_PASS_WRITTEN / WIKI_SYNCED / NOT_UPLOADED
+- 第1章定稿 SHA `03b410ae6b6a19c15e0f67f5ac124981da7d6eb4edc476f2fbb47cc3849f7af1`，CJK 3450；第2章定稿 SHA `f3e8a88afa01194bec0b6495e36e0f0401211f2aca3f2e0fa603763f5c46e256`，CJK 5337。
+- 五审：两章均为编辑、读者、科学、事实连续性、结构全PASS；第2章事实席两次超时后由 `custom:chun-grok46` 补席 PASS。
+- 机器门禁：两章 hard_count=0；新版正文与 Wiki Full Text 一致。
+- 边界：未生成TXT、未进草稿箱、未发布。
 ## 2026-09-28 10:35 断点：359 返修至 r4，五审在跑
 
 - r4 候选：SHA16 e5c6c1c5d898cbda / CJK 11482 / 628 行 / 首行「第359章 人才争夺」末行「（本章完）」
@@ -3295,3 +3301,9 @@
 
 ### 2026-09-30 10:36
 - 同步章节 360
+
+### 2026-09-30 14:34
+- 前两章人味五审精修写回
+
+### 2026-09-30 16:18
+- 前两章人味精修上传修改同步

@@ -1,4 +1,16 @@
 
+## 2026-09-30 10:35｜第360章草稿箱闭环（DRAFT_SAVED_NOT_PUBLISHED）
+- 状态: CLOSED_DRAFT_SAVED
+- 定稿: `新版/第360章.md` SHA `401462bb552589033f0d16629278c1d1bbf34c4031c11d7c3cf5e5427f00e177` CJK 3447；首行「第360章 专利战争」尾行「（本章完）」；与 `qwen_360_r3.md` 字节一致。
+- 作者席: 网页Qwen qwen3.8-max（9223项目内新建会话）；R1 2870字partial→R2 4043字(DEAI硬闸「锋利」)→R3 3944字(DEAI全绿)。
+- 审稿: 五审同SHA全PASS（editor onefor/gpt-5.6-sol、science sensenova/glm-5.2、reader agentrouter-dsv4/deepseek-v4-flash、structure workbuddy-hy3-f/cn:hy4-preview-f、fact agnes-text/agnes-3.0-flash）；五席五不同provider。
+- DEAI: non_pass=0（硬闸全清，L4「锋利」已修）。
+- TXT: `已投稿/第360章.txt` 番茄口径3881+作者说68字，ready gate ok=true issues=[]。
+- 上传: 10:35 listing回读唯一命中「第360章 专利战争」count=1 duplicate=false、3881字、卷名第八卷：博弈、未发布。
+- 同轮已先上传359章（7216字，人才争夺）。
+- 残留: 发布归用户；下一章361。
+- 下一步: 用户发布后或继续推进361。
+
 ## 2026-09-24 11:20｜第345章五审收口
 - 状态: REVIEW_PASS_NOT_WRITTEN
 - 定稿候选: `任务运行态/20260923_kewu_selfcycle_daily/output/qwen_345_repair_r5.md`
@@ -3260,3 +3272,9 @@
 - 断点1：番茄草稿箱 listing 回读未做（发布归用户，主控不代发）
 - 断点2：360 章 G3_PREP_360.json 已存在，下一章待启动（按"能跑就一直跑"续跑）
 - 环境：9223 旧实例已关；9227 account1 仍登录但本轮未用；sing-box 代理常驻
+
+### 2026-09-30 08:54
+- 同步章节 359
+
+### 2026-09-30 10:36
+- 同步章节 360

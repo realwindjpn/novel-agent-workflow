@@ -19,6 +19,7 @@
 - 路由笔记：`/root/workspace/记忆体系/model-routing-notes.md`。
 
 ## 最新进展
+- 2026-09-30 10:35：第360章《专利战争》草稿箱闭环（DRAFT_SAVED_NOT_PUBLISHED）。网页Qwen R1(2870字partial)→R2(4043字,DEAI硬闸「锋利」)→R3(3944字,DEAI全绿)；定稿 SHA `401462bb55258903…`、CJK 3447；五审同SHA全PASS（editor onefor/gpt-5.6-sol、science sensenova/glm-5.2、reader agentrouter-dsv4/deepseek-v4-flash、structure workbuddy-hy3-f/cn:hy4-preview-f、fact agnes-text/agnes-3.0-flash，五席五不同provider无PROVIDER_COLLAPSE）；DEAI硬扫 non_pass=0。写回 `新版/第360章.md`（SHA一致）；`已投稿/第360章.txt` 番茄口径3881、作者说68字，ready gate ok=true issues=[]；10:35 上传+listing回读唯一命中「第360章 专利战争」count=1 duplicate=false、3881字、卷名第八卷：博弈、未发布。359章同轮已先上传（7216字，人才争夺）。发布归用户。证据：`任务运行态/20260927_kewu_selfcycle_daily/output/qwen_360_r3.md`、`reviews_360_r3/run_reviews.py` FIVE_REVIEW_ALL_PASS、上传listing回读。下一章361。
 - 2026-09-10 22:13：第322章《人机危机》草稿箱闭环（DRAFT_SAVED_NOT_PUBLISHED）。网页Qwen R1→R6，定稿 SHA `60db32ef2b51fa42…`、CJK 3252；四审R5全FAIL→astra/gpt-6-astra 仲裁 6 SUSTAIN/4 VACATE→R6 六处必修逐处机验落地、VACATE 三区原样保留、DEAI non_pass=0、TXT ready 绿（番茄口径3802+作者说151）；listing 回读 count=1 双章在（321/322）。草稿箱第七卷：铁幕，发布归用户。
 - 2026-09-10 22:13：第321章《身体代价》草稿箱闭环补账（DRAFT_SAVED_NOT_PUBLISHED）。R6 定稿 SHA `4ac110e6df3dbdc3…`、CJK 3258；四席同SHA全PASS、editor十条被仲裁VACATE、reviewA VERIFIED；21:47 登录修复后 execute+listing 回读 count=1（3480字）。发布归用户。
 - 2026-09-09 20:15：第320章《月面突围》草稿箱闭环（DRAFT_SAVED_NOT_PUBLISHED）。定稿 SHA `f9d12edd23018fb55233fb62af792034d16113d97c1d221d648a7ef2824aaf3a`，净中文3611；同SHA五席账本 `FINAL_REVIEW_LEDGER_320.json` overall_pass=true（editor nofx/gpt-5.6-terra FAIL两条计时口径被终审仲裁席逐句驳回、science chun-grok46/grok-4.6 PASS、reader aliyun-qwen38-compatible/MiniMax-M2.5 PASS、continuity chun-grok46/grok-4.6 v3 PASS、arbiter aliyun-qwen38-compatible/MiniMax-M2.5 PASS）；DEAI 机器硬扫 non_pass=0。写回 `新版/第320章.md`（SHA 一致）；`已投稿/第320章.txt` 番茄口径4251、作者说110字（320: 起头两句），ready gate ok=true issues=[]；Wiki Full Text=新版；跟踪表320行已补并二次 sync（Tracking=1）。20:15 本席现场回读：login OK；列表唯一命中「第320章 月面突围」count=1 duplicate=false；draft_id `7683505614051344920`；卷名第七卷：铁幕；页面正文字数4251；compact SHA `08ebe778de0440e7f942c49259874082542c006b281def7133216df907ed1636` 与本地 TXT 去标题全等；正文头「座舱温度三百一十八开尔文。」尾「（本章完）」；作者说一致；未点下一步/未发布。正式发布前沿仍317（318待发布09-12 20:00 不动）。证据：`任务运行态/20260909_ch320_closeout/output/FANQIE_READBACK_320.json`；不 git commit（主控另派）。下一章321。
@@ -1017,3 +1018,5 @@
 - 写回：新版/第359章.md（SYNC_OK）、已投稿/第359章.txt（ensure 脚本 ok=true，note 112字）
 - 残留：番茄草稿箱 listing 回读未做（发布归用户）；9227 account1 实例仍登录但本轮未用
 - 2026-09-30 02:30 | r8 SHA b30ce9e3... | CJK 6025
+- 2026-09-30 08:54 | 同步章节 359
+- 2026-09-30 10:36 | 同步章节 360

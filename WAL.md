@@ -1,4 +1,14 @@
 
+## 2026-09-30 11:30｜积存素材 G1→G2 库存核销+融纲会诊闭环
+- 状态: G2_CLOSED_OUTLINE_PATCH
+- 输入: usable_unconsumed_readable_20260930.json（263卡，G1=ALLOW_G1_WITH_RESIDUALS）
+- 核销: stockpile_triage_20260930/ → MIROFISH_CANDIDATE=72、ARCHIVE_WRITTEN=3、ARCHIVE_THIN=134、NEEDS_REVERIFY=54
+- bridge: bus_bridge_20260930/decision_cards.json（40卡，源当日）
+- G2: 七席 dispatch_to_model 会诊，OUTLINE_PATCH×4 + NOTE_ONLY×3 → 聚合 OUTLINE_PATCH
+- 产物: G2_FINAL_VERDICT_20260930.md + G2_council_20260930/（七席原始返回）
+- 残留: 备注层处置待写入大纲 latest（G3 阶段落地）；本轮无派章/上传
+- 下一步: 用户确认后由 G3 将备注层落大纲；或继续推进 361 写作
+
 ## 2026-09-30 10:35｜第360章草稿箱闭环（DRAFT_SAVED_NOT_PUBLISHED）
 - 状态: CLOSED_DRAFT_SAVED
 - 定稿: `新版/第360章.md` SHA `401462bb552589033f0d16629278c1d1bbf34c4031c11d7c3cf5e5427f00e177` CJK 3447；首行「第360章 专利战争」尾行「（本章完）」；与 `qwen_360_r3.md` 字节一致。

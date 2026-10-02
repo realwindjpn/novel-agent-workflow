@@ -19,6 +19,8 @@
 - 路由笔记：`/root/workspace/记忆体系/model-routing-notes.md`。
 
 ## 最新进展
+- 2026-09-30 23:48：第359章重复段落修复并重传草稿箱（360同检无重复）。根因=新版131行与361行整段复刻；去重后SHA `a81560f7675954a2…` CJK5973、重复句0、DEAI软告警不阻断；已投稿TXT按canonical重导(7152+作者说112)，update_draft execute saved=true、页面计数7152、列表唯一命中。360页面3881、列表唯一命中。未发布。第3章精修暂停。
+
 - 2026-09-30 12:10：大纲已吸收09-30 G2 OUTLINE_PATCH并读回确认；前两章人味审计完成。第1章 `新版/第1章.md` SHA `17201e6cf23f91d8…` CJK3208，编辑/读者双席均判FAIL：主要问题为155-165事实/推测/待查清单腔、193-205重复解释+金句收束、95-105与137-145线路/经络重复解码、107-117说明会搬运。第2章 SHA `ab3fad45601cda97…` CJK5296，编辑/读者均认为底子可读，判PASS_WITH_TARGETED_FIX：31/67/117-119/177-179/205-207与333存在方法论旁白、格言腔、潜台词说破、标签重复。正文尚未修改；优化须作者席返修，SHA变化后重跑编辑/读者/科学/制度复审。报告：`审核记录/前两章人味审计_20260930/FINAL_AUDIT.md`。
 - 2026-09-30 11:30：积存素材 G1→G2 库存核销+融纲会诊闭环。G1 闸门：09-30 当日 readable 缺失，按门禁§12 库存核销链补跑（daily_usable_unconsumed_audit → TRIAGE_DAY=20260930 triage → 分类落 stockpile_triage_20260930/：MIROFISH_CANDIDATE=72、归档已写章3+薄体134、待补域54）；G1 verdict=ALLOW_G1_WITH_RESIDUALS（源=当日，非旧日回退）。G2：bridge 取前40卡，七席异构（bmapi/gpt-5.6-sol、workbuddy-hy3/cn:glm-5.3-flash、sensenova/glm-5.2、chun-grok46/grok-4.6、sensenova2/glm-5.2、qoder/Qwen3.8-Flash、onefor/gpt-5.6-sol 补中文文风席——原 workbuddy-hy3/cn:hy4-preview 180s超时，跨族重排）经 dispatch_to_model 通道会诊；4席 OUTLINE_PATCH + 3席 NOTE_ONLY → 聚合裁决 OUTLINE_PATCH。备注层处置：长十乙可控回收（栅格翼/反推窗口/热防烧蚀/具名担责链）、轴向磁通电机量产（磁钢批次偏差/绕组温升）、月球地质对齐嫦娥样品、Artemis签约+烈士纪念日（签字链/禁口号腔）、科研管理仅NOTE；全部40卡落远端章准备包/既有备注层，本轮无近端新派章。处置文件：`G2_FINAL_VERDICT_20260930.md`、`任务运行态/20260930_kewu_selfcycle_daily/G2_council_20260930/`、`stockpile_triage_20260930/`。门禁校验：G1=ALLOW当日源✅、会诊通道禁hermes chat✅、七席异构✅、裁决含合法三态✅。无草稿箱/发布动作。
 - 2026-09-30 10:35：第360章《专利战争》草稿箱闭环（DRAFT_SAVED_NOT_PUBLISHED）。网页Qwen R1(2870字partial)→R2(4043字,DEAI硬闸「锋利」)→R3(3944字,DEAI全绿)；定稿 SHA `401462bb55258903…`、CJK 3447；五审同SHA全PASS（editor onefor/gpt-5.6-sol、science sensenova/glm-5.2、reader agentrouter-dsv4/deepseek-v4-flash、structure workbuddy-hy3-f/cn:hy4-preview-f、fact agnes-text/agnes-3.0-flash，五席五不同provider无PROVIDER_COLLAPSE）；DEAI硬扫 non_pass=0。写回 `新版/第360章.md`（SHA一致）；`已投稿/第360章.txt` 番茄口径3881、作者说68字，ready gate ok=true issues=[]；10:35 上传+listing回读唯一命中「第360章 专利战争」count=1 duplicate=false、3881字、卷名第八卷：博弈、未发布。359章同轮已先上传（7216字，人才争夺）。发布归用户。证据：`任务运行态/20260927_kewu_selfcycle_daily/output/qwen_360_r3.md`、`reviews_360_r3/run_reviews.py` FIVE_REVIEW_ALL_PASS、上传listing回读。下一章361。
@@ -1032,3 +1034,17 @@
 - 边界：本轮未生成TXT，未进入草稿箱，未发布；下一步按用户指令推进。
 - 2026-09-30 14:34 | 前两章人味五审精修写回
 - 2026-09-30 16:18 | 前两章人味精修上传修改同步
+- 2026-10-01 03:07 | 同步章节 3
+- 2026-10-01 12:47 | 第3章精修候选收束(R5时间线硬伤修复)
+- 2026-10-01 21:03 | 第4章 R3 精修写回
+
+## 2026-10-02 12:45｜第1章人味精修 R1 定稿（本地写回，未上传）
+- 状态: TEXT_PASS_LOCAL_WRITEBACK / UPLOAD_NOT_REQUESTED
+- 作者席: 网页 Qwen 项目席（9223，项目 fb4a25fd，新会话 /c/6a163a44-140f-4c63-bfcf-857d52909f52，Qwen3.8-Max，KB 探针先过）
+- 定点卡: 内嵌带行号全文（card 14411B ≥ src 12108B，SIZE_GATE PASS，selfcheck CLEAN）
+- 定稿: `新版/第1章.md` SHA `f3b6648f5173312da5cab4f45f79f0d29b803d011da1887a861aaa5bbceddc7c` CJK 3086；首行「第1章 江城少年」末行「（本章完）」
+- 五审同 SHA 全 PASS：editor onefor/gpt-5.6-sol、reader agentrouter-dsv4/deepseek-v4-flash、science sensenova/glm-5.2、system agnes-text/agnes-3.0-flash、structure chun-grok46/grok-4.6（五席五不同 provider）
+- 机器闸: `kewu_deai_hard_gate_scan.py` non_pass=0；跨章重复扫描 ch1 无前章可比
+- 原稿备份: `审核记录/前两章人味审计_20260930/backup/第1章.md.bak_*`
+- 边界: 未改 `已投稿/第1章.txt`（旧章返修只写新版）；未上传草稿箱；未发布
+- 残留: 第2章定点小修未派；`已投稿/第1章.txt` 仍为旧稿，若日后上传需重导

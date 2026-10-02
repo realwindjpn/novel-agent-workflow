@@ -3372,3 +3372,12 @@
 - 已完成: 备份→同步已投稿→dry-run→execute(area=1)→重开回读，六项全有证据，判 DONE
 - 登录态: agent-browser 常驻 cookie 已失效(重定向 login)；改用 Playwright connect_over_cdp 9223 + browser_profiles/fanqie/fanqie_state.json 注入 storage_state 后页面级「科武纪元」命中，复用 fanqie_modify_uploaded_chapter.py 模块执行，未改脚本
 - 残留: 无。建议后续把「cookie 失效→Playwright storage_state 注入 CDP」写入 fanqie-platform-operations skill
+
+### 2026-10-03 05:48
+- 同步章节 361
+
+## 2026-10-03 ｜断点：第361章《秘密外交》闭环
+- 已完成: G1（ALLOW_G2，target=[361,362]）→ G2 三席会诊（NOTE_ONLY，g3_gate=ALLOW）→ G3_PREP → G4 签发 → 作者席 r1/r2/r3 → 五审全 PASS → 写回新版/已投稿 → STATUS/WAL/Git → 草稿箱 listing 命中
+- 关键 SHA: 新版 `99248278c547eec5116fc3c1871e4dad96d25a6e5ccbe1157e11969fb445caa1`（CJK 3237）；已投稿 `c348f185686367742a08ec3908cf1fee7b46c499a89116a466da872f77490c31`（CJK 3355）
+- 五席: editor onefor/gpt-5.6-sol PASS、reader chun-grok46/grok-4.6 PASS、science sensenova/glm-5.2 PASS、system discovery/kimi-k2.6 PASS、deai discovery/deepseek-v4-pro-0813 PASS
+- 下一动作: 362《双线作战》——G3_PREP_362 须回填 prev_sha256=99248278c547eec5116fc3c1871e4dad96d25a6e5ccbe1157e11969fb445caa1，G4 走 B 章路径（需 361 closeA ACK，已写入 transitions.jsonl seq 30）

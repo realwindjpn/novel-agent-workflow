@@ -1071,3 +1071,17 @@
 - 回读: 重开编辑页，去空白规范化 SHA 线上=本地 e2df88d433b552e7…904baed，段落 91/91 逐段差异 0，CJK 3359=3359 → PASS，无平台字符规范化偏差
 - 平台状态: 第6章 边境危机 | 7045 | 已发布 | 2026-04-14 23:00
 - 产物: 任务运行态/20261002_recovery/output/CH6_ONLINE_SYNC.md、CH6_TXT_BACKUP.txt、CH6_ONLINE_READBACK.txt
+- 2026-10-03 05:48 | 同步章节 361
+
+## 2026-10-03 ｜ 第361章《秘密外交》全链闭环（r3 定稿）
+
+- 状态: DONE（本地写回 + 草稿箱 listing 命中；发布归用户）
+- 作者席: 网页 Qwen 项目席（CDP 9223，项目 fb4a25fd，会话 /c/83981305…，qwen3.8-max，KB 门禁 --require-kb）
+- 定稿: `新版/第361章.md` SHA `99248278c547eec5116fc3c1871e4dad96d25a6e5ccbe1157e11969fb445caa1` / CJK 3237；`已投稿/第361章.txt` SHA `c348f185686367742a08ec3908cf1fee7b46c499a89116a466da872f77490c31` / CJK 3355（含作者说 122 字）
+- 机检: `kewu_deai_hard_gate_scan.py` hard_count=0（verdict PASS）；跨章重复扫描 ch361 自检通过
+- 五审全 PASS（五席五 provider，跨族）: 编辑 onefor/gpt-5.6-sol、读者 chun-grok46/grok-4.6（追读 4/5）、科学 sensenova/glm-5.2、制度 discovery/kimi-k2.6、DEAI discovery/deepseek-v4-pro-0813
+- 返修链路: r1（机器闸 5 处否定—肯定对举 + CJK 2727 不足 → 补段至 3172，hard=0）→ r2（去AI席抓 3 处报时标签 + 3 处三段排比；科学席抓剂量单位量纲错配 mSv/cm² → 改写为每小时毫西弗剂量率）→ r3（编辑席抓阶梯动线倒置 47→60→52 改为上行递减 60→52→47；去AI席抓 2 处同族报时残留改为可观察动作）
+- 关键裁定: ①「郑丽文式人物」沿用第115章既成的陈玉珊，不新造人物；②「外部力量」挂第344章遗迹线索；③「日内瓦」世界内化为「泛际安全理事会」、「东亚」落为「东屿蓝白阵线」；④编辑席曾报首行阿拉伯数字，查全书 364 章中 311 章同为阿拉伯数字章题，属项目惯例，该条撤销
+- 草稿箱: ensure 只读 ok:true → dry-run OK → --check-login ok → --execute saved=true；listing 回读「第361章 秘密外交」3760 字，count=1，duplicate=false → 命中
+- 边界: 未发布
+- 残留: 362 待产

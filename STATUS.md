@@ -1048,3 +1048,26 @@
 - 原稿备份: `审核记录/前两章人味审计_20260930/backup/第1章.md.bak_*`
 - 边界: 未改 `已投稿/第1章.txt`（旧章返修只写新版）；未上传草稿箱；未发布
 - 残留: 第2章定点小修未派；`已投稿/第1章.txt` 仍为旧稿，若日后上传需重导
+
+## 2026-10-02 20:15｜SenseNova 采集链三层根因修复（采集基建，非正文）
+- 状态: CODE_REPAIR_PASS / PRODUCTION_PASS（残留 PARTIAL，见下）
+- 产物: `任务运行态/20261002_collection_repair/output/`（report.md / FINAL_STATUS.md / verification.json / changed_files.txt / runner.diff / collect_web.diff）
+- L1 解释器漂移: runner 子进程裸 `python3` 在 cron/nohup PATH 下落到无依赖 tools python（实测 requests/httpx/playwright 全 False）→ 全部钉到 `sys.executable`（runner 5 处 + collect_web 6 处）
+- L2 热榜模块缺失: `hot_discovery_cn/noauth` 与 `20260813_hotdiscovery_repair` 目录均不存在 → 改为路由 `collect_web.py` + 确定性公共 API 兜底
+- L3 改造方向: 热榜统一走 `collect_web.py`，不建平行 runtime
+- 变更文件: `scripts/sensenova_split_pipeline_runner.py` SHA `9aff5dded418d9aa7a617acc600c5126…`；`.hermes/skills/research/web-data-collection-suite/scripts/collect_web.py` SHA `1b4a738bde151e03d0afd9d421f51c35…`（`web-collection-suite/scripts/` 为同文件符号链接）
+- 生产验证: 隔离 run `任务运行态/20261002_collection_repair/output/runs_isolated/verify_20261002_isolated`（--runs-base 隔离，PATH 故意漂移复现根因）
+  - REQUESTS_NOT_INSTALLED 20→0；body_fetch_success 1→11；body_files_written 1→11
+  - material_relevance FAIL→PASS；mirofish_input_gate → ALLOW_MIROFISH_INPUT；mirofish_ready_cards 0→5
+  - 热榜 ok 0/7→4/7（22 条真实条目）；fresh_news_candidate 30→78；official_candidate 36→48
+- 回归: 4 个既有 self-test 全过（route-matrix/fresh-news/official-social PASS，story-value 为既有缺 fixture SKIP）；py_compile 两文件 OK
+- 边界: 未改任何正文/大纲/TXT/草稿箱/发布状态；未打印凭据/Cookie/token；共享索引（时事素材/知识库/rag_kb）mtime 未变
+- 残留: 热榜 weibo/zhihu(HTTP_403)、xiaohongshu(COLLECT_WEB_TIMEOUT) 3/7 仍失败（带显式 tag）；collect_sources stage=partial(DATE_UNKNOWN_RATIO_0.62)；hotspot_collection_health=PARTIAL
+- 超范围未修: agent-browser 持久化 `socks5h://` 代理 → 所有 browser 路由 `BROWSER_ERROR`（net::ERR_NO_SUPPORTED_PROXIES）；实测 `socks5://` 可用；属平台级配置，待用户确认
+
+## 2026-10-03 03:50｜第6章线上同步完成（DONE）
+- 定稿: 新版/第6章.md SHA 6b37d4987e14be6f… CJK 3371；已投稿/第6章.txt 同步后 SHA c77b04b6659112c1… CJK 3365（旧稿 a4217554dfd094ec… CJK 6111，整章 STRUCTURAL 重写，非补丁）
+- 上传: area=1 已发布区，dry-run PASS（body_len 4259，第一卷：觉醒）→ execute PASS（提交+确认发布 AI=是）
+- 回读: 重开编辑页，去空白规范化 SHA 线上=本地 e2df88d433b552e7…904baed，段落 91/91 逐段差异 0，CJK 3359=3359 → PASS，无平台字符规范化偏差
+- 平台状态: 第6章 边境危机 | 7045 | 已发布 | 2026-04-14 23:00
+- 产物: 任务运行态/20261002_recovery/output/CH6_ONLINE_SYNC.md、CH6_TXT_BACKUP.txt、CH6_ONLINE_READBACK.txt

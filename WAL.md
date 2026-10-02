@@ -3367,3 +3367,8 @@
 - 900s proxy_rerun 的 body_fetch=0 已确认为预算饿死假失败，本轮足额预算已排除
 - 残留（非解释器/热榜链缺陷）: 微博/知乎需有效登录态或 browser 路由；小红书结构化抽取空；agent-browser socks5h→socks5 持久化未改（超范围，待确认）
 - 产物: 任务运行态/20261002_collection_repair/output/verification.json 已更新为本轮终态
+
+## 2026-10-03 03:50｜断点：第6章线上同步
+- 已完成: 备份→同步已投稿→dry-run→execute(area=1)→重开回读，六项全有证据，判 DONE
+- 登录态: agent-browser 常驻 cookie 已失效(重定向 login)；改用 Playwright connect_over_cdp 9223 + browser_profiles/fanqie/fanqie_state.json 注入 storage_state 后页面级「科武纪元」命中，复用 fanqie_modify_uploaded_chapter.py 模块执行，未改脚本
+- 残留: 无。建议后续把「cookie 失效→Playwright storage_state 注入 CDP」写入 fanqie-platform-operations skill

@@ -3333,3 +3333,28 @@
 - 未完成: 第2章定点小修（审计已出条目：L31/67/117-119/177-179/205-207、333）；ch1 上传线未启动（用户未要求）
 - 下一动作: 需要继续时，按 ch1 同流程给第2章组定点卡（源稿 新版/第2章.md SHA ab3fad45601cda97… CJK 5296）
 - 作者席: 9223 常驻 Qwen 项目席可用（登录脚本已修原生点击）；会话 /c/6a163a44…
+
+## 2026-10-02 20:15｜断点：SenseNova 采集链三层根因修复
+- 已完成: L1 解释器钉 sys.executable（runner 5 处 + collect_web 6 处）；L2 热榜层路由化重建（collect_web + 直取兜底 + HOT_DISCOVERY_HEALTH）；L3 方向落地；隔离 run 生产读回 PASS
+- 产物: `任务运行态/20261002_collection_repair/output/`（report.md / FINAL_STATUS.md / verification.json / changed_files.txt / runner.diff / collect_web.diff / run_isolated.sh / runs_isolated/）
+- 关键 SHA: runner `9aff5dded418d9aa7a617acc600c5126…`；collect_web `1b4a738bde151e03d0afd9d421f51c35…`；改动前备份 `任务运行态/20261002_collection_repair/sensenova_split_pipeline_runner.py.orig_20261002`
+- 未完成: 热榜 3/7（weibo/zhihu 需 cookie 或 browser；xiaohongshu 需登录）；agent-browser socks5h→socks5 未改（超范围）
+- 下一动作: ① 用户确认后修 agent-browser 持久化代理 scheme（socks5h→socks5），可一并解锁 weibo/zhihu/小红书 browser 路由；② 观察下一轮 cron（每 180m）是否不再出现 REQUESTS_NOT_INSTALLED 与 7 行 hot_discovery ModuleNotFoundError
+
+## 2026-10-02 22:2x｜断点：A线章节线上同步 + C线 feea3bd 恢复 + B线采集复验
+- A线（已完成线上提交，状态待平台审核）:
+  - 第3章 已提交「修改审核中」；回读 PARTIAL：本地 SHA d5721aa4…，线上仅把半角 `<` 规范化为全角 `＜`，长度 6148 一致
+  - 第4章 已提交「修改审核中」；回读 PASS：去空白 SHA 线上/本地均 749ab66f74b81b5ed295eb888529016457cebff76463da1dca61b7138ded9a3d（本地文件 3165dcf5…）
+  - 第7章 已提交「修改审核中」；回读 PASS：similarity=1.0 diffs=[] 规范化 SHA 8c666d4543275cb3（本地文件 5a65cf69…）
+  - 第10章 已提交「修改审核中」；回读 PASS：平台已发布，CJK 5626=本地，段落 297/297 逐段相等，正文规范化 SHA 51a1b3dc…fa82b，全文件 505ee2b9…fdc785
+  - 产物: 任务运行态/20261002_recovery/output/CH3_ONLINE_SYNC.md / CH4_ONLINE_SYNC.md / CH7_ONLINE_SYNC.md / CH10_ONLINE_SYNC.md / CH10_ONLINE_READBACK.txt
+- C线（已完成恢复并提交）:
+  - 从 feea3bd^ 恢复 326 个误删历史产物，326/326 落盘，冲突 0，内容逐文件比对父提交 0 不符
+  - 提交 201392c restore(kewu): 恢复 feea3bd 误删的 326 个任务运行态历史产物
+  - 未触碰 15 个 M 文件；未 reset/rebase/revert/force push；保留脏改 infra/proxy/logs/onefor_reverse.log、记忆体系/model-routing-active-ledger.md
+  - 计划: 任务运行态/20261002_recovery/output/FEEA3BD_REPAIR_PLAN.md（清单 SHA 940e39e4…）
+- B线（进行中）:
+  - 900s proxy_rerun 轮被 stage A 预算饿死（body_fetch_attempts=0, material_relevance=PENDING）→ 判为假失败，非回退
+  - 已按 1500s 足额预算重跑 verify_20261002_budget1500，等待终态
+  - 社媒残留: weibo/zhihu HTTP_403、xiaohongshu COLLECT_WEB_SUCCESS_NO_STRUCTURED_ROWS（均为真实 failure_tag）
+- 下一动作: ① 读回 budget1500 终态并按 code_repair/official_social/production_cron 分层结论；② 待用户确认后修 agent-browser socks5h→socks5；③ 第6章 STRUCTURAL 返修线；④ 第3章若需严格 SHA 一致，评估平台全角化是否可接受

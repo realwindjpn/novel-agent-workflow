@@ -3381,3 +3381,13 @@
 - 关键 SHA: 新版 `99248278c547eec5116fc3c1871e4dad96d25a6e5ccbe1157e11969fb445caa1`（CJK 3237）；已投稿 `c348f185686367742a08ec3908cf1fee7b46c499a89116a466da872f77490c31`（CJK 3355）
 - 五席: editor onefor/gpt-5.6-sol PASS、reader chun-grok46/grok-4.6 PASS、science sensenova/glm-5.2 PASS、system discovery/kimi-k2.6 PASS、deai discovery/deepseek-v4-pro-0813 PASS
 - 下一动作: 362《双线作战》——G3_PREP_362 须回填 prev_sha256=99248278c547eec5116fc3c1871e4dad96d25a6e5ccbe1157e11969fb445caa1，G4 走 B 章路径（需 361 closeA ACK，已写入 transitions.jsonl seq 30）
+
+### 2026-10-03 06:56
+- 同步章节 362
+
+## 2026-10-03 ｜断点：第362章《双线作战》闭环
+- 已完成: G3_PREP_362（prev_sha256 回填 361 定稿）→ G4 B 章路径签发（依赖 361 closeA ACK）→ 作者席 r1/r2 → 五审全 PASS → 写回新版/已投稿 → STATUS/WAL/Git → 草稿箱 listing 命中
+- 关键 SHA: 新版 `39271eaa361854ea9ea3b804ffcd0c5a814c0cd23060cfeb8cf6aee74dc21bac`（CJK 3258）；已投稿 `4ae256dd50f6085e5a753aa16891841347d06a54b7b9ea5188547b323e92bf97`（CJK 3390）
+- 五席: editor onefor/gpt-5.6-sol PASS、reader discovery/intern-s2 PASS、science sensenova/glm-5.2 PASS、system discovery/kimi-k2.6 PASS、deai discovery/deepseek-v4-pro-0813 PASS
+- 草稿箱: 第362章 双线作战 3646 字 + 第361章 秘密外交 3760 字，两章均在草稿箱
+- 下一动作: 363《非美元结算》——前沿已推进到 362

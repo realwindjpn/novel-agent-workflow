@@ -1085,3 +1085,17 @@
 - 草稿箱: ensure 只读 ok:true → dry-run OK → --check-login ok → --execute saved=true；listing 回读「第361章 秘密外交」3760 字，count=1，duplicate=false → 命中
 - 边界: 未发布
 - 残留: 362 待产
+- 2026-10-03 06:56 | 同步章节 362
+
+## 2026-10-03 ｜ 第362章《双线作战》全链闭环（r3 定稿）
+
+- 状态: DONE（本地写回 + 草稿箱 listing 命中；发布归用户）
+- 作者席: 网页 Qwen 项目席（CDP 9223，项目 fb4a25fd，会话 /c/42591f90…，qwen3.8-max，KB 门禁 --require-kb）
+- 定稿: `新版/第362章.md` SHA `39271eaa361854ea9ea3b804ffcd0c5a814c0cd23060cfeb8cf6aee74dc21bac` / CJK 3258；`已投稿/第362章.txt` SHA `4ae256dd50f6085e5a753aa16891841347d06a54b7b9ea5188547b323e92bf97` / CJK 3390（含作者说 138 字）
+- 机检: `kewu_deai_hard_gate_scan.py` hard_count=0（verdict WARN_DENSE_SOFT，软密度告警不阻断）；跨章重复扫描 ch362 自检通过
+- 五审全 PASS（五席四 provider，跨族）: 编辑 onefor/gpt-5.6-sol、读者 discovery/intern-s2（追读 5/5）、科学 sensenova/glm-5.2、制度 discovery/kimi-k2.6、DEAI discovery/deepseek-v4-pro-0813
+- 返修链路: r1（CJK 2719 不足 → 补写至 3213；伤处族「颅脑过载」命中改干眼；去掉一处读者不可见的注视时长）→ r2（编辑席抓数量链不闭合：六次呼叫列了六个间隔 → 改五个、合计四十八小时与 361 章闭合；权责方向倒置 → 改「否决权挂名的附带条款」；读者席抓定义句/金句/口播结论 → 全部改为可观测证据比对与动作）
+- 读者席自相矛盾输出处理: 原席（chun-grok46/grok-4.6）复审时粘贴改后文本却判「未改」、并引用正文里不存在的句子，按门禁整份作废，换跨族 discovery/intern-s2 重派 PASS
+- 草稿箱: ensure 只读 ok:true → dry-run OK → --check-login ok → --execute saved=true；listing 回读「第362章 双线作战」3646 字，count=1，duplicate=false → 命中
+- 边界: 未发布
+- 残留: 无

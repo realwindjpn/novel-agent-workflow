@@ -3358,3 +3358,12 @@
   - 已按 1500s 足额预算重跑 verify_20261002_budget1500，等待终态
   - 社媒残留: weibo/zhihu HTTP_403、xiaohongshu COLLECT_WEB_SUCCESS_NO_STRUCTURED_ROWS（均为真实 failure_tag）
 - 下一动作: ① 读回 budget1500 终态并按 code_repair/official_social/production_cron 分层结论；② 待用户确认后修 agent-browser socks5h→socks5；③ 第6章 STRUCTURAL 返修线；④ 第3章若需严格 SHA 一致，评估平台全角化是否可接受
+
+## 2026-10-02 23:xx｜断点：B线采集足额预算复验终态
+- run: verify_20261002_budget1500（1500s，全 8 stage 完成）
+- 分层结论: code_repair=PASS / official_social=PARTIAL / production_cron=PASS
+- 关键读回: body_fetch_success=12（对照上一轮 11）、material_relevance=PASS、mirofish_ready_cards=4、expert_gate_pass=True、engineering=ENGINEERING_OK、REQUESTS_NOT_INSTALLED=0
+- 热榜: 4/7 OK（bilibili/baidu/hackernews/github_trending 各 6 条），失败 3 源均带真实 failure_tag：weibo HTTP_403、zhihu HTTP_403、xiaohongshu COLLECT_WEB_SUCCESS_NO_STRUCTURED_ROWS
+- 900s proxy_rerun 的 body_fetch=0 已确认为预算饿死假失败，本轮足额预算已排除
+- 残留（非解释器/热榜链缺陷）: 微博/知乎需有效登录态或 browser 路由；小红书结构化抽取空；agent-browser socks5h→socks5 持久化未改（超范围，待确认）
+- 产物: 任务运行态/20261002_collection_repair/output/verification.json 已更新为本轮终态

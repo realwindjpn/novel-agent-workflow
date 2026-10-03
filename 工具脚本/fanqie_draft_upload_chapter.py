@@ -50,6 +50,48 @@ def save_state(session: str, state_path: Path) -> None:
     run(f"agent-browser --session-name {shlex.quote(session)} state save {shlex.quote(str(state_path))}", timeout=30)
 
 
+# ── tab 借用（2026-10-03 新增）─────────────────────────────────────────────
+# 番茄席与 qwen 作者席共用同一个常驻 Chrome（CDP 9223）。agent-browser 的
+# session 文件只存 cookie、不绑 tab，所以本席每次都是「抓当前活跃页」——
+# 作者席正在 ch.qwen.ai 上写稿时，本席 open 一次就会把那个页导航走。
+# 这里在动浏览器之前先登记租约：拿不到就明报错退出，不静默抢别人的页。
+sys.path.insert(0, str(Path(__file__).parent))
+try:
+    import tab_lease
+    _LEASE_AVAILABLE = True
+except Exception:
+    tab_lease = None
+    _LEASE_AVAILABLE = False
+
+_LEASE = {'id': None}
+
+
+def acquire_tab(force: bool = False) -> dict:
+    """登记番茄席的 tab 租约。失败直接抛，调用方不得静默继续。"""
+    if not _LEASE_AVAILABLE:
+        return {'ok': True, 'skipped': 'tab_lease unavailable'}
+    r = tab_lease.acquire('fanqie', force=force)
+    if not r.get('ok'):
+        raise RuntimeError(
+            'TAB_LEASE_DENIED reason=%s held_by=%s '
+            '（番茄席未能取得 tab 租约；确认作者席是否已归还，或显式 --force-tab）'
+            % (r.get('reason'), r.get('held_by') or r.get('owned_by')))
+    _LEASE['id'] = r.get('lease_id')
+    print('[tab-lease] acquired target=%s url=%s' % (r.get('targetId'), r.get('url', ''))[:120],
+          flush=True)
+    return r
+
+
+def release_tab() -> None:
+    if _LEASE_AVAILABLE and _LEASE['id']:
+        try:
+            tab_lease.release(lease_id=_LEASE['id'])
+            print('[tab-lease] released %s' % _LEASE['id'], flush=True)
+        except Exception as e:
+            print('[tab-lease] release failed: %r' % e, flush=True)
+        _LEASE['id'] = None
+
+
 def backend_ok(session: str, state_path: Path | None = None) -> dict:
     ab(session, "open 'https://fanqienovel.com/main/writer/home'", timeout=60, state_path=state_path)
     time.sleep(2)
@@ -478,25 +520,37 @@ def main():
         action='store_true',
         help='只在当前发布页执行分卷选择并读回 header；不填正文、不保存、不点下一步。用于上传脚本选择级回归。',
     )
+    ap.add_argument('--force-tab', action='store_true',
+                    help='tab 租约冲突时强制接管（会挤掉别的席正在用的页，慎用并留痕）。')
+    ap.add_argument('--no-tab-lease', action='store_true',
+                    help='跳过 tab 借用协议（仅在 tab_lease 不可用时排障用）。')
     args = ap.parse_args()
+
+    # 任何浏览器动作之前先登记本席的 tab 租约；拿不到就退出，不抢别人的页。
+    if not args.no_tab_lease:
+        acquire_tab(force=args.force_tab)
 
     # 分卷必须先过大纲硬闸。即使TXT门禁未齐，也先暴露错误卷属，
     # 避免调用方用旧的 --volume 参数绕过权威大纲。
     volume = resolve_volume(args.project_dir, args.chapter, args.volume)
 
     if args.check_login:
-        ok = backend_ok(args.session, args.state)
-        if ok.get('ok'):
-            save_state(args.session, args.state)
+        try:
+            ok = backend_ok(args.session, args.state)
+            if ok.get('ok'):
+                save_state(args.session, args.state)
+        finally:
+            release_tab()
         print(json.dumps(ok | {'state': str(args.state)}, ensure_ascii=False, indent=2))
         return
 
     if args.verify_volume_only:
-        cur_url = ab(args.session, 'get url', timeout=30, state_path=args.state).strip()
-        if '/publish/' not in cur_url:
-            raise RuntimeError(f'当前不在发布页，拒绝选择级回归: {cur_url}')
-        selected = ensure_volume(args.session, volume, state_path=args.state)
-        header = js_eval(args.session, f"""
+        try:
+            cur_url = ab(args.session, 'get url', timeout=30, state_path=args.state).strip()
+            if '/publish/' not in cur_url:
+                raise RuntimeError(f'当前不在发布页，拒绝选择级回归: {cur_url}')
+            selected = ensure_volume(args.session, volume, state_path=args.state)
+            header = js_eval(args.session, f"""
 (() => {{
  const target = {volume!r};
  const header = (document.querySelector('.publish-header-volume-name')?.innerText || '').trim();
@@ -505,6 +559,8 @@ def main():
  return {{ok: header === target, header, modalOpen, url: location.href, bodyHead: text.slice(0, 300)}};
 }})()
 """, state_path=args.state)
+        finally:
+            release_tab()
         report = {'ok': isinstance(header, dict) and header.get('header') == volume, 'volume': volume, 'selected': selected, 'header': header}
         print(json.dumps(report, ensure_ascii=False, indent=2))
         if not report['ok']:
@@ -519,6 +575,7 @@ def main():
     data = parse_chapter(args.project_dir, args.chapter)
     print(json.dumps({k: v for k, v in data.items() if k not in ('body','note')} | {'note': data['note'], 'volume': volume}, ensure_ascii=False, indent=2))
     if not args.execute:
+        release_tab()   # dry-run 也要归还，否则下一轮被自己的陈旧租约挡住
         print('DRY_RUN_OK')
         return
 
@@ -626,6 +683,7 @@ def main():
         'force_new': bool(args.force_new),
     }
     print(json.dumps(report, ensure_ascii=False, indent=2))
+    release_tab()   # 成功路径归还
     # 保存后仍出现同名>1：默认非0，避免调用方把重复当成功闭环
     if (
         isinstance(final, dict)
@@ -644,3 +702,10 @@ if __name__ == '__main__':
     except Exception as e:
         print(f'ERROR: {e}', file=sys.stderr)
         sys.exit(1)
+    finally:
+        # 兜底：无论走哪条路径（含 SystemExit 之外的异常）都尝试归还，
+        # 避免陈旧租约挡住下一轮。release_tab 自身吞异常且幂等。
+        try:
+            release_tab()
+        except Exception:
+            pass

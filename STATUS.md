@@ -1154,3 +1154,11 @@
 - 假 PASS 剔除: 本轮回合中 5 次 dispatch 返回 PASS 实为 fallback 顶包（回包 provider=nous），逐条 grep 日志验真后作废重派；判 PASS 前须核 `API call #1 model=<目标> provider=custom`。
 - 草稿箱: ensure `ok:true`（fanqie_body_chars 3551）；`--execute` listing `ok:true/count=1/duplicate=false`，第366章谈判破裂 3551 字；365/364/363/362/361 同箱。
 - 残留: 无；发布归用户。
+
+
+## 2026-10-03T22:52:33+08:00｜V9大纲标题去重修复
+- 状态: OUTLINE_TITLE_DEDUP_APPLIED
+- 产物: `任务运行态/20261003_kewu_selfcycle_daily/output/科武纪元大纲V9_500章_重建稿.md`
+- 处置: 第337章改为「标准权失守」；第402章改为「战时内政决策」；第413章改为「轨道共管博弈」；第417章改为「天梯量产」；第456章改为「戴森环扩容」。第366章「谈判破裂」保持冻结。
+- 验证: 500章、章号1—500连续无缺号；四处已裁决重复标题已消除；当前SHA `4ff8fa89aa3adab6d7c6a186b5d045863cda3a2248b361880063c3e06205a81b`。
+- 残留: 仍有13组重复标题，待后续独立裁决，不擅自修改。

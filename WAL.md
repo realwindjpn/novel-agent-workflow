@@ -3429,3 +3429,11 @@
 - 五审全PASS：editor onefor/gpt-5.6-sol、reader agentrouter-dsv4/deepseek-v4-flash、science sensenova/glm-5.2、fact chun/glm-5.3、DEAI jichuan-dsv4pro/deepseek-v4-pro-0813。
 - 草稿箱 listing 命中：第366章谈判破裂 3551 字，count=1，duplicate=false。
 - 下一步：今日自循环 361-366 六章全部闭环；转入 500 章大纲重建（V6 骨架 + V8.2 Git 局部 + V8.6/V8.7 正文 + 素材卡全库融纲会议）。
+
+
+## 2026-10-03T22:52:33+08:00｜V9大纲标题去重断点
+- 状态: OUTLINE_TITLE_DEDUP_APPLIED
+- SHA: `4ff8fa89aa3adab6d7c6a186b5d045863cda3a2248b361880063c3e06205a81b`
+- 已改: 337「标准权失守」、402「战时内政决策」、413「轨道共管博弈」、417「天梯量产」、456「戴森环扩容」。
+- 已验: 500条、章号连续1—500；第366章仍「谈判破裂」。
+- 下一步: 对剩余13组标题按剧情功能逐组派独立席裁决，再执行最小修改与复核。

@@ -1131,3 +1131,26 @@
 - 草稿箱: ensure 只读 ok:true → --execute saved=true；listing 回读「第364章 盟友外交」4017 字，count=1，duplicate=false → 命中
 - 边界: 未发布
 - 残留: 无
+- 2026-10-03 16:40 | 同步章节 365
+
+## 2026-10-03 ｜ 第365章《和谈进展》全链闭环（r2/r3 定稿）
+
+- 状态: DONE（本地写回 + 草稿箱 listing 命中；发布归用户）
+- 定稿: `新版/第365章.md` SHA `f62554c78867c424bd2fed94d7fe36cb46b2b251f6fce5c95ec993d9adc244af` / CJK 3151；`已投稿/第365章.txt` SHA `b744cdf0bd359b00170d393ee0ad93287246962627cedc160013a9d5cae1b5f4` / CJK 3223（作者说 75 字）
+- 机检: DEAI `20261003_150107`，verdict PASS，hard_count=0；跨章扫描通过（仅已确认的躯干创伤软项「肋骨」）
+- 五审: 编辑 onefor/gpt-5.6-sol PASS；读者 agentrouter-dsv4/deepseek-v4-flash PASS、追读4/5；科学 sensenova/glm-5.2 PASS；制度 discovery/glm-5.3 PASS（原 any/gpt-6-astra 与 chun-grok46 超时，未计PASS）；DEAI agnes-text/agnes-3.0-flash PASS。五席 provider 独立。
+- 硬伤处置: r1 字数补足至2712且hard=0；r2 新会话补至3148；本机按去AI席逐字证据修复跨句先否后肯与三段并列，终稿3151。
+- 草稿箱: ensure `ok:true`；`--execute` listing `ok:true/count=1/duplicate=false`，第365章和谈进展 3523 字；364/363/362/361 同箱。
+- 残留: 无；发布归用户。
+- 2026-10-03 18:15 | 同步章节 366
+
+## 2026-10-03 ｜ 第366章《谈判破裂》全链闭环
+
+- 状态: DONE（本地写回 + 草稿箱 listing 命中；发布归用户）
+- 定稿: `新版/第366章.md` SHA `63636b841ae14f49b3ec3fd7077b92e4c46a1c88c8f31ddb4f74c150895499ca` / CJK 3095（84 行）；`已投稿/第366章.txt` SHA `6b7c8f72736efb663e7bba46a45324808c70a21c62b851a32fa0939cfc7adbe1` / CJK 3199（作者说 112 字）
+- 机检: DEAI `20261003_175718`，verdict PASS，hard_count=0；跨章扫描通过（伤处空）
+- 五审: 编辑 onefor/gpt-5.6-sol PASS；读者 agentrouter-dsv4/deepseek-v4-flash PASS、追读4/5；科学 sensenova/glm-5.2 PASS；制度 chun/glm-5.3 PASS（discovery 配额耗尽、any 流式异常，换 chun 重派）；DEAI jichuan-dsv4pro/deepseek-v4-pro-0813 PASS（新席，用户点名换入）。五席 provider 互异。
+- 硬伤处置: 首稿 CJK 2551 且 hard=2（L2 翻译腔、L8 拆句先否后肯）→ r1 补至 3027、拆句清除；r2 清「锋利」；r3 修动作归因（L57/L62 拒签与终止分离）、删两处盖章句、比喻落读数、口播改打断式；r4 删 L8/L31 说破句；r5 换 L59 现实术语、净 L8 结论词 → 终稿 3095。
+- 假 PASS 剔除: 本轮回合中 5 次 dispatch 返回 PASS 实为 fallback 顶包（回包 provider=nous），逐条 grep 日志验真后作废重派；判 PASS 前须核 `API call #1 model=<目标> provider=custom`。
+- 草稿箱: ensure `ok:true`（fanqie_body_chars 3551）；`--execute` listing `ok:true/count=1/duplicate=false`，第366章谈判破裂 3551 字；365/364/363/362/361 同箱。
+- 残留: 无；发布归用户。

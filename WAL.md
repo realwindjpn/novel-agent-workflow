@@ -3411,3 +3411,21 @@
 - 五席: editor onefor/gpt-5.6-sol PASS、reader agentrouter-dsv4/deepseek-v4-flash PASS、science sensenova/glm-5.2 PASS、system any/gpt-6-astra PASS、deai agnes-text/agnes-3.0-flash PASS
 - 草稿箱: 364 盟友外交 4017 + 363 非美元结算 4477 + 362 双线作战 3646 + 361 秘密外交 3760，四章均在箱内
 - 下一动作: 365《和谈进展》——前沿已推进到 364
+
+### 2026-10-03 16:40
+- 同步章节 365
+
+## 2026-10-03 ｜断点：第365章《和谈进展》闭环
+- 定稿 SHA: `f62554c78867c424bd2fed94d7fe36cb46b2b251f6fce5c95ec993d9adc244af`（CJK 3151）；TXT SHA `b744cdf0bd359b00170d393ee0ad93287246962627cedc160013a9d5cae1b5f4`（CJK 3223）
+- 五审全PASS：editor onefor、reader agentrouter-dsv4、science sensenova、system discovery、DEAI agnes-text；any/chun制度席超时不计入。
+- 草稿箱 listing 命中：第365章和谈进展 3523 字，count=1，duplicate=false。
+- 下一步：开启第366章《谈判破裂》G3/G4链；500章大纲重建与素材全局融纲会议排在今日自循环两章闭环之后。
+
+### 2026-10-03 18:15
+- 同步章节 366
+
+## 2026-10-03 ｜断点：第366章《谈判破裂》闭环
+- 定稿 SHA: `63636b841ae14f49b3ec3fd7077b92e4c46a1c88c8f31ddb4f74c150895499ca`（CJK 3095）；TXT SHA `6b7c8f72736efb663e7bba46a45324808c70a21c62b851a32fa0939cfc7adbe1`（CJK 3199）
+- 五审全PASS：editor onefor/gpt-5.6-sol、reader agentrouter-dsv4/deepseek-v4-flash、science sensenova/glm-5.2、fact chun/glm-5.3、DEAI jichuan-dsv4pro/deepseek-v4-pro-0813。
+- 草稿箱 listing 命中：第366章谈判破裂 3551 字，count=1，duplicate=false。
+- 下一步：今日自循环 361-366 六章全部闭环；转入 500 章大纲重建（V6 骨架 + V8.2 Git 局部 + V8.6/V8.7 正文 + 素材卡全库融纲会议）。

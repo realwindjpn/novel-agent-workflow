@@ -1194,3 +1194,9 @@
 - 处置: 回填铁幕残余三派、外部观察筛选、林星辰变量、方宁双向接入、谢云人工否决与三线证据链；仅改306—350标题/主线/暗线。
 - 验证: 500条；章号1—500连续；标题全表唯一；306—350共45章；SHA `14b802d1ad2a1b5411514a6b7a031a37351a6beafbd00978213d8f0cc193c5cc`。
 - 残留: Qwen项目大纲同步、Hermes 773真实回归与最终闭环审计。
+
+
+## 2026-10-04T01:37:59+08:00｜V9 Qwen大纲同步与Hermes修复状态
+- Hermes: `4dd0246` 已提交；104项聚焦测试通过；真实773回归仍显示上游 `Working outside of request context`，但已正确分类为 `ProviderStreamError` 并触发 fallback，根因未在773上游修复。
+- Qwen: 项目上传脚本返回 `upload=batch_ok`，但文件名 `seen=[]`，且页面回到会话并显示 `KB_ACCESS: NO`；按门禁记为 `REMOTE_CALIBRATED_NOT_WRITABLE/PARTIAL`，未报同步完成。
+- 主表: SHA `14b802d1ad2a1b5411514a6b7a031a37351a6beafbd00978213d8f0cc193c5cc`；500条连号、标题唯一。

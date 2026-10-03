@@ -1099,3 +1099,18 @@
 - 草稿箱: ensure 只读 ok:true → dry-run OK → --check-login ok → --execute saved=true；listing 回读「第362章 双线作战」3646 字，count=1，duplicate=false → 命中
 - 边界: 未发布
 - 残留: 无
+- 2026-10-03 11:32 | 同步章节 363
+
+## 2026-10-03 ｜ 第363章《非美元结算》全链闭环（r7 定稿）
+
+- 状态: DONE（本地写回 + 草稿箱 listing 命中；发布归用户）
+- 作者席: 网页 Qwen 项目席（CDP 9223，项目 fb4a25fd，会话 /c/ae2bed22…，qwen3.8-max，KB 门禁 --require-kb）
+- 定稿: `新版/第363章.md` SHA `8725b6cbec24612ba2556f19aadf1d25da28a68c56048d67e74f486b4365aaf4` / CJK 3789；`已投稿/第363章.txt` SHA `5c4c45fd335b9e29a694265d8e6d9020edf21e11125bd62bf589452f10e2c059` / CJK 3929（含作者说 152 字）
+- 机检: `kewu_deai_hard_gate_scan.py` hard_count=0（verdict PASS）；跨章重复扫描 ch363 自检通过
+- 五审全 PASS（五席五 provider，跨族）: 编辑 onefor/gpt-5.6-sol、读者 chun-grok46/grok-4.6（追读 5/5）、科学 sensenova/glm-5.2、制度 any/gpt-6-astra、DEAI agnes-text/agnes-3.0-flash
+- 世界内化: 大纲条目含现实货币名，查全书后按既成虚构物处理——沿用「国际清算节点」（第163/180章）与「算力券/能源点」（第90章，一比一百二十）；作者席自造结算体系「对衡簿」，记账单位「能工」（一标准兆瓦时电能注入已注册算力节点并产生可验证输出，凭物理交割作数）
+- 返修链路: r1（CJK 3018 不足 → 补写至 3540；「眼眶」命中伤处族换干眼）→ r2（编辑席抓 4 项：人物名「韩泊」应为「韩铮」、报文状态前后打架、修订公告逻辑反向、半角单引号；去AI席抓先否后肯句式、对仗结论句、旁白讲机制、叙述者复盘）→ r3（两笔账口径没岔开、三处旁白讲机制、否定对仗、改报文前缺原报文处置）→ r4/r5/r6/r7（签章数四章减三章对齐、动作次序撤回在改之前、「白结」双行去重、拆单数值闭合三十七箱拆八份、热敏纸物理机制改为涂层受热显色不掉灰）
+- 主控失误两处并已修: ①组卡未点名韩铮，作者席自造近名角色「韩泊」，全书仅此一章有此人；②席表照旧快照派工，discovery 挂了三席，违反「同一 provider 不得挂两席」——实测至少 8 个独立 provider 全活，已按跨族重排并落盘 `reviews_363_r3/SEATS.md`
+- 草稿箱: ensure 只读 ok:true → dry-run OK → --execute saved=true；listing 回读「第363章 非美元结算」4477 字，count=1，duplicate=false → 命中
+- 边界: 未发布
+- 残留: 无

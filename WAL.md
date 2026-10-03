@@ -3401,3 +3401,13 @@
 - 五席: editor onefor/gpt-5.6-sol PASS、reader chun-grok46/grok-4.6 PASS、science sensenova/glm-5.2 PASS、system any/gpt-6-astra PASS、deai agnes-text/agnes-3.0-flash PASS
 - 草稿箱: 363 非美元结算 4477 + 362 双线作战 3646 + 361 秘密外交 3760，三章均在箱内
 - 下一动作: 364《盟友外交》——前沿已推进到 363
+
+### 2026-10-03 13:01
+- 同步章节 364
+
+## 2026-10-03 ｜断点：第364章《盟友外交》闭环
+- 已完成: G3_PREP_364（prev_sha256 回填 363 定稿 8725b6cb…）→ G4 签发 → 作者席 r1-r2 → 五审全 PASS → 写回新版/已投稿 → STATUS/WAL/Git → 草稿箱 listing 命中
+- 关键 SHA: 新版 `ca1c6f8a8df3a34de3c87789f7e2bd6131638badc115a410d1fdafa87aa319d9`（CJK 3484）；已投稿 `e6bb1de059c52ecf412f508e6762d525ccc932afd1f6f6c7212a99ad4136f894`（CJK 3659）
+- 五席: editor onefor/gpt-5.6-sol PASS、reader agentrouter-dsv4/deepseek-v4-flash PASS、science sensenova/glm-5.2 PASS、system any/gpt-6-astra PASS、deai agnes-text/agnes-3.0-flash PASS
+- 草稿箱: 364 盟友外交 4017 + 363 非美元结算 4477 + 362 双线作战 3646 + 361 秘密外交 3760，四章均在箱内
+- 下一动作: 365《和谈进展》——前沿已推进到 364

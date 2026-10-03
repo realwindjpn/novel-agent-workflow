@@ -1114,3 +1114,20 @@
 - 草稿箱: ensure 只读 ok:true → dry-run OK → --execute saved=true；listing 回读「第363章 非美元结算」4477 字，count=1，duplicate=false → 命中
 - 边界: 未发布
 - 残留: 无
+- 2026-10-03 13:01 | 同步章节 364
+
+## 2026-10-03 ｜ 第364章《盟友外交》全链闭环（r4 定稿）
+
+- 状态: DONE（本地写回 + 草稿箱 listing 命中；发布归用户）
+- 作者席: 网页 Qwen 项目席（CDP 9223，项目 fb4a25fd，会话 /c/12c57ec5…，qwen3.8-max，KB 门禁 --require-kb）
+- 定稿: `新版/第364章.md` SHA `ca1c6f8a8df3a34de3c87789f7e2bd6131638badc115a410d1fdafa87aa319d9` / CJK 3484；`已投稿/第364章.txt` SHA `e6bb1de059c52ecf412f508e6762d525ccc932afd1f6f6c7212a99ad4136f894` / CJK 3659（含作者说 186 字）
+- 机检: `kewu_deai_hard_gate_scan.py` hard_count=0（verdict PASS）；跨章重复扫描 ch364 自检通过
+- 五审全 PASS（五席五 provider，跨族）: 编辑 onefor/gpt-5.6-sol、读者 agentrouter-dsv4/deepseek-v4-flash（追读 4/5）、科学 sensenova/glm-5.2、制度 any/gpt-6-astra、DEAI agnes-text/agnes-3.0-flash
+- 新设定: 作者席自造「中纬走廊」——夹在泛际安全理事会与铁幕之间的十一个国家议事机制，无常设秘书处、开会地点每轮换、谁提供场地谁当轮值。全书此前无既成的中间国家/联盟命名，由作者席书内自造并在第7行自然交代
+- 承接 363: 苏雨晴带热敏纸存证（两点六能工、五箱轴承、双链签章）出门谈联盟，倒计时二十四分钟压着
+- 分歧落点: 制造技术节点优先 vs 能源运输节点优先，挂第339章既成的「戴森球制造技术节点」；数量链 31+36=67、73+67=140 闭合，40 天存量对 140 天首产的 100 天缺口成立
+- 返修链路: r1（CJK 2989 不足 → 补至 3364；两处「不是…是」清零）→ r2（锚点机制两层分开：锚点管进不进待审名单、签章顺序管名单内先后；补 31+36=67 天因果；改「能源点是一百二十个一算力券」含混表述与「今天注明天」病句；四处替读者报时改外部落点）→ r3/r4（第55行「看了很久」漏网，改指甲磕桌沿）
+- 读者席: 首轮 chun-grok46/grok-4.6 超时（280s），换跨族 agentrouter-dsv4/deepseek-v4-flash 重派 PASS
+- 草稿箱: ensure 只读 ok:true → --execute saved=true；listing 回读「第364章 盟友外交」4017 字，count=1，duplicate=false → 命中
+- 边界: 未发布
+- 残留: 无

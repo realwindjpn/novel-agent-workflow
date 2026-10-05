@@ -1200,3 +1200,9 @@
 - Hermes: `4dd0246` 已提交；104项聚焦测试通过；真实773回归仍显示上游 `Working outside of request context`，但已正确分类为 `ProviderStreamError` 并触发 fallback，根因未在773上游修复。
 - Qwen: 项目上传脚本返回 `upload=batch_ok`，但文件名 `seen=[]`，且页面回到会话并显示 `KB_ACCESS: NO`；按门禁记为 `REMOTE_CALIBRATED_NOT_WRITABLE/PARTIAL`，未报同步完成。
 - 主表: SHA `14b802d1ad2a1b5411514a6b7a031a37351a6beafbd00978213d8f0cc193c5cc`；500条连号、标题唯一。
+
+
+## 2026-10-05 20:46 ｜ 第367章定稿绑定推进（未闭环）
+- 当前候选：`任务运行态/20261004_kewu_selfcycle_daily/output/G3_FINAL_367_SIGNATURE_REPAIRED_20261005.md`；SHA `416bf622fa6aa2c1c6d831a75c1c9143a95138c9576f8674f5dbb049097db75e`；CJK 3802。
+- 已同步：`新版/第367章.md`、`已投稿/第367章.txt`、`wiki/chapters/ch367.md`；平台草稿箱与上传仍待主控回读。
+- 残留：审席最终状态仍需以当前SHA逐席绑定，Wiki/跟踪表与Git选择性提交尚未完成。

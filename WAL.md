@@ -3471,3 +3471,8 @@
 - 306—350已落表并提交；主表SHA `14b802d1ad2a1b5411514a6b7a031a37351a6beafbd00978213d8f0cc193c5cc`。
 - Hermes修复提交 `4dd0246`；上游773仍有request-context bug，Hermes侧已避免错误正文伪装并触发fallback。
 - Qwen项目同步未验收：上传返回 `batch_ok` 但 DOM 未见文件名，KB_ACCESS仍为NO。下一步必须修正项目知识库上传/回读链路后再报闭环。
+
+
+## 2026-10-05 20:46 ｜ 第367章断点
+- 候选SHA `416bf622fa6aa2c1c6d831a75c1c9143a95138c9576f8674f5dbb049097db75e`，CJK 3802；本地新版/TXT/Wiki已写入。
+- 下一步：完成当前SHA审席证据绑定、草稿箱 listing 回读（如属上传线）、选择性Git提交；未完成前不得报闭环。

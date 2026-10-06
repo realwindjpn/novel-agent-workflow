@@ -1206,3 +1206,11 @@
 - 当前候选：`任务运行态/20261004_kewu_selfcycle_daily/output/G3_FINAL_367_SIGNATURE_REPAIRED_20261005.md`；SHA `416bf622fa6aa2c1c6d831a75c1c9143a95138c9576f8674f5dbb049097db75e`；CJK 3802。
 - 已同步：`新版/第367章.md`、`已投稿/第367章.txt`、`wiki/chapters/ch367.md`；平台草稿箱与上传仍待主控回读。
 - 残留：审席最终状态仍需以当前SHA逐席绑定，Wiki/跟踪表与Git选择性提交尚未完成。
+- 2026-10-06 11:29 | 同步章节 367
+
+## 2026-10-06 11:30 ｜ 第367章《外交总攻》闭环完成
+- 定稿 SHA `0c2587ddd889fe2e…`（完整 `0c2587ddd889fe2e`），正文 CJK 3808 + 作者有话说 139 = 文件 CJK 3952；番茄口径 4469 字。
+- 上传门禁：`ensure_fanqie_upload_txt_ready.py --chapter 367` → `ok=true, issues=[]`（补齐「作者有话说：」139字，写入前为 `note_uses_default` FAIL）。
+- 平台回读：`fanqie_draft_upload_chapter.py --chapter 367 --execute` → `final.listing.ok=true`，`第367章 外交总攻 | 4469` 命中，`duplicate=false`，`sync=SYNC_OK`；独立 Playwright 复验 `DRAFT_HIT: 第367章 外交总攻 | 4469字`。
+- 同步落点：`新版/第367章.md`、`已投稿/第367章.txt`、`草稿箱/第367章.txt` 三者 SHA 一致。
+- 残留：审席报告仍绑定旧 SHA `416bf622fa6aa2c1`（写作环产物，非上传门禁项）；wiki/chapters/ch367.md 未含作者有话说。

@@ -1214,3 +1214,17 @@
 - 平台回读：`fanqie_draft_upload_chapter.py --chapter 367 --execute` → `final.listing.ok=true`，`第367章 外交总攻 | 4469` 命中，`duplicate=false`，`sync=SYNC_OK`；独立 Playwright 复验 `DRAFT_HIT: 第367章 外交总攻 | 4469字`。
 - 同步落点：`新版/第367章.md`、`已投稿/第367章.txt`、`草稿箱/第367章.txt` 三者 SHA 一致。
 - 残留：审席报告仍绑定旧 SHA `416bf622fa6aa2c1`（写作环产物，非上传门禁项）；wiki/chapters/ch367.md 未含作者有话说。
+
+
+## 2026-10-06 13:31 ｜ 第367章《外交总攻》真正闭环（三席 r3 全 PASS）
+- 前次草稿箱命中建立在未过审稿上（r2 三席 FAIL、绑定不明），已作废该结论，重派重审。
+- 重审三席（dispatch_to_model 通道，模型自读带行号正文 98 行）：
+  - editor = hiyo / gpt-6-luna → PASS（8 条行号引用零越界）
+  - fact = sunapi-qwen38 / qwen3.8-max → PASS（13 条零越界）
+  - structure = agnes-text / agnes-3.0-flash → PASS（11 条零越界）
+  - science 席沿用 r2 PASS，按 THEN 规则冻结未重跑。
+- 假 PASS 验真（主控独立 grep agent.log）：三席结论轮均为 `API call #2: model=<目标模型> provider=custom`，out 依次为 3950 / 8368 / 3615 tokens，无 provider=nous 回落，判定为真 PASS。
+- 定稿 SHA 未变（`0c2587ddd889fe2e…`），文件 CJK 3952（正文 3808 + 作者有话说 139），番茄口径 4469 字。
+- 上传门禁 `ensure_fanqie_upload_txt_ready.py --chapter 367` → ok=true, issues=[]。
+- 草稿箱 listing：`第367章 外交总攻 | 4469` 命中，duplicate 检查通过，独立 Playwright 复验一致。
+- 与上一次闭环记录的差别：本条才是带审稿证据的闭环，上一条作废。

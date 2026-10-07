@@ -1,24 +1,23 @@
 {
   "schema_version": "kewu.chapter-state.v1",
-  "generated_at": "2026-10-07T18:41:56+08:00",
+  "generated_at": "2026-10-07T20:00:49+08:00",
   "chapter": 369,
   "title": "协议框架",
   "volume": "第八卷·博弈",
   "body": {
     "path": "/root/workspace/科武纪元/新版/第369章.md",
-    "sha256": "1be7d7fabad572ba2974816aa2327fea093c8bcc21f950c705657d2e643d94a6",
-    "net_cjk": 4052
+    "sha256": "d7c970b5cef594003ceb2753e7502738e69fc3d711b80e0de616fc5a555303eb",
+    "net_cjk": 4277
   },
   "status": {
-    "production": "DRAFT_SAVED_NOT_PUBLISHED",
-    "published_at": null,
-    "submitted_path": null,
+    "production": "PUBLISHED",
+    "published_at": "2026-10-07",
+    "submitted_path": "/root/workspace/科武纪元/已投稿/第369章.txt",
     "wiki_synced": true,
     "review": null,
     "flow": "FINALIZED",
-    "editable": true,
-    "state_machine": "PUBLISHED 为终态；改稿须先 --force-unpublish 降级",
-    "updated_at": "2026-10-07T18:53:34+08:00"
+    "editable": false,
+    "state_machine": "PUBLISHED 为终态；改稿须先 --force-unpublish 降级"
   },
   "interface": {
     "prev_chapter": 368,
@@ -30,15 +29,15 @@
     "characters": [
       {
         "name": "苏雨晴",
-        "mentions": 14
+        "mentions": 15
       },
       {
         "name": "周棠",
-        "mentions": 12
+        "mentions": 13
       },
       {
         "name": "韩铮",
-        "mentions": 5
+        "mentions": 6
       }
     ],
     "outline_plot": "各方就技术共享达成初步框架",
@@ -53,28 +52,5 @@
     "version": "V9_G2备注版",
     "path": "/root/workspace/科武纪元/任务运行态/20261003_kewu_selfcycle_daily/output/科武纪元大纲V9_500章_重建稿_G2备注版.md",
     "sha256": "fef0e2a8503c8314eb482bd5b9c1451f197f1e1bdd988bb361f46ae23ce393f7"
-  },
-  "history": [
-    {
-      "from": "REVISING",
-      "to": "IN_REVIEW",
-      "at": "2026-10-07T18:53:33+08:00",
-      "reason": "R8稿就绪,终审五席重派",
-      "forced": false
-    },
-    {
-      "from": "IN_REVIEW",
-      "to": "REVIEW_PASS",
-      "at": "2026-10-07T18:53:34+08:00",
-      "reason": "终审五席5族全PASS(sonnet/kimi/qwen/nemotron/minimax),引文验真通过",
-      "forced": false
-    },
-    {
-      "from": "REVIEW_PASS",
-      "to": "FINALIZED",
-      "at": "2026-10-07T18:53:34+08:00",
-      "reason": "终审全PASS,CJK4052,禁区全清,闭环",
-      "forced": false
-    }
-  ]
+  }
 }

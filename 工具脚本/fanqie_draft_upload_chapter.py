@@ -128,17 +128,24 @@ def infer_volume(project_dir: Path, chapter: int) -> str:
     outline = _canon_path()
     if not outline.exists():
         raise FileNotFoundError(outline)
+    import re as _re
     text = outline.read_text(encoding='utf-8')
     volumes = []
     for line in text.splitlines():
         # 大纲可能带有 rg/nl 风格的行号前缀：`266|第169章 | 第四卷·登月 | ...`
-        row = re.sub(r'^\s*\d+\|', '', line).strip()
-        if not re.match(rf'^第{chapter}章\s*\|', row):
+        row = _re.sub(r'^\s*\d+\|', '', line).strip()
+        # V9 准绳为 markdown 表格行：`| 369 | 第八卷·博弈 | 协议框架 | ...`
+        # 与旧式 `第369章 | 第八卷·博弈 | ...` 两种格式都要认，否则上传线取不到分卷。
+        cells = [c.strip() for c in row.strip('|').split('|')]
+        is_table_row = bool(cells) and cells[0] == str(chapter)
+        if not is_table_row and not _re.match(rf'^第{chapter}章\s*\|', row):
             continue
-        parts = [part.strip() for part in row.split('|')]
-        if len(parts) < 2:
+        parts = cells if is_table_row else [p.strip() for p in row.split('|')]
+        # 表格式：cells = [章号, 卷, 标题, ...]；旧式：row 首字段为「第N章」
+        vol_idx = 1 if is_table_row else 1
+        if len(parts) <= vol_idx:
             continue
-        volume = parts[1].replace('·', '：')
+        volume = parts[vol_idx].replace('·', '：')
         if volume:
             volumes.append(volume)
     volumes = list(dict.fromkeys(volumes))

@@ -125,7 +125,9 @@ def show(n: int):
         print(d['error']); return
     ok, why = can_edit(n)
     print(f'第{n}章 | {d.get("title")} | 状态 {cur_status(n)}')
-    print(f'  SHA  {d["body"]["sha256"][:16]}  CJK {d["body"]["net_cjk"]}')
+    b = d.get('body') or {}
+    sha = b.get('sha256')
+    print(f'  SHA  {sha[:16] if sha else "—"}  CJK {b.get("net_cjk") or "—"}')
     print(f'  可编辑: {"是" if ok else "否"} —— {why}')
     h = d.get('history') or []
     if h:

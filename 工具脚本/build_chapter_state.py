@@ -186,10 +186,17 @@ def grep_index(keyword, index_file: Path, max_hits: int = 6) -> list:
 
 # ---------- 主构建 ----------
 
-def build(n: int) -> dict:
+def build(n: int, allow_planned: bool = False) -> dict:
+    """建卡。
+
+    allow_planned=True 时，无正文也建卡（状态 PLANNED）——新章起点必需，
+    否则 chapter_state_machine 会一直 BLOCKED，无法开工。
+    """
     src = NEW / f'第{n}章.md'
     if not src.exists():
-        return {'chapter': n, 'error': 'SOURCE_NOT_FOUND', 'path': str(src)}
+        if not allow_planned:
+            return {'chapter': n, 'error': 'SOURCE_NOT_FOUND', 'path': str(src)}
+        return build_planned(n)
 
     body = src.read_text(encoding='utf-8')
     sha = sha256_file(src)
@@ -255,11 +262,53 @@ def build(n: int) -> dict:
     return card
 
 
+def build_planned(n: int) -> dict:
+    """无正文建卡：状态 PLANNED，内容要素取自 V9 大纲，正文字段留 null。"""
+    outline = load_outline_row(n)
+    return {
+        'schema_version': SCHEMA,
+        'generated_at': datetime.now().astimezone().isoformat(timespec='seconds'),
+        'chapter': n,
+        'title': outline.get('title'),
+        'volume': outline.get('volume'),
+        'body': {'path': None, 'sha256': None, 'net_cjk': None},
+        'status': {
+            'production': 'PLANNED',
+            'editable': True,
+            'state_machine': '新章起点，无正文；写稿后重建状态卡',
+            'published_at': None,
+            'submitted_path': None,
+            'wiki_synced': False,
+            'review': None,
+        },
+        'interface': {
+            'prev_chapter': n - 1 if n > 1 else None,
+            'next_chapter': n + 1,
+            'opening': None,
+            'ending_hook': None,
+        },
+        'content': {
+            'characters': [],
+            'outline_plot': outline.get('plot'),
+            'outline_subtext': outline.get('subtext'),
+            'outline_target_cjk': outline.get('target_cjk'),
+        },
+        'threads': {'foreshadowing': [], 'ending_hooks': []},
+        'outline_binding': {
+            'version': 'V9_G2备注版',
+            'path': str(BASE / OUTLINE_CANON),
+            'sha256': sha256_file(BASE / OUTLINE_CANON) if (BASE / OUTLINE_CANON).exists() else None,
+        },
+    }
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--chapter', '-c', nargs='+', type=int)
     ap.add_argument('--range', nargs=2, type=int, metavar=('START', 'END'))
     ap.add_argument('--dry', action='store_true', help='只打印不落盘')
+    ap.add_argument('--allow-planned', action='store_true',
+                    help='无正文也建卡（状态 PLANNED，新章起点）')
     a = ap.parse_args()
 
     chapters = a.chapter or []
@@ -274,7 +323,7 @@ def main():
 
     ok = err = 0
     for n in chapters:
-        card = build(n)
+        card = build(n, allow_planned=a.allow_planned)
         if card.get('error'):
             print(f'第{n}章: {card["error"]}')
             err += 1

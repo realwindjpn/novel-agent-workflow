@@ -1,0 +1,69 @@
+{
+  "schema_version": "kewu.chapter-state.v1",
+  "generated_at": "2026-10-07T14:07:35+08:00",
+  "chapter": 369,
+  "title": "协议框架",
+  "volume": "第八卷·博弈",
+  "body": {
+    "path": null,
+    "sha256": null,
+    "net_cjk": null
+  },
+  "status": {
+    "production": "DRAFTING",
+    "editable": true,
+    "state_machine": "新章起点，无正文；写稿后重建状态卡",
+    "published_at": null,
+    "submitted_path": null,
+    "wiki_synced": false,
+    "review": null,
+    "updated_at": "2026-10-07T14:07:54+08:00"
+  },
+  "interface": {
+    "prev_chapter": 368,
+    "next_chapter": 370,
+    "opening": null,
+    "ending_hook": null,
+    "prev_ending_hook": "韩铮把留痕簿摊开在桌面上，笔尖悬在第四格上方，准备补上那缺失的一笔，但他的手腕没有落下去，笔尖在纸面上方两厘米处停住，墨水在圆珠笔尖聚成一个微小的液滴，辅屏上的速度数字再次跳了一档，张力读数定格在三百一十八，调度组的主通讯频道里跳出一条绿色指令：准备切入锚点捕获程序。",
+    "prev_title": "标准制定",
+    "prev_sha256": "4d995941d285e1e91580c7d054227d2d61f013c107d3fe1433d78c2dd144bbc9"
+  },
+  "content": {
+    "characters": [],
+    "outline_plot": "各方就技术共享达成初步框架",
+    "outline_subtext": "框架保障各技术节点协同发展;铁幕被排除在外",
+    "outline_target_cjk": 3300,
+    "prev_characters": [
+      {
+        "name": "苏雨晴",
+        "mentions": 13
+      },
+      {
+        "name": "周棠",
+        "mentions": 10
+      },
+      {
+        "name": "韩铮",
+        "mentions": 5
+      }
+    ]
+  },
+  "threads": {
+    "foreshadowing": [],
+    "ending_hooks": []
+  },
+  "outline_binding": {
+    "version": "V9_G2备注版",
+    "path": "/root/workspace/科武纪元/任务运行态/20261003_kewu_selfcycle_daily/output/科武纪元大纲V9_500章_重建稿_G2备注版.md",
+    "sha256": "fef0e2a8503c8314eb482bd5b9c1451f197f1e1bdd988bb361f46ae23ce393f7"
+  },
+  "history": [
+    {
+      "from": "PLANNED",
+      "to": "DRAFTING",
+      "at": "2026-10-07T14:07:54+08:00",
+      "reason": "第369章开工，按V9大纲组别卡",
+      "forced": false
+    }
+  ]
+}

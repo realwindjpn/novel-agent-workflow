@@ -284,12 +284,19 @@ def build_planned(n: int) -> dict:
         'title': outline.get('title'),
         'volume': outline.get('volume'),
         'body': {'path': None, 'sha256': None, 'net_cjk': None},
+        # 2026-10-07 修复根因：PLANNED 卡缺 flow/editable，导致 chapter_state_machine
+        # 的 cur_status() 读不到 flow → 判 UNKNOWN → --can-edit 恒为 BLOCKED。
+        # 370 当时只手工补字段绕过，脚本未修；此处从源头补齐。
+        # production='NONE'：尚未有任何草稿落稿，不得谎报 DRAFT_SAVED_NOT_PUBLISHED。
         'status': {
-            'production': 'DRAFT_SAVED_NOT_PUBLISHED',
+            'production': 'NONE',
+            'flow': 'PLANNED',
+            'editable': True,
             'published_at': None,
             'submitted_path': None,
             'wiki_synced': False,
             'review': None,
+            'state_machine': 'PUBLISHED 为终态；改稿须先 --force-unpublish 降级',
         },
         'interface': {
             'prev_chapter': n - 1 if n > 1 else None,

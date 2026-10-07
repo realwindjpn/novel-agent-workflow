@@ -1,52 +1,49 @@
 {
   "schema_version": "kewu.chapter-state.v1",
-  "generated_at": "2026-10-07T14:07:35+08:00",
+  "generated_at": "2026-10-07T14:42:44+08:00",
   "chapter": 369,
   "title": "协议框架",
   "volume": "第八卷·博弈",
   "body": {
-    "path": null,
-    "sha256": null,
-    "net_cjk": null
+    "path": "/root/workspace/科武纪元/新版/第369章.md",
+    "sha256": "a198bc38a31ecd26355767c9ab44380b62ed0c24f810b3735797ca3907aa6850",
+    "net_cjk": 3480
   },
   "status": {
-    "production": "DRAFTING",
-    "editable": true,
-    "state_machine": "新章起点，无正文；写稿后重建状态卡",
+    "production": "DRAFT_SAVED_NOT_PUBLISHED",
     "published_at": null,
     "submitted_path": null,
     "wiki_synced": false,
     "review": null,
-    "updated_at": "2026-10-07T14:07:54+08:00"
+    "flow": "IN_REVIEW",
+    "editable": true,
+    "state_machine": "PUBLISHED 为终态；改稿须先 --force-unpublish 降级",
+    "updated_at": "2026-10-07T14:42:52+08:00"
   },
   "interface": {
     "prev_chapter": 368,
     "next_chapter": 370,
-    "opening": null,
-    "ending_hook": null,
-    "prev_ending_hook": "韩铮把留痕簿摊开在桌面上，笔尖悬在第四格上方，准备补上那缺失的一笔，但他的手腕没有落下去，笔尖在纸面上方两厘米处停住，墨水在圆珠笔尖聚成一个微小的液滴，辅屏上的速度数字再次跳了一档，张力读数定格在三百一十八，调度组的主通讯频道里跳出一条绿色指令：准备切入锚点捕获程序。",
-    "prev_title": "标准制定",
-    "prev_sha256": "4d995941d285e1e91580c7d054227d2d61f013c107d3fe1433d78c2dd144bbc9"
+    "opening": "通风管道的接缝处漏出一股铁锈味的干燥气流，吹在第三会议室长桌中段那叠草案纸页的右上角上，纸角被掀起又落回去，掀起又落回去，频率和管道的低频震动一致。室温计挂在门边立柱的背光面，红色液柱停在二十七度刻度线上方半格的位置，没有人起身去调。十二个席位的台面灯全部亮着，暖黄色的光把每一张纸的纤维纹路都照了出来，苏雨晴的右手食指按在第三页纸的下边缘，指甲盖下面压出一小片发白的月牙。\n她把框架条款草案从第一页翻到第四页，翻页的时候纸边刮过桌面，发出一声极轻的干响。指尖沿着第二行条款的铅字划过去，划到\"公共留痕归档节点\"六个字时停住，把那一页往桌面中央推了三厘米。对面三个席位的代表同时低头去看，其中一个人的椅背往后仰了两度，又直回来。苏雨晴没有抬声，只是用笔帽点了点那行字的末尾。\n「接口规格统一走校验协议，各技术节点的读写权限以带时间戳的只读副本为准。」她念完这句，把笔帽搁在纸面上。笔帽是黑色塑料的，圆柱形，搁下去之后滚了半圈，撞上一只搪瓷杯的底座才停住，杯底磕在桌面上，发出一声闷响。",
+    "ending_hook": "笔杆上那小块汗渍还没干，在暖黄色的台面灯下泛着一点暗光。"
   },
   "content": {
-    "characters": [],
-    "outline_plot": "各方就技术共享达成初步框架",
-    "outline_subtext": "框架保障各技术节点协同发展;铁幕被排除在外",
-    "outline_target_cjk": 3300,
-    "prev_characters": [
+    "characters": [
       {
         "name": "苏雨晴",
-        "mentions": 13
-      },
-      {
-        "name": "周棠",
-        "mentions": 10
+        "mentions": 11
       },
       {
         "name": "韩铮",
+        "mentions": 6
+      },
+      {
+        "name": "周棠",
         "mentions": 5
       }
-    ]
+    ],
+    "outline_plot": "各方就技术共享达成初步框架",
+    "outline_subtext": "框架保障各技术节点协同发展;铁幕被排除在外",
+    "outline_target_cjk": 3300
   },
   "threads": {
     "foreshadowing": [],
@@ -59,10 +56,10 @@
   },
   "history": [
     {
-      "from": "PLANNED",
-      "to": "DRAFTING",
-      "at": "2026-10-07T14:07:54+08:00",
-      "reason": "第369章开工，按V9大纲组别卡",
+      "from": "DRAFTING",
+      "to": "IN_REVIEW",
+      "at": "2026-10-07T14:42:52+08:00",
+      "reason": "R3稿CJK3480达标,派五审",
       "forced": false
     }
   ]

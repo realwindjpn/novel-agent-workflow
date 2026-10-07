@@ -70,7 +70,7 @@ def load_state(n: int) -> dict:
 
 def cur_status(n: int) -> str:
     d = load_state(n)
-    return (d.get('status') or {}).get('production') or 'UNKNOWN'
+    return (d.get('status') or {}).get('flow') or 'UNKNOWN'
 
 
 def can_edit(n: int) -> tuple:
@@ -106,7 +106,7 @@ def transition(n: int, to: str, force_unpublish: bool = False,
 
     p = state_path(n)
     card = json.loads(p.read_text(encoding='utf-8'))
-    card.setdefault('status', {})['production'] = to
+    card.setdefault('status', {})['flow'] = to
     card.setdefault('status', {})['updated_at'] = datetime.now().astimezone().isoformat(timespec='seconds')
     card.setdefault('history', []).append({
         'from': cur, 'to': to,

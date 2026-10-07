@@ -220,10 +220,9 @@ def build(n: int, allow_planned: bool = False) -> dict:
 
         # --- 状态 ---
         'status': {
+            # production = 发布态（由磁盘事实判定）；flow = 流程态（状态机维护）
+            # 二者分开：建卡不得覆盖 flow，否则流程进度被磁盘事实冲掉。
             'production': status,
-            # 状态机门禁字段：PUBLISHED 为终态，editable=false 即禁止改稿
-            'editable': status != 'PUBLISHED',
-            'state_machine': 'PUBLISHED 为终态；改稿须先 --force-unpublish 降级',
             'published_at': pub_date,
             'submitted_path': pub_path,
             'wiki_synced': wiki_path.exists(),
@@ -259,6 +258,19 @@ def build(n: int, allow_planned: bool = False) -> dict:
             'sha256': sha256_file(BASE / OUTLINE_CANON) if (BASE / OUTLINE_CANON).exists() else None,
         },
     }
+    # 流程态：沿用卡内已有的 flow，不覆盖；无则按 production 推断
+    prev_flow = None
+    sp = STATE_DIR / f'ch{n:03d}.json'
+    if sp.exists():
+        try:
+            prev_flow = (json.loads(sp.read_text(encoding='utf-8'))
+                         .get('status') or {}).get('flow')
+        except Exception:
+            prev_flow = None
+    card['status']['flow'] = prev_flow or (
+        'PUBLISHED' if status == 'PUBLISHED' else 'DRAFTING')
+    card['status']['editable'] = status != 'PUBLISHED'
+    card['status']['state_machine'] = 'PUBLISHED 为终态；改稿须先 --force-unpublish 降级'
     return card
 
 
@@ -273,9 +285,7 @@ def build_planned(n: int) -> dict:
         'volume': outline.get('volume'),
         'body': {'path': None, 'sha256': None, 'net_cjk': None},
         'status': {
-            'production': 'PLANNED',
-            'editable': True,
-            'state_machine': '新章起点，无正文；写稿后重建状态卡',
+            'production': 'DRAFT_SAVED_NOT_PUBLISHED',
             'published_at': None,
             'submitted_path': None,
             'wiki_synced': False,

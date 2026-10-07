@@ -1,0 +1,56 @@
+{
+  "schema_version": "kewu.chapter-state.v1",
+  "generated_at": "2026-10-07T22:13:23+08:00",
+  "chapter": 370,
+  "title": "地球终局",
+  "volume": "第八卷·博弈",
+  "body": {
+    "path": "/root/workspace/科武纪元/新版/第370章.md",
+    "sha256": "504ce9d7b9680438b83f0a5201e2b0244582be9d9f1c2dbc002b496f45313b35",
+    "net_cjk": 3770
+  },
+  "status": {
+    "production": "PUBLISHED",
+    "published_at": "2026-10-07",
+    "submitted_path": "/root/workspace/科武纪元/已投稿/第370章.txt",
+    "wiki_synced": true,
+    "review": null,
+    "flow": "FINALIZED",
+    "editable": false,
+    "state_machine": "PUBLISHED 为终态；改稿须先 --force-unpublish 降级"
+  },
+  "interface": {
+    "prev_chapter": 369,
+    "next_chapter": 371,
+    "opening": "二十九分钟。\n通讯窗口倒计时的数字挂在主控台右上角，橙色，每跳一下就把会议室的白光压低半档。苏雨晴没看那个数字。她看的是十二个席位的全息投影，九个亮着字迹，其中一席字为灰色，是列席观察的标记；两个灰白，灯丝冷得像没通电；一个画着待裁方框。灰白的那两个位置在第九和第十。\n\"窗口内能做什么，先做。\"苏雨晴把掌心按在桌面感应区，调出框架附件三。附件三的扉页上印着两个手写的字，\"另议\"，墨色比正文深，是签字那天留下的。她盯着那两个字看了两秒，然后翻到正文页。",
+    "ending_hook": "会议室暗下来，只剩桌面上归档盒的指示灯还亮着，绿色，两秒闪一次。"
+  },
+  "content": {
+    "characters": [
+      {
+        "name": "苏雨晴",
+        "mentions": 33
+      },
+      {
+        "name": "周棠",
+        "mentions": 24
+      },
+      {
+        "name": "韩铮",
+        "mentions": 19
+      }
+    ],
+    "outline_plot": "地球政治格局重塑,合作成为主流",
+    "outline_subtext": "长远布局的价值显现;各技术节点获得保护",
+    "outline_target_cjk": 3400
+  },
+  "threads": {
+    "foreshadowing": [],
+    "ending_hooks": []
+  },
+  "outline_binding": {
+    "version": "V9_G2备注版",
+    "path": "/root/workspace/科武纪元/任务运行态/20261003_kewu_selfcycle_daily/output/科武纪元大纲V9_500章_重建稿_G2备注版.md",
+    "sha256": "fef0e2a8503c8314eb482bd5b9c1451f197f1e1bdd988bb361f46ae23ce393f7"
+  }
+}

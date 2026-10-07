@@ -145,9 +145,12 @@ FIVE_SEATS = {
             "输出格式：首行只写 PASS 或 PASS_WITH_NOTES 或 FAIL。"
             "若非 PASS，逐条列必改项并引原文片段，给出正确参数或机制。\n\n正文：\n{body}"
         ),
+        # agentrouter-dsv4 实测真通 33.2s（本地10822代理, chat_completions）。裸名 agentrouter 未登记，勿用。
+        # 该节点换用 claude-opus-5（与链内已有 deepseek 系不重复，遵守同席位内不重复模型）。
         'chain': [('jichuan-dsv4pro', 'deepseek-v4-pro-0813'),
                   ('siliconflow', 'deepseek-ai/DeepSeek-V3'),
-                  ('fkall-text', 'deepseek-v4-flash')],
+                  ('fkall-text', 'deepseek-v4-flash'),
+                  ('agentrouter-dsv4', 'claude-opus-5')],
     },
     'reader': {
         'role': '读者席',
@@ -158,9 +161,16 @@ FIVE_SEATS = {
             "输出格式：首行只写 PASS 或 PASS_WITH_NOTES 或 FAIL。"
             "次行写「追读评分：N/5」。若非 PASS，逐条列必改项并引原文片段。\n\n正文：\n{body}"
         ),
+        # 2026-10-07 用户点名补入实测真通的节点（能用就用）：
+        #   anyrouter/gpt-6-astra        真通 12.1s  (api_mode=codex_responses)
+        #   agentrouter-proxy/gpt-6-astra 真通 30.8s  (本地10822代理, codex_responses)
+        # 注意：provider 名必须是 agentrouter-proxy / agentrouter-dsv4，
+        #       裸名 agentrouter 未登记，会被静默 fallback 到 cpa 而假性成功。
+        # rsiai-gpt 已删除（用户告知无余额）。
         'chain': [('hiyo', 'gpt-6-luna'),
                   ('piexian', 'gpt-6-astra'),
-                  ('rsiai-gpt', 'gpt-6-astra')],
+                  ('anyrouter', 'gpt-6-astra'),
+                  ('agentrouter-proxy', 'gpt-6-astra')],
     },
     'deai': {
         'role': '去AI腔席',
@@ -197,8 +207,13 @@ FINAL_SEATS = {
             "不许复述初审意见，只判「已落实 / 未落实 / 引入新问题」。\n\n"
             "输出格式：首行只写 PASS 或 FAIL。若 FAIL，逐条列未落实项并引原文。\n\n正文：\n{body}"
         ),
+        # 2026-10-07 用户口径：不限定节点重复，只要求**同席位内不是同一模型**。
+        # 故不再为「provider 唯一」而绕开可用节点——能用就用。
+        # openfly/claude-opus-4-7 保留（与初审编辑席同节点不同轮，允许）。
+        # cpa/gpt-6.1-sol 实测真通 17.2s（无 fallback），补为第三落点。
         'chain': [('onyxaxis-sonnet5', 'claude-sonnet-5'),
-                  ('openfly', 'claude-opus-4-7')],
+                  ('openfly', 'claude-opus-4-7'),
+                  ('cpa', 'gpt-6.1-sol')],
     },
     'final_structure': {
         'role': '终审·结构席',
@@ -208,11 +223,13 @@ FINAL_SEATS = {
             "不许复述初审意见。\n\n"
             "输出格式：首行只写 PASS 或 FAIL。若 FAIL，逐条列结构问题并引原文。\n\n正文：\n{body}"
         ),
-        # 一个 provider 只出一个模型（2026-10-07 用户铁律）。
-        # 主选 1tim/glm-5.2；备选换独立节点 tingfeng/deepseek-v4.1-flash（实测OK 10.9s），
-        # 不再由 1tim 同时出 glm 与 deepseek —— 那会让同席位出现同节点双模型。
-        # 原：('1tim','kimi-k3')+('773','kimi-k3') → ('1tim','glm-5.2')+('1tim','deepseek-v4.1-flash')
-        'chain': [('1tim', 'glm-5.2'), ('tingfeng', 'deepseek-v4.1-flash')],
+        # 用户口径：不限定节点重复，能用就用。
+        # 主选 1tim/glm-5.2（实测真通）；备选 tingfeng/deepseek-v4.1-flash（真通 10.9s）。
+        # 第三落点 cpa/gemini-3.8-flash（实测真通 12.4s，无 fallback）。
+        # 三者模型互不相同，符合同席位内不重复模型的要求。
+        'chain': [('1tim', 'glm-5.2'),
+                  ('tingfeng', 'deepseek-v4.1-flash'),
+                  ('cpa', 'gemini-3.8-flash')],
     },
     'final_science': {
         'role': '终审·科学军事席',
@@ -222,11 +239,12 @@ FINAL_SEATS = {
             "不许复述初审意见。\n\n"
             "输出格式：首行只写 PASS 或 FAIL。若 FAIL，逐条列并给出正确值。\n\n正文：\n{body}"
         ),
-        # 一个 provider 只出一个模型（2026-10-07 用户铁律）。
-        # 备选原为 773/qwen3.8-max，但 773 已承担 final_deai 两条，
-        # 继续复用会让「全部走到第二选」时 773 占 2 席、distinct 掉到 4。
-        # 改换独立节点 sunapi-qwen38/qwen3.8-max（实测真通 18.8s，无 fallback）。
-        'chain': [('weiyi-qwen', 'qwen3.8-27b'), ('sunapi-qwen38', 'qwen3.8-max')],
+        # 用户口径更正（2026-10-07）：不限定节点重复，能用就用。
+        # 此前为规避「773 占多席」把备选换成 sunapi-qwen38，属把规则执行过头——773 恢复。
+        # sunapi-qwen38 改用 qwen3.8-plus（真通节点保留，但避免同席位内模型与 773 重复）。
+        'chain': [('weiyi-qwen', 'qwen3.8-27b'),
+                  ('773', 'qwen3.8-max'),
+                  ('sunapi-qwen38', 'qwen3.8-plus')],
     },
     'final_reader': {
         'role': '终审·读者席',

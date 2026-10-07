@@ -38,6 +38,72 @@ from pathlib import Path
 BASE = Path('/root/workspace/科武纪元')
 STATE_DIR = BASE / '任务运行态' / '五审状态'
 
+# ── 角色OS 注入（HARD，2026-10-07）──────────────────────────────────────
+# 教训：OS 文件一直存在于 /root/workspace/写作角色OS/，但本脚本零引用，
+#       导致 369/370 两章在「裸审」状态下通过全部机器闸与终审 —— 完全未被发现。
+#       技能 novel-six-role-cpa-lite 明令「缺角色OS＝任务卡不合格，不得裸写」。
+#       见 ../skills  references/role-os-present-but-not-injected-20261007.md
+ROLE_OS_DIR = Path('/root/workspace/写作角色OS')
+
+# 各席位必须加载的 OS 文件。缺任一文件 → FileNotFoundError → 中断派工，不降级。
+AUTHOR_OS_FILES = [
+    'kewu_author_prompt.md',
+    'writer_role_core.md',
+    'experience_distillation_rules.md',
+    'kewu_author_training_index.md',
+    'kewu_author_training_examples.md',
+    'deai_route_manifest.md',
+    'DEAI_WRITING_STYLE_SPEC_20260903.md',
+]
+SEAT_OS_FILES = {
+    'editor':           ['kewu_author_prompt.md', 'DEAI_WRITING_STYLE_SPEC_20260903.md'],
+    'structure':        ['writer_role_core.md', 'experience_distillation_rules.md'],
+    'science_military': ['experience_distillation_rules.md'],
+    'reader':           ['writer_role_core.md', 'DEAI_WRITING_STYLE_SPEC_20260903.md'],
+    'deai':             ['deai_route_manifest.md', 'DEAI_WRITING_STYLE_SPEC_20260903.md'],
+    # 终审五席同初审角色分工，复用同一批 OS；终审额外强调「只判落实，不复述」
+    'final_editor':           ['DEAI_WRITING_STYLE_SPEC_20260903.md'],
+    'final_structure':        ['writer_role_core.md'],
+    'final_science':          ['experience_distillation_rules.md'],
+    'final_reader':           ['writer_role_core.md'],
+    'final_deai':             ['deai_route_manifest.md', 'DEAI_WRITING_STYLE_SPEC_20260903.md'],
+}
+
+
+def load_role_os(seat: str, *, max_chars: int = 9000) -> tuple[str, list[str]]:
+    """按席位加载角色OS。返回 (文本, 已加载文件名清单)。
+    缺文件即抛 FileNotFoundError —— 不降级为空串，不打印警告了事。"""
+    files = SEAT_OS_FILES.get(seat)
+    if files is None:
+        raise KeyError(f'未定义 OS 映射的席位: {seat}')
+    chunks, loaded = [], []
+    for name in files:
+        p = ROLE_OS_DIR / name
+        if not p.exists():
+            raise FileNotFoundError(
+                f'角色OS缺失，拒绝裸审：{p}\n'
+                f'席位={seat}；修复或重建 OS 后再派工。'
+                f'（教训见 skill kewu-selfcycle-production/'
+                f'references/role-os-present-but-not-injected-20261007.md）')
+        txt = p.read_text(encoding='utf-8')
+        loaded.append(f'{name}({p.stat().st_size}B)')
+        if len(txt) > max_chars:      # 上下文保护：OS 全文可能很长
+            txt = txt[:max_chars] + f'\n…[{name} 前 {max_chars} 字，已截断]'
+        chunks.append(f'### 角色OS片段：{name}\n{txt}')
+    return '\n\n'.join(chunks), loaded
+
+
+def inject_role_os(seat_prompt: str, seat: str) -> tuple[str, list[str]]:
+    """把角色OS拼到席位 prompt 前面。prompt 为空或缺文件都会中断。"""
+    if not (seat_prompt or '').strip():
+        raise ValueError(f'席位 {seat} 的 prompt 为空，疑似未正确取到模板')
+    os_text, loaded = load_role_os(seat)
+    header = (
+        '【角色OS · 必须遵守】以下片段是本席位的角色操作系统，'
+        '其优先级高于下方任务描述中的一般措辞。\n\n'
+    )
+    return header + os_text + '\n\n──────────\n\n' + seat_prompt, loaded
+
 # ── 五席固化：异构、跨族、每席一个节点一个模型 + 同族 fallback ──────────
 FIVE_SEATS = {
     'editor': {
@@ -142,7 +208,11 @@ FINAL_SEATS = {
             "不许复述初审意见。\n\n"
             "输出格式：首行只写 PASS 或 FAIL。若 FAIL，逐条列结构问题并引原文。\n\n正文：\n{body}"
         ),
-        'chain': [('1tim', 'kimi-k3'), ('773', 'kimi-k3')],
+        # 一个 provider 只出一个模型（2026-10-07 用户铁律）。
+        # 主选 1tim/glm-5.2；备选换独立节点 tingfeng/deepseek-v4.1-flash（实测OK 10.9s），
+        # 不再由 1tim 同时出 glm 与 deepseek —— 那会让同席位出现同节点双模型。
+        # 原：('1tim','kimi-k3')+('773','kimi-k3') → ('1tim','glm-5.2')+('1tim','deepseek-v4.1-flash')
+        'chain': [('1tim', 'glm-5.2'), ('tingfeng', 'deepseek-v4.1-flash')],
     },
     'final_science': {
         'role': '终审·科学军事席',
@@ -152,7 +222,11 @@ FINAL_SEATS = {
             "不许复述初审意见。\n\n"
             "输出格式：首行只写 PASS 或 FAIL。若 FAIL，逐条列并给出正确值。\n\n正文：\n{body}"
         ),
-        'chain': [('weiyi-qwen', 'qwen3.8-27b'), ('773', 'qwen3.8-max')],
+        # 一个 provider 只出一个模型（2026-10-07 用户铁律）。
+        # 备选原为 773/qwen3.8-max，但 773 已承担 final_deai 两条，
+        # 继续复用会让「全部走到第二选」时 773 占 2 席、distinct 掉到 4。
+        # 改换独立节点 sunapi-qwen38/qwen3.8-max（实测真通 18.8s，无 fallback）。
+        'chain': [('weiyi-qwen', 'qwen3.8-27b'), ('sunapi-qwen38', 'qwen3.8-max')],
     },
     'final_reader': {
         'role': '终审·读者席',
@@ -349,7 +423,10 @@ def run_seat(seat: str, body: str, timeout: int = TIMEOUT_PER_SEAT,
     # 要件1：正文写进文件，不让 MCP 传输（塞 prompt 参数是超时的真因）
     STATE_DIR.mkdir(parents=True, exist_ok=True)
     pf = STATE_DIR / f'_prompt_{seat}.md'
-    pf.write_text(cfg['prompt'].format(body=body), encoding='utf-8')
+    # 角色OS 注入（HARD）：缺 OS 直接中断，不得裸审
+    _prompt, role_os_loaded = inject_role_os(cfg['prompt'].format(body=body), seat)
+    pf.write_text(_prompt, encoding='utf-8')
+    print(f'  [OS] {seat}: ' + ', '.join(role_os_loaded))
     attempts = []
     for provider, model in cfg['chain']:
         r = call_seat_model(provider, model, pf, timeout=min(timeout, 280))
@@ -588,8 +665,10 @@ def cmd_prepare(a) -> int:
         cfg = defs[s]
         pf = STATE_DIR / f'_prompt_{s}.md'
         STATE_DIR.mkdir(parents=True, exist_ok=True)
-        pf.write_text(cfg['prompt'].format(body=body) + PREBIND_TXT,
-                      encoding='utf-8')
+        _full, _loaded = inject_role_os(
+            cfg['prompt'].format(body=body) + PREBIND_TXT, s)
+        pf.write_text(_full, encoding='utf-8')
+        print(f'  [OS] {s}: ' + ', '.join(_loaded))
         out['seats'][s] = {
             'role': cfg['role'], 'prompt_file': str(pf),
             'chain': cfg['chain'],

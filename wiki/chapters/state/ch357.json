@@ -1,0 +1,67 @@
+{
+  "schema_version": "kewu.chapter-state.v1",
+  "generated_at": "2026-10-07T13:47:59+08:00",
+  "chapter": 357,
+  "title": "地球咽喉",
+  "volume": "第八卷·博弈",
+  "body": {
+    "path": "/root/workspace/科武纪元/新版/第357章.md",
+    "sha256": "af8573a9704aebf968b027de3cd9570cda9c5548c8acb92899d8c23375f491ba",
+    "net_cjk": 3212
+  },
+  "status": {
+    "production": "PUBLISHED",
+    "editable": false,
+    "state_machine": "PUBLISHED 为终态；改稿须先 --force-unpublish 降级",
+    "published_at": "2026-09-27",
+    "submitted_path": "/root/workspace/科武纪元/已投稿/第357章.txt",
+    "wiki_synced": true,
+    "review": null
+  },
+  "interface": {
+    "prev_chapter": 356,
+    "next_chapter": 358,
+    "opening": "琥珀色跳到第三格的时候，投影屏上的航线图变了颜色。\n一条一条地灭。青转灰，灰转黑。氦三运输走廊，七条主航道，四十七分钟内断了三条。剩余四条的船速数据还在跳，间距已经拉开。像血管被一根一根掐住。\n联合调度室的通讯请求队列堆到了四十七条。值班员席位上，左手边那盏橙色指示灯从十四分钟前就没灭过。操作员把耳机从右耳摘下来，换到左耳，指腹在频道切换键上连按了六下。没有一条接通。走廊通航配额表的屏幕刷新了一次，变更栏里多出三行红字：东三航道配额归零，南一航道配额从每标准时十二船次压到四船次，北二航道标注「临时冻结，恢复时间待定」。操作员拿起桌面上的纸质登记簿，在冻结那一栏后面画了一道横线，写上自己的工号。笔尖划过去的时候纸面起了一层毛边。他旁边第二个席位空着。椅背上搭了一件值班外套，袖口朝下。那人的通讯终端还亮着，屏幕上挂着一份中继申请，提交时间是三个标准时之前，状态栏写着「挂起，等待走廊复航确认」。申请编号末尾两位是九和四。没有人动那份申请。光标在状态栏后面一闪一闪。",
+    "ending_hook": "但椅子又往后退了半寸。"
+  },
+  "content": {
+    "characters": [
+      {
+        "name": "林星辰",
+        "mentions": 15
+      },
+      {
+        "name": "陈思琪",
+        "mentions": 9
+      },
+      {
+        "name": "方宁",
+        "mentions": 9
+      },
+      {
+        "name": "谢云",
+        "mentions": 6
+      },
+      {
+        "name": "韩铮",
+        "mentions": 3
+      },
+      {
+        "name": "周棠",
+        "mentions": 1
+      }
+    ],
+    "outline_plot": "铁幕封锁霍尔木兹海峡太空版--氦-3运输线,全球能源危机加剧",
+    "outline_subtext": "苏雨晴秘密外交接触蓝白联盟;铁幕实施金融制裁切断算力网络资金流",
+    "outline_target_cjk": 3000
+  },
+  "threads": {
+    "foreshadowing": [],
+    "ending_hooks": []
+  },
+  "outline_binding": {
+    "version": "V9_G2备注版",
+    "path": "/root/workspace/科武纪元/任务运行态/20261003_kewu_selfcycle_daily/output/科武纪元大纲V9_500章_重建稿_G2备注版.md",
+    "sha256": "fef0e2a8503c8314eb482bd5b9c1451f197f1e1bdd988bb361f46ae23ce393f7"
+  }
+}

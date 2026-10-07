@@ -1,0 +1,55 @@
+{
+  "schema_version": "kewu.chapter-state.v1",
+  "generated_at": "2026-10-07T13:47:59+08:00",
+  "chapter": 363,
+  "title": "非美元结算",
+  "volume": "第八卷·博弈",
+  "body": {
+    "path": "/root/workspace/科武纪元/新版/第363章.md",
+    "sha256": "8725b6cbec24612ba2556f19aadf1d25da28a68c56048d67e74f486b4365aaf4",
+    "net_cjk": 3789
+  },
+  "status": {
+    "production": "PUBLISHED",
+    "editable": false,
+    "state_machine": "PUBLISHED 为终态；改稿须先 --force-unpublish 降级",
+    "published_at": "2026-10-03",
+    "submitted_path": "/root/workspace/科武纪元/已投稿/第363章.txt",
+    "wiki_synced": true,
+    "review": null
+  },
+  "interface": {
+    "prev_chapter": 362,
+    "next_chapter": 364,
+    "opening": "电梯往下走。苏雨晴把左手贴在扶手上，不锈钢的凉意顺指节爬到腕骨。腕表亮着，早搏计数五，倒计时四十一分钟。她没盯那个数字。干眼又犯了，楼层指示的光斑糊成一团。负三。负四。负五。\n门开。\n走廊尽头一扇灰门，没有标识。门把手上贴着手写纸条，方宁的字：「对衡簿启用，仅限持白卡者。」苏雨晴从腰带内侧抽出白卡，磁读槽上划了一下。锁舌弹开。",
+    "ending_hook": "身后韩铮锁抽屉，锁舌咔嗒响了一声。"
+  },
+  "content": {
+    "characters": [
+      {
+        "name": "苏雨晴",
+        "mentions": 27
+      },
+      {
+        "name": "韩铮",
+        "mentions": 19
+      },
+      {
+        "name": "方宁",
+        "mentions": 2
+      }
+    ],
+    "outline_plot": "建立独立于铁幕的算力网络结算体系",
+    "outline_subtext": "结算体系保障算力技术节点安全;铁幕金融制裁失效",
+    "outline_target_cjk": 3150
+  },
+  "threads": {
+    "foreshadowing": [],
+    "ending_hooks": []
+  },
+  "outline_binding": {
+    "version": "V9_G2备注版",
+    "path": "/root/workspace/科武纪元/任务运行态/20261003_kewu_selfcycle_daily/output/科武纪元大纲V9_500章_重建稿_G2备注版.md",
+    "sha256": "fef0e2a8503c8314eb482bd5b9c1451f197f1e1bdd988bb361f46ae23ce393f7"
+  }
+}

@@ -18,30 +18,50 @@ from datetime import datetime
 from pathlib import Path
 
 PROJECT = Path('/root/workspace/科武纪元')
-OUTLINE_LATEST = PROJECT / 'wiki/raw/outline/科武纪元大纲_latest.md'
+# 大纲准绳：一律走 outline_canon 单一入口，不得各自拼路径
+try:
+    from outline_canon import outline_path as _canon_path
+except ImportError:
+    import sys as _s; _s.path.insert(0, str(Path(__file__).parent))
+    from outline_canon import outline_path as _canon_path
+OUTLINE_LATEST = _canon_path()
 DEFAULT_BRIDGE_DIR = PROJECT / '自循环体系/sensenova_mirofish_auto_integration_20260606/bridge_runs'
 DEFAULT_OUTPUT = PROJECT / '审核记录/G2_council_decision.md'
+TOOLS_DIR = PROJECT / '工具脚本'
+
+POOL_PATH = Path('/root/workspace/科武纪元/工具脚本/kewu_seat_pool.json')
 
 # 六席定义：(席名, 角色, provider, model)
+# 2026-10-07：provider/model 改为运行时从席位池取（kewu_seat_pool.json），
+#   此处仅作「池不可用时的静态兜底」。池里每席有多个候选，失败自动换下一个，
+#   无需每轮全量重测节点。改节点请改池，不要改这张表。
 COUNCIL_SEATS = [
-    # 2026-09-25 当轮原生 smoke 重校（dispatch_to_model 通道，timeout 280）。
-    # 旧表 rsiai/claude-opus-5、agentrouter-dsv4、tokeasy、qoder(MCP) 本轮全挂。
-    # 注意：bmapi/gpt-5.6-sol 与 chun-grok46/grok-4.6 在 90s 探针里超时，
-    # 但 280s 窗口内回包（71s/71s）——MCP 超时是上游拥堵，不等于节点失效，勿据短探针判死。
-    # 海外新鲜度席 yi-hydrogel/grok-4.7 首轮 280s 超时，改用 qoder CLI（qoder-cn）补席。
-    ('主席/结构',     '结构审查', 'custom:bmapi', 'gpt-5.6-sol'),
-    ('编辑/连续性',   '编辑连续性审查', 'custom:workbuddy-hy3', 'cn:glm-5.3-flash'),
-    ('科学顾问',     '科学准确性审查', 'custom:sensenova', 'glm-5.2'),
-    ('军事制度',     '军事制度审查', 'custom:chun-grok46', 'grok-4.6'),
-    ('读者视角',     '读者体验审查', 'custom:sensenova2', 'glm-5.2'),
-    ('海外新鲜度',   '海外素材新鲜度审查', 'qoder', 'Qwen3.8-Flash'),
-    # 2026-09-26 新增：中文文风席。走张老师号（cn:hy4-preview），实测原生 smoke
-    # 13.1s 回 153，免费档。夏文华已手动停用 → cn 域只剩张老师一个候选号，
-    # cn: 前缀的模型请求确定落到张老师号，不再靠权重抽签。
-    # 注意与「编辑/连续性」席同 provider（custom:workbuddy-hy3）但不同账号/模型，
-    # 本脚本不设一席一 provider 门禁（那是 kewu_parallel_review.py 的 HARD 门）。
-    ('中文文风',     '中文文风与人味审查', 'custom:workbuddy-hy3', 'cn:hy4-preview'),
+    ('主席/结构',     '结构审查', 'onefor', 'gpt-6-sol'),
+    ('编辑/连续性',   '编辑连续性审查', 'onefor', 'gpt-5.6-terra'),
+    ('科学顾问',     '科学准确性审查', 'sensenova', 'glm-5.2'),
+    ('军事制度',     '军事制度审查', 'onefor', 'gpt-5.6-sol'),
+    ('读者视角',     '读者体验审查', 'sensenova', 'glm-5.2'),
+    ('海外新鲜度',   '海外素材新鲜度审查', 'onefor', 'gpt-5.6-terra'),
+    ('中文文风',     '中文文风与人味审查', 'sensenova', 'glm-5.2'),
 ]
+
+
+def seat_candidates(seat: str) -> list:
+    """从席位池取该席的候选节点（按 ok_streak 降序）。池不可用则返回静态兜底。"""
+    try:
+        d = json.loads(POOL_PATH.read_text(encoding='utf-8'))
+        entries = d['pools'].get('g2_council', {}).get(seat, [])
+        ok = [e for e in entries if e.get('status') == 'ok']
+        qua = [e for e in entries if e.get('status') == 'quarantine']
+        pool = sorted(ok, key=lambda e: -e.get('ok_streak', 0)) + qua
+        if pool:
+            return [(e['provider'], e['model']) for e in pool]
+    except Exception:
+        pass
+    for s in COUNCIL_SEATS:
+        if s[0] == seat:
+            return [(s[2], s[3])]
+    return []
 
 
 def load_bridge_cards(bridge_dir: Path) -> list[dict]:
@@ -78,8 +98,29 @@ def load_outline(outline_path: Path) -> str:
     return outline_path.read_text(encoding='utf-8')
 
 
-def call_hermes_model(provider: str, model: str, prompt: str, timeout: int = 180) -> dict:
-    """调用 hermes chat -P provider -M model -Q -q prompt，返回结果字典。"""
+def call_direct_model(provider: str, model: str, prompt: str, timeout: int = 280) -> dict:
+    """直连 OpenAI 兼容端点（不经 hermes chat）。
+
+    2026-10-06：hermes chat -Q 通道全池失效（--provider 被 fallback 吃掉，
+    请求落到默认链返回 No reply），G2 七席改走直连。席位表见
+    output/G2_SEATS_ROSTER_20261006.md。
+    """
+    sys.path.insert(0, str(TOOLS_DIR))
+    try:
+        import kewu_review_direct as K
+    except Exception as e:
+        return {'ok': False, 'stdout': '', 'stderr': 'NO_DIRECT_MODULE: %s' % e,
+                'elapsed_sec': 0}
+    r = K.call(provider, model, [{'role': 'user', 'content': prompt}],
+               timeout=timeout, max_tokens=2500)
+    return {
+        'ok': bool(r.get('ok')),
+        'provider': provider,
+        'model': model,
+        'stdout': (r.get('text') or '')[:4000],
+        'stderr': r.get('err', ''),
+        'elapsed_sec': r.get('sec', 0),
+    }
     cmd = [
         'hermes', 'chat',
         '--provider', provider,
@@ -240,7 +281,7 @@ def main():
             continue
 
         print(f'调用 {seat_name} ({provider}/{model})...', file=sys.stderr)
-        res = call_hermes_model(provider, model, prompt, timeout=280)
+        res = call_direct_model(provider, model, prompt, timeout=300)
         verdict = parse_verdict(res.get('stdout', ''))
         results.append({
             'seat': seat_name, 'role': role,

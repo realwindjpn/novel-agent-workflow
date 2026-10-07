@@ -1,0 +1,71 @@
+{
+  "schema_version": "kewu.chapter-state.v1",
+  "generated_at": "2026-10-07T13:47:59+08:00",
+  "chapter": 367,
+  "title": "外交总攻",
+  "volume": "第八卷·博弈",
+  "body": {
+    "path": "/root/workspace/科武纪元/新版/第367章.md",
+    "sha256": "0c2587ddd889fe2e6f59be47809ddcadc93024907eed710872d4d79dc2f66d43",
+    "net_cjk": 3952
+  },
+  "status": {
+    "production": "PUBLISHED",
+    "editable": false,
+    "state_machine": "PUBLISHED 为终态；改稿须先 --force-unpublish 降级",
+    "published_at": "2026-10-06",
+    "submitted_path": "/root/workspace/科武纪元/已投稿/第367章.txt",
+    "wiki_synced": true,
+    "review": null
+  },
+  "interface": {
+    "prev_chapter": 366,
+    "next_chapter": 368,
+    "opening": "破裂后第七十一小时，泛际会议大厅的座椅还没摆正。\n周棠把态势图铺在南天门前线调度组的折叠桌上时，桌腿压住了上一轮谈判留下的茶杯印。十四个成员方的席位灯还亮着，但授权频段已经分成两截。她没看灯。她看的是补给半径。\n\"站队不是举牌子。\"她把触控笔点在L1节点上，\"是看谁的运输许可还开着。\"",
+    "ending_hook": "首班锚固件舱开始爬升，速度很慢，像一个人试探着把脚踩上结冰的台阶。"
+  },
+  "content": {
+    "characters": [
+      {
+        "name": "周棠",
+        "mentions": 26
+      },
+      {
+        "name": "韩铮",
+        "mentions": 15
+      },
+      {
+        "name": "谢云",
+        "mentions": 6
+      },
+      {
+        "name": "方宁",
+        "mentions": 4
+      },
+      {
+        "name": "老赵",
+        "mentions": 3
+      },
+      {
+        "name": "林星辰",
+        "mentions": 1
+      },
+      {
+        "name": "苏雨晴",
+        "mentions": 1
+      }
+    ],
+    "outline_plot": "各国重新站队,形成两大阵营；周棠接手两大阵营的态势图，把366破裂后的战线按补给半径重排，先定哪些阵地值得守。",
+    "outline_subtext": "中国推动人类命运共同体理念;理念强调技术链路完整性；周棠的态势图把它落成三条可执行的补给线，而不是一句口号。",
+    "outline_target_cjk": 3100
+  },
+  "threads": {
+    "foreshadowing": [],
+    "ending_hooks": []
+  },
+  "outline_binding": {
+    "version": "V9_G2备注版",
+    "path": "/root/workspace/科武纪元/任务运行态/20261003_kewu_selfcycle_daily/output/科武纪元大纲V9_500章_重建稿_G2备注版.md",
+    "sha256": "fef0e2a8503c8314eb482bd5b9c1451f197f1e1bdd988bb361f46ae23ce393f7"
+  }
+}

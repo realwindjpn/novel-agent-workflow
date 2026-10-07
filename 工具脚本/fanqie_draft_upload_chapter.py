@@ -16,6 +16,8 @@ import tempfile
 import textwrap
 import time
 from pathlib import Path
+import sys as _s; _s.path.insert(0, str(Path(__file__).parent) if 'Path' in dir() else __import__('os').path.dirname(__import__('os').path.abspath(__file__)))
+from outline_canon import outline_path as _canon_path
 
 PROJECT_DIR = Path('/root/workspace/科武纪元')
 READY_GATE = PROJECT_DIR / '工具脚本' / 'ensure_fanqie_upload_txt_ready.py'
@@ -123,7 +125,7 @@ def js_eval(session: str, js: str, timeout: int = 60, state_path: Path | None = 
 
 
 def infer_volume(project_dir: Path, chapter: int) -> str:
-    outline = project_dir / '科武纪元大纲 V8_完整版.md'
+    outline = _canon_path()
     if not outline.exists():
         raise FileNotFoundError(outline)
     text = outline.read_text(encoding='utf-8')

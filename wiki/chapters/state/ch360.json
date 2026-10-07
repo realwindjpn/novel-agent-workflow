@@ -1,0 +1,59 @@
+{
+  "schema_version": "kewu.chapter-state.v1",
+  "generated_at": "2026-10-07T13:47:59+08:00",
+  "chapter": 360,
+  "title": "专利战争",
+  "volume": "第八卷·博弈",
+  "body": {
+    "path": "/root/workspace/科武纪元/新版/第360章.md",
+    "sha256": "401462bb552589033f0d16629278c1d1bbf34c4031c11d7c3cf5e5427f00e177",
+    "net_cjk": 3447
+  },
+  "status": {
+    "production": "PUBLISHED",
+    "editable": false,
+    "state_machine": "PUBLISHED 为终态；改稿须先 --force-unpublish 降级",
+    "published_at": "2026-09-30",
+    "submitted_path": "/root/workspace/科武纪元/已投稿/第360章.txt",
+    "wiki_synced": true,
+    "review": null
+  },
+  "interface": {
+    "prev_chapter": 359,
+    "next_chapter": 361,
+    "opening": "气密门外的走廊冷白灯光切在林星辰的侧脸上。他腕表上的琥珀色数字跳到零三小时五十一分。数字每一次跳动，都伴随着极其微弱的电流嗡鸣。\n全息沙盘在会议室中央展开。密密麻麻的红色光点像铁锈一样蔓延，吞噬着蓝色的戴森球结构图。每一个红点代表一项被恶意抢注的专利。\n周棠把一沓实体文件重重摔在桌面上。散落的纸张边缘割破了她的食指。血珠渗出，她没擦，右手食指用力压在牛皮纸封面上。指节泛白，在纸面上碾出一道血指纹。",
+    "ending_hook": "铁幕的獠牙，才刚刚露出来。"
+  },
+  "content": {
+    "characters": [
+      {
+        "name": "林星辰",
+        "mentions": 21
+      },
+      {
+        "name": "方宁",
+        "mentions": 16
+      },
+      {
+        "name": "韩铮",
+        "mentions": 9
+      },
+      {
+        "name": "周棠",
+        "mentions": 8
+      }
+    ],
+    "outline_plot": "铁幕恶意抢注戴森球关键技术专利,发起全球诉讼",
+    "outline_subtext": "中国凭借早期专利布局占据优势;材料技术节点专利成焦点",
+    "outline_target_cjk": 3300
+  },
+  "threads": {
+    "foreshadowing": [],
+    "ending_hooks": []
+  },
+  "outline_binding": {
+    "version": "V9_G2备注版",
+    "path": "/root/workspace/科武纪元/任务运行态/20261003_kewu_selfcycle_daily/output/科武纪元大纲V9_500章_重建稿_G2备注版.md",
+    "sha256": "fef0e2a8503c8314eb482bd5b9c1451f197f1e1bdd988bb361f46ae23ce393f7"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "schema_version": "kewu.chapter-state.v1",
+  "generated_at": "2026-10-07T13:47:59+08:00",
+  "chapter": 361,
+  "title": "秘密外交",
+  "volume": "第八卷·博弈",
+  "body": {
+    "path": "/root/workspace/科武纪元/新版/第361章.md",
+    "sha256": "99248278c547eec5116fc3c1871e4dad96d25a6e5ccbe1157e11969fb445caa1",
+    "net_cjk": 3237
+  },
+  "status": {
+    "production": "PUBLISHED",
+    "editable": false,
+    "state_machine": "PUBLISHED 为终态；改稿须先 --force-unpublish 降级",
+    "published_at": "2026-10-03",
+    "submitted_path": "/root/workspace/科武纪元/已投稿/第361章.txt",
+    "wiki_synced": true,
+    "review": null
+  },
+  "interface": {
+    "prev_chapter": 360,
+    "next_chapter": 362,
+    "opening": "加压井的入口在北岸登陆站最东端，一扇锈迹斑驳的检修盖。苏雨晴蹲下去，把左腕翻过来看压力读数：零点一零三个标准大气压，井内预压已经打完。她按了一下腕表侧面的排气键，阀门嘶了一声，压力表指针往下掉了两格，稳住。\n她等了四十秒。排气结束的标志是一声短促的金属叩击，从井壁深处传上来。\n检修盖拉开。铸铁阶梯往下延伸，消失在黄光里。第一级踏板上有一道白色的检修漆标，写着上次维护的日期，漆面已经被踩得只剩一半。她踩下去，水声。第二级，第三级。井壁每隔十二级就有一道环形的焊缝标记，焊缝上溅着防锈漆的橘色斑点。",
+    "ending_hook": "她继续往上走。"
+  },
+  "content": {
+    "characters": [
+      {
+        "name": "苏雨晴",
+        "mentions": 24
+      },
+      {
+        "name": "林星辰",
+        "mentions": 3
+      },
+      {
+        "name": "方宁",
+        "mentions": 3
+      },
+      {
+        "name": "周棠",
+        "mentions": 2
+      }
+    ],
+    "outline_plot": "苏雨晴秘密会晤陈玉珊,寻求东屿蓝白阵线稳定联盟",
+    "outline_subtext": "对方透露铁幕试图联系外部力量;联盟聚焦保护运输技术节点",
+    "outline_target_cjk": 3000
+  },
+  "threads": {
+    "foreshadowing": [],
+    "ending_hooks": []
+  },
+  "outline_binding": {
+    "version": "V9_G2备注版",
+    "path": "/root/workspace/科武纪元/任务运行态/20261003_kewu_selfcycle_daily/output/科武纪元大纲V9_500章_重建稿_G2备注版.md",
+    "sha256": "fef0e2a8503c8314eb482bd5b9c1451f197f1e1bdd988bb361f46ae23ce393f7"
+  }
+}

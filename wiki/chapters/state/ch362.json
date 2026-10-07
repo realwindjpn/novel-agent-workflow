@@ -1,0 +1,51 @@
+{
+  "schema_version": "kewu.chapter-state.v1",
+  "generated_at": "2026-10-07T13:47:59+08:00",
+  "chapter": 362,
+  "title": "双线作战",
+  "volume": "第八卷·博弈",
+  "body": {
+    "path": "/root/workspace/科武纪元/新版/第362章.md",
+    "sha256": "39271eaa361854ea9ea3b804ffcd0c5a814c0cd23060cfeb8cf6aee74dc21bac",
+    "net_cjk": 3258
+  },
+  "status": {
+    "production": "PUBLISHED",
+    "editable": false,
+    "state_machine": "PUBLISHED 为终态；改稿须先 --force-unpublish 降级",
+    "published_at": "2026-10-03",
+    "submitted_path": "/root/workspace/科武纪元/已投稿/第362章.txt",
+    "wiki_synced": true,
+    "review": null
+  },
+  "interface": {
+    "prev_chapter": 361,
+    "next_chapter": 363,
+    "opening": "白卡纸隔着腰带硌胯骨。苏雨晴把重心换到左脚，右手压在泛际安全理事会的态势摘要上，左手同时翻着月面防御频道的回读。两块屏。两个时钟。月面单向延迟一点二八秒，谈判线按九十分钟一个报告周期推送。她盯着左下角那行小字：下一周期推送，剩余十一分四十二秒。\n十一点四十二秒。月面那边够打两场遭遇战了。\n她翻态势摘要。第四页，第七页，第十一页。每一页右下角都印着同一个时间戳，九十分钟前的。表决面板搁在桌面右侧，待机灯亮着暗橙色，没人碰它。同传耳机挂在左耳廓上，底噪像一根极细的线，嗡嗡地拿砂纸磨她的鼓膜。她没摘。摘了就得自己听对面三种语言的原文。",
+    "ending_hook": "苏雨晴把白卡纸往腰带里又按了按，转身走向电梯。"
+  },
+  "content": {
+    "characters": [
+      {
+        "name": "苏雨晴",
+        "mentions": 10
+      },
+      {
+        "name": "周棠",
+        "mentions": 9
+      }
+    ],
+    "outline_plot": "苏雨晴同时指挥月面防御与泛际会议谈判,身心俱疲",
+    "outline_subtext": "发现铁幕内部派系分裂线索;分裂围绕技术节点控制权",
+    "outline_target_cjk": 3050
+  },
+  "threads": {
+    "foreshadowing": [],
+    "ending_hooks": []
+  },
+  "outline_binding": {
+    "version": "V9_G2备注版",
+    "path": "/root/workspace/科武纪元/任务运行态/20261003_kewu_selfcycle_daily/output/科武纪元大纲V9_500章_重建稿_G2备注版.md",
+    "sha256": "fef0e2a8503c8314eb482bd5b9c1451f197f1e1bdd988bb361f46ae23ce393f7"
+  }
+}

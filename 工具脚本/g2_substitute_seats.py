@@ -9,6 +9,8 @@
 """
 import json, re, subprocess, sys, time
 from pathlib import Path
+import sys as _s; _s.path.insert(0, str(Path(__file__).parent) if 'Path' in dir() else __import__('os').path.dirname(__import__('os').path.abspath(__file__)))
+from outline_canon import outline_path as _canon_path
 
 ROOT = Path('/root/workspace/科武纪元')
 OUT = ROOT / '任务运行态/20260926_kewu_selfcycle_daily/output'
@@ -32,7 +34,7 @@ def build_prompt(seat, role):
         lines.append(f"{i}. [{s}] {t} → 力量线: {', '.join(fr) if fr else '(无)'}")
     if len(cards) > 15:
         lines.append(f"... 共{len(cards)}张卡，已截取前15张")
-    out = ROOT / 'wiki/raw/outline/科武纪元大纲_latest.md'
+    out = _canon_path()
     outline = out.read_text(encoding='utf-8') if out.exists() else ''
     idx = outline.find('# 归档入口')
     excerpt = (outline[:idx] if idx > 0 else outline)[:3000]

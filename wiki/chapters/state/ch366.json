@@ -1,0 +1,55 @@
+{
+  "schema_version": "kewu.chapter-state.v1",
+  "generated_at": "2026-10-07T13:47:59+08:00",
+  "chapter": 366,
+  "title": "谈判破裂",
+  "volume": "第八卷·博弈",
+  "body": {
+    "path": "/root/workspace/科武纪元/新版/第366章.md",
+    "sha256": "63636b841ae14f49b3ec3fd7077b92e4c46a1c88c8f31ddb4f74c150895499ca",
+    "net_cjk": 3095
+  },
+  "status": {
+    "production": "PUBLISHED",
+    "editable": false,
+    "state_machine": "PUBLISHED 为终态；改稿须先 --force-unpublish 降级",
+    "published_at": "2026-10-03",
+    "submitted_path": "/root/workspace/科武纪元/已投稿/第366章.txt",
+    "wiki_synced": true,
+    "review": null
+  },
+  "interface": {
+    "prev_chapter": 365,
+    "next_chapter": 367,
+    "opening": "苏雨晴推开会议室侧门。走廊冷风灌入。门外的金属托盘里放着一个牛皮纸袋。火漆印完整，暗红色，压着铁幕的徽记。她拿起纸袋，指腹擦过封口。纸张克重极高，裁边硬挺发涩，在指腹硌出一道白痕。\n她走回长桌，拆开纸袋。里面是三份装订好的文件。没有封面，直接是正文。右上角印着绝密字样，下方是一串由字母和汉字组成的防伪编码。\n她翻开第一份文件。第十七页，算力审计执行权补充条款。字段密密麻麻，字号极小。她拿出昨天核验的三页纸，平铺在桌面上。左边是廖铮的样本接触记录，中间是生物技术节点专利交叉许可，右边是这份新到的补充材料。",
+    "ending_hook": "」她说。"
+  },
+  "content": {
+    "characters": [
+      {
+        "name": "苏雨晴",
+        "mentions": 23
+      },
+      {
+        "name": "韩铮",
+        "mentions": 9
+      },
+      {
+        "name": "周棠",
+        "mentions": 6
+      }
+    ],
+    "outline_plot": "泛际会议和谈最终破裂,全面对抗不可避免",
+    "outline_subtext": "铁幕提出惊人条件:独占戴森球技术链路",
+    "outline_target_cjk": 3000
+  },
+  "threads": {
+    "foreshadowing": [],
+    "ending_hooks": []
+  },
+  "outline_binding": {
+    "version": "V9_G2备注版",
+    "path": "/root/workspace/科武纪元/任务运行态/20261003_kewu_selfcycle_daily/output/科武纪元大纲V9_500章_重建稿_G2备注版.md",
+    "sha256": "fef0e2a8503c8314eb482bd5b9c1451f197f1e1bdd988bb361f46ae23ce393f7"
+  }
+}

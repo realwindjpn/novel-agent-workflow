@@ -1,0 +1,55 @@
+{
+  "schema_version": "kewu.chapter-state.v1",
+  "generated_at": "2026-10-07T13:47:59+08:00",
+  "chapter": 359,
+  "title": "人才争夺",
+  "volume": "第八卷·博弈",
+  "body": {
+    "path": "/root/workspace/科武纪元/新版/第359章.md",
+    "sha256": "54c6c548cee683940400f247be0a6e4b46f29a4dbcd7d69087f4631b9f69cdcf",
+    "net_cjk": 5773
+  },
+  "status": {
+    "production": "PUBLISHED",
+    "editable": false,
+    "state_machine": "PUBLISHED 为终态；改稿须先 --force-unpublish 降级",
+    "published_at": "2026-10-01",
+    "submitted_path": "/root/workspace/科武纪元/已投稿/第359章.txt",
+    "wiki_synced": true,
+    "review": null
+  },
+  "interface": {
+    "prev_chapter": 358,
+    "next_chapter": 360,
+    "opening": "气密门合拢的声音还在走廊里回荡。\n陈思琪盯着主屏。琥珀色数字跳到五十一秒。那是门禁加压自检的读数，跟任务窗口不是一路。\n辅屏弹出一条告警。她切进设备诊断层跑完自检，全绿，目光退回来源栏——人事监控系统，红色标签。",
+    "ending_hook": "\"\n\n她把通讯器收回口袋，加快脚步追上林星辰。"
+  },
+  "content": {
+    "characters": [
+      {
+        "name": "陈思琪",
+        "mentions": 54
+      },
+      {
+        "name": "韩铮",
+        "mentions": 36
+      },
+      {
+        "name": "林星辰",
+        "mentions": 10
+      }
+    ],
+    "outline_plot": "铁幕大规模挖角顶尖科学家,量子物理学家成首要目标",
+    "outline_subtext": "中国启动\"星火计划\"保护人才;提前布局的人才储备发挥作用",
+    "outline_target_cjk": 3200
+  },
+  "threads": {
+    "foreshadowing": [],
+    "ending_hooks": []
+  },
+  "outline_binding": {
+    "version": "V9_G2备注版",
+    "path": "/root/workspace/科武纪元/任务运行态/20261003_kewu_selfcycle_daily/output/科武纪元大纲V9_500章_重建稿_G2备注版.md",
+    "sha256": "fef0e2a8503c8314eb482bd5b9c1451f197f1e1bdd988bb361f46ae23ce393f7"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "chapter": 374,
+  "title": "散热逼近",
+  "status": {
+    "production": "DRAFTED",
+    "flow": "REVIEWED",
+    "review": {
+      "rounds": 2,
+      "verdict": "PASS",
+      "seats": "科学/结构/读者 三席",
+      "note": "二审科学yezi-gemini可定稿；读者agnes-text PASS；结构一审已达标"
+    }
+  },
+  "history": [
+    {
+      "at": "2026-10-08T20:14:29+08:00",
+      "event": "两轮四席审稿完成 可定稿",
+      "cjk": 3358,
+      "sha256": "6a88d52c21487740"
+    }
+  ],
+  "body": {
+    "path": "/root/workspace/科武纪元/任务运行态/20261010_kewu_selfcycle_daily_ch374/output/candidate_374_r1b.md",
+    "sha256": "6a88d52c21487740254457f8471e7d4597b9e6650f74b62bdeadf8cb2f0ed0af",
+    "net_cjk": 3358
+  }
+}

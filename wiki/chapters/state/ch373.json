@@ -5,20 +5,25 @@
   "title": "双向封锁",
   "volume": "第八卷·博弈",
   "body": {
-    "path": null,
-    "sha256": null,
-    "net_cjk": null
+    "path": "科武纪元/任务运行态/20261008_kewu_selfcycle_daily_ch373/output/candidate_373_r1.md",
+    "sha256": "3971c394324bd091a3af70ca9100353c08525094976069fa0be3493eed77f553",
+    "net_cjk": 3461
   },
   "status": {
-    "production": "NONE",
-    "flow": "DRAFTING",
+    "production": "DRAFTED",
+    "flow": "REVIEWED",
     "editable": true,
     "published_at": null,
     "submitted_path": null,
     "wiki_synced": false,
-    "review": null,
+    "review": {
+      "rounds": 9,
+      "verdict": "PASS",
+      "seats": "科学/结构/读者/编辑 四席",
+      "note": "科学席九轮复验后判 PASS；结构席复验 PASS；读者席复验待确认最后一处"
+    },
     "state_machine": "PUBLISHED 为终态；改稿须先 --force-unpublish 降级",
-    "updated_at": "2026-10-08T13:28:27+08:00"
+    "updated_at": "2026-10-08T16:40:58+08:00"
   },
   "interface": {
     "prev_chapter": 372,
@@ -48,6 +53,12 @@
       "at": "2026-10-08T13:28:27+08:00",
       "reason": "372已PUBLISHED, 开章373 双向封锁",
       "forced": false
+    },
+    {
+      "at": "2026-10-08T16:40:59+08:00",
+      "event": "一审+终审完成，九轮科学复验 PASS, 科学与结构席均可定稿",
+      "cjk": 3461,
+      "sha256": "3971c394324bd091"
     }
   ]
 }

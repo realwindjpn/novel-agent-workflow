@@ -1,0 +1,81 @@
+{
+  "schema_version": "kewu.chapter-state.v1",
+  "generated_at": "2026-10-07T23:54:59+08:00",
+  "chapter": 371,
+  "title": "月面绞肉机",
+  "volume": "第八卷·博弈",
+  "body": {
+    "path": null,
+    "sha256": null,
+    "net_cjk": null
+  },
+  "status": {
+    "production": "NONE",
+    "flow": "PUBLISHED",
+    "editable": true,
+    "published_at": null,
+    "submitted_path": null,
+    "wiki_synced": false,
+    "review": null,
+    "state_machine": "PUBLISHED 为终态；改稿须先 --force-unpublish 降级",
+    "updated_at": "2026-10-08T08:29:30+08:00"
+  },
+  "interface": {
+    "prev_chapter": 370,
+    "next_chapter": 372,
+    "opening": null,
+    "ending_hook": null
+  },
+  "content": {
+    "characters": [],
+    "outline_plot": "铁幕联盟发动月面总攻,南天门防线岌岌可危；周棠按能源与补给排序，先保住三处能自持的支撑点，放弃两处守不住的哨位。",
+    "outline_subtext": "方舟协议信号异常增强,暗示外星干预;能源技术节点受威胁；周棠的排序表成为此后月面作战的统一口径。",
+    "outline_target_cjk": 3200
+  },
+  "threads": {
+    "foreshadowing": [],
+    "ending_hooks": []
+  },
+  "outline_binding": {
+    "version": "V9_G2备注版",
+    "path": "/root/workspace/科武纪元/任务运行态/20261003_kewu_selfcycle_daily/output/科武纪元大纲V9_500章_重建稿_G2备注版.md",
+    "sha256": "fef0e2a8503c8314eb482bd5b9c1451f197f1e1bdd988bb361f46ae23ce393f7"
+  },
+  "history": [
+    {
+      "from": "PLANNED",
+      "to": "DRAFTING",
+      "at": "2026-10-07T23:55:06+08:00",
+      "reason": null,
+      "forced": false
+    },
+    {
+      "from": "DRAFTING",
+      "to": "IN_REVIEW",
+      "at": "2026-10-08T08:29:30+08:00",
+      "reason": "上传草稿箱完成, listing复核count=1无重复, 3942字",
+      "forced": false
+    },
+    {
+      "from": "IN_REVIEW",
+      "to": "REVIEW_PASS",
+      "at": "2026-10-08T08:29:30+08:00",
+      "reason": "上传草稿箱完成, listing复核count=1无重复, 3942字",
+      "forced": false
+    },
+    {
+      "from": "REVIEW_PASS",
+      "to": "FINALIZED",
+      "at": "2026-10-08T08:29:30+08:00",
+      "reason": "上传草稿箱完成, listing复核count=1无重复, 3942字",
+      "forced": false
+    },
+    {
+      "from": "FINALIZED",
+      "to": "PUBLISHED",
+      "at": "2026-10-08T08:29:30+08:00",
+      "reason": "上传草稿箱完成, listing复核count=1无重复, 3942字",
+      "forced": false
+    }
+  ]
+}

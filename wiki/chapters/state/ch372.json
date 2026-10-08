@@ -1,0 +1,53 @@
+{
+  "schema_version": "kewu.chapter-state.v1",
+  "generated_at": "2026-10-08T08:29:22+08:00",
+  "chapter": 372,
+  "title": "L1争夺",
+  "volume": "第八卷·博弈",
+  "body": {
+    "path": null,
+    "sha256": null,
+    "net_cjk": null
+  },
+  "status": {
+    "production": "NONE",
+    "flow": "DRAFTING",
+    "editable": true,
+    "published_at": null,
+    "submitted_path": null,
+    "wiki_synced": false,
+    "review": null,
+    "state_machine": "PUBLISHED 为终态；改稿须先 --force-unpublish 降级",
+    "updated_at": "2026-10-08T08:29:37+08:00"
+  },
+  "interface": {
+    "prev_chapter": 371,
+    "next_chapter": 373,
+    "opening": null,
+    "ending_hook": null
+  },
+  "content": {
+    "characters": [],
+    "outline_plot": "L1拉格朗日点争夺战,控制地月物流枢纽；周棠先把泊位与排队规则定下来，让争夺战从抢位置变成抢排队权。",
+    "outline_subtext": "月球背面监测站截获深空信号;运输技术节点成焦点；泊位规则一改，它的价值从占有转为调度。",
+    "outline_target_cjk": 3150
+  },
+  "threads": {
+    "foreshadowing": [],
+    "ending_hooks": []
+  },
+  "outline_binding": {
+    "version": "V9_G2备注版",
+    "path": "/root/workspace/科武纪元/任务运行态/20261003_kewu_selfcycle_daily/output/科武纪元大纲V9_500章_重建稿_G2备注版.md",
+    "sha256": "fef0e2a8503c8314eb482bd5b9c1451f197f1e1bdd988bb361f46ae23ce393f7"
+  },
+  "history": [
+    {
+      "from": "PLANNED",
+      "to": "DRAFTING",
+      "at": "2026-10-08T08:29:37+08:00",
+      "reason": "371已PUBLISHED, 开章372 L1争夺",
+      "forced": false
+    }
+  ]
+}

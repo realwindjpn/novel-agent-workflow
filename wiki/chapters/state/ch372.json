@@ -11,14 +11,14 @@
   },
   "status": {
     "production": "NONE",
-    "flow": "DRAFTING",
+    "flow": "PUBLISHED",
     "editable": true,
     "published_at": null,
     "submitted_path": null,
     "wiki_synced": false,
     "review": null,
     "state_machine": "PUBLISHED 为终态；改稿须先 --force-unpublish 降级",
-    "updated_at": "2026-10-08T08:29:37+08:00"
+    "updated_at": "2026-10-08T10:01:53+08:00"
   },
   "interface": {
     "prev_chapter": 371,
@@ -47,6 +47,34 @@
       "to": "DRAFTING",
       "at": "2026-10-08T08:29:37+08:00",
       "reason": "371已PUBLISHED, 开章372 L1争夺",
+      "forced": false
+    },
+    {
+      "from": "DRAFTING",
+      "to": "IN_REVIEW",
+      "at": "2026-10-08T10:01:53+08:00",
+      "reason": "上传草稿箱完成, listing复核count=1无重复, 3686字",
+      "forced": false
+    },
+    {
+      "from": "IN_REVIEW",
+      "to": "REVIEW_PASS",
+      "at": "2026-10-08T10:01:53+08:00",
+      "reason": "上传草稿箱完成, listing复核count=1无重复, 3686字",
+      "forced": false
+    },
+    {
+      "from": "REVIEW_PASS",
+      "to": "FINALIZED",
+      "at": "2026-10-08T10:01:53+08:00",
+      "reason": "上传草稿箱完成, listing复核count=1无重复, 3686字",
+      "forced": false
+    },
+    {
+      "from": "FINALIZED",
+      "to": "PUBLISHED",
+      "at": "2026-10-08T10:01:53+08:00",
+      "reason": "上传草稿箱完成, listing复核count=1无重复, 3686字",
       "forced": false
     }
   ]

@@ -1,0 +1,53 @@
+{
+  "schema_version": "kewu.chapter-state.v1",
+  "generated_at": "2026-10-08T13:28:26+08:00",
+  "chapter": 373,
+  "title": "双向封锁",
+  "volume": "第八卷·博弈",
+  "body": {
+    "path": null,
+    "sha256": null,
+    "net_cjk": null
+  },
+  "status": {
+    "production": "NONE",
+    "flow": "DRAFTING",
+    "editable": true,
+    "published_at": null,
+    "submitted_path": null,
+    "wiki_synced": false,
+    "review": null,
+    "state_machine": "PUBLISHED 为终态；改稿须先 --force-unpublish 降级",
+    "updated_at": "2026-10-08T13:28:27+08:00"
+  },
+  "interface": {
+    "prev_chapter": 372,
+    "next_chapter": 374,
+    "opening": null,
+    "ending_hook": null
+  },
+  "content": {
+    "characters": [],
+    "outline_plot": "铁幕实施太空版双向封锁,断绝氦-3进出；周棠组织护航编队按班次穿封锁，不追求打通，只保证每班带回定量。",
+    "outline_subtext": "联合政府启用小行星带替代资源;材料技术节点发挥关键作用；班次表把替代资源从救急变成常态补给。",
+    "outline_target_cjk": 3150
+  },
+  "threads": {
+    "foreshadowing": [],
+    "ending_hooks": []
+  },
+  "outline_binding": {
+    "version": "V9_G2备注版",
+    "path": "/root/workspace/科武纪元/任务运行态/20261003_kewu_selfcycle_daily/output/科武纪元大纲V9_500章_重建稿_G2备注版.md",
+    "sha256": "fef0e2a8503c8314eb482bd5b9c1451f197f1e1bdd988bb361f46ae23ce393f7"
+  },
+  "history": [
+    {
+      "from": "PLANNED",
+      "to": "DRAFTING",
+      "at": "2026-10-08T13:28:27+08:00",
+      "reason": "372已PUBLISHED, 开章373 双向封锁",
+      "forced": false
+    }
+  ]
+}

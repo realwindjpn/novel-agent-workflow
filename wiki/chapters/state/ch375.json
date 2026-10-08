@@ -1,0 +1,26 @@
+{
+  "chapter": 375,
+  "title": "深空回响",
+  "status": {
+    "production": "DRAFTED",
+    "flow": "REVIEWED",
+    "review": {
+      "verdict": "PASS",
+      "seats": "科学/结构/读者 三席",
+      "note": "科学yezi-gemini/结构sensenova/读者agnes-text 均PASS"
+    }
+  },
+  "history": [
+    {
+      "at": "2026-10-09T00:12:50+08:00",
+      "event": "三席初审全PASS 定稿",
+      "cjk": 5403,
+      "sha256": "8bc2eca71a737bd5"
+    }
+  ],
+  "body": {
+    "path": "/root/workspace/科武纪元/任务运行态/20261010_kewu_selfcycle_daily_ch375/output/candidate_375_r4.md",
+    "sha256": "8bc2eca71a737bd5f22e176adc56d3feb6c6180998d1bc8475125753a4ccc7a7",
+    "net_cjk": 5403
+  }
+}
